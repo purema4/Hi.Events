@@ -1,7 +1,6 @@
 import express from "express";
 import {installGlobals} from "@remix-run/node";
 import process from "process";
-import {createServer as viteServer} from "vite";
 import compression from "compression";
 import fs from "node:fs/promises";
 import sirv from "sirv";
@@ -12,6 +11,7 @@ import * as nodePath from "node:path";
 import * as nodeUrl from "node:url";
 import "dotenv/config";
 import {sitemapIndexHandler, sitemapEventsHandler, sitemapOrganizersHandler} from "./src/sitemap/proxy.js";
+import {htmlSafeJsonStringify} from "./src/utilites/safeScriptJson.js";
 
 installGlobals();
 
@@ -37,9 +37,41 @@ async function main() {
 
     app.use('/.well-known', express.static(path.join(__dirname, 'public/.well-known')));
 
+    app.get('/widget.js', async (req, res) => {
+        try {
+            const widgetPath = isProduction
+                ? path.join(__dirname, './dist/client/widget.js')
+                : path.join(__dirname, './public/widget.js');
+            const widgetJs = await fs.readFile(widgetPath, 'utf-8');
+            res.setHeader('Content-Type', 'application/javascript; charset=utf-8');
+            res.setHeader('Cache-Control', 'no-cache');
+            return res.status(200).send(widgetJs);
+        } catch (error) {
+            return res.status(404).send('');
+        }
+    });
+
+    const widgetTestPageEnabled = !isProduction || process.env.WIDGET_TEST_PAGE_ENABLED === 'true';
+
+    if (widgetTestPageEnabled) {
+        app.get('/widget-test', async (req, res) => {
+            try {
+                const widgetTestHtml = await fs.readFile(path.join(__dirname, './src/widget-test/index.html'), 'utf-8');
+                res.setHeader('Content-Type', 'text/html; charset=utf-8');
+                res.setHeader('Cache-Control', 'no-cache');
+                res.setHeader('X-Robots-Tag', 'noindex');
+                return res.status(200).send(widgetTestHtml);
+            } catch (error) {
+                return res.status(404).send('');
+            }
+        });
+    }
+
     let vite;
 
     if (!isProduction) {
+        const {createServer: viteServer} = await import("vite");
+
         vite = await viteServer({
             server: { middlewareMode: true },
             appType: "custom",
@@ -59,7 +91,7 @@ async function main() {
                 envVars[key] = process.env[key];
             }
         }
-        return JSON.stringify(envVars);
+        return htmlSafeJsonStringify(envVars);
     };
 
     app.get('/robots.txt', (req, res) => {
@@ -98,7 +130,7 @@ Sitemap: ${frontendUrl}/sitemap.xml
                 { req, res },
                 ssrManifest
             );
-            const stringifiedState = JSON.stringify(dehydratedState);
+            const stringifiedState = htmlSafeJsonStringify(dehydratedState);
 
             const helmetHtml = Object.values(helmetContext.helmet || {})
                 .map((value) => value.toString() || "")
@@ -114,11 +146,11 @@ Sitemap: ${frontendUrl}/sitemap.xml
             }
 
             const html = template
-                .replace("<!--head-snippets-->", headSnippets.join("\n"))
-                .replace("<!--app-html-->", appHtml)
-                .replace("<!--dehydrated-state-->", `<script>window.__REHYDRATED_STATE__ = ${stringifiedState}</script>`)
-                .replace("<!--environment-variables-->", envVariablesHtml)
-                .replace(/<!--render-helmet-->.*?<!--\/render-helmet-->/s, helmetHtml);
+                .replace("<!--head-snippets-->", () => headSnippets.join("\n"))
+                .replace("<!--app-html-->", () => appHtml)
+                .replace("<!--dehydrated-state-->", () => `<script>window.__REHYDRATED_STATE__ = ${stringifiedState}</script>`)
+                .replace("<!--environment-variables-->", () => envVariablesHtml)
+                .replace(/<!--render-helmet-->.*?<!--\/render-helmet-->/s, () => helmetHtml);
 
             res.setHeader("Content-Type", "text/html");
             return res.status(200).end(html);

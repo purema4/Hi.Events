@@ -24,15 +24,18 @@ import {useEffect, useState} from "react";
 import {InputGroup} from "../../../common/InputGroup";
 import {Card} from "../../../common/Card";
 import {CheckoutContent} from "../../../layouts/Checkout/CheckoutContent";
+import {CheckoutStepTitle} from "../../../layouts/Checkout/CheckoutStepTitle";
 import {getConfig} from "../../../../utilites/config.ts";
 import {HomepageInfoMessage} from "../../../common/HomepageInfoMessage";
 import {InlineOrderSummary} from "../../../common/InlineOrderSummary";
 import {eventCheckoutPath, eventHomepagePath} from "../../../../utilites/urlHelper.ts";
 import {showInfo} from "../../../../utilites/notifications.tsx";
+import {getEmbedMode} from "../../../../utilites/iframeResize.ts";
 import countries from "../../../../../data/countries.json";
 import classes from "./CollectInformation.module.scss";
 import {trackEvent, AnalyticsEvents} from "../../../../utilites/analytics.ts";
 import {clearWaitlistJoinedForEvent} from "../../../../hooks/useWaitlistJoined.ts";
+import {useCheckoutPrefill, CheckoutPrefill} from "../../../../hooks/useCheckoutPrefill.ts";
 
 const LoadingSkeleton = () =>
     (
@@ -48,6 +51,8 @@ export const CollectInformation = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const isFromWaitlist = searchParams.get('waitlist') === 'true';
+    const {prefill, lock} = useCheckoutPrefill();
+    const isLocked = (field: keyof CheckoutPrefill) => lock && prefill[field] !== undefined;
     const {
         isFetched: isOrderFetched,
         data: order,
@@ -55,12 +60,16 @@ export const CollectInformation = () => {
         isError: isOrderError,
         error: orderError,
     } = useGetOrderPublic(eventId, orderShortId, ['event']);
+    const orderOccurrenceIds = Array.from(new Set(
+        (orderItems ?? []).map(item => item.event_occurrence_id).filter((id): id is number => id != null)
+    ));
+    const orderOccurrenceId = orderOccurrenceIds.length === 1 ? orderOccurrenceIds[0] : null;
     const {
         data: event,
         data: {product_categories: productCategories} = {},
         isFetched: isEventFetched,
         isError: isEventError,
-    } = useGetEventPublic(eventId, isOrderFetched, !!order?.promo_code, order?.promo_code ?? null);
+    } = useGetEventPublic(eventId, isOrderFetched, !!order?.promo_code, order?.promo_code ?? null, orderOccurrenceId);
     const {
         data: questions,
         isFetched: isQuestionsFetched,
@@ -131,7 +140,7 @@ export const CollectInformation = () => {
         const attendeeProductIds = new Set<IdParam>(
             products
                 .filter(product => product && product.product_type === 'TICKET')
-                .map(product => product.id)
+                .map(product => product!.id)
         );
 
         return form.values.products
@@ -230,7 +239,7 @@ export const CollectInformation = () => {
                 });
 
                 // if it's a 409, we need to redirect to the event page as the order is no longer valid
-                if (error.response.status === 409) {
+                if (error.response.status === 409 && getEmbedMode() !== 'modal') {
                     navigate(eventHomepagePath(event as Event));
                 }
             }
@@ -297,22 +306,42 @@ export const CollectInformation = () => {
 
     useEffect(() => {
         if (isEventFetched && isOrderFetched && isQuestionsFetched && productQuestions && orderQuestions) {
-            const products = createProductsAndQuestions(createProductIdToQuestionMap());
+            const builtProducts = createProductsAndQuestions(createProductIdToQuestionMap());
             const formOrderQuestions = createFormOrderQuestions();
+
+            const orderPrefill = {
+                ...(prefill.first_name !== undefined && {first_name: prefill.first_name}),
+                ...(prefill.last_name !== undefined && {last_name: prefill.last_name}),
+                ...(prefill.email !== undefined && {email: prefill.email, email_confirmation: prefill.email}),
+            };
+
+            const ticketProductIds = new Set(
+                (products ?? [])
+                    .filter(product => product && product.product_type === 'TICKET')
+                    .map(product => product!.id)
+            );
+
+            const prefilledProducts = builtProducts.map((product: any) =>
+                (!isPerOrderCollection && ticketProductIds.has(product.product_id))
+                    ? {...product, ...orderPrefill}
+                    : product
+            );
 
             form.setValues({
                 ...form.values,
-                products: products,
+                products: prefilledProducts,
                 order: {
                     ...form.values.order,
+                    ...orderPrefill,
                     questions: formOrderQuestions,
                 },
             });
         }
+        // prefill/lock intentionally omitted: they're memoized off query params that don't change during the page's lifetime
     }, [isEventFetched, isOrderFetched, isQuestionsFetched]);
 
     useEffect(() => {
-        if ((order && event) && order?.is_expired) {
+        if ((order && event) && order?.is_expired && getEmbedMode() !== 'modal') {
             showInfo(t`This order has expired. Please start again.`);
             navigate(`/event/${eventId}/${event.slug}`);
         }
@@ -401,6 +430,13 @@ export const CollectInformation = () => {
         <form onSubmit={form.onSubmit(handleSubmit)}>
 
             <CheckoutContent>
+                <CheckoutStepTitle
+                    title={t`Details`}
+                    subtitle={order?.is_payment_required
+                        ? t`Next: payment`
+                        : t`Next: review your order`}
+                />
+
                 {isFromWaitlist && (
                     <div className={classes.waitlistBanner}>
                         <div className={classes.waitlistBannerIcon}>
@@ -434,12 +470,14 @@ export const CollectInformation = () => {
                             withAsterisk
                             label={t`First Name`}
                             placeholder={t`First name`}
+                            disabled={isLocked('first_name')}
                             {...form.getInputProps("order.first_name")}
                         />
                         <TextInput
                             withAsterisk
                             label={t`Last Name`}
                             placeholder={t`Last Name`}
+                            disabled={isLocked('last_name')}
                             {...form.getInputProps("order.last_name")}
                         />
                     </InputGroup>
@@ -450,6 +488,7 @@ export const CollectInformation = () => {
                             type={"email"}
                             label={t`Email Address`}
                             placeholder={t`Email Address`}
+                            disabled={isLocked('email')}
                             rightSection={isEmailValid(form.values.order.email) ? <EmailCheckIcon/> : null}
                             {...form.getInputProps("order.email")}
                         />
@@ -458,12 +497,13 @@ export const CollectInformation = () => {
                             type={"email"}
                             label={t`Confirm Email Address`}
                             placeholder={t`Confirm Email Address`}
+                            disabled={isLocked('email')}
                             rightSection={isEmailValid(form.values.order.email_confirmation) ? <EmailCheckIcon/> : null}
                             {...form.getInputProps("order.email_confirmation")}
                         />
                     </InputGroup>
 
-                    {orderRequiresAttendeeDetails && !isPerOrderCollection && totalTicketAttendees > 0 && (
+                    {orderRequiresAttendeeDetails && !isPerOrderCollection && totalTicketAttendees > 0 && !lock && (
                         <div className={classes.copyDetailsSection}>
                             {totalTicketAttendees === 1 ? (
                                 <Tooltip
@@ -646,12 +686,14 @@ export const CollectInformation = () => {
                                                         withAsterisk
                                                         label={t`First Name`}
                                                         placeholder={t`First name`}
+                                                        disabled={isLocked('first_name')}
                                                         {...form.getInputProps(`products.${currentProductIndex}.first_name`)}
                                                     />
                                                     <TextInput
                                                         withAsterisk
                                                         label={t`Last Name`}
                                                         placeholder={t`Last Name`}
+                                                        disabled={isLocked('last_name')}
                                                         {...form.getInputProps(`products.${currentProductIndex}.last_name`)}
                                                     />
                                                 </InputGroup>
@@ -662,6 +704,7 @@ export const CollectInformation = () => {
                                                         type={"email"}
                                                         label={t`Email Address`}
                                                         placeholder={t`Email Address`}
+                                                        disabled={isLocked('email')}
                                                         rightSection={isEmailValid(form.values.products[currentProductIndex]?.email || '') ?
                                                             <EmailCheckIcon/> : null}
                                                         {...form.getInputProps(`products.${currentProductIndex}.email`)}
@@ -671,6 +714,7 @@ export const CollectInformation = () => {
                                                         type={"email"}
                                                         label={t`Confirm Email Address`}
                                                         placeholder={t`Confirm Email Address`}
+                                                        disabled={isLocked('email')}
                                                         rightSection={isEmailValid(form.values.products[currentProductIndex]?.email_confirmation || '') ?
                                                             <EmailCheckIcon/> : null}
                                                         {...form.getInputProps(`products.${currentProductIndex}.email_confirmation`)}
