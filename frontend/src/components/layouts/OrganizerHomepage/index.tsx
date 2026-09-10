@@ -19,7 +19,8 @@ import {Pagination} from "../../common/Pagination";
 import {computeThemeVariables, validateThemeSettings} from "../../../utilites/themeUtils.ts";
 import {ensureHomepageFontLoaded} from "../../../utilites/fontLoader.ts";
 import {useOrganizerTrackingPixels} from "../../../hooks/useOrganizerTrackingPixels";
-import {CookieConsentBanner} from "../../common/CookieConsentBanner";
+import {CookieSettingsLink} from "../../common/CookieSettingsLink";
+import {UserGeneratedContent} from "../../common/UserGeneratedContent";
 
 interface OrganizerHomepageProps {
     organizer?: Organizer;
@@ -48,7 +49,7 @@ export const OrganizerHomepage = ({
     const navigate = useNavigate();
     const [contactModalOpen, setContactModalOpen] = useState(false);
 
-    const {consentPending, onConsent} = useOrganizerTrackingPixels(
+    useOrganizerTrackingPixels(
         organizer?.settings?.tracking_pixels
     );
 
@@ -262,9 +263,9 @@ export const OrganizerHomepage = ({
                                         </div>
                                     </div>
                                     {organizer?.description && (
-                                        <div
+                                        <UserGeneratedContent
                                             className={classes.description}
-                                            dangerouslySetInnerHTML={{__html: organizer.description}}
+                                            html={organizer.description}
                                         />
                                     )}
                                 </div>
@@ -349,6 +350,7 @@ export const OrganizerHomepage = ({
                                 </Anchor>
                             </div>
                             <PoweredByFooter className={classes.poweredByFooter}/>
+                            <CookieSettingsLink/>
                         </div>
                     </div>
 
@@ -359,9 +361,6 @@ export const OrganizerHomepage = ({
                         organizer={organizer}
                     />
                 </div>
-                {consentPending && (
-                    <CookieConsentBanner onConsent={onConsent}/>
-                )}
             </main>
         </>
     );

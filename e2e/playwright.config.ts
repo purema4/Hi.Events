@@ -1,5 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 import { config as loadEnv } from 'dotenv';
+import { grantedConsentCookie } from './utils/consent';
 
 loadEnv();
 
@@ -15,7 +16,7 @@ export default defineConfig({
   timeout: 60_000,
   expect: { timeout: 15_000 },
   reporter: isCI
-    ? [['github'], ['html', { open: 'never' }], ['list']]
+    ? [['github'], ['html', { open: 'never' }], ['json', { outputFile: 'test-results/results.json' }], ['list']]
     : [['html', { open: 'on-failure' }], ['list']],
   use: {
     baseURL,
@@ -24,6 +25,7 @@ export default defineConfig({
     video: 'retain-on-failure',
     screenshot: 'only-on-failure',
     testIdAttribute: 'data-testid',
+    storageState: { cookies: [grantedConsentCookie()], origins: [] },
   },
   projects: [
     {

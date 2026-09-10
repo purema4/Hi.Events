@@ -44,6 +44,14 @@ export interface EventRecord {
   status: EventStatus;
 }
 
+export type EventImageType = 'EVENT_COVER' | 'TICKET_LOGO';
+
+export interface ImageRecord {
+  id: number;
+  url: string;
+  type: EventImageType;
+}
+
 export interface ProductCategory {
   id: number;
   name: string;
@@ -53,6 +61,7 @@ export interface ProductPrice {
   id: number;
   price: number;
   label?: string | null;
+  quantity_sold?: number;
 }
 
 export interface ProductRecord {

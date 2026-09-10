@@ -23,7 +23,10 @@ export type ConfigKeys =
     | 'VITE_I_HAVE_PURCHASED_A_LICENCE'
     | 'VITE_DEFAULT_IMAGE_URL'
     | 'VITE_COOKIE_CONSENT_ENABLED'
-    | 'VITE_COOKIE_CONSENT_TEXT';
+    | 'VITE_COOKIE_CONSENT_TEXT'
+    | 'VITE_COOKIE_CONSENT_DOMAIN'
+    | 'VITE_GOOGLE_ADS_CONVERSION_ID'
+    | 'VITE_GOOGLE_ADS_CONVERSION_LABELS';
 
 export enum StripePlatform {
     Canada = 'ca',
@@ -148,6 +151,7 @@ export interface AccountConfiguration {
         currency: string;
     },
     is_system_default: boolean;
+    default_for_currency: string | null;
 }
 
 export interface OrganizerStripeConnectDetails {
@@ -377,7 +381,8 @@ export enum EventStatus {
     DRAFT = 'DRAFT',
     LIVE = 'LIVE',
     PAUSED = 'PAUSED',
-    ARCHIVED = 'ARCHIVED'
+    ARCHIVED = 'ARCHIVED',
+    PENDING_MANUAL_REVIEW = 'PENDING_MANUAL_REVIEW'
 }
 
 export enum OrganizerStatus {

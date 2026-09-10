@@ -10,6 +10,7 @@ import {fileURLToPath} from "node:url";
 import * as nodePath from "node:path";
 import * as nodeUrl from "node:url";
 import "dotenv/config";
+import * as Sentry from "@sentry/node";
 import {sitemapIndexHandler, sitemapEventsHandler, sitemapOrganizersHandler} from "./src/sitemap/proxy.js";
 import {htmlSafeJsonStringify} from "./src/utilites/safeScriptJson.js";
 
@@ -84,6 +85,16 @@ async function main() {
         app.use(base, sirv(path.join(__dirname, "./dist/client"), { extensions: [] }));
     }
 
+    const googleConsentDefaults = (consentCookie) => {
+        const consent = new URLSearchParams(typeof consentCookie === 'string' ? consentCookie : '');
+        if (!consent.has('analytics') && !consent.has('advertising')) {
+            return "ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500";
+        }
+        const advertising = consent.get('advertising') === '1' ? 'granted' : 'denied';
+        const analytics = consent.get('analytics') === '1' ? 'granted' : 'denied';
+        return `ad_storage:'${advertising}',ad_user_data:'${advertising}',ad_personalization:'${advertising}',analytics_storage:'${analytics}'`;
+    };
+
     const getViteEnvironmentVariables = () => {
         const envVars = {};
         for (const key in process.env) {
@@ -110,6 +121,16 @@ Sitemap: ${frontendUrl}/sitemap.xml
     app.get('/sitemap-events-:page.xml', sitemapEventsHandler);
     app.get('/sitemap-organizers-:page.xml', sitemapOrganizersHandler);
 
+    const nonRenderablePathPattern = /(^|\/)\.[^/]|\.(php|asp|aspx|jsp|cgi|sql|bak|old|zip|tar|gz|rar|7z|env|ini|yml|yaml|conf|log|sh|exe|dll)$/i;
+
+    app.use("*", async (req, res, next) => {
+        if (nonRenderablePathPattern.test(req.originalUrl.split("?")[0])) {
+            return res.status(404).type("text/plain").send("Not Found");
+        }
+
+        return next();
+    });
+
     app.use("*", async (req, res) => {
         const url = req.originalUrl.replace(base, "");
 
@@ -126,11 +147,21 @@ Sitemap: ${frontendUrl}/sitemap.xml
                 render = (await dynamicImport(path.join(__dirname, "./dist/server/entry.server.js"))).render;
             }
 
-            const { appHtml, dehydratedState, helmetContext } = await render(
+            const { appHtml, dehydratedState, helmetContext, themeColors, statusCode, renderErrors } = await render(
                 { req, res },
                 ssrManifest
             );
+
+            if (statusCode >= 500) {
+                renderErrors.forEach((renderError) => {
+                    Sentry.captureException(renderError, {
+                        tags: { source: "ssr-loader" },
+                        extra: { url: req.originalUrl },
+                    });
+                });
+            }
             const stringifiedState = htmlSafeJsonStringify(dehydratedState);
+            const stringifiedThemeColors = htmlSafeJsonStringify(themeColors);
 
             const helmetHtml = Object.values(helmetContext.helmet || {})
                 .map((value) => value.toString() || "")
@@ -139,21 +170,31 @@ Sitemap: ${frontendUrl}/sitemap.xml
             const envVariablesHtml = `<script>window.hievents = ${getViteEnvironmentVariables()};</script>`;
 
             const headSnippets = [];
+            if (process.env.VITE_COOKIE_CONSENT_ENABLED === 'true') {
+                headSnippets.push(`<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{${googleConsentDefaults(req.cookies?.hi_cookie_consent)}});</script>`);
+            }
+            if (process.env.VITE_GOOGLE_ADS_CONVERSION_ID) {
+                const conversionId = encodeURIComponent(process.env.VITE_GOOGLE_ADS_CONVERSION_ID);
+                headSnippets.push(`
+                <script async src="https://www.googletagmanager.com/gtag/js?id=${conversionId}"></script>
+                <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${conversionId}');</script>
+            `);
+            }
             if (process.env.VITE_FATHOM_SITE_ID) {
                 headSnippets.push(`
-                <script src="https://cdn.usefathom.com/script.js" data-spa="auto" data-site="${process.env.VITE_FATHOM_SITE_ID}" defer></script>
+                <script src="https://cdn.usefathom.com/script.js" data-spa="auto" data-site="${encodeURIComponent(process.env.VITE_FATHOM_SITE_ID)}" defer></script>
             `);
             }
 
             const html = template
                 .replace("<!--head-snippets-->", () => headSnippets.join("\n"))
                 .replace("<!--app-html-->", () => appHtml)
-                .replace("<!--dehydrated-state-->", () => `<script>window.__REHYDRATED_STATE__ = ${stringifiedState}</script>`)
+                .replace("<!--dehydrated-state-->", () => `<script>window.__REHYDRATED_STATE__ = ${stringifiedState};window.__THEME_COLORS__ = ${stringifiedThemeColors}</script>`)
                 .replace("<!--environment-variables-->", () => envVariablesHtml)
                 .replace(/<!--render-helmet-->.*?<!--\/render-helmet-->/s, () => helmetHtml);
 
             res.setHeader("Content-Type", "text/html");
-            return res.status(200).end(html);
+            return res.status(statusCode || 200).end(html);
         } catch (error) {
             if (error instanceof Response) {
                 if (error.status >= 300 && error.status < 400) {
@@ -163,9 +204,25 @@ Sitemap: ${frontendUrl}/sitemap.xml
                 }
             }
 
+            Sentry.captureException(error, {
+                tags: { source: "ssr-render" },
+                extra: { url: req.originalUrl },
+            });
             console.error(error);
             res.status(500).send("Internal Server Error");
         }
+    });
+
+    Sentry.setupExpressErrorHandler(app);
+
+    app.use((error, req, res, _next) => {
+        console.error(error);
+
+        if (res.headersSent) {
+            return res.end();
+        }
+
+        return res.status(500).type("text/plain").send("Internal Server Error");
     });
 
     app.listen(port, () => {

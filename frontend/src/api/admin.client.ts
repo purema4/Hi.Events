@@ -48,6 +48,7 @@ export interface AccountConfiguration {
     id: number;
     name: string;
     is_system_default: boolean;
+    default_for_currency: string | null;
     application_fees: {
         fixed: number;
         percentage: number;
@@ -55,6 +56,9 @@ export interface AccountConfiguration {
     };
     bypass_application_fees: boolean;
 }
+
+export const isDefaultConfiguration = (config: AccountConfiguration): boolean =>
+    config.is_system_default || Boolean(config.default_for_currency);
 
 export interface CreateConfigurationData {
     name: string;
@@ -307,7 +311,7 @@ export interface UtmAttributionStats {
     live_events: number;
     stripe_connected: number;
     verified_accounts: number;
-    total_revenue: number;
+    revenue_by_currency: Record<string, number>;
     total_orders: number;
 }
 
@@ -320,8 +324,10 @@ export interface UtmAttributionSummary {
     total_accounts: number;
 }
 
+export type AttributionGroupBy = 'source' | 'medium' | 'campaign' | 'content' | 'term' | 'cta' | 'source_type';
+
 export interface GetUtmAttributionStatsParams {
-    group_by?: 'source' | 'campaign' | 'medium' | 'source_type';
+    group_by?: AttributionGroupBy;
     date_from?: string;
     date_to?: string;
     page?: number;
@@ -362,6 +368,30 @@ export interface AdminMessage {
     sent_at: string | null;
     created_at: string;
     eligibility_failures?: string[];
+}
+
+export interface SpamCheckVerdict {
+    confidence: number;
+    reasons: string[];
+}
+
+export interface AdminSpamEvent {
+    id: IdParam;
+    event_id: IdParam;
+    event_title: string;
+    event_description: string;
+    organizer_name: string | null;
+    account_name: string | null;
+    account_email: string | null;
+    account_id: IdParam;
+    verdict: SpamCheckVerdict;
+    checked_at: string;
+}
+
+export interface GetAllAdminSpamEventsParams {
+    page?: number;
+    per_page?: number;
+    search?: string;
 }
 
 export interface GetAllAdminMessagesParams {
@@ -598,6 +628,27 @@ export const adminClient = {
 
     approveMessage: async (messageId: IdParam) => {
         const response = await api.post(`admin/messages/${messageId}/approve`);
+        return response.data;
+    },
+
+    getAllAdminSpamEvents: async (params: GetAllAdminSpamEventsParams = {}) => {
+        const response = await api.get<GenericPaginatedResponse<AdminSpamEvent>>('admin/spam-events', {
+            params: {
+                page: params.page || 1,
+                per_page: params.per_page || 20,
+                search: params.search || undefined,
+            }
+        });
+        return response.data;
+    },
+
+    approveSpamEvent: async (eventId: IdParam) => {
+        const response = await api.post(`admin/spam-events/${eventId}/approve`);
+        return response.data;
+    },
+
+    confirmSpamEvent: async (eventId: IdParam) => {
+        const response = await api.post(`admin/spam-events/${eventId}/confirm-spam`);
         return response.data;
     },
 
