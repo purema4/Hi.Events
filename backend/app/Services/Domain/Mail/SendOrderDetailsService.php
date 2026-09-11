@@ -141,21 +141,18 @@ class SendOrderDetailsService
 
     private function sendAttendeeTicketEmails(OrderDomainObject $order, EventDomainObject $event): void
     {
-        $sentEmails = [];
-        foreach ($order->getAttendees() as $attendee) {
-            if (in_array($attendee->getEmail(), $sentEmails, true)) {
-                continue;
-            }
+        $attendeesByEmail = collect($order->getAttendees())
+            ->groupBy(fn (AttendeeDomainObject $attendee) => mb_strtolower(trim((string) $attendee->getEmail())));
 
+        foreach ($attendeesByEmail as $attendees) {
             $this->sendAttendeeTicketService->send(
                 order: $order,
-                attendee: $attendee,
+                attendee: $attendees->first(),
                 event: $event,
                 eventSettings: $event->getEventSettings(),
                 organizer: $event->getOrganizer(),
+                additionalAttendees: $attendees->slice(1)->values(),
             );
-
-            $sentEmails[] = $attendee->getEmail();
         }
     }
 

@@ -6,8 +6,14 @@ use Closure;
 use HiEvents\DomainObjects\AttendeeDomainObject;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventOccurrenceDomainObject;
+use HiEvents\DomainObjects\EventSettingDomainObject;
+use HiEvents\DomainObjects\OrderDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
+use HiEvents\DomainObjects\ProductDomainObject;
+use HiEvents\DomainObjects\Status\OrderStatus;
 use HiEvents\Mail\Attendee\AttendeeTicketMail;
+use HiEvents\Services\Domain\Email\DTO\AttendeeTicketSummaryDTO;
+use Illuminate\Support\Collection;
 use ReflectionClass;
 use Tests\TestCase;
 
@@ -41,5 +47,138 @@ class AttendeeTicketMailTest extends TestCase
         $attachments = $mail->attachments();
 
         $this->assertCount(1, $attachments);
+    }
+
+    public function test_content_includes_a_ticket_for_every_attendee_sharing_the_email_address(): void
+    {
+        $mail = $this->buildMail(collect([
+            $this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'General Admission'),
+            $this->attendee(7, 'third-short-id', 'Alex', 'Ray', 'VIP'),
+        ]));
+
+        /** @var Collection<int, AttendeeTicketSummaryDTO> $tickets */
+        $tickets = $mail->content()->with['tickets'];
+
+        $this->assertCount(3, $tickets);
+        $this->assertSame(
+            ['Jane Doe', 'Sam Jones', 'Alex Ray'],
+            $tickets->map(fn (AttendeeTicketSummaryDTO $ticket) => $ticket->attendeeName)->all(),
+        );
+        $this->assertSame(
+            ['Early Bird', 'General Admission', 'VIP'],
+            $tickets->map(fn (AttendeeTicketSummaryDTO $ticket) => $ticket->productTitle)->all(),
+        );
+
+        $ticketUrls = $tickets->map(fn (AttendeeTicketSummaryDTO $ticket) => $ticket->ticketUrl);
+        $this->assertCount(3, $ticketUrls->unique());
+        $this->assertStringContainsString('first-short-id', $ticketUrls->first());
+        $this->assertStringContainsString('third-short-id', $ticketUrls->last());
+    }
+
+    public function test_content_includes_a_single_ticket_when_the_attendee_has_no_siblings(): void
+    {
+        $tickets = $this->buildMail(null)->content()->with['tickets'];
+
+        $this->assertCount(1, $tickets);
+        $this->assertSame('Jane Doe', $tickets->first()->attendeeName);
+    }
+
+    public function test_rendered_body_links_to_every_ticket(): void
+    {
+        $mail = $this->buildMail(collect([
+            $this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'General Admission'),
+        ]));
+
+        $rendered = $mail->render();
+
+        $this->assertStringContainsString('/product/1/first-short-id', $rendered);
+        $this->assertStringContainsString('/product/1/second-short-id', $rendered);
+        $this->assertStringContainsString('Early Bird', $rendered);
+        $this->assertStringContainsString('General Admission', $rendered);
+        $this->assertStringContainsString('Sam Jones', $rendered);
+    }
+
+    public function test_calendar_attachment_holds_an_entry_per_distinct_occurrence(): void
+    {
+        $newYearsEve = $this->occurrence(1, 'New Year\'s Eve', '2026-12-31 23:00:00', '2027-01-01 04:00:00');
+        $newYearsDay = $this->occurrence(2, 'New Year\'s Day', '2027-01-01 18:00:00', '2027-01-01 22:00:00');
+
+        $mail = $this->buildMail(
+            collect([
+                $this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'General Admission')->setEventOccurrence($newYearsEve),
+                $this->attendee(7, 'third-short-id', 'Alex', 'Ray', 'VIP')->setEventOccurrence($newYearsDay),
+            ]),
+            $newYearsEve,
+        );
+
+        $attachments = $mail->attachments();
+        $this->assertCount(1, $attachments);
+
+        $calendar = $attachments[0]->attachWith(
+            fn () => null,
+            fn (Closure $resolver) => $resolver(),
+        );
+
+        $this->assertSame(2, substr_count($calendar, 'BEGIN:VEVENT'));
+        $this->assertStringContainsString('Test Event - New Year\'s Eve', $calendar);
+        $this->assertStringContainsString('Test Event - New Year\'s Day', $calendar);
+    }
+
+    public function test_subject_is_pluralised_when_the_email_carries_multiple_tickets(): void
+    {
+        $single = $this->buildMail(null);
+        $multiple = $this->buildMail(collect([$this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'VIP')]));
+
+        $this->assertSame('🎟️ Your Ticket for Test Event', $single->envelope()->subject);
+        $this->assertSame('🎟️ Your Tickets for Test Event', $multiple->envelope()->subject);
+    }
+
+    private function buildMail(
+        ?Collection $additionalAttendees,
+        ?EventOccurrenceDomainObject $attendeeOccurrence = null,
+    ): AttendeeTicketMail {
+        $event = (new EventDomainObject)
+            ->setId(1)
+            ->setTitle('Test Event')
+            ->setTimezone('UTC')
+            ->setEventOccurrences(collect([
+                $this->occurrence(1, 'New Year\'s Eve', '2026-12-31 23:00:00', '2027-01-01 04:00:00'),
+            ]));
+
+        return new AttendeeTicketMail(
+            order: (new OrderDomainObject)->setStatus(OrderStatus::COMPLETED->name),
+            attendee: $this->attendee(5, 'first-short-id', 'Jane', 'Doe', 'Early Bird')
+                ->setEventOccurrence($attendeeOccurrence),
+            event: $event,
+            eventSettings: (new EventSettingDomainObject)->setSupportEmail('support@example.com'),
+            organizer: (new OrganizerDomainObject)->setEmail('organizer@example.com')->setName('Organizer'),
+            occurrence: $attendeeOccurrence,
+            additionalAttendees: $additionalAttendees,
+        );
+    }
+
+    private function occurrence(int $id, string $label, string $startDate, string $endDate): EventOccurrenceDomainObject
+    {
+        return (new EventOccurrenceDomainObject)
+            ->setId($id)
+            ->setLabel($label)
+            ->setStartDate($startDate)
+            ->setEndDate($endDate);
+    }
+
+    private function attendee(
+        int $id,
+        string $shortId,
+        string $firstName,
+        string $lastName,
+        string $productTitle,
+    ): AttendeeDomainObject {
+        return (new AttendeeDomainObject)
+            ->setId($id)
+            ->setShortId($shortId)
+            ->setFirstName($firstName)
+            ->setLastName($lastName)
+            ->setEmail('shared@example.com')
+            ->setProduct((new ProductDomainObject)->setTitle($productTitle));
     }
 }

@@ -1,37 +1,9 @@
-@php use Carbon\Carbon; use HiEvents\Helper\DateHelper; @endphp
 @php /** @var \HiEvents\DomainObjects\EventDomainObject $event */ @endphp
 @php /** @var \HiEvents\DomainObjects\EventSettingDomainObject $eventSettings */ @endphp
 @php /** @var \HiEvents\DomainObjects\OrganizerDomainObject $organizer */ @endphp
-@php /** @var \HiEvents\DomainObjects\AttendeeDomainObject $attendee */ @endphp
 @php /** @var \HiEvents\DomainObjects\OrderDomainObject $order */ @endphp
-@php /** @var \HiEvents\DomainObjects\EventOccurrenceDomainObject|null $occurrence */ @endphp
-@php /** @var string $ticketUrl */ @endphp
+@php /** @var \Illuminate\Support\Collection<int, \HiEvents\Services\Domain\Email\DTO\AttendeeTicketSummaryDTO> $tickets */ @endphp
 @php /** @see \HiEvents\Mail\Attendee\AttendeeTicketMail */ @endphp
-
-@php
-    $tz = $event->getTimezone();
-    $displayStart = $occurrence?->getStartDate() ?? $event->getStartDate();
-    $displayEnd = $occurrence?->getEndDate() ?? $event->getEndDate();
-
-    $formatDateTime = static fn(?string $utc) => $utc
-        ? (new Carbon(DateHelper::convertFromUTC($utc, $tz)))->format('D, M j, Y · g:i A')
-        : null;
-    $formatTime = static fn(?string $utc) => $utc
-        ? (new Carbon(DateHelper::convertFromUTC($utc, $tz)))->format('g:i A')
-        : null;
-
-    $startFormatted = $formatDateTime($displayStart);
-    $endFormatted = null;
-    if ($displayStart && $displayEnd) {
-        // Same day → show just the end time; cross-day → show the full end timestamp.
-        $sameDay = substr($displayStart, 0, 10) === substr($displayEnd, 0, 10);
-        $endFormatted = $sameDay ? $formatTime($displayEnd) : $formatDateTime($displayEnd);
-    }
-
-    $venueName = $effectiveVenueName ?? null;
-    $addressString = $effectiveAddressString ?? null;
-    $productTitle = $attendee->getProduct()?->getTitle();
-@endphp
 
 <x-mail::message>
 # {{ __('You\'re going to') }} {{ $event->getTitle() }}! 🎉
@@ -44,29 +16,35 @@
 </div>
 @endif
 
+@if($tickets->count() > 1)
+{{ __('Please find the details for your :count tickets below.', ['count' => $tickets->count()]) }}
+@else
 {{ __('Please find your ticket details below.') }}
+@endif
 
-@if($startFormatted || $venueName || $addressString || $productTitle)
+@foreach($tickets as $ticket)
+@if($ticket->startFormatted || $ticket->venueName || $ticket->addressString || $ticket->productTitle)
 <div style="border: 1px solid #e5e7eb; border-radius: 6px; padding: 16px; margin: 16px 0; line-height: 1.6;">
-@if($startFormatted)
-<strong>{{ __('Date & Time:') }}</strong> {{ $startFormatted }}@if($endFormatted) – {{ $endFormatted }}@endif<br>
-@if($occurrence?->getLabel())
-<strong>{{ __('Session:') }}</strong> {{ $occurrence->getLabel() }}<br>
+@if($ticket->startFormatted)
+<strong>{{ __('Date & Time:') }}</strong> {{ $ticket->startFormatted }}@if($ticket->endFormatted) – {{ $ticket->endFormatted }}@endif<br>
+@if($ticket->sessionLabel)
+<strong>{{ __('Session:') }}</strong> {{ $ticket->sessionLabel }}<br>
 @endif
 @endif
-@if($venueName || $addressString)
-<strong>{{ __('Location:') }}</strong> {{ trim(($venueName ? $venueName . ($addressString ? ', ' : '') : '') . ($addressString ?? '')) }}<br>
+@if($ticket->venueName || $ticket->addressString)
+<strong>{{ __('Location:') }}</strong> {{ trim(($ticket->venueName ? $ticket->venueName . ($ticket->addressString ? ', ' : '') : '') . ($ticket->addressString ?? '')) }}<br>
 @endif
-@if($productTitle)
-<strong>{{ __('Ticket:') }}</strong> {{ $productTitle }}<br>
+@if($ticket->productTitle)
+<strong>{{ __('Ticket:') }}</strong> {{ $ticket->productTitle }}<br>
 @endif
-<strong>{{ __('Attendee:') }}</strong> {{ trim($attendee->getFirstName() . ' ' . $attendee->getLastName()) }}
+<strong>{{ __('Attendee:') }}</strong> {{ $ticket->attendeeName }}
 </div>
 @endif
 
-<x-mail::button :url="$ticketUrl">
+<x-mail::button :url="$ticket->ticketUrl">
 {{ __('View Ticket') }}
 </x-mail::button>
+@endforeach
 
 {{ __('If you have any questions or need assistance, please reply to this email or contact the event organizer') }}
 {{ __('at') }} <a href="mailto:{{$eventSettings->getSupportEmail()}}">{{$eventSettings->getSupportEmail()}}</a>.

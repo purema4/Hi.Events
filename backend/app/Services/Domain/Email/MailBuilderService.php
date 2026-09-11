@@ -17,6 +17,7 @@ use HiEvents\Mail\Occurrence\OccurrenceCancellationMail;
 use HiEvents\Mail\Order\OrderSummary;
 use HiEvents\Services\Domain\Email\DTO\RenderedEmailTemplateDTO;
 use HiEvents\Services\Domain\Order\OfflinePaymentInstructionsRenderService;
+use Illuminate\Support\Collection;
 
 class MailBuilderService
 {
@@ -26,6 +27,9 @@ class MailBuilderService
         private readonly OfflinePaymentInstructionsRenderService $offlinePaymentInstructionsRenderService,
     ) {}
 
+    /**
+     * @param  Collection<int, AttendeeDomainObject>|null  $additionalAttendees
+     */
     public function buildAttendeeTicketMail(
         AttendeeDomainObject $attendee,
         OrderDomainObject $order,
@@ -33,6 +37,7 @@ class MailBuilderService
         EventSettingDomainObject $eventSettings,
         OrganizerDomainObject $organizer,
         ?EventOccurrenceDomainObject $occurrence = null,
+        ?Collection $additionalAttendees = null,
     ): AttendeeTicketMail {
         $renderedTemplate = $this->renderAttendeeTicketTemplate(
             $attendee,
@@ -51,6 +56,7 @@ class MailBuilderService
             organizer: $organizer,
             renderedTemplate: $renderedTemplate,
             occurrence: $occurrence,
+            additionalAttendees: $additionalAttendees,
         );
     }
 
