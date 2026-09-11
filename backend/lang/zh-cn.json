@@ -722,5 +722,17 @@
     "Event must be pending manual review to be approved": "活动必须处于等待人工审核状态才能批准",
     "Event must be pending manual review to be confirmed as spam": "活动必须处于等待人工审核状态才能确认为垃圾内容",
     "Event approved and published": "活动已批准并发布",
-    "Event confirmed as spam": "活动已确认为垃圾内容"
+    "Event confirmed as spam": "活动已确认为垃圾内容",
+    "Add to Google Wallet": "添加到 Google 钱包",
+    "The Google Wallet service account key is not valid JSON.": "Google 钱包服务账号密钥不是有效的 JSON。",
+    "The Google Wallet service account key is missing a client_email or private_key.": "Google 钱包服务账号密钥缺少 client_email 或 private_key。",
+    "No Google Wallet service account key is configured.": "未配置 Google 钱包服务账号密钥。",
+    "The Google Wallet service account key file :path does not exist.": "Google 钱包服务账号密钥文件 :path 不存在。",
+    "The Google Wallet service account private key could not be read.": "无法读取 Google 钱包服务账号的私钥。",
+    "Failed to sign the Google Wallet request with the configured service account key.": "无法使用已配置的服务账号密钥对 Google 钱包请求进行签名。",
+    "Could not reach the Google Wallet API: :message": "无法连接 Google 钱包 API：:message",
+    "Could not reach the Google authorization server: :message": "无法连接 Google 授权服务器：:message",
+    "Google rejected the Google Wallet service account credentials: :body": "Google 拒绝了 Google 钱包服务账号凭据：:body",
+    "Google Wallet rejected the :resource request (:status): :body": "Google 钱包拒绝了 :resource 请求（:status）：:body",
+    "Add :count tickets to Google Wallet": "将 :count 张票添加到 Google 钱包"
 }

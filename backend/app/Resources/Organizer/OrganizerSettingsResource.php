@@ -28,6 +28,8 @@ class OrganizerSettingsResource extends BaseResource
             'seo_title' => $this->getSeoTitle(),
             'seo_description' => $this->getSeoDescription(),
             'allow_search_engine_indexing' => $this->getAllowSearchEngineIndexing(),
+            'google_wallet_enabled' => $this->getGoogleWalletEnabled(),
+            'google_wallet_pass_settings' => $this->getGoogleWalletPassSettings(),
             'tracking_pixels' => $this->getTrackingPixels(),
             'tracking_consent_acknowledged' => $this->getTrackingConsentAcknowledged(),
         ];

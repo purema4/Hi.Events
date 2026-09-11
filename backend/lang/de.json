@@ -722,5 +722,17 @@
     "Event must be pending manual review to be approved": "Die Veranstaltung muss auf manuelle Überprüfung warten, um genehmigt werden zu können",
     "Event must be pending manual review to be confirmed as spam": "Die Veranstaltung muss auf manuelle Überprüfung warten, um als Spam bestätigt werden zu können",
     "Event approved and published": "Veranstaltung genehmigt und veröffentlicht",
-    "Event confirmed as spam": "Veranstaltung als Spam bestätigt"
+    "Event confirmed as spam": "Veranstaltung als Spam bestätigt",
+    "Add to Google Wallet": "Zu Google Wallet hinzufügen",
+    "The Google Wallet service account key is not valid JSON.": "Der Google Wallet-Dienstkontoschlüssel ist kein gültiges JSON.",
+    "The Google Wallet service account key is missing a client_email or private_key.": "Im Google Wallet-Dienstkontoschlüssel fehlt client_email oder private_key.",
+    "No Google Wallet service account key is configured.": "Es ist kein Google Wallet-Dienstkontoschlüssel konfiguriert.",
+    "The Google Wallet service account key file :path does not exist.": "Die Google Wallet-Dienstkontoschlüsseldatei :path existiert nicht.",
+    "The Google Wallet service account private key could not be read.": "Der private Schlüssel des Google Wallet-Dienstkontos konnte nicht gelesen werden.",
+    "Failed to sign the Google Wallet request with the configured service account key.": "Die Google Wallet-Anfrage konnte nicht mit dem konfigurierten Dienstkontoschlüssel signiert werden.",
+    "Could not reach the Google Wallet API: :message": "Die Google Wallet-API konnte nicht erreicht werden: :message",
+    "Could not reach the Google authorization server: :message": "Der Google-Autorisierungsserver konnte nicht erreicht werden: :message",
+    "Google rejected the Google Wallet service account credentials: :body": "Google hat die Anmeldedaten des Google Wallet-Dienstkontos abgelehnt: :body",
+    "Google Wallet rejected the :resource request (:status): :body": "Google Wallet hat die Anfrage :resource abgelehnt (:status): :body",
+    "Add :count tickets to Google Wallet": "Alle :count Tickets zu Google Wallet hinzufügen"
 }

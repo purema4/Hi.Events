@@ -722,5 +722,17 @@
     "Event must be pending manual review to be approved": "Wydarzenie musi oczekiwać na ręczną weryfikację, aby mogło zostać zatwierdzone",
     "Event must be pending manual review to be confirmed as spam": "Wydarzenie musi oczekiwać na ręczną weryfikację, aby mogło zostać potwierdzone jako spam",
     "Event approved and published": "Wydarzenie zatwierdzone i opublikowane",
-    "Event confirmed as spam": "Wydarzenie potwierdzone jako spam"
+    "Event confirmed as spam": "Wydarzenie potwierdzone jako spam",
+    "Add to Google Wallet": "Dodaj do Google Wallet",
+    "The Google Wallet service account key is not valid JSON.": "Klucz konta usługi Google Wallet nie jest prawidłowym plikiem JSON.",
+    "The Google Wallet service account key is missing a client_email or private_key.": "W kluczu konta usługi Google Wallet brakuje client_email lub private_key.",
+    "No Google Wallet service account key is configured.": "Nie skonfigurowano klucza konta usługi Google Wallet.",
+    "The Google Wallet service account key file :path does not exist.": "Plik klucza konta usługi Google Wallet :path nie istnieje.",
+    "The Google Wallet service account private key could not be read.": "Nie można odczytać klucza prywatnego konta usługi Google Wallet.",
+    "Failed to sign the Google Wallet request with the configured service account key.": "Nie udało się podpisać żądania Google Wallet skonfigurowanym kluczem konta usługi.",
+    "Could not reach the Google Wallet API: :message": "Nie można połączyć się z interfejsem API Google Wallet: :message",
+    "Could not reach the Google authorization server: :message": "Nie można połączyć się z serwerem autoryzacji Google: :message",
+    "Google rejected the Google Wallet service account credentials: :body": "Google odrzucił dane uwierzytelniające konta usługi Google Wallet: :body",
+    "Google Wallet rejected the :resource request (:status): :body": "Google Wallet odrzucił żądanie :resource (:status): :body",
+    "Add :count tickets to Google Wallet": "Dodaj :count biletów do Google Wallet"
 }

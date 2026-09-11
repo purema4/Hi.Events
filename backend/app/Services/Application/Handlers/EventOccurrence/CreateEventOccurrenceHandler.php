@@ -9,11 +9,13 @@ use HiEvents\DomainObjects\Generated\EventOccurrenceDomainObjectAbstract;
 use HiEvents\DomainObjects\Status\EventOccurrenceStatus;
 use HiEvents\Exceptions\ResourceNotFoundException;
 use HiEvents\Helper\IdHelper;
+use HiEvents\Jobs\GoogleWallet\SyncGoogleWalletClassJob;
 use HiEvents\Repository\Interfaces\EventOccurrenceRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Services\Application\Handlers\EventOccurrence\DTO\UpsertEventOccurrenceDTO;
 use HiEvents\Services\Domain\Event\RecurrenceRuleParserService;
 use HiEvents\Services\Domain\EventLocation\EventLocationUpserter;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletPassSettingsResolver;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Validation\ValidationException;
 use Throwable;
@@ -25,6 +27,7 @@ class CreateEventOccurrenceHandler
         private readonly EventRepositoryInterface $eventRepository,
         private readonly EventLocationUpserter $eventLocationUpserter,
         private readonly DatabaseManager $databaseManager,
+        private readonly GoogleWalletPassSettingsResolver $googleWalletPassSettingsResolver,
     ) {}
 
     /**
@@ -32,7 +35,7 @@ class CreateEventOccurrenceHandler
      */
     public function handle(UpsertEventOccurrenceDTO $dto): EventOccurrenceDomainObject
     {
-        return $this->databaseManager->transaction(function () use ($dto) {
+        $occurrence = $this->databaseManager->transaction(function () use ($dto) {
             $existingOccurrenceCount = $this->occurrenceRepository->countWhere([
                 EventOccurrenceDomainObjectAbstract::EVENT_ID => $dto->event_id,
             ]);
@@ -77,5 +80,11 @@ class CreateEventOccurrenceHandler
                 EventOccurrenceDomainObjectAbstract::EVENT_LOCATION_ID => $eventLocationId,
             ]);
         });
+
+        if ($this->googleWalletPassSettingsResolver->isConfigured()) {
+            SyncGoogleWalletClassJob::dispatch($occurrence->getId());
+        }
+
+        return $occurrence;
     }
 }

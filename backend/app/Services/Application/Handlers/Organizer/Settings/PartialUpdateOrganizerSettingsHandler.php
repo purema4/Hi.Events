@@ -81,6 +81,9 @@ class PartialUpdateOrganizerSettingsHandler
 
             'homepage_password' => $dto->getProvided('homepagePassword', $organizerSettings->getHomepagePassword()),
 
+            'google_wallet_enabled' => $dto->getProvided('googleWalletEnabled', $organizerSettings->getGoogleWalletEnabled()),
+            'google_wallet_pass_settings' => $dto->getProvided('googleWalletPassSettings', $organizerSettings->getGoogleWalletPassSettings()),
+
             'tracking_pixels' => $dto->getProvided('trackingPixels', $organizerSettings->getTrackingPixels()),
             'tracking_consent_acknowledged' => $dto->getProvided('trackingConsentAcknowledged', $organizerSettings->getTrackingConsentAcknowledged()),
         ], [

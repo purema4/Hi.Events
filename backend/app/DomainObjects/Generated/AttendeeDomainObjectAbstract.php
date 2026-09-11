@@ -30,6 +30,7 @@ abstract class AttendeeDomainObjectAbstract extends \HiEvents\DomainObjects\Abst
     final public const DELETED_AT = 'deleted_at';
     final public const LOCALE = 'locale';
     final public const NOTES = 'notes';
+    final public const GOOGLE_WALLET_OBJECT_ID = 'google_wallet_object_id';
 
     protected int $id;
     protected int $order_id;
@@ -51,6 +52,7 @@ abstract class AttendeeDomainObjectAbstract extends \HiEvents\DomainObjects\Abst
     protected ?string $deleted_at = null;
     protected string $locale = 'en';
     protected ?string $notes = null;
+    protected ?string $google_wallet_object_id = null;
 
     public function toArray(): array
     {
@@ -75,6 +77,7 @@ abstract class AttendeeDomainObjectAbstract extends \HiEvents\DomainObjects\Abst
                     'deleted_at' => $this->deleted_at ?? null,
                     'locale' => $this->locale ?? null,
                     'notes' => $this->notes ?? null,
+                    'google_wallet_object_id' => $this->google_wallet_object_id ?? null,
                 ];
     }
 
@@ -296,5 +299,16 @@ abstract class AttendeeDomainObjectAbstract extends \HiEvents\DomainObjects\Abst
     public function getNotes(): ?string
     {
         return $this->notes;
+    }
+
+    public function setGoogleWalletObjectId(?string $google_wallet_object_id): self
+    {
+        $this->google_wallet_object_id = $google_wallet_object_id;
+        return $this;
+    }
+
+    public function getGoogleWalletObjectId(): ?string
+    {
+        return $this->google_wallet_object_id;
     }
 }

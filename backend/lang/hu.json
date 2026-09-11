@@ -727,5 +727,17 @@
     "Event must be pending manual review to be approved": "Az eseménynek kézi felülvizsgálatra kell várnia a jóváhagyáshoz",
     "Event must be pending manual review to be confirmed as spam": "Az eseménynek kézi felülvizsgálatra kell várnia a spamként való megerősítéshez",
     "Event approved and published": "Esemény jóváhagyva és közzétéve",
-    "Event confirmed as spam": "Esemény spamként megerősítve"
+    "Event confirmed as spam": "Esemény spamként megerősítve",
+    "Add to Google Wallet": "Hozzáadás a Google Wallethez",
+    "The Google Wallet service account key is not valid JSON.": "A Google Wallet szolgáltatásfiók kulcsa nem érvényes JSON.",
+    "The Google Wallet service account key is missing a client_email or private_key.": "A Google Wallet szolgáltatásfiók kulcsából hiányzik a client_email vagy a private_key.",
+    "No Google Wallet service account key is configured.": "Nincs beállítva Google Wallet szolgáltatásfiók-kulcs.",
+    "The Google Wallet service account key file :path does not exist.": "A(z) :path Google Wallet szolgáltatásfiók-kulcsfájl nem létezik.",
+    "The Google Wallet service account private key could not be read.": "A Google Wallet szolgáltatásfiók privát kulcsa nem olvasható.",
+    "Failed to sign the Google Wallet request with the configured service account key.": "Nem sikerült aláírni a Google Wallet kérést a beállított szolgáltatásfiók-kulccsal.",
+    "Could not reach the Google Wallet API: :message": "Nem sikerült elérni a Google Wallet API-t: :message",
+    "Could not reach the Google authorization server: :message": "Nem sikerült elérni a Google engedélyezési kiszolgálóját: :message",
+    "Google rejected the Google Wallet service account credentials: :body": "A Google elutasította a Google Wallet szolgáltatásfiók hitelesítő adatait: :body",
+    "Google Wallet rejected the :resource request (:status): :body": "A Google Wallet elutasította a(z) :resource kérést (:status): :body",
+    "Add :count tickets to Google Wallet": ":count jegy hozzáadása a Google Wallethez"
 }

@@ -722,5 +722,17 @@
     "Event must be pending manual review to be approved": "Sự kiện phải đang chờ xem xét thủ công thì mới có thể được phê duyệt",
     "Event must be pending manual review to be confirmed as spam": "Sự kiện phải đang chờ xem xét thủ công thì mới có thể được xác nhận là spam",
     "Event approved and published": "Sự kiện đã được phê duyệt và xuất bản",
-    "Event confirmed as spam": "Sự kiện đã được xác nhận là spam"
+    "Event confirmed as spam": "Sự kiện đã được xác nhận là spam",
+    "Add to Google Wallet": "Thêm vào Google Wallet",
+    "The Google Wallet service account key is not valid JSON.": "Khóa tài khoản dịch vụ Google Wallet không phải là JSON hợp lệ.",
+    "The Google Wallet service account key is missing a client_email or private_key.": "Khóa tài khoản dịch vụ Google Wallet thiếu client_email hoặc private_key.",
+    "No Google Wallet service account key is configured.": "Chưa cấu hình khóa tài khoản dịch vụ Google Wallet.",
+    "The Google Wallet service account key file :path does not exist.": "Tệp khóa tài khoản dịch vụ Google Wallet :path không tồn tại.",
+    "The Google Wallet service account private key could not be read.": "Không thể đọc khóa riêng tư của tài khoản dịch vụ Google Wallet.",
+    "Failed to sign the Google Wallet request with the configured service account key.": "Không thể ký yêu cầu Google Wallet bằng khóa tài khoản dịch vụ đã cấu hình.",
+    "Could not reach the Google Wallet API: :message": "Không thể kết nối tới API Google Wallet: :message",
+    "Could not reach the Google authorization server: :message": "Không thể kết nối tới máy chủ ủy quyền của Google: :message",
+    "Google rejected the Google Wallet service account credentials: :body": "Google đã từ chối thông tin xác thực tài khoản dịch vụ Google Wallet: :body",
+    "Google Wallet rejected the :resource request (:status): :body": "Google Wallet đã từ chối yêu cầu :resource (:status): :body",
+    "Add :count tickets to Google Wallet": "Thêm :count vé vào Google Wallet"
 }

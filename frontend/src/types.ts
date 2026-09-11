@@ -121,6 +121,7 @@ export interface Account {
     password?: string;
     is_account_email_confirmed?: boolean;
     is_saas_mode_enabled?: boolean;
+    is_google_wallet_available?: boolean;
     requires_manual_verification?: boolean;
     deletion_request?: AccountDeletionRequest | null;
 }
@@ -695,6 +696,14 @@ export interface OrganizerSettings {
     allow_search_engine_indexing?: boolean;
     tracking_pixels?: TrackingPixelConfig[];
     tracking_consent_acknowledged?: boolean;
+    google_wallet_enabled?: boolean;
+    google_wallet_pass_settings?: GoogleWalletPassSettings;
+}
+
+export interface GoogleWalletPassSettings {
+    logo_url?: string;
+    hero_image_url?: string;
+    background_color?: string;
 }
 
 export interface TrackingPixelConfig {

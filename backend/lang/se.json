@@ -722,5 +722,17 @@
     "Event must be pending manual review to be approved": "Evenemanget måste vänta på manuell granskning för att kunna godkännas",
     "Event must be pending manual review to be confirmed as spam": "Evenemanget måste vänta på manuell granskning för att kunna bekräftas som spam",
     "Event approved and published": "Evenemanget har godkänts och publicerats",
-    "Event confirmed as spam": "Evenemanget har bekräftats som spam"
+    "Event confirmed as spam": "Evenemanget har bekräftats som spam",
+    "Add to Google Wallet": "Lägg till i Google Wallet",
+    "The Google Wallet service account key is not valid JSON.": "Nyckeln för Google Wallet-tjänstkontot är inte giltig JSON.",
+    "The Google Wallet service account key is missing a client_email or private_key.": "Nyckeln för Google Wallet-tjänstkontot saknar client_email eller private_key.",
+    "No Google Wallet service account key is configured.": "Ingen nyckel för Google Wallet-tjänstkonto är konfigurerad.",
+    "The Google Wallet service account key file :path does not exist.": "Nyckelfilen :path för Google Wallet-tjänstkontot finns inte.",
+    "The Google Wallet service account private key could not be read.": "Det gick inte att läsa den privata nyckeln för Google Wallet-tjänstkontot.",
+    "Failed to sign the Google Wallet request with the configured service account key.": "Det gick inte att signera Google Wallet-begäran med den konfigurerade tjänstkontonyckeln.",
+    "Could not reach the Google Wallet API: :message": "Det gick inte att nå Google Wallet-API: :message",
+    "Could not reach the Google authorization server: :message": "Det gick inte att nå Googles auktoriseringsserver: :message",
+    "Google rejected the Google Wallet service account credentials: :body": "Google avvisade autentiseringsuppgifterna för Google Wallet-tjänstkontot: :body",
+    "Google Wallet rejected the :resource request (:status): :body": "Google Wallet avvisade begäran :resource (:status): :body",
+    "Add :count tickets to Google Wallet": "Lägg till :count biljetter i Google Wallet"
 }

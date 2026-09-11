@@ -43,6 +43,22 @@ export class OrganizerPage {
     await this.page.locator('#basic-settings').getByRole('button', { name: 'Save' }).click();
   }
 
+  get googleWalletSection(): Locator {
+    return this.page.locator('#google-wallet');
+  }
+
+  get googleWalletEnabledSwitch(): Locator {
+    return this.googleWalletSection.getByLabel('Enable Google Wallet passes');
+  }
+
+  get googleWalletBannerInput(): Locator {
+    return this.googleWalletSection.getByLabel(/^Pass banner URL/);
+  }
+
+  async saveGoogleWalletSettings(): Promise<void> {
+    await this.googleWalletSection.getByTestId('google-wallet-submit-button').click();
+  }
+
   reportRow(text: string): Locator {
     return this.page.getByRole('row').filter({ hasText: text });
   }

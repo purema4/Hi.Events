@@ -8,11 +8,12 @@ import { PayoutsSettings } from "./Sections/PayoutsSettings";
 import { PlatformFeesSettings } from "./Sections/PlatformFeesSettings";
 import { DangerZoneSettings } from "./Sections/DangerZoneSettings";
 import { TrackingPixelSettings } from "./Sections/TrackingPixelSettings";
+import { GoogleWalletSettings } from "./Sections/GoogleWalletSettings";
 import { PageBody } from "../../../common/PageBody";
 import { PageTitle } from "../../../common/PageTitle";
 import { t } from "@lingui/macro";
 import { Box, Group, NavLink as MantineNavLink, Stack } from "@mantine/core";
-import { IconAlertTriangle, IconBrandGoogleAnalytics, IconBrandStripe, IconInfoCircle, IconMapPin, IconShare, IconMail, IconCalendarEvent, IconPercentage, IconChartBar } from "@tabler/icons-react";
+import { IconAlertTriangle, IconBrandGoogleAnalytics, IconBrandStripe, IconInfoCircle, IconMapPin, IconShare, IconMail, IconCalendarEvent, IconPercentage, IconChartBar, IconWallet } from "@tabler/icons-react";
 import { useMediaQuery } from "@mantine/hooks";
 import { useEffect, useMemo, useState } from "react";
 import { Card } from "../../../common/Card";
@@ -23,6 +24,7 @@ const Settings = () => {
     const { organizerId } = useParams();
     const { data: account } = useGetAccount();
     const isSaasMode = account?.is_saas_mode_enabled;
+    const isGoogleWalletAvailable = account?.is_google_wallet_available;
 
     const SECTIONS = useMemo(() => {
         const baseSections = [
@@ -83,6 +85,15 @@ const Settings = () => {
             },
         ];
 
+        if (isGoogleWalletAvailable) {
+            baseSections.splice(baseSections.length - 1, 0, {
+                id: 'google-wallet',
+                label: t`Google Wallet`,
+                icon: IconWallet,
+                component: GoogleWalletSettings,
+            });
+        }
+
         if (isSaasMode) {
             baseSections.splice(2, 0,
                 {
@@ -100,7 +111,7 @@ const Settings = () => {
         }
 
         return baseSections;
-    }, [isSaasMode, organizerId]);
+    }, [isSaasMode, isGoogleWalletAvailable, organizerId]);
 
     const isLargeScreen = useMediaQuery('(min-width: 1200px)', true);
     const location = useLocation();

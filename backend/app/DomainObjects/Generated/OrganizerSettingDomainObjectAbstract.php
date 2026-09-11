@@ -31,6 +31,8 @@ abstract class OrganizerSettingDomainObjectAbstract extends \HiEvents\DomainObje
     final public const DEFAULT_ALLOW_ATTENDEE_SELF_EDIT = 'default_allow_attendee_self_edit';
     final public const TRACKING_PIXELS = 'tracking_pixels';
     final public const TRACKING_CONSENT_ACKNOWLEDGED = 'tracking_consent_acknowledged';
+    final public const GOOGLE_WALLET_ENABLED = 'google_wallet_enabled';
+    final public const GOOGLE_WALLET_PASS_SETTINGS = 'google_wallet_pass_settings';
 
     protected int $id;
     protected int $organizer_id;
@@ -53,6 +55,8 @@ abstract class OrganizerSettingDomainObjectAbstract extends \HiEvents\DomainObje
     protected bool $default_allow_attendee_self_edit = true;
     protected array|string|null $tracking_pixels = null;
     protected bool $tracking_consent_acknowledged = false;
+    protected bool $google_wallet_enabled = false;
+    protected array|string|null $google_wallet_pass_settings = null;
 
     public function toArray(): array
     {
@@ -78,6 +82,8 @@ abstract class OrganizerSettingDomainObjectAbstract extends \HiEvents\DomainObje
                     'default_allow_attendee_self_edit' => $this->default_allow_attendee_self_edit ?? null,
                     'tracking_pixels' => $this->tracking_pixels ?? null,
                     'tracking_consent_acknowledged' => $this->tracking_consent_acknowledged ?? null,
+                    'google_wallet_enabled' => $this->google_wallet_enabled ?? null,
+                    'google_wallet_pass_settings' => $this->google_wallet_pass_settings ?? null,
                 ];
     }
 
@@ -311,5 +317,27 @@ abstract class OrganizerSettingDomainObjectAbstract extends \HiEvents\DomainObje
     public function getTrackingConsentAcknowledged(): bool
     {
         return $this->tracking_consent_acknowledged;
+    }
+
+    public function setGoogleWalletEnabled(bool $google_wallet_enabled): self
+    {
+        $this->google_wallet_enabled = $google_wallet_enabled;
+        return $this;
+    }
+
+    public function getGoogleWalletEnabled(): bool
+    {
+        return $this->google_wallet_enabled;
+    }
+
+    public function setGoogleWalletPassSettings(array|string|null $google_wallet_pass_settings): self
+    {
+        $this->google_wallet_pass_settings = $google_wallet_pass_settings;
+        return $this;
+    }
+
+    public function getGoogleWalletPassSettings(): array|string|null
+    {
+        return $this->google_wallet_pass_settings;
     }
 }

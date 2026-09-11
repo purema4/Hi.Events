@@ -6,14 +6,12 @@ use Carbon\Carbon;
 use HiEvents\DomainObjects\AttendeeDomainObject;
 use HiEvents\DomainObjects\Enums\LocationType;
 use HiEvents\DomainObjects\EventDomainObject;
-use HiEvents\DomainObjects\EventLocationDomainObject;
 use HiEvents\DomainObjects\EventOccurrenceDomainObject;
 use HiEvents\DomainObjects\EventSettingDomainObject;
-use HiEvents\DomainObjects\LocationDomainObject;
 use HiEvents\DomainObjects\OrderDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
-use HiEvents\Helper\AddressHelper;
 use HiEvents\Helper\DateHelper;
+use HiEvents\Helper\EventVenueHelper;
 use HiEvents\Helper\StringHelper;
 use HiEvents\Helper\Url;
 use HiEvents\Mail\BaseMail;
@@ -46,6 +44,7 @@ class AttendeeTicketMail extends BaseMail
         ?RenderedEmailTemplateDTO $renderedTemplate = null,
         private readonly ?EventOccurrenceDomainObject $occurrence = null,
         private readonly ?Collection $additionalAttendees = null,
+        private readonly ?string $googleWalletSaveUrl = null,
     ) {
         parent::__construct();
         $this->renderedTemplate = $renderedTemplate;
@@ -83,6 +82,7 @@ class AttendeeTicketMail extends BaseMail
                 'order' => $this->order,
                 'tickets' => $this->ticketAttendees()
                     ->map(fn (AttendeeDomainObject $attendee) => $this->summariseTicket($attendee)),
+                'googleWalletSaveUrl' => $this->googleWalletSaveUrl,
             ]
         );
     }
@@ -138,8 +138,8 @@ class AttendeeTicketMail extends BaseMail
             sessionLabel: $occurrence?->getLabel(),
             startFormatted: $this->formatDateTime($startDate),
             endFormatted: $this->formatEndDate($startDate, $endDate),
-            venueName: $this->venueNameFor($eventLocation),
-            addressString: $this->addressStringFor($eventLocation),
+            venueName: EventVenueHelper::venueName($eventLocation),
+            addressString: EventVenueHelper::formattedAddress($eventLocation),
             ticketUrl: sprintf(
                 Url::getFrontEndUrlFromConfig(Url::ATTENDEE_TICKET),
                 $this->event->getId(),
@@ -193,7 +193,7 @@ class AttendeeTicketMail extends BaseMail
         }
 
         $eventLocation = $occurrence?->getEventLocation() ?? $this->event->getEventLocation();
-        $address = $this->addressStringFor($eventLocation);
+        $address = EventVenueHelper::formattedAddress($eventLocation);
         if ($address !== null) {
             $calendarEvent->address($address);
         } elseif ($eventLocation?->getType() === LocationType::ONLINE->name
@@ -239,50 +239,5 @@ class AttendeeTicketMail extends BaseMail
 
         return (new Carbon(DateHelper::convertFromUTC($utcEndDate, $this->event->getTimezone())))
             ->format('g:i A');
-    }
-
-    private function venueNameFor(?EventLocationDomainObject $eventLocation): ?string
-    {
-        $venue = $this->venueLocation($eventLocation);
-        if ($venue === null) {
-            return null;
-        }
-
-        $name = $venue->getName();
-        if ($name !== null && $name !== '') {
-            return $name;
-        }
-
-        return $venue->getStructuredAddress()['venue_name'] ?? null;
-    }
-
-    private function addressStringFor(?EventLocationDomainObject $eventLocation): ?string
-    {
-        $venue = $this->venueLocation($eventLocation);
-        if ($venue === null) {
-            return null;
-        }
-
-        $address = $venue->getStructuredAddress();
-        if (! is_array($address)) {
-            return null;
-        }
-
-        $formatted = AddressHelper::formatAddress($address);
-
-        return $formatted === '' ? null : $formatted;
-    }
-
-    private function venueLocation(?EventLocationDomainObject $eventLocation): ?LocationDomainObject
-    {
-        if ($eventLocation === null) {
-            return null;
-        }
-
-        if ($eventLocation->getType() !== LocationType::IN_PERSON->name) {
-            return null;
-        }
-
-        return $eventLocation->getLocation();
     }
 }

@@ -38,6 +38,7 @@ class MailBuilderService
         OrganizerDomainObject $organizer,
         ?EventOccurrenceDomainObject $occurrence = null,
         ?Collection $additionalAttendees = null,
+        ?string $googleWalletSaveUrl = null,
     ): AttendeeTicketMail {
         $renderedTemplate = $this->renderAttendeeTicketTemplate(
             $attendee,
@@ -57,6 +58,7 @@ class MailBuilderService
             renderedTemplate: $renderedTemplate,
             occurrence: $occurrence,
             additionalAttendees: $additionalAttendees,
+            googleWalletSaveUrl: $googleWalletSaveUrl,
         );
     }
 

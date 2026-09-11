@@ -30,6 +30,7 @@ use HiEvents\Repository\Interfaces\TaxAndFeeRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Attendee\CreateAttendeeHandler;
 use HiEvents\Services\Application\Handlers\Attendee\DTO\CreateAttendeeDTO;
 use HiEvents\Services\Domain\EventOccurrence\OccurrencePurchaseEligibilityService;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletPassSettingsResolver;
 use HiEvents\Services\Domain\Order\OrderManagementService;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
 use HiEvents\Services\Domain\SelfService\OrderAuditLogService;
@@ -115,6 +116,7 @@ class CreateAttendeeHandlerTest extends TestCase
             $this->domainEventDispatcherService,
             $this->occurrenceEligibilityService,
             $this->orderAuditLogService,
+            Mockery::mock(GoogleWalletPassSettingsResolver::class, ['isConfigured' => false]),
         );
     }
 

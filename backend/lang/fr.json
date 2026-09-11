@@ -722,5 +722,17 @@
     "Event must be pending manual review to be approved": "L'événement doit être en attente de révision manuelle pour être approuvé",
     "Event must be pending manual review to be confirmed as spam": "L'événement doit être en attente de révision manuelle pour être confirmé comme spam",
     "Event approved and published": "Événement approuvé et publié",
-    "Event confirmed as spam": "Événement confirmé comme spam"
+    "Event confirmed as spam": "Événement confirmé comme spam",
+    "Add to Google Wallet": "Ajouter à Google Wallet",
+    "The Google Wallet service account key is not valid JSON.": "La clé du compte de service Google Wallet n'est pas un JSON valide.",
+    "The Google Wallet service account key is missing a client_email or private_key.": "Il manque client_email ou private_key dans la clé du compte de service Google Wallet.",
+    "No Google Wallet service account key is configured.": "Aucune clé de compte de service Google Wallet n'est configurée.",
+    "The Google Wallet service account key file :path does not exist.": "Le fichier de clé du compte de service Google Wallet :path n'existe pas.",
+    "The Google Wallet service account private key could not be read.": "Impossible de lire la clé privée du compte de service Google Wallet.",
+    "Failed to sign the Google Wallet request with the configured service account key.": "Impossible de signer la requête Google Wallet avec la clé de compte de service configurée.",
+    "Could not reach the Google Wallet API: :message": "Impossible de joindre l'API Google Wallet : :message",
+    "Could not reach the Google authorization server: :message": "Impossible de joindre le serveur d'autorisation Google : :message",
+    "Google rejected the Google Wallet service account credentials: :body": "Google a rejeté les identifiants du compte de service Google Wallet : :body",
+    "Google Wallet rejected the :resource request (:status): :body": "Google Wallet a rejeté la requête :resource (:status) : :body",
+    "Add :count tickets to Google Wallet": "Ajouter les :count billets à Google Wallet"
 }

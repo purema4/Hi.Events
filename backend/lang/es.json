@@ -767,5 +767,17 @@
     "Event must be pending manual review to be approved": "El evento debe estar pendiente de revisión manual para poder aprobarse",
     "Event must be pending manual review to be confirmed as spam": "El evento debe estar pendiente de revisión manual para poder confirmarse como spam",
     "Event approved and published": "Evento aprobado y publicado",
-    "Event confirmed as spam": "Evento confirmado como spam"
+    "Event confirmed as spam": "Evento confirmado como spam",
+    "Add to Google Wallet": "Añadir a Google Wallet",
+    "The Google Wallet service account key is not valid JSON.": "La clave de la cuenta de servicio de Google Wallet no es un JSON válido.",
+    "The Google Wallet service account key is missing a client_email or private_key.": "A la clave de la cuenta de servicio de Google Wallet le falta client_email o private_key.",
+    "No Google Wallet service account key is configured.": "No hay ninguna clave de cuenta de servicio de Google Wallet configurada.",
+    "The Google Wallet service account key file :path does not exist.": "El archivo de clave de la cuenta de servicio de Google Wallet :path no existe.",
+    "The Google Wallet service account private key could not be read.": "No se pudo leer la clave privada de la cuenta de servicio de Google Wallet.",
+    "Failed to sign the Google Wallet request with the configured service account key.": "No se pudo firmar la solicitud de Google Wallet con la clave de cuenta de servicio configurada.",
+    "Could not reach the Google Wallet API: :message": "No se pudo conectar con la API de Google Wallet: :message",
+    "Could not reach the Google authorization server: :message": "No se pudo conectar con el servidor de autorización de Google: :message",
+    "Google rejected the Google Wallet service account credentials: :body": "Google rechazó las credenciales de la cuenta de servicio de Google Wallet: :body",
+    "Google Wallet rejected the :resource request (:status): :body": "Google Wallet rechazó la solicitud :resource (:status): :body",
+    "Add :count tickets to Google Wallet": "Añadir :count entradas a Google Wallet"
 }

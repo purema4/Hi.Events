@@ -722,5 +722,17 @@
     "Event must be pending manual review to be approved": "Podujatie musí čakať na manuálnu kontrolu, aby mohlo byť schválené",
     "Event must be pending manual review to be confirmed as spam": "Podujatie musí čakať na manuálnu kontrolu, aby mohlo byť potvrdené ako spam",
     "Event approved and published": "Podujatie bolo schválené a zverejnené",
-    "Event confirmed as spam": "Podujatie bolo potvrdené ako spam"
+    "Event confirmed as spam": "Podujatie bolo potvrdené ako spam",
+    "Add to Google Wallet": "Pridať do Google Wallet",
+    "The Google Wallet service account key is not valid JSON.": "Kľúč servisného účtu Google Wallet nie je platný JSON.",
+    "The Google Wallet service account key is missing a client_email or private_key.": "V kľúči servisného účtu Google Wallet chýba client_email alebo private_key.",
+    "No Google Wallet service account key is configured.": "Nie je nakonfigurovaný žiadny kľúč servisného účtu Google Wallet.",
+    "The Google Wallet service account key file :path does not exist.": "Súbor s kľúčom servisného účtu Google Wallet :path neexistuje.",
+    "The Google Wallet service account private key could not be read.": "Súkromný kľúč servisného účtu Google Wallet sa nepodarilo prečítať.",
+    "Failed to sign the Google Wallet request with the configured service account key.": "Požiadavku Google Wallet sa nepodarilo podpísať nakonfigurovaným kľúčom servisného účtu.",
+    "Could not reach the Google Wallet API: :message": "Nepodarilo sa pripojiť k API Google Wallet: :message",
+    "Could not reach the Google authorization server: :message": "Nepodarilo sa pripojiť k autorizačnému serveru Google: :message",
+    "Google rejected the Google Wallet service account credentials: :body": "Google odmietol prihlasovacie údaje servisného účtu Google Wallet: :body",
+    "Google Wallet rejected the :resource request (:status): :body": "Google Wallet odmietol požiadavku :resource (:status): :body",
+    "Add :count tickets to Google Wallet": "Pridať :count lístkov do Google Wallet"
 }

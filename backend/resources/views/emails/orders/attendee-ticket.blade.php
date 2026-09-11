@@ -3,6 +3,7 @@
 @php /** @var \HiEvents\DomainObjects\OrganizerDomainObject $organizer */ @endphp
 @php /** @var \HiEvents\DomainObjects\OrderDomainObject $order */ @endphp
 @php /** @var \Illuminate\Support\Collection<int, \HiEvents\Services\Domain\Email\DTO\AttendeeTicketSummaryDTO> $tickets */ @endphp
+@php /** @var string|null $googleWalletSaveUrl */ @endphp
 @php /** @see \HiEvents\Mail\Attendee\AttendeeTicketMail */ @endphp
 
 <x-mail::message>
@@ -45,6 +46,18 @@
 {{ __('View Ticket') }}
 </x-mail::button>
 @endforeach
+
+@if($googleWalletSaveUrl)
+<div style="text-align: center; margin: 0 0 24px;">
+<a href="{{ $googleWalletSaveUrl }}" style="display: inline-block; background-color: #000000; color: #ffffff; border-radius: 6px; padding: 10px 18px; font-size: 14px; font-weight: 600; text-decoration: none;">
+@if($tickets->count() > 1)
+{{ __('Add :count tickets to Google Wallet', ['count' => $tickets->count()]) }}
+@else
+{{ __('Add to Google Wallet') }}
+@endif
+</a>
+</div>
+@endif
 
 {{ __('If you have any questions or need assistance, please reply to this email or contact the event organizer') }}
 {{ __('at') }} <a href="mailto:{{$eventSettings->getSupportEmail()}}">{{$eventSettings->getSupportEmail()}}</a>.

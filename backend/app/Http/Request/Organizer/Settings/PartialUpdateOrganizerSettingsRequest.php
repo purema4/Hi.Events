@@ -113,6 +113,13 @@ class PartialUpdateOrganizerSettingsRequest extends BaseRequest
             // Password
             'homepage_password' => ['sometimes', 'nullable', 'string', 'max:100'],
 
+            // Google Wallet
+            'google_wallet_enabled' => ['sometimes', 'nullable', 'boolean'],
+            'google_wallet_pass_settings' => ['sometimes', 'nullable', 'array'],
+            'google_wallet_pass_settings.logo_url' => ['nullable', 'url', 'max:500'],
+            'google_wallet_pass_settings.hero_image_url' => ['nullable', 'url', 'max:500'],
+            'google_wallet_pass_settings.background_color' => ['nullable', 'string', ...RulesHelper::HEX_COLOR],
+
             // Tracking pixels
             'tracking_pixels' => ['sometimes', 'nullable', 'array', 'max:10'],
             'tracking_pixels.*.provider' => ['required', 'string', Rule::in(TrackingPixelProvider::valuesArray())],

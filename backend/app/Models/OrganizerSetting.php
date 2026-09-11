@@ -14,6 +14,7 @@ class OrganizerSetting extends BaseModel
             'social_media_handles' => 'array',
             'homepage_theme_settings' => 'array',
             'tracking_pixels' => 'array',
+            'google_wallet_pass_settings' => 'array',
         ];
     }
 }

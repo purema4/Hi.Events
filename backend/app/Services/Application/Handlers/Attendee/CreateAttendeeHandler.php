@@ -21,6 +21,7 @@ use HiEvents\Events\OrderStatusChangedEvent;
 use HiEvents\Exceptions\InvalidProductPriceId;
 use HiEvents\Exceptions\NoTicketsAvailableException;
 use HiEvents\Helper\IdHelper;
+use HiEvents\Jobs\GoogleWallet\SyncAttendeeGoogleWalletPassJob;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventOccurrenceRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
@@ -30,6 +31,7 @@ use HiEvents\Repository\Interfaces\TaxAndFeeRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Attendee\DTO\CreateAttendeeDTO;
 use HiEvents\Services\Application\Handlers\Attendee\DTO\CreateAttendeeTaxAndFeeDTO;
 use HiEvents\Services\Domain\EventOccurrence\OccurrencePurchaseEligibilityService;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletPassSettingsResolver;
 use HiEvents\Services\Domain\Order\OrderManagementService;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
 use HiEvents\Services\Domain\SelfService\OrderAuditLogService;
@@ -58,6 +60,7 @@ class CreateAttendeeHandler
         private readonly DomainEventDispatcherService $domainEventDispatcherService,
         private readonly OccurrencePurchaseEligibilityService $occurrenceEligibilityService,
         private readonly OrderAuditLogService $orderAuditLogService,
+        private readonly GoogleWalletPassSettingsResolver $googleWalletPassSettingsResolver,
     ) {}
 
     /**
@@ -79,7 +82,7 @@ class CreateAttendeeHandler
             [$attendeeDTO->product_id],
         );
 
-        return $this->databaseManager->transaction(function () use ($attendeeDTO) {
+        $attendee = $this->databaseManager->transaction(function () use ($attendeeDTO) {
             $this->calculateTaxesAndFees($attendeeDTO);
 
             $order = $this->createOrder($attendeeDTO->event_id, $attendeeDTO);
@@ -135,6 +138,12 @@ class CreateAttendeeHandler
 
             return $attendee;
         });
+
+        if ($this->googleWalletPassSettingsResolver->isConfigured()) {
+            SyncAttendeeGoogleWalletPassJob::dispatch($attendee->getId());
+        }
+
+        return $attendee;
     }
 
     private function createOrder(int $eventId, CreateAttendeeDTO $attendeeDTO): OrderDomainObject

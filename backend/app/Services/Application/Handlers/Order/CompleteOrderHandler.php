@@ -24,6 +24,7 @@ use HiEvents\Events\OrderStatusChangedEvent;
 use HiEvents\Exceptions\ResourceConflictException;
 use HiEvents\Exceptions\UnauthorizedException;
 use HiEvents\Helper\IdHelper;
+use HiEvents\Jobs\GoogleWallet\SyncOrderGoogleWalletPassesJob;
 use HiEvents\Repository\Eloquent\Value\Relationship;
 use HiEvents\Repository\Interfaces\AffiliateRepositoryInterface;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
@@ -36,6 +37,7 @@ use HiEvents\Services\Application\Handlers\Order\DTO\CompleteOrderOrderDTO;
 use HiEvents\Services\Application\Handlers\Order\DTO\CompleteOrderProductDataDTO;
 use HiEvents\Services\Application\Handlers\Order\DTO\CreatedProductDataDTO;
 use HiEvents\Services\Application\Handlers\Order\DTO\OrderQuestionsDTO;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletPassSettingsResolver;
 use HiEvents\Services\Domain\Order\OccurrenceStatusValidator;
 use HiEvents\Services\Domain\Payment\Stripe\EventHandlers\PaymentIntentSucceededHandler;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
@@ -64,6 +66,7 @@ class CompleteOrderHandler
         private readonly EventSettingsRepositoryInterface $eventSettingsRepository,
         private readonly CheckoutSessionManagementService $sessionManagementService,
         private readonly OccurrenceStatusValidator $occurrenceStatusValidator,
+        private readonly GoogleWalletPassSettingsResolver $googleWalletPassSettingsResolver,
     ) {}
 
     /**
@@ -105,6 +108,10 @@ class CompleteOrderHandler
 
             return $updatedOrder;
         });
+
+        if ($this->googleWalletPassSettingsResolver->isConfigured()) {
+            SyncOrderGoogleWalletPassesJob::dispatch($updatedOrder->getId());
+        }
 
         event(new OrderStatusChangedEvent(
             order: $updatedOrder,

@@ -8,6 +8,7 @@ use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\DomainObjects\OrderDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\Services\Domain\Email\MailBuilderService;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSaveUrlResolver;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Support\Collection;
 
@@ -16,6 +17,7 @@ class SendAttendeeTicketService
     public function __construct(
         private readonly Mailer $mailer,
         private readonly MailBuilderService $mailBuilderService,
+        private readonly GoogleWalletSaveUrlResolver $googleWalletSaveUrlResolver,
     ) {}
 
     /**
@@ -29,6 +31,12 @@ class SendAttendeeTicketService
         OrganizerDomainObject $organizer,
         ?Collection $additionalAttendees = null,
     ): void {
+        $googleWalletSaveUrl = $this->googleWalletSaveUrlResolver->resolveForAttendees(
+            attendees: collect([$attendee])->merge($additionalAttendees ?? collect()),
+            event: $event,
+            organizer: $organizer,
+        );
+
         $mail = $this->mailBuilderService->buildAttendeeTicketMail(
             $attendee,
             $order,
@@ -37,6 +45,7 @@ class SendAttendeeTicketService
             $organizer,
             $attendee->getEventOccurrence(),
             $additionalAttendees,
+            $googleWalletSaveUrl,
         );
 
         $this->mailer

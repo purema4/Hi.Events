@@ -710,5 +710,17 @@
     "Event must be pending manual review to be approved": "Событие должно ожидать ручной проверки, чтобы его можно было одобрить",
     "Event must be pending manual review to be confirmed as spam": "Событие должно ожидать ручной проверки, чтобы его можно было подтвердить как спам",
     "Event approved and published": "Событие одобрено и опубликовано",
-    "Event confirmed as spam": "Событие подтверждено как спам"
+    "Event confirmed as spam": "Событие подтверждено как спам",
+    "Add to Google Wallet": "Добавить в Google Wallet",
+    "The Google Wallet service account key is not valid JSON.": "Ключ сервисного аккаунта Google Wallet не является корректным JSON.",
+    "The Google Wallet service account key is missing a client_email or private_key.": "В ключе сервисного аккаунта Google Wallet отсутствует client_email или private_key.",
+    "No Google Wallet service account key is configured.": "Ключ сервисного аккаунта Google Wallet не настроен.",
+    "The Google Wallet service account key file :path does not exist.": "Файл ключа сервисного аккаунта Google Wallet :path не существует.",
+    "The Google Wallet service account private key could not be read.": "Не удалось прочитать закрытый ключ сервисного аккаунта Google Wallet.",
+    "Failed to sign the Google Wallet request with the configured service account key.": "Не удалось подписать запрос к Google Wallet настроенным ключом сервисного аккаунта.",
+    "Could not reach the Google Wallet API: :message": "Не удалось подключиться к API Google Wallet: :message",
+    "Could not reach the Google authorization server: :message": "Не удалось подключиться к серверу авторизации Google: :message",
+    "Google rejected the Google Wallet service account credentials: :body": "Google отклонил учётные данные сервисного аккаунта Google Wallet: :body",
+    "Google Wallet rejected the :resource request (:status): :body": "Google Wallet отклонил запрос :resource (:status): :body",
+    "Add :count tickets to Google Wallet": "Добавить :count билетов в Google Wallet"
 }

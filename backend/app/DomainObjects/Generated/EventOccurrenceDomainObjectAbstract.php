@@ -26,6 +26,7 @@ abstract class EventOccurrenceDomainObjectAbstract extends \HiEvents\DomainObjec
     final public const DELETED_AT = 'deleted_at';
     final public const SHOW_AVAILABLE_CAPACITY = 'show_available_capacity';
     final public const CANCELLED_ATTENDEES_COUNT = 'cancelled_attendees_count';
+    final public const GOOGLE_WALLET_CLASS_ID = 'google_wallet_class_id';
 
     protected int $id;
     protected int $event_id;
@@ -43,6 +44,7 @@ abstract class EventOccurrenceDomainObjectAbstract extends \HiEvents\DomainObjec
     protected ?string $deleted_at = null;
     protected ?bool $show_available_capacity = null;
     protected ?int $cancelled_attendees_count = null;
+    protected ?string $google_wallet_class_id = null;
 
     public function toArray(): array
     {
@@ -63,6 +65,7 @@ abstract class EventOccurrenceDomainObjectAbstract extends \HiEvents\DomainObjec
                     'deleted_at' => $this->deleted_at ?? null,
                     'show_available_capacity' => $this->show_available_capacity ?? null,
                     'cancelled_attendees_count' => $this->cancelled_attendees_count ?? null,
+                    'google_wallet_class_id' => $this->google_wallet_class_id ?? null,
                 ];
     }
 
@@ -240,5 +243,16 @@ abstract class EventOccurrenceDomainObjectAbstract extends \HiEvents\DomainObjec
     public function getCancelledAttendeesCount(): ?int
     {
         return $this->cancelled_attendees_count;
+    }
+
+    public function setGoogleWalletClassId(?string $google_wallet_class_id): self
+    {
+        $this->google_wallet_class_id = $google_wallet_class_id;
+        return $this;
+    }
+
+    public function getGoogleWalletClassId(): ?string
+    {
+        return $this->google_wallet_class_id;
     }
 }
