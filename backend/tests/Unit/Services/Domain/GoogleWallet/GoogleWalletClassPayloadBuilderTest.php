@@ -184,4 +184,49 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
 
         $this->assertSame('Hi.Events', $payload['issuerName']);
     }
+
+    public function test_the_pass_can_be_saved_by_several_people_and_devices(): void
+    {
+        $payload = $this->builder()->build(
+            'issuer.class_1',
+            $this->event(),
+            $this->occurrence(),
+            $this->organizer(),
+            $this->passSettings(),
+        );
+
+        $this->assertSame('MULTIPLE_HOLDERS', $payload['multipleDevicesAndHoldersAllowedStatus']);
+    }
+
+    public function test_the_end_time_and_address_are_spelled_out_on_the_pass(): void
+    {
+        $event = $this->event();
+        $event->setEventLocation($this->venue());
+
+        $payload = $this->builder()->build(
+            'issuer.class_1',
+            $event,
+            $this->occurrence(),
+            $this->organizer(),
+            $this->passSettings(),
+        );
+
+        $modules = collect($payload['textModulesData'])->keyBy('id');
+
+        $this->assertSame('Tue, Jun 2, 2026 · 12:00 AM', $modules['event_end']['body']);
+        $this->assertSame('Curved Street, Dublin, Ireland', $modules['event_address']['body']);
+    }
+
+    public function test_an_event_without_a_venue_carries_no_address_row(): void
+    {
+        $payload = $this->builder()->build(
+            'issuer.class_1',
+            $this->event(),
+            $this->occurrence(),
+            $this->organizer(),
+            $this->passSettings(),
+        );
+
+        $this->assertSame(['event_end'], collect($payload['textModulesData'])->pluck('id')->all());
+    }
 }

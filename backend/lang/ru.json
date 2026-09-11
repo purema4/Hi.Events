@@ -722,5 +722,7 @@
     "Could not reach the Google authorization server: :message": "Не удалось подключиться к серверу авторизации Google: :message",
     "Google rejected the Google Wallet service account credentials: :body": "Google отклонил учётные данные сервисного аккаунта Google Wallet: :body",
     "Google Wallet rejected the :resource request (:status): :body": "Google Wallet отклонил запрос :resource (:status): :body",
-    "Add :count tickets to Google Wallet": "Добавить :count билетов в Google Wallet"
+    "Add :count tickets to Google Wallet": "Добавить :count билетов в Google Wallet",
+    "Ends": "Окончание",
+    "Address": "Адрес"
 }

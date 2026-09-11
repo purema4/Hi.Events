@@ -734,5 +734,7 @@
     "Could not reach the Google authorization server: :message": "Não foi possível contactar o servidor de autorização da Google: :message",
     "Google rejected the Google Wallet service account credentials: :body": "A Google rejeitou as credenciais da conta de serviço do Google Wallet: :body",
     "Google Wallet rejected the :resource request (:status): :body": "O Google Wallet rejeitou o pedido :resource (:status): :body",
-    "Add :count tickets to Google Wallet": "Adicionar :count bilhetes ao Google Wallet"
+    "Add :count tickets to Google Wallet": "Adicionar :count bilhetes ao Google Wallet",
+    "Ends": "Termina",
+    "Address": "Morada"
 }

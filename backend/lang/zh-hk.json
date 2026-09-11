@@ -734,5 +734,7 @@
     "Could not reach the Google authorization server: :message": "無法連接 Google 授權伺服器：:message",
     "Google rejected the Google Wallet service account credentials: :body": "Google 拒絕了 Google 錢包服務帳戶憑證：:body",
     "Google Wallet rejected the :resource request (:status): :body": "Google 錢包拒絕了 :resource 要求（:status）：:body",
-    "Add :count tickets to Google Wallet": "將 :count 張票加入 Google 錢包"
+    "Add :count tickets to Google Wallet": "將 :count 張票加入 Google 錢包",
+    "Ends": "結束",
+    "Address": "地址"
 }

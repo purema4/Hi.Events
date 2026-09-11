@@ -739,5 +739,7 @@
     "Could not reach the Google authorization server: :message": "Nem sikerült elérni a Google engedélyezési kiszolgálóját: :message",
     "Google rejected the Google Wallet service account credentials: :body": "A Google elutasította a Google Wallet szolgáltatásfiók hitelesítő adatait: :body",
     "Google Wallet rejected the :resource request (:status): :body": "A Google Wallet elutasította a(z) :resource kérést (:status): :body",
-    "Add :count tickets to Google Wallet": ":count jegy hozzáadása a Google Wallethez"
+    "Add :count tickets to Google Wallet": ":count jegy hozzáadása a Google Wallethez",
+    "Ends": "Vége",
+    "Address": "Cím"
 }

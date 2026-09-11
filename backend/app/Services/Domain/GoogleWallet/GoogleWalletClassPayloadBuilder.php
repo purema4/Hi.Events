@@ -49,8 +49,40 @@ class GoogleWalletClassPayloadBuilder
             ),
             'heroImage' => $this->image($this->heroImageUrl($event, $passSettings), $event->getTitle()),
             'hexBackgroundColor' => $passSettings->backgroundColor,
+            'multipleDevicesAndHoldersAllowedStatus' => 'MULTIPLE_HOLDERS',
+            'textModulesData' => $this->textModules($event, $occurrence),
             ...$this->smartTap(),
         ], static fn ($value) => $value !== null && $value !== []);
+    }
+
+    private function textModules(EventDomainObject $event, EventOccurrenceDomainObject $occurrence): array
+    {
+        $endDate = $this->readableDateTime($occurrence->getEndDate(), $event->getTimezone());
+        $address = EventVenueHelper::formattedAddress(
+            $occurrence->getEventLocation() ?? $event->getEventLocation()
+        );
+
+        return array_values(array_filter([
+            $endDate === null ? null : [
+                'id' => 'event_end',
+                'header' => __('Ends'),
+                'body' => $endDate,
+            ],
+            $address === null ? null : [
+                'id' => 'event_address',
+                'header' => __('Address'),
+                'body' => $address,
+            ],
+        ]));
+    }
+
+    private function readableDateTime(?string $utcDate, string $timezone): ?string
+    {
+        if ($utcDate === null) {
+            return null;
+        }
+
+        return Carbon::parse(DateHelper::convertFromUTC($utcDate, $timezone))->format('D, M j, Y · g:i A');
     }
 
     private function heroImageUrl(EventDomainObject $event, GoogleWalletPassSettingsDTO $passSettings): ?string

@@ -749,5 +749,7 @@
     "Could not reach the Google authorization server: :message": "Google yetkilendirme sunucusuna ulaşılamadı: :message",
     "Google rejected the Google Wallet service account credentials: :body": "Google, Google Wallet hizmet hesabı kimlik bilgilerini reddetti: :body",
     "Google Wallet rejected the :resource request (:status): :body": "Google Wallet :resource isteğini reddetti (:status): :body",
-    "Add :count tickets to Google Wallet": ":count bileti Google Wallet'a ekle"
+    "Add :count tickets to Google Wallet": ":count bileti Google Wallet'a ekle",
+    "Ends": "Bitiş",
+    "Address": "Adres"
 }

@@ -734,5 +734,7 @@
     "Could not reach the Google authorization server: :message": "Det gick inte att nå Googles auktoriseringsserver: :message",
     "Google rejected the Google Wallet service account credentials: :body": "Google avvisade autentiseringsuppgifterna för Google Wallet-tjänstkontot: :body",
     "Google Wallet rejected the :resource request (:status): :body": "Google Wallet avvisade begäran :resource (:status): :body",
-    "Add :count tickets to Google Wallet": "Lägg till :count biljetter i Google Wallet"
+    "Add :count tickets to Google Wallet": "Lägg till :count biljetter i Google Wallet",
+    "Ends": "Slutar",
+    "Address": "Adress"
 }
