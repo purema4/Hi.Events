@@ -48,7 +48,7 @@ import {
     PromoCodeValidationResponse
 } from "../../../../types.ts";
 import {formatCurrency} from "../../../../utilites/currency.ts";
-import {getDisplayPrice} from "../../../common/Currency";
+import {getDisplayPrice, getDisplayPriceExcludingTax} from "../../../common/Currency";
 import {eventsClientPublic} from "../../../../api/event.client.ts";
 import {promoCodeClientPublic} from "../../../../api/promo-code.client.ts";
 import {IconCheck, IconChevronDown, IconX} from "@tabler/icons-react"
@@ -709,7 +709,7 @@ const SelectProducts = (props: SelectProductsProps) => {
                                             return null;
                                         }
                                         return Math.min(...availablePrices.map(price =>
-                                            getDisplayPrice(price, event?.settings?.price_display_mode)));
+                                            getDisplayPriceExcludingTax(price, event?.settings?.price_display_mode)));
                                     })();
 
                                     return (

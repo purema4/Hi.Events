@@ -75,7 +75,8 @@ export const TieredPricing = ({
         }, LIMIT_MESSAGE_TIMEOUT_MS);
     };
 
-    const exclusiveFootnote = isInclusive ? undefined : t`Added at checkout`;
+    const breakdownFootnote = (price: ProductPrice): string | undefined =>
+        (!isInclusive || (price.tax_total || 0) > 0) ? t`Added at checkout` : undefined;
 
     const buildSinglePriceRows = (price: ProductPrice): FeeBreakdownRow[] => {
         const feeNames = (product.taxes || []).filter(item => item.type === TaxAndFeeType.Fee).map(item => item.name).join(', ');
@@ -171,11 +172,11 @@ export const TieredPricing = ({
                 {feesAndTax > 0 && isPriceAvailable && (
                     <FeeBreakdown
                         toggleLabel={isInclusive
-                            ? getInclusiveFeeNote((price.fee_total || 0) > 0, (price.tax_total || 0) > 0)
+                            ? getInclusiveFeeNote()
                             : getExclusiveFeeNote(formatCurrency(feesAndTax, event?.currency), (price.fee_total || 0) > 0, (price.tax_total || 0) > 0)}
                         rows={buildSinglePriceRows(price)}
                         currency={event?.currency}
-                        footnote={exclusiveFootnote}
+                        footnote={breakdownFootnote(price)}
                     />
                 )}
                 {renderRowMessages(0)}
@@ -235,11 +236,11 @@ export const TieredPricing = ({
                         {product.type !== 'DONATION' && feesAndTax > 0 && isPriceAvailable && (
                             <FeeBreakdown
                                 toggleLabel={isInclusive
-                                    ? getInclusiveFeeNote((price.fee_total || 0) > 0, (price.tax_total || 0) > 0)
+                                    ? getInclusiveFeeNote()
                                     : getExclusiveFeeNote(formatCurrency(feesAndTax, event?.currency), (price.fee_total || 0) > 0, (price.tax_total || 0) > 0)}
                                 rows={buildSinglePriceRows(price)}
                                 currency={event?.currency}
-                                footnote={exclusiveFootnote}
+                                footnote={breakdownFootnote(price)}
                             />
                         )}
 

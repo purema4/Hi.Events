@@ -8,7 +8,7 @@ import {isLightColor} from "@mantine/core";
 import {formatCurrency} from "../../../../utilites/currency.ts";
 import {eventHomepagePath, eventHomepageUrl} from "../../../../utilites/urlHelper.ts";
 import {getProductsFromEvent} from "../../../../utilites/helpers.ts";
-import {getDisplayPrice} from "../../../common/Currency";
+import {getDisplayPriceExcludingTax} from "../../../common/Currency";
 import {ShareComponent} from "../../../common/ShareIcon";
 import dayjs from "dayjs";
 import {IconCalendar, IconClock, IconMapPin, IconTicket, IconWifi} from '@tabler/icons-react';
@@ -69,7 +69,7 @@ export const EventCard: React.FC<EventCardProps> = ({event, primaryColor = '#8b5
     products.forEach(product => {
         if (product.prices && product.prices.length > 0) {
             product.prices.forEach(price => {
-                const priceValue = getDisplayPrice(price, event?.settings?.price_display_mode);
+                const priceValue = getDisplayPriceExcludingTax(price, event?.settings?.price_display_mode);
                 if (lowestPrice === null || priceValue < lowestPrice) {
                     lowestPrice = priceValue;
                 }

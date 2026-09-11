@@ -45,11 +45,14 @@ export const getDisplayPrice = (price: ProductPrice, taxAndServiceFeeDisplayType
         : Number(price.price);
 };
 
-export const getInclusiveFeeNote = (hasFees: boolean, hasTax: boolean): string => {
-    if (hasFees && hasTax) {
-        return t`incl. fees & tax`;
-    }
-    return hasFees ? t`incl. fees` : t`incl. tax`;
+export const getDisplayPriceExcludingTax = (price: ProductPrice, taxAndServiceFeeDisplayType?: string): number => {
+    return taxAndServiceFeeDisplayType === 'INCLUSIVE'
+        ? Number(price.price) + (price.fee_total || 0)
+        : Number(price.price);
+};
+
+export const getInclusiveFeeNote = (): string => {
+    return t`incl. fees`;
 };
 
 export const getExclusiveFeeNote = (formattedAmount: string, hasFees: boolean, hasTax: boolean): string => {
@@ -82,7 +85,7 @@ export const ProductPriceDisplay: React.FC<ProductPriceProps> = ({
     const totalTaxAndFees = (price.tax_total || 0) + (price.fee_total || 0);
 
     if (feeDisplay === 'none') {
-        const inclusiveAwarePrice = getDisplayPrice(price, taxAndServiceFeeDisplayType);
+        const inclusiveAwarePrice = getDisplayPriceExcludingTax(price, taxAndServiceFeeDisplayType);
 
         if (inclusiveAwarePrice === 0 && totalTaxAndFees === 0) {
             return <span className={className}>{freeLabel || t`Free`}</span>;
