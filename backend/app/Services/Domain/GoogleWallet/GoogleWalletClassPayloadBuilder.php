@@ -5,14 +5,18 @@ declare(strict_types=1);
 namespace HiEvents\Services\Domain\GoogleWallet;
 
 use Carbon\Carbon;
+use HiEvents\DomainObjects\Enums\ImageType;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventOccurrenceDomainObject;
+use HiEvents\DomainObjects\ImageDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\Helper\DateHelper;
 use HiEvents\Helper\EventVenueHelper;
+use HiEvents\Helper\Url;
 use HiEvents\Services\Domain\GoogleWallet\DTO\GoogleWalletPassSettingsDTO;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Translation\Translator;
+use Illuminate\Support\Collection;
 
 class GoogleWalletClassPayloadBuilder
 {
@@ -39,10 +43,43 @@ class GoogleWalletClassPayloadBuilder
             ],
             'dateTime' => $this->dateTime($event, $occurrence),
             'venue' => $this->venue($event, $occurrence),
-            'logo' => $this->image($passSettings->logoUrl, $organizer->getName()),
-            'heroImage' => $this->image($passSettings->heroImageUrl, $event->getTitle()),
+            'logo' => $this->image(
+                $passSettings->logoUrl ?? $this->imageUrl($organizer->getImages(), ImageType::ORGANIZER_LOGO),
+                $organizer->getName(),
+            ),
+            'heroImage' => $this->image(
+                $passSettings->heroImageUrl ?? $this->imageUrl($event->getImages(), ImageType::EVENT_COVER),
+                $event->getTitle(),
+            ),
             'hexBackgroundColor' => $passSettings->backgroundColor,
+            ...$this->smartTap(),
         ], static fn ($value) => $value !== null && $value !== []);
+    }
+
+    private function smartTap(): array
+    {
+        $redemptionIssuerId = trim((string) $this->config->get('google-wallet.redemption_issuer_id'));
+
+        if ($redemptionIssuerId === '') {
+            return [];
+        }
+
+        return [
+            'enableSmartTap' => true,
+            'redemptionIssuers' => [$redemptionIssuerId],
+        ];
+    }
+
+    /**
+     * @param  Collection<int, ImageDomainObject>|null  $images
+     */
+    private function imageUrl(?Collection $images, ImageType $type): ?string
+    {
+        $path = $images
+            ?->first(static fn (ImageDomainObject $image) => $image->getType() === $type->name)
+            ?->getPath();
+
+        return $path === null ? null : Url::getCdnUrl($path);
     }
 
     private function eventName(EventDomainObject $event, EventOccurrenceDomainObject $occurrence): string
@@ -79,7 +116,7 @@ class GoogleWalletClassPayloadBuilder
 
     private function image(?string $uri, ?string $description): ?array
     {
-        if ($uri === null) {
+        if ($uri === null || ! str_starts_with(strtolower($uri), 'https://')) {
             return null;
         }
 

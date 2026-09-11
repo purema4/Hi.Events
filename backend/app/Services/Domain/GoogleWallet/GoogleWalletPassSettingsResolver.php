@@ -43,9 +43,26 @@ class GoogleWalletPassSettingsResolver
         return new GoogleWalletPassSettingsDTO(
             logoUrl: $this->nullableString($passSettings['logo_url'] ?? null),
             heroImageUrl: $this->nullableString($passSettings['hero_image_url'] ?? null),
-            backgroundColor: $this->nullableString($passSettings['background_color'] ?? null)
-                ?? $this->nullableString($themeSettings['accent'] ?? null),
+            backgroundColor: $this->hexColor($passSettings['background_color'] ?? null)
+                ?? $this->hexColor($themeSettings['accent'] ?? null),
         );
+    }
+
+    private function hexColor(mixed $value): ?string
+    {
+        $candidate = ltrim((string) $this->nullableString($value), '#');
+
+        if (! preg_match('/^[0-9a-fA-F]{3,8}$/', $candidate)) {
+            return null;
+        }
+
+        $rgb = match (strlen($candidate)) {
+            3, 4 => preg_replace('/(.)/', '$1$1', substr($candidate, 0, 3)),
+            6, 8 => substr($candidate, 0, 6),
+            default => null,
+        };
+
+        return $rgb === null ? null : '#'.strtolower($rgb);
     }
 
     private function toArray(mixed $value): array

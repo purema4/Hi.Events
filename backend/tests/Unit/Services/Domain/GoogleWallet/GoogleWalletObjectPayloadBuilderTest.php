@@ -7,13 +7,17 @@ use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\ProductDomainObject;
 use HiEvents\DomainObjects\Status\AttendeeStatus;
 use HiEvents\Services\Domain\GoogleWallet\GoogleWalletObjectPayloadBuilder;
+use Illuminate\Config\Repository;
 use Tests\TestCase;
 
 class GoogleWalletObjectPayloadBuilderTest extends TestCase
 {
-    private function builder(): GoogleWalletObjectPayloadBuilder
+    private function builder(?string $redemptionIssuerId = null): GoogleWalletObjectPayloadBuilder
     {
-        return new GoogleWalletObjectPayloadBuilder($this->app->make('translator'));
+        return new GoogleWalletObjectPayloadBuilder(
+            new Repository(['google-wallet' => ['redemption_issuer_id' => $redemptionIssuerId]]),
+            $this->app->make('translator'),
+        );
     }
 
     private function event(): EventDomainObject
@@ -105,5 +109,20 @@ class GoogleWalletObjectPayloadBuilderTest extends TestCase
         $payload = $this->builder()->build('issuer.obj_1', 'issuer.class_1', $attendee, $this->event());
 
         $this->assertArrayNotHasKey('ticketHolderName', $payload);
+    }
+
+    public function test_nfc_is_off_when_no_redemption_issuer_is_configured(): void
+    {
+        $payload = $this->builder()->build('issuer.obj_1', 'issuer.class_1', $this->attendee(), $this->event());
+
+        $this->assertArrayNotHasKey('smartTapRedemptionValue', $payload);
+    }
+
+    public function test_nfc_taps_transmit_the_same_value_as_the_barcode(): void
+    {
+        $payload = $this->builder('1234567890')
+            ->build('issuer.obj_1', 'issuer.class_1', $this->attendee(), $this->event());
+
+        $this->assertSame($payload['barcode']['value'], $payload['smartTapRedemptionValue']);
     }
 }

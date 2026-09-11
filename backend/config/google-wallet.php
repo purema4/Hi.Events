@@ -13,6 +13,8 @@ return [
 
     'id_prefix' => env('GOOGLE_WALLET_ID_PREFIX', 'hievents'),
 
+    'redemption_issuer_id' => env('GOOGLE_WALLET_REDEMPTION_ISSUER_ID'),
+
     'origins' => array_values(array_filter(
         array_map('trim', explode(',', (string) env('GOOGLE_WALLET_ORIGINS', ''))),
     )),

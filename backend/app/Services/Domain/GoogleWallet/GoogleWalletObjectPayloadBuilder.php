@@ -8,11 +8,13 @@ use HiEvents\DomainObjects\AttendeeDomainObject;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\Status\AttendeeStatus;
 use HiEvents\Helper\Url;
+use Illuminate\Config\Repository;
 use Illuminate\Contracts\Translation\Translator;
 
 class GoogleWalletObjectPayloadBuilder
 {
     public function __construct(
+        private readonly Repository $config,
         private readonly Translator $translator,
     ) {}
 
@@ -34,6 +36,7 @@ class GoogleWalletObjectPayloadBuilder
                 'value' => $attendee->getPublicId(),
                 'alternateText' => $attendee->getPublicId(),
             ],
+            'smartTapRedemptionValue' => $this->smartTapRedemptionValue($attendee),
             'linksModuleData' => [
                 'uris' => [
                     [
@@ -44,6 +47,13 @@ class GoogleWalletObjectPayloadBuilder
                 ],
             ],
         ], static fn ($value) => $value !== null && $value !== '');
+    }
+
+    private function smartTapRedemptionValue(AttendeeDomainObject $attendee): ?string
+    {
+        $redemptionIssuerId = trim((string) $this->config->get('google-wallet.redemption_issuer_id'));
+
+        return $redemptionIssuerId === '' ? null : $attendee->getPublicId();
     }
 
     private function state(AttendeeDomainObject $attendee): string
