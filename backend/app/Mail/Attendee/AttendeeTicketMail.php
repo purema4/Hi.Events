@@ -74,6 +74,9 @@ class AttendeeTicketMail extends BaseMail
             );
         }
 
+        $tickets = $this->ticketAttendees()
+            ->map(fn (AttendeeDomainObject $attendee) => $this->summariseTicket($attendee));
+
         return new Content(
             markdown: 'emails.orders.attendee-ticket',
             with: [
@@ -81,15 +84,20 @@ class AttendeeTicketMail extends BaseMail
                 'eventSettings' => $this->eventSettings,
                 'organizer' => $this->organizer,
                 'order' => $this->order,
-                'tickets' => $this->ticketAttendees()
-                    ->map(fn (AttendeeDomainObject $attendee) => $this->summariseTicket($attendee)),
+                'tickets' => $tickets,
+                'ticketsShareSchedule' => $this->distinctOccurrences()->count() === 1,
+                'ticketUrl' => sprintf(
+                    Url::getFrontEndUrlFromConfig(Url::ATTENDEE_TICKET),
+                    $this->event->getId(),
+                    $this->attendee->getShortId(),
+                ),
             ]
         );
     }
 
     public function attachments(): array
     {
-        $calendarEvents = $this->occurrencesForCalendar()
+        $calendarEvents = $this->distinctOccurrences()
             ->map(fn (?EventOccurrenceDomainObject $occurrence) => $this->buildCalendarEvent($occurrence))
             ->filter();
 
@@ -140,11 +148,6 @@ class AttendeeTicketMail extends BaseMail
             endFormatted: $this->formatEndDate($startDate, $endDate),
             venueName: $this->venueNameFor($eventLocation),
             addressString: $this->addressStringFor($eventLocation),
-            ticketUrl: sprintf(
-                Url::getFrontEndUrlFromConfig(Url::ATTENDEE_TICKET),
-                $this->event->getId(),
-                $attendee->getShortId(),
-            ),
         );
     }
 
@@ -156,7 +159,7 @@ class AttendeeTicketMail extends BaseMail
     /**
      * @return Collection<int, EventOccurrenceDomainObject|null>
      */
-    private function occurrencesForCalendar(): Collection
+    private function distinctOccurrences(): Collection
     {
         $occurrences = $this->ticketAttendees()
             ->map(fn (AttendeeDomainObject $attendee) => $this->occurrenceFor($attendee))
