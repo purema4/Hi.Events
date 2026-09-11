@@ -33,6 +33,8 @@ class EventSettingsResource extends JsonResource
             'homepage_background_type' => $this->getHomepageBackgroundType(),
 
             'google_wallet_banner_url' => $this->getGoogleWalletBannerUrl(),
+            'google_wallet_logo_url' => $this->getGoogleWalletLogoUrl(),
+            'google_wallet_background_color' => $this->getGoogleWalletBackgroundColor(),
             'website_url' => $this->getWebsiteUrl(),
             'maps_url' => $this->getMapsUrl(),
 

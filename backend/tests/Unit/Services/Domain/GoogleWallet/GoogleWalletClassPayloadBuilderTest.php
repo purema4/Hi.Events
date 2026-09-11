@@ -6,6 +6,7 @@ use HiEvents\DomainObjects\Enums\LocationType;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventLocationDomainObject;
 use HiEvents\DomainObjects\EventOccurrenceDomainObject;
+use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\DomainObjects\LocationDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\Services\Domain\GoogleWallet\DTO\GoogleWalletPassSettingsDTO;
@@ -228,5 +229,49 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
         );
 
         $this->assertSame(['event_end'], collect($payload['textModulesData'])->pluck('id')->all());
+    }
+
+    public function test_event_branding_wins_over_the_organizer_settings(): void
+    {
+        $event = $this->event();
+        $event->setEventSettings(
+            (new EventSettingDomainObject)
+                ->setGoogleWalletLogoUrl('https://cdn.example.com/event-logo.png')
+                ->setGoogleWalletBannerUrl('https://cdn.example.com/event-banner.png')
+                ->setGoogleWalletBackgroundColor('#AABBCCDD')
+        );
+
+        $payload = $this->builder()->build(
+            'issuer.class_1',
+            $event,
+            $this->occurrence(),
+            $this->organizer(),
+            $this->passSettings(),
+        );
+
+        $this->assertSame('https://cdn.example.com/event-logo.png', $payload['logo']['sourceUri']['uri']);
+        $this->assertSame('https://cdn.example.com/event-banner.png', $payload['heroImage']['sourceUri']['uri']);
+        $this->assertSame('#aabbcc', $payload['hexBackgroundColor']);
+    }
+
+    public function test_blank_event_branding_falls_back_to_the_organizer_settings(): void
+    {
+        $event = $this->event();
+        $event->setEventSettings(
+            (new EventSettingDomainObject)
+                ->setGoogleWalletLogoUrl('   ')
+                ->setGoogleWalletBackgroundColor(null)
+        );
+
+        $payload = $this->builder()->build(
+            'issuer.class_1',
+            $event,
+            $this->occurrence(),
+            $this->organizer(),
+            $this->passSettings(),
+        );
+
+        $this->assertSame('https://cdn.example.com/logo.png', $payload['logo']['sourceUri']['uri']);
+        $this->assertSame('#112233', $payload['hexBackgroundColor']);
     }
 }

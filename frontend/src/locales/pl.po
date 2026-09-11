@@ -1778,7 +1778,7 @@ msgstr "Treść banera może mieć maksymalnie 200 znaków"
 msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
 msgstr "Baner na całą szerokość karty, najlepiej 1032x812 px. Domyślnie obraz okładki Twojego wydarzenia."
 
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:62
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:75
 msgid "Banner shown across the pass, ideally 1032x812px. Falls back to your organizer setting, then this event's cover image."
 msgstr "Baner na całą szerokość karty, najlepiej 1032x812 px. W przeciwnym razie używane jest ustawienie organizatora, a następnie obraz okładki tego wydarzenia."
 
@@ -5117,6 +5117,10 @@ msgstr "Nie udało się przesłać obrazu. Spróbuj ponownie."
 msgid "Failed to verify email"
 msgstr "Nie udało się zweryfikować adresu e-mail"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:82
+msgid "Falls back to your organizer setting, then your homepage accent colour."
+msgstr "W przeciwnym razie używane jest ustawienie organizatora, a następnie kolor akcentu strony głównej."
+
 #: src/constants/eventCategories.ts:17
 msgid "Family"
 msgstr "Rodzina"
@@ -5521,7 +5525,7 @@ msgid "Google Calendar"
 msgstr "Kalendarz Google"
 
 #: src/components/routes/event/Settings/index.tsx:115
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:54
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:60
 #: src/components/routes/organizer/Settings/index.tsx:91
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:72
 msgid "Google Wallet"
@@ -8116,8 +8120,12 @@ msgid "Override removed"
 msgstr "Nadpisanie usunięte"
 
 #: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:55
-msgid "Override the banner shown on this event's Google Wallet passes."
-msgstr "Zastąp baner wyświetlany na kartach Google Wallet tego wydarzenia."
+#~ msgid "Override the banner shown on this event's Google Wallet passes."
+#~ msgstr "Zastąp baner wyświetlany na kartach Google Wallet tego wydarzenia."
+
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:61
+msgid "Override the branding used on this event's Google Wallet passes. Anything left blank falls back to your organizer settings."
+msgstr "Zastąp oznaczenia kart Google Wallet tego wydarzenia. Puste pola korzystają z ustawień organizatora."
 
 #: src/components/layouts/Event/index.tsx:100
 msgid "Overview"
@@ -8178,11 +8186,12 @@ msgstr "Częściowo zwrócony"
 msgid "Partially refunded: {0}"
 msgstr "Częściowo zwrócony: {0}"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:81
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:100
 msgid "Pass background colour"
 msgstr "Kolor tła karty"
 
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:61
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:74
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:93
 msgid "Pass banner URL"
 msgstr "Adres URL banera karty"
@@ -8191,6 +8200,7 @@ msgstr "Adres URL banera karty"
 msgid "Pass fee to buyer"
 msgstr "Przekaż opłatę kupującemu"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:67
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:86
 msgid "Pass logo URL"
 msgstr "Adres URL logo karty"
@@ -9609,7 +9619,7 @@ msgstr "Sobota"
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:306
 #: src/components/routes/event/Settings/Sections/EmailSettings/GeneralEmailSettings.tsx:81
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:151
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:72
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:92
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:141
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:193
 #: src/components/routes/event/Settings/Sections/MiscSettings/index.tsx:94
@@ -10621,6 +10631,10 @@ msgstr "Sport"
 msgid "Square image, at least 660x660px. Defaults to your organizer logo."
 msgstr "Obraz kwadratowy, co najmniej 660x660 px. Domyślnie logo Twojego organizatora."
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:68
+msgid "Square image, at least 660x660px. Falls back to your organizer setting, then your organizer logo."
+msgstr "Obraz kwadratowy, co najmniej 660x660 px. W przeciwnym razie używane jest ustawienie organizatora, a następnie logo organizatora."
+
 #: src/components/common/CheckIn/CheckInInfoModal.tsx:84
 msgid "Staff instructions"
 msgstr "Instrukcje dla obsługi"
@@ -10898,7 +10912,7 @@ msgstr "Pomyślnie zaktualizowane wydarzenie"
 msgid "Successfully Updated Event Defaults"
 msgstr "Pomyślnie zaktualizowane domyślne ustawienia wydarzenia"
 
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:43
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:49
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:61
 msgid "Successfully Updated Google Wallet Settings"
 msgstr "Pomyślnie zaktualizowano ustawienia Google Wallet"

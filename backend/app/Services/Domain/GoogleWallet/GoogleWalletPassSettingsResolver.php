@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace HiEvents\Services\Domain\GoogleWallet;
 
 use HiEvents\DomainObjects\OrganizerSettingDomainObject;
+use HiEvents\Helper\HexColorHelper;
 use HiEvents\Repository\Interfaces\OrganizerSettingsRepositoryInterface;
 use HiEvents\Services\Domain\GoogleWallet\DTO\GoogleWalletPassSettingsDTO;
 use Illuminate\Config\Repository;
@@ -43,26 +44,9 @@ class GoogleWalletPassSettingsResolver
         return new GoogleWalletPassSettingsDTO(
             logoUrl: $this->nullableString($passSettings['logo_url'] ?? null),
             heroImageUrl: $this->nullableString($passSettings['hero_image_url'] ?? null),
-            backgroundColor: $this->hexColor($passSettings['background_color'] ?? null)
-                ?? $this->hexColor($themeSettings['accent'] ?? null),
+            backgroundColor: HexColorHelper::toRgbHex($passSettings['background_color'] ?? null)
+                ?? HexColorHelper::toRgbHex($themeSettings['accent'] ?? null),
         );
-    }
-
-    private function hexColor(mixed $value): ?string
-    {
-        $candidate = ltrim((string) $this->nullableString($value), '#');
-
-        if (! preg_match('/^[0-9a-fA-F]{3,8}$/', $candidate)) {
-            return null;
-        }
-
-        $rgb = match (strlen($candidate)) {
-            3, 4 => preg_replace('/(.)/', '$1$1', substr($candidate, 0, 3)),
-            6, 8 => substr($candidate, 0, 6),
-            default => null,
-        };
-
-        return $rgb === null ? null : '#'.strtolower($rgb);
     }
 
     private function toArray(mixed $value): array

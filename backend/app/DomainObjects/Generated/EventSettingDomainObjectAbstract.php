@@ -71,6 +71,8 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     final public const HIDE_SOLD_OUT_OCCURRENCES = 'hide_sold_out_occurrences';
     final public const GET_TICKETS_BUTTON_TEXT = 'get_tickets_button_text';
     final public const GOOGLE_WALLET_BANNER_URL = 'google_wallet_banner_url';
+    final public const GOOGLE_WALLET_LOGO_URL = 'google_wallet_logo_url';
+    final public const GOOGLE_WALLET_BACKGROUND_COLOR = 'google_wallet_background_color';
 
     protected int $id;
     protected int $event_id;
@@ -133,6 +135,8 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     protected bool $hide_sold_out_occurrences = false;
     protected ?string $get_tickets_button_text = null;
     protected ?string $google_wallet_banner_url = null;
+    protected ?string $google_wallet_logo_url = null;
+    protected ?string $google_wallet_background_color = null;
 
     public function toArray(): array
     {
@@ -198,6 +202,8 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
                     'hide_sold_out_occurrences' => $this->hide_sold_out_occurrences ?? null,
                     'get_tickets_button_text' => $this->get_tickets_button_text ?? null,
                     'google_wallet_banner_url' => $this->google_wallet_banner_url ?? null,
+                    'google_wallet_logo_url' => $this->google_wallet_logo_url ?? null,
+                    'google_wallet_background_color' => $this->google_wallet_background_color ?? null,
                 ];
     }
 
@@ -871,5 +877,27 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     public function getGoogleWalletBannerUrl(): ?string
     {
         return $this->google_wallet_banner_url;
+    }
+
+    public function setGoogleWalletLogoUrl(?string $google_wallet_logo_url): self
+    {
+        $this->google_wallet_logo_url = $google_wallet_logo_url;
+        return $this;
+    }
+
+    public function getGoogleWalletLogoUrl(): ?string
+    {
+        return $this->google_wallet_logo_url;
+    }
+
+    public function setGoogleWalletBackgroundColor(?string $google_wallet_background_color): self
+    {
+        $this->google_wallet_background_color = $google_wallet_background_color;
+        return $this;
+    }
+
+    public function getGoogleWalletBackgroundColor(): ?string
+    {
+        return $this->google_wallet_background_color;
     }
 }

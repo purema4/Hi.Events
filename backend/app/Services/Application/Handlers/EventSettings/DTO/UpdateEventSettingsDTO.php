@@ -92,6 +92,8 @@ class UpdateEventSettingsDTO extends BaseDTO
         public readonly ?string $get_tickets_button_text = null,
 
         public readonly ?string $google_wallet_banner_url = null,
+        public readonly ?string $google_wallet_logo_url = null,
+        public readonly ?string $google_wallet_background_color = null,
     ) {}
 
     public static function createWithDefaults(

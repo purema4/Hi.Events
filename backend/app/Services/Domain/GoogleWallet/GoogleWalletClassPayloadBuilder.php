@@ -12,6 +12,7 @@ use HiEvents\DomainObjects\ImageDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\Helper\DateHelper;
 use HiEvents\Helper\EventVenueHelper;
+use HiEvents\Helper\HexColorHelper;
 use HiEvents\Helper\Url;
 use HiEvents\Services\Domain\GoogleWallet\DTO\GoogleWalletPassSettingsDTO;
 use Illuminate\Config\Repository;
@@ -43,12 +44,9 @@ class GoogleWalletClassPayloadBuilder
             ],
             'dateTime' => $this->dateTime($event, $occurrence),
             'venue' => $this->venue($event, $occurrence),
-            'logo' => $this->image(
-                $passSettings->logoUrl ?? $this->imageUrl($organizer->getImages(), ImageType::ORGANIZER_LOGO),
-                $organizer->getName(),
-            ),
+            'logo' => $this->image($this->logoUrl($event, $organizer, $passSettings), $organizer->getName()),
             'heroImage' => $this->image($this->heroImageUrl($event, $passSettings), $event->getTitle()),
-            'hexBackgroundColor' => $passSettings->backgroundColor,
+            'hexBackgroundColor' => $this->backgroundColor($event, $passSettings),
             'multipleDevicesAndHoldersAllowedStatus' => 'MULTIPLE_HOLDERS',
             'textModulesData' => $this->textModules($event, $occurrence),
             ...$this->smartTap(),
@@ -87,11 +85,32 @@ class GoogleWalletClassPayloadBuilder
 
     private function heroImageUrl(EventDomainObject $event, GoogleWalletPassSettingsDTO $passSettings): ?string
     {
-        $eventBannerUrl = trim((string) $event->getEventSettings()?->getGoogleWalletBannerUrl());
-
-        return ($eventBannerUrl === '' ? null : $eventBannerUrl)
+        return $this->nonEmpty($event->getEventSettings()?->getGoogleWalletBannerUrl())
             ?? $passSettings->heroImageUrl
             ?? $this->imageUrl($event->getImages(), ImageType::EVENT_COVER);
+    }
+
+    private function logoUrl(
+        EventDomainObject $event,
+        OrganizerDomainObject $organizer,
+        GoogleWalletPassSettingsDTO $passSettings,
+    ): ?string {
+        return $this->nonEmpty($event->getEventSettings()?->getGoogleWalletLogoUrl())
+            ?? $passSettings->logoUrl
+            ?? $this->imageUrl($organizer->getImages(), ImageType::ORGANIZER_LOGO);
+    }
+
+    private function backgroundColor(EventDomainObject $event, GoogleWalletPassSettingsDTO $passSettings): ?string
+    {
+        return HexColorHelper::toRgbHex($event->getEventSettings()?->getGoogleWalletBackgroundColor())
+            ?? $passSettings->backgroundColor;
+    }
+
+    private function nonEmpty(?string $value): ?string
+    {
+        $trimmed = trim((string) $value);
+
+        return $trimmed === '' ? null : $trimmed;
     }
 
     private function smartTap(): array

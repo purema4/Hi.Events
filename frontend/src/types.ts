@@ -248,6 +248,8 @@ export interface EventSettings {
     homepage_background_type: 'COLOR' | 'MIRROR_COVER_IMAGE';
     maps_url?: string;
     google_wallet_banner_url?: string;
+    google_wallet_logo_url?: string;
+    google_wallet_background_color?: string;
     seo_title?: string;
     seo_description?: string;
     seo_keywords?: string;

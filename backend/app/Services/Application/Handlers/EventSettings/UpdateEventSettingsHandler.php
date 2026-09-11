@@ -56,6 +56,10 @@ class UpdateEventSettingsHandler
                     'google_wallet_banner_url' => $settings->google_wallet_banner_url === null
                         ? null
                         : trim($settings->google_wallet_banner_url),
+                    'google_wallet_logo_url' => $settings->google_wallet_logo_url === null
+                        ? null
+                        : trim($settings->google_wallet_logo_url),
+                    'google_wallet_background_color' => $settings->google_wallet_background_color,
                     'website_url' => trim($settings->website_url),
                     'maps_url' => trim($settings->maps_url),
 

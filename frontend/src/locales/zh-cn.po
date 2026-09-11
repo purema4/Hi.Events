@@ -1778,7 +1778,7 @@ msgstr "横幅内容不得超过 200 个字符"
 msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
 msgstr "横跨整张卡片的横幅，建议 1032x812 像素。默认使用您的活动封面图片。"
 
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:62
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:75
 msgid "Banner shown across the pass, ideally 1032x812px. Falls back to your organizer setting, then this event's cover image."
 msgstr "横跨整张卡片的横幅，建议 1032x812 像素。未设置时将使用您的主办方设置，然后是此活动的封面图片。"
 
@@ -5117,6 +5117,10 @@ msgstr "上传图片失败。请重试。"
 msgid "Failed to verify email"
 msgstr "验证邮箱失败"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:82
+msgid "Falls back to your organizer setting, then your homepage accent colour."
+msgstr "未设置时将使用您的主办方设置，然后是您的主页强调色。"
+
 #: src/constants/eventCategories.ts:17
 msgid "Family"
 msgstr "亲子"
@@ -5521,7 +5525,7 @@ msgid "Google Calendar"
 msgstr "谷歌日历"
 
 #: src/components/routes/event/Settings/index.tsx:115
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:54
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:60
 #: src/components/routes/organizer/Settings/index.tsx:91
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:72
 msgid "Google Wallet"
@@ -8116,8 +8120,12 @@ msgid "Override removed"
 msgstr "单独设置已移除"
 
 #: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:55
-msgid "Override the banner shown on this event's Google Wallet passes."
-msgstr "覆盖此活动 Google 钱包卡券上显示的横幅。"
+#~ msgid "Override the banner shown on this event's Google Wallet passes."
+#~ msgstr "覆盖此活动 Google 钱包卡券上显示的横幅。"
+
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:61
+msgid "Override the branding used on this event's Google Wallet passes. Anything left blank falls back to your organizer settings."
+msgstr "覆盖此活动 Google 钱包卡券的品牌外观。留空的字段将使用您的主办方设置。"
 
 #: src/components/layouts/Event/index.tsx:100
 msgid "Overview"
@@ -8178,11 +8186,12 @@ msgstr "部分退款"
 msgid "Partially refunded: {0}"
 msgstr "部分退款:{0}"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:81
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:100
 msgid "Pass background colour"
 msgstr "通行证背景颜色"
 
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:61
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:74
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:93
 msgid "Pass banner URL"
 msgstr "通行证横幅图片网址"
@@ -8191,6 +8200,7 @@ msgstr "通行证横幅图片网址"
 msgid "Pass fee to buyer"
 msgstr "将费用转嫁给买家"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:67
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:86
 msgid "Pass logo URL"
 msgstr "通行证徽标网址"
@@ -9609,7 +9619,7 @@ msgstr "星期六"
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:306
 #: src/components/routes/event/Settings/Sections/EmailSettings/GeneralEmailSettings.tsx:81
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:151
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:72
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:92
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:141
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:193
 #: src/components/routes/event/Settings/Sections/MiscSettings/index.tsx:94
@@ -10621,6 +10631,10 @@ msgstr "体育"
 msgid "Square image, at least 660x660px. Defaults to your organizer logo."
 msgstr "正方形图片，至少 660x660 像素。默认使用您的主办方标志。"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:68
+msgid "Square image, at least 660x660px. Falls back to your organizer setting, then your organizer logo."
+msgstr "正方形图片，至少 660x660 像素。未设置时将使用您的主办方设置，然后是您的主办方标志。"
+
 #: src/components/common/CheckIn/CheckInInfoModal.tsx:84
 msgid "Staff instructions"
 msgstr "工作人员须知"
@@ -10898,7 +10912,7 @@ msgstr "成功更新活动"
 msgid "Successfully Updated Event Defaults"
 msgstr "成功更新活动默认设置"
 
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:43
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:49
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:61
 msgid "Successfully Updated Google Wallet Settings"
 msgstr "Google 钱包设置更新成功"
