@@ -8,10 +8,12 @@ use HiEvents\DomainObjects\AttendeeDomainObject;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventOccurrenceDomainObject;
 use HiEvents\DomainObjects\Generated\AttendeeDomainObjectAbstract;
+use HiEvents\DomainObjects\Generated\EventOccurrenceDomainObjectAbstract;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\Exceptions\GoogleWallet\GoogleWalletApiException;
 use HiEvents\Exceptions\GoogleWallet\GoogleWalletConfigurationException;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
+use HiEvents\Repository\Interfaces\EventOccurrenceRepositoryInterface;
 use HiEvents\Services\Domain\GoogleWallet\DTO\GoogleWalletPassSettingsDTO;
 use HiEvents\Services\Infrastructure\GoogleWallet\GoogleWalletApiClient;
 
@@ -24,6 +26,7 @@ class EnsureGoogleWalletObjectService
         private readonly GoogleWalletPassSettingsResolver $passSettingsResolver,
         private readonly EnsureGoogleWalletClassService $ensureClassService,
         private readonly AttendeeRepositoryInterface $attendeeRepository,
+        private readonly EventOccurrenceRepositoryInterface $occurrenceRepository,
     ) {}
 
     /**
@@ -84,8 +87,17 @@ class EnsureGoogleWalletObjectService
             return $resolved;
         }
 
-        $occurrences = $event->getEventOccurrences();
+        $occurrenceId = $attendee->getEventOccurrenceId();
 
-        return $occurrences?->count() === 1 ? $occurrences->first() : null;
+        if ($occurrenceId !== null) {
+            return $this->occurrenceRepository->findById($occurrenceId);
+        }
+
+        $occurrences = $event->getEventOccurrences()
+            ?? $this->occurrenceRepository->findWhere([
+                EventOccurrenceDomainObjectAbstract::EVENT_ID => $event->getId(),
+            ]);
+
+        return $occurrences->count() === 1 ? $occurrences->first() : null;
     }
 }

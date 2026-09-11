@@ -1774,6 +1774,10 @@ msgstr "Szalag"
 msgid "Banner content must be 200 characters or less"
 msgstr "A szalag tartalma legfeljebb 200 karakter lehet"
 
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
+msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
+msgstr "A kártya teljes szélességében megjelenő banner, ideálisan 1032x812 px. Alapértelmezés szerint az esemény borítóképe."
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "Alapár"
@@ -10598,8 +10602,12 @@ msgid "Sports"
 msgstr "Sport"
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
-msgid "Square image shown at the top of the pass. Defaults to no logo."
-msgstr "A bérlet tetején megjelenő négyzetes kép. Alapértelmezés szerint nincs logó."
+#~ msgid "Square image shown at the top of the pass. Defaults to no logo."
+#~ msgstr "A bérlet tetején megjelenő négyzetes kép. Alapértelmezés szerint nincs logó."
+
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
+msgid "Square image, at least 660x660px. Defaults to your organizer logo."
+msgstr "Négyzetes kép, legalább 660x660 px. Alapértelmezés szerint a szervező logója."
 
 #: src/components/common/CheckIn/CheckInInfoModal.tsx:84
 msgid "Staff instructions"
@@ -13144,8 +13152,8 @@ msgid "Who should be asked this question?"
 msgstr "Kinek kell feltenni ezt a kérdést?"
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
-msgid "Wide banner image shown across the pass. Defaults to no banner."
-msgstr "A bérleten végigfutó széles bannerkép. Alapértelmezés szerint nincs banner."
+#~ msgid "Wide banner image shown across the pass. Defaults to no banner."
+#~ msgstr "A bérleten végigfutó széles bannerkép. Alapértelmezés szerint nincs banner."
 
 #: src/components/layouts/Event/index.tsx:144
 msgid "Widget Embed"

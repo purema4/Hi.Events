@@ -1774,6 +1774,10 @@ msgstr "Banner"
 msgid "Banner content must be 200 characters or less"
 msgstr "Το περιεχόμενο του banner πρέπει να είναι έως 200 χαρακτήρες"
 
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
+msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
+msgstr "Banner σε όλο το πλάτος του pass, ιδανικά 1032x812 px. Από προεπιλογή, η εικόνα εξωφύλλου της εκδήλωσής σας."
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "Βασική τιμή"
@@ -10598,8 +10602,12 @@ msgid "Sports"
 msgstr "Αθλητισμός"
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
-msgid "Square image shown at the top of the pass. Defaults to no logo."
-msgstr "Τετράγωνη εικόνα στο επάνω μέρος της κάρτας. Χωρίς λογότυπο από προεπιλογή."
+#~ msgid "Square image shown at the top of the pass. Defaults to no logo."
+#~ msgstr "Τετράγωνη εικόνα στο επάνω μέρος της κάρτας. Χωρίς λογότυπο από προεπιλογή."
+
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
+msgid "Square image, at least 660x660px. Defaults to your organizer logo."
+msgstr "Τετράγωνη εικόνα, τουλάχιστον 660x660 px. Από προεπιλογή, το λογότυπο του διοργανωτή σας."
 
 #: src/components/common/CheckIn/CheckInInfoModal.tsx:84
 msgid "Staff instructions"
@@ -13144,8 +13152,8 @@ msgid "Who should be asked this question?"
 msgstr "Σε ποιον πρέπει να τεθεί αυτή η ερώτηση;"
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
-msgid "Wide banner image shown across the pass. Defaults to no banner."
-msgstr "Πλατιά εικόνα banner σε όλο το πλάτος της κάρτας. Χωρίς banner από προεπιλογή."
+#~ msgid "Wide banner image shown across the pass. Defaults to no banner."
+#~ msgstr "Πλατιά εικόνα banner σε όλο το πλάτος της κάρτας. Χωρίς banner από προεπιλογή."
 
 #: src/components/layouts/Event/index.tsx:144
 msgid "Widget Embed"

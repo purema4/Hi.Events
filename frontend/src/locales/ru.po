@@ -1774,6 +1774,10 @@ msgstr ""
 msgid "Banner content must be 200 characters or less"
 msgstr ""
 
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
+msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
+msgstr "Баннер во всю ширину пропуска, желательно 1032x812 px. По умолчанию — обложка вашего мероприятия."
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "Базовая цена"
@@ -10594,8 +10598,12 @@ msgid "Sports"
 msgstr ""
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
-msgid "Square image shown at the top of the pass. Defaults to no logo."
-msgstr "Квадратное изображение в верхней части карты. По умолчанию без логотипа."
+#~ msgid "Square image shown at the top of the pass. Defaults to no logo."
+#~ msgstr "Квадратное изображение в верхней части карты. По умолчанию без логотипа."
+
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
+msgid "Square image, at least 660x660px. Defaults to your organizer logo."
+msgstr "Квадратное изображение, не менее 660x660 px. По умолчанию — логотип вашего организатора."
 
 #: src/components/common/CheckIn/CheckInInfoModal.tsx:84
 msgid "Staff instructions"
@@ -13140,8 +13148,8 @@ msgid "Who should be asked this question?"
 msgstr ""
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
-msgid "Wide banner image shown across the pass. Defaults to no banner."
-msgstr "Широкое изображение баннера на всю карту. По умолчанию без баннера."
+#~ msgid "Wide banner image shown across the pass. Defaults to no banner."
+#~ msgstr "Широкое изображение баннера на всю карту. По умолчанию без баннера."
 
 #: src/components/layouts/Event/index.tsx:144
 msgid "Widget Embed"

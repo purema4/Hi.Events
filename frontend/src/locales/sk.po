@@ -1774,6 +1774,10 @@ msgstr "Banner"
 msgid "Banner content must be 200 characters or less"
 msgstr "Obsah bannera môže mať najviac 200 znakov"
 
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
+msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
+msgstr "Banner na celú šírku lístka, ideálne 1032x812 px. Predvolene titulný obrázok vášho podujatia."
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "Základná cena"
@@ -10598,8 +10602,12 @@ msgid "Sports"
 msgstr "Šport"
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
-msgid "Square image shown at the top of the pass. Defaults to no logo."
-msgstr "Štvorcový obrázok zobrazený v hornej časti preukazu. Predvolene bez loga."
+#~ msgid "Square image shown at the top of the pass. Defaults to no logo."
+#~ msgstr "Štvorcový obrázok zobrazený v hornej časti preukazu. Predvolene bez loga."
+
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
+msgid "Square image, at least 660x660px. Defaults to your organizer logo."
+msgstr "Štvorcový obrázok, minimálne 660x660 px. Predvolene logo vášho organizátora."
 
 #: src/components/common/CheckIn/CheckInInfoModal.tsx:84
 msgid "Staff instructions"
@@ -13144,8 +13152,8 @@ msgid "Who should be asked this question?"
 msgstr "Komu má byť táto otázka položená?"
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
-msgid "Wide banner image shown across the pass. Defaults to no banner."
-msgstr "Široký banner zobrazený cez celý preukaz. Predvolene bez bannera."
+#~ msgid "Wide banner image shown across the pass. Defaults to no banner."
+#~ msgstr "Široký banner zobrazený cez celý preukaz. Predvolene bez bannera."
 
 #: src/components/layouts/Event/index.tsx:144
 msgid "Widget Embed"

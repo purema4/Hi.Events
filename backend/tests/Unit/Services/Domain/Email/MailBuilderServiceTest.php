@@ -12,6 +12,7 @@ use HiEvents\DomainObjects\Status\OrderStatus;
 use HiEvents\Services\Domain\Email\EmailTemplateService;
 use HiEvents\Services\Domain\Email\EmailTokenContextBuilder;
 use HiEvents\Services\Domain\Email\MailBuilderService;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletButtonResolver;
 use HiEvents\Services\Domain\Order\OfflinePaymentInstructionsRenderService;
 use Mockery as m;
 use Tests\TestCase;
@@ -27,6 +28,7 @@ class MailBuilderServiceTest extends TestCase
             $emailTemplateService,
             app(EmailTokenContextBuilder::class),
             app(OfflinePaymentInstructionsRenderService::class),
+            app(GoogleWalletButtonResolver::class),
         );
 
         $organizer = (new OrganizerDomainObject)

@@ -1774,6 +1774,10 @@ msgstr "Banner"
 msgid "Banner content must be 200 characters or less"
 msgstr "O conteúdo do banner deve ter no máximo 200 caracteres"
 
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
+msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
+msgstr "Banner exibido em toda a largura do passe, idealmente 1032x812 px. Por padrão, a imagem de capa do seu evento."
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "Preço base"
@@ -10598,8 +10602,12 @@ msgid "Sports"
 msgstr "Desporto"
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
-msgid "Square image shown at the top of the pass. Defaults to no logo."
-msgstr "Imagem quadrada exibida no topo do passe. Sem logotipo por padrão."
+#~ msgid "Square image shown at the top of the pass. Defaults to no logo."
+#~ msgstr "Imagem quadrada exibida no topo do passe. Sem logotipo por padrão."
+
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
+msgid "Square image, at least 660x660px. Defaults to your organizer logo."
+msgstr "Imagem quadrada, com pelo menos 660x660 px. Por padrão, o logotipo do seu organizador."
 
 #: src/components/common/CheckIn/CheckInInfoModal.tsx:84
 msgid "Staff instructions"
@@ -13144,8 +13152,8 @@ msgid "Who should be asked this question?"
 msgstr "A quem deve ser feita essa pergunta?"
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
-msgid "Wide banner image shown across the pass. Defaults to no banner."
-msgstr "Imagem de banner larga exibida ao longo do passe. Sem banner por padrão."
+#~ msgid "Wide banner image shown across the pass. Defaults to no banner."
+#~ msgstr "Imagem de banner larga exibida ao longo do passe. Sem banner por padrão."
 
 #: src/components/layouts/Event/index.tsx:144
 msgid "Widget Embed"

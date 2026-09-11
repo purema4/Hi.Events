@@ -4,6 +4,7 @@
 @php /** @var \HiEvents\DomainObjects\OrderDomainObject $order */ @endphp
 @php /** @var \Illuminate\Support\Collection<int, \HiEvents\Services\Domain\Email\DTO\AttendeeTicketSummaryDTO> $tickets */ @endphp
 @php /** @var string|null $googleWalletSaveUrl */ @endphp
+@php /** @var string|null $googleWalletButtonPath */ @endphp
 @php /** @see \HiEvents\Mail\Attendee\AttendeeTicketMail */ @endphp
 
 <x-mail::message>
@@ -48,13 +49,12 @@
 @endforeach
 
 @if($googleWalletSaveUrl)
-<div style="text-align: center; margin: 0 0 24px;">
-<a href="{{ $googleWalletSaveUrl }}" style="display: inline-block; background-color: #000000; color: #ffffff; border-radius: 6px; padding: 10px 18px; font-size: 14px; font-weight: 600; text-decoration: none;">
-@if($tickets->count() > 1)
-{{ __('Add :count tickets to Google Wallet', ['count' => $tickets->count()]) }}
-@else
-{{ __('Add to Google Wallet') }}
-@endif
+@php($googleWalletLabel = $tickets->count() > 1
+    ? __('Add :count tickets to Google Wallet', ['count' => $tickets->count()])
+    : __('Add to Google Wallet'))
+<div style="text-align: center; margin: 0 0 24px; padding: 8px;">
+<a href="{{ $googleWalletSaveUrl }}" style="display: inline-block; text-decoration: none;">
+<img src="{{ $message->embed($googleWalletButtonPath) }}" alt="{{ $googleWalletLabel }}" height="50" style="height: auto; width: auto; border: 0; display: block;">
 </a>
 </div>
 @endif

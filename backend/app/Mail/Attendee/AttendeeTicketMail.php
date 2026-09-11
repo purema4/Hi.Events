@@ -45,6 +45,7 @@ class AttendeeTicketMail extends BaseMail
         private readonly ?EventOccurrenceDomainObject $occurrence = null,
         private readonly ?Collection $additionalAttendees = null,
         private readonly ?string $googleWalletSaveUrl = null,
+        private readonly ?string $googleWalletButtonPath = null,
     ) {
         parent::__construct();
         $this->renderedTemplate = $renderedTemplate;
@@ -83,6 +84,7 @@ class AttendeeTicketMail extends BaseMail
                 'tickets' => $this->ticketAttendees()
                     ->map(fn (AttendeeDomainObject $attendee) => $this->summariseTicket($attendee)),
                 'googleWalletSaveUrl' => $this->googleWalletSaveUrl,
+                'googleWalletButtonPath' => $this->googleWalletButtonPath,
             ]
         );
     }

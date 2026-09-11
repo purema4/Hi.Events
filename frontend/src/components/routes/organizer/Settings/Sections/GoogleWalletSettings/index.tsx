@@ -84,14 +84,14 @@ export const GoogleWalletSettings = () => {
                         {...form.getInputProps('logo_url')}
                         mt="md"
                         label={t`Pass logo URL`}
-                        description={t`Square image shown at the top of the pass. Defaults to no logo.`}
+                        description={t`Square image, at least 660x660px. Defaults to your organizer logo.`}
                         placeholder={"https://example.com/logo.png"}
                     />
 
                     <TextInput
                         {...form.getInputProps('hero_image_url')}
                         label={t`Pass banner URL`}
-                        description={t`Wide banner image shown across the pass. Defaults to no banner.`}
+                        description={t`Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image.`}
                         placeholder={"https://example.com/banner.png"}
                     />
 

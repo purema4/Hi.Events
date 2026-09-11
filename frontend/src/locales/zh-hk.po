@@ -1774,6 +1774,10 @@ msgstr "橫幅"
 msgid "Banner content must be 200 characters or less"
 msgstr "橫幅內容不得超過 200 個字元"
 
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
+msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
+msgstr "橫跨整張卡片的橫額，建議 1032x812 像素。預設使用您的活動封面圖片。"
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "基本價格"
@@ -10598,8 +10602,12 @@ msgid "Sports"
 msgstr "體育"
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
-msgid "Square image shown at the top of the pass. Defaults to no logo."
-msgstr "顯示於通行證頂部的正方形圖片。預設不顯示標誌。"
+#~ msgid "Square image shown at the top of the pass. Defaults to no logo."
+#~ msgstr "顯示於通行證頂部的正方形圖片。預設不顯示標誌。"
+
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
+msgid "Square image, at least 660x660px. Defaults to your organizer logo."
+msgstr "正方形圖片，至少 660x660 像素。預設使用您的主辦方標誌。"
 
 #: src/components/common/CheckIn/CheckInInfoModal.tsx:84
 msgid "Staff instructions"
@@ -13144,8 +13152,8 @@ msgid "Who should be asked this question?"
 msgstr "這個問題應該問誰？"
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
-msgid "Wide banner image shown across the pass. Defaults to no banner."
-msgstr "橫跨通行證顯示的寬幅橫幅圖片。預設不顯示橫幅。"
+#~ msgid "Wide banner image shown across the pass. Defaults to no banner."
+#~ msgstr "橫跨通行證顯示的寬幅橫幅圖片。預設不顯示橫幅。"
 
 #: src/components/layouts/Event/index.tsx:144
 msgid "Widget Embed"

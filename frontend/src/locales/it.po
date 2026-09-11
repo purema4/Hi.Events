@@ -1774,6 +1774,10 @@ msgstr "Banner"
 msgid "Banner content must be 200 characters or less"
 msgstr "Il contenuto del banner deve essere di massimo 200 caratteri"
 
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
+msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
+msgstr "Banner mostrato su tutta la larghezza del pass, idealmente 1032x812 px. Per impostazione predefinita, l'immagine di copertina del tuo evento."
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "Prezzo base"
@@ -10598,8 +10602,12 @@ msgid "Sports"
 msgstr "Sport"
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
-msgid "Square image shown at the top of the pass. Defaults to no logo."
-msgstr "Immagine quadrata mostrata in cima al pass. Nessun logo per impostazione predefinita."
+#~ msgid "Square image shown at the top of the pass. Defaults to no logo."
+#~ msgstr "Immagine quadrata mostrata in cima al pass. Nessun logo per impostazione predefinita."
+
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
+msgid "Square image, at least 660x660px. Defaults to your organizer logo."
+msgstr "Immagine quadrata, almeno 660x660 px. Per impostazione predefinita, il logo del tuo organizzatore."
 
 #: src/components/common/CheckIn/CheckInInfoModal.tsx:84
 msgid "Staff instructions"
@@ -13144,8 +13152,8 @@ msgid "Who should be asked this question?"
 msgstr "A chi dovrebbe essere posta questa domanda?"
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
-msgid "Wide banner image shown across the pass. Defaults to no banner."
-msgstr "Immagine banner larga mostrata su tutto il pass. Nessun banner per impostazione predefinita."
+#~ msgid "Wide banner image shown across the pass. Defaults to no banner."
+#~ msgstr "Immagine banner larga mostrata su tutto il pass. Nessun banner per impostazione predefinita."
 
 #: src/components/layouts/Event/index.tsx:144
 msgid "Widget Embed"

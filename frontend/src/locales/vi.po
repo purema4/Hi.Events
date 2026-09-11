@@ -1774,6 +1774,10 @@ msgstr "Banner"
 msgid "Banner content must be 200 characters or less"
 msgstr "Nội dung banner không được vượt quá 200 ký tự"
 
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
+msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
+msgstr "Ảnh bìa hiển thị trên toàn bộ chiều rộng thẻ, lý tưởng là 1032x812 px. Mặc định là ảnh bìa sự kiện của bạn."
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "Giá gốc"
@@ -10598,8 +10602,12 @@ msgid "Sports"
 msgstr "Thể thao"
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
-msgid "Square image shown at the top of the pass. Defaults to no logo."
-msgstr "Ảnh vuông hiển thị ở đầu thẻ. Mặc định không có logo."
+#~ msgid "Square image shown at the top of the pass. Defaults to no logo."
+#~ msgstr "Ảnh vuông hiển thị ở đầu thẻ. Mặc định không có logo."
+
+#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
+msgid "Square image, at least 660x660px. Defaults to your organizer logo."
+msgstr "Ảnh vuông, tối thiểu 660x660 px. Mặc định là logo nhà tổ chức của bạn."
 
 #: src/components/common/CheckIn/CheckInInfoModal.tsx:84
 msgid "Staff instructions"
@@ -13144,8 +13152,8 @@ msgid "Who should be asked this question?"
 msgstr "Ai nên được hỏi câu hỏi này?"
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
-msgid "Wide banner image shown across the pass. Defaults to no banner."
-msgstr "Ảnh banner rộng hiển thị trên toàn bộ thẻ. Mặc định không có banner."
+#~ msgid "Wide banner image shown across the pass. Defaults to no banner."
+#~ msgstr "Ảnh banner rộng hiển thị trên toàn bộ thẻ. Mặc định không có banner."
 
 #: src/components/layouts/Event/index.tsx:144
 msgid "Widget Embed"
