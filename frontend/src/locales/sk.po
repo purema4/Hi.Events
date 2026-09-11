@@ -1778,6 +1778,10 @@ msgstr "Obsah bannera môže mať najviac 200 znakov"
 msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
 msgstr "Banner na celú šírku lístka, ideálne 1032x812 px. Predvolene titulný obrázok vášho podujatia."
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:62
+msgid "Banner shown across the pass, ideally 1032x812px. Falls back to your organizer setting, then this event's cover image."
+msgstr "Banner na celú šírku lístka, ideálne 1032x812 px. Inak sa použije nastavenie vášho organizátora a potom titulný obrázok tohto podujatia."
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "Základná cena"
@@ -2302,7 +2306,7 @@ msgstr "Prihlásený"
 msgid "Checked In"
 msgstr "Odbavený"
 
-#: src/components/routes/event/Settings/index.tsx:60
+#: src/components/routes/event/Settings/index.tsx:63
 msgid "Checkout"
 msgstr "Pokladňa"
 
@@ -2621,7 +2625,7 @@ msgstr "Konfigurácia bola úspešne aktualizovaná"
 msgid "Configurations"
 msgstr "Konfigurácie"
 
-#: src/components/routes/event/Settings/index.tsx:172
+#: src/components/routes/event/Settings/index.tsx:184
 msgid "Configure event details, location, checkout options, and email notifications."
 msgstr "Nakonfigurujte podrobnosti udalosti, miesto, možnosti pokladne a e-mailové notifikácie."
 
@@ -3384,7 +3388,7 @@ msgstr "Nebezpečná zóna"
 #: src/components/routes/account/ManageAccount/index.tsx:36
 #: src/components/routes/account/ManageAccount/sections/DangerZone/index.tsx:80
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:555
-#: src/components/routes/event/Settings/index.tsx:102
+#: src/components/routes/event/Settings/index.tsx:105
 #: src/components/routes/organizer/Settings/index.tsx:81
 msgid "Danger Zone"
 msgstr "Nebezpečná zóna"
@@ -4157,7 +4161,7 @@ msgstr "Nastavenia e-mailu a notifikácií"
 msgid "Email & scheduled messages"
 msgstr "E-maily a naplánované správy"
 
-#: src/components/routes/event/Settings/index.tsx:78
+#: src/components/routes/event/Settings/index.tsx:81
 msgid "Email & Templates"
 msgstr "E-mail a šablóny"
 
@@ -4562,7 +4566,7 @@ msgstr "Udalosť bola úspešne odstránená"
 msgid "Event Description"
 msgstr "Popis udalosti"
 
-#: src/components/routes/event/Settings/index.tsx:48
+#: src/components/routes/event/Settings/index.tsx:51
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:71
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:627
 msgid "Event Details"
@@ -4610,7 +4614,7 @@ msgid "Event restored successfully"
 msgstr "Udalosť bola úspešne obnovená"
 
 #: src/components/layouts/Event/index.tsx:117
-#: src/components/routes/event/Settings/index.tsx:173
+#: src/components/routes/event/Settings/index.tsx:185
 msgid "Event Settings"
 msgstr "Nastavenia udalosti"
 
@@ -5516,6 +5520,8 @@ msgstr "Dobrá čitateľnosť"
 msgid "Google Calendar"
 msgstr "Google Kalendár"
 
+#: src/components/routes/event/Settings/index.tsx:115
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:54
 #: src/components/routes/organizer/Settings/index.tsx:91
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:72
 msgid "Google Wallet"
@@ -6451,7 +6457,7 @@ msgstr "Načítavanie..."
 #: src/components/common/LocationPicker/index.tsx:294
 #: src/components/layouts/EventHomepage/index.tsx:495
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
-#: src/components/routes/event/Settings/index.tsx:54
+#: src/components/routes/event/Settings/index.tsx:57
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
 #: src/components/routes/my-tickets/index.tsx:90
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:336
@@ -6775,7 +6781,7 @@ msgstr "minúty"
 msgid "Minutes"
 msgstr "Minúty"
 
-#: src/components/routes/event/Settings/index.tsx:84
+#: src/components/routes/event/Settings/index.tsx:87
 msgid "Miscellaneous"
 msgstr "Rôzne"
 
@@ -8109,6 +8115,10 @@ msgstr "Nastaviť vlastnú cenu"
 msgid "Override removed"
 msgstr "Vlastné nastavenie odstránené"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:55
+msgid "Override the banner shown on this event's Google Wallet passes."
+msgstr "Prepíšte banner zobrazený na lístkoch Google Wallet tohto podujatia."
+
 #: src/components/layouts/Event/index.tsx:100
 msgid "Overview"
 msgstr "Prehľad"
@@ -8172,6 +8182,7 @@ msgstr "Čiastočne vrátené: {0}"
 msgid "Pass background colour"
 msgstr "Farba pozadia preukazu"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:61
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:93
 msgid "Pass banner URL"
 msgstr "Adresa URL bannera preukazu"
@@ -8266,7 +8277,7 @@ msgstr "Obsah požiadavky"
 msgid "Payment"
 msgstr "Platba"
 
-#: src/components/routes/event/Settings/index.tsx:96
+#: src/components/routes/event/Settings/index.tsx:99
 msgid "Payment & Invoicing"
 msgstr "Platba a fakturácia"
 
@@ -8482,7 +8493,7 @@ msgstr "Poplatok platformy"
 msgid "Platform fee of {0} deducted from your payout"
 msgstr "Poplatok platformy {0} odpočítaný z vašej výplaty"
 
-#: src/components/routes/event/Settings/index.tsx:112
+#: src/components/routes/event/Settings/index.tsx:124
 #: src/components/routes/event/Settings/Sections/PlatformFeesSettings/index.tsx:48
 #: src/components/routes/organizer/Reports/index.tsx:41
 #: src/components/routes/organizer/Settings/index.tsx:107
@@ -9131,7 +9142,7 @@ msgstr "Opakujúce sa"
 
 #: src/components/layouts/EventHomepage/index.tsx:375
 #: src/components/modals/CreateEventModal/index.tsx:240
-#: src/components/routes/event/Settings/index.tsx:66
+#: src/components/routes/event/Settings/index.tsx:69
 msgid "Recurring Event"
 msgstr "Opakujúce sa podujatie"
 
@@ -9598,6 +9609,7 @@ msgstr "Sobota"
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:306
 #: src/components/routes/event/Settings/Sections/EmailSettings/GeneralEmailSettings.tsx:81
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:151
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:72
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:141
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:193
 #: src/components/routes/event/Settings/Sections/MiscSettings/index.tsx:94
@@ -10166,7 +10178,7 @@ msgstr "Odoslané zákazníkom pri zadaní objednávky"
 msgid "Sent to each attendee with their ticket details"
 msgstr "Odoslané každému účastníkovi s podrobnosťami lístka"
 
-#: src/components/routes/event/Settings/index.tsx:72
+#: src/components/routes/event/Settings/index.tsx:75
 #: src/components/routes/organizer/Settings/index.tsx:63
 msgid "SEO"
 msgstr "SEO"
@@ -10886,6 +10898,7 @@ msgstr "Udalosť bola úspešne aktualizovaná"
 msgid "Successfully Updated Event Defaults"
 msgstr "Predvolené nastavenia udalosti boli úspešne aktualizované"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:43
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:61
 msgid "Successfully Updated Google Wallet Settings"
 msgstr "Nastavenia Google Wallet boli úspešne aktualizované"
@@ -12736,7 +12749,7 @@ msgstr "Čaká sa na sken…"
 #: src/components/forms/ProductForm/index.tsx:460
 #: src/components/layouts/AuthLayout/index.tsx:18
 #: src/components/layouts/Event/index.tsx:134
-#: src/components/routes/event/Settings/index.tsx:90
+#: src/components/routes/event/Settings/index.tsx:93
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:55
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:73
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:177

@@ -1778,6 +1778,10 @@ msgstr "Il contenuto del banner deve essere di massimo 200 caratteri"
 msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
 msgstr "Banner mostrato su tutta la larghezza del pass, idealmente 1032x812 px. Per impostazione predefinita, l'immagine di copertina del tuo evento."
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:62
+msgid "Banner shown across the pass, ideally 1032x812px. Falls back to your organizer setting, then this event's cover image."
+msgstr "Banner mostrato su tutta la larghezza del pass, idealmente 1032x812 px. In mancanza, viene usata l'impostazione del tuo organizzatore e poi l'immagine di copertina di questo evento."
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "Prezzo base"
@@ -2302,7 +2306,7 @@ msgstr "Check-in effettuato"
 msgid "Checked In"
 msgstr "Check-in effettuato"
 
-#: src/components/routes/event/Settings/index.tsx:60
+#: src/components/routes/event/Settings/index.tsx:63
 msgid "Checkout"
 msgstr "Pagamento"
 
@@ -2621,7 +2625,7 @@ msgstr "Configurazione aggiornata con successo"
 msgid "Configurations"
 msgstr "Configurazioni"
 
-#: src/components/routes/event/Settings/index.tsx:172
+#: src/components/routes/event/Settings/index.tsx:184
 msgid "Configure event details, location, checkout options, and email notifications."
 msgstr "Configura i dettagli dell'evento, la posizione, le opzioni di checkout e le notifiche email."
 
@@ -3384,7 +3388,7 @@ msgstr "Zona pericolosa"
 #: src/components/routes/account/ManageAccount/index.tsx:36
 #: src/components/routes/account/ManageAccount/sections/DangerZone/index.tsx:80
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:555
-#: src/components/routes/event/Settings/index.tsx:102
+#: src/components/routes/event/Settings/index.tsx:105
 #: src/components/routes/organizer/Settings/index.tsx:81
 msgid "Danger Zone"
 msgstr "Zona pericolosa"
@@ -4157,7 +4161,7 @@ msgstr "Impostazioni Email e Notifiche"
 msgid "Email & scheduled messages"
 msgstr "Email e messaggi programmati"
 
-#: src/components/routes/event/Settings/index.tsx:78
+#: src/components/routes/event/Settings/index.tsx:81
 msgid "Email & Templates"
 msgstr "Email e Modelli"
 
@@ -4562,7 +4566,7 @@ msgstr "Evento eliminato con successo"
 msgid "Event Description"
 msgstr "Descrizione dell'evento"
 
-#: src/components/routes/event/Settings/index.tsx:48
+#: src/components/routes/event/Settings/index.tsx:51
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:71
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:627
 msgid "Event Details"
@@ -4610,7 +4614,7 @@ msgid "Event restored successfully"
 msgstr "Evento ripristinato con successo"
 
 #: src/components/layouts/Event/index.tsx:117
-#: src/components/routes/event/Settings/index.tsx:173
+#: src/components/routes/event/Settings/index.tsx:185
 msgid "Event Settings"
 msgstr "Impostazioni evento"
 
@@ -5516,6 +5520,8 @@ msgstr "Buona leggibilità"
 msgid "Google Calendar"
 msgstr "Google Calendar"
 
+#: src/components/routes/event/Settings/index.tsx:115
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:54
 #: src/components/routes/organizer/Settings/index.tsx:91
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:72
 msgid "Google Wallet"
@@ -6451,7 +6457,7 @@ msgstr "Caricamento..."
 #: src/components/common/LocationPicker/index.tsx:294
 #: src/components/layouts/EventHomepage/index.tsx:495
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
-#: src/components/routes/event/Settings/index.tsx:54
+#: src/components/routes/event/Settings/index.tsx:57
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
 #: src/components/routes/my-tickets/index.tsx:90
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:336
@@ -6775,7 +6781,7 @@ msgstr "minuti"
 msgid "Minutes"
 msgstr "Minuti"
 
-#: src/components/routes/event/Settings/index.tsx:84
+#: src/components/routes/event/Settings/index.tsx:87
 msgid "Miscellaneous"
 msgstr "Varie"
 
@@ -8109,6 +8115,10 @@ msgstr "Personalizza il prezzo"
 msgid "Override removed"
 msgstr "Personalizzazione rimossa"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:55
+msgid "Override the banner shown on this event's Google Wallet passes."
+msgstr "Sostituisci il banner mostrato sui pass Google Wallet di questo evento."
+
 #: src/components/layouts/Event/index.tsx:100
 msgid "Overview"
 msgstr "Panoramica"
@@ -8172,6 +8182,7 @@ msgstr "Parzialmente rimborsato: {0}"
 msgid "Pass background colour"
 msgstr "Colore di sfondo del pass"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:61
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:93
 msgid "Pass banner URL"
 msgstr "URL del banner del pass"
@@ -8266,7 +8277,7 @@ msgstr "Payload"
 msgid "Payment"
 msgstr "Pagamento"
 
-#: src/components/routes/event/Settings/index.tsx:96
+#: src/components/routes/event/Settings/index.tsx:99
 msgid "Payment & Invoicing"
 msgstr "Pagamento e Fatturazione"
 
@@ -8482,7 +8493,7 @@ msgstr "Commissione piattaforma"
 msgid "Platform fee of {0} deducted from your payout"
 msgstr "Commissione piattaforma di {0} detratta dal tuo pagamento"
 
-#: src/components/routes/event/Settings/index.tsx:112
+#: src/components/routes/event/Settings/index.tsx:124
 #: src/components/routes/event/Settings/Sections/PlatformFeesSettings/index.tsx:48
 #: src/components/routes/organizer/Reports/index.tsx:41
 #: src/components/routes/organizer/Settings/index.tsx:107
@@ -9131,7 +9142,7 @@ msgstr "Ricorrente"
 
 #: src/components/layouts/EventHomepage/index.tsx:375
 #: src/components/modals/CreateEventModal/index.tsx:240
-#: src/components/routes/event/Settings/index.tsx:66
+#: src/components/routes/event/Settings/index.tsx:69
 msgid "Recurring Event"
 msgstr "Evento ricorrente"
 
@@ -9598,6 +9609,7 @@ msgstr "Sabato"
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:306
 #: src/components/routes/event/Settings/Sections/EmailSettings/GeneralEmailSettings.tsx:81
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:151
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:72
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:141
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:193
 #: src/components/routes/event/Settings/Sections/MiscSettings/index.tsx:94
@@ -10166,7 +10178,7 @@ msgstr "Inviato ai clienti quando effettuano un ordine"
 msgid "Sent to each attendee with their ticket details"
 msgstr "Inviato a ogni partecipante con i dettagli del biglietto"
 
-#: src/components/routes/event/Settings/index.tsx:72
+#: src/components/routes/event/Settings/index.tsx:75
 #: src/components/routes/organizer/Settings/index.tsx:63
 msgid "SEO"
 msgstr "SEO"
@@ -10886,6 +10898,7 @@ msgstr "Evento Aggiornato con Successo"
 msgid "Successfully Updated Event Defaults"
 msgstr "Impostazioni predefinite dell'evento aggiornate correttamente"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:43
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:61
 msgid "Successfully Updated Google Wallet Settings"
 msgstr "Impostazioni Google Wallet aggiornate correttamente"
@@ -12736,7 +12749,7 @@ msgstr "In attesa di scansione…"
 #: src/components/forms/ProductForm/index.tsx:460
 #: src/components/layouts/AuthLayout/index.tsx:18
 #: src/components/layouts/Event/index.tsx:134
-#: src/components/routes/event/Settings/index.tsx:90
+#: src/components/routes/event/Settings/index.tsx:93
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:55
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:73
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:177

@@ -1778,6 +1778,10 @@ msgstr "Der Banner-Inhalt darf höchstens 200 Zeichen lang sein"
 msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
 msgstr "Banner über die gesamte Breite des Passes, idealerweise 1032x812 px. Standardmäßig das Titelbild Ihrer Veranstaltung."
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:62
+msgid "Banner shown across the pass, ideally 1032x812px. Falls back to your organizer setting, then this event's cover image."
+msgstr "Banner über die gesamte Breite des Passes, idealerweise 1032x812 px. Fällt auf Ihre Veranstaltereinstellung zurück, dann auf das Titelbild dieser Veranstaltung."
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "Grundpreis"
@@ -2302,7 +2306,7 @@ msgstr "Eingecheckt"
 msgid "Checked In"
 msgstr "Eingecheckt"
 
-#: src/components/routes/event/Settings/index.tsx:60
+#: src/components/routes/event/Settings/index.tsx:63
 msgid "Checkout"
 msgstr "Zur Kasse"
 
@@ -2621,7 +2625,7 @@ msgstr "Konfiguration erfolgreich aktualisiert"
 msgid "Configurations"
 msgstr "Konfigurationen"
 
-#: src/components/routes/event/Settings/index.tsx:172
+#: src/components/routes/event/Settings/index.tsx:184
 msgid "Configure event details, location, checkout options, and email notifications."
 msgstr "Konfigurieren Sie Veranstaltungsdetails, Standort, Bezahloptionen und E-Mail-Benachrichtigungen."
 
@@ -3384,7 +3388,7 @@ msgstr "Gefahrenzone"
 #: src/components/routes/account/ManageAccount/index.tsx:36
 #: src/components/routes/account/ManageAccount/sections/DangerZone/index.tsx:80
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:555
-#: src/components/routes/event/Settings/index.tsx:102
+#: src/components/routes/event/Settings/index.tsx:105
 #: src/components/routes/organizer/Settings/index.tsx:81
 msgid "Danger Zone"
 msgstr "Gefahrenzone"
@@ -4157,7 +4161,7 @@ msgstr "E-Mail- und Benachrichtigungseinstellungen"
 msgid "Email & scheduled messages"
 msgstr "E-Mails & geplante Nachrichten"
 
-#: src/components/routes/event/Settings/index.tsx:78
+#: src/components/routes/event/Settings/index.tsx:81
 msgid "Email & Templates"
 msgstr "E-Mail & Vorlagen"
 
@@ -4562,7 +4566,7 @@ msgstr "Veranstaltung erfolgreich gelöscht"
 msgid "Event Description"
 msgstr "Veranstaltungsbeschreibung"
 
-#: src/components/routes/event/Settings/index.tsx:48
+#: src/components/routes/event/Settings/index.tsx:51
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:71
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:627
 msgid "Event Details"
@@ -4610,7 +4614,7 @@ msgid "Event restored successfully"
 msgstr "Veranstaltung erfolgreich wiederhergestellt"
 
 #: src/components/layouts/Event/index.tsx:117
-#: src/components/routes/event/Settings/index.tsx:173
+#: src/components/routes/event/Settings/index.tsx:185
 msgid "Event Settings"
 msgstr "Veranstaltungseinstellungen"
 
@@ -5516,6 +5520,8 @@ msgstr "Gute Lesbarkeit"
 msgid "Google Calendar"
 msgstr "Google Kalender"
 
+#: src/components/routes/event/Settings/index.tsx:115
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:54
 #: src/components/routes/organizer/Settings/index.tsx:91
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:72
 msgid "Google Wallet"
@@ -6451,7 +6457,7 @@ msgstr "Wird geladen..."
 #: src/components/common/LocationPicker/index.tsx:294
 #: src/components/layouts/EventHomepage/index.tsx:495
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
-#: src/components/routes/event/Settings/index.tsx:54
+#: src/components/routes/event/Settings/index.tsx:57
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
 #: src/components/routes/my-tickets/index.tsx:90
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:336
@@ -6775,7 +6781,7 @@ msgstr "Minuten"
 msgid "Minutes"
 msgstr "Minuten"
 
-#: src/components/routes/event/Settings/index.tsx:84
+#: src/components/routes/event/Settings/index.tsx:87
 msgid "Miscellaneous"
 msgstr "Sonstiges"
 
@@ -8109,6 +8115,10 @@ msgstr "Preis überschreiben"
 msgid "Override removed"
 msgstr "Abweichung entfernt"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:55
+msgid "Override the banner shown on this event's Google Wallet passes."
+msgstr "Überschreiben Sie das Banner auf den Google Wallet-Pässen dieser Veranstaltung."
+
 #: src/components/layouts/Event/index.tsx:100
 msgid "Overview"
 msgstr "Übersicht"
@@ -8172,6 +8182,7 @@ msgstr "Teilweise erstattet: {0}"
 msgid "Pass background colour"
 msgstr "Hintergrundfarbe des Passes"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:61
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:93
 msgid "Pass banner URL"
 msgstr "Banner-URL des Passes"
@@ -8266,7 +8277,7 @@ msgstr "Nutzlast"
 msgid "Payment"
 msgstr "Zahlung"
 
-#: src/components/routes/event/Settings/index.tsx:96
+#: src/components/routes/event/Settings/index.tsx:99
 msgid "Payment & Invoicing"
 msgstr "Zahlung & Rechnungsstellung"
 
@@ -8482,7 +8493,7 @@ msgstr "Plattformgebühr"
 msgid "Platform fee of {0} deducted from your payout"
 msgstr "Plattformgebühr von {0} wird von Ihrer Auszahlung abgezogen"
 
-#: src/components/routes/event/Settings/index.tsx:112
+#: src/components/routes/event/Settings/index.tsx:124
 #: src/components/routes/event/Settings/Sections/PlatformFeesSettings/index.tsx:48
 #: src/components/routes/organizer/Reports/index.tsx:41
 #: src/components/routes/organizer/Settings/index.tsx:107
@@ -9131,7 +9142,7 @@ msgstr "Wiederkehrend"
 
 #: src/components/layouts/EventHomepage/index.tsx:375
 #: src/components/modals/CreateEventModal/index.tsx:240
-#: src/components/routes/event/Settings/index.tsx:66
+#: src/components/routes/event/Settings/index.tsx:69
 msgid "Recurring Event"
 msgstr "Wiederkehrende Veranstaltung"
 
@@ -9598,6 +9609,7 @@ msgstr "Samstag"
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:306
 #: src/components/routes/event/Settings/Sections/EmailSettings/GeneralEmailSettings.tsx:81
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:151
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:72
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:141
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:193
 #: src/components/routes/event/Settings/Sections/MiscSettings/index.tsx:94
@@ -10166,7 +10178,7 @@ msgstr "An Kunden gesendet, wenn sie eine Bestellung aufgeben"
 msgid "Sent to each attendee with their ticket details"
 msgstr "An jeden Teilnehmer mit seinen Ticketdetails gesendet"
 
-#: src/components/routes/event/Settings/index.tsx:72
+#: src/components/routes/event/Settings/index.tsx:75
 #: src/components/routes/organizer/Settings/index.tsx:63
 msgid "SEO"
 msgstr "SEO"
@@ -10886,6 +10898,7 @@ msgstr "Ereignis erfolgreich aktualisiert"
 msgid "Successfully Updated Event Defaults"
 msgstr "Veranstaltungsstandards erfolgreich aktualisiert"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:43
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:61
 msgid "Successfully Updated Google Wallet Settings"
 msgstr "Google Wallet-Einstellungen erfolgreich aktualisiert"
@@ -12736,7 +12749,7 @@ msgstr "Warte auf Scan…"
 #: src/components/forms/ProductForm/index.tsx:460
 #: src/components/layouts/AuthLayout/index.tsx:18
 #: src/components/layouts/Event/index.tsx:134
-#: src/components/routes/event/Settings/index.tsx:90
+#: src/components/routes/event/Settings/index.tsx:93
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:55
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:73
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:177

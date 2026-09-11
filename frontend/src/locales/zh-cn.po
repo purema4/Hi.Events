@@ -1778,6 +1778,10 @@ msgstr "横幅内容不得超过 200 个字符"
 msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
 msgstr "横跨整张卡片的横幅，建议 1032x812 像素。默认使用您的活动封面图片。"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:62
+msgid "Banner shown across the pass, ideally 1032x812px. Falls back to your organizer setting, then this event's cover image."
+msgstr "横跨整张卡片的横幅，建议 1032x812 像素。未设置时将使用您的主办方设置，然后是此活动的封面图片。"
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "基础价格"
@@ -2302,7 +2306,7 @@ msgstr "已签到"
 msgid "Checked In"
 msgstr "已签到"
 
-#: src/components/routes/event/Settings/index.tsx:60
+#: src/components/routes/event/Settings/index.tsx:63
 msgid "Checkout"
 msgstr "结账"
 
@@ -2621,7 +2625,7 @@ msgstr "配置更新成功"
 msgid "Configurations"
 msgstr "配置"
 
-#: src/components/routes/event/Settings/index.tsx:172
+#: src/components/routes/event/Settings/index.tsx:184
 msgid "Configure event details, location, checkout options, and email notifications."
 msgstr "配置活动详情、地点、结账选项和电子邮件通知。"
 
@@ -3384,7 +3388,7 @@ msgstr "危险区"
 #: src/components/routes/account/ManageAccount/index.tsx:36
 #: src/components/routes/account/ManageAccount/sections/DangerZone/index.tsx:80
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:555
-#: src/components/routes/event/Settings/index.tsx:102
+#: src/components/routes/event/Settings/index.tsx:105
 #: src/components/routes/organizer/Settings/index.tsx:81
 msgid "Danger Zone"
 msgstr "危险区"
@@ -4157,7 +4161,7 @@ msgstr "电子邮件和通知设置"
 msgid "Email & scheduled messages"
 msgstr "邮件与定时消息"
 
-#: src/components/routes/event/Settings/index.tsx:78
+#: src/components/routes/event/Settings/index.tsx:81
 msgid "Email & Templates"
 msgstr "电子邮件和模板"
 
@@ -4562,7 +4566,7 @@ msgstr "活动已成功删除"
 msgid "Event Description"
 msgstr "活动描述"
 
-#: src/components/routes/event/Settings/index.tsx:48
+#: src/components/routes/event/Settings/index.tsx:51
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:71
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:627
 msgid "Event Details"
@@ -4610,7 +4614,7 @@ msgid "Event restored successfully"
 msgstr "活动已成功恢复"
 
 #: src/components/layouts/Event/index.tsx:117
-#: src/components/routes/event/Settings/index.tsx:173
+#: src/components/routes/event/Settings/index.tsx:185
 msgid "Event Settings"
 msgstr "活动设置"
 
@@ -5516,6 +5520,8 @@ msgstr "良好的可读性"
 msgid "Google Calendar"
 msgstr "谷歌日历"
 
+#: src/components/routes/event/Settings/index.tsx:115
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:54
 #: src/components/routes/organizer/Settings/index.tsx:91
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:72
 msgid "Google Wallet"
@@ -6451,7 +6457,7 @@ msgstr "加载中..."
 #: src/components/common/LocationPicker/index.tsx:294
 #: src/components/layouts/EventHomepage/index.tsx:495
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
-#: src/components/routes/event/Settings/index.tsx:54
+#: src/components/routes/event/Settings/index.tsx:57
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
 #: src/components/routes/my-tickets/index.tsx:90
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:336
@@ -6775,7 +6781,7 @@ msgstr "分钟"
 msgid "Minutes"
 msgstr "分钟"
 
-#: src/components/routes/event/Settings/index.tsx:84
+#: src/components/routes/event/Settings/index.tsx:87
 msgid "Miscellaneous"
 msgstr "其他"
 
@@ -8109,6 +8115,10 @@ msgstr "设置单独价格"
 msgid "Override removed"
 msgstr "单独设置已移除"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:55
+msgid "Override the banner shown on this event's Google Wallet passes."
+msgstr "覆盖此活动 Google 钱包卡券上显示的横幅。"
+
 #: src/components/layouts/Event/index.tsx:100
 msgid "Overview"
 msgstr "概览"
@@ -8172,6 +8182,7 @@ msgstr "部分退款:{0}"
 msgid "Pass background colour"
 msgstr "通行证背景颜色"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:61
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:93
 msgid "Pass banner URL"
 msgstr "通行证横幅图片网址"
@@ -8266,7 +8277,7 @@ msgstr "负载数据"
 msgid "Payment"
 msgstr "付款方式"
 
-#: src/components/routes/event/Settings/index.tsx:96
+#: src/components/routes/event/Settings/index.tsx:99
 msgid "Payment & Invoicing"
 msgstr "支付和发票"
 
@@ -8482,7 +8493,7 @@ msgstr "平台费用"
 msgid "Platform fee of {0} deducted from your payout"
 msgstr "从您的付款中扣除 {0} 的平台费用"
 
-#: src/components/routes/event/Settings/index.tsx:112
+#: src/components/routes/event/Settings/index.tsx:124
 #: src/components/routes/event/Settings/Sections/PlatformFeesSettings/index.tsx:48
 #: src/components/routes/organizer/Reports/index.tsx:41
 #: src/components/routes/organizer/Settings/index.tsx:107
@@ -9131,7 +9142,7 @@ msgstr "重复"
 
 #: src/components/layouts/EventHomepage/index.tsx:375
 #: src/components/modals/CreateEventModal/index.tsx:240
-#: src/components/routes/event/Settings/index.tsx:66
+#: src/components/routes/event/Settings/index.tsx:69
 msgid "Recurring Event"
 msgstr "重复活动"
 
@@ -9598,6 +9609,7 @@ msgstr "星期六"
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:306
 #: src/components/routes/event/Settings/Sections/EmailSettings/GeneralEmailSettings.tsx:81
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:151
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:72
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:141
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:193
 #: src/components/routes/event/Settings/Sections/MiscSettings/index.tsx:94
@@ -10166,7 +10178,7 @@ msgstr "客户下单时发送"
 msgid "Sent to each attendee with their ticket details"
 msgstr "发送给每位参会者及其门票详情"
 
-#: src/components/routes/event/Settings/index.tsx:72
+#: src/components/routes/event/Settings/index.tsx:75
 #: src/components/routes/organizer/Settings/index.tsx:63
 msgid "SEO"
 msgstr "SEO"
@@ -10886,6 +10898,7 @@ msgstr "成功更新活动"
 msgid "Successfully Updated Event Defaults"
 msgstr "成功更新活动默认设置"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:43
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:61
 msgid "Successfully Updated Google Wallet Settings"
 msgstr "Google 钱包设置更新成功"
@@ -12736,7 +12749,7 @@ msgstr "等待扫描…"
 #: src/components/forms/ProductForm/index.tsx:460
 #: src/components/layouts/AuthLayout/index.tsx:18
 #: src/components/layouts/Event/index.tsx:134
-#: src/components/routes/event/Settings/index.tsx:90
+#: src/components/routes/event/Settings/index.tsx:93
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:55
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:73
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:177

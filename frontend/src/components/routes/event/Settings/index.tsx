@@ -7,6 +7,7 @@ import {PageTitle} from "../../../common/PageTitle";
 import {t} from "@lingui/macro";
 import {SeoSettings} from "./Sections/SeoSettings";
 import {MiscSettings} from "./Sections/MiscSettings";
+import {GoogleWalletSettings} from "./Sections/GoogleWalletSettings";
 import {Box, Group, NavLink as MantineNavLink, Stack} from "@mantine/core";
 import {
     IconAdjustments,
@@ -20,6 +21,7 @@ import {
     IconMapPin,
     IconPercentage,
     IconRepeat,
+    IconWallet,
 } from "@tabler/icons-react";
 import {useMediaQuery} from "@mantine/hooks";
 import {useEffect, useMemo, useState} from "react";
@@ -40,6 +42,7 @@ export const Settings = () => {
     const {eventId} = useParams();
     const {data: event} = useGetEvent(eventId);
     const isRecurring = event?.type === EventType.RECURRING;
+    const isGoogleWalletAvailable = account?.is_google_wallet_available;
 
     const SECTIONS = useMemo(() => {
         const baseSections = [
@@ -106,6 +109,15 @@ export const Settings = () => {
             }
         ];
 
+        if (isGoogleWalletAvailable) {
+            baseSections.splice(baseSections.length - 1, 0, {
+                id: 'google-wallet',
+                label: t`Google Wallet`,
+                icon: IconWallet,
+                component: GoogleWalletSettings,
+            });
+        }
+
         if (isSaasMode) {
             baseSections.splice(baseSections.length - 1, 0, {
                 id: 'platform-fees',
@@ -116,7 +128,7 @@ export const Settings = () => {
         }
 
         return baseSections;
-    }, [isSaasMode, isRecurring]);
+    }, [isSaasMode, isRecurring, isGoogleWalletAvailable]);
 
     const isLargeScreen = useMediaQuery('(min-width: 1200px)', true);
     const [activeSection, setActiveSection] = useState(() => {

@@ -7,6 +7,7 @@ namespace HiEvents\Services\Domain\GoogleWallet;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventLocationDomainObject;
 use HiEvents\DomainObjects\EventOccurrenceDomainObject;
+use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\DomainObjects\Generated\EventOccurrenceDomainObjectAbstract;
 use HiEvents\DomainObjects\ImageDomainObject;
 use HiEvents\DomainObjects\LocationDomainObject;
@@ -50,6 +51,7 @@ class EnsureGoogleWalletClassService
                 new Relationship(ImageDomainObject::class),
             ]))
             ->loadRelation(new Relationship(ImageDomainObject::class))
+            ->loadRelation(new Relationship(EventSettingDomainObject::class))
             ->loadRelation(new Relationship(EventLocationDomainObject::class, name: 'event_location', nested: [
                 new Relationship(LocationDomainObject::class, name: 'location'),
             ]))

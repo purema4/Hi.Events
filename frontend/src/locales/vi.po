@@ -1778,6 +1778,10 @@ msgstr "Nội dung banner không được vượt quá 200 ký tự"
 msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
 msgstr "Ảnh bìa hiển thị trên toàn bộ chiều rộng thẻ, lý tưởng là 1032x812 px. Mặc định là ảnh bìa sự kiện của bạn."
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:62
+msgid "Banner shown across the pass, ideally 1032x812px. Falls back to your organizer setting, then this event's cover image."
+msgstr "Ảnh bìa hiển thị trên toàn bộ chiều rộng thẻ, lý tưởng là 1032x812 px. Nếu không, sẽ dùng cài đặt nhà tổ chức, rồi đến ảnh bìa của sự kiện này."
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "Giá gốc"
@@ -2302,7 +2306,7 @@ msgstr "Đã check-in"
 msgid "Checked In"
 msgstr "Đã check-in"
 
-#: src/components/routes/event/Settings/index.tsx:60
+#: src/components/routes/event/Settings/index.tsx:63
 msgid "Checkout"
 msgstr "Thanh toán"
 
@@ -2621,7 +2625,7 @@ msgstr "Cấu hình đã được cập nhật thành công"
 msgid "Configurations"
 msgstr "Cấu hình"
 
-#: src/components/routes/event/Settings/index.tsx:172
+#: src/components/routes/event/Settings/index.tsx:184
 msgid "Configure event details, location, checkout options, and email notifications."
 msgstr "Cấu hình chi tiết sự kiện, địa điểm, tùy chọn thanh toán và thông báo email."
 
@@ -3384,7 +3388,7 @@ msgstr "Vùng nguy hiểm"
 #: src/components/routes/account/ManageAccount/index.tsx:36
 #: src/components/routes/account/ManageAccount/sections/DangerZone/index.tsx:80
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:555
-#: src/components/routes/event/Settings/index.tsx:102
+#: src/components/routes/event/Settings/index.tsx:105
 #: src/components/routes/organizer/Settings/index.tsx:81
 msgid "Danger Zone"
 msgstr "Vùng nguy hiểm"
@@ -4157,7 +4161,7 @@ msgstr "Cài đặt email & thông báo"
 msgid "Email & scheduled messages"
 msgstr "Email và tin nhắn đã lên lịch"
 
-#: src/components/routes/event/Settings/index.tsx:78
+#: src/components/routes/event/Settings/index.tsx:81
 msgid "Email & Templates"
 msgstr "Email & Mẫu"
 
@@ -4562,7 +4566,7 @@ msgstr "Sự kiện đã được xóa thành công"
 msgid "Event Description"
 msgstr "Mô tả sự kiện"
 
-#: src/components/routes/event/Settings/index.tsx:48
+#: src/components/routes/event/Settings/index.tsx:51
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:71
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:627
 msgid "Event Details"
@@ -4610,7 +4614,7 @@ msgid "Event restored successfully"
 msgstr "Sự kiện đã được khôi phục thành công"
 
 #: src/components/layouts/Event/index.tsx:117
-#: src/components/routes/event/Settings/index.tsx:173
+#: src/components/routes/event/Settings/index.tsx:185
 msgid "Event Settings"
 msgstr "Cài đặt sự kiện"
 
@@ -5516,6 +5520,8 @@ msgstr "Dễ đọc"
 msgid "Google Calendar"
 msgstr "Lịch Google"
 
+#: src/components/routes/event/Settings/index.tsx:115
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:54
 #: src/components/routes/organizer/Settings/index.tsx:91
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:72
 msgid "Google Wallet"
@@ -6451,7 +6457,7 @@ msgstr "Đang tải ..."
 #: src/components/common/LocationPicker/index.tsx:294
 #: src/components/layouts/EventHomepage/index.tsx:495
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
-#: src/components/routes/event/Settings/index.tsx:54
+#: src/components/routes/event/Settings/index.tsx:57
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
 #: src/components/routes/my-tickets/index.tsx:90
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:336
@@ -6775,7 +6781,7 @@ msgstr "phút"
 msgid "Minutes"
 msgstr "Phút"
 
-#: src/components/routes/event/Settings/index.tsx:84
+#: src/components/routes/event/Settings/index.tsx:87
 msgid "Miscellaneous"
 msgstr "Linh tinh"
 
@@ -8109,6 +8115,10 @@ msgstr "Tùy chỉnh giá"
 msgid "Override removed"
 msgstr "Đã xóa tùy chỉnh"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:55
+msgid "Override the banner shown on this event's Google Wallet passes."
+msgstr "Thay thế ảnh bìa hiển thị trên thẻ Google Wallet của sự kiện này."
+
 #: src/components/layouts/Event/index.tsx:100
 msgid "Overview"
 msgstr "Tổng quan"
@@ -8172,6 +8182,7 @@ msgstr "Hoàn tiền một phần: {0}"
 msgid "Pass background colour"
 msgstr "Màu nền của thẻ"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:61
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:93
 msgid "Pass banner URL"
 msgstr "URL ảnh banner của thẻ"
@@ -8266,7 +8277,7 @@ msgstr "Tải trọng"
 msgid "Payment"
 msgstr "Thanh toán"
 
-#: src/components/routes/event/Settings/index.tsx:96
+#: src/components/routes/event/Settings/index.tsx:99
 msgid "Payment & Invoicing"
 msgstr "Thanh toán & Hoá đơn"
 
@@ -8482,7 +8493,7 @@ msgstr "Phí nền tảng"
 msgid "Platform fee of {0} deducted from your payout"
 msgstr "Phí nền tảng {0} được khấu trừ từ khoản thanh toán của bạn"
 
-#: src/components/routes/event/Settings/index.tsx:112
+#: src/components/routes/event/Settings/index.tsx:124
 #: src/components/routes/event/Settings/Sections/PlatformFeesSettings/index.tsx:48
 #: src/components/routes/organizer/Reports/index.tsx:41
 #: src/components/routes/organizer/Settings/index.tsx:107
@@ -9131,7 +9142,7 @@ msgstr "Định kỳ"
 
 #: src/components/layouts/EventHomepage/index.tsx:375
 #: src/components/modals/CreateEventModal/index.tsx:240
-#: src/components/routes/event/Settings/index.tsx:66
+#: src/components/routes/event/Settings/index.tsx:69
 msgid "Recurring Event"
 msgstr "Sự kiện định kỳ"
 
@@ -9598,6 +9609,7 @@ msgstr "Thứ Bảy"
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:306
 #: src/components/routes/event/Settings/Sections/EmailSettings/GeneralEmailSettings.tsx:81
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:151
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:72
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:141
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:193
 #: src/components/routes/event/Settings/Sections/MiscSettings/index.tsx:94
@@ -10166,7 +10178,7 @@ msgstr "Gửi cho khách hàng khi họ đặt hàng"
 msgid "Sent to each attendee with their ticket details"
 msgstr "Gửi cho từng người tham dự với chi tiết vé của họ"
 
-#: src/components/routes/event/Settings/index.tsx:72
+#: src/components/routes/event/Settings/index.tsx:75
 #: src/components/routes/organizer/Settings/index.tsx:63
 msgid "SEO"
 msgstr "SEO"
@@ -10886,6 +10898,7 @@ msgstr "Sự kiện cập nhật thành công"
 msgid "Successfully Updated Event Defaults"
 msgstr "Đã cập nhật mặc định sự kiện thành công"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:43
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:61
 msgid "Successfully Updated Google Wallet Settings"
 msgstr "Đã cập nhật cài đặt Google Wallet thành công"
@@ -12736,7 +12749,7 @@ msgstr "Đang chờ quét…"
 #: src/components/forms/ProductForm/index.tsx:460
 #: src/components/layouts/AuthLayout/index.tsx:18
 #: src/components/layouts/Event/index.tsx:134
-#: src/components/routes/event/Settings/index.tsx:90
+#: src/components/routes/event/Settings/index.tsx:93
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:55
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:73
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:177

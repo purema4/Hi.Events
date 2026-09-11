@@ -53,6 +53,9 @@ class UpdateEventSettingsHandler
                     'homepage_background_type' => $settings->homepage_background_type->name,
 
                     'order_timeout_in_minutes' => $settings->order_timeout_in_minutes,
+                    'google_wallet_banner_url' => $settings->google_wallet_banner_url === null
+                        ? null
+                        : trim($settings->google_wallet_banner_url),
                     'website_url' => trim($settings->website_url),
                     'maps_url' => trim($settings->maps_url),
 

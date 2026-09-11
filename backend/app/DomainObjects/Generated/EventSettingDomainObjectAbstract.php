@@ -70,6 +70,7 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     final public const SHOW_AVAILABLE_OCCURRENCE_CAPACITY = 'show_available_occurrence_capacity';
     final public const HIDE_SOLD_OUT_OCCURRENCES = 'hide_sold_out_occurrences';
     final public const GET_TICKETS_BUTTON_TEXT = 'get_tickets_button_text';
+    final public const GOOGLE_WALLET_BANNER_URL = 'google_wallet_banner_url';
 
     protected int $id;
     protected int $event_id;
@@ -131,6 +132,7 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     protected bool $show_available_occurrence_capacity = false;
     protected bool $hide_sold_out_occurrences = false;
     protected ?string $get_tickets_button_text = null;
+    protected ?string $google_wallet_banner_url = null;
 
     public function toArray(): array
     {
@@ -195,6 +197,7 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
                     'show_available_occurrence_capacity' => $this->show_available_occurrence_capacity ?? null,
                     'hide_sold_out_occurrences' => $this->hide_sold_out_occurrences ?? null,
                     'get_tickets_button_text' => $this->get_tickets_button_text ?? null,
+                    'google_wallet_banner_url' => $this->google_wallet_banner_url ?? null,
                 ];
     }
 
@@ -857,5 +860,16 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     public function getGetTicketsButtonText(): ?string
     {
         return $this->get_tickets_button_text;
+    }
+
+    public function setGoogleWalletBannerUrl(?string $google_wallet_banner_url): self
+    {
+        $this->google_wallet_banner_url = $google_wallet_banner_url;
+        return $this;
+    }
+
+    public function getGoogleWalletBannerUrl(): ?string
+    {
+        return $this->google_wallet_banner_url;
     }
 }

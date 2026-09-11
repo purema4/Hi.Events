@@ -1778,6 +1778,10 @@ msgstr "A szalag tartalma legfeljebb 200 karakter lehet"
 msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
 msgstr "A kártya teljes szélességében megjelenő banner, ideálisan 1032x812 px. Alapértelmezés szerint az esemény borítóképe."
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:62
+msgid "Banner shown across the pass, ideally 1032x812px. Falls back to your organizer setting, then this event's cover image."
+msgstr "A kártya teljes szélességében megjelenő banner, ideálisan 1032x812 px. Ennek hiányában a szervezői beállítás, majd az esemény borítóképe."
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "Alapár"
@@ -2302,7 +2306,7 @@ msgstr "Beléptetve"
 msgid "Checked In"
 msgstr "Bejelentkezve"
 
-#: src/components/routes/event/Settings/index.tsx:60
+#: src/components/routes/event/Settings/index.tsx:63
 msgid "Checkout"
 msgstr "Fizetés"
 
@@ -2621,7 +2625,7 @@ msgstr "Konfiguráció sikeresen frissítve"
 msgid "Configurations"
 msgstr "Konfigurációk"
 
-#: src/components/routes/event/Settings/index.tsx:172
+#: src/components/routes/event/Settings/index.tsx:184
 msgid "Configure event details, location, checkout options, and email notifications."
 msgstr "Esemény részletek, helyszín, pénztári beállítások és e-mail értesítések konfigurálása."
 
@@ -3384,7 +3388,7 @@ msgstr "Veszélyzóna"
 #: src/components/routes/account/ManageAccount/index.tsx:36
 #: src/components/routes/account/ManageAccount/sections/DangerZone/index.tsx:80
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:555
-#: src/components/routes/event/Settings/index.tsx:102
+#: src/components/routes/event/Settings/index.tsx:105
 #: src/components/routes/organizer/Settings/index.tsx:81
 msgid "Danger Zone"
 msgstr "Veszélyzóna"
@@ -4157,7 +4161,7 @@ msgstr "E-mail és értesítési beállítások"
 msgid "Email & scheduled messages"
 msgstr "E-mailek és ütemezett üzenetek"
 
-#: src/components/routes/event/Settings/index.tsx:78
+#: src/components/routes/event/Settings/index.tsx:81
 msgid "Email & Templates"
 msgstr "E-mail és sablonok"
 
@@ -4562,7 +4566,7 @@ msgstr "Az esemény sikeresen törölve"
 msgid "Event Description"
 msgstr "Esemény leírása"
 
-#: src/components/routes/event/Settings/index.tsx:48
+#: src/components/routes/event/Settings/index.tsx:51
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:71
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:627
 msgid "Event Details"
@@ -4610,7 +4614,7 @@ msgid "Event restored successfully"
 msgstr "Az esemény sikeresen visszaállítva"
 
 #: src/components/layouts/Event/index.tsx:117
-#: src/components/routes/event/Settings/index.tsx:173
+#: src/components/routes/event/Settings/index.tsx:185
 msgid "Event Settings"
 msgstr "Esemény beállítások"
 
@@ -5516,6 +5520,8 @@ msgstr "Jó olvashatóság"
 msgid "Google Calendar"
 msgstr "Google Naptár"
 
+#: src/components/routes/event/Settings/index.tsx:115
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:54
 #: src/components/routes/organizer/Settings/index.tsx:91
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:72
 msgid "Google Wallet"
@@ -6451,7 +6457,7 @@ msgstr "Betöltés..."
 #: src/components/common/LocationPicker/index.tsx:294
 #: src/components/layouts/EventHomepage/index.tsx:495
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
-#: src/components/routes/event/Settings/index.tsx:54
+#: src/components/routes/event/Settings/index.tsx:57
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
 #: src/components/routes/my-tickets/index.tsx:90
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:336
@@ -6775,7 +6781,7 @@ msgstr "perc"
 msgid "Minutes"
 msgstr "Perc"
 
-#: src/components/routes/event/Settings/index.tsx:84
+#: src/components/routes/event/Settings/index.tsx:87
 msgid "Miscellaneous"
 msgstr "Egyéb"
 
@@ -8109,6 +8115,10 @@ msgstr "Egyedi ár"
 msgid "Override removed"
 msgstr "Egyedi beállítás eltávolítva"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:55
+msgid "Override the banner shown on this event's Google Wallet passes."
+msgstr "Írja felül az esemény Google Wallet kártyáin megjelenő bannert."
+
 #: src/components/layouts/Event/index.tsx:100
 msgid "Overview"
 msgstr "Áttekintés"
@@ -8172,6 +8182,7 @@ msgstr "Részben visszatérítve: {0}"
 msgid "Pass background colour"
 msgstr "A bérlet háttérszíne"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:61
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:93
 msgid "Pass banner URL"
 msgstr "A bérlet bannerének URL-címe"
@@ -8266,7 +8277,7 @@ msgstr "Adattartalom"
 msgid "Payment"
 msgstr "Fizetés"
 
-#: src/components/routes/event/Settings/index.tsx:96
+#: src/components/routes/event/Settings/index.tsx:99
 msgid "Payment & Invoicing"
 msgstr "Fizetés és számlázás"
 
@@ -8482,7 +8493,7 @@ msgstr "Platformdíj"
 msgid "Platform fee of {0} deducted from your payout"
 msgstr "{0} platformdíj levonva a kifizetésből"
 
-#: src/components/routes/event/Settings/index.tsx:112
+#: src/components/routes/event/Settings/index.tsx:124
 #: src/components/routes/event/Settings/Sections/PlatformFeesSettings/index.tsx:48
 #: src/components/routes/organizer/Reports/index.tsx:41
 #: src/components/routes/organizer/Settings/index.tsx:107
@@ -9131,7 +9142,7 @@ msgstr "Ismétlődő"
 
 #: src/components/layouts/EventHomepage/index.tsx:375
 #: src/components/modals/CreateEventModal/index.tsx:240
-#: src/components/routes/event/Settings/index.tsx:66
+#: src/components/routes/event/Settings/index.tsx:69
 msgid "Recurring Event"
 msgstr "Ismétlődő esemény"
 
@@ -9598,6 +9609,7 @@ msgstr "Szombat"
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:306
 #: src/components/routes/event/Settings/Sections/EmailSettings/GeneralEmailSettings.tsx:81
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:151
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:72
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:141
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:193
 #: src/components/routes/event/Settings/Sections/MiscSettings/index.tsx:94
@@ -10166,7 +10178,7 @@ msgstr "Elküldve a vásárlóknak, amikor rendelést adnak le"
 msgid "Sent to each attendee with their ticket details"
 msgstr "Elküldve minden résztvevőnek a jegy részleteivel"
 
-#: src/components/routes/event/Settings/index.tsx:72
+#: src/components/routes/event/Settings/index.tsx:75
 #: src/components/routes/organizer/Settings/index.tsx:63
 msgid "SEO"
 msgstr "Keresőoptimalizálás"
@@ -10886,6 +10898,7 @@ msgstr "Esemény sikeresen frissítve"
 msgid "Successfully Updated Event Defaults"
 msgstr "Esemény alapértelmezések sikeresen frissítve"
 
+#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:43
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:61
 msgid "Successfully Updated Google Wallet Settings"
 msgstr "A Google Wallet beállításai sikeresen frissítve"
@@ -12736,7 +12749,7 @@ msgstr "Beolvasásra vár…"
 #: src/components/forms/ProductForm/index.tsx:460
 #: src/components/layouts/AuthLayout/index.tsx:18
 #: src/components/layouts/Event/index.tsx:134
-#: src/components/routes/event/Settings/index.tsx:90
+#: src/components/routes/event/Settings/index.tsx:93
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:55
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:73
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:177

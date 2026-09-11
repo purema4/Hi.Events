@@ -47,13 +47,19 @@ class GoogleWalletClassPayloadBuilder
                 $passSettings->logoUrl ?? $this->imageUrl($organizer->getImages(), ImageType::ORGANIZER_LOGO),
                 $organizer->getName(),
             ),
-            'heroImage' => $this->image(
-                $passSettings->heroImageUrl ?? $this->imageUrl($event->getImages(), ImageType::EVENT_COVER),
-                $event->getTitle(),
-            ),
+            'heroImage' => $this->image($this->heroImageUrl($event, $passSettings), $event->getTitle()),
             'hexBackgroundColor' => $passSettings->backgroundColor,
             ...$this->smartTap(),
         ], static fn ($value) => $value !== null && $value !== []);
+    }
+
+    private function heroImageUrl(EventDomainObject $event, GoogleWalletPassSettingsDTO $passSettings): ?string
+    {
+        $eventBannerUrl = trim((string) $event->getEventSettings()?->getGoogleWalletBannerUrl());
+
+        return ($eventBannerUrl === '' ? null : $eventBannerUrl)
+            ?? $passSettings->heroImageUrl
+            ?? $this->imageUrl($event->getImages(), ImageType::EVENT_COVER);
     }
 
     private function smartTap(): array

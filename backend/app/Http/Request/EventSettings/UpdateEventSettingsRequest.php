@@ -37,6 +37,8 @@ class UpdateEventSettingsRequest extends BaseRequest
             'homepage_body_background_color' => ['nullable', ...RulesHelper::HEX_COLOR],
             'homepage_background_type' => ['nullable', Rule::in(HomepageBackgroundType::valuesArray())],
 
+            'google_wallet_banner_url' => ['url', 'nullable'],
+
             'website_url' => ['url', 'nullable'],
             'maps_url' => ['url', 'nullable'],
 

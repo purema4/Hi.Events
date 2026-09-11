@@ -90,6 +90,8 @@ class UpdateEventSettingsDTO extends BaseDTO
         public readonly ?int $waitlist_offer_timeout_minutes = null,
 
         public readonly ?string $get_tickets_button_text = null,
+
+        public readonly ?string $google_wallet_banner_url = null,
     ) {}
 
     public static function createWithDefaults(
