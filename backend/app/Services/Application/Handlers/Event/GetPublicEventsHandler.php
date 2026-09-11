@@ -2,6 +2,7 @@
 
 namespace HiEvents\Services\Application\Handlers\Event;
 
+use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventLocationDomainObject;
 use HiEvents\DomainObjects\EventOccurrenceDomainObject;
 use HiEvents\DomainObjects\EventSettingDomainObject;
@@ -17,6 +18,7 @@ use HiEvents\Repository\Eloquent\Value\Relationship;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrganizerRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Event\DTO\GetPublicOrganizerEventsDTO;
+use HiEvents\Services\Domain\Product\ProductFilterService;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class GetPublicEventsHandler
@@ -24,6 +26,7 @@ class GetPublicEventsHandler
     public function __construct(
         private readonly EventRepositoryInterface $eventRepository,
         private readonly OrganizerRepositoryInterface $organizerRepository,
+        private readonly ProductFilterService $productFilterService,
     ) {}
 
     public function handle(GetPublicOrganizerEventsDTO $dto): LengthAwarePaginator
@@ -57,19 +60,38 @@ class GetPublicEventsHandler
 
         // If the organizer is viewing their own profile, we show all events, even those in draft
         if ($dto->authenticatedAccountId && $organizer->getAccountId() === $dto->authenticatedAccountId) {
-            return $query->findEventsForOrganizer(
+            $events = $query->findEventsForOrganizer(
                 organizerId: $dto->organizerId,
                 accountId: $dto->authenticatedAccountId,
                 params: $dto->queryParams
             );
+        } else {
+            $events = $query->findEvents(
+                where: [
+                    'organizer_id' => $dto->organizerId,
+                    'status' => EventStatus::LIVE->name,
+                ],
+                params: $dto->queryParams
+            );
         }
 
-        return $query->findEvents(
-            where: [
-                'organizer_id' => $dto->organizerId,
-                'status' => EventStatus::LIVE->name,
-            ],
-            params: $dto->queryParams
-        );
+        return $this->applyProductPricing($events);
+    }
+
+    private function applyProductPricing(LengthAwarePaginator $events): LengthAwarePaginator
+    {
+        $events->getCollection()->each(function (EventDomainObject $event): void {
+            $productCategories = $event->getProductCategories();
+
+            if ($productCategories === null) {
+                return;
+            }
+
+            $event->setProductCategories(
+                $this->productFilterService->filter(productsCategories: $productCategories)
+            );
+        });
+
+        return $events;
     }
 }
