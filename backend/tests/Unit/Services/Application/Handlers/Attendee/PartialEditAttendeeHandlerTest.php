@@ -13,6 +13,7 @@ use HiEvents\Services\Application\Handlers\Attendee\DTO\PartialEditAttendeeDTO;
 use HiEvents\Services\Application\Handlers\Attendee\PartialEditAttendeeHandler;
 use HiEvents\Services\Domain\EventStatistics\EventStatisticsCancellationService;
 use HiEvents\Services\Domain\EventStatistics\EventStatisticsReactivationService;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
@@ -79,6 +80,7 @@ class PartialEditAttendeeHandlerTest extends TestCase
             $this->cancellationService,
             $this->reactivationService,
             Mockery::mock(LoggerInterface::class)->shouldIgnoreMissing(),
+            Mockery::mock(GoogleWalletSyncDispatcher::class)->shouldIgnoreMissing(),
         );
     }
 

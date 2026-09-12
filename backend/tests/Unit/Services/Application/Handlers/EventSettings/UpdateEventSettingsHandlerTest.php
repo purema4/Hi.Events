@@ -8,6 +8,7 @@ use HiEvents\Events\CapacityChangedEvent;
 use HiEvents\Repository\Interfaces\EventSettingsRepositoryInterface;
 use HiEvents\Services\Application\Handlers\EventSettings\DTO\UpdateEventSettingsDTO;
 use HiEvents\Services\Application\Handlers\EventSettings\UpdateEventSettingsHandler;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Infrastructure\HtmlPurifier\HtmlPurifierService;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Support\Facades\Event;
@@ -25,6 +26,8 @@ class UpdateEventSettingsHandlerTest extends TestCase
 
     private DatabaseManager $databaseManager;
 
+    private GoogleWalletSyncDispatcher $googleWalletSyncDispatcher;
+
     private UpdateEventSettingsHandler $handler;
 
     protected function setUp(): void
@@ -41,10 +44,13 @@ class UpdateEventSettingsHandlerTest extends TestCase
             ->shouldReceive('transaction')
             ->andReturnUsing(fn ($callback) => $callback());
 
+        $this->googleWalletSyncDispatcher = Mockery::mock(GoogleWalletSyncDispatcher::class)->shouldIgnoreMissing();
+
         $this->handler = new UpdateEventSettingsHandler(
             eventSettingsRepository: $this->eventSettingsRepository,
             purifier: $this->purifier,
             databaseManager: $this->databaseManager,
+            googleWalletSyncDispatcher: $this->googleWalletSyncDispatcher,
         );
     }
 
@@ -217,10 +223,54 @@ class UpdateEventSettingsHandlerTest extends TestCase
         $this->assertSame([null], $captured);
     }
 
+    public function test_queues_a_class_sync_when_the_google_wallet_branding_changes(): void
+    {
+        Event::fake();
+
+        $existingSettings = (new EventSettingDomainObject)
+            ->setGoogleWalletBannerUrl('https://cdn.example.com/old.png');
+
+        $this->eventSettingsRepository
+            ->shouldReceive('findFirstWhere')
+            ->with(['event_id' => 1])
+            ->twice()
+            ->andReturn($existingSettings);
+
+        $this->eventSettingsRepository->shouldReceive('updateWhere')->once();
+
+        $this->googleWalletSyncDispatcher
+            ->shouldReceive('queueEventClassSync')
+            ->once()
+            ->with(1);
+
+        $this->handler->handle($this->createDTO(google_wallet_banner_url: 'https://cdn.example.com/new.png'));
+    }
+
+    public function test_does_not_queue_a_class_sync_when_the_google_wallet_branding_is_unchanged(): void
+    {
+        Event::fake();
+
+        $existingSettings = (new EventSettingDomainObject)
+            ->setGoogleWalletBannerUrl('https://cdn.example.com/banner.png');
+
+        $this->eventSettingsRepository
+            ->shouldReceive('findFirstWhere')
+            ->with(['event_id' => 1])
+            ->twice()
+            ->andReturn($existingSettings);
+
+        $this->eventSettingsRepository->shouldReceive('updateWhere')->once();
+
+        $this->googleWalletSyncDispatcher->shouldNotReceive('queueEventClassSync');
+
+        $this->handler->handle($this->createDTO(google_wallet_banner_url: '  https://cdn.example.com/banner.png  '));
+    }
+
     private function createDTO(
         ?bool $waitlist_auto_process = null,
         bool $allow_copy_details_to_all_attendees = true,
         ?string $get_tickets_button_text = null,
+        ?string $google_wallet_banner_url = null,
     ): UpdateEventSettingsDTO {
         return UpdateEventSettingsDTO::fromArray([
             'account_id' => 1,
@@ -249,6 +299,7 @@ class UpdateEventSettingsHandlerTest extends TestCase
             'allow_copy_details_to_all_attendees' => $allow_copy_details_to_all_attendees,
             'waitlist_auto_process' => $waitlist_auto_process,
             'waitlist_offer_timeout_minutes' => 60,
+            'google_wallet_banner_url' => $google_wallet_banner_url,
         ]);
     }
 }

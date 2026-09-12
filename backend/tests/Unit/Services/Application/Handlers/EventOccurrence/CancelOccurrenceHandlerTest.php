@@ -12,6 +12,7 @@ use HiEvents\Repository\Interfaces\EventOccurrenceRepositoryInterface;
 use HiEvents\Services\Application\Handlers\EventOccurrence\CancelOccurrenceHandler;
 use HiEvents\Services\Domain\Event\RecurrenceRuleExclusionService;
 use HiEvents\Services\Domain\EventOccurrence\CancelOccurrenceAttendeesService;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Event;
@@ -51,6 +52,7 @@ class CancelOccurrenceHandlerTest extends TestCase
             $this->exclusionService,
             $this->cancelAttendeesService,
             $this->databaseManager,
+            Mockery::mock(GoogleWalletSyncDispatcher::class)->shouldIgnoreMissing(),
         );
     }
 

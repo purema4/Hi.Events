@@ -12,6 +12,7 @@ use HiEvents\Services\Application\Handlers\Event\UpdateEventLocationHandler;
 use HiEvents\Services\Domain\EventLocation\EventLocationCleaner;
 use HiEvents\Services\Domain\EventLocation\EventLocationData;
 use HiEvents\Services\Domain\EventLocation\EventLocationUpserter;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use Illuminate\Database\DatabaseManager;
 use Mockery;
 use Mockery\MockInterface;
@@ -44,6 +45,7 @@ class UpdateEventLocationHandlerTest extends TestCase
             $this->eventLocationUpserter,
             $this->eventLocationCleaner,
             $databaseManager,
+            Mockery::mock(GoogleWalletSyncDispatcher::class)->shouldIgnoreMissing(),
         );
     }
 

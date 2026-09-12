@@ -8,6 +8,7 @@ use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\Repository\Interfaces\EventSettingsRepositoryInterface;
 use HiEvents\Repository\Interfaces\ImageRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Event\DTO\DeleteEventImageDTO;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use Illuminate\Database\DatabaseManager;
 use Throwable;
 
@@ -17,6 +18,7 @@ class DeleteEventImageHandler
         private readonly ImageRepositoryInterface $imageRepository,
         private readonly EventSettingsRepositoryInterface $eventSettingsRepository,
         private readonly DatabaseManager $databaseManager,
+        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
     ) {}
 
     /**
@@ -47,5 +49,7 @@ class DeleteEventImageHandler
         ]);
 
         $this->databaseManager->commit();
+
+        $this->googleWalletSyncDispatcher->queueEventClassSync($deleteEventImageDTO->eventId);
     }
 }

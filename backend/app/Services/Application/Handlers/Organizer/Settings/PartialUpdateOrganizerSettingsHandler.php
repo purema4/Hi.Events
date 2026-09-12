@@ -7,12 +7,14 @@ use HiEvents\DomainObjects\OrganizerSettingDomainObject;
 use HiEvents\Repository\Interfaces\OrganizerRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrganizerSettingsRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Organizer\DTO\PartialUpdateOrganizerSettingsDTO;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 
 class PartialUpdateOrganizerSettingsHandler
 {
     public function __construct(
         private readonly OrganizerSettingsRepositoryInterface $organizerSettingsRepository,
         private readonly OrganizerRepositoryInterface $organizerRepository,
+        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
     ) {}
 
     public function handle(PartialUpdateOrganizerSettingsDTO $dto): OrganizerSettingDomainObject
@@ -91,6 +93,21 @@ class PartialUpdateOrganizerSettingsHandler
             'id' => $organizerSettings->getId(),
         ]);
 
-        return $this->organizerSettingsRepository->findFirst($organizerSettings->getId());
+        $updatedSettings = $this->organizerSettingsRepository->findFirst($organizerSettings->getId());
+
+        if ($this->googleWalletBrandingChanged($organizerSettings, $updatedSettings)) {
+            $this->googleWalletSyncDispatcher->queueOrganizerClassSync($organizer->getId());
+        }
+
+        return $updatedSettings;
+    }
+
+    private function googleWalletBrandingChanged(
+        OrganizerSettingDomainObject $existingSettings,
+        OrganizerSettingDomainObject $updatedSettings,
+    ): bool {
+        return $existingSettings->getGoogleWalletEnabled() !== $updatedSettings->getGoogleWalletEnabled()
+            || $existingSettings->getGoogleWalletPassSettings() !== $updatedSettings->getGoogleWalletPassSettings()
+            || $existingSettings->getHomepageThemeSettings() !== $updatedSettings->getHomepageThemeSettings();
     }
 }

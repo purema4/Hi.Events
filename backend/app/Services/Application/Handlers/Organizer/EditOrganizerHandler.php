@@ -6,6 +6,7 @@ use HiEvents\DomainObjects\ImageDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\Repository\Interfaces\OrganizerRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Organizer\DTO\EditOrganizerDTO;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Infrastructure\HtmlPurifier\HtmlPurifierService;
 use Illuminate\Database\DatabaseManager;
 use Throwable;
@@ -16,6 +17,7 @@ class EditOrganizerHandler
         private readonly OrganizerRepositoryInterface $organizerRepository,
         private readonly DatabaseManager $databaseManager,
         private readonly HtmlPurifierService $htmlPurifierService,
+        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
     ) {}
 
     /**
@@ -23,9 +25,20 @@ class EditOrganizerHandler
      */
     public function handle(EditOrganizerDTO $organizerData): OrganizerDomainObject
     {
-        return $this->databaseManager->transaction(
+        $previousName = $this->organizerRepository->findFirstWhere([
+            'id' => $organizerData->id,
+            'account_id' => $organizerData->account_id,
+        ])?->getName();
+
+        $organizer = $this->databaseManager->transaction(
             fn () => $this->editOrganizer($organizerData)
         );
+
+        if ($organizer->getName() !== $previousName) {
+            $this->googleWalletSyncDispatcher->queueOrganizerClassSync($organizerData->id);
+        }
+
+        return $organizer;
     }
 
     private function editOrganizer(EditOrganizerDTO $organizerData): OrganizerDomainObject

@@ -10,6 +10,7 @@ use HiEvents\Events\OccurrenceCancelledEvent;
 use HiEvents\Repository\Interfaces\EventOccurrenceRepositoryInterface;
 use HiEvents\Services\Domain\Event\RecurrenceRuleExclusionService;
 use HiEvents\Services\Domain\EventOccurrence\CancelOccurrenceAttendeesService;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
 use HiEvents\Services\Infrastructure\DomainEvents\Events\OccurrenceEvent;
 use Illuminate\Bus\Queueable;
@@ -43,6 +44,7 @@ class BulkCancelOccurrencesJob implements ShouldQueue
         EventOccurrenceRepositoryInterface $occurrenceRepository,
         RecurrenceRuleExclusionService $exclusionService,
         CancelOccurrenceAttendeesService $cancelAttendeesService,
+        GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
     ): void {
         $cancelledStartDates = [];
         $failedIds = [];
@@ -99,6 +101,8 @@ class BulkCancelOccurrencesJob implements ShouldQueue
                     type: DomainEventType::OCCURRENCE_CANCELLED,
                     occurrenceId: $occurrenceId,
                 ));
+
+                $googleWalletSyncDispatcher->queueOccurrencePassSync($occurrenceId);
 
                 $cancelledStartDates[] = $cancelResult['start_date'];
             } catch (Throwable $e) {

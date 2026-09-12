@@ -17,6 +17,7 @@ use HiEvents\Services\Domain\Event\RecurrenceRuleExclusionService;
 use HiEvents\Services\Domain\EventLocation\EventLocationCleaner;
 use HiEvents\Services\Domain\EventLocation\EventLocationData;
 use HiEvents\Services\Domain\EventLocation\EventLocationUpserter;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use Illuminate\Database\DatabaseManager;
 use Mockery;
 use Mockery\MockInterface;
@@ -59,6 +60,7 @@ class UpdateEventOccurrenceHandlerTest extends TestCase
             $this->eventLocationCleaner,
             $this->exclusionService,
             $this->databaseManager,
+            Mockery::mock(GoogleWalletSyncDispatcher::class)->shouldIgnoreMissing(),
         );
     }
 

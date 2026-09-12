@@ -10,6 +10,7 @@ use HiEvents\Jobs\Occurrence\SendOccurrenceCancellationEmailJob;
 use HiEvents\Repository\Interfaces\EventOccurrenceRepositoryInterface;
 use HiEvents\Services\Domain\Event\RecurrenceRuleExclusionService;
 use HiEvents\Services\Domain\EventOccurrence\CancelOccurrenceAttendeesService;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
@@ -25,6 +26,8 @@ class BulkCancelOccurrencesJobTest extends TestCase
 
     private CancelOccurrenceAttendeesService|Mockery\MockInterface $cancelAttendeesService;
 
+    private GoogleWalletSyncDispatcher|Mockery\MockInterface $googleWalletSyncDispatcher;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -39,6 +42,7 @@ class BulkCancelOccurrencesJobTest extends TestCase
         $this->cancelAttendeesService = Mockery::mock(CancelOccurrenceAttendeesService::class);
         $this->cancelAttendeesService->shouldReceive('cancelForOccurrence')->andReturn(['attendee_ids' => [], 'sales_backed_count' => 0])->byDefault();
         $this->exclusionService->shouldReceive('addExclusions')->byDefault();
+        $this->googleWalletSyncDispatcher = Mockery::mock(GoogleWalletSyncDispatcher::class)->shouldIgnoreMissing();
     }
 
     public function test_handle_cancels_multiple_occurrences(): void
@@ -78,7 +82,7 @@ class BulkCancelOccurrencesJobTest extends TestCase
         $this->cancelAttendeesService->shouldReceive('cancelForOccurrence')->with(1, 10)->andReturn(['attendee_ids' => [101, 102], 'sales_backed_count' => 2]);
 
         $job = new BulkCancelOccurrencesJob(1, [10, 20]);
-        $job->handle($this->occurrenceRepository, $this->exclusionService, $this->cancelAttendeesService);
+        $job->handle($this->occurrenceRepository, $this->exclusionService, $this->cancelAttendeesService, $this->googleWalletSyncDispatcher);
 
         Event::assertDispatchedTimes(OccurrenceCancelledEvent::class, 2);
 
@@ -106,7 +110,7 @@ class BulkCancelOccurrencesJobTest extends TestCase
         $this->exclusionService->shouldNotReceive('addExclusions');
 
         $job = new BulkCancelOccurrencesJob(1, [10]);
-        $job->handle($this->occurrenceRepository, $this->exclusionService, $this->cancelAttendeesService);
+        $job->handle($this->occurrenceRepository, $this->exclusionService, $this->cancelAttendeesService, $this->googleWalletSyncDispatcher);
 
         Event::assertNotDispatched(OccurrenceCancelledEvent::class);
         Bus::assertNotDispatched(SendOccurrenceCancellationEmailJob::class);
@@ -128,7 +132,7 @@ class BulkCancelOccurrencesJobTest extends TestCase
         $this->exclusionService->shouldNotReceive('addExclusions');
 
         $job = new BulkCancelOccurrencesJob(1, [10]);
-        $job->handle($this->occurrenceRepository, $this->exclusionService, $this->cancelAttendeesService);
+        $job->handle($this->occurrenceRepository, $this->exclusionService, $this->cancelAttendeesService, $this->googleWalletSyncDispatcher);
 
         Event::assertNotDispatched(OccurrenceCancelledEvent::class);
     }
@@ -149,7 +153,7 @@ class BulkCancelOccurrencesJobTest extends TestCase
         $this->occurrenceRepository->shouldReceive('updateWhere')->once();
 
         $job = new BulkCancelOccurrencesJob(1, [10], refundOrders: true);
-        $job->handle($this->occurrenceRepository, $this->exclusionService, $this->cancelAttendeesService);
+        $job->handle($this->occurrenceRepository, $this->exclusionService, $this->cancelAttendeesService, $this->googleWalletSyncDispatcher);
 
         Event::assertDispatched(OccurrenceCancelledEvent::class, fn ($e) => $e->occurrenceId === 10 && $e->refundOrders === true);
     }
@@ -170,7 +174,7 @@ class BulkCancelOccurrencesJobTest extends TestCase
         $this->occurrenceRepository->shouldReceive('updateWhere')->once();
 
         $job = new BulkCancelOccurrencesJob(1, [10], refundOrders: false);
-        $job->handle($this->occurrenceRepository, $this->exclusionService, $this->cancelAttendeesService);
+        $job->handle($this->occurrenceRepository, $this->exclusionService, $this->cancelAttendeesService, $this->googleWalletSyncDispatcher);
 
         Event::assertDispatched(OccurrenceCancelledEvent::class, fn ($e) => $e->refundOrders === false);
     }

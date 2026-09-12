@@ -14,6 +14,7 @@ use HiEvents\Services\Application\Handlers\EventOccurrence\DTO\UpsertEventOccurr
 use HiEvents\Services\Domain\Event\RecurrenceRuleExclusionService;
 use HiEvents\Services\Domain\EventLocation\EventLocationCleaner;
 use HiEvents\Services\Domain\EventLocation\EventLocationUpserter;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use Illuminate\Database\DatabaseManager;
 use Throwable;
 
@@ -26,6 +27,7 @@ class UpdateEventOccurrenceHandler
         private readonly EventLocationCleaner $eventLocationCleaner,
         private readonly RecurrenceRuleExclusionService $exclusionService,
         private readonly DatabaseManager $databaseManager,
+        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
     ) {}
 
     /**
@@ -33,7 +35,7 @@ class UpdateEventOccurrenceHandler
      */
     public function handle(int $occurrenceId, UpsertEventOccurrenceDTO $dto): EventOccurrenceDomainObject
     {
-        return $this->databaseManager->transaction(function () use ($occurrenceId, $dto) {
+        $occurrence = $this->databaseManager->transaction(function () use ($occurrenceId, $dto) {
             $occurrence = $this->occurrenceRepository->findFirstWhere([
                 EventOccurrenceDomainObjectAbstract::ID => $occurrenceId,
                 EventOccurrenceDomainObjectAbstract::EVENT_ID => $dto->event_id,
@@ -113,6 +115,10 @@ class UpdateEventOccurrenceHandler
 
             return $updated;
         });
+
+        $this->googleWalletSyncDispatcher->queueOccurrenceClassSync($occurrenceId);
+
+        return $occurrence;
     }
 
     private function datesDiffer(?string $a, ?string $b): bool

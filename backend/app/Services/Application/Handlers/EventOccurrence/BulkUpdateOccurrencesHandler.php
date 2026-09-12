@@ -27,6 +27,7 @@ use HiEvents\Services\Application\Handlers\EventOccurrence\DTO\BulkUpdateOccurre
 use HiEvents\Services\Domain\Event\RecurrenceRuleExclusionService;
 use HiEvents\Services\Domain\EventLocation\EventLocationCleaner;
 use HiEvents\Services\Domain\EventLocation\EventLocationUpserter;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Support\Collection;
 use Throwable;
@@ -43,6 +44,7 @@ class BulkUpdateOccurrencesHandler
         private readonly EventLocationUpserter $eventLocationUpserter,
         private readonly EventLocationCleaner $eventLocationCleaner,
         private readonly DatabaseManager $databaseManager,
+        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
     ) {}
 
     /**
@@ -51,7 +53,7 @@ class BulkUpdateOccurrencesHandler
      */
     public function handle(BulkUpdateOccurrencesDTO $dto): BulkUpdateOccurrencesResultDTO
     {
-        return $this->databaseManager->transaction(function () use ($dto) {
+        $result = $this->databaseManager->transaction(function () use ($dto) {
             $event = $this->eventRepository->findById($dto->event_id);
             if ($event === null) {
                 throw new ResourceNotFoundException(__('Event :id not found', ['id' => $dto->event_id]));
@@ -71,6 +73,14 @@ class BulkUpdateOccurrencesHandler
                 BulkOccurrenceAction::UPDATE => $this->handleUpdate($dto, $eligible, $event->getAccountId()),
             };
         });
+
+        if ($dto->action === BulkOccurrenceAction::UPDATE) {
+            foreach ($result->updated_ids as $occurrenceId) {
+                $this->googleWalletSyncDispatcher->queueOccurrenceClassSync($occurrenceId);
+            }
+        }
+
+        return $result;
     }
 
     private function filterEligible(Collection $occurrences, BulkUpdateOccurrencesDTO $dto): Collection

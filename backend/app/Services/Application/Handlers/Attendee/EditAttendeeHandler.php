@@ -14,6 +14,7 @@ use HiEvents\Exceptions\NoTicketsAvailableException;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\ProductRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Attendee\DTO\EditAttendeeDTO;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
@@ -30,6 +31,7 @@ class EditAttendeeHandler
         private readonly ProductQuantityUpdateService $productQuantityService,
         private readonly DatabaseManager $databaseManager,
         private readonly DomainEventDispatcherService $domainEventDispatcherService,
+        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
     ) {}
 
     /**
@@ -38,7 +40,7 @@ class EditAttendeeHandler
      */
     public function handle(EditAttendeeDTO $editAttendeeDTO): AttendeeDomainObject
     {
-        return $this->databaseManager->transaction(function () use ($editAttendeeDTO) {
+        $attendee = $this->databaseManager->transaction(function () use ($editAttendeeDTO) {
             $attendee = $this->getAttendee($editAttendeeDTO);
 
             $this->validateProductId($editAttendeeDTO, $attendee);
@@ -56,6 +58,10 @@ class EditAttendeeHandler
 
             return $updatedAttendee;
         });
+
+        $this->googleWalletSyncDispatcher->queueAttendeePassSync($editAttendeeDTO->attendee_id);
+
+        return $attendee;
     }
 
     private function adjustProductQuantities(AttendeeDomainObject $attendee, EditAttendeeDTO $editAttendeeDTO): void

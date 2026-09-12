@@ -2,15 +2,18 @@
 
 namespace HiEvents\Services\Application\Handlers\Images;
 
+use HiEvents\DomainObjects\Enums\ImageType;
 use HiEvents\DomainObjects\ImageDomainObject;
 use HiEvents\Exceptions\CannotDeleteEntityException;
 use HiEvents\Repository\Interfaces\ImageRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Images\DTO\DeleteImageDTO;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 
 class DeleteImageHandler
 {
     public function __construct(
         private readonly ImageRepositoryInterface $imageRepository,
+        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
     ) {}
 
     /**
@@ -32,5 +35,10 @@ class DeleteImageHandler
             'id' => $imageData->imageId,
             'account_id' => $imageData->accountId,
         ]);
+
+        $this->googleWalletSyncDispatcher->queueImageOwnerClassSync(
+            ImageType::fromName($image->getType()),
+            $image->getEntityId(),
+        );
     }
 }

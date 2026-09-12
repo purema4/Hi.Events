@@ -15,7 +15,7 @@ use HiEvents\Services\Application\Handlers\EventOccurrence\DTO\UpsertEventOccurr
 use HiEvents\Services\Domain\Event\RecurrenceRuleParserService;
 use HiEvents\Services\Domain\EventLocation\EventLocationData;
 use HiEvents\Services\Domain\EventLocation\EventLocationUpserter;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletPassSettingsResolver;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
@@ -52,7 +52,7 @@ class CreateEventOccurrenceHandlerTest extends TestCase
             $this->eventRepository,
             $this->eventLocationUpserter,
             $this->databaseManager,
-            Mockery::mock(GoogleWalletPassSettingsResolver::class, ['isConfigured' => false]),
+            Mockery::mock(GoogleWalletSyncDispatcher::class, ['queueOccurrenceClassSync' => null]),
         );
     }
 
@@ -73,6 +73,7 @@ class CreateEventOccurrenceHandlerTest extends TestCase
         );
 
         $expectedOccurrence = Mockery::mock(EventOccurrenceDomainObject::class);
+        $expectedOccurrence->shouldReceive('getId')->andReturn(1);
 
         $this->eventLocationUpserter->shouldNotReceive('createForEvent');
         $this->eventRepository->shouldNotReceive('findById');
@@ -142,6 +143,7 @@ class CreateEventOccurrenceHandlerTest extends TestCase
             ->andReturn($createdEventLocation);
 
         $expectedOccurrence = Mockery::mock(EventOccurrenceDomainObject::class);
+        $expectedOccurrence->shouldReceive('getId')->andReturn(1);
 
         $this->occurrenceRepository
             ->shouldReceive('create')
@@ -195,6 +197,7 @@ class CreateEventOccurrenceHandlerTest extends TestCase
             ->andReturn($createdEventLocation);
 
         $expectedOccurrence = Mockery::mock(EventOccurrenceDomainObject::class);
+        $expectedOccurrence->shouldReceive('getId')->andReturn(1);
 
         $this->occurrenceRepository
             ->shouldReceive('create')

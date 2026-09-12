@@ -22,6 +22,7 @@ use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Event\DTO\UpdateEventDTO;
 use HiEvents\Services\Domain\Event\EventSpamCheckDispatchService;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
 use HiEvents\Services\Infrastructure\HtmlPurifier\HtmlPurifierService;
 use Illuminate\Database\DatabaseManager;
@@ -38,6 +39,7 @@ readonly class UpdateEventHandler
         private HtmlPurifierService $purifier,
         private EventOccurrenceRepositoryInterface $occurrenceRepository,
         private readonly EventSpamCheckDispatchService $eventSpamCheckDispatchService,
+        private GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
     ) {}
 
     /**
@@ -45,11 +47,15 @@ readonly class UpdateEventHandler
      */
     public function handle(UpdateEventDTO $eventData): EventDomainObject
     {
-        return $this->databaseManager->transaction(function () use ($eventData) {
+        $event = $this->databaseManager->transaction(function () use ($eventData) {
             $this->updateEventAttributes($eventData);
 
             return $this->getUpdateEvent($eventData);
         });
+
+        $this->googleWalletSyncDispatcher->queueEventClassSync($eventData->id);
+
+        return $event;
     }
 
     /**

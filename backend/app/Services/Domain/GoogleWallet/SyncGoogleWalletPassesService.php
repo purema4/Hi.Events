@@ -43,6 +43,16 @@ class SyncGoogleWalletPassesService
     /**
      * @throws GoogleWalletApiException|GoogleWalletConfigurationException
      */
+    public function syncOccurrence(int $occurrenceId): void
+    {
+        $this->syncAttendees(
+            $this->attendeesWhere([AttendeeDomainObjectAbstract::EVENT_OCCURRENCE_ID => $occurrenceId])
+        );
+    }
+
+    /**
+     * @throws GoogleWalletApiException|GoogleWalletConfigurationException
+     */
     public function syncAttendee(int $attendeeId): void
     {
         $this->syncAttendees(

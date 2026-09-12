@@ -11,6 +11,7 @@ use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Attendee\DTO\PartialEditAttendeeDTO;
 use HiEvents\Services\Domain\EventStatistics\EventStatisticsCancellationService;
 use HiEvents\Services\Domain\EventStatistics\EventStatisticsReactivationService;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
@@ -31,6 +32,7 @@ class PartialEditAttendeeHandler
         private readonly EventStatisticsCancellationService $eventStatisticsCancellationService,
         private readonly EventStatisticsReactivationService $eventStatisticsReactivationService,
         private readonly LoggerInterface $logger,
+        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
     ) {}
 
     /**
@@ -38,9 +40,13 @@ class PartialEditAttendeeHandler
      */
     public function handle(PartialEditAttendeeDTO $data): AttendeeDomainObject
     {
-        return $this->databaseManager->transaction(function () use ($data) {
+        $attendee = $this->databaseManager->transaction(function () use ($data) {
             return $this->updateAttendee($data);
         });
+
+        $this->googleWalletSyncDispatcher->queueAttendeePassSync($data->attendee_id);
+
+        return $attendee;
     }
 
     private function updateAttendee(PartialEditAttendeeDTO $data): AttendeeDomainObject

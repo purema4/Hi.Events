@@ -8,6 +8,7 @@ use HiEvents\Repository\Interfaces\OrganizerRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrganizerSettingsRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Organizer\DTO\PartialUpdateOrganizerSettingsDTO;
 use HiEvents\Services\Application\Handlers\Organizer\Settings\PartialUpdateOrganizerSettingsHandler;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Tests\TestCase;
@@ -32,6 +33,7 @@ class PartialUpdateOrganizerSettingsHandlerTest extends TestCase
         $this->handler = new PartialUpdateOrganizerSettingsHandler(
             organizerSettingsRepository: $this->settingsRepository,
             organizerRepository: $this->organizerRepository,
+            googleWalletSyncDispatcher: Mockery::mock(GoogleWalletSyncDispatcher::class)->shouldIgnoreMissing(),
         );
     }
 

@@ -10,12 +10,11 @@ use HiEvents\DomainObjects\EventOccurrenceDomainObject;
 use HiEvents\DomainObjects\Generated\EventDomainObjectAbstract;
 use HiEvents\Exceptions\OrganizerNotFoundException;
 use HiEvents\Jobs\Event\Webhook\DispatchEventWebhookJob;
-use HiEvents\Jobs\GoogleWallet\SyncGoogleWalletClassJob;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Event\DTO\CreateEventDTO;
 use HiEvents\Services\Domain\Event\CreateEventService;
 use HiEvents\Services\Domain\EventLocation\EventLocationUpserter;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletPassSettingsResolver;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Domain\Organizer\OrganizerFetchService;
 use HiEvents\Services\Domain\ProductCategory\CreateProductCategoryService;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
@@ -31,7 +30,7 @@ class CreateEventHandler
         private readonly EventLocationUpserter $eventLocationUpserter,
         private readonly EventRepositoryInterface $eventRepository,
         private readonly DatabaseManager $databaseManager,
-        private readonly GoogleWalletPassSettingsResolver $googleWalletPassSettingsResolver,
+        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
     ) {}
 
     /**
@@ -115,12 +114,9 @@ class CreateEventHandler
 
     private function dispatchGoogleWalletClassSync(EventDomainObject $event): void
     {
-        if (! $this->googleWalletPassSettingsResolver->isConfigured()) {
-            return;
-        }
-
         $event->getEventOccurrences()?->each(
-            fn (EventOccurrenceDomainObject $occurrence) => SyncGoogleWalletClassJob::dispatch($occurrence->getId())
+            fn (EventOccurrenceDomainObject $occurrence) => $this->googleWalletSyncDispatcher
+                ->queueOccurrenceClassSync($occurrence->getId())
         );
     }
 }

@@ -26,7 +26,7 @@ use HiEvents\Services\Application\Handlers\Order\DTO\CompleteOrderDTO;
 use HiEvents\Services\Application\Handlers\Order\DTO\CompleteOrderOrderDTO;
 use HiEvents\Services\Application\Handlers\Order\DTO\CompleteOrderProductDataDTO;
 use HiEvents\Services\Application\Handlers\Order\DTO\OrderQuestionsDTO;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletPassSettingsResolver;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Domain\Order\OccurrenceStatusValidator;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
@@ -116,7 +116,7 @@ class CompleteOrderHandlerTest extends TestCase
             $this->eventSettingsRepository,
             $this->sessionManagementService,
             new OccurrenceStatusValidator($this->occurrenceRepository),
-            Mockery::mock(GoogleWalletPassSettingsResolver::class, ['isConfigured' => false]),
+            Mockery::mock(GoogleWalletSyncDispatcher::class, ['queueOrderPassSync' => null]),
         );
     }
 

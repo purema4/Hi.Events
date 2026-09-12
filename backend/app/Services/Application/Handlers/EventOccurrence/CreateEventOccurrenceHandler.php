@@ -9,13 +9,12 @@ use HiEvents\DomainObjects\Generated\EventOccurrenceDomainObjectAbstract;
 use HiEvents\DomainObjects\Status\EventOccurrenceStatus;
 use HiEvents\Exceptions\ResourceNotFoundException;
 use HiEvents\Helper\IdHelper;
-use HiEvents\Jobs\GoogleWallet\SyncGoogleWalletClassJob;
 use HiEvents\Repository\Interfaces\EventOccurrenceRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Services\Application\Handlers\EventOccurrence\DTO\UpsertEventOccurrenceDTO;
 use HiEvents\Services\Domain\Event\RecurrenceRuleParserService;
 use HiEvents\Services\Domain\EventLocation\EventLocationUpserter;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletPassSettingsResolver;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Validation\ValidationException;
 use Throwable;
@@ -27,7 +26,7 @@ class CreateEventOccurrenceHandler
         private readonly EventRepositoryInterface $eventRepository,
         private readonly EventLocationUpserter $eventLocationUpserter,
         private readonly DatabaseManager $databaseManager,
-        private readonly GoogleWalletPassSettingsResolver $googleWalletPassSettingsResolver,
+        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
     ) {}
 
     /**
@@ -81,9 +80,7 @@ class CreateEventOccurrenceHandler
             ]);
         });
 
-        if ($this->googleWalletPassSettingsResolver->isConfigured()) {
-            SyncGoogleWalletClassJob::dispatch($occurrence->getId());
-        }
+        $this->googleWalletSyncDispatcher->queueOccurrenceClassSync($occurrence->getId());
 
         return $occurrence;
     }
