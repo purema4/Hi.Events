@@ -59,6 +59,15 @@ class PartialUpdateEventSettingsHandler
                 'homepage_background_type' => $eventSettingsDTO->settings['homepage_background_type'] ?? $existingSettings->getHomepageBackgroundType(),
 
                 'order_timeout_in_minutes' => $eventSettingsDTO->settings['order_timeout_in_minutes'] ?? $existingSettings->getOrderTimeoutInMinutes(),
+                'google_wallet_banner_url' => array_key_exists('google_wallet_banner_url', $eventSettingsDTO->settings)
+                    ? $eventSettingsDTO->settings['google_wallet_banner_url']
+                    : $existingSettings->getGoogleWalletBannerUrl(),
+                'google_wallet_logo_url' => array_key_exists('google_wallet_logo_url', $eventSettingsDTO->settings)
+                    ? $eventSettingsDTO->settings['google_wallet_logo_url']
+                    : $existingSettings->getGoogleWalletLogoUrl(),
+                'google_wallet_background_color' => array_key_exists('google_wallet_background_color', $eventSettingsDTO->settings)
+                    ? $eventSettingsDTO->settings['google_wallet_background_color']
+                    : $existingSettings->getGoogleWalletBackgroundColor(),
                 'website_url' => $eventSettingsDTO->settings['website_url'] ?? $existingSettings->getWebsiteUrl(),
                 'maps_url' => array_key_exists('maps_url', $eventSettingsDTO->settings)
                     ? $eventSettingsDTO->settings['maps_url']

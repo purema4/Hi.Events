@@ -61,6 +61,28 @@ class PartialUpdateEventSettingsHandlerTest extends TestCase
         $this->assertSame('Get Tickets', $dto->get_tickets_button_text);
     }
 
+    public function test_explicit_google_wallet_banner_url_is_passed_through(): void
+    {
+        $dto = $this->runPartialUpdate(
+            existingValue: true,
+            settings: ['google_wallet_banner_url' => 'https://cdn.example.com/new.png'],
+            existingGoogleWalletBannerUrl: 'https://cdn.example.com/banner.png',
+        );
+
+        $this->assertSame('https://cdn.example.com/new.png', $dto->google_wallet_banner_url);
+    }
+
+    public function test_omitted_google_wallet_banner_url_falls_back_to_existing_value(): void
+    {
+        $dto = $this->runPartialUpdate(
+            existingValue: true,
+            settings: [],
+            existingGoogleWalletBannerUrl: 'https://cdn.example.com/banner.png',
+        );
+
+        $this->assertSame('https://cdn.example.com/banner.png', $dto->google_wallet_banner_url);
+    }
+
     /**
      * Drives the partial handler and returns the UpdateEventSettingsDTO it forwards
      * to the (mocked) full handler, so we can assert how the field was resolved.
@@ -69,10 +91,12 @@ class PartialUpdateEventSettingsHandlerTest extends TestCase
         bool $existingValue,
         array $settings,
         ?string $existingGetTicketsButtonText = null,
+        ?string $existingGoogleWalletBannerUrl = null,
     ): UpdateEventSettingsDTO {
         $existingSettings = (new EventSettingDomainObject)
             ->setAllowCopyDetailsToAllAttendees($existingValue)
             ->setGetTicketsButtonText($existingGetTicketsButtonText)
+            ->setGoogleWalletBannerUrl($existingGoogleWalletBannerUrl)
             ->setPaymentProviders([]);
 
         $repository = Mockery::mock(EventSettingsRepositoryInterface::class);
