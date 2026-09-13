@@ -2,25 +2,70 @@
 
 namespace Tests\Unit\Services\Domain\GoogleWallet;
 
+use HiEvents\DomainObjects\Enums\ImageType;
 use HiEvents\DomainObjects\Enums\LocationType;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventLocationDomainObject;
 use HiEvents\DomainObjects\EventOccurrenceDomainObject;
 use HiEvents\DomainObjects\EventSettingDomainObject;
+use HiEvents\DomainObjects\ImageDomainObject;
 use HiEvents\DomainObjects\LocationDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\Services\Domain\GoogleWallet\DTO\GoogleWalletPassSettingsDTO;
+use HiEvents\Services\Domain\GoogleWallet\GoogleWalletBannerService;
 use HiEvents\Services\Domain\GoogleWallet\GoogleWalletClassPayloadBuilder;
 use Illuminate\Config\Repository;
+use Illuminate\Support\Collection;
+use Mockery;
+use Mockery\MockInterface;
 use Tests\TestCase;
 
 class GoogleWalletClassPayloadBuilderTest extends TestCase
 {
+    private GoogleWalletBannerService|MockInterface $bannerService;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->bannerService = Mockery::mock(GoogleWalletBannerService::class);
+    }
+
+    protected function tearDown(): void
+    {
+        Mockery::close();
+
+        parent::tearDown();
+    }
+
     private function builder(): GoogleWalletClassPayloadBuilder
     {
         return new GoogleWalletClassPayloadBuilder(
             new Repository(['google-wallet' => ['issuer_name' => 'Hi.Events']]),
             $this->app->make('translator'),
+            $this->bannerService,
+        );
+    }
+
+    private function eventWithCover(?string $avgColour = '#0d0b0a'): EventDomainObject
+    {
+        return $this->event()->setImages(new Collection([
+            (new ImageDomainObject)
+                ->setId(7)
+                ->setType(ImageType::EVENT_COVER->name)
+                ->setDisk('s3-public')
+                ->setPath('event_cover/cover.png')
+                ->setAvgColour($avgColour),
+        ]));
+    }
+
+    private function settingsWithoutColour(): GoogleWalletPassSettingsDTO
+    {
+        return new GoogleWalletPassSettingsDTO(
+            logoUrl: null,
+            heroImageUrl: null,
+            backgroundColor: null,
+            themeAccentColor: '#de0f00',
         );
     }
 
@@ -59,6 +104,7 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
             logoUrl: 'https://cdn.example.com/logo.png',
             heroImageUrl: null,
             backgroundColor: '#112233',
+            themeAccentColor: null,
         );
     }
 
@@ -278,6 +324,85 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
         $this->assertSame('https://cdn.example.com/event-logo.png', $payload['logo']['sourceUri']['uri']);
         $this->assertSame('https://cdn.example.com/event-banner.png', $payload['heroImage']['sourceUri']['uri']);
         $this->assertSame('#aabbcc', $payload['hexBackgroundColor']);
+    }
+
+    public function test_the_cover_becomes_a_generated_banner_that_blends_into_a_card_coloured_like_the_photo(): void
+    {
+        $this->bannerService
+            ->shouldReceive('bannerUrlForCover')
+            ->once()
+            ->with(Mockery::on(fn (ImageDomainObject $cover) => $cover->getId() === 7), '#0d0b0a')
+            ->andReturn('https://cdn.example.com/google_wallet_banner/cover-7-0d0b0a-v1.png');
+
+        $payload = $this->builder()->build(
+            'issuer.class_1',
+            $this->eventWithCover(),
+            $this->occurrence(),
+            $this->organizer(),
+            $this->settingsWithoutColour(),
+        );
+
+        $this->assertSame('#0d0b0a', $payload['hexBackgroundColor']);
+        $this->assertSame(
+            'https://cdn.example.com/google_wallet_banner/cover-7-0d0b0a-v1.png',
+            $payload['heroImage']['sourceUri']['uri'],
+        );
+    }
+
+    public function test_a_chosen_card_colour_wins_over_the_photo_and_the_banner_fades_into_it(): void
+    {
+        $this->bannerService
+            ->shouldReceive('bannerUrlForCover')
+            ->once()
+            ->with(Mockery::any(), '#112233')
+            ->andReturn('https://cdn.example.com/google_wallet_banner/cover-7-112233-v1.png');
+
+        $payload = $this->builder()->build(
+            'issuer.class_1',
+            $this->eventWithCover(),
+            $this->occurrence(),
+            $this->organizer(),
+            $this->passSettings(),
+        );
+
+        $this->assertSame('#112233', $payload['hexBackgroundColor']);
+    }
+
+    public function test_the_theme_accent_is_used_when_there_is_no_cover(): void
+    {
+        $this->bannerService->shouldNotReceive('bannerUrlForCover');
+
+        $payload = $this->builder()->build(
+            'issuer.class_1',
+            $this->event(),
+            $this->occurrence(),
+            $this->organizer(),
+            $this->settingsWithoutColour(),
+        );
+
+        $this->assertSame('#de0f00', $payload['hexBackgroundColor']);
+        $this->assertArrayNotHasKey('heroImage', $payload);
+    }
+
+    public function test_a_banner_url_set_by_hand_is_used_as_is_without_generating_one(): void
+    {
+        $this->bannerService->shouldNotReceive('bannerUrlForCover');
+
+        $event = $this->eventWithCover();
+        $event->setEventSettings(
+            (new EventSettingDomainObject)->setGoogleWalletBannerUrl('https://cdn.example.com/hand-made.png')
+        );
+
+        $payload = $this->builder()->build(
+            'issuer.class_1',
+            $event,
+            $this->occurrence(),
+            $this->organizer(),
+            $this->settingsWithoutColour(),
+        );
+
+        $this->assertSame('https://cdn.example.com/hand-made.png', $payload['heroImage']['sourceUri']['uri']);
+        $this->assertSame('#de0f00', $payload['hexBackgroundColor']);
     }
 
     public function test_blank_event_branding_falls_back_to_the_organizer_settings(): void

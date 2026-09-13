@@ -44,8 +44,8 @@ class GoogleWalletPassSettingsResolver
         return new GoogleWalletPassSettingsDTO(
             logoUrl: $this->nullableString($passSettings['logo_url'] ?? null),
             heroImageUrl: $this->nullableString($passSettings['hero_image_url'] ?? null),
-            backgroundColor: HexColorHelper::toRgbHex($passSettings['background_color'] ?? null)
-                ?? HexColorHelper::toRgbHex($themeSettings['accent'] ?? null),
+            backgroundColor: HexColorHelper::toRgbHex($passSettings['background_color'] ?? null),
+            themeAccentColor: HexColorHelper::toRgbHex($themeSettings['accent'] ?? null),
         );
     }
 

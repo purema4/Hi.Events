@@ -68,7 +68,7 @@ class PreviewGoogleWalletPassCommandTest extends TestCase
         $this->passSettingsResolver
             ->shouldReceive('resolveForOrganizer')
             ->with(self::ORGANIZER_ID)
-            ->andReturn(new GoogleWalletPassSettingsDTO(logoUrl: null, heroImageUrl: null, backgroundColor: null))
+            ->andReturn(new GoogleWalletPassSettingsDTO(logoUrl: null, heroImageUrl: null, backgroundColor: null, themeAccentColor: null))
             ->byDefault();
     }
 

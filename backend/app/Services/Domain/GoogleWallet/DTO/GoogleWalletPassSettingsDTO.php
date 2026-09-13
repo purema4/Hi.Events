@@ -12,5 +12,6 @@ class GoogleWalletPassSettingsDTO extends BaseDataObject
         public readonly ?string $logoUrl,
         public readonly ?string $heroImageUrl,
         public readonly ?string $backgroundColor,
+        public readonly ?string $themeAccentColor,
     ) {}
 }

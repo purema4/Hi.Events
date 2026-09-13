@@ -25,6 +25,7 @@ class GoogleWalletClassPayloadBuilder
     public function __construct(
         private readonly Repository $config,
         private readonly Translator $translator,
+        private readonly GoogleWalletBannerService $bannerService,
     ) {}
 
     public function build(
@@ -34,6 +35,10 @@ class GoogleWalletClassPayloadBuilder
         OrganizerDomainObject $organizer,
         GoogleWalletPassSettingsDTO $passSettings,
     ): array {
+        $explicitHeroImageUrl = $this->explicitHeroImageUrl($event, $passSettings);
+        $cover = $explicitHeroImageUrl === null ? $this->coverImage($event) : null;
+        $backgroundColor = $this->backgroundColor($event, $passSettings, $cover);
+
         return array_filter([
             'id' => $classId,
             'issuerName' => $organizer->getName() ?: (string) $this->config->get('google-wallet.issuer_name'),
@@ -46,8 +51,11 @@ class GoogleWalletClassPayloadBuilder
             'dateTime' => $this->dateTime($event, $occurrence),
             'venue' => $this->venue($event, $occurrence),
             'logo' => $this->image($this->logoUrl($event, $organizer, $passSettings), $organizer->getName()),
-            'heroImage' => $this->image($this->heroImageUrl($event, $passSettings), $event->getTitle()),
-            'hexBackgroundColor' => $this->backgroundColor($event, $passSettings),
+            'heroImage' => $this->image(
+                $explicitHeroImageUrl ?? $this->coverBannerUrl($cover, $backgroundColor),
+                $event->getTitle(),
+            ),
+            'hexBackgroundColor' => $backgroundColor,
             'multipleDevicesAndHoldersAllowedStatus' => 'MULTIPLE_HOLDERS',
             'textModulesData' => $this->textModules($event, $occurrence),
             'classTemplateInfo' => $this->cardTemplate(),
@@ -130,11 +138,32 @@ class GoogleWalletClassPayloadBuilder
             ->translatedFormat('F j, Y @ g:i a');
     }
 
-    private function heroImageUrl(EventDomainObject $event, GoogleWalletPassSettingsDTO $passSettings): ?string
+    private function explicitHeroImageUrl(EventDomainObject $event, GoogleWalletPassSettingsDTO $passSettings): ?string
     {
         return $this->nonEmpty($event->getEventSettings()?->getGoogleWalletBannerUrl())
-            ?? $passSettings->heroImageUrl
-            ?? $this->imageUrl($event->getImages(), ImageType::EVENT_COVER);
+            ?? $passSettings->heroImageUrl;
+    }
+
+    private function coverImage(EventDomainObject $event): ?ImageDomainObject
+    {
+        return $event->getImages()?->first(
+            static fn (ImageDomainObject $image) => $image->getType() === ImageType::EVENT_COVER->name
+        );
+    }
+
+    private function coverBannerUrl(?ImageDomainObject $cover, ?string $backgroundColor): ?string
+    {
+        if ($cover === null) {
+            return null;
+        }
+
+        $coverUrl = Url::getCdnUrl($cover->getPath());
+
+        if ($backgroundColor === null) {
+            return $coverUrl;
+        }
+
+        return $this->bannerService->bannerUrlForCover($cover, $backgroundColor) ?? $coverUrl;
     }
 
     private function logoUrl(
@@ -147,10 +176,15 @@ class GoogleWalletClassPayloadBuilder
             ?? $this->imageUrl($organizer->getImages(), ImageType::ORGANIZER_LOGO);
     }
 
-    private function backgroundColor(EventDomainObject $event, GoogleWalletPassSettingsDTO $passSettings): ?string
-    {
+    private function backgroundColor(
+        EventDomainObject $event,
+        GoogleWalletPassSettingsDTO $passSettings,
+        ?ImageDomainObject $cover,
+    ): ?string {
         return HexColorHelper::toRgbHex($event->getEventSettings()?->getGoogleWalletBackgroundColor())
-            ?? $passSettings->backgroundColor;
+            ?? $passSettings->backgroundColor
+            ?? HexColorHelper::toRgbHex($cover?->getAvgColour())
+            ?? $passSettings->themeAccentColor;
     }
 
     private function nonEmpty(?string $value): ?string
