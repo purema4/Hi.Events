@@ -10,8 +10,8 @@ use HiEvents\Repository\Interfaces\ImageRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrganizerRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Images\CreateImageHandler;
 use HiEvents\Services\Application\Handlers\Images\DTO\CreateImageDTO;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Domain\Image\ImageUploadService;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use Illuminate\Http\UploadedFile;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -36,7 +36,7 @@ class CreateImageHandlerTest extends TestCase
             $organizerRepository,
             $eventRepository,
             $imageRepository,
-            m::mock(GoogleWalletSyncDispatcher::class)->shouldIgnoreMissing(),
+            m::mock(WalletPassSyncDispatcher::class)->shouldIgnoreMissing(),
         );
     }
 

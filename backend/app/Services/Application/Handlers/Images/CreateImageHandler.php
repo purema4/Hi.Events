@@ -11,8 +11,8 @@ use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\ImageRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrganizerRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Images\DTO\CreateImageDTO;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Domain\Image\ImageUploadService;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\Image\Exception\CouldNotUploadImageException;
 
 class CreateImageHandler
@@ -29,7 +29,7 @@ class CreateImageHandler
         private readonly OrganizerRepositoryInterface $organizerRepository,
         private readonly EventRepositoryInterface $eventRepository,
         private readonly ImageRepositoryInterface $imageRepository,
-        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
+        private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
     /**
@@ -66,7 +66,7 @@ class CreateImageHandler
             accountId: $imageData->accountId,
         );
 
-        $this->googleWalletSyncDispatcher->queueImageOwnerClassSync($imageData->imageType, $imageData->entityId);
+        $this->walletPassSyncDispatcher->queueImageOwnerSync($imageData->imageType, $imageData->entityId);
 
         return $image;
     }

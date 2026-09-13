@@ -6,7 +6,7 @@ use HiEvents\DomainObjects\ImageDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\Repository\Interfaces\OrganizerRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Organizer\DTO\EditOrganizerDTO;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\HtmlPurifier\HtmlPurifierService;
 use Illuminate\Database\DatabaseManager;
 use Throwable;
@@ -17,7 +17,7 @@ class EditOrganizerHandler
         private readonly OrganizerRepositoryInterface $organizerRepository,
         private readonly DatabaseManager $databaseManager,
         private readonly HtmlPurifierService $htmlPurifierService,
-        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
+        private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
     /**
@@ -35,7 +35,7 @@ class EditOrganizerHandler
         );
 
         if ($organizer->getName() !== $previousName) {
-            $this->googleWalletSyncDispatcher->queueOrganizerClassSync($organizerData->id);
+            $this->walletPassSyncDispatcher->queueOrganizerSync($organizerData->id);
         }
 
         return $organizer;

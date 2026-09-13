@@ -9,6 +9,7 @@ use HiEvents\DomainObjects\OrderDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\DomainObjects\Status\OrderPaymentStatus;
 use HiEvents\DomainObjects\Status\OrderStatus;
+use HiEvents\Services\Domain\AppleWallet\AppleWalletButtonResolver;
 use HiEvents\Services\Domain\Email\EmailTemplateService;
 use HiEvents\Services\Domain\Email\EmailTokenContextBuilder;
 use HiEvents\Services\Domain\Email\MailBuilderService;
@@ -29,6 +30,7 @@ class MailBuilderServiceTest extends TestCase
             app(EmailTokenContextBuilder::class),
             app(OfflinePaymentInstructionsRenderService::class),
             app(GoogleWalletButtonResolver::class),
+            app(AppleWalletButtonResolver::class),
         );
 
         $organizer = (new OrganizerDomainObject)

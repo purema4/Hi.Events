@@ -18,9 +18,9 @@ use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Services\Domain\EventStatistics\EventStatisticsCancellationService;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
 use HiEvents\Services\Domain\Waitlist\RevertWaitlistOffersForCancelledOrderService;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
 use HiEvents\Services\Infrastructure\DomainEvents\Events\OrderEvent;
@@ -40,7 +40,7 @@ class OrderCancelService
         private readonly DomainEventDispatcherService $domainEventDispatcherService,
         private readonly EventStatisticsCancellationService $eventStatisticsCancellationService,
         private readonly RevertWaitlistOffersForCancelledOrderService $revertWaitlistOffersService,
-        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
+        private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
     /**
@@ -74,7 +74,7 @@ class OrderCancelService
             });
         });
 
-        $this->googleWalletSyncDispatcher->queueOrderPassSync($order->getId());
+        $this->walletPassSyncDispatcher->queueOrderSync($order->getId());
     }
 
     private function sendOrderCancelledEmail(OrderDomainObject $order): void

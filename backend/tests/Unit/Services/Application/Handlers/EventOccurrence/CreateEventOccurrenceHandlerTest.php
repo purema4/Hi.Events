@@ -15,7 +15,7 @@ use HiEvents\Services\Application\Handlers\EventOccurrence\DTO\UpsertEventOccurr
 use HiEvents\Services\Domain\Event\RecurrenceRuleParserService;
 use HiEvents\Services\Domain\EventLocation\EventLocationData;
 use HiEvents\Services\Domain\EventLocation\EventLocationUpserter;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
@@ -52,7 +52,7 @@ class CreateEventOccurrenceHandlerTest extends TestCase
             $this->eventRepository,
             $this->eventLocationUpserter,
             $this->databaseManager,
-            Mockery::mock(GoogleWalletSyncDispatcher::class, ['queueOccurrenceClassSync' => null]),
+            Mockery::mock(WalletPassSyncDispatcher::class, ['queueOccurrenceSync' => null]),
         );
     }
 

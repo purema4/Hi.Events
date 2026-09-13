@@ -14,7 +14,7 @@ use HiEvents\Services\Application\Handlers\EventOccurrence\DTO\UpsertEventOccurr
 use HiEvents\Services\Domain\Event\RecurrenceRuleExclusionService;
 use HiEvents\Services\Domain\EventLocation\EventLocationCleaner;
 use HiEvents\Services\Domain\EventLocation\EventLocationUpserter;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use Illuminate\Database\DatabaseManager;
 use Throwable;
 
@@ -27,7 +27,7 @@ class UpdateEventOccurrenceHandler
         private readonly EventLocationCleaner $eventLocationCleaner,
         private readonly RecurrenceRuleExclusionService $exclusionService,
         private readonly DatabaseManager $databaseManager,
-        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
+        private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
     /**
@@ -116,7 +116,7 @@ class UpdateEventOccurrenceHandler
             return $updated;
         });
 
-        $this->googleWalletSyncDispatcher->queueOccurrenceClassSync($occurrenceId);
+        $this->walletPassSyncDispatcher->queueOccurrenceSync($occurrenceId);
 
         return $occurrence;
     }

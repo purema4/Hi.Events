@@ -11,8 +11,8 @@ use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Attendee\DTO\PartialEditAttendeeDTO;
 use HiEvents\Services\Domain\EventStatistics\EventStatisticsCancellationService;
 use HiEvents\Services\Domain\EventStatistics\EventStatisticsReactivationService;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
 use HiEvents\Services\Infrastructure\DomainEvents\Events\AttendeeEvent;
@@ -32,7 +32,7 @@ class PartialEditAttendeeHandler
         private readonly EventStatisticsCancellationService $eventStatisticsCancellationService,
         private readonly EventStatisticsReactivationService $eventStatisticsReactivationService,
         private readonly LoggerInterface $logger,
-        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
+        private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
     /**
@@ -44,7 +44,7 @@ class PartialEditAttendeeHandler
             return $this->updateAttendee($data);
         });
 
-        $this->googleWalletSyncDispatcher->queueAttendeePassSync($data->attendee_id);
+        $this->walletPassSyncDispatcher->queueAttendeeSync($data->attendee_id);
 
         return $attendee;
     }

@@ -15,7 +15,7 @@ use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Event\DTO\UpdateEventLocationDTO;
 use HiEvents\Services\Domain\EventLocation\EventLocationCleaner;
 use HiEvents\Services\Domain\EventLocation\EventLocationUpserter;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use Illuminate\Database\DatabaseManager;
 use Throwable;
 
@@ -26,7 +26,7 @@ class UpdateEventLocationHandler
         private readonly EventLocationUpserter $eventLocationUpserter,
         private readonly EventLocationCleaner $eventLocationCleaner,
         private readonly DatabaseManager $databaseManager,
-        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
+        private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
     /**
@@ -88,7 +88,7 @@ class UpdateEventLocationHandler
                 ]);
         });
 
-        $this->googleWalletSyncDispatcher->queueEventClassSync($dto->event_id);
+        $this->walletPassSyncDispatcher->queueEventSync($dto->event_id);
 
         return $event;
     }

@@ -13,6 +13,7 @@ use HiEvents\Repository\Eloquent\AccountUserRepository;
 use HiEvents\Repository\Eloquent\AffiliateRepository;
 use HiEvents\Repository\Eloquent\AnnouncementRepository;
 use HiEvents\Repository\Eloquent\AnnouncementUserRepository;
+use HiEvents\Repository\Eloquent\AppleWalletRegistrationRepository;
 use HiEvents\Repository\Eloquent\AttendeeCheckInRepository;
 use HiEvents\Repository\Eloquent\AttendeeRepository;
 use HiEvents\Repository\Eloquent\CapacityAssignmentRepository;
@@ -72,6 +73,7 @@ use HiEvents\Repository\Interfaces\AccountUserRepositoryInterface;
 use HiEvents\Repository\Interfaces\AffiliateRepositoryInterface;
 use HiEvents\Repository\Interfaces\AnnouncementRepositoryInterface;
 use HiEvents\Repository\Interfaces\AnnouncementUserRepositoryInterface;
+use HiEvents\Repository\Interfaces\AppleWalletRegistrationRepositoryInterface;
 use HiEvents\Repository\Interfaces\AttendeeCheckInRepositoryInterface;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\CapacityAssignmentRepositoryInterface;
@@ -165,6 +167,7 @@ class RepositoryServiceProvider extends ServiceProvider
         OrderRefundRepositoryInterface::class => OrderRefundRepository::class,
         WebhookRepositoryInterface::class => WebhookRepository::class,
         WebhookLogRepositoryInterface::class => WebhookLogRepository::class,
+        AppleWalletRegistrationRepositoryInterface::class => AppleWalletRegistrationRepository::class,
         OrderApplicationFeeRepositoryInterface::class => OrderApplicationFeeRepository::class,
         OrderAuditLogRepositoryInterface::class => OrderAuditLogRepository::class,
         OrderPaymentPlatformFeeRepositoryInterface::class => OrderPaymentPlatformFeeRepository::class,

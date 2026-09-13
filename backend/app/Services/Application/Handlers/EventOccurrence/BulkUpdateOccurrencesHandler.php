@@ -27,7 +27,7 @@ use HiEvents\Services\Application\Handlers\EventOccurrence\DTO\BulkUpdateOccurre
 use HiEvents\Services\Domain\Event\RecurrenceRuleExclusionService;
 use HiEvents\Services\Domain\EventLocation\EventLocationCleaner;
 use HiEvents\Services\Domain\EventLocation\EventLocationUpserter;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Support\Collection;
 use Throwable;
@@ -44,7 +44,7 @@ class BulkUpdateOccurrencesHandler
         private readonly EventLocationUpserter $eventLocationUpserter,
         private readonly EventLocationCleaner $eventLocationCleaner,
         private readonly DatabaseManager $databaseManager,
-        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
+        private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
     /**
@@ -76,7 +76,7 @@ class BulkUpdateOccurrencesHandler
 
         if ($dto->action === BulkOccurrenceAction::UPDATE) {
             foreach ($result->updated_ids as $occurrenceId) {
-                $this->googleWalletSyncDispatcher->queueOccurrenceClassSync($occurrenceId);
+                $this->walletPassSyncDispatcher->queueOccurrenceSync($occurrenceId);
             }
         }
 

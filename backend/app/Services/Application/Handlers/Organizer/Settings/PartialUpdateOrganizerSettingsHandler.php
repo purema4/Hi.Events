@@ -7,14 +7,14 @@ use HiEvents\DomainObjects\OrganizerSettingDomainObject;
 use HiEvents\Repository\Interfaces\OrganizerRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrganizerSettingsRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Organizer\DTO\PartialUpdateOrganizerSettingsDTO;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 
 class PartialUpdateOrganizerSettingsHandler
 {
     public function __construct(
         private readonly OrganizerSettingsRepositoryInterface $organizerSettingsRepository,
         private readonly OrganizerRepositoryInterface $organizerRepository,
-        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
+        private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
     public function handle(PartialUpdateOrganizerSettingsDTO $dto): OrganizerSettingDomainObject
@@ -86,6 +86,9 @@ class PartialUpdateOrganizerSettingsHandler
             'google_wallet_enabled' => $dto->getProvided('googleWalletEnabled', $organizerSettings->getGoogleWalletEnabled()),
             'google_wallet_pass_settings' => $dto->getProvided('googleWalletPassSettings', $organizerSettings->getGoogleWalletPassSettings()),
 
+            'apple_wallet_enabled' => $dto->getProvided('appleWalletEnabled', $organizerSettings->getAppleWalletEnabled()),
+            'apple_wallet_pass_settings' => $dto->getProvided('appleWalletPassSettings', $organizerSettings->getAppleWalletPassSettings()),
+
             'tracking_pixels' => $dto->getProvided('trackingPixels', $organizerSettings->getTrackingPixels()),
             'tracking_consent_acknowledged' => $dto->getProvided('trackingConsentAcknowledged', $organizerSettings->getTrackingConsentAcknowledged()),
         ], [
@@ -95,19 +98,21 @@ class PartialUpdateOrganizerSettingsHandler
 
         $updatedSettings = $this->organizerSettingsRepository->findFirst($organizerSettings->getId());
 
-        if ($this->googleWalletBrandingChanged($organizerSettings, $updatedSettings)) {
-            $this->googleWalletSyncDispatcher->queueOrganizerClassSync($organizer->getId());
+        if ($this->walletBrandingChanged($organizerSettings, $updatedSettings)) {
+            $this->walletPassSyncDispatcher->queueOrganizerSync($organizer->getId());
         }
 
         return $updatedSettings;
     }
 
-    private function googleWalletBrandingChanged(
+    private function walletBrandingChanged(
         OrganizerSettingDomainObject $existingSettings,
         OrganizerSettingDomainObject $updatedSettings,
     ): bool {
         return $existingSettings->getGoogleWalletEnabled() !== $updatedSettings->getGoogleWalletEnabled()
             || $existingSettings->getGoogleWalletPassSettings() !== $updatedSettings->getGoogleWalletPassSettings()
+            || $existingSettings->getAppleWalletEnabled() !== $updatedSettings->getAppleWalletEnabled()
+            || $existingSettings->getAppleWalletPassSettings() !== $updatedSettings->getAppleWalletPassSettings()
             || $existingSettings->getHomepageThemeSettings() !== $updatedSettings->getHomepageThemeSettings();
     }
 }

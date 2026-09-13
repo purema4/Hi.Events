@@ -17,10 +17,10 @@ use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Services\Domain\EventStatistics\EventStatisticsCancellationService;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Domain\Order\OrderCancelService;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
 use HiEvents\Services\Domain\Waitlist\RevertWaitlistOffersForCancelledOrderService;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
 use HiEvents\Services\Infrastructure\DomainEvents\Events\OrderEvent;
@@ -86,7 +86,7 @@ class OrderCancelServiceTest extends TestCase
             domainEventDispatcherService: $this->domainEventDispatcherService,
             eventStatisticsCancellationService: $this->eventStatisticsCancellationService,
             revertWaitlistOffersService: $this->revertWaitlistOffersService,
-            googleWalletSyncDispatcher: m::mock(GoogleWalletSyncDispatcher::class)->shouldIgnoreMissing(),
+            walletPassSyncDispatcher: m::mock(WalletPassSyncDispatcher::class)->shouldIgnoreMissing(),
         );
     }
 

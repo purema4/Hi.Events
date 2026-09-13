@@ -70,6 +70,10 @@ class PartialUpdateOrganizerSettingsDTO extends BaseDataObject
         public readonly bool|Optional|null $googleWalletEnabled,
         public readonly array|Optional|null $googleWalletPassSettings,
 
+        // Apple Wallet
+        public readonly bool|Optional|null $appleWalletEnabled,
+        public readonly array|Optional|null $appleWalletPassSettings,
+
         // Tracking pixels
         public readonly array|Optional|null $trackingPixels,
         public readonly bool|Optional|null $trackingConsentAcknowledged,

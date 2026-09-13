@@ -24,6 +24,9 @@ class AccountResource extends JsonResource
             'is_saas_mode_enabled' => config('app.saas_mode_enabled'),
             'is_google_wallet_available' => config('google-wallet.enabled')
                 && trim((string) config('google-wallet.issuer_id')) !== '',
+            'is_apple_wallet_available' => config('apple-wallet.enabled')
+                && trim((string) config('apple-wallet.pass_type_identifier')) !== ''
+                && trim((string) config('apple-wallet.team_identifier')) !== '',
             'requires_manual_verification' => config('app.saas_mode_enabled') && ! $this->getIsManuallyVerified(),
 
             'deletion_request' => $this->getActiveDeletionRequest()

@@ -7,6 +7,7 @@ use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\DomainObjects\OrderDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
+use HiEvents\Services\Domain\AppleWallet\AppleWalletPassUrlResolver;
 use HiEvents\Services\Domain\Email\MailBuilderService;
 use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSaveUrlResolver;
 use Illuminate\Contracts\Mail\Mailer;
@@ -18,6 +19,7 @@ class SendAttendeeTicketService
         private readonly Mailer $mailer,
         private readonly MailBuilderService $mailBuilderService,
         private readonly GoogleWalletSaveUrlResolver $googleWalletSaveUrlResolver,
+        private readonly AppleWalletPassUrlResolver $appleWalletPassUrlResolver,
     ) {}
 
     /**
@@ -31,8 +33,10 @@ class SendAttendeeTicketService
         OrganizerDomainObject $organizer,
         ?Collection $additionalAttendees = null,
     ): void {
+        $ticketAttendees = collect([$attendee])->merge($additionalAttendees ?? collect());
+
         $googleWalletSaveUrl = $this->googleWalletSaveUrlResolver->resolveForAttendees(
-            attendees: collect([$attendee])->merge($additionalAttendees ?? collect()),
+            attendees: $ticketAttendees,
             event: $event,
             organizer: $organizer,
         );
@@ -46,6 +50,11 @@ class SendAttendeeTicketService
             $attendee->getEventOccurrence(),
             $additionalAttendees,
             $googleWalletSaveUrl,
+            $this->appleWalletPassUrlResolver->resolveForAttendees(
+                attendees: $ticketAttendees,
+                event: $event,
+                organizer: $organizer,
+            ),
         );
 
         $this->mailer

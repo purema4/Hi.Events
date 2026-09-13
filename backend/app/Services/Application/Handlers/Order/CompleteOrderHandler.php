@@ -36,10 +36,10 @@ use HiEvents\Services\Application\Handlers\Order\DTO\CompleteOrderOrderDTO;
 use HiEvents\Services\Application\Handlers\Order\DTO\CompleteOrderProductDataDTO;
 use HiEvents\Services\Application\Handlers\Order\DTO\CreatedProductDataDTO;
 use HiEvents\Services\Application\Handlers\Order\DTO\OrderQuestionsDTO;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Domain\Order\OccurrenceStatusValidator;
 use HiEvents\Services\Domain\Payment\Stripe\EventHandlers\PaymentIntentSucceededHandler;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
 use HiEvents\Services\Infrastructure\DomainEvents\Events\OrderEvent;
@@ -65,7 +65,7 @@ class CompleteOrderHandler
         private readonly EventSettingsRepositoryInterface $eventSettingsRepository,
         private readonly CheckoutSessionManagementService $sessionManagementService,
         private readonly OccurrenceStatusValidator $occurrenceStatusValidator,
-        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
+        private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
     /**
@@ -108,7 +108,7 @@ class CompleteOrderHandler
             return $updatedOrder;
         });
 
-        $this->googleWalletSyncDispatcher->queueOrderPassSync($updatedOrder->getId());
+        $this->walletPassSyncDispatcher->queueOrderSync($updatedOrder->getId());
 
         event(new OrderStatusChangedEvent(
             order: $updatedOrder,

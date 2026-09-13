@@ -7,7 +7,7 @@ use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\Events\CapacityChangedEvent;
 use HiEvents\Repository\Interfaces\EventSettingsRepositoryInterface;
 use HiEvents\Services\Application\Handlers\EventSettings\DTO\UpdateEventSettingsDTO;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\HtmlPurifier\HtmlPurifierService;
 use Illuminate\Database\DatabaseManager;
 use Throwable;
@@ -18,7 +18,7 @@ class UpdateEventSettingsHandler
         private readonly EventSettingsRepositoryInterface $eventSettingsRepository,
         private readonly HtmlPurifierService $purifier,
         private readonly DatabaseManager $databaseManager,
-        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
+        private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
     /**
@@ -58,6 +58,9 @@ class UpdateEventSettingsHandler
                     'google_wallet_banner_url' => $this->trimmedOrNull($settings->google_wallet_banner_url),
                     'google_wallet_logo_url' => $this->trimmedOrNull($settings->google_wallet_logo_url),
                     'google_wallet_background_color' => $settings->google_wallet_background_color,
+                    'apple_wallet_logo_url' => $this->trimmedOrNull($settings->apple_wallet_logo_url),
+                    'apple_wallet_strip_image_url' => $this->trimmedOrNull($settings->apple_wallet_strip_image_url),
+                    'apple_wallet_background_color' => $settings->apple_wallet_background_color,
                     'website_url' => trim($settings->website_url),
                     'maps_url' => trim($settings->maps_url),
 
@@ -129,20 +132,23 @@ class UpdateEventSettingsHandler
             ));
         }
 
-        if ($existingSettings !== null && $this->googleWalletBrandingChanged($existingSettings, $settings)) {
-            $this->googleWalletSyncDispatcher->queueEventClassSync($settings->event_id);
+        if ($existingSettings !== null && $this->walletBrandingChanged($existingSettings, $settings)) {
+            $this->walletPassSyncDispatcher->queueEventSync($settings->event_id);
         }
 
         return $result;
     }
 
-    private function googleWalletBrandingChanged(
+    private function walletBrandingChanged(
         EventSettingDomainObject $existingSettings,
         UpdateEventSettingsDTO $settings,
     ): bool {
         return $existingSettings->getGoogleWalletBannerUrl() !== $this->trimmedOrNull($settings->google_wallet_banner_url)
             || $existingSettings->getGoogleWalletLogoUrl() !== $this->trimmedOrNull($settings->google_wallet_logo_url)
-            || $existingSettings->getGoogleWalletBackgroundColor() !== $settings->google_wallet_background_color;
+            || $existingSettings->getGoogleWalletBackgroundColor() !== $settings->google_wallet_background_color
+            || $existingSettings->getAppleWalletLogoUrl() !== $this->trimmedOrNull($settings->apple_wallet_logo_url)
+            || $existingSettings->getAppleWalletStripImageUrl() !== $this->trimmedOrNull($settings->apple_wallet_strip_image_url)
+            || $existingSettings->getAppleWalletBackgroundColor() !== $settings->apple_wallet_background_color;
     }
 
     private function trimmedOrNull(?string $value): ?string

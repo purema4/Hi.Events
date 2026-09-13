@@ -54,6 +54,12 @@ use HiEvents\Http\Actions\Affiliates\GetAffiliatesAction;
 use HiEvents\Http\Actions\Affiliates\UpdateAffiliateAction;
 use HiEvents\Http\Actions\Announcements\DismissAnnouncementAction;
 use HiEvents\Http\Actions\Announcements\GetActiveAnnouncementsAction;
+use HiEvents\Http\Actions\AppleWallet\GetLatestAppleWalletPassAction;
+use HiEvents\Http\Actions\AppleWallet\GetUpdatableAppleWalletPassesAction;
+use HiEvents\Http\Actions\AppleWallet\LogAppleWalletMessagesAction;
+use HiEvents\Http\Actions\AppleWallet\Public\DownloadAppleWalletPassesPublicAction;
+use HiEvents\Http\Actions\AppleWallet\RegisterAppleWalletDeviceAction;
+use HiEvents\Http\Actions\AppleWallet\UnregisterAppleWalletDeviceAction;
 use HiEvents\Http\Actions\Attendees\CheckInAttendeeAction;
 use HiEvents\Http\Actions\Attendees\CreateAttendeeAction;
 use HiEvents\Http\Actions\Attendees\EditAttendeeAction;
@@ -628,6 +634,8 @@ $router->prefix('/public')->group(
 
         // Attendees
         $router->get('/events/{event_id}/attendees/{attendee_short_id}', GetAttendeeActionPublic::class);
+        $router->get('/events/{event_id}/apple-wallet-passes', DownloadAppleWalletPassesPublicAction::class)
+            ->middleware('throttle:60,1');
 
         // Waitlist
         $router->post('/events/{event_id}/waitlist', CreateWaitlistEntryActionPublic::class)
@@ -679,6 +687,16 @@ $router->prefix('/public')->group(
         $router->get('/sitemap.xml', GetSitemapIndexAction::class);
         $router->get('/sitemap-events-{page}.xml', GetSitemapEventsAction::class)->where('page', '[0-9]+');
         $router->get('/sitemap-organizers-{page}.xml', GetSitemapOrganizersAction::class)->where('page', '[0-9]+');
+    }
+);
+
+$router->prefix('/apple-wallet/v1')->middleware('throttle:120,1')->group(
+    function (Router $router): void {
+        $router->post('/devices/{device_library_identifier}/registrations/{pass_type_identifier}/{serial_number}', RegisterAppleWalletDeviceAction::class);
+        $router->delete('/devices/{device_library_identifier}/registrations/{pass_type_identifier}/{serial_number}', UnregisterAppleWalletDeviceAction::class);
+        $router->get('/devices/{device_library_identifier}/registrations/{pass_type_identifier}', GetUpdatableAppleWalletPassesAction::class);
+        $router->get('/passes/{pass_type_identifier}/{serial_number}', GetLatestAppleWalletPassAction::class);
+        $router->post('/log', LogAppleWalletMessagesAction::class);
     }
 );
 
