@@ -16,7 +16,7 @@ use Tests\TestCase;
 
 class GoogleWalletBannerServiceTest extends TestCase
 {
-    private const BANNER_PATH = 'google_wallet_banner/cover-7-0d0b0a-v1.png';
+    private const BANNER_PATH = 'google_wallet_banner/cover-7-0d0b0a-v2.png';
 
     private FilesystemManager|MockInterface $filesystemManager;
 

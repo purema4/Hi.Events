@@ -51,13 +51,15 @@ class GoogleWalletBannerRendererTest extends TestCase
     {
         $banner = (new GoogleWalletBannerRenderer)->render($this->solidImage(2400, 1000, '#ff0000'), '#102030');
 
-        $this->assertSame(['r' => 16, 'g' => 32, 'b' => 48, 'a' => 1], $this->pixel($banner, 516, 5));
+        $this->assertSame(['r' => 16, 'g' => 32, 'b' => 48, 'a' => 1], $this->pixel($banner, 516, 0));
     }
 
-    public function test_the_photo_fills_the_bottom_of_the_banner(): void
+    public function test_the_photo_fills_the_banner_below_the_fade(): void
     {
         $banner = (new GoogleWalletBannerRenderer)->render($this->solidImage(600, 1200, '#ff0000'), '#102030');
+        $red = ['r' => 255, 'g' => 0, 'b' => 0, 'a' => 1];
 
-        $this->assertSame(['r' => 255, 'g' => 0, 'b' => 0, 'a' => 1], $this->pixel($banner, 516, GoogleWalletBannerRenderer::HEIGHT - 5));
+        $this->assertSame($red, $this->pixel($banner, 516, intdiv(GoogleWalletBannerRenderer::HEIGHT, 2)));
+        $this->assertSame($red, $this->pixel($banner, 516, GoogleWalletBannerRenderer::HEIGHT - 1));
     }
 }

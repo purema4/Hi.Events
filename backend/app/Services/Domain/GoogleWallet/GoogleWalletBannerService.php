@@ -16,7 +16,7 @@ class GoogleWalletBannerService
 {
     private const DIRECTORY = 'google_wallet_banner';
 
-    private const RENDER_VERSION = 1;
+    private const RENDER_VERSION = 2;
 
     public function __construct(
         private readonly FilesystemManager $filesystemManager,
