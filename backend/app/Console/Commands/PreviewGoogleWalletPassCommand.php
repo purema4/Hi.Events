@@ -3,24 +3,31 @@
 namespace HiEvents\Console\Commands;
 
 use HiEvents\DomainObjects\AttendeeDomainObject;
+use HiEvents\DomainObjects\Generated\AttendeeDomainObjectAbstract;
+use HiEvents\DomainObjects\Generated\OrderDomainObjectAbstract;
 use HiEvents\Exceptions\GoogleWallet\GoogleWalletApiException;
 use HiEvents\Exceptions\GoogleWallet\GoogleWalletConfigurationException;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
+use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Services\Domain\GoogleWallet\GoogleWalletPassSettingsResolver;
 use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSaveUrlService;
 use HiEvents\Services\Domain\GoogleWallet\SyncGoogleWalletPassesService;
 use Illuminate\Console\Command;
-use Illuminate\Support\Collection;
 
 class PreviewGoogleWalletPassCommand extends Command
 {
-    protected $signature = 'google-wallet:preview {attendee : Attendee ID, ticket code (A-XXXXXXX) or email}';
+    private const ATTENDEE_CODE_PREFIX = 'A-';
 
-    protected $description = 'Push the latest Google Wallet pass for an attendee and print its save link, without sending an email';
+    private const ORDER_NUMBER_PREFIX = 'O-';
+
+    protected $signature = 'google-wallet:preview {code : Attendee ticket code (A-XXXXXXX) or order number (O-XXXXXXX)}';
+
+    protected $description = 'Push the latest Google Wallet passes for a ticket or an order and print the save link, without sending an email';
 
     public function __construct(
         private readonly AttendeeRepositoryInterface $attendeeRepository,
+        private readonly OrderRepositoryInterface $orderRepository,
         private readonly EventRepositoryInterface $eventRepository,
         private readonly GoogleWalletPassSettingsResolver $passSettingsResolver,
         private readonly SyncGoogleWalletPassesService $syncService,
@@ -37,81 +44,87 @@ class PreviewGoogleWalletPassCommand extends Command
             return self::FAILURE;
         }
 
-        $identifier = trim((string) $this->argument('attendee'));
-        $matches = $this->findAttendees($identifier);
+        $input = trim((string) $this->argument('code'));
+        $code = strtoupper($input);
 
-        if ($matches->isEmpty()) {
-            $this->error("No attendee found for $identifier.");
+        return match (true) {
+            str_starts_with($code, self::ATTENDEE_CODE_PREFIX) => $this->previewAttendee($code),
+            str_starts_with($code, self::ORDER_NUMBER_PREFIX) => $this->previewOrder($code),
+            default => $this->failWith("$input is not a ticket code (A-XXXXXXX) or an order number (O-XXXXXXX)."),
+        };
+    }
 
-            return self::FAILURE;
+    private function previewAttendee(string $code): int
+    {
+        $attendee = $this->attendeeRepository->findFirstWhere([AttendeeDomainObjectAbstract::PUBLIC_ID => $code]);
+
+        if ($attendee === null) {
+            return $this->failWith("No ticket found with code $code.");
         }
 
-        if ($matches->count() > 1) {
-            $this->error("$identifier matches {$matches->count()} attendees. Run the command again with one of these IDs or ticket codes:");
-            $this->table(
-                ['ID', 'Ticket code', 'Name', 'Event', 'Status'],
-                $matches->map(fn (AttendeeDomainObject $match) => [
-                    $match->getId(),
-                    $match->getPublicId(),
-                    trim($match->getFirstName().' '.$match->getLastName()),
-                    $match->getEventId(),
-                    $match->getStatus(),
-                ])->all(),
-            );
+        return $this->preview(
+            eventId: $attendee->getEventId(),
+            sync: fn () => $this->syncService->syncAttendee($attendee->getId()),
+            where: [AttendeeDomainObjectAbstract::ID => $attendee->getId()],
+        );
+    }
 
-            return self::FAILURE;
+    private function previewOrder(string $code): int
+    {
+        $order = $this->orderRepository->findFirstWhere([OrderDomainObjectAbstract::PUBLIC_ID => $code]);
+
+        if ($order === null) {
+            return $this->failWith("No order found with number $code.");
         }
 
-        $attendee = $matches->first();
-        $attendeeId = $attendee->getId();
+        return $this->preview(
+            eventId: $order->getEventId(),
+            sync: fn () => $this->syncService->syncOrder($order->getId()),
+            where: [AttendeeDomainObjectAbstract::ORDER_ID => $order->getId()],
+        );
+    }
 
-        $organizerId = $this->eventRepository->findById($attendee->getEventId())->getOrganizerId();
+    /**
+     * @param  callable(): void  $sync
+     * @param  array<string, int>  $where
+     */
+    private function preview(int $eventId, callable $sync, array $where): int
+    {
+        $organizerId = $this->eventRepository->findById($eventId)->getOrganizerId();
 
         if ($this->passSettingsResolver->resolveForOrganizer($organizerId) === null) {
-            $this->error("Google Wallet is disabled for organizer $organizerId. Enable it in the organizer settings.");
-
-            return self::FAILURE;
+            return $this->failWith("Google Wallet is disabled for organizer $organizerId. Enable it in the organizer settings.");
         }
 
         try {
-            $this->syncService->syncAttendee($attendeeId);
+            $sync();
 
-            $objectId = $this->attendeeRepository
-                ->findFirstWhere(['id' => $attendeeId])
-                ?->getGoogleWalletObjectId();
+            $objectIds = $this->attendeeRepository
+                ->findWhere($where)
+                ->map(fn (AttendeeDomainObject $attendee) => $attendee->getGoogleWalletObjectId())
+                ->filter()
+                ->values()
+                ->all();
 
-            if ($objectId === null) {
-                $this->error('No pass was created. The attendee must belong to a single event date.');
-
-                return self::FAILURE;
+            if ($objectIds === []) {
+                return $this->failWith('No pass was created. Each ticket must belong to a single event date.');
             }
 
-            $saveUrl = $this->saveUrlService->buildForObjectIds([$objectId]);
+            $saveUrl = $this->saveUrlService->buildForObjectIds($objectIds);
         } catch (GoogleWalletApiException|GoogleWalletConfigurationException $exception) {
-            $this->error($exception->getMessage());
-
-            return self::FAILURE;
+            return $this->failWith($exception->getMessage());
         }
 
-        $this->info("Pass $objectId is up to date. Open this link to preview it:");
+        $this->info(sprintf('%d pass(es) up to date. Open this link to preview them:', count($objectIds)));
         $this->line($saveUrl);
 
         return self::SUCCESS;
     }
 
-    /**
-     * @return Collection<int, AttendeeDomainObject>
-     */
-    private function findAttendees(string $identifier): Collection
+    private function failWith(string $message): int
     {
-        if (ctype_digit($identifier)) {
-            return $this->attendeeRepository->findWhere(['id' => (int) $identifier]);
-        }
+        $this->error($message);
 
-        if (str_contains($identifier, '@')) {
-            return $this->attendeeRepository->findWhere([['email', 'ilike', $identifier]]);
-        }
-
-        return $this->attendeeRepository->findWhere(['public_id' => strtoupper($identifier)]);
+        return self::FAILURE;
     }
 }

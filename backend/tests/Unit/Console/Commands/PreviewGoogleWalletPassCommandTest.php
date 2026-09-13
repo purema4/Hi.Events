@@ -5,9 +5,11 @@ namespace Tests\Unit\Console\Commands;
 use HiEvents\Console\Commands\PreviewGoogleWalletPassCommand;
 use HiEvents\DomainObjects\AttendeeDomainObject;
 use HiEvents\DomainObjects\EventDomainObject;
+use HiEvents\DomainObjects\OrderDomainObject;
 use HiEvents\Exceptions\GoogleWallet\GoogleWalletApiException;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
+use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Services\Domain\GoogleWallet\DTO\GoogleWalletPassSettingsDTO;
 use HiEvents\Services\Domain\GoogleWallet\GoogleWalletPassSettingsResolver;
 use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSaveUrlService;
@@ -23,11 +25,17 @@ class PreviewGoogleWalletPassCommandTest extends TestCase
 {
     private const ATTENDEE_ID = 31;
 
+    private const ORDER_ID = 20;
+
     private const EVENT_ID = 10;
 
     private const ORGANIZER_ID = 5;
 
+    private const SAVE_URL = 'https://pay.google.com/gp/v/save/token';
+
     private AttendeeRepositoryInterface|MockInterface $attendeeRepository;
+
+    private OrderRepositoryInterface|MockInterface $orderRepository;
 
     private EventRepositoryInterface|MockInterface $eventRepository;
 
@@ -44,6 +52,7 @@ class PreviewGoogleWalletPassCommandTest extends TestCase
         parent::setUp();
 
         $this->attendeeRepository = Mockery::mock(AttendeeRepositoryInterface::class);
+        $this->orderRepository = Mockery::mock(OrderRepositoryInterface::class);
         $this->eventRepository = Mockery::mock(EventRepositoryInterface::class);
         $this->passSettingsResolver = Mockery::mock(GoogleWalletPassSettingsResolver::class);
         $this->syncService = Mockery::mock(SyncGoogleWalletPassesService::class);
@@ -70,10 +79,11 @@ class PreviewGoogleWalletPassCommandTest extends TestCase
         parent::tearDown();
     }
 
-    private function runCommand(string $attendee = '31'): int
+    private function runCommand(string $code): int
     {
         $command = new PreviewGoogleWalletPassCommand(
             $this->attendeeRepository,
+            $this->orderRepository,
             $this->eventRepository,
             $this->passSettingsResolver,
             $this->syncService,
@@ -81,123 +91,137 @@ class PreviewGoogleWalletPassCommandTest extends TestCase
         );
         $command->setLaravel($this->app);
 
-        return $command->run(new ArrayInput(['attendee' => $attendee]), $this->output);
+        return $command->run(new ArrayInput(['code' => $code]), $this->output);
     }
 
-    private function attendee(?string $objectId = null, int $id = self::ATTENDEE_ID): AttendeeDomainObject
+    private function attendee(int $id = self::ATTENDEE_ID, ?string $objectId = null): AttendeeDomainObject
     {
         return (new AttendeeDomainObject)
             ->setId($id)
             ->setEventId(self::EVENT_ID)
-            ->setPublicId('A-SMOKE'.$id)
-            ->setFirstName('Smoke')
-            ->setLastName('Test')
-            ->setStatus('ACTIVE')
+            ->setOrderId(self::ORDER_ID)
             ->setGoogleWalletObjectId($objectId);
     }
 
-    private function expectPassIsSynced(): void
+    private function order(): OrderDomainObject
     {
-        $this->syncService->shouldReceive('syncAttendee')->once()->with(self::ATTENDEE_ID);
+        return (new OrderDomainObject)->setId(self::ORDER_ID)->setEventId(self::EVENT_ID);
+    }
 
+    public function test_a_ticket_code_syncs_that_pass_and_prints_its_save_link(): void
+    {
         $this->attendeeRepository
             ->shouldReceive('findFirstWhere')
+            ->with(['public_id' => 'A-SMOKE31'])
+            ->andReturn($this->attendee());
+        $this->syncService->shouldReceive('syncAttendee')->once()->with(self::ATTENDEE_ID);
+        $this->attendeeRepository
+            ->shouldReceive('findWhere')
             ->with(['id' => self::ATTENDEE_ID])
-            ->andReturn($this->attendee('issuer.dev_attendee_31'));
-
+            ->andReturn(new Collection([$this->attendee(objectId: 'issuer.dev_attendee_31')]));
         $this->saveUrlService
             ->shouldReceive('buildForObjectIds')
             ->once()
             ->with(['issuer.dev_attendee_31'])
-            ->andReturn('https://pay.google.com/gp/v/save/token');
-    }
-
-    public function test_it_syncs_the_pass_and_prints_its_save_link(): void
-    {
-        $this->attendeeRepository
-            ->shouldReceive('findWhere')
-            ->with(['id' => self::ATTENDEE_ID])
-            ->andReturn(new Collection([$this->attendee()]));
-        $this->expectPassIsSynced();
-
-        $this->assertSame(0, $this->runCommand());
-        $this->assertStringContainsString('https://pay.google.com/gp/v/save/token', $this->output->fetch());
-    }
-
-    public function test_it_finds_the_attendee_by_ticket_code_in_any_case(): void
-    {
-        $this->attendeeRepository
-            ->shouldReceive('findWhere')
-            ->with(['public_id' => 'A-SMOKE31'])
-            ->andReturn(new Collection([$this->attendee()]));
-        $this->expectPassIsSynced();
+            ->andReturn(self::SAVE_URL);
 
         $this->assertSame(0, $this->runCommand('a-smoke31'));
+        $this->assertStringContainsString(self::SAVE_URL, $this->output->fetch());
     }
 
-    public function test_it_finds_the_attendee_by_email(): void
+    public function test_an_order_number_syncs_every_pass_on_the_order_into_one_save_link(): void
     {
+        $this->orderRepository
+            ->shouldReceive('findFirstWhere')
+            ->with(['public_id' => 'O-SMOKE20'])
+            ->andReturn($this->order());
+        $this->syncService->shouldReceive('syncOrder')->once()->with(self::ORDER_ID);
         $this->attendeeRepository
             ->shouldReceive('findWhere')
-            ->with([['email', 'ilike', 'Smoke@Dev.test']])
-            ->andReturn(new Collection([$this->attendee()]));
-        $this->expectPassIsSynced();
+            ->with(['order_id' => self::ORDER_ID])
+            ->andReturn(new Collection([
+                $this->attendee(31, 'issuer.dev_attendee_31'),
+                $this->attendee(32, 'issuer.dev_attendee_32'),
+            ]));
+        $this->saveUrlService
+            ->shouldReceive('buildForObjectIds')
+            ->once()
+            ->with(['issuer.dev_attendee_31', 'issuer.dev_attendee_32'])
+            ->andReturn(self::SAVE_URL);
 
-        $this->assertSame(0, $this->runCommand('Smoke@Dev.test'));
-    }
-
-    public function test_it_lists_the_matches_when_an_email_belongs_to_several_attendees(): void
-    {
-        $this->attendeeRepository
-            ->shouldReceive('findWhere')
-            ->andReturn(new Collection([$this->attendee(), $this->attendee(id: 32)]));
-        $this->syncService->shouldNotReceive('syncAttendee');
-
-        $this->assertSame(1, $this->runCommand('smoke@dev.test'));
+        $this->assertSame(0, $this->runCommand('O-SMOKE20'));
 
         $output = $this->output->fetch();
-        $this->assertStringContainsString('matches 2 attendees', $output);
-        $this->assertStringContainsString('A-SMOKE31', $output);
-        $this->assertStringContainsString('A-SMOKE32', $output);
+        $this->assertStringContainsString('2 pass(es) up to date', $output);
+        $this->assertStringContainsString(self::SAVE_URL, $output);
+    }
+
+    public function test_an_email_is_rejected_without_looking_anything_up(): void
+    {
+        $this->attendeeRepository->shouldNotReceive('findFirstWhere');
+        $this->orderRepository->shouldNotReceive('findFirstWhere');
+
+        $this->assertSame(1, $this->runCommand('someone@example.com'));
+        $this->assertStringContainsString('is not a ticket code', $this->output->fetch());
     }
 
     public function test_it_fails_when_google_wallet_is_not_configured(): void
     {
         $this->passSettingsResolver->shouldReceive('isConfigured')->andReturn(false);
-        $this->syncService->shouldNotReceive('syncAttendee');
+        $this->attendeeRepository->shouldNotReceive('findFirstWhere');
 
-        $this->assertSame(1, $this->runCommand());
+        $this->assertSame(1, $this->runCommand('A-SMOKE31'));
         $this->assertStringContainsString('not configured', $this->output->fetch());
     }
 
-    public function test_it_fails_when_the_attendee_does_not_exist(): void
+    public function test_it_fails_when_the_ticket_code_does_not_exist(): void
     {
-        $this->attendeeRepository->shouldReceive('findWhere')->andReturn(new Collection);
+        $this->attendeeRepository->shouldReceive('findFirstWhere')->andReturn(null);
         $this->syncService->shouldNotReceive('syncAttendee');
 
-        $this->assertSame(1, $this->runCommand());
-        $this->assertStringContainsString('No attendee found', $this->output->fetch());
+        $this->assertSame(1, $this->runCommand('A-NOPE123'));
+        $this->assertStringContainsString('No ticket found', $this->output->fetch());
+    }
+
+    public function test_it_fails_when_the_order_number_does_not_exist(): void
+    {
+        $this->orderRepository->shouldReceive('findFirstWhere')->andReturn(null);
+        $this->syncService->shouldNotReceive('syncOrder');
+
+        $this->assertSame(1, $this->runCommand('O-NOPE123'));
+        $this->assertStringContainsString('No order found', $this->output->fetch());
     }
 
     public function test_it_fails_when_google_wallet_is_disabled_for_the_organizer(): void
     {
-        $this->attendeeRepository->shouldReceive('findWhere')->andReturn(new Collection([$this->attendee()]));
+        $this->attendeeRepository->shouldReceive('findFirstWhere')->andReturn($this->attendee());
         $this->passSettingsResolver->shouldReceive('resolveForOrganizer')->with(self::ORGANIZER_ID)->andReturn(null);
         $this->syncService->shouldNotReceive('syncAttendee');
 
-        $this->assertSame(1, $this->runCommand());
+        $this->assertSame(1, $this->runCommand('A-SMOKE31'));
         $this->assertStringContainsString('disabled for organizer', $this->output->fetch());
+    }
+
+    public function test_it_fails_when_no_pass_could_be_created(): void
+    {
+        $this->orderRepository->shouldReceive('findFirstWhere')->andReturn($this->order());
+        $this->syncService->shouldReceive('syncOrder')->once();
+        $this->attendeeRepository->shouldReceive('findWhere')->andReturn(new Collection([$this->attendee()]));
+        $this->saveUrlService->shouldNotReceive('buildForObjectIds');
+
+        $this->assertSame(1, $this->runCommand('O-SMOKE20'));
+        $this->assertStringContainsString('No pass was created', $this->output->fetch());
     }
 
     public function test_it_reports_google_api_errors(): void
     {
-        $this->attendeeRepository->shouldReceive('findWhere')->andReturn(new Collection([$this->attendee()]));
+        $this->attendeeRepository->shouldReceive('findFirstWhere')->andReturn($this->attendee());
         $this->syncService
             ->shouldReceive('syncAttendee')
             ->andThrow(new GoogleWalletApiException('Invalid hero image'));
         $this->saveUrlService->shouldNotReceive('buildForObjectIds');
 
-        $this->assertSame(1, $this->runCommand());
+        $this->assertSame(1, $this->runCommand('A-SMOKE31'));
         $this->assertStringContainsString('Invalid hero image', $this->output->fetch());
     }
 }
