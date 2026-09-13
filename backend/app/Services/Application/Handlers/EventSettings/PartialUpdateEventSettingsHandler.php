@@ -68,6 +68,15 @@ class PartialUpdateEventSettingsHandler
                 'google_wallet_background_color' => array_key_exists('google_wallet_background_color', $eventSettingsDTO->settings)
                     ? $eventSettingsDTO->settings['google_wallet_background_color']
                     : $existingSettings->getGoogleWalletBackgroundColor(),
+                'apple_wallet_logo_url' => array_key_exists('apple_wallet_logo_url', $eventSettingsDTO->settings)
+                    ? $eventSettingsDTO->settings['apple_wallet_logo_url']
+                    : $existingSettings->getAppleWalletLogoUrl(),
+                'apple_wallet_strip_image_url' => array_key_exists('apple_wallet_strip_image_url', $eventSettingsDTO->settings)
+                    ? $eventSettingsDTO->settings['apple_wallet_strip_image_url']
+                    : $existingSettings->getAppleWalletStripImageUrl(),
+                'apple_wallet_background_color' => array_key_exists('apple_wallet_background_color', $eventSettingsDTO->settings)
+                    ? $eventSettingsDTO->settings['apple_wallet_background_color']
+                    : $existingSettings->getAppleWalletBackgroundColor(),
                 'website_url' => $eventSettingsDTO->settings['website_url'] ?? $existingSettings->getWebsiteUrl(),
                 'maps_url' => array_key_exists('maps_url', $eventSettingsDTO->settings)
                     ? $eventSettingsDTO->settings['maps_url']

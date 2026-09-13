@@ -15,6 +15,7 @@ class OrganizerSetting extends BaseModel
             'homepage_theme_settings' => 'array',
             'tracking_pixels' => 'array',
             'google_wallet_pass_settings' => 'array',
+            'apple_wallet_pass_settings' => 'array',
         ];
     }
 }

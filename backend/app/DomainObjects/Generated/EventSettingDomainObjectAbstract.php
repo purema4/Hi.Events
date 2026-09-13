@@ -73,6 +73,9 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     final public const GOOGLE_WALLET_BANNER_URL = 'google_wallet_banner_url';
     final public const GOOGLE_WALLET_LOGO_URL = 'google_wallet_logo_url';
     final public const GOOGLE_WALLET_BACKGROUND_COLOR = 'google_wallet_background_color';
+    final public const APPLE_WALLET_LOGO_URL = 'apple_wallet_logo_url';
+    final public const APPLE_WALLET_STRIP_IMAGE_URL = 'apple_wallet_strip_image_url';
+    final public const APPLE_WALLET_BACKGROUND_COLOR = 'apple_wallet_background_color';
 
     protected int $id;
     protected int $event_id;
@@ -137,6 +140,9 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     protected ?string $google_wallet_banner_url = null;
     protected ?string $google_wallet_logo_url = null;
     protected ?string $google_wallet_background_color = null;
+    protected ?string $apple_wallet_logo_url = null;
+    protected ?string $apple_wallet_strip_image_url = null;
+    protected ?string $apple_wallet_background_color = null;
 
     public function toArray(): array
     {
@@ -204,6 +210,9 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
                     'google_wallet_banner_url' => $this->google_wallet_banner_url ?? null,
                     'google_wallet_logo_url' => $this->google_wallet_logo_url ?? null,
                     'google_wallet_background_color' => $this->google_wallet_background_color ?? null,
+                    'apple_wallet_logo_url' => $this->apple_wallet_logo_url ?? null,
+                    'apple_wallet_strip_image_url' => $this->apple_wallet_strip_image_url ?? null,
+                    'apple_wallet_background_color' => $this->apple_wallet_background_color ?? null,
                 ];
     }
 
@@ -899,5 +908,38 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     public function getGoogleWalletBackgroundColor(): ?string
     {
         return $this->google_wallet_background_color;
+    }
+
+    public function setAppleWalletLogoUrl(?string $apple_wallet_logo_url): self
+    {
+        $this->apple_wallet_logo_url = $apple_wallet_logo_url;
+        return $this;
+    }
+
+    public function getAppleWalletLogoUrl(): ?string
+    {
+        return $this->apple_wallet_logo_url;
+    }
+
+    public function setAppleWalletStripImageUrl(?string $apple_wallet_strip_image_url): self
+    {
+        $this->apple_wallet_strip_image_url = $apple_wallet_strip_image_url;
+        return $this;
+    }
+
+    public function getAppleWalletStripImageUrl(): ?string
+    {
+        return $this->apple_wallet_strip_image_url;
+    }
+
+    public function setAppleWalletBackgroundColor(?string $apple_wallet_background_color): self
+    {
+        $this->apple_wallet_background_color = $apple_wallet_background_color;
+        return $this;
+    }
+
+    public function getAppleWalletBackgroundColor(): ?string
+    {
+        return $this->apple_wallet_background_color;
     }
 }

@@ -16,7 +16,7 @@ use HiEvents\Services\Application\Handlers\Event\DTO\UpdateEventDTO;
 use HiEvents\Services\Application\Handlers\Event\UpdateEventHandler;
 use HiEvents\Services\Domain\Event\EventSpamCheckDispatchService;
 use HiEvents\Services\Domain\Event\EventSpamCheckService;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\HtmlPurifier\HtmlPurifierService;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Support\Facades\Bus;
@@ -68,7 +68,7 @@ class UpdateEventHandlerTest extends TestCase
             $this->purifier,
             $this->occurrenceRepository,
             new EventSpamCheckDispatchService($this->eventSpamCheckService),
-            Mockery::mock(GoogleWalletSyncDispatcher::class)->shouldIgnoreMissing(),
+            Mockery::mock(WalletPassSyncDispatcher::class)->shouldIgnoreMissing(),
         );
     }
 

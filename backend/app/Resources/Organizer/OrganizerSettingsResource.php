@@ -30,6 +30,8 @@ class OrganizerSettingsResource extends BaseResource
             'allow_search_engine_indexing' => $this->getAllowSearchEngineIndexing(),
             'google_wallet_enabled' => $this->getGoogleWalletEnabled(),
             'google_wallet_pass_settings' => $this->getGoogleWalletPassSettings(),
+            'apple_wallet_enabled' => $this->getAppleWalletEnabled(),
+            'apple_wallet_pass_settings' => $this->getAppleWalletPassSettings(),
             'tracking_pixels' => $this->getTrackingPixels(),
             'tracking_consent_acknowledged' => $this->getTrackingConsentAcknowledged(),
         ];

@@ -5,6 +5,8 @@
 @php /** @var \Illuminate\Support\Collection<int, \HiEvents\Services\Domain\Email\DTO\AttendeeTicketSummaryDTO> $tickets */ @endphp
 @php /** @var string|null $googleWalletSaveUrl */ @endphp
 @php /** @var string|null $googleWalletButtonPath */ @endphp
+@php /** @var string|null $appleWalletPassUrl */ @endphp
+@php /** @var string|null $appleWalletButtonPath */ @endphp
 @php /** @see \HiEvents\Mail\Attendee\AttendeeTicketMail */ @endphp
 
 <x-mail::message>
@@ -56,6 +58,21 @@
 <a href="{{ $googleWalletSaveUrl }}" style="display: inline-block; text-decoration: none;">
 <img src="{{ $message->embed($googleWalletButtonPath) }}" alt="{{ $googleWalletLabel }}" height="50" style="height: auto; width: auto; border: 0; display: block;">
 </a>
+</div>
+@endif
+
+@if($appleWalletPassUrl)
+@php($appleWalletLabel = $tickets->count() > 1
+    ? __('Add :count tickets to Apple Wallet', ['count' => $tickets->count()])
+    : __('Add to Apple Wallet'))
+<div style="text-align: center; margin: 0 0 24px; padding: 8px;">
+@if($appleWalletButtonPath)
+<a href="{{ $appleWalletPassUrl }}" style="display: inline-block; text-decoration: none;">
+<img src="{{ $message->embed($appleWalletButtonPath) }}" alt="{{ $appleWalletLabel }}" height="40" style="height: 40px; width: auto; border: 0; display: block;">
+</a>
+@else
+<a href="{{ $appleWalletPassUrl }}">{{ $appleWalletLabel }}</a>
+@endif
 </div>
 @endif
 

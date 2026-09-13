@@ -41,6 +41,10 @@ class UpdateEventSettingsRequest extends BaseRequest
             'google_wallet_logo_url' => ['url', 'nullable'],
             'google_wallet_background_color' => ['nullable', ...RulesHelper::HEX_COLOR],
 
+            'apple_wallet_logo_url' => ['url', 'nullable'],
+            'apple_wallet_strip_image_url' => ['url', 'nullable'],
+            'apple_wallet_background_color' => ['nullable', ...RulesHelper::HEX_COLOR],
+
             'website_url' => ['url', 'nullable'],
             'maps_url' => ['url', 'nullable'],
 

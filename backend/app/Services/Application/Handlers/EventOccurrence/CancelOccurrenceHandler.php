@@ -13,7 +13,7 @@ use HiEvents\Jobs\Occurrence\SendOccurrenceCancellationEmailJob;
 use HiEvents\Repository\Interfaces\EventOccurrenceRepositoryInterface;
 use HiEvents\Services\Domain\Event\RecurrenceRuleExclusionService;
 use HiEvents\Services\Domain\EventOccurrence\CancelOccurrenceAttendeesService;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
 use HiEvents\Services\Infrastructure\DomainEvents\Events\OccurrenceEvent;
 use Illuminate\Database\DatabaseManager;
@@ -26,7 +26,7 @@ class CancelOccurrenceHandler
         private readonly RecurrenceRuleExclusionService $exclusionService,
         private readonly CancelOccurrenceAttendeesService $cancelAttendeesService,
         private readonly DatabaseManager $databaseManager,
-        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
+        private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
     /**
@@ -85,7 +85,7 @@ class CancelOccurrenceHandler
                 occurrenceId: $occurrenceId,
             ));
 
-            $this->googleWalletSyncDispatcher->queueOccurrencePassSync($occurrenceId);
+            $this->walletPassSyncDispatcher->queueOccurrenceAttendeesSync($occurrenceId);
         }
 
         return $updated;

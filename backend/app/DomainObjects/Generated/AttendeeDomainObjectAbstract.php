@@ -31,6 +31,7 @@ abstract class AttendeeDomainObjectAbstract extends \HiEvents\DomainObjects\Abst
     final public const LOCALE = 'locale';
     final public const NOTES = 'notes';
     final public const GOOGLE_WALLET_OBJECT_ID = 'google_wallet_object_id';
+    final public const APPLE_WALLET_PASS_UPDATED_AT = 'apple_wallet_pass_updated_at';
 
     protected int $id;
     protected int $order_id;
@@ -53,6 +54,7 @@ abstract class AttendeeDomainObjectAbstract extends \HiEvents\DomainObjects\Abst
     protected string $locale = 'en';
     protected ?string $notes = null;
     protected ?string $google_wallet_object_id = null;
+    protected ?string $apple_wallet_pass_updated_at = null;
 
     public function toArray(): array
     {
@@ -78,6 +80,7 @@ abstract class AttendeeDomainObjectAbstract extends \HiEvents\DomainObjects\Abst
                     'locale' => $this->locale ?? null,
                     'notes' => $this->notes ?? null,
                     'google_wallet_object_id' => $this->google_wallet_object_id ?? null,
+                    'apple_wallet_pass_updated_at' => $this->apple_wallet_pass_updated_at ?? null,
                 ];
     }
 
@@ -310,5 +313,16 @@ abstract class AttendeeDomainObjectAbstract extends \HiEvents\DomainObjects\Abst
     public function getGoogleWalletObjectId(): ?string
     {
         return $this->google_wallet_object_id;
+    }
+
+    public function setAppleWalletPassUpdatedAt(?string $apple_wallet_pass_updated_at): self
+    {
+        $this->apple_wallet_pass_updated_at = $apple_wallet_pass_updated_at;
+        return $this;
+    }
+
+    public function getAppleWalletPassUpdatedAt(): ?string
+    {
+        return $this->apple_wallet_pass_updated_at;
     }
 }

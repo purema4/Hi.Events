@@ -14,8 +14,8 @@ use HiEvents\Exceptions\NoTicketsAvailableException;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\ProductRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Attendee\DTO\EditAttendeeDTO;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
 use HiEvents\Services\Infrastructure\DomainEvents\Events\AttendeeEvent;
@@ -31,7 +31,7 @@ class EditAttendeeHandler
         private readonly ProductQuantityUpdateService $productQuantityService,
         private readonly DatabaseManager $databaseManager,
         private readonly DomainEventDispatcherService $domainEventDispatcherService,
-        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
+        private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
     /**
@@ -59,7 +59,7 @@ class EditAttendeeHandler
             return $updatedAttendee;
         });
 
-        $this->googleWalletSyncDispatcher->queueAttendeePassSync($editAttendeeDTO->attendee_id);
+        $this->walletPassSyncDispatcher->queueAttendeeSync($editAttendeeDTO->attendee_id);
 
         return $attendee;
     }

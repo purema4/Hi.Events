@@ -59,6 +59,22 @@ export class OrganizerPage {
     await this.googleWalletSection.getByTestId('google-wallet-submit-button').click();
   }
 
+  get appleWalletSection(): Locator {
+    return this.page.locator('#apple-wallet');
+  }
+
+  get appleWalletEnabledSwitch(): Locator {
+    return this.appleWalletSection.getByLabel('Enable Apple Wallet passes');
+  }
+
+  get appleWalletStripImageInput(): Locator {
+    return this.appleWalletSection.getByLabel(/^Pass strip image URL/);
+  }
+
+  async saveAppleWalletSettings(): Promise<void> {
+    await this.appleWalletSection.getByTestId('apple-wallet-submit-button').click();
+  }
+
   reportRow(text: string): Locator {
     return this.page.getByRole('row').filter({ hasText: text });
   }

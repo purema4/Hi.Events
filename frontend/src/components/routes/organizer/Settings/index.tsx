@@ -9,11 +9,12 @@ import { PlatformFeesSettings } from "./Sections/PlatformFeesSettings";
 import { DangerZoneSettings } from "./Sections/DangerZoneSettings";
 import { TrackingPixelSettings } from "./Sections/TrackingPixelSettings";
 import { GoogleWalletSettings } from "./Sections/GoogleWalletSettings";
+import { AppleWalletSettings } from "./Sections/AppleWalletSettings";
 import { PageBody } from "../../../common/PageBody";
 import { PageTitle } from "../../../common/PageTitle";
 import { t } from "@lingui/macro";
 import { Box, Group, NavLink as MantineNavLink, Stack } from "@mantine/core";
-import { IconAlertTriangle, IconBrandGoogleAnalytics, IconBrandStripe, IconInfoCircle, IconMapPin, IconShare, IconMail, IconCalendarEvent, IconPercentage, IconChartBar, IconWallet } from "@tabler/icons-react";
+import { IconAlertTriangle, IconBrandGoogleAnalytics, IconBrandStripe, IconInfoCircle, IconMapPin, IconShare, IconMail, IconCalendarEvent, IconPercentage, IconChartBar, IconBrandApple, IconWallet } from "@tabler/icons-react";
 import { useMediaQuery } from "@mantine/hooks";
 import { useEffect, useMemo, useState } from "react";
 import { Card } from "../../../common/Card";
@@ -25,6 +26,7 @@ const Settings = () => {
     const { data: account } = useGetAccount();
     const isSaasMode = account?.is_saas_mode_enabled;
     const isGoogleWalletAvailable = account?.is_google_wallet_available;
+    const isAppleWalletAvailable = account?.is_apple_wallet_available;
 
     const SECTIONS = useMemo(() => {
         const baseSections = [
@@ -94,6 +96,15 @@ const Settings = () => {
             });
         }
 
+        if (isAppleWalletAvailable) {
+            baseSections.splice(baseSections.length - 1, 0, {
+                id: 'apple-wallet',
+                label: t`Apple Wallet`,
+                icon: IconBrandApple,
+                component: AppleWalletSettings,
+            });
+        }
+
         if (isSaasMode) {
             baseSections.splice(2, 0,
                 {
@@ -111,7 +122,7 @@ const Settings = () => {
         }
 
         return baseSections;
-    }, [isSaasMode, isGoogleWalletAvailable, organizerId]);
+    }, [isSaasMode, isGoogleWalletAvailable, isAppleWalletAvailable, organizerId]);
 
     const isLargeScreen = useMediaQuery('(min-width: 1200px)', true);
     const location = useLocation();

@@ -794,7 +794,7 @@ msgstr "Additional Information"
 #: src/components/common/OrderDetails/index.tsx:116
 #: src/components/forms/QuestionForm/index.tsx:130
 #: src/components/modals/ManageOrderModal/index.tsx:163
-#: src/components/routes/organizer/Settings/index.tsx:45
+#: src/components/routes/organizer/Settings/index.tsx:47
 #: src/components/routes/organizer/Settings/Sections/AddressSettings/index.tsx:103
 msgid "Address"
 msgstr "Address"
@@ -1173,6 +1173,13 @@ msgstr "Any queries from product holders will be sent to this email address. Thi
 #: src/components/common/WidgetEditor/index.tsx:216
 msgid "Appearance"
 msgstr "Appearance"
+
+#: src/components/routes/event/Settings/index.tsx:126
+#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:64
+#: src/components/routes/organizer/Settings/index.tsx:102
+#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:72
+msgid "Apple Wallet"
+msgstr "Apple Wallet"
 
 #: src/components/routes/product-widget/SelectProducts/index.tsx:915
 msgid "applied"
@@ -1795,7 +1802,7 @@ msgstr "Base Price"
 msgid "Based on the global sale period above, not per date"
 msgstr "Based on the global sale period above, not per date"
 
-#: src/components/routes/organizer/Settings/index.tsx:33
+#: src/components/routes/organizer/Settings/index.tsx:35
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:63
 msgid "Basic Information"
 msgstr "Basic Information"
@@ -2306,7 +2313,7 @@ msgstr "Checked in"
 msgid "Checked In"
 msgstr "Checked In"
 
-#: src/components/routes/event/Settings/index.tsx:63
+#: src/components/routes/event/Settings/index.tsx:65
 msgid "Checkout"
 msgstr "Checkout"
 
@@ -2625,7 +2632,7 @@ msgstr "Configuration updated successfully"
 msgid "Configurations"
 msgstr "Configurations"
 
-#: src/components/routes/event/Settings/index.tsx:184
+#: src/components/routes/event/Settings/index.tsx:195
 msgid "Configure event details, location, checkout options, and email notifications."
 msgstr "Configure event details, location, checkout options, and email notifications."
 
@@ -3388,8 +3395,8 @@ msgstr "Danger zone"
 #: src/components/routes/account/ManageAccount/index.tsx:36
 #: src/components/routes/account/ManageAccount/sections/DangerZone/index.tsx:80
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:555
-#: src/components/routes/event/Settings/index.tsx:105
-#: src/components/routes/organizer/Settings/index.tsx:81
+#: src/components/routes/event/Settings/index.tsx:107
+#: src/components/routes/organizer/Settings/index.tsx:83
 msgid "Danger Zone"
 msgstr "Danger Zone"
 
@@ -3540,6 +3547,7 @@ msgstr "Default template will be used"
 msgid "Defaults"
 msgstr "Defaults"
 
+#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:101
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:101
 msgid "Defaults to your homepage accent colour when left blank."
 msgstr "Defaults to your homepage accent colour when left blank."
@@ -4161,7 +4169,7 @@ msgstr "Email & Notification Settings"
 msgid "Email & scheduled messages"
 msgstr "Email & scheduled messages"
 
-#: src/components/routes/event/Settings/index.tsx:81
+#: src/components/routes/event/Settings/index.tsx:83
 msgid "Email & Templates"
 msgstr "Email & Templates"
 
@@ -4229,7 +4237,7 @@ msgid "Email Preview"
 msgstr "Email Preview"
 
 #: src/components/common/EmailTemplateSettings/EmailTemplateSettingsBase.tsx:349
-#: src/components/routes/organizer/Settings/index.tsx:69
+#: src/components/routes/organizer/Settings/index.tsx:71
 msgid "Email Templates"
 msgstr "Email Templates"
 
@@ -4269,6 +4277,10 @@ msgstr "Emoji"
 #: src/components/routes/admin/Announcements/index.tsx:308
 msgid "Emoji is required for modals"
 msgstr "Emoji is required for modals"
+
+#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:79
+msgid "Enable Apple Wallet passes"
+msgstr "Enable Apple Wallet passes"
 
 #: src/components/common/SelfServiceSettings/index.tsx:19
 msgid "Enable attendee self-service"
@@ -4553,7 +4565,7 @@ msgid "Event date display"
 msgstr "Event date display"
 
 #: src/components/routes/account/ManageAccount/sections/EventDefaultsSettings/index.tsx:5
-#: src/components/routes/organizer/Settings/index.tsx:39
+#: src/components/routes/organizer/Settings/index.tsx:41
 #: src/components/routes/organizer/Settings/Sections/EventDefaults/index.tsx:73
 msgid "Event Defaults"
 msgstr "Event Defaults"
@@ -4566,7 +4578,7 @@ msgstr "Event deleted successfully"
 msgid "Event Description"
 msgstr "Event Description"
 
-#: src/components/routes/event/Settings/index.tsx:51
+#: src/components/routes/event/Settings/index.tsx:53
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:71
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:627
 msgid "Event Details"
@@ -4614,7 +4626,7 @@ msgid "Event restored successfully"
 msgstr "Event restored successfully"
 
 #: src/components/layouts/Event/index.tsx:117
-#: src/components/routes/event/Settings/index.tsx:185
+#: src/components/routes/event/Settings/index.tsx:196
 msgid "Event Settings"
 msgstr "Event Settings"
 
@@ -5117,6 +5129,7 @@ msgstr "Failed to upload image. Please try again."
 msgid "Failed to verify email"
 msgstr "Failed to verify email"
 
+#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:86
 #: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:82
 msgid "Falls back to your organizer setting, then your homepage accent colour."
 msgstr "Falls back to your organizer setting, then your homepage accent colour."
@@ -5524,9 +5537,9 @@ msgstr "Good readability"
 msgid "Google Calendar"
 msgstr "Google Calendar"
 
-#: src/components/routes/event/Settings/index.tsx:115
+#: src/components/routes/event/Settings/index.tsx:117
 #: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:60
-#: src/components/routes/organizer/Settings/index.tsx:91
+#: src/components/routes/organizer/Settings/index.tsx:93
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:72
 msgid "Google Wallet"
 msgstr "Google Wallet"
@@ -5956,14 +5969,6 @@ msgstr "Inactive users cannot log in."
 msgid "incl. fees"
 msgstr "incl. fees"
 
-#: src/components/common/Currency/index.tsx:50
-#~ msgid "incl. fees & tax"
-#~ msgstr "incl. fees & tax"
-
-#: src/components/common/Currency/index.tsx:52
-#~ msgid "incl. tax"
-#~ msgstr "incl. tax"
-
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:167
 msgid "Include connection details for your online event. These details will be shown on the order summary page and attendee ticket page."
 msgstr "Include connection details for your online event. These details will be shown on the order summary page and attendee ticket page."
@@ -6365,9 +6370,9 @@ msgstr "Leave empty to apply this check-in list to all occurrences"
 msgid "Leave on to cover every ticket on the event. Turn off to pick specific tickets."
 msgstr "Leave on to cover every ticket on the event. Turn off to pick specific tickets."
 
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:73
-#~ msgid "Let attendees add their tickets to Google Wallet. Each ticket in an order gets its own pass."
-#~ msgstr "Let attendees add their tickets to Google Wallet. Each ticket in an order gets its own pass."
+#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:73
+msgid "Let attendees add their tickets to Apple Wallet. Every ticket in an order is added with a single tap."
+msgstr "Let attendees add their tickets to Apple Wallet. Every ticket in an order is added with a single tap."
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:73
 msgid "Let attendees add their tickets to Google Wallet. Every ticket in an order is saved with a single tap."
@@ -6461,7 +6466,7 @@ msgstr "Loading..."
 #: src/components/common/LocationPicker/index.tsx:294
 #: src/components/layouts/EventHomepage/index.tsx:495
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
-#: src/components/routes/event/Settings/index.tsx:57
+#: src/components/routes/event/Settings/index.tsx:59
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
 #: src/components/routes/my-tickets/index.tsx:90
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:336
@@ -6785,7 +6790,7 @@ msgstr "minutes"
 msgid "Minutes"
 msgstr "Minutes"
 
-#: src/components/routes/event/Settings/index.tsx:87
+#: src/components/routes/event/Settings/index.tsx:89
 msgid "Miscellaneous"
 msgstr "Miscellaneous"
 
@@ -8055,7 +8060,7 @@ msgstr "Organizer Not Found"
 msgid "Organizer restored successfully"
 msgstr "Organizer restored successfully"
 
-#: src/components/routes/organizer/Settings/index.tsx:169
+#: src/components/routes/organizer/Settings/index.tsx:180
 msgid "Organizer Settings"
 msgstr "Organizer Settings"
 
@@ -8119,9 +8124,9 @@ msgstr "Override price"
 msgid "Override removed"
 msgstr "Override removed"
 
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:55
-#~ msgid "Override the banner shown on this event's Google Wallet passes."
-#~ msgstr "Override the banner shown on this event's Google Wallet passes."
+#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:65
+msgid "Override the branding used on this event's Apple Wallet passes. Anything left blank falls back to your organizer settings."
+msgstr "Override the branding used on this event's Apple Wallet passes. Anything left blank falls back to your organizer settings."
 
 #: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:61
 msgid "Override the branding used on this event's Google Wallet passes. Anything left blank falls back to your organizer settings."
@@ -8186,7 +8191,9 @@ msgstr "Partially Refunded"
 msgid "Partially refunded: {0}"
 msgstr "Partially refunded: {0}"
 
+#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:85
 #: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:81
+#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:100
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:100
 msgid "Pass background colour"
 msgstr "Pass background colour"
@@ -8200,10 +8207,17 @@ msgstr "Pass banner URL"
 msgid "Pass fee to buyer"
 msgstr "Pass fee to buyer"
 
+#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:71
 #: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:67
+#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:86
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:86
 msgid "Pass logo URL"
 msgstr "Pass logo URL"
+
+#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:78
+#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:93
+msgid "Pass strip image URL"
+msgstr "Pass strip image URL"
 
 #: src/components/common/PlatformFeesSettings/index.tsx:206
 msgid "Pass to Buyer"
@@ -8287,7 +8301,7 @@ msgstr "Payload"
 msgid "Payment"
 msgstr "Payment"
 
-#: src/components/routes/event/Settings/index.tsx:99
+#: src/components/routes/event/Settings/index.tsx:101
 msgid "Payment & Invoicing"
 msgstr "Payment & Invoicing"
 
@@ -8351,7 +8365,7 @@ msgstr "Payment Terms"
 msgid "Payments not available"
 msgstr "Payments not available"
 
-#: src/components/routes/organizer/Settings/index.tsx:101
+#: src/components/routes/organizer/Settings/index.tsx:112
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:407
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:463
 msgid "Payouts"
@@ -8503,10 +8517,10 @@ msgstr "Platform fee"
 msgid "Platform fee of {0} deducted from your payout"
 msgstr "Platform fee of {0} deducted from your payout"
 
-#: src/components/routes/event/Settings/index.tsx:124
+#: src/components/routes/event/Settings/index.tsx:135
 #: src/components/routes/event/Settings/Sections/PlatformFeesSettings/index.tsx:48
 #: src/components/routes/organizer/Reports/index.tsx:41
-#: src/components/routes/organizer/Settings/index.tsx:107
+#: src/components/routes/organizer/Settings/index.tsx:118
 #: src/components/routes/organizer/Settings/Sections/PlatformFeesSettings/index.tsx:42
 msgid "Platform Fees"
 msgstr "Platform Fees"
@@ -9152,7 +9166,7 @@ msgstr "Recurring"
 
 #: src/components/layouts/EventHomepage/index.tsx:375
 #: src/components/modals/CreateEventModal/index.tsx:240
-#: src/components/routes/event/Settings/index.tsx:69
+#: src/components/routes/event/Settings/index.tsx:71
 msgid "Recurring Event"
 msgstr "Recurring Event"
 
@@ -9617,6 +9631,7 @@ msgstr "Saturday"
 #: src/components/common/QuestionAndAnswerList/index.tsx:118
 #: src/components/routes/event/OccurrencesTab/OccurrenceBulkEditModal/index.tsx:272
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:306
+#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:96
 #: src/components/routes/event/Settings/Sections/EmailSettings/GeneralEmailSettings.tsx:81
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:151
 #: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:92
@@ -9628,6 +9643,7 @@ msgstr "Saturday"
 #: src/components/routes/event/Settings/Sections/SeoSettings/index.tsx:85
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:80
 #: src/components/routes/organizer/Settings/Sections/AddressSettings/index.tsx:119
+#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:111
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:132
 #: src/components/routes/organizer/Settings/Sections/EventDefaults/index.tsx:103
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:111
@@ -10188,8 +10204,8 @@ msgstr "Sent to customers when they place an order"
 msgid "Sent to each attendee with their ticket details"
 msgstr "Sent to each attendee with their ticket details"
 
-#: src/components/routes/event/Settings/index.tsx:75
-#: src/components/routes/organizer/Settings/index.tsx:63
+#: src/components/routes/event/Settings/index.tsx:77
+#: src/components/routes/organizer/Settings/index.tsx:65
 msgid "SEO"
 msgstr "SEO"
 
@@ -10437,6 +10453,18 @@ msgstr "Showing {MAX_VISIBLE} of {totalAvailable} dates. Type to search."
 msgid "Showing the first {0} — the remaining {1} session(s) will still be targeted when the message is sent."
 msgstr "Showing the first {0} — the remaining {1} session(s) will still be targeted when the message is sent."
 
+#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:87
+msgid "Shown at the top of the pass and used as its icon. Wide images up to 480x150px work best. Defaults to your organizer logo."
+msgstr "Shown at the top of the pass and used as its icon. Wide images up to 480x150px work best. Defaults to your organizer logo."
+
+#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:94
+msgid "Shown behind the event name, ideally 1125x294px. Defaults to your event cover image."
+msgstr "Shown behind the event name, ideally 1125x294px. Defaults to your event cover image."
+
+#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:79
+msgid "Shown behind the event name, ideally 1125x294px. Falls back to your organizer setting, then this event's cover image."
+msgstr "Shown behind the event name, ideally 1125x294px. Falls back to your organizer setting, then this event's cover image."
+
 #: src/components/routes/admin/Announcements/index.tsx:410
 msgid "Shown bouncing at the top of the modal"
 msgstr "Shown bouncing at the top of the modal"
@@ -10503,7 +10531,7 @@ msgstr "Snapchat"
 msgid "Social"
 msgstr "Social"
 
-#: src/components/routes/organizer/Settings/index.tsx:57
+#: src/components/routes/organizer/Settings/index.tsx:59
 msgid "Social Links"
 msgstr "Social Links"
 
@@ -10622,10 +10650,6 @@ msgstr "Split check-in across days, areas, or ticket types. Share the link with 
 #: src/constants/eventCategories.ts:9
 msgid "Sports"
 msgstr "Sports"
-
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
-#~ msgid "Square image shown at the top of the pass. Defaults to no logo."
-#~ msgstr "Square image shown at the top of the pass. Defaults to no logo."
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
 msgid "Square image, at least 660x660px. Defaults to your organizer logo."
@@ -10887,6 +10911,11 @@ msgstr "Successfully removed from waitlist"
 #: src/components/routes/organizer/Settings/Sections/AddressSettings/index.tsx:94
 msgid "Successfully Updated Address"
 msgstr "Successfully Updated Address"
+
+#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:53
+#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:61
+msgid "Successfully Updated Apple Wallet Settings"
+msgstr "Successfully Updated Apple Wallet Settings"
 
 #: src/components/modals/ManageAttendeeModal/index.tsx:110
 msgid "Successfully updated attendee"
@@ -11760,9 +11789,9 @@ msgstr "Ticket Designer"
 msgid "Ticket email has been resent to attendee"
 msgstr "Ticket email has been resent to attendee"
 
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:80
-#~ msgid "Ticket emails will include an \"Add to Google Wallet\" button for every ticket."
-#~ msgstr "Ticket emails will include an \"Add to Google Wallet\" button for every ticket."
+#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:80
+msgid "Ticket emails will include one \"Add to Apple Wallet\" link that adds every ticket in the order."
+msgstr "Ticket emails will include one \"Add to Apple Wallet\" link that adds every ticket in the order."
 
 #: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:80
 msgid "Ticket emails will include one \"Add to Google Wallet\" button that saves every ticket in the order."
@@ -12041,7 +12070,7 @@ msgstr "Tours"
 msgid "Track account growth and performance by attribution source"
 msgstr "Track account growth and performance by attribution source"
 
-#: src/components/routes/organizer/Settings/index.tsx:75
+#: src/components/routes/organizer/Settings/index.tsx:77
 #: src/components/routes/organizer/Settings/Sections/TrackingPixelSettings/index.tsx:172
 msgid "Tracking & Analytics"
 msgstr "Tracking & Analytics"
@@ -12763,7 +12792,7 @@ msgstr "Waiting for scan…"
 #: src/components/forms/ProductForm/index.tsx:460
 #: src/components/layouts/AuthLayout/index.tsx:18
 #: src/components/layouts/Event/index.tsx:134
-#: src/components/routes/event/Settings/index.tsx:93
+#: src/components/routes/event/Settings/index.tsx:95
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:55
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:73
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:177
@@ -13178,9 +13207,9 @@ msgstr "Who is organizing this event?"
 msgid "Who should be asked this question?"
 msgstr "Who should be asked this question?"
 
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
-#~ msgid "Wide banner image shown across the pass. Defaults to no banner."
-#~ msgstr "Wide banner image shown across the pass. Defaults to no banner."
+#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:72
+msgid "Wide images up to 480x150px work best. Falls back to your organizer setting, then your organizer logo."
+msgstr "Wide images up to 480x150px work best. Falls back to your organizer setting, then your organizer logo."
 
 #: src/components/layouts/Event/index.tsx:144
 msgid "Widget Embed"

@@ -30,11 +30,11 @@ use HiEvents\Repository\Interfaces\TaxAndFeeRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Attendee\DTO\CreateAttendeeDTO;
 use HiEvents\Services\Application\Handlers\Attendee\DTO\CreateAttendeeTaxAndFeeDTO;
 use HiEvents\Services\Domain\EventOccurrence\OccurrencePurchaseEligibilityService;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
 use HiEvents\Services\Domain\Order\OrderManagementService;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
 use HiEvents\Services\Domain\SelfService\OrderAuditLogService;
 use HiEvents\Services\Domain\Tax\TaxAndFeeRollupService;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
 use HiEvents\Services\Infrastructure\DomainEvents\Events\OrderEvent;
@@ -59,7 +59,7 @@ class CreateAttendeeHandler
         private readonly DomainEventDispatcherService $domainEventDispatcherService,
         private readonly OccurrencePurchaseEligibilityService $occurrenceEligibilityService,
         private readonly OrderAuditLogService $orderAuditLogService,
-        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
+        private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
     /**
@@ -138,7 +138,7 @@ class CreateAttendeeHandler
             return $attendee;
         });
 
-        $this->googleWalletSyncDispatcher->queueAttendeePassSync($attendee->getId());
+        $this->walletPassSyncDispatcher->queueAttendeeSync($attendee->getId());
 
         return $attendee;
     }

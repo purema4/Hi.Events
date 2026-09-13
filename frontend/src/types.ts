@@ -122,6 +122,7 @@ export interface Account {
     is_account_email_confirmed?: boolean;
     is_saas_mode_enabled?: boolean;
     is_google_wallet_available?: boolean;
+    is_apple_wallet_available?: boolean;
     requires_manual_verification?: boolean;
     deletion_request?: AccountDeletionRequest | null;
 }
@@ -250,6 +251,9 @@ export interface EventSettings {
     google_wallet_banner_url?: string;
     google_wallet_logo_url?: string;
     google_wallet_background_color?: string;
+    apple_wallet_logo_url?: string | null;
+    apple_wallet_strip_image_url?: string | null;
+    apple_wallet_background_color?: string | null;
     seo_title?: string;
     seo_description?: string;
     seo_keywords?: string;
@@ -701,11 +705,19 @@ export interface OrganizerSettings {
     tracking_consent_acknowledged?: boolean;
     google_wallet_enabled?: boolean;
     google_wallet_pass_settings?: GoogleWalletPassSettings;
+    apple_wallet_enabled?: boolean;
+    apple_wallet_pass_settings?: AppleWalletPassSettings;
 }
 
 export interface GoogleWalletPassSettings {
     logo_url?: string;
     hero_image_url?: string;
+    background_color?: string;
+}
+
+export interface AppleWalletPassSettings {
+    logo_url?: string;
+    strip_image_url?: string;
     background_color?: string;
 }
 

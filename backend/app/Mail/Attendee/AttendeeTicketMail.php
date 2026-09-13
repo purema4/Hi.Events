@@ -46,6 +46,8 @@ class AttendeeTicketMail extends BaseMail
         private readonly ?Collection $additionalAttendees = null,
         private readonly ?string $googleWalletSaveUrl = null,
         private readonly ?string $googleWalletButtonPath = null,
+        private readonly ?string $appleWalletPassUrl = null,
+        private readonly ?string $appleWalletButtonPath = null,
     ) {
         parent::__construct();
         $this->renderedTemplate = $renderedTemplate;
@@ -85,6 +87,8 @@ class AttendeeTicketMail extends BaseMail
                     ->map(fn (AttendeeDomainObject $attendee) => $this->summariseTicket($attendee)),
                 'googleWalletSaveUrl' => $this->googleWalletSaveUrl,
                 'googleWalletButtonPath' => $this->googleWalletButtonPath,
+                'appleWalletPassUrl' => $this->appleWalletPassUrl,
+                'appleWalletButtonPath' => $this->appleWalletButtonPath,
             ]
         );
     }

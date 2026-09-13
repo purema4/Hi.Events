@@ -27,6 +27,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
+use Symfony\Component\HttpFoundation\HeaderUtils;
 
 abstract class BaseAction extends Controller
 {
@@ -141,6 +142,18 @@ abstract class BaseAction extends Controller
         $allHeaders = array_merge($defaultHeaders, $headers);
 
         return Response::make($xmlContent, $statusCode, $allHeaders);
+    }
+
+    protected function fileResponse(
+        string $contents,
+        string $mimeType,
+        string $filename,
+        int $statusCode = ResponseCodes::HTTP_OK,
+    ): LaravelResponse {
+        return Response::make($contents, $statusCode, [
+            'Content-Type' => $mimeType,
+            'Content-Disposition' => HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, $filename),
+        ]);
     }
 
     protected function isActionAuthorized(

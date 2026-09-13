@@ -15,6 +15,7 @@ use HiEvents\Helper\DateHelper;
 use HiEvents\Mail\Attendee\AttendeeTicketMail;
 use HiEvents\Mail\Occurrence\OccurrenceCancellationMail;
 use HiEvents\Mail\Order\OrderSummary;
+use HiEvents\Services\Domain\AppleWallet\AppleWalletButtonResolver;
 use HiEvents\Services\Domain\Email\DTO\RenderedEmailTemplateDTO;
 use HiEvents\Services\Domain\GoogleWallet\GoogleWalletButtonResolver;
 use HiEvents\Services\Domain\Order\OfflinePaymentInstructionsRenderService;
@@ -27,6 +28,7 @@ class MailBuilderService
         private readonly EmailTokenContextBuilder $tokenContextBuilder,
         private readonly OfflinePaymentInstructionsRenderService $offlinePaymentInstructionsRenderService,
         private readonly GoogleWalletButtonResolver $googleWalletButtonResolver,
+        private readonly AppleWalletButtonResolver $appleWalletButtonResolver,
     ) {}
 
     /**
@@ -41,6 +43,7 @@ class MailBuilderService
         ?EventOccurrenceDomainObject $occurrence = null,
         ?Collection $additionalAttendees = null,
         ?string $googleWalletSaveUrl = null,
+        ?string $appleWalletPassUrl = null,
     ): AttendeeTicketMail {
         $renderedTemplate = $this->renderAttendeeTicketTemplate(
             $attendee,
@@ -64,6 +67,10 @@ class MailBuilderService
             googleWalletButtonPath: $googleWalletSaveUrl === null
                 ? null
                 : $this->googleWalletButtonResolver->pathForLocale($attendee->getLocale()),
+            appleWalletPassUrl: $appleWalletPassUrl,
+            appleWalletButtonPath: $appleWalletPassUrl === null
+                ? null
+                : $this->appleWalletButtonResolver->pathForLocale($attendee->getLocale()),
         );
     }
 

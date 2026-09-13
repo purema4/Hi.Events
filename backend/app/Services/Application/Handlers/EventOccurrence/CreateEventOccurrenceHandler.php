@@ -14,7 +14,7 @@ use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Services\Application\Handlers\EventOccurrence\DTO\UpsertEventOccurrenceDTO;
 use HiEvents\Services\Domain\Event\RecurrenceRuleParserService;
 use HiEvents\Services\Domain\EventLocation\EventLocationUpserter;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Validation\ValidationException;
 use Throwable;
@@ -26,7 +26,7 @@ class CreateEventOccurrenceHandler
         private readonly EventRepositoryInterface $eventRepository,
         private readonly EventLocationUpserter $eventLocationUpserter,
         private readonly DatabaseManager $databaseManager,
-        private readonly GoogleWalletSyncDispatcher $googleWalletSyncDispatcher,
+        private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
     /**
@@ -80,7 +80,7 @@ class CreateEventOccurrenceHandler
             ]);
         });
 
-        $this->googleWalletSyncDispatcher->queueOccurrenceClassSync($occurrence->getId());
+        $this->walletPassSyncDispatcher->queueOccurrenceSync($occurrence->getId());
 
         return $occurrence;
     }

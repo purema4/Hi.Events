@@ -8,7 +8,7 @@ use HiEvents\Events\CapacityChangedEvent;
 use HiEvents\Repository\Interfaces\EventSettingsRepositoryInterface;
 use HiEvents\Services\Application\Handlers\EventSettings\DTO\UpdateEventSettingsDTO;
 use HiEvents\Services\Application\Handlers\EventSettings\UpdateEventSettingsHandler;
-use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSyncDispatcher;
+use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\HtmlPurifier\HtmlPurifierService;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Support\Facades\Event;
@@ -26,7 +26,7 @@ class UpdateEventSettingsHandlerTest extends TestCase
 
     private DatabaseManager $databaseManager;
 
-    private GoogleWalletSyncDispatcher $googleWalletSyncDispatcher;
+    private WalletPassSyncDispatcher $walletPassSyncDispatcher;
 
     private UpdateEventSettingsHandler $handler;
 
@@ -44,13 +44,13 @@ class UpdateEventSettingsHandlerTest extends TestCase
             ->shouldReceive('transaction')
             ->andReturnUsing(fn ($callback) => $callback());
 
-        $this->googleWalletSyncDispatcher = Mockery::mock(GoogleWalletSyncDispatcher::class)->shouldIgnoreMissing();
+        $this->walletPassSyncDispatcher = Mockery::mock(WalletPassSyncDispatcher::class)->shouldIgnoreMissing();
 
         $this->handler = new UpdateEventSettingsHandler(
             eventSettingsRepository: $this->eventSettingsRepository,
             purifier: $this->purifier,
             databaseManager: $this->databaseManager,
-            googleWalletSyncDispatcher: $this->googleWalletSyncDispatcher,
+            walletPassSyncDispatcher: $this->walletPassSyncDispatcher,
         );
     }
 
@@ -238,8 +238,8 @@ class UpdateEventSettingsHandlerTest extends TestCase
 
         $this->eventSettingsRepository->shouldReceive('updateWhere')->once();
 
-        $this->googleWalletSyncDispatcher
-            ->shouldReceive('queueEventClassSync')
+        $this->walletPassSyncDispatcher
+            ->shouldReceive('queueEventSync')
             ->once()
             ->with(1);
 
@@ -261,7 +261,7 @@ class UpdateEventSettingsHandlerTest extends TestCase
 
         $this->eventSettingsRepository->shouldReceive('updateWhere')->once();
 
-        $this->googleWalletSyncDispatcher->shouldNotReceive('queueEventClassSync');
+        $this->walletPassSyncDispatcher->shouldNotReceive('queueEventSync');
 
         $this->handler->handle($this->createDTO(google_wallet_banner_url: '  https://cdn.example.com/banner.png  '));
     }
