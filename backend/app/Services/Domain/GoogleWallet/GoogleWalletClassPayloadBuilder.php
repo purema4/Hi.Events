@@ -7,6 +7,7 @@ namespace HiEvents\Services\Domain\GoogleWallet;
 use Carbon\Carbon;
 use HiEvents\DomainObjects\Enums\ImageType;
 use HiEvents\DomainObjects\EventDomainObject;
+use HiEvents\DomainObjects\EventLocationDomainObject;
 use HiEvents\DomainObjects\EventOccurrenceDomainObject;
 use HiEvents\DomainObjects\ImageDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
@@ -49,29 +50,73 @@ class GoogleWalletClassPayloadBuilder
             'hexBackgroundColor' => $this->backgroundColor($event, $passSettings),
             'multipleDevicesAndHoldersAllowedStatus' => 'MULTIPLE_HOLDERS',
             'textModulesData' => $this->textModules($event, $occurrence),
+            'classTemplateInfo' => $this->cardTemplate(),
             ...$this->smartTap(),
         ], static fn ($value) => $value !== null && $value !== []);
     }
 
     private function textModules(EventDomainObject $event, EventOccurrenceDomainObject $occurrence): array
     {
+        $startDate = $this->readableDateTime($occurrence->getStartDate(), $event->getTimezone());
         $endDate = $this->readableDateTime($occurrence->getEndDate(), $event->getTimezone());
-        $address = EventVenueHelper::formattedAddress(
-            $occurrence->getEventLocation() ?? $event->getEventLocation()
-        );
+        $location = $this->location($occurrence->getEventLocation() ?? $event->getEventLocation());
 
         return array_values(array_filter([
+            $startDate === null ? null : [
+                'id' => 'event_date',
+                'header' => __('Date'),
+                'body' => $startDate,
+            ],
+            $location === null ? null : [
+                'id' => 'event_location',
+                'header' => __('Location'),
+                'body' => $location,
+            ],
             $endDate === null ? null : [
                 'id' => 'event_end',
                 'header' => __('Ends'),
                 'body' => $endDate,
             ],
-            $address === null ? null : [
-                'id' => 'event_address',
-                'header' => __('Address'),
-                'body' => $address,
-            ],
         ]));
+    }
+
+    private function cardTemplate(): array
+    {
+        return [
+            'cardTemplateOverride' => [
+                'cardRowTemplateInfos' => [
+                    [
+                        'twoItems' => [
+                            'startItem' => $this->cardField("object.textModulesData['ticket']"),
+                            'endItem' => $this->cardField("object.textModulesData['price']"),
+                        ],
+                    ],
+                    [
+                        'twoItems' => [
+                            'startItem' => $this->cardField("class.textModulesData['event_date']"),
+                            'endItem' => $this->cardField("class.textModulesData['event_location']"),
+                        ],
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    private function cardField(string $fieldPath): array
+    {
+        return ['firstValue' => ['fields' => [['fieldPath' => $fieldPath]]]];
+    }
+
+    private function location(?EventLocationDomainObject $eventLocation): ?string
+    {
+        $name = EventVenueHelper::venueName($eventLocation);
+        $address = EventVenueHelper::formattedAddress($eventLocation);
+
+        if ($name === null || ($address !== null && str_starts_with($address, $name))) {
+            return $address;
+        }
+
+        return $address === null ? $name : $name.', '.$address;
     }
 
     private function readableDateTime(?string $utcDate, string $timezone): ?string
@@ -80,7 +125,9 @@ class GoogleWalletClassPayloadBuilder
             return null;
         }
 
-        return Carbon::parse(DateHelper::convertFromUTC($utcDate, $timezone))->format('D, M j, Y · g:i A');
+        return Carbon::parse(DateHelper::convertFromUTC($utcDate, $timezone))
+            ->locale($this->translator->getLocale())
+            ->translatedFormat('F j, Y @ g:i a');
     }
 
     private function heroImageUrl(EventDomainObject $event, GoogleWalletPassSettingsDTO $passSettings): ?string

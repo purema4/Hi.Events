@@ -24,6 +24,7 @@ class EnsureGoogleWalletObjectService
         private readonly GoogleWalletIdGenerator $idGenerator,
         private readonly GoogleWalletObjectPayloadBuilder $payloadBuilder,
         private readonly GoogleWalletPassSettingsResolver $passSettingsResolver,
+        private readonly GoogleWalletTicketPriceResolver $ticketPriceResolver,
         private readonly EnsureGoogleWalletClassService $ensureClassService,
         private readonly AttendeeRepositoryInterface $attendeeRepository,
         private readonly EventOccurrenceRepositoryInterface $occurrenceRepository,
@@ -61,7 +62,13 @@ class EnsureGoogleWalletObjectService
 
         $this->apiClient->upsertEventTicketObject(
             $objectId,
-            $this->payloadBuilder->build($objectId, $classId, $attendee, $event),
+            $this->payloadBuilder->build(
+                $objectId,
+                $classId,
+                $attendee,
+                $event,
+                $this->ticketPriceResolver->resolve($attendee, $event),
+            ),
         );
 
         if ($attendee->getGoogleWalletObjectId() !== $objectId) {

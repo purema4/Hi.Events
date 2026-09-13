@@ -751,5 +751,7 @@
     "Google Wallet rejected the :resource request (:status): :body": "Google Wallet :resource isteğini reddetti (:status): :body",
     "Add :count tickets to Google Wallet": ":count bileti Google Wallet'a ekle",
     "Ends": "Bitiş",
-    "Address": "Adres"
+    "Address": "Adres",
+    "Date": "Tarih",
+    "Location": "Konum"
 }

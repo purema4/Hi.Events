@@ -199,7 +199,7 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
         $this->assertSame('MULTIPLE_HOLDERS', $payload['multipleDevicesAndHoldersAllowedStatus']);
     }
 
-    public function test_the_end_time_and_address_are_spelled_out_on_the_pass(): void
+    public function test_the_date_location_and_end_time_are_spelled_out_on_the_pass(): void
     {
         $event = $this->event();
         $event->setEventLocation($this->venue());
@@ -214,11 +214,14 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
 
         $modules = collect($payload['textModulesData'])->keyBy('id');
 
-        $this->assertSame('Tue, Jun 2, 2026 · 12:00 AM', $modules['event_end']['body']);
-        $this->assertSame('Curved Street, Dublin, Ireland', $modules['event_address']['body']);
+        $this->assertSame('Date', $modules['event_date']['header']);
+        $this->assertSame('June 1, 2026 @ 8:00 pm', $modules['event_date']['body']);
+        $this->assertSame('Location', $modules['event_location']['header']);
+        $this->assertSame('The Button Factory, Curved Street, Dublin, Ireland', $modules['event_location']['body']);
+        $this->assertSame('June 2, 2026 @ 12:00 am', $modules['event_end']['body']);
     }
 
-    public function test_an_event_without_a_venue_carries_no_address_row(): void
+    public function test_an_event_without_a_venue_carries_no_location_row(): void
     {
         $payload = $this->builder()->build(
             'issuer.class_1',
@@ -228,7 +231,30 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
             $this->passSettings(),
         );
 
-        $this->assertSame(['event_end'], collect($payload['textModulesData'])->pluck('id')->all());
+        $this->assertSame(['event_date', 'event_end'], collect($payload['textModulesData'])->pluck('id')->all());
+    }
+
+    public function test_the_card_shows_ticket_and_price_then_date_and_location(): void
+    {
+        $payload = $this->builder()->build(
+            'issuer.class_1',
+            $this->event(),
+            $this->occurrence(),
+            $this->organizer(),
+            $this->passSettings(),
+        );
+
+        $rows = collect($payload['classTemplateInfo']['cardTemplateOverride']['cardRowTemplateInfos'])
+            ->map(fn (array $row) => [
+                $row['twoItems']['startItem']['firstValue']['fields'][0]['fieldPath'],
+                $row['twoItems']['endItem']['firstValue']['fields'][0]['fieldPath'],
+            ])
+            ->all();
+
+        $this->assertSame([
+            ["object.textModulesData['ticket']", "object.textModulesData['price']"],
+            ["class.textModulesData['event_date']", "class.textModulesData['event_location']"],
+        ], $rows);
     }
 
     public function test_event_branding_wins_over_the_organizer_settings(): void

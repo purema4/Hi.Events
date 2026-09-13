@@ -23,6 +23,7 @@ class GoogleWalletObjectPayloadBuilder
         string $classId,
         AttendeeDomainObject $attendee,
         EventDomainObject $event,
+        ?string $price,
     ): array {
         return array_filter([
             'id' => $objectId,
@@ -37,6 +38,7 @@ class GoogleWalletObjectPayloadBuilder
                 'alternateText' => $attendee->getPublicId(),
             ],
             'smartTapRedemptionValue' => $this->smartTapRedemptionValue($attendee),
+            'textModulesData' => $this->textModules($attendee, $price),
             'linksModuleData' => [
                 'uris' => [
                     [
@@ -46,7 +48,25 @@ class GoogleWalletObjectPayloadBuilder
                     ],
                 ],
             ],
-        ], static fn ($value) => $value !== null && $value !== '');
+        ], static fn ($value) => $value !== null && $value !== '' && $value !== []);
+    }
+
+    private function textModules(AttendeeDomainObject $attendee, ?string $price): array
+    {
+        $productTitle = $attendee->getProduct()?->getTitle();
+
+        return array_values(array_filter([
+            $productTitle === null ? null : [
+                'id' => 'ticket',
+                'header' => __('Ticket'),
+                'body' => $productTitle,
+            ],
+            $price === null ? null : [
+                'id' => 'price',
+                'header' => __('Price'),
+                'body' => $price,
+            ],
+        ]));
     }
 
     private function smartTapRedemptionValue(AttendeeDomainObject $attendee): ?string

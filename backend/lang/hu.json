@@ -741,5 +741,7 @@
     "Google Wallet rejected the :resource request (:status): :body": "A Google Wallet elutasította a(z) :resource kérést (:status): :body",
     "Add :count tickets to Google Wallet": ":count jegy hozzáadása a Google Wallethez",
     "Ends": "Vége",
-    "Address": "Cím"
+    "Address": "Cím",
+    "Date": "Dátum",
+    "Location": "Helyszín"
 }

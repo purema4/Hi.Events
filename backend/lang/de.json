@@ -736,5 +736,7 @@
     "Google Wallet rejected the :resource request (:status): :body": "Google Wallet hat die Anfrage :resource abgelehnt (:status): :body",
     "Add :count tickets to Google Wallet": "Alle :count Tickets zu Google Wallet hinzufügen",
     "Ends": "Endet",
-    "Address": "Adresse"
+    "Address": "Adresse",
+    "Date": "Datum",
+    "Location": "Ort"
 }

@@ -736,5 +736,7 @@
     "Google Wallet rejected the :resource request (:status): :body": "Google Wallet odmietol požiadavku :resource (:status): :body",
     "Add :count tickets to Google Wallet": "Pridať :count lístkov do Google Wallet",
     "Ends": "Končí",
-    "Address": "Adresa"
+    "Address": "Adresa",
+    "Date": "Dátum",
+    "Location": "Miesto"
 }

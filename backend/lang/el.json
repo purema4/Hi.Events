@@ -736,5 +736,7 @@
     "Google Wallet rejected the :resource request (:status): :body": "Το Google Wallet απέρριψε το αίτημα :resource (:status): :body",
     "Add :count tickets to Google Wallet": "Προσθήκη :count εισιτηρίων στο Google Wallet",
     "Ends": "Λήγει",
-    "Address": "Διεύθυνση"
+    "Address": "Διεύθυνση",
+    "Date": "Ημερομηνία",
+    "Location": "Τοποθεσία"
 }

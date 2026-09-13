@@ -736,5 +736,7 @@
     "Google Wallet rejected the :resource request (:status): :body": "Google 錢包拒絕了 :resource 要求（:status）：:body",
     "Add :count tickets to Google Wallet": "將 :count 張票加入 Google 錢包",
     "Ends": "結束",
-    "Address": "地址"
+    "Address": "地址",
+    "Date": "日期",
+    "Location": "地點"
 }
