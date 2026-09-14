@@ -228,7 +228,7 @@ class UpdateEventSettingsHandlerTest extends TestCase
         Event::fake();
 
         $existingSettings = (new EventSettingDomainObject)
-            ->setGoogleWalletBannerUrl('https://cdn.example.com/old.png');
+            ->setWalletPassBannerUrl('https://cdn.example.com/old.png');
 
         $this->eventSettingsRepository
             ->shouldReceive('findFirstWhere')
@@ -243,7 +243,7 @@ class UpdateEventSettingsHandlerTest extends TestCase
             ->once()
             ->with(1);
 
-        $this->handler->handle($this->createDTO(google_wallet_banner_url: 'https://cdn.example.com/new.png'));
+        $this->handler->handle($this->createDTO(wallet_pass_banner_url: 'https://cdn.example.com/new.png'));
     }
 
     public function test_does_not_queue_a_class_sync_when_the_google_wallet_branding_is_unchanged(): void
@@ -251,7 +251,7 @@ class UpdateEventSettingsHandlerTest extends TestCase
         Event::fake();
 
         $existingSettings = (new EventSettingDomainObject)
-            ->setGoogleWalletBannerUrl('https://cdn.example.com/banner.png');
+            ->setWalletPassBannerUrl('https://cdn.example.com/banner.png');
 
         $this->eventSettingsRepository
             ->shouldReceive('findFirstWhere')
@@ -263,14 +263,14 @@ class UpdateEventSettingsHandlerTest extends TestCase
 
         $this->walletPassSyncDispatcher->shouldNotReceive('queueEventSync');
 
-        $this->handler->handle($this->createDTO(google_wallet_banner_url: '  https://cdn.example.com/banner.png  '));
+        $this->handler->handle($this->createDTO(wallet_pass_banner_url: '  https://cdn.example.com/banner.png  '));
     }
 
     private function createDTO(
         ?bool $waitlist_auto_process = null,
         bool $allow_copy_details_to_all_attendees = true,
         ?string $get_tickets_button_text = null,
-        ?string $google_wallet_banner_url = null,
+        ?string $wallet_pass_banner_url = null,
     ): UpdateEventSettingsDTO {
         return UpdateEventSettingsDTO::fromArray([
             'account_id' => 1,
@@ -299,7 +299,7 @@ class UpdateEventSettingsHandlerTest extends TestCase
             'allow_copy_details_to_all_attendees' => $allow_copy_details_to_all_attendees,
             'waitlist_auto_process' => $waitlist_auto_process,
             'waitlist_offer_timeout_minutes' => 60,
-            'google_wallet_banner_url' => $google_wallet_banner_url,
+            'wallet_pass_banner_url' => $wallet_pass_banner_url,
         ]);
     }
 }

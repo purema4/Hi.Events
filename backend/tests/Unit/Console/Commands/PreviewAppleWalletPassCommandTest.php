@@ -14,8 +14,8 @@ use HiEvents\Services\Domain\AppleWallet\AppleWalletPassService;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletPassSettingsResolver;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletUrlGenerator;
 use HiEvents\Services\Domain\AppleWallet\DTO\AppleWalletPassFileDTO;
-use HiEvents\Services\Domain\AppleWallet\DTO\AppleWalletPassSettingsDTO;
 use HiEvents\Services\Domain\AppleWallet\SyncAppleWalletPassesService;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
 use Illuminate\Config\Repository;
 use Illuminate\Filesystem\Filesystem;
 use Mockery;
@@ -72,7 +72,7 @@ class PreviewAppleWalletPassCommandTest extends TestCase
         $this->passSettingsResolver
             ->shouldReceive('resolveForOrganizer')
             ->with(self::ORGANIZER_ID)
-            ->andReturn(new AppleWalletPassSettingsDTO(logoUrl: null, stripImageUrl: null, backgroundColor: null))
+            ->andReturn(new WalletPassBrandingDTO(logoUrl: null, bannerImageUrl: null, backgroundColor: null, themeAccentColor: null))
             ->byDefault();
     }
 

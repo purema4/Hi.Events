@@ -8,13 +8,12 @@ import { PayoutsSettings } from "./Sections/PayoutsSettings";
 import { PlatformFeesSettings } from "./Sections/PlatformFeesSettings";
 import { DangerZoneSettings } from "./Sections/DangerZoneSettings";
 import { TrackingPixelSettings } from "./Sections/TrackingPixelSettings";
-import { GoogleWalletSettings } from "./Sections/GoogleWalletSettings";
-import { AppleWalletSettings } from "./Sections/AppleWalletSettings";
+import { WalletPassSettings } from "./Sections/WalletPassSettings";
 import { PageBody } from "../../../common/PageBody";
 import { PageTitle } from "../../../common/PageTitle";
 import { t } from "@lingui/macro";
 import { Box, Group, NavLink as MantineNavLink, Stack } from "@mantine/core";
-import { IconAlertTriangle, IconBrandGoogleAnalytics, IconBrandStripe, IconInfoCircle, IconMapPin, IconShare, IconMail, IconCalendarEvent, IconPercentage, IconChartBar, IconBrandApple, IconWallet } from "@tabler/icons-react";
+import { IconAlertTriangle, IconBrandGoogleAnalytics, IconBrandStripe, IconInfoCircle, IconMapPin, IconShare, IconMail, IconCalendarEvent, IconPercentage, IconChartBar, IconWallet } from "@tabler/icons-react";
 import { useMediaQuery } from "@mantine/hooks";
 import { useEffect, useMemo, useState } from "react";
 import { Card } from "../../../common/Card";
@@ -87,21 +86,12 @@ const Settings = () => {
             },
         ];
 
-        if (isGoogleWalletAvailable) {
+        if (isGoogleWalletAvailable || isAppleWalletAvailable) {
             baseSections.splice(baseSections.length - 1, 0, {
-                id: 'google-wallet',
-                label: t`Google Wallet`,
+                id: 'wallet-passes',
+                label: t`Wallet passes`,
                 icon: IconWallet,
-                component: GoogleWalletSettings,
-            });
-        }
-
-        if (isAppleWalletAvailable) {
-            baseSections.splice(baseSections.length - 1, 0, {
-                id: 'apple-wallet',
-                label: t`Apple Wallet`,
-                icon: IconBrandApple,
-                component: AppleWalletSettings,
+                component: WalletPassSettings,
             });
         }
 

@@ -37,13 +37,9 @@ class UpdateEventSettingsRequest extends BaseRequest
             'homepage_body_background_color' => ['nullable', ...RulesHelper::HEX_COLOR],
             'homepage_background_type' => ['nullable', Rule::in(HomepageBackgroundType::valuesArray())],
 
-            'google_wallet_banner_url' => ['url', 'nullable'],
-            'google_wallet_logo_url' => ['url', 'nullable'],
-            'google_wallet_background_color' => ['nullable', ...RulesHelper::HEX_COLOR],
-
-            'apple_wallet_logo_url' => ['url', 'nullable'],
-            'apple_wallet_strip_image_url' => ['url', 'nullable'],
-            'apple_wallet_background_color' => ['nullable', ...RulesHelper::HEX_COLOR],
+            'wallet_pass_logo_url' => ['url', 'nullable'],
+            'wallet_pass_banner_url' => ['url', 'nullable'],
+            'wallet_pass_background_color' => ['nullable', ...RulesHelper::HEX_COLOR],
 
             'website_url' => ['url', 'nullable'],
             'maps_url' => ['url', 'nullable'],

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace HiEvents\Services\Domain\GoogleWallet;
 
 use HiEvents\DomainObjects\OrganizerSettingDomainObject;
-use HiEvents\Helper\HexColorHelper;
 use HiEvents\Repository\Interfaces\OrganizerSettingsRepositoryInterface;
-use HiEvents\Services\Domain\GoogleWallet\DTO\GoogleWalletPassSettingsDTO;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
+use HiEvents\Services\Domain\Wallet\WalletPassBrandingResolver;
 use Illuminate\Config\Repository;
 
 class GoogleWalletPassSettingsResolver
@@ -15,6 +15,7 @@ class GoogleWalletPassSettingsResolver
     public function __construct(
         private readonly Repository $config,
         private readonly OrganizerSettingsRepositoryInterface $organizerSettingsRepository,
+        private readonly WalletPassBrandingResolver $brandingResolver,
     ) {}
 
     public function isConfigured(): bool
@@ -23,7 +24,7 @@ class GoogleWalletPassSettingsResolver
             && trim((string) $this->config->get('google-wallet.issuer_id')) !== '';
     }
 
-    public function resolveForOrganizer(int $organizerId): ?GoogleWalletPassSettingsDTO
+    public function resolveForOrganizer(int $organizerId): ?WalletPassBrandingDTO
     {
         if (! $this->isConfigured()) {
             return null;
@@ -38,34 +39,6 @@ class GoogleWalletPassSettingsResolver
             return null;
         }
 
-        $passSettings = $this->toArray($settings->getGoogleWalletPassSettings());
-        $themeSettings = $this->toArray($settings->getHomepageThemeSettings());
-
-        return new GoogleWalletPassSettingsDTO(
-            logoUrl: $this->nullableString($passSettings['logo_url'] ?? null),
-            heroImageUrl: $this->nullableString($passSettings['hero_image_url'] ?? null),
-            backgroundColor: HexColorHelper::toRgbHex($passSettings['background_color'] ?? null),
-            themeAccentColor: HexColorHelper::toRgbHex($themeSettings['accent'] ?? null),
-        );
-    }
-
-    private function toArray(mixed $value): array
-    {
-        if (is_array($value)) {
-            return $value;
-        }
-
-        return is_string($value) ? (json_decode($value, true) ?: []) : [];
-    }
-
-    private function nullableString(mixed $value): ?string
-    {
-        if (! is_string($value)) {
-            return null;
-        }
-
-        $trimmed = trim($value);
-
-        return $trimmed === '' ? null : $trimmed;
+        return $this->brandingResolver->fromOrganizerSettings($settings);
     }
 }

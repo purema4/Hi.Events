@@ -70,12 +70,9 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     final public const SHOW_AVAILABLE_OCCURRENCE_CAPACITY = 'show_available_occurrence_capacity';
     final public const HIDE_SOLD_OUT_OCCURRENCES = 'hide_sold_out_occurrences';
     final public const GET_TICKETS_BUTTON_TEXT = 'get_tickets_button_text';
-    final public const GOOGLE_WALLET_BANNER_URL = 'google_wallet_banner_url';
-    final public const GOOGLE_WALLET_LOGO_URL = 'google_wallet_logo_url';
-    final public const GOOGLE_WALLET_BACKGROUND_COLOR = 'google_wallet_background_color';
-    final public const APPLE_WALLET_LOGO_URL = 'apple_wallet_logo_url';
-    final public const APPLE_WALLET_STRIP_IMAGE_URL = 'apple_wallet_strip_image_url';
-    final public const APPLE_WALLET_BACKGROUND_COLOR = 'apple_wallet_background_color';
+    final public const WALLET_PASS_LOGO_URL = 'wallet_pass_logo_url';
+    final public const WALLET_PASS_BANNER_URL = 'wallet_pass_banner_url';
+    final public const WALLET_PASS_BACKGROUND_COLOR = 'wallet_pass_background_color';
 
     protected int $id;
     protected int $event_id;
@@ -137,12 +134,9 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     protected bool $show_available_occurrence_capacity = false;
     protected bool $hide_sold_out_occurrences = false;
     protected ?string $get_tickets_button_text = null;
-    protected ?string $google_wallet_banner_url = null;
-    protected ?string $google_wallet_logo_url = null;
-    protected ?string $google_wallet_background_color = null;
-    protected ?string $apple_wallet_logo_url = null;
-    protected ?string $apple_wallet_strip_image_url = null;
-    protected ?string $apple_wallet_background_color = null;
+    protected ?string $wallet_pass_logo_url = null;
+    protected ?string $wallet_pass_banner_url = null;
+    protected ?string $wallet_pass_background_color = null;
 
     public function toArray(): array
     {
@@ -207,12 +201,9 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
                     'show_available_occurrence_capacity' => $this->show_available_occurrence_capacity ?? null,
                     'hide_sold_out_occurrences' => $this->hide_sold_out_occurrences ?? null,
                     'get_tickets_button_text' => $this->get_tickets_button_text ?? null,
-                    'google_wallet_banner_url' => $this->google_wallet_banner_url ?? null,
-                    'google_wallet_logo_url' => $this->google_wallet_logo_url ?? null,
-                    'google_wallet_background_color' => $this->google_wallet_background_color ?? null,
-                    'apple_wallet_logo_url' => $this->apple_wallet_logo_url ?? null,
-                    'apple_wallet_strip_image_url' => $this->apple_wallet_strip_image_url ?? null,
-                    'apple_wallet_background_color' => $this->apple_wallet_background_color ?? null,
+                    'wallet_pass_logo_url' => $this->wallet_pass_logo_url ?? null,
+                    'wallet_pass_banner_url' => $this->wallet_pass_banner_url ?? null,
+                    'wallet_pass_background_color' => $this->wallet_pass_background_color ?? null,
                 ];
     }
 
@@ -877,69 +868,36 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
         return $this->get_tickets_button_text;
     }
 
-    public function setGoogleWalletBannerUrl(?string $google_wallet_banner_url): self
+    public function setWalletPassLogoUrl(?string $wallet_pass_logo_url): self
     {
-        $this->google_wallet_banner_url = $google_wallet_banner_url;
+        $this->wallet_pass_logo_url = $wallet_pass_logo_url;
         return $this;
     }
 
-    public function getGoogleWalletBannerUrl(): ?string
+    public function getWalletPassLogoUrl(): ?string
     {
-        return $this->google_wallet_banner_url;
+        return $this->wallet_pass_logo_url;
     }
 
-    public function setGoogleWalletLogoUrl(?string $google_wallet_logo_url): self
+    public function setWalletPassBannerUrl(?string $wallet_pass_banner_url): self
     {
-        $this->google_wallet_logo_url = $google_wallet_logo_url;
+        $this->wallet_pass_banner_url = $wallet_pass_banner_url;
         return $this;
     }
 
-    public function getGoogleWalletLogoUrl(): ?string
+    public function getWalletPassBannerUrl(): ?string
     {
-        return $this->google_wallet_logo_url;
+        return $this->wallet_pass_banner_url;
     }
 
-    public function setGoogleWalletBackgroundColor(?string $google_wallet_background_color): self
+    public function setWalletPassBackgroundColor(?string $wallet_pass_background_color): self
     {
-        $this->google_wallet_background_color = $google_wallet_background_color;
+        $this->wallet_pass_background_color = $wallet_pass_background_color;
         return $this;
     }
 
-    public function getGoogleWalletBackgroundColor(): ?string
+    public function getWalletPassBackgroundColor(): ?string
     {
-        return $this->google_wallet_background_color;
-    }
-
-    public function setAppleWalletLogoUrl(?string $apple_wallet_logo_url): self
-    {
-        $this->apple_wallet_logo_url = $apple_wallet_logo_url;
-        return $this;
-    }
-
-    public function getAppleWalletLogoUrl(): ?string
-    {
-        return $this->apple_wallet_logo_url;
-    }
-
-    public function setAppleWalletStripImageUrl(?string $apple_wallet_strip_image_url): self
-    {
-        $this->apple_wallet_strip_image_url = $apple_wallet_strip_image_url;
-        return $this;
-    }
-
-    public function getAppleWalletStripImageUrl(): ?string
-    {
-        return $this->apple_wallet_strip_image_url;
-    }
-
-    public function setAppleWalletBackgroundColor(?string $apple_wallet_background_color): self
-    {
-        $this->apple_wallet_background_color = $apple_wallet_background_color;
-        return $this;
-    }
-
-    public function getAppleWalletBackgroundColor(): ?string
-    {
-        return $this->apple_wallet_background_color;
+        return $this->wallet_pass_background_color;
     }
 }

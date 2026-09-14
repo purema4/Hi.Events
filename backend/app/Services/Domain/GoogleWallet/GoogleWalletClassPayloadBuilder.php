@@ -15,7 +15,7 @@ use HiEvents\Helper\DateHelper;
 use HiEvents\Helper\EventVenueHelper;
 use HiEvents\Helper\HexColorHelper;
 use HiEvents\Helper\Url;
-use HiEvents\Services\Domain\GoogleWallet\DTO\GoogleWalletPassSettingsDTO;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Support\Collection;
@@ -33,7 +33,7 @@ class GoogleWalletClassPayloadBuilder
         EventDomainObject $event,
         EventOccurrenceDomainObject $occurrence,
         OrganizerDomainObject $organizer,
-        GoogleWalletPassSettingsDTO $passSettings,
+        WalletPassBrandingDTO $passSettings,
     ): array {
         $explicitHeroImageUrl = $this->explicitHeroImageUrl($event, $passSettings);
         $cover = $explicitHeroImageUrl === null ? $this->coverImage($event) : null;
@@ -138,10 +138,10 @@ class GoogleWalletClassPayloadBuilder
             ->translatedFormat('F j, Y @ g:i a');
     }
 
-    private function explicitHeroImageUrl(EventDomainObject $event, GoogleWalletPassSettingsDTO $passSettings): ?string
+    private function explicitHeroImageUrl(EventDomainObject $event, WalletPassBrandingDTO $passSettings): ?string
     {
-        return $this->nonEmpty($event->getEventSettings()?->getGoogleWalletBannerUrl())
-            ?? $passSettings->heroImageUrl;
+        return $this->nonEmpty($event->getEventSettings()?->getWalletPassBannerUrl())
+            ?? $passSettings->bannerImageUrl;
     }
 
     private function coverImage(EventDomainObject $event): ?ImageDomainObject
@@ -169,19 +169,19 @@ class GoogleWalletClassPayloadBuilder
     private function logoUrl(
         EventDomainObject $event,
         OrganizerDomainObject $organizer,
-        GoogleWalletPassSettingsDTO $passSettings,
+        WalletPassBrandingDTO $passSettings,
     ): ?string {
-        return $this->nonEmpty($event->getEventSettings()?->getGoogleWalletLogoUrl())
+        return $this->nonEmpty($event->getEventSettings()?->getWalletPassLogoUrl())
             ?? $passSettings->logoUrl
             ?? $this->imageUrl($organizer->getImages(), ImageType::ORGANIZER_LOGO);
     }
 
     private function backgroundColor(
         EventDomainObject $event,
-        GoogleWalletPassSettingsDTO $passSettings,
+        WalletPassBrandingDTO $passSettings,
         ?ImageDomainObject $cover,
     ): ?string {
-        return HexColorHelper::toRgbHex($event->getEventSettings()?->getGoogleWalletBackgroundColor())
+        return HexColorHelper::toRgbHex($event->getEventSettings()?->getWalletPassBackgroundColor())
             ?? $passSettings->backgroundColor
             ?? HexColorHelper::toRgbHex($cover?->getAvgColour())
             ?? $passSettings->themeAccentColor;

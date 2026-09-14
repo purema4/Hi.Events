@@ -6,15 +6,17 @@ namespace HiEvents\Services\Domain\AppleWallet;
 
 use Carbon\Carbon;
 use HiEvents\DomainObjects\AttendeeDomainObject;
+use HiEvents\DomainObjects\Enums\ImageType;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventLocationDomainObject;
 use HiEvents\DomainObjects\EventOccurrenceDomainObject;
+use HiEvents\DomainObjects\ImageDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\DomainObjects\Status\AttendeeStatus;
 use HiEvents\Helper\EventVenueHelper;
 use HiEvents\Helper\HexColorHelper;
 use HiEvents\Helper\Url;
-use HiEvents\Services\Domain\AppleWallet\DTO\AppleWalletPassSettingsDTO;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
 use Illuminate\Config\Repository;
 
 class AppleWalletPassJsonBuilder
@@ -36,7 +38,7 @@ class AppleWalletPassJsonBuilder
         EventDomainObject $event,
         ?EventOccurrenceDomainObject $occurrence,
         OrganizerDomainObject $organizer,
-        AppleWalletPassSettingsDTO $passSettings,
+        WalletPassBrandingDTO $passSettings,
     ): array {
         $serialNumber = $this->serialNumberService->serialNumberForAttendee($attendee->getId());
         $eventName = $this->eventName($event, $occurrence);
@@ -119,10 +121,12 @@ class AppleWalletPassJsonBuilder
         ]);
     }
 
-    private function colors(EventDomainObject $event, AppleWalletPassSettingsDTO $passSettings): array
+    private function colors(EventDomainObject $event, WalletPassBrandingDTO $passSettings): array
     {
-        $hex = HexColorHelper::toRgbHex($event->getEventSettings()?->getAppleWalletBackgroundColor())
-            ?? $passSettings->backgroundColor;
+        $hex = HexColorHelper::toRgbHex($event->getEventSettings()?->getWalletPassBackgroundColor())
+            ?? $passSettings->backgroundColor
+            ?? $this->coverColour($event, $passSettings)
+            ?? $passSettings->themeAccentColor;
 
         if ($hex === null) {
             return [];
@@ -139,6 +143,17 @@ class AppleWalletPassJsonBuilder
             'foregroundColor' => $textColor,
             'labelColor' => $textColor,
         ];
+    }
+
+    private function coverColour(EventDomainObject $event, WalletPassBrandingDTO $passSettings): ?string
+    {
+        if (trim((string) $event->getEventSettings()?->getWalletPassBannerUrl()) !== '' || $passSettings->bannerImageUrl !== null) {
+            return null;
+        }
+
+        return HexColorHelper::toRgbHex($event->getImages()
+            ?->first(static fn (ImageDomainObject $image) => $image->getType() === ImageType::EVENT_COVER->name)
+            ?->getAvgColour());
     }
 
     private function coordinates(?EventLocationDomainObject $eventLocation): ?array

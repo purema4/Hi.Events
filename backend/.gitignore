@@ -24,3 +24,9 @@ yarn-error.log
 /app-back
 .vapor
 /openapi.json
+pass.*
+apple-wallet-pass.pem
+*.cer
+*.csr
+*.pem
+Add-to-Apple-Wallet.zip

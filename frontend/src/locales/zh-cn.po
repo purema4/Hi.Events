@@ -794,7 +794,7 @@ msgstr "附加信息"
 #: src/components/common/OrderDetails/index.tsx:116
 #: src/components/forms/QuestionForm/index.tsx:130
 #: src/components/modals/ManageOrderModal/index.tsx:163
-#: src/components/routes/organizer/Settings/index.tsx:47
+#: src/components/routes/organizer/Settings/index.tsx:46
 #: src/components/routes/organizer/Settings/Sections/AddressSettings/index.tsx:103
 msgid "Address"
 msgstr "地址"
@@ -1173,13 +1173,6 @@ msgstr "产品持有者的任何查询都将发送到此电子邮件地址。此
 #: src/components/common/WidgetEditor/index.tsx:216
 msgid "Appearance"
 msgstr "外观"
-
-#: src/components/routes/event/Settings/index.tsx:126
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:64
-#: src/components/routes/organizer/Settings/index.tsx:102
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:72
-msgid "Apple Wallet"
-msgstr "Apple Wallet"
 
 #: src/components/routes/product-widget/SelectProducts/index.tsx:915
 msgid "applied"
@@ -1781,14 +1774,6 @@ msgstr "横幅"
 msgid "Banner content must be 200 characters or less"
 msgstr "横幅内容不得超过 200 个字符"
 
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
-msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
-msgstr "横跨整张卡片的横幅，建议 1032x812 像素。默认使用您的活动封面图片。"
-
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:75
-msgid "Banner shown across the pass, ideally 1032x812px. Falls back to your organizer setting, then this event's cover image."
-msgstr "横跨整张卡片的横幅，建议 1032x812 像素。未设置时将使用您的主办方设置，然后是此活动的封面图片。"
-
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "基础价格"
@@ -1802,7 +1787,7 @@ msgstr "基础价格"
 msgid "Based on the global sale period above, not per date"
 msgstr "基于上方的整体销售期，而非按日期设置"
 
-#: src/components/routes/organizer/Settings/index.tsx:35
+#: src/components/routes/organizer/Settings/index.tsx:34
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:63
 msgid "Basic Information"
 msgstr "基本信息"
@@ -2313,7 +2298,7 @@ msgstr "已签到"
 msgid "Checked In"
 msgstr "已签到"
 
-#: src/components/routes/event/Settings/index.tsx:65
+#: src/components/routes/event/Settings/index.tsx:64
 msgid "Checkout"
 msgstr "结账"
 
@@ -2632,7 +2617,7 @@ msgstr "配置更新成功"
 msgid "Configurations"
 msgstr "配置"
 
-#: src/components/routes/event/Settings/index.tsx:195
+#: src/components/routes/event/Settings/index.tsx:185
 msgid "Configure event details, location, checkout options, and email notifications."
 msgstr "配置活动详情、地点、结账选项和电子邮件通知。"
 
@@ -3395,8 +3380,8 @@ msgstr "危险区"
 #: src/components/routes/account/ManageAccount/index.tsx:36
 #: src/components/routes/account/ManageAccount/sections/DangerZone/index.tsx:80
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:555
-#: src/components/routes/event/Settings/index.tsx:107
-#: src/components/routes/organizer/Settings/index.tsx:83
+#: src/components/routes/event/Settings/index.tsx:106
+#: src/components/routes/organizer/Settings/index.tsx:82
 msgid "Danger Zone"
 msgstr "危险区"
 
@@ -3547,8 +3532,7 @@ msgstr "将使用默认模板"
 msgid "Defaults"
 msgstr "默认值"
 
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:101
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:101
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:118
 msgid "Defaults to your homepage accent colour when left blank."
 msgstr "留空时默认使用主页的强调色。"
 
@@ -4169,7 +4153,7 @@ msgstr "电子邮件和通知设置"
 msgid "Email & scheduled messages"
 msgstr "邮件与定时消息"
 
-#: src/components/routes/event/Settings/index.tsx:83
+#: src/components/routes/event/Settings/index.tsx:82
 msgid "Email & Templates"
 msgstr "电子邮件和模板"
 
@@ -4237,7 +4221,7 @@ msgid "Email Preview"
 msgstr "邮件预览"
 
 #: src/components/common/EmailTemplateSettings/EmailTemplateSettingsBase.tsx:349
-#: src/components/routes/organizer/Settings/index.tsx:71
+#: src/components/routes/organizer/Settings/index.tsx:70
 msgid "Email Templates"
 msgstr "邮件模板"
 
@@ -4278,7 +4262,7 @@ msgstr "表情符号"
 msgid "Emoji is required for modals"
 msgstr "弹窗必须设置表情符号"
 
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:79
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:95
 msgid "Enable Apple Wallet passes"
 msgstr "启用 Apple Wallet 票卡"
 
@@ -4290,7 +4274,7 @@ msgstr "启用参与者自助服务"
 msgid "Enable attendee self-service by default"
 msgstr "默认启用参与者自助服务"
 
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:79
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:86
 msgid "Enable Google Wallet passes"
 msgstr "启用 Google 钱包通行证"
 
@@ -4565,7 +4549,7 @@ msgid "Event date display"
 msgstr "活动日期显示"
 
 #: src/components/routes/account/ManageAccount/sections/EventDefaultsSettings/index.tsx:5
-#: src/components/routes/organizer/Settings/index.tsx:41
+#: src/components/routes/organizer/Settings/index.tsx:40
 #: src/components/routes/organizer/Settings/Sections/EventDefaults/index.tsx:73
 msgid "Event Defaults"
 msgstr "事件默认值"
@@ -4578,7 +4562,7 @@ msgstr "活动已成功删除"
 msgid "Event Description"
 msgstr "活动描述"
 
-#: src/components/routes/event/Settings/index.tsx:53
+#: src/components/routes/event/Settings/index.tsx:52
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:71
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:627
 msgid "Event Details"
@@ -4626,7 +4610,7 @@ msgid "Event restored successfully"
 msgstr "活动已成功恢复"
 
 #: src/components/layouts/Event/index.tsx:117
-#: src/components/routes/event/Settings/index.tsx:196
+#: src/components/routes/event/Settings/index.tsx:186
 msgid "Event Settings"
 msgstr "活动设置"
 
@@ -5129,8 +5113,7 @@ msgstr "上传图片失败。请重试。"
 msgid "Failed to verify email"
 msgstr "验证邮箱失败"
 
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:86
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:82
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:86
 msgid "Falls back to your organizer setting, then your homepage accent colour."
 msgstr "未设置时将使用您的主办方设置，然后是您的主页强调色。"
 
@@ -5536,13 +5519,6 @@ msgstr "良好的可读性"
 #: src/components/common/CalendarOptionsPopover/index.tsx:30
 msgid "Google Calendar"
 msgstr "谷歌日历"
-
-#: src/components/routes/event/Settings/index.tsx:117
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:60
-#: src/components/routes/organizer/Settings/index.tsx:93
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:72
-msgid "Google Wallet"
-msgstr "Google 钱包"
 
 #: src/components/common/AnnouncementDisplay/AnnouncementModal.tsx:53
 #: src/components/common/CheckIn/CheckInDescriptionModal.tsx:40
@@ -6370,13 +6346,9 @@ msgstr "留空可让该签到名单适用于所有场次"
 msgid "Leave on to cover every ticket on the event. Turn off to pick specific tickets."
 msgstr "保持开启即可覆盖活动的所有门票；关闭后可选择特定门票。"
 
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:73
-msgid "Let attendees add their tickets to Apple Wallet. Every ticket in an order is added with a single tap."
-msgstr "让参会者将门票添加到 Apple Wallet。订单中的所有门票只需轻点一下即可添加。"
-
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:73
-msgid "Let attendees add their tickets to Google Wallet. Every ticket in an order is saved with a single tap."
-msgstr "让参与者将门票添加到 Google 钱包。一次点击即可保存订单中的所有门票。"
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:79
+msgid "Let attendees add their tickets to Google Wallet and Apple Wallet. The branding below is used on both."
+msgstr "让参会者将门票添加到 Google Wallet 和 Apple Wallet。以下品牌设置同时用于两者。"
 
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:300
 msgid "Let them know about the change"
@@ -6466,7 +6438,7 @@ msgstr "加载中..."
 #: src/components/common/LocationPicker/index.tsx:294
 #: src/components/layouts/EventHomepage/index.tsx:495
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
-#: src/components/routes/event/Settings/index.tsx:59
+#: src/components/routes/event/Settings/index.tsx:58
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
 #: src/components/routes/my-tickets/index.tsx:90
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:336
@@ -6790,7 +6762,7 @@ msgstr "分钟"
 msgid "Minutes"
 msgstr "分钟"
 
-#: src/components/routes/event/Settings/index.tsx:89
+#: src/components/routes/event/Settings/index.tsx:88
 msgid "Miscellaneous"
 msgstr "其他"
 
@@ -8060,7 +8032,7 @@ msgstr "未找到组织者"
 msgid "Organizer restored successfully"
 msgstr "主办方已成功恢复"
 
-#: src/components/routes/organizer/Settings/index.tsx:180
+#: src/components/routes/organizer/Settings/index.tsx:170
 msgid "Organizer Settings"
 msgstr "组织者设置"
 
@@ -8124,13 +8096,9 @@ msgstr "设置单独价格"
 msgid "Override removed"
 msgstr "单独设置已移除"
 
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:65
-msgid "Override the branding used on this event's Apple Wallet passes. Anything left blank falls back to your organizer settings."
-msgstr "覆盖此活动 Apple Wallet 票卡的品牌设置。留空的项目将使用主办方设置。"
-
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:61
-msgid "Override the branding used on this event's Google Wallet passes. Anything left blank falls back to your organizer settings."
-msgstr "覆盖此活动 Google 钱包卡券的品牌外观。留空的字段将使用您的主办方设置。"
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:65
+msgid "Override the branding used on this event's Google Wallet and Apple Wallet passes. Anything left blank falls back to your organizer settings."
+msgstr "覆盖此活动 Google Wallet 和 Apple Wallet 票卡的品牌设置。留空的项目将使用主办方设置。"
 
 #: src/components/layouts/Event/index.tsx:100
 msgid "Overview"
@@ -8191,15 +8159,13 @@ msgstr "部分退款"
 msgid "Partially refunded: {0}"
 msgstr "部分退款:{0}"
 
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:85
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:81
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:100
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:100
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:85
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:117
 msgid "Pass background colour"
 msgstr "通行证背景颜色"
 
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:74
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:93
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:78
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:110
 msgid "Pass banner URL"
 msgstr "通行证横幅图片网址"
 
@@ -8207,17 +8173,10 @@ msgstr "通行证横幅图片网址"
 msgid "Pass fee to buyer"
 msgstr "将费用转嫁给买家"
 
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:71
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:67
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:86
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:86
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:71
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:103
 msgid "Pass logo URL"
 msgstr "通行证徽标网址"
-
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:78
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:93
-msgid "Pass strip image URL"
-msgstr "票卡横幅图片 URL"
 
 #: src/components/common/PlatformFeesSettings/index.tsx:206
 msgid "Pass to Buyer"
@@ -8301,7 +8260,7 @@ msgstr "负载数据"
 msgid "Payment"
 msgstr "付款方式"
 
-#: src/components/routes/event/Settings/index.tsx:101
+#: src/components/routes/event/Settings/index.tsx:100
 msgid "Payment & Invoicing"
 msgstr "支付和发票"
 
@@ -8365,7 +8324,7 @@ msgstr "付款条款"
 msgid "Payments not available"
 msgstr "付款不可用"
 
-#: src/components/routes/organizer/Settings/index.tsx:112
+#: src/components/routes/organizer/Settings/index.tsx:102
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:407
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:463
 msgid "Payouts"
@@ -8517,10 +8476,10 @@ msgstr "平台费用"
 msgid "Platform fee of {0} deducted from your payout"
 msgstr "从您的付款中扣除 {0} 的平台费用"
 
-#: src/components/routes/event/Settings/index.tsx:135
+#: src/components/routes/event/Settings/index.tsx:125
 #: src/components/routes/event/Settings/Sections/PlatformFeesSettings/index.tsx:48
 #: src/components/routes/organizer/Reports/index.tsx:41
-#: src/components/routes/organizer/Settings/index.tsx:118
+#: src/components/routes/organizer/Settings/index.tsx:108
 #: src/components/routes/organizer/Settings/Sections/PlatformFeesSettings/index.tsx:42
 msgid "Platform Fees"
 msgstr "平台费用"
@@ -9166,7 +9125,7 @@ msgstr "重复"
 
 #: src/components/layouts/EventHomepage/index.tsx:375
 #: src/components/modals/CreateEventModal/index.tsx:240
-#: src/components/routes/event/Settings/index.tsx:71
+#: src/components/routes/event/Settings/index.tsx:70
 msgid "Recurring Event"
 msgstr "重复活动"
 
@@ -9631,10 +9590,8 @@ msgstr "星期六"
 #: src/components/common/QuestionAndAnswerList/index.tsx:118
 #: src/components/routes/event/OccurrencesTab/OccurrenceBulkEditModal/index.tsx:272
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:306
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:96
 #: src/components/routes/event/Settings/Sections/EmailSettings/GeneralEmailSettings.tsx:81
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:151
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:92
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:141
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:193
 #: src/components/routes/event/Settings/Sections/MiscSettings/index.tsx:94
@@ -9642,13 +9599,13 @@ msgstr "星期六"
 #: src/components/routes/event/Settings/Sections/RecurringEventSettings/index.tsx:72
 #: src/components/routes/event/Settings/Sections/SeoSettings/index.tsx:85
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:80
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:96
 #: src/components/routes/organizer/Settings/Sections/AddressSettings/index.tsx:119
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:111
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:132
 #: src/components/routes/organizer/Settings/Sections/EventDefaults/index.tsx:103
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:111
 #: src/components/routes/organizer/Settings/Sections/SeoSettings/index.tsx:85
 #: src/components/routes/organizer/Settings/Sections/TrackingPixelSettings/index.tsx:262
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:128
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:86
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:86
 msgid "Save"
@@ -10204,8 +10161,8 @@ msgstr "客户下单时发送"
 msgid "Sent to each attendee with their ticket details"
 msgstr "发送给每位参会者及其门票详情"
 
-#: src/components/routes/event/Settings/index.tsx:77
-#: src/components/routes/organizer/Settings/index.tsx:65
+#: src/components/routes/event/Settings/index.tsx:76
+#: src/components/routes/organizer/Settings/index.tsx:64
 msgid "SEO"
 msgstr "SEO"
 
@@ -10453,18 +10410,6 @@ msgstr "正在显示 {totalAvailable} 个日期中的 {MAX_VISIBLE} 个。输入
 msgid "Showing the first {0} — the remaining {1} session(s) will still be targeted when the message is sent."
 msgstr "仅显示前 {0} 个 — 发送消息时仍会覆盖其余 {1} 个场次。"
 
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:87
-msgid "Shown at the top of the pass and used as its icon. Wide images up to 480x150px work best. Defaults to your organizer logo."
-msgstr "显示在票卡顶部并用作其图标。宽度不超过 480x150px 的横向图片效果最佳。默认使用您的主办方标志。"
-
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:94
-msgid "Shown behind the event name, ideally 1125x294px. Defaults to your event cover image."
-msgstr "显示在活动名称后面，建议尺寸 1125x294px。默认使用活动封面图片。"
-
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:79
-msgid "Shown behind the event name, ideally 1125x294px. Falls back to your organizer setting, then this event's cover image."
-msgstr "显示在活动名称后面，建议尺寸 1125x294px。留空时依次使用主办方设置和此活动的封面图片。"
-
 #: src/components/routes/admin/Announcements/index.tsx:410
 msgid "Shown bouncing at the top of the modal"
 msgstr "在弹窗顶部弹跳显示"
@@ -10531,7 +10476,7 @@ msgstr "Snapchat"
 msgid "Social"
 msgstr "社交"
 
-#: src/components/routes/organizer/Settings/index.tsx:59
+#: src/components/routes/organizer/Settings/index.tsx:58
 msgid "Social Links"
 msgstr "社交链接"
 
@@ -10651,13 +10596,13 @@ msgstr "按天、区域或门票类型拆分签到。把链接分享给工作人
 msgid "Sports"
 msgstr "体育"
 
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
-msgid "Square image, at least 660x660px. Defaults to your organizer logo."
-msgstr "正方形图片，至少 660x660 像素。默认使用您的主办方标志。"
-
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:68
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:72
 msgid "Square image, at least 660x660px. Falls back to your organizer setting, then your organizer logo."
 msgstr "正方形图片，至少 660x660 像素。未设置时将使用您的主办方设置，然后是您的主办方标志。"
+
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:104
+msgid "Square image, at least 660x660px. Used as the pass logo and the Apple Wallet icon. Defaults to your organizer logo."
+msgstr "正方形图片，至少 660x660px。用作票卡标志和 Apple Wallet 图标。默认使用您的主办方标志。"
 
 #: src/components/common/CheckIn/CheckInInfoModal.tsx:84
 msgid "Staff instructions"
@@ -10912,11 +10857,6 @@ msgstr "已成功从候补名单中移除"
 msgid "Successfully Updated Address"
 msgstr "地址更新成功"
 
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:53
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:61
-msgid "Successfully Updated Apple Wallet Settings"
-msgstr "Apple Wallet 设置已成功更新"
-
 #: src/components/modals/ManageAttendeeModal/index.tsx:110
 msgid "Successfully updated attendee"
 msgstr "成功更新与会者"
@@ -10940,11 +10880,6 @@ msgstr "成功更新活动"
 #: src/components/routes/organizer/Settings/Sections/EventDefaults/index.tsx:62
 msgid "Successfully Updated Event Defaults"
 msgstr "成功更新活动默认设置"
-
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:49
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:61
-msgid "Successfully Updated Google Wallet Settings"
-msgstr "Google 钱包设置更新成功"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:108
 #: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:95
@@ -11014,6 +10949,11 @@ msgstr "社交链接更新成功"
 #: src/components/routes/organizer/Settings/Sections/TrackingPixelSettings/index.tsx:159
 msgid "Successfully Updated Tracking Settings"
 msgstr "跟踪设置更新成功"
+
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:53
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:67
+msgid "Successfully Updated Wallet Pass Settings"
+msgstr "电子钱包票卡设置已成功更新"
 
 #: src/components/modals/EditOrganizerWebhookModal/index.tsx:44
 #: src/components/modals/EditWebhookModal/index.tsx:44
@@ -11789,11 +11729,11 @@ msgstr "门票设计器"
 msgid "Ticket email has been resent to attendee"
 msgstr "门票电子邮件已重新发送给与会者"
 
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:80
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:96
 msgid "Ticket emails will include one \"Add to Apple Wallet\" link that adds every ticket in the order."
 msgstr "门票邮件将包含一个“添加到 Apple Wallet”链接，可添加订单中的所有门票。"
 
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:80
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:87
 msgid "Ticket emails will include one \"Add to Google Wallet\" button that saves every ticket in the order."
 msgstr "门票邮件将包含一个\"添加到 Google 钱包\"按钮，一次保存订单中的所有门票。"
 
@@ -12070,7 +12010,7 @@ msgstr "导览"
 msgid "Track account growth and performance by attribution source"
 msgstr "按归因来源跟踪账户增长和表现"
 
-#: src/components/routes/organizer/Settings/index.tsx:77
+#: src/components/routes/organizer/Settings/index.tsx:76
 #: src/components/routes/organizer/Settings/Sections/TrackingPixelSettings/index.tsx:172
 msgid "Tracking & Analytics"
 msgstr "跟踪与分析"
@@ -12792,7 +12732,7 @@ msgstr "等待扫描…"
 #: src/components/forms/ProductForm/index.tsx:460
 #: src/components/layouts/AuthLayout/index.tsx:18
 #: src/components/layouts/Event/index.tsx:134
-#: src/components/routes/event/Settings/index.tsx:95
+#: src/components/routes/event/Settings/index.tsx:94
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:55
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:73
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:177
@@ -12806,6 +12746,13 @@ msgstr "等候名单已启用"
 #: src/components/routes/product-widget/CollectInformation/index.tsx:403
 msgid "Waitlist offer expired"
 msgstr "等候名单报价已过期"
+
+#: src/components/routes/event/Settings/index.tsx:116
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:64
+#: src/components/routes/organizer/Settings/index.tsx:92
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:78
+msgid "Wallet passes"
+msgstr "电子钱包票卡"
 
 #: src/components/routes/admin/Configurations/index.tsx:217
 msgid "Warning: This is the {0} default configuration. Changes will affect every organizer automatically assigned this pricing."
@@ -13207,9 +13154,13 @@ msgstr "这项活动由谁组织？"
 msgid "Who should be asked this question?"
 msgstr "这个问题应该问谁？"
 
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:72
-msgid "Wide images up to 480x150px work best. Falls back to your organizer setting, then your organizer logo."
-msgstr "宽度不超过 480x150px 的横向图片效果最佳。留空时依次使用主办方设置和主办方标志。"
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:111
+msgid "Wide image shown across the pass, ideally 1125x336px. Each wallet crops it to fit. Defaults to your event cover image."
+msgstr "横跨整张票卡的宽幅图片，建议尺寸 1125x336px。各钱包会自动裁剪以适配。默认使用活动封面图片。"
+
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:79
+msgid "Wide image shown across the pass, ideally 1125x336px. Falls back to your organizer setting, then this event's cover image."
+msgstr "横跨整张票卡的宽幅图片，建议尺寸 1125x336px。留空时依次使用主办方设置和此活动的封面图片。"
 
 #: src/components/layouts/Event/index.tsx:144
 msgid "Widget Embed"

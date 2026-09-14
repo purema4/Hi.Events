@@ -248,12 +248,9 @@ export interface EventSettings {
     homepage_body_background_color: string;
     homepage_background_type: 'COLOR' | 'MIRROR_COVER_IMAGE';
     maps_url?: string;
-    google_wallet_banner_url?: string;
-    google_wallet_logo_url?: string;
-    google_wallet_background_color?: string;
-    apple_wallet_logo_url?: string | null;
-    apple_wallet_strip_image_url?: string | null;
-    apple_wallet_background_color?: string | null;
+    wallet_pass_logo_url?: string | null;
+    wallet_pass_banner_url?: string | null;
+    wallet_pass_background_color?: string | null;
     seo_title?: string;
     seo_description?: string;
     seo_keywords?: string;
@@ -704,20 +701,13 @@ export interface OrganizerSettings {
     tracking_pixels?: TrackingPixelConfig[];
     tracking_consent_acknowledged?: boolean;
     google_wallet_enabled?: boolean;
-    google_wallet_pass_settings?: GoogleWalletPassSettings;
     apple_wallet_enabled?: boolean;
-    apple_wallet_pass_settings?: AppleWalletPassSettings;
+    wallet_pass_settings?: WalletPassSettings;
 }
 
-export interface GoogleWalletPassSettings {
+export interface WalletPassSettings {
     logo_url?: string;
-    hero_image_url?: string;
-    background_color?: string;
-}
-
-export interface AppleWalletPassSettings {
-    logo_url?: string;
-    strip_image_url?: string;
+    banner_image_url?: string;
     background_color?: string;
 }
 

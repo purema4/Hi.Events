@@ -11,9 +11,9 @@ use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\DomainObjects\ImageDomainObject;
 use HiEvents\DomainObjects\LocationDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
-use HiEvents\Services\Domain\GoogleWallet\DTO\GoogleWalletPassSettingsDTO;
 use HiEvents\Services\Domain\GoogleWallet\GoogleWalletBannerService;
 use HiEvents\Services\Domain\GoogleWallet\GoogleWalletClassPayloadBuilder;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
 use Illuminate\Config\Repository;
 use Illuminate\Support\Collection;
 use Mockery;
@@ -59,11 +59,11 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
         ]));
     }
 
-    private function settingsWithoutColour(): GoogleWalletPassSettingsDTO
+    private function settingsWithoutColour(): WalletPassBrandingDTO
     {
-        return new GoogleWalletPassSettingsDTO(
+        return new WalletPassBrandingDTO(
             logoUrl: null,
-            heroImageUrl: null,
+            bannerImageUrl: null,
             backgroundColor: null,
             themeAccentColor: '#de0f00',
         );
@@ -98,11 +98,11 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
         return $organizer;
     }
 
-    private function passSettings(): GoogleWalletPassSettingsDTO
+    private function passSettings(): WalletPassBrandingDTO
     {
-        return new GoogleWalletPassSettingsDTO(
+        return new WalletPassBrandingDTO(
             logoUrl: 'https://cdn.example.com/logo.png',
-            heroImageUrl: null,
+            bannerImageUrl: null,
             backgroundColor: '#112233',
             themeAccentColor: null,
         );
@@ -308,9 +308,9 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
         $event = $this->event();
         $event->setEventSettings(
             (new EventSettingDomainObject)
-                ->setGoogleWalletLogoUrl('https://cdn.example.com/event-logo.png')
-                ->setGoogleWalletBannerUrl('https://cdn.example.com/event-banner.png')
-                ->setGoogleWalletBackgroundColor('#AABBCCDD')
+                ->setWalletPassLogoUrl('https://cdn.example.com/event-logo.png')
+                ->setWalletPassBannerUrl('https://cdn.example.com/event-banner.png')
+                ->setWalletPassBackgroundColor('#AABBCCDD')
         );
 
         $payload = $this->builder()->build(
@@ -390,7 +390,7 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
 
         $event = $this->eventWithCover();
         $event->setEventSettings(
-            (new EventSettingDomainObject)->setGoogleWalletBannerUrl('https://cdn.example.com/hand-made.png')
+            (new EventSettingDomainObject)->setWalletPassBannerUrl('https://cdn.example.com/hand-made.png')
         );
 
         $payload = $this->builder()->build(
@@ -410,8 +410,8 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
         $event = $this->event();
         $event->setEventSettings(
             (new EventSettingDomainObject)
-                ->setGoogleWalletLogoUrl('   ')
-                ->setGoogleWalletBackgroundColor(null)
+                ->setWalletPassLogoUrl('   ')
+                ->setWalletPassBackgroundColor(null)
         );
 
         $payload = $this->builder()->build(

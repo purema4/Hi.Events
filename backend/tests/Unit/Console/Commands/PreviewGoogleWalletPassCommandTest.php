@@ -10,10 +10,10 @@ use HiEvents\Exceptions\GoogleWallet\GoogleWalletApiException;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
-use HiEvents\Services\Domain\GoogleWallet\DTO\GoogleWalletPassSettingsDTO;
 use HiEvents\Services\Domain\GoogleWallet\GoogleWalletPassSettingsResolver;
 use HiEvents\Services\Domain\GoogleWallet\GoogleWalletSaveUrlService;
 use HiEvents\Services\Domain\GoogleWallet\SyncGoogleWalletPassesService;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
 use Illuminate\Support\Collection;
 use Mockery;
 use Mockery\MockInterface;
@@ -68,7 +68,7 @@ class PreviewGoogleWalletPassCommandTest extends TestCase
         $this->passSettingsResolver
             ->shouldReceive('resolveForOrganizer')
             ->with(self::ORGANIZER_ID)
-            ->andReturn(new GoogleWalletPassSettingsDTO(logoUrl: null, heroImageUrl: null, backgroundColor: null, themeAccentColor: null))
+            ->andReturn(new WalletPassBrandingDTO(logoUrl: null, bannerImageUrl: null, backgroundColor: null, themeAccentColor: null))
             ->byDefault();
     }
 

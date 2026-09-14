@@ -7,7 +7,7 @@ namespace HiEvents\Services\Domain\GoogleWallet;
 use HiEvents\DomainObjects\AttendeeDomainObject;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
-use HiEvents\Services\Domain\GoogleWallet\DTO\GoogleWalletPassSettingsDTO;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
 use Illuminate\Support\Collection;
 use Psr\Log\LoggerInterface;
 use Throwable;
@@ -66,7 +66,7 @@ class GoogleWalletSaveUrlResolver
         AttendeeDomainObject $attendee,
         EventDomainObject $event,
         OrganizerDomainObject $organizer,
-        GoogleWalletPassSettingsDTO $passSettings,
+        WalletPassBrandingDTO $passSettings,
     ): ?string {
         try {
             return $this->ensureObjectService->ensure(
@@ -86,7 +86,7 @@ class GoogleWalletSaveUrlResolver
         }
     }
 
-    private function resolvePassSettings(OrganizerDomainObject $organizer): ?GoogleWalletPassSettingsDTO
+    private function resolvePassSettings(OrganizerDomainObject $organizer): ?WalletPassBrandingDTO
     {
         try {
             return $this->passSettingsResolver->resolveForOrganizer($organizer->getId());

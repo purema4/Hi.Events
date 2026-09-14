@@ -17,7 +17,7 @@ use HiEvents\Exceptions\GoogleWallet\GoogleWalletConfigurationException;
 use HiEvents\Repository\Eloquent\Value\Relationship;
 use HiEvents\Repository\Interfaces\EventOccurrenceRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
-use HiEvents\Services\Domain\GoogleWallet\DTO\GoogleWalletPassSettingsDTO;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
 use HiEvents\Services\Infrastructure\GoogleWallet\GoogleWalletApiClient;
 
 class EnsureGoogleWalletClassService
@@ -71,7 +71,7 @@ class EnsureGoogleWalletClassService
         EventOccurrenceDomainObject $occurrence,
         EventDomainObject $event,
         OrganizerDomainObject $organizer,
-        ?GoogleWalletPassSettingsDTO $passSettings = null,
+        ?WalletPassBrandingDTO $passSettings = null,
     ): ?string {
         $passSettings ??= $this->passSettingsResolver->resolveForOrganizer($organizer->getId());
 

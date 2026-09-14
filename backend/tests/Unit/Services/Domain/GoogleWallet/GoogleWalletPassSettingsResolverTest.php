@@ -4,19 +4,20 @@ namespace Tests\Unit\Services\Domain\GoogleWallet;
 
 use HiEvents\DomainObjects\OrganizerSettingDomainObject;
 use HiEvents\Repository\Interfaces\OrganizerSettingsRepositoryInterface;
-use HiEvents\Services\Domain\GoogleWallet\DTO\GoogleWalletPassSettingsDTO;
 use HiEvents\Services\Domain\GoogleWallet\GoogleWalletPassSettingsResolver;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
+use HiEvents\Services\Domain\Wallet\WalletPassBrandingResolver;
 use Illuminate\Config\Repository;
 use Mockery;
 use Tests\TestCase;
 
 class GoogleWalletPassSettingsResolverTest extends TestCase
 {
-    private function resolve(array $passSettings, ?string $accent = null): ?GoogleWalletPassSettingsDTO
+    private function resolve(array $passSettings, ?string $accent = null): ?WalletPassBrandingDTO
     {
         $settings = (new OrganizerSettingDomainObject)
             ->setGoogleWalletEnabled(true)
-            ->setGoogleWalletPassSettings($passSettings)
+            ->setWalletPassSettings($passSettings)
             ->setHomepageThemeSettings($accent === null ? [] : ['accent' => $accent]);
 
         $repository = Mockery::mock(OrganizerSettingsRepositoryInterface::class);
@@ -25,6 +26,7 @@ class GoogleWalletPassSettingsResolverTest extends TestCase
         $resolver = new GoogleWalletPassSettingsResolver(
             new Repository(['google-wallet' => ['enabled' => true, 'issuer_id' => '3388000000000000000']]),
             $repository,
+            new WalletPassBrandingResolver,
         );
 
         return $resolver->resolveForOrganizer(1);

@@ -9,7 +9,7 @@ use HiEvents\DomainObjects\ImageDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\Exceptions\AppleWallet\AppleWalletImageException;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletPassImageBuilder;
-use HiEvents\Services\Domain\AppleWallet\DTO\AppleWalletPassSettingsDTO;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
 use HiEvents\Services\Infrastructure\AppleWallet\AppleWalletImageFetcher;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Filesystem\Factory as FilesystemFactory;
@@ -79,9 +79,9 @@ class AppleWalletPassImageBuilderTest extends TestCase
         return [$image->getImageWidth(), $image->getImageHeight()];
     }
 
-    private function passSettings(?string $logoUrl = null, ?string $stripImageUrl = null): AppleWalletPassSettingsDTO
+    private function passSettings(?string $logoUrl = null, ?string $bannerImageUrl = null): WalletPassBrandingDTO
     {
-        return new AppleWalletPassSettingsDTO(logoUrl: $logoUrl, stripImageUrl: $stripImageUrl, backgroundColor: null);
+        return new WalletPassBrandingDTO(logoUrl: $logoUrl, bannerImageUrl: $bannerImageUrl, backgroundColor: null, themeAccentColor: null);
     }
 
     private function storedImage(ImageType $type, string $path): ImageDomainObject
@@ -103,7 +103,7 @@ class AppleWalletPassImageBuilderTest extends TestCase
     public function test_images_set_for_the_pass_are_resized_to_apples_sizes(): void
     {
         $event = (new EventDomainObject)->setEventSettings(
-            (new EventSettingDomainObject)->setAppleWalletLogoUrl('https://example.com/event-logo.png')
+            (new EventSettingDomainObject)->setWalletPassLogoUrl('https://example.com/event-logo.png')
         );
 
         $this->imageFetcher->shouldReceive('fetch')->with('https://example.com/event-logo.png')->andReturn($this->png(1000, 500));
@@ -112,7 +112,7 @@ class AppleWalletPassImageBuilderTest extends TestCase
         $images = $this->builder->build(
             $event,
             new OrganizerDomainObject,
-            $this->passSettings(logoUrl: 'https://example.com/organizer-logo.png', stripImageUrl: 'https://example.com/strip.png'),
+            $this->passSettings(logoUrl: 'https://example.com/organizer-logo.png', bannerImageUrl: 'https://example.com/strip.png'),
         );
 
         $this->assertEqualsCanonicalizing([...self::ICONS, ...self::LOGOS, ...self::STRIPS], array_keys($images));

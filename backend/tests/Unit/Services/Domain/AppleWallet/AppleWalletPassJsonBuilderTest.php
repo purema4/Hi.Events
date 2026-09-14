@@ -3,16 +3,18 @@
 namespace Tests\Unit\Services\Domain\AppleWallet;
 
 use HiEvents\DomainObjects\AttendeeDomainObject;
+use HiEvents\DomainObjects\Enums\ImageType;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventOccurrenceDomainObject;
 use HiEvents\DomainObjects\EventSettingDomainObject;
+use HiEvents\DomainObjects\ImageDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\DomainObjects\ProductDomainObject;
 use HiEvents\DomainObjects\Status\AttendeeStatus;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletPassJsonBuilder;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletSerialNumberService;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletUrlGenerator;
-use HiEvents\Services\Domain\AppleWallet\DTO\AppleWalletPassSettingsDTO;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
 use Illuminate\Config\Repository;
 use Tests\TestCase;
 
@@ -78,9 +80,14 @@ class AppleWalletPassJsonBuilderTest extends TestCase
         return (new OrganizerDomainObject)->setId(5)->setName($name);
     }
 
-    private function passSettings(?string $backgroundColor = null): AppleWalletPassSettingsDTO
+    private function passSettings(?string $backgroundColor = null, ?string $themeAccentColor = null, ?string $bannerImageUrl = null): WalletPassBrandingDTO
     {
-        return new AppleWalletPassSettingsDTO(logoUrl: null, stripImageUrl: null, backgroundColor: $backgroundColor);
+        return new WalletPassBrandingDTO(
+            logoUrl: null,
+            bannerImageUrl: $bannerImageUrl,
+            backgroundColor: $backgroundColor,
+            themeAccentColor: $themeAccentColor,
+        );
     }
 
     private function field(array $fields, string $key): ?array
@@ -188,7 +195,7 @@ class AppleWalletPassJsonBuilderTest extends TestCase
 
     public function test_the_event_background_colour_overrides_the_organizer_colour(): void
     {
-        $settings = (new EventSettingDomainObject)->setAppleWalletBackgroundColor('#FDE68AFF');
+        $settings = (new EventSettingDomainObject)->setWalletPassBackgroundColor('#FDE68AFF');
 
         $pass = $this->builder()->build($this->attendee(), $this->event($settings), null, $this->organizer(), $this->passSettings('#1e1b4b'));
 
@@ -202,6 +209,29 @@ class AppleWalletPassJsonBuilderTest extends TestCase
 
         $this->assertArrayNotHasKey('backgroundColor', $pass);
         $this->assertArrayNotHasKey('foregroundColor', $pass);
+    }
+
+    public function test_the_theme_accent_is_the_last_colour_fallback(): void
+    {
+        $pass = $this->builder()->build($this->attendee(), $this->event(), null, $this->organizer(), $this->passSettings(themeAccentColor: '#1e1b4b'));
+
+        $this->assertSame('rgb(30, 27, 75)', $pass['backgroundColor']);
+    }
+
+    public function test_the_cover_colour_is_used_before_the_theme_accent_when_no_banner_is_chosen(): void
+    {
+        $event = $this->event()->setImages(collect([
+            (new ImageDomainObject)->setType(ImageType::EVENT_COVER->name)->setAvgColour('#FDE68A'),
+        ]));
+
+        $pass = $this->builder()->build($this->attendee(), $event, null, $this->organizer(), $this->passSettings(themeAccentColor: '#1e1b4b'));
+        $withBanner = $this->builder()->build($this->attendee(), $event, null, $this->organizer(), $this->passSettings(
+            themeAccentColor: '#1e1b4b',
+            bannerImageUrl: 'https://cdn.example.com/banner.png',
+        ));
+
+        $this->assertSame('rgb(253, 230, 138)', $pass['backgroundColor']);
+        $this->assertSame('rgb(30, 27, 75)', $withBanner['backgroundColor']);
     }
 
     public function test_the_platform_name_is_used_when_the_organizer_has_no_name(): void

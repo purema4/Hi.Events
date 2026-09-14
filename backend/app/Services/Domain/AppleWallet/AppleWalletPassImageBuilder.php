@@ -10,7 +10,7 @@ use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\ImageDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\Exceptions\AppleWallet\AppleWalletImageException;
-use HiEvents\Services\Domain\AppleWallet\DTO\AppleWalletPassSettingsDTO;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
 use HiEvents\Services\Infrastructure\AppleWallet\AppleWalletImageFetcher;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Filesystem\Factory as FilesystemFactory;
@@ -58,15 +58,15 @@ class AppleWalletPassImageBuilder
     public function build(
         EventDomainObject $event,
         OrganizerDomainObject $organizer,
-        AppleWalletPassSettingsDTO $passSettings,
+        WalletPassBrandingDTO $passSettings,
     ): array {
         $logo = $this->source(
-            $this->nonEmpty($event->getEventSettings()?->getAppleWalletLogoUrl()) ?? $passSettings->logoUrl,
+            $this->nonEmpty($event->getEventSettings()?->getWalletPassLogoUrl()) ?? $passSettings->logoUrl,
             $this->storedImage($organizer->getImages(), ImageType::ORGANIZER_LOGO),
         );
 
         $strip = $this->source(
-            $this->nonEmpty($event->getEventSettings()?->getAppleWalletStripImageUrl()) ?? $passSettings->stripImageUrl,
+            $this->nonEmpty($event->getEventSettings()?->getWalletPassBannerUrl()) ?? $passSettings->bannerImageUrl,
             $this->storedImage($event->getImages(), ImageType::EVENT_COVER),
         );
 

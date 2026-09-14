@@ -43,36 +43,24 @@ export class OrganizerPage {
     await this.page.locator('#basic-settings').getByRole('button', { name: 'Save' }).click();
   }
 
-  get googleWalletSection(): Locator {
-    return this.page.locator('#google-wallet');
+  get walletPassSection(): Locator {
+    return this.page.locator('#wallet-passes');
   }
 
   get googleWalletEnabledSwitch(): Locator {
-    return this.googleWalletSection.getByLabel('Enable Google Wallet passes');
-  }
-
-  get googleWalletBannerInput(): Locator {
-    return this.googleWalletSection.getByLabel(/^Pass banner URL/);
-  }
-
-  async saveGoogleWalletSettings(): Promise<void> {
-    await this.googleWalletSection.getByTestId('google-wallet-submit-button').click();
-  }
-
-  get appleWalletSection(): Locator {
-    return this.page.locator('#apple-wallet');
+    return this.walletPassSection.getByLabel('Enable Google Wallet passes');
   }
 
   get appleWalletEnabledSwitch(): Locator {
-    return this.appleWalletSection.getByLabel('Enable Apple Wallet passes');
+    return this.walletPassSection.getByLabel('Enable Apple Wallet passes');
   }
 
-  get appleWalletStripImageInput(): Locator {
-    return this.appleWalletSection.getByLabel(/^Pass strip image URL/);
+  get walletPassBannerInput(): Locator {
+    return this.walletPassSection.getByLabel(/^Pass banner URL/);
   }
 
-  async saveAppleWalletSettings(): Promise<void> {
-    await this.appleWalletSection.getByTestId('apple-wallet-submit-button').click();
+  async saveWalletPassSettings(): Promise<void> {
+    await this.walletPassSection.getByTestId('wallet-pass-submit-button').click();
   }
 
   reportRow(text: string): Locator {

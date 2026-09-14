@@ -61,26 +61,26 @@ class PartialUpdateEventSettingsHandlerTest extends TestCase
         $this->assertSame('Get Tickets', $dto->get_tickets_button_text);
     }
 
-    public function test_explicit_google_wallet_banner_url_is_passed_through(): void
+    public function test_explicit_wallet_pass_banner_url_is_passed_through(): void
     {
         $dto = $this->runPartialUpdate(
             existingValue: true,
-            settings: ['google_wallet_banner_url' => 'https://cdn.example.com/new.png'],
-            existingGoogleWalletBannerUrl: 'https://cdn.example.com/banner.png',
+            settings: ['wallet_pass_banner_url' => 'https://cdn.example.com/new.png'],
+            existingWalletPassBannerUrl: 'https://cdn.example.com/banner.png',
         );
 
-        $this->assertSame('https://cdn.example.com/new.png', $dto->google_wallet_banner_url);
+        $this->assertSame('https://cdn.example.com/new.png', $dto->wallet_pass_banner_url);
     }
 
-    public function test_omitted_google_wallet_banner_url_falls_back_to_existing_value(): void
+    public function test_omitted_wallet_pass_banner_url_falls_back_to_existing_value(): void
     {
         $dto = $this->runPartialUpdate(
             existingValue: true,
             settings: [],
-            existingGoogleWalletBannerUrl: 'https://cdn.example.com/banner.png',
+            existingWalletPassBannerUrl: 'https://cdn.example.com/banner.png',
         );
 
-        $this->assertSame('https://cdn.example.com/banner.png', $dto->google_wallet_banner_url);
+        $this->assertSame('https://cdn.example.com/banner.png', $dto->wallet_pass_banner_url);
     }
 
     /**
@@ -91,12 +91,12 @@ class PartialUpdateEventSettingsHandlerTest extends TestCase
         bool $existingValue,
         array $settings,
         ?string $existingGetTicketsButtonText = null,
-        ?string $existingGoogleWalletBannerUrl = null,
+        ?string $existingWalletPassBannerUrl = null,
     ): UpdateEventSettingsDTO {
         $existingSettings = (new EventSettingDomainObject)
             ->setAllowCopyDetailsToAllAttendees($existingValue)
             ->setGetTicketsButtonText($existingGetTicketsButtonText)
-            ->setGoogleWalletBannerUrl($existingGoogleWalletBannerUrl)
+            ->setWalletPassBannerUrl($existingWalletPassBannerUrl)
             ->setPaymentProviders([]);
 
         $repository = Mockery::mock(EventSettingsRepositoryInterface::class);

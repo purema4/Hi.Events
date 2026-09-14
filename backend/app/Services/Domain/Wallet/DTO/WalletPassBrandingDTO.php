@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace HiEvents\Services\Domain\GoogleWallet\DTO;
+namespace HiEvents\Services\Domain\Wallet\DTO;
 
 use HiEvents\DataTransferObjects\BaseDataObject;
 
-class GoogleWalletPassSettingsDTO extends BaseDataObject
+class WalletPassBrandingDTO extends BaseDataObject
 {
     public function __construct(
         public readonly ?string $logoUrl,
-        public readonly ?string $heroImageUrl,
+        public readonly ?string $bannerImageUrl,
         public readonly ?string $backgroundColor,
         public readonly ?string $themeAccentColor,
     ) {}
