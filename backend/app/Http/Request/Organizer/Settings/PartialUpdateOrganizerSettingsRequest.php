@@ -113,19 +113,13 @@ class PartialUpdateOrganizerSettingsRequest extends BaseRequest
             // Password
             'homepage_password' => ['sometimes', 'nullable', 'string', 'max:100'],
 
-            // Google Wallet
+            // Wallet passes
             'google_wallet_enabled' => ['sometimes', 'nullable', 'boolean'],
-            'google_wallet_pass_settings' => ['sometimes', 'nullable', 'array'],
-            'google_wallet_pass_settings.logo_url' => ['nullable', 'url', 'max:500'],
-            'google_wallet_pass_settings.hero_image_url' => ['nullable', 'url', 'max:500'],
-            'google_wallet_pass_settings.background_color' => ['nullable', 'string', ...RulesHelper::HEX_COLOR],
-
-            // Apple Wallet
             'apple_wallet_enabled' => ['sometimes', 'nullable', 'boolean'],
-            'apple_wallet_pass_settings' => ['sometimes', 'nullable', 'array'],
-            'apple_wallet_pass_settings.logo_url' => ['nullable', 'url', 'max:500'],
-            'apple_wallet_pass_settings.strip_image_url' => ['nullable', 'url', 'max:500'],
-            'apple_wallet_pass_settings.background_color' => ['nullable', 'string', ...RulesHelper::HEX_COLOR],
+            'wallet_pass_settings' => ['sometimes', 'nullable', 'array'],
+            'wallet_pass_settings.logo_url' => ['nullable', 'url', 'max:500'],
+            'wallet_pass_settings.banner_image_url' => ['nullable', 'url', 'max:500'],
+            'wallet_pass_settings.background_color' => ['nullable', 'string', ...RulesHelper::HEX_COLOR],
 
             // Tracking pixels
             'tracking_pixels' => ['sometimes', 'nullable', 'array', 'max:10'],

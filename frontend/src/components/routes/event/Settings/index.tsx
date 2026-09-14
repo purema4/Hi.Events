@@ -7,8 +7,7 @@ import {PageTitle} from "../../../common/PageTitle";
 import {t} from "@lingui/macro";
 import {SeoSettings} from "./Sections/SeoSettings";
 import {MiscSettings} from "./Sections/MiscSettings";
-import {GoogleWalletSettings} from "./Sections/GoogleWalletSettings";
-import {AppleWalletSettings} from "./Sections/AppleWalletSettings";
+import {WalletPassSettings} from "./Sections/WalletPassSettings";
 import {Box, Group, NavLink as MantineNavLink, Stack} from "@mantine/core";
 import {
     IconAdjustments,
@@ -22,7 +21,7 @@ import {
     IconMapPin,
     IconPercentage,
     IconRepeat,
-    IconBrandApple, IconWallet,
+    IconWallet,
 } from "@tabler/icons-react";
 import {useMediaQuery} from "@mantine/hooks";
 import {useEffect, useMemo, useState} from "react";
@@ -111,21 +110,12 @@ export const Settings = () => {
             }
         ];
 
-        if (isGoogleWalletAvailable) {
+        if (isGoogleWalletAvailable || isAppleWalletAvailable) {
             baseSections.splice(baseSections.length - 1, 0, {
-                id: 'google-wallet',
-                label: t`Google Wallet`,
+                id: 'wallet-passes',
+                label: t`Wallet passes`,
                 icon: IconWallet,
-                component: GoogleWalletSettings,
-            });
-        }
-
-        if (isAppleWalletAvailable) {
-            baseSections.splice(baseSections.length - 1, 0, {
-                id: 'apple-wallet',
-                label: t`Apple Wallet`,
-                icon: IconBrandApple,
-                component: AppleWalletSettings,
+                component: WalletPassSettings,
             });
         }
 

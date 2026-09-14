@@ -9,56 +9,62 @@ import {HeadingWithDescription} from "../../../../../common/Card/CardHeading";
 import {Button, ColorInput, Switch, TextInput} from "@mantine/core";
 import {useGetOrganizerSettings} from "../../../../../../queries/useGetOrganizerSettings.ts";
 import {useUpdateOrganizerSettings} from "../../../../../../mutations/useUpdateOrganizerSettings.ts";
+import {useGetAccount} from "../../../../../../queries/useGetAccount.ts";
 
-interface AppleWalletSettingsForm {
+interface WalletPassSettingsForm {
+    google_wallet_enabled: boolean;
     apple_wallet_enabled: boolean;
     logo_url: string;
-    strip_image_url: string;
+    banner_image_url: string;
     background_color: string;
 }
 
-export const AppleWalletSettings = () => {
+export const WalletPassSettings = () => {
     const {organizerId} = useParams();
+    const {data: account} = useGetAccount();
     const organizerSettingsQuery = useGetOrganizerSettings(organizerId);
     const updateMutation = useUpdateOrganizerSettings();
     const formErrorHandle = useFormErrorResponseHandler();
 
-    const form = useForm<AppleWalletSettingsForm>({
+    const form = useForm<WalletPassSettingsForm>({
         initialValues: {
+            google_wallet_enabled: false,
             apple_wallet_enabled: false,
             logo_url: '',
-            strip_image_url: '',
+            banner_image_url: '',
             background_color: '',
         }
     });
 
     useEffect(() => {
         if (organizerSettingsQuery?.isFetched && organizerSettingsQuery?.data) {
-            const passSettings = organizerSettingsQuery.data.apple_wallet_pass_settings;
+            const passSettings = organizerSettingsQuery.data.wallet_pass_settings;
 
             form.setValues({
+                google_wallet_enabled: organizerSettingsQuery.data.google_wallet_enabled ?? false,
                 apple_wallet_enabled: organizerSettingsQuery.data.apple_wallet_enabled ?? false,
                 logo_url: passSettings?.logo_url ?? '',
-                strip_image_url: passSettings?.strip_image_url ?? '',
+                banner_image_url: passSettings?.banner_image_url ?? '',
                 background_color: passSettings?.background_color ?? '',
             });
         }
     }, [organizerSettingsQuery.isFetched]);
 
-    const handleSubmit = (values: AppleWalletSettingsForm) => {
+    const handleSubmit = (values: WalletPassSettingsForm) => {
         updateMutation.mutate({
             organizerSettings: {
+                google_wallet_enabled: values.google_wallet_enabled,
                 apple_wallet_enabled: values.apple_wallet_enabled,
-                apple_wallet_pass_settings: {
+                wallet_pass_settings: {
                     logo_url: values.logo_url || undefined,
-                    strip_image_url: values.strip_image_url || undefined,
+                    banner_image_url: values.banner_image_url || undefined,
                     background_color: values.background_color || undefined,
                 },
             },
             organizerId: organizerId,
         }, {
             onSuccess: () => {
-                showSuccess(t`Successfully Updated Apple Wallet Settings`);
+                showSuccess(t`Successfully Updated Wallet Pass Settings`);
             },
             onError: (error) => {
                 formErrorHandle(form, error);
@@ -69,30 +75,41 @@ export const AppleWalletSettings = () => {
     return (
         <Card>
             <HeadingWithDescription
-                heading={t`Apple Wallet`}
-                description={t`Let attendees add their tickets to Apple Wallet. Every ticket in an order is added with a single tap.`}
+                heading={t`Wallet passes`}
+                description={t`Let attendees add their tickets to Google Wallet and Apple Wallet. The branding below is used on both.`}
             />
             <form onSubmit={form.onSubmit(handleSubmit)}>
                 <fieldset disabled={organizerSettingsQuery.isLoading || updateMutation.isPending}>
-                    <Switch
-                        {...form.getInputProps('apple_wallet_enabled', {type: 'checkbox'})}
-                        label={t`Enable Apple Wallet passes`}
-                        description={t`Ticket emails will include one "Add to Apple Wallet" link that adds every ticket in the order.`}
-                    />
+                    {account?.is_google_wallet_available && (
+                        <Switch
+                            {...form.getInputProps('google_wallet_enabled', {type: 'checkbox'})}
+                            label={t`Enable Google Wallet passes`}
+                            description={t`Ticket emails will include one "Add to Google Wallet" button that saves every ticket in the order.`}
+                        />
+                    )}
+
+                    {account?.is_apple_wallet_available && (
+                        <Switch
+                            {...form.getInputProps('apple_wallet_enabled', {type: 'checkbox'})}
+                            mt={account?.is_google_wallet_available ? 'md' : undefined}
+                            label={t`Enable Apple Wallet passes`}
+                            description={t`Ticket emails will include one "Add to Apple Wallet" link that adds every ticket in the order.`}
+                        />
+                    )}
 
                     <TextInput
                         {...form.getInputProps('logo_url')}
                         mt="md"
                         label={t`Pass logo URL`}
-                        description={t`Shown at the top of the pass and used as its icon. Wide images up to 480x150px work best. Defaults to your organizer logo.`}
+                        description={t`Square image, at least 660x660px. Used as the pass logo and the Apple Wallet icon. Defaults to your organizer logo.`}
                         placeholder={"https://example.com/logo.png"}
                     />
 
                     <TextInput
-                        {...form.getInputProps('strip_image_url')}
-                        label={t`Pass strip image URL`}
-                        description={t`Shown behind the event name, ideally 1125x294px. Defaults to your event cover image.`}
-                        placeholder={"https://example.com/strip.png"}
+                        {...form.getInputProps('banner_image_url')}
+                        label={t`Pass banner URL`}
+                        description={t`Wide image shown across the pass, ideally 1125x336px. Each wallet crops it to fit. Defaults to your event cover image.`}
+                        placeholder={"https://example.com/banner.png"}
                     />
 
                     <ColorInput
@@ -106,7 +123,7 @@ export const AppleWalletSettings = () => {
                         mt="md"
                         loading={updateMutation.isPending}
                         type={'submit'}
-                        data-testid="apple-wallet-submit-button"
+                        data-testid="wallet-pass-submit-button"
                     >
                         {t`Save`}
                     </Button>

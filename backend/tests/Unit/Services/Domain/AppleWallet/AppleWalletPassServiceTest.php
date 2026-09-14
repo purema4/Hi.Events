@@ -14,7 +14,7 @@ use HiEvents\Services\Domain\AppleWallet\AppleWalletPassPackager;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletPassService;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletPassSettingsResolver;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletSerialNumberService;
-use HiEvents\Services\Domain\AppleWallet\DTO\AppleWalletPassSettingsDTO;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
 use Illuminate\Config\Repository;
 use Mockery;
 use Mockery\MockInterface;
@@ -73,7 +73,7 @@ class AppleWalletPassServiceTest extends TestCase
         $this->passSettingsResolver
             ->shouldReceive('resolveForOrganizer')
             ->with(5)
-            ->andReturn(new AppleWalletPassSettingsDTO(logoUrl: null, stripImageUrl: null, backgroundColor: null))
+            ->andReturn(new WalletPassBrandingDTO(logoUrl: null, bannerImageUrl: null, backgroundColor: null))
             ->byDefault();
         $this->imageBuilder->shouldReceive('build')->andReturn(['icon.png' => 'icon'])->byDefault();
         $this->passJsonBuilder->shouldReceive('build')->andReturn(['formatVersion' => 1])->byDefault();

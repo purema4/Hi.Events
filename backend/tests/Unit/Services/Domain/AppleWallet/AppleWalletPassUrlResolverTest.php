@@ -8,7 +8,7 @@ use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletPassSettingsResolver;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletPassUrlResolver;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletUrlGenerator;
-use HiEvents\Services\Domain\AppleWallet\DTO\AppleWalletPassSettingsDTO;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
 use Illuminate\Config\Repository;
 use Mockery;
 use Tests\TestCase;
@@ -22,7 +22,7 @@ class AppleWalletPassUrlResolverTest extends TestCase
         parent::tearDown();
     }
 
-    private function resolver(?AppleWalletPassSettingsDTO $passSettings): AppleWalletPassUrlResolver
+    private function resolver(?WalletPassBrandingDTO $passSettings): AppleWalletPassUrlResolver
     {
         $settingsResolver = Mockery::mock(AppleWalletPassSettingsResolver::class);
         $settingsResolver->shouldReceive('resolveForOrganizer')->with(5)->andReturn($passSettings);
@@ -33,9 +33,9 @@ class AppleWalletPassUrlResolverTest extends TestCase
         );
     }
 
-    private function enabled(): AppleWalletPassSettingsDTO
+    private function enabled(): WalletPassBrandingDTO
     {
-        return new AppleWalletPassSettingsDTO(logoUrl: null, stripImageUrl: null, backgroundColor: null);
+        return new WalletPassBrandingDTO(logoUrl: null, bannerImageUrl: null, backgroundColor: null);
     }
 
     public function test_one_link_downloads_every_ticket_in_the_email(): void

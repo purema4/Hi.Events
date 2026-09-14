@@ -32,9 +32,8 @@ abstract class OrganizerSettingDomainObjectAbstract extends \HiEvents\DomainObje
     final public const TRACKING_PIXELS = 'tracking_pixels';
     final public const TRACKING_CONSENT_ACKNOWLEDGED = 'tracking_consent_acknowledged';
     final public const GOOGLE_WALLET_ENABLED = 'google_wallet_enabled';
-    final public const GOOGLE_WALLET_PASS_SETTINGS = 'google_wallet_pass_settings';
     final public const APPLE_WALLET_ENABLED = 'apple_wallet_enabled';
-    final public const APPLE_WALLET_PASS_SETTINGS = 'apple_wallet_pass_settings';
+    final public const WALLET_PASS_SETTINGS = 'wallet_pass_settings';
 
     protected int $id;
     protected int $organizer_id;
@@ -58,9 +57,8 @@ abstract class OrganizerSettingDomainObjectAbstract extends \HiEvents\DomainObje
     protected array|string|null $tracking_pixels = null;
     protected bool $tracking_consent_acknowledged = false;
     protected bool $google_wallet_enabled = false;
-    protected array|string|null $google_wallet_pass_settings = null;
     protected bool $apple_wallet_enabled = false;
-    protected array|string|null $apple_wallet_pass_settings = null;
+    protected array|string|null $wallet_pass_settings = null;
 
     public function toArray(): array
     {
@@ -87,9 +85,8 @@ abstract class OrganizerSettingDomainObjectAbstract extends \HiEvents\DomainObje
                     'tracking_pixels' => $this->tracking_pixels ?? null,
                     'tracking_consent_acknowledged' => $this->tracking_consent_acknowledged ?? null,
                     'google_wallet_enabled' => $this->google_wallet_enabled ?? null,
-                    'google_wallet_pass_settings' => $this->google_wallet_pass_settings ?? null,
                     'apple_wallet_enabled' => $this->apple_wallet_enabled ?? null,
-                    'apple_wallet_pass_settings' => $this->apple_wallet_pass_settings ?? null,
+                    'wallet_pass_settings' => $this->wallet_pass_settings ?? null,
                 ];
     }
 
@@ -336,17 +333,6 @@ abstract class OrganizerSettingDomainObjectAbstract extends \HiEvents\DomainObje
         return $this->google_wallet_enabled;
     }
 
-    public function setGoogleWalletPassSettings(array|string|null $google_wallet_pass_settings): self
-    {
-        $this->google_wallet_pass_settings = $google_wallet_pass_settings;
-        return $this;
-    }
-
-    public function getGoogleWalletPassSettings(): array|string|null
-    {
-        return $this->google_wallet_pass_settings;
-    }
-
     public function setAppleWalletEnabled(bool $apple_wallet_enabled): self
     {
         $this->apple_wallet_enabled = $apple_wallet_enabled;
@@ -358,14 +344,14 @@ abstract class OrganizerSettingDomainObjectAbstract extends \HiEvents\DomainObje
         return $this->apple_wallet_enabled;
     }
 
-    public function setAppleWalletPassSettings(array|string|null $apple_wallet_pass_settings): self
+    public function setWalletPassSettings(array|string|null $wallet_pass_settings): self
     {
-        $this->apple_wallet_pass_settings = $apple_wallet_pass_settings;
+        $this->wallet_pass_settings = $wallet_pass_settings;
         return $this;
     }
 
-    public function getAppleWalletPassSettings(): array|string|null
+    public function getWalletPassSettings(): array|string|null
     {
-        return $this->apple_wallet_pass_settings;
+        return $this->wallet_pass_settings;
     }
 }

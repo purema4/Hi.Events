@@ -14,7 +14,7 @@ use HiEvents\DomainObjects\Status\AttendeeStatus;
 use HiEvents\Helper\EventVenueHelper;
 use HiEvents\Helper\HexColorHelper;
 use HiEvents\Helper\Url;
-use HiEvents\Services\Domain\AppleWallet\DTO\AppleWalletPassSettingsDTO;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
 use Illuminate\Config\Repository;
 
 class AppleWalletPassJsonBuilder
@@ -36,7 +36,7 @@ class AppleWalletPassJsonBuilder
         EventDomainObject $event,
         ?EventOccurrenceDomainObject $occurrence,
         OrganizerDomainObject $organizer,
-        AppleWalletPassSettingsDTO $passSettings,
+        WalletPassBrandingDTO $passSettings,
     ): array {
         $serialNumber = $this->serialNumberService->serialNumberForAttendee($attendee->getId());
         $eventName = $this->eventName($event, $occurrence);
@@ -119,9 +119,9 @@ class AppleWalletPassJsonBuilder
         ]);
     }
 
-    private function colors(EventDomainObject $event, AppleWalletPassSettingsDTO $passSettings): array
+    private function colors(EventDomainObject $event, WalletPassBrandingDTO $passSettings): array
     {
-        $hex = HexColorHelper::toRgbHex($event->getEventSettings()?->getAppleWalletBackgroundColor())
+        $hex = HexColorHelper::toRgbHex($event->getEventSettings()?->getWalletPassBackgroundColor())
             ?? $passSettings->backgroundColor;
 
         if ($hex === null) {

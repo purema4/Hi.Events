@@ -84,10 +84,8 @@ class PartialUpdateOrganizerSettingsHandler
             'homepage_password' => $dto->getProvided('homepagePassword', $organizerSettings->getHomepagePassword()),
 
             'google_wallet_enabled' => $dto->getProvided('googleWalletEnabled', $organizerSettings->getGoogleWalletEnabled()),
-            'google_wallet_pass_settings' => $dto->getProvided('googleWalletPassSettings', $organizerSettings->getGoogleWalletPassSettings()),
-
             'apple_wallet_enabled' => $dto->getProvided('appleWalletEnabled', $organizerSettings->getAppleWalletEnabled()),
-            'apple_wallet_pass_settings' => $dto->getProvided('appleWalletPassSettings', $organizerSettings->getAppleWalletPassSettings()),
+            'wallet_pass_settings' => $dto->getProvided('walletPassSettings', $organizerSettings->getWalletPassSettings()),
 
             'tracking_pixels' => $dto->getProvided('trackingPixels', $organizerSettings->getTrackingPixels()),
             'tracking_consent_acknowledged' => $dto->getProvided('trackingConsentAcknowledged', $organizerSettings->getTrackingConsentAcknowledged()),
@@ -110,9 +108,8 @@ class PartialUpdateOrganizerSettingsHandler
         OrganizerSettingDomainObject $updatedSettings,
     ): bool {
         return $existingSettings->getGoogleWalletEnabled() !== $updatedSettings->getGoogleWalletEnabled()
-            || $existingSettings->getGoogleWalletPassSettings() !== $updatedSettings->getGoogleWalletPassSettings()
             || $existingSettings->getAppleWalletEnabled() !== $updatedSettings->getAppleWalletEnabled()
-            || $existingSettings->getAppleWalletPassSettings() !== $updatedSettings->getAppleWalletPassSettings()
+            || $existingSettings->getWalletPassSettings() !== $updatedSettings->getWalletPassSettings()
             || $existingSettings->getHomepageThemeSettings() !== $updatedSettings->getHomepageThemeSettings();
     }
 }

@@ -12,7 +12,7 @@ use HiEvents\DomainObjects\Status\AttendeeStatus;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletPassJsonBuilder;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletSerialNumberService;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletUrlGenerator;
-use HiEvents\Services\Domain\AppleWallet\DTO\AppleWalletPassSettingsDTO;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
 use Illuminate\Config\Repository;
 use Tests\TestCase;
 
@@ -78,9 +78,9 @@ class AppleWalletPassJsonBuilderTest extends TestCase
         return (new OrganizerDomainObject)->setId(5)->setName($name);
     }
 
-    private function passSettings(?string $backgroundColor = null): AppleWalletPassSettingsDTO
+    private function passSettings(?string $backgroundColor = null): WalletPassBrandingDTO
     {
-        return new AppleWalletPassSettingsDTO(logoUrl: null, stripImageUrl: null, backgroundColor: $backgroundColor);
+        return new WalletPassBrandingDTO(logoUrl: null, bannerImageUrl: null, backgroundColor: $backgroundColor);
     }
 
     private function field(array $fields, string $key): ?array
@@ -188,7 +188,7 @@ class AppleWalletPassJsonBuilderTest extends TestCase
 
     public function test_the_event_background_colour_overrides_the_organizer_colour(): void
     {
-        $settings = (new EventSettingDomainObject)->setAppleWalletBackgroundColor('#FDE68AFF');
+        $settings = (new EventSettingDomainObject)->setWalletPassBackgroundColor('#FDE68AFF');
 
         $pass = $this->builder()->build($this->attendee(), $this->event($settings), null, $this->organizer(), $this->passSettings('#1e1b4b'));
 

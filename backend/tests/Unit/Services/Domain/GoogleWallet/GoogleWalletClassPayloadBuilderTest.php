@@ -9,8 +9,8 @@ use HiEvents\DomainObjects\EventOccurrenceDomainObject;
 use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\DomainObjects\LocationDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
-use HiEvents\Services\Domain\GoogleWallet\DTO\GoogleWalletPassSettingsDTO;
 use HiEvents\Services\Domain\GoogleWallet\GoogleWalletClassPayloadBuilder;
+use HiEvents\Services\Domain\Wallet\DTO\WalletPassBrandingDTO;
 use Illuminate\Config\Repository;
 use Tests\TestCase;
 
@@ -53,11 +53,11 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
         return $organizer;
     }
 
-    private function passSettings(): GoogleWalletPassSettingsDTO
+    private function passSettings(): WalletPassBrandingDTO
     {
-        return new GoogleWalletPassSettingsDTO(
+        return new WalletPassBrandingDTO(
             logoUrl: 'https://cdn.example.com/logo.png',
-            heroImageUrl: null,
+            bannerImageUrl: null,
             backgroundColor: '#112233',
         );
     }
@@ -236,9 +236,9 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
         $event = $this->event();
         $event->setEventSettings(
             (new EventSettingDomainObject)
-                ->setGoogleWalletLogoUrl('https://cdn.example.com/event-logo.png')
-                ->setGoogleWalletBannerUrl('https://cdn.example.com/event-banner.png')
-                ->setGoogleWalletBackgroundColor('#AABBCCDD')
+                ->setWalletPassLogoUrl('https://cdn.example.com/event-logo.png')
+                ->setWalletPassBannerUrl('https://cdn.example.com/event-banner.png')
+                ->setWalletPassBackgroundColor('#AABBCCDD')
         );
 
         $payload = $this->builder()->build(
@@ -259,8 +259,8 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
         $event = $this->event();
         $event->setEventSettings(
             (new EventSettingDomainObject)
-                ->setGoogleWalletLogoUrl('   ')
-                ->setGoogleWalletBackgroundColor(null)
+                ->setWalletPassLogoUrl('   ')
+                ->setWalletPassBackgroundColor(null)
         );
 
         $payload = $this->builder()->build(

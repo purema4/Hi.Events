@@ -3,7 +3,6 @@ import {Button, ColorInput, TextInput} from "@mantine/core";
 import {useForm} from "@mantine/form";
 import {useParams} from "react-router";
 import {useEffect} from "react";
-import {EventSettings} from "../../../../../../types.ts";
 import {Card} from "../../../../../common/Card";
 import {showSuccess} from "../../../../../../utilites/notifications.tsx";
 import {useFormErrorResponseHandler} from "../../../../../../hooks/useFormErrorResponseHandler.tsx";
@@ -11,42 +10,47 @@ import {useUpdateEventSettings} from "../../../../../../mutations/useUpdateEvent
 import {useGetEventSettings} from "../../../../../../queries/useGetEventSettings.ts";
 import {HeadingWithDescription} from "../../../../../common/Card/CardHeading";
 
-export const GoogleWalletSettings = () => {
+interface WalletPassSettingsForm {
+    wallet_pass_logo_url: string;
+    wallet_pass_banner_url: string;
+    wallet_pass_background_color: string;
+}
+
+export const WalletPassSettings = () => {
     const {eventId} = useParams();
     const eventSettingsQuery = useGetEventSettings(eventId);
     const updateMutation = useUpdateEventSettings();
     const formErrorHandle = useFormErrorResponseHandler();
 
-    const form = useForm({
+    const form = useForm<WalletPassSettingsForm>({
         initialValues: {
-            google_wallet_banner_url: '',
-            google_wallet_logo_url: '',
-            google_wallet_background_color: '',
+            wallet_pass_logo_url: '',
+            wallet_pass_banner_url: '',
+            wallet_pass_background_color: '',
         }
     });
 
     useEffect(() => {
         if (eventSettingsQuery?.isFetched && eventSettingsQuery?.data) {
             form.setValues({
-                google_wallet_banner_url: eventSettingsQuery.data.google_wallet_banner_url ?? '',
-                google_wallet_logo_url: eventSettingsQuery.data.google_wallet_logo_url ?? '',
-                google_wallet_background_color: eventSettingsQuery.data.google_wallet_background_color ?? '',
+                wallet_pass_logo_url: eventSettingsQuery.data.wallet_pass_logo_url ?? '',
+                wallet_pass_banner_url: eventSettingsQuery.data.wallet_pass_banner_url ?? '',
+                wallet_pass_background_color: eventSettingsQuery.data.wallet_pass_background_color ?? '',
             });
         }
     }, [eventSettingsQuery.isFetched]);
 
-    const handleSubmit = (values: Partial<EventSettings>) => {
+    const handleSubmit = (values: WalletPassSettingsForm) => {
         updateMutation.mutate({
             eventSettings: {
-                ...values,
-                google_wallet_banner_url: values.google_wallet_banner_url || undefined,
-                google_wallet_logo_url: values.google_wallet_logo_url || undefined,
-                google_wallet_background_color: values.google_wallet_background_color || undefined,
+                wallet_pass_logo_url: values.wallet_pass_logo_url || null,
+                wallet_pass_banner_url: values.wallet_pass_banner_url || null,
+                wallet_pass_background_color: values.wallet_pass_background_color || null,
             },
             eventId: eventId,
         }, {
             onSuccess: () => {
-                showSuccess(t`Successfully Updated Google Wallet Settings`);
+                showSuccess(t`Successfully Updated Wallet Pass Settings`);
             },
             onError: (error) => {
                 formErrorHandle(form, error);
@@ -57,27 +61,27 @@ export const GoogleWalletSettings = () => {
     return (
         <Card>
             <HeadingWithDescription
-                heading={t`Google Wallet`}
-                description={t`Override the branding used on this event's Google Wallet passes. Anything left blank falls back to your organizer settings.`}
+                heading={t`Wallet passes`}
+                description={t`Override the branding used on this event's Google Wallet and Apple Wallet passes. Anything left blank falls back to your organizer settings.`}
             />
             <form onSubmit={form.onSubmit(handleSubmit)}>
                 <fieldset disabled={eventSettingsQuery.isLoading || updateMutation.isPending}>
                     <TextInput
-                        {...form.getInputProps('google_wallet_logo_url')}
+                        {...form.getInputProps('wallet_pass_logo_url')}
                         label={t`Pass logo URL`}
                         description={t`Square image, at least 660x660px. Falls back to your organizer setting, then your organizer logo.`}
                         placeholder={"https://example.com/logo.png"}
                     />
 
                     <TextInput
-                        {...form.getInputProps('google_wallet_banner_url')}
+                        {...form.getInputProps('wallet_pass_banner_url')}
                         label={t`Pass banner URL`}
-                        description={t`Banner shown across the pass, ideally 1032x812px. Falls back to your organizer setting, then this event's cover image.`}
+                        description={t`Wide image shown across the pass, ideally 1125x336px. Falls back to your organizer setting, then this event's cover image.`}
                         placeholder={"https://example.com/banner.png"}
                     />
 
                     <ColorInput
-                        {...form.getInputProps('google_wallet_background_color')}
+                        {...form.getInputProps('wallet_pass_background_color')}
                         label={t`Pass background colour`}
                         description={t`Falls back to your organizer setting, then your homepage accent colour.`}
                         placeholder={"#8b5cf6"}
@@ -87,7 +91,7 @@ export const GoogleWalletSettings = () => {
                         mt="md"
                         loading={updateMutation.isPending}
                         type={'submit'}
-                        data-testid="event-google-wallet-submit-button"
+                        data-testid="event-wallet-pass-submit-button"
                     >
                         {t`Save`}
                     </Button>

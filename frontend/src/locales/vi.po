@@ -794,7 +794,7 @@ msgstr "Thông tin bổ sung"
 #: src/components/common/OrderDetails/index.tsx:116
 #: src/components/forms/QuestionForm/index.tsx:130
 #: src/components/modals/ManageOrderModal/index.tsx:163
-#: src/components/routes/organizer/Settings/index.tsx:47
+#: src/components/routes/organizer/Settings/index.tsx:46
 #: src/components/routes/organizer/Settings/Sections/AddressSettings/index.tsx:103
 msgid "Address"
 msgstr "Địa chỉ"
@@ -1173,13 +1173,6 @@ msgstr "Mọi thắc mắc từ chủ sở hữu sản phẩm sẽ được gử
 #: src/components/common/WidgetEditor/index.tsx:216
 msgid "Appearance"
 msgstr "Giao diện"
-
-#: src/components/routes/event/Settings/index.tsx:126
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:64
-#: src/components/routes/organizer/Settings/index.tsx:102
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:72
-msgid "Apple Wallet"
-msgstr "Apple Wallet"
 
 #: src/components/routes/product-widget/SelectProducts/index.tsx:915
 msgid "applied"
@@ -1781,14 +1774,6 @@ msgstr "Banner"
 msgid "Banner content must be 200 characters or less"
 msgstr "Nội dung banner không được vượt quá 200 ký tự"
 
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:94
-msgid "Banner shown across the pass, ideally 1032x812px. Defaults to your event cover image."
-msgstr "Ảnh bìa hiển thị trên toàn bộ chiều rộng thẻ, lý tưởng là 1032x812 px. Mặc định là ảnh bìa sự kiện của bạn."
-
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:75
-msgid "Banner shown across the pass, ideally 1032x812px. Falls back to your organizer setting, then this event's cover image."
-msgstr "Ảnh bìa hiển thị trên toàn bộ chiều rộng thẻ, lý tưởng là 1032x812 px. Nếu không, sẽ dùng cài đặt nhà tổ chức, rồi đến ảnh bìa của sự kiện này."
-
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:85
 msgid "Base price"
 msgstr "Giá gốc"
@@ -1802,7 +1787,7 @@ msgstr "Giá cơ bản"
 msgid "Based on the global sale period above, not per date"
 msgstr "Dựa trên khoảng thời gian bán chung ở trên, không theo từng ngày"
 
-#: src/components/routes/organizer/Settings/index.tsx:35
+#: src/components/routes/organizer/Settings/index.tsx:34
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:63
 msgid "Basic Information"
 msgstr "Thông tin cơ bản"
@@ -2313,7 +2298,7 @@ msgstr "Đã check-in"
 msgid "Checked In"
 msgstr "Đã check-in"
 
-#: src/components/routes/event/Settings/index.tsx:65
+#: src/components/routes/event/Settings/index.tsx:64
 msgid "Checkout"
 msgstr "Thanh toán"
 
@@ -2632,7 +2617,7 @@ msgstr "Cấu hình đã được cập nhật thành công"
 msgid "Configurations"
 msgstr "Cấu hình"
 
-#: src/components/routes/event/Settings/index.tsx:195
+#: src/components/routes/event/Settings/index.tsx:185
 msgid "Configure event details, location, checkout options, and email notifications."
 msgstr "Cấu hình chi tiết sự kiện, địa điểm, tùy chọn thanh toán và thông báo email."
 
@@ -3395,8 +3380,8 @@ msgstr "Vùng nguy hiểm"
 #: src/components/routes/account/ManageAccount/index.tsx:36
 #: src/components/routes/account/ManageAccount/sections/DangerZone/index.tsx:80
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:555
-#: src/components/routes/event/Settings/index.tsx:107
-#: src/components/routes/organizer/Settings/index.tsx:83
+#: src/components/routes/event/Settings/index.tsx:106
+#: src/components/routes/organizer/Settings/index.tsx:82
 msgid "Danger Zone"
 msgstr "Vùng nguy hiểm"
 
@@ -3547,8 +3532,7 @@ msgstr "Mẫu mặc định sẽ được sử dụng"
 msgid "Defaults"
 msgstr "Giá trị mặc định"
 
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:101
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:101
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:118
 msgid "Defaults to your homepage accent colour when left blank."
 msgstr "Nếu để trống, màu nhấn của trang chủ sẽ được sử dụng."
 
@@ -4169,7 +4153,7 @@ msgstr "Cài đặt email & thông báo"
 msgid "Email & scheduled messages"
 msgstr "Email và tin nhắn đã lên lịch"
 
-#: src/components/routes/event/Settings/index.tsx:83
+#: src/components/routes/event/Settings/index.tsx:82
 msgid "Email & Templates"
 msgstr "Email & Mẫu"
 
@@ -4237,7 +4221,7 @@ msgid "Email Preview"
 msgstr "Xem trước email"
 
 #: src/components/common/EmailTemplateSettings/EmailTemplateSettingsBase.tsx:349
-#: src/components/routes/organizer/Settings/index.tsx:71
+#: src/components/routes/organizer/Settings/index.tsx:70
 msgid "Email Templates"
 msgstr "Mẫu email"
 
@@ -4278,7 +4262,7 @@ msgstr "Emoji"
 msgid "Emoji is required for modals"
 msgstr "Cần có emoji cho cửa sổ bật lên"
 
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:79
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:95
 msgid "Enable Apple Wallet passes"
 msgstr "Bật thẻ Apple Wallet"
 
@@ -4290,7 +4274,7 @@ msgstr "Bật tự phục vụ cho người tham dự"
 msgid "Enable attendee self-service by default"
 msgstr "Bật tự phục vụ cho người tham dự theo mặc định"
 
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:79
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:86
 msgid "Enable Google Wallet passes"
 msgstr "Bật thẻ Google Wallet"
 
@@ -4565,7 +4549,7 @@ msgid "Event date display"
 msgstr "Hiển thị ngày sự kiện"
 
 #: src/components/routes/account/ManageAccount/sections/EventDefaultsSettings/index.tsx:5
-#: src/components/routes/organizer/Settings/index.tsx:41
+#: src/components/routes/organizer/Settings/index.tsx:40
 #: src/components/routes/organizer/Settings/Sections/EventDefaults/index.tsx:73
 msgid "Event Defaults"
 msgstr "Mặc định sự kiện"
@@ -4578,7 +4562,7 @@ msgstr "Sự kiện đã được xóa thành công"
 msgid "Event Description"
 msgstr "Mô tả sự kiện"
 
-#: src/components/routes/event/Settings/index.tsx:53
+#: src/components/routes/event/Settings/index.tsx:52
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:71
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:627
 msgid "Event Details"
@@ -4626,7 +4610,7 @@ msgid "Event restored successfully"
 msgstr "Sự kiện đã được khôi phục thành công"
 
 #: src/components/layouts/Event/index.tsx:117
-#: src/components/routes/event/Settings/index.tsx:196
+#: src/components/routes/event/Settings/index.tsx:186
 msgid "Event Settings"
 msgstr "Cài đặt sự kiện"
 
@@ -5129,8 +5113,7 @@ msgstr "Tải ảnh lên không thành công. Vui lòng thử lại."
 msgid "Failed to verify email"
 msgstr "Không thể xác thực email"
 
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:86
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:82
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:86
 msgid "Falls back to your organizer setting, then your homepage accent colour."
 msgstr "Nếu không, sẽ dùng cài đặt nhà tổ chức, rồi đến màu nhấn trang chủ của bạn."
 
@@ -5536,13 +5519,6 @@ msgstr "Dễ đọc"
 #: src/components/common/CalendarOptionsPopover/index.tsx:30
 msgid "Google Calendar"
 msgstr "Lịch Google"
-
-#: src/components/routes/event/Settings/index.tsx:117
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:60
-#: src/components/routes/organizer/Settings/index.tsx:93
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:72
-msgid "Google Wallet"
-msgstr "Google Wallet"
 
 #: src/components/common/AnnouncementDisplay/AnnouncementModal.tsx:53
 #: src/components/common/CheckIn/CheckInDescriptionModal.tsx:40
@@ -6370,13 +6346,9 @@ msgstr "Để trống để áp dụng danh sách check-in này cho mọi ngày"
 msgid "Leave on to cover every ticket on the event. Turn off to pick specific tickets."
 msgstr "Để bật để bao gồm mọi vé của sự kiện. Tắt để chọn từng vé cụ thể."
 
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:73
-msgid "Let attendees add their tickets to Apple Wallet. Every ticket in an order is added with a single tap."
-msgstr "Cho phép người tham dự thêm vé vào Apple Wallet. Mọi vé trong một đơn hàng được thêm chỉ bằng một lần chạm."
-
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:73
-msgid "Let attendees add their tickets to Google Wallet. Every ticket in an order is saved with a single tap."
-msgstr "Cho phép người tham dự thêm vé của họ vào Google Wallet. Tất cả vé trong một đơn hàng được lưu chỉ với một lần chạm."
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:79
+msgid "Let attendees add their tickets to Google Wallet and Apple Wallet. The branding below is used on both."
+msgstr "Cho phép người tham dự thêm vé vào Google Wallet và Apple Wallet. Nhận diện thương hiệu bên dưới được dùng cho cả hai."
 
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:300
 msgid "Let them know about the change"
@@ -6466,7 +6438,7 @@ msgstr "Đang tải ..."
 #: src/components/common/LocationPicker/index.tsx:294
 #: src/components/layouts/EventHomepage/index.tsx:495
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:465
-#: src/components/routes/event/Settings/index.tsx:59
+#: src/components/routes/event/Settings/index.tsx:58
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:150
 #: src/components/routes/my-tickets/index.tsx:90
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:336
@@ -6790,7 +6762,7 @@ msgstr "phút"
 msgid "Minutes"
 msgstr "Phút"
 
-#: src/components/routes/event/Settings/index.tsx:89
+#: src/components/routes/event/Settings/index.tsx:88
 msgid "Miscellaneous"
 msgstr "Linh tinh"
 
@@ -8060,7 +8032,7 @@ msgstr "Không tìm thấy nhà tổ chức"
 msgid "Organizer restored successfully"
 msgstr "Ban tổ chức đã được khôi phục thành công"
 
-#: src/components/routes/organizer/Settings/index.tsx:180
+#: src/components/routes/organizer/Settings/index.tsx:170
 msgid "Organizer Settings"
 msgstr "Cài đặt nhà tổ chức"
 
@@ -8124,13 +8096,9 @@ msgstr "Tùy chỉnh giá"
 msgid "Override removed"
 msgstr "Đã xóa tùy chỉnh"
 
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:65
-msgid "Override the branding used on this event's Apple Wallet passes. Anything left blank falls back to your organizer settings."
-msgstr "Ghi đè nhận diện thương hiệu dùng trên thẻ Apple Wallet của sự kiện này. Các trường để trống sẽ dùng cài đặt của nhà tổ chức."
-
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:61
-msgid "Override the branding used on this event's Google Wallet passes. Anything left blank falls back to your organizer settings."
-msgstr "Thay thế nhận diện thương hiệu trên thẻ Google Wallet của sự kiện này. Các trường để trống sẽ dùng cài đặt nhà tổ chức của bạn."
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:65
+msgid "Override the branding used on this event's Google Wallet and Apple Wallet passes. Anything left blank falls back to your organizer settings."
+msgstr "Ghi đè nhận diện thương hiệu dùng trên thẻ Google Wallet và Apple Wallet của sự kiện này. Các trường để trống sẽ dùng cài đặt của nhà tổ chức."
 
 #: src/components/layouts/Event/index.tsx:100
 msgid "Overview"
@@ -8191,15 +8159,13 @@ msgstr "Hoàn lại tiền một phần"
 msgid "Partially refunded: {0}"
 msgstr "Hoàn tiền một phần: {0}"
 
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:85
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:81
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:100
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:100
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:85
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:117
 msgid "Pass background colour"
 msgstr "Màu nền của thẻ"
 
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:74
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:93
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:78
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:110
 msgid "Pass banner URL"
 msgstr "URL ảnh banner của thẻ"
 
@@ -8207,17 +8173,10 @@ msgstr "URL ảnh banner của thẻ"
 msgid "Pass fee to buyer"
 msgstr "Chuyển phí cho người mua"
 
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:71
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:67
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:86
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:86
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:71
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:103
 msgid "Pass logo URL"
 msgstr "URL logo của thẻ"
-
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:78
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:93
-msgid "Pass strip image URL"
-msgstr "URL ảnh dải của thẻ"
 
 #: src/components/common/PlatformFeesSettings/index.tsx:206
 msgid "Pass to Buyer"
@@ -8301,7 +8260,7 @@ msgstr "Tải trọng"
 msgid "Payment"
 msgstr "Thanh toán"
 
-#: src/components/routes/event/Settings/index.tsx:101
+#: src/components/routes/event/Settings/index.tsx:100
 msgid "Payment & Invoicing"
 msgstr "Thanh toán & Hoá đơn"
 
@@ -8365,7 +8324,7 @@ msgstr "Điều khoản thanh toán"
 msgid "Payments not available"
 msgstr "Thanh toán không khả dụng"
 
-#: src/components/routes/organizer/Settings/index.tsx:112
+#: src/components/routes/organizer/Settings/index.tsx:102
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:407
 #: src/components/routes/organizer/Settings/Sections/PayoutsSettings/index.tsx:463
 msgid "Payouts"
@@ -8517,10 +8476,10 @@ msgstr "Phí nền tảng"
 msgid "Platform fee of {0} deducted from your payout"
 msgstr "Phí nền tảng {0} được khấu trừ từ khoản thanh toán của bạn"
 
-#: src/components/routes/event/Settings/index.tsx:135
+#: src/components/routes/event/Settings/index.tsx:125
 #: src/components/routes/event/Settings/Sections/PlatformFeesSettings/index.tsx:48
 #: src/components/routes/organizer/Reports/index.tsx:41
-#: src/components/routes/organizer/Settings/index.tsx:118
+#: src/components/routes/organizer/Settings/index.tsx:108
 #: src/components/routes/organizer/Settings/Sections/PlatformFeesSettings/index.tsx:42
 msgid "Platform Fees"
 msgstr "Phí nền tảng"
@@ -9166,7 +9125,7 @@ msgstr "Định kỳ"
 
 #: src/components/layouts/EventHomepage/index.tsx:375
 #: src/components/modals/CreateEventModal/index.tsx:240
-#: src/components/routes/event/Settings/index.tsx:71
+#: src/components/routes/event/Settings/index.tsx:70
 msgid "Recurring Event"
 msgstr "Sự kiện định kỳ"
 
@@ -9631,10 +9590,8 @@ msgstr "Thứ Bảy"
 #: src/components/common/QuestionAndAnswerList/index.tsx:118
 #: src/components/routes/event/OccurrencesTab/OccurrenceBulkEditModal/index.tsx:272
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:306
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:96
 #: src/components/routes/event/Settings/Sections/EmailSettings/GeneralEmailSettings.tsx:81
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:151
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:92
 #: src/components/routes/event/Settings/Sections/HomepageAndCheckoutSettings/index.tsx:141
 #: src/components/routes/event/Settings/Sections/LocationSettings/index.tsx:193
 #: src/components/routes/event/Settings/Sections/MiscSettings/index.tsx:94
@@ -9642,13 +9599,13 @@ msgstr "Thứ Bảy"
 #: src/components/routes/event/Settings/Sections/RecurringEventSettings/index.tsx:72
 #: src/components/routes/event/Settings/Sections/SeoSettings/index.tsx:85
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:80
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:96
 #: src/components/routes/organizer/Settings/Sections/AddressSettings/index.tsx:119
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:111
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:132
 #: src/components/routes/organizer/Settings/Sections/EventDefaults/index.tsx:103
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:111
 #: src/components/routes/organizer/Settings/Sections/SeoSettings/index.tsx:85
 #: src/components/routes/organizer/Settings/Sections/TrackingPixelSettings/index.tsx:262
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:128
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:86
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:86
 msgid "Save"
@@ -10204,8 +10161,8 @@ msgstr "Gửi cho khách hàng khi họ đặt hàng"
 msgid "Sent to each attendee with their ticket details"
 msgstr "Gửi cho từng người tham dự với chi tiết vé của họ"
 
-#: src/components/routes/event/Settings/index.tsx:77
-#: src/components/routes/organizer/Settings/index.tsx:65
+#: src/components/routes/event/Settings/index.tsx:76
+#: src/components/routes/organizer/Settings/index.tsx:64
 msgid "SEO"
 msgstr "SEO"
 
@@ -10453,18 +10410,6 @@ msgstr "Đang hiển thị {MAX_VISIBLE} trong số {totalAvailable} ngày. Nh�
 msgid "Showing the first {0} — the remaining {1} session(s) will still be targeted when the message is sent."
 msgstr "Đang hiển thị {0} mục đầu — {1} buổi còn lại vẫn nằm trong phạm vi khi tin nhắn được gửi."
 
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:87
-msgid "Shown at the top of the pass and used as its icon. Wide images up to 480x150px work best. Defaults to your organizer logo."
-msgstr "Hiển thị ở đầu thẻ và dùng làm biểu tượng của thẻ. Ảnh ngang tối đa 480x150px hiển thị tốt nhất. Mặc định dùng logo nhà tổ chức của bạn."
-
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:94
-msgid "Shown behind the event name, ideally 1125x294px. Defaults to your event cover image."
-msgstr "Hiển thị phía sau tên sự kiện, lý tưởng là 1125x294px. Mặc định dùng ảnh bìa sự kiện của bạn."
-
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:79
-msgid "Shown behind the event name, ideally 1125x294px. Falls back to your organizer setting, then this event's cover image."
-msgstr "Hiển thị phía sau tên sự kiện, lý tưởng là 1125x294px. Nếu để trống sẽ dùng cài đặt nhà tổ chức, sau đó là ảnh bìa của sự kiện này."
-
 #: src/components/routes/admin/Announcements/index.tsx:410
 msgid "Shown bouncing at the top of the modal"
 msgstr "Hiển thị nhún nhảy ở đầu cửa sổ bật lên"
@@ -10531,7 +10476,7 @@ msgstr "Snapchat"
 msgid "Social"
 msgstr "Xã hội"
 
-#: src/components/routes/organizer/Settings/index.tsx:59
+#: src/components/routes/organizer/Settings/index.tsx:58
 msgid "Social Links"
 msgstr "Liên kết mạng xã hội"
 
@@ -10651,13 +10596,13 @@ msgstr "Chia nhỏ việc check-in theo ngày, khu vực hoặc loại vé. Chia
 msgid "Sports"
 msgstr "Thể thao"
 
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:87
-msgid "Square image, at least 660x660px. Defaults to your organizer logo."
-msgstr "Ảnh vuông, tối thiểu 660x660 px. Mặc định là logo nhà tổ chức của bạn."
-
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:68
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:72
 msgid "Square image, at least 660x660px. Falls back to your organizer setting, then your organizer logo."
 msgstr "Ảnh vuông, tối thiểu 660x660 px. Nếu không, sẽ dùng cài đặt nhà tổ chức, rồi đến logo nhà tổ chức của bạn."
+
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:104
+msgid "Square image, at least 660x660px. Used as the pass logo and the Apple Wallet icon. Defaults to your organizer logo."
+msgstr "Ảnh vuông, tối thiểu 660x660px. Dùng làm logo của thẻ và biểu tượng Apple Wallet. Mặc định dùng logo nhà tổ chức của bạn."
 
 #: src/components/common/CheckIn/CheckInInfoModal.tsx:84
 msgid "Staff instructions"
@@ -10912,11 +10857,6 @@ msgstr "Đã xóa khỏi danh sách chờ thành công"
 msgid "Successfully Updated Address"
 msgstr "Cập nhật địa chỉ thành công"
 
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:53
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:61
-msgid "Successfully Updated Apple Wallet Settings"
-msgstr "Đã cập nhật cài đặt Apple Wallet thành công"
-
 #: src/components/modals/ManageAttendeeModal/index.tsx:110
 msgid "Successfully updated attendee"
 msgstr "Người tham dự cập nhật thành công"
@@ -10940,11 +10880,6 @@ msgstr "Sự kiện cập nhật thành công"
 #: src/components/routes/organizer/Settings/Sections/EventDefaults/index.tsx:62
 msgid "Successfully Updated Event Defaults"
 msgstr "Đã cập nhật mặc định sự kiện thành công"
-
-#: src/components/routes/event/Settings/Sections/GoogleWalletSettings/index.tsx:49
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:61
-msgid "Successfully Updated Google Wallet Settings"
-msgstr "Đã cập nhật cài đặt Google Wallet thành công"
 
 #: src/components/routes/event/HomepageDesigner/index.tsx:108
 #: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:95
@@ -11014,6 +10949,11 @@ msgstr "Cập nhật liên kết mạng xã hội thành công"
 #: src/components/routes/organizer/Settings/Sections/TrackingPixelSettings/index.tsx:159
 msgid "Successfully Updated Tracking Settings"
 msgstr "Cập nhật cài đặt theo dõi thành công"
+
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:53
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:67
+msgid "Successfully Updated Wallet Pass Settings"
+msgstr "Đã cập nhật cài đặt thẻ ví thành công"
 
 #: src/components/modals/EditOrganizerWebhookModal/index.tsx:44
 #: src/components/modals/EditWebhookModal/index.tsx:44
@@ -11789,11 +11729,11 @@ msgstr "Thiết kế vé"
 msgid "Ticket email has been resent to attendee"
 msgstr "Email vé đã được gửi lại với người tham dự"
 
-#: src/components/routes/organizer/Settings/Sections/AppleWalletSettings/index.tsx:80
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:96
 msgid "Ticket emails will include one \"Add to Apple Wallet\" link that adds every ticket in the order."
 msgstr "Email vé sẽ có một liên kết \"Thêm vào Apple Wallet\" để thêm mọi vé trong đơn hàng."
 
-#: src/components/routes/organizer/Settings/Sections/GoogleWalletSettings/index.tsx:80
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:87
 msgid "Ticket emails will include one \"Add to Google Wallet\" button that saves every ticket in the order."
 msgstr "Email vé sẽ có một nút \"Thêm vào Google Wallet\" giúp lưu tất cả vé trong đơn hàng."
 
@@ -12070,7 +12010,7 @@ msgstr "Tour tham quan"
 msgid "Track account growth and performance by attribution source"
 msgstr "Theo dõi sự phát triển và hiệu suất tài khoản theo nguồn phân bổ"
 
-#: src/components/routes/organizer/Settings/index.tsx:77
+#: src/components/routes/organizer/Settings/index.tsx:76
 #: src/components/routes/organizer/Settings/Sections/TrackingPixelSettings/index.tsx:172
 msgid "Tracking & Analytics"
 msgstr "Theo dõi & Phân tích"
@@ -12792,7 +12732,7 @@ msgstr "Đang chờ quét…"
 #: src/components/forms/ProductForm/index.tsx:460
 #: src/components/layouts/AuthLayout/index.tsx:18
 #: src/components/layouts/Event/index.tsx:134
-#: src/components/routes/event/Settings/index.tsx:95
+#: src/components/routes/event/Settings/index.tsx:94
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:55
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:73
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:177
@@ -12806,6 +12746,13 @@ msgstr "Danh sách chờ đã bật"
 #: src/components/routes/product-widget/CollectInformation/index.tsx:403
 msgid "Waitlist offer expired"
 msgstr "Ưu đãi danh sách chờ đã hết hạn"
+
+#: src/components/routes/event/Settings/index.tsx:116
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:64
+#: src/components/routes/organizer/Settings/index.tsx:92
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:78
+msgid "Wallet passes"
+msgstr "Thẻ ví"
 
 #: src/components/routes/admin/Configurations/index.tsx:217
 msgid "Warning: This is the {0} default configuration. Changes will affect every organizer automatically assigned this pricing."
@@ -13207,9 +13154,13 @@ msgstr "Ai đang tổ chức sự kiện này?"
 msgid "Who should be asked this question?"
 msgstr "Ai nên được hỏi câu hỏi này?"
 
-#: src/components/routes/event/Settings/Sections/AppleWalletSettings/index.tsx:72
-msgid "Wide images up to 480x150px work best. Falls back to your organizer setting, then your organizer logo."
-msgstr "Ảnh ngang tối đa 480x150px hiển thị tốt nhất. Nếu để trống sẽ dùng cài đặt nhà tổ chức, sau đó là logo nhà tổ chức."
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:111
+msgid "Wide image shown across the pass, ideally 1125x336px. Each wallet crops it to fit. Defaults to your event cover image."
+msgstr "Ảnh ngang hiển thị trên toàn bộ thẻ, lý tưởng là 1125x336px. Mỗi ví sẽ tự cắt cho vừa. Mặc định dùng ảnh bìa sự kiện của bạn."
+
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:79
+msgid "Wide image shown across the pass, ideally 1125x336px. Falls back to your organizer setting, then this event's cover image."
+msgstr "Ảnh ngang hiển thị trên toàn bộ thẻ, lý tưởng là 1125x336px. Nếu để trống sẽ dùng cài đặt nhà tổ chức, sau đó là ảnh bìa của sự kiện này."
 
 #: src/components/layouts/Event/index.tsx:144
 msgid "Widget Embed"

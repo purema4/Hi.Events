@@ -55,12 +55,9 @@ class UpdateEventSettingsHandler
                     'homepage_background_type' => $settings->homepage_background_type->name,
 
                     'order_timeout_in_minutes' => $settings->order_timeout_in_minutes,
-                    'google_wallet_banner_url' => $this->trimmedOrNull($settings->google_wallet_banner_url),
-                    'google_wallet_logo_url' => $this->trimmedOrNull($settings->google_wallet_logo_url),
-                    'google_wallet_background_color' => $settings->google_wallet_background_color,
-                    'apple_wallet_logo_url' => $this->trimmedOrNull($settings->apple_wallet_logo_url),
-                    'apple_wallet_strip_image_url' => $this->trimmedOrNull($settings->apple_wallet_strip_image_url),
-                    'apple_wallet_background_color' => $settings->apple_wallet_background_color,
+                    'wallet_pass_logo_url' => $this->trimmedOrNull($settings->wallet_pass_logo_url),
+                    'wallet_pass_banner_url' => $this->trimmedOrNull($settings->wallet_pass_banner_url),
+                    'wallet_pass_background_color' => $settings->wallet_pass_background_color,
                     'website_url' => trim($settings->website_url),
                     'maps_url' => trim($settings->maps_url),
 
@@ -143,12 +140,9 @@ class UpdateEventSettingsHandler
         EventSettingDomainObject $existingSettings,
         UpdateEventSettingsDTO $settings,
     ): bool {
-        return $existingSettings->getGoogleWalletBannerUrl() !== $this->trimmedOrNull($settings->google_wallet_banner_url)
-            || $existingSettings->getGoogleWalletLogoUrl() !== $this->trimmedOrNull($settings->google_wallet_logo_url)
-            || $existingSettings->getGoogleWalletBackgroundColor() !== $settings->google_wallet_background_color
-            || $existingSettings->getAppleWalletLogoUrl() !== $this->trimmedOrNull($settings->apple_wallet_logo_url)
-            || $existingSettings->getAppleWalletStripImageUrl() !== $this->trimmedOrNull($settings->apple_wallet_strip_image_url)
-            || $existingSettings->getAppleWalletBackgroundColor() !== $settings->apple_wallet_background_color;
+        return $existingSettings->getWalletPassLogoUrl() !== $this->trimmedOrNull($settings->wallet_pass_logo_url)
+            || $existingSettings->getWalletPassBannerUrl() !== $this->trimmedOrNull($settings->wallet_pass_banner_url)
+            || $existingSettings->getWalletPassBackgroundColor() !== $settings->wallet_pass_background_color;
     }
 
     private function trimmedOrNull(?string $value): ?string
