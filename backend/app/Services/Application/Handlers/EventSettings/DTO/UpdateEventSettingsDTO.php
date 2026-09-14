@@ -93,6 +93,7 @@ class UpdateEventSettingsDTO extends BaseDTO
 
         public readonly ?string $wallet_pass_logo_url = null,
         public readonly ?string $wallet_pass_banner_url = null,
+        public readonly ?string $wallet_pass_apple_strip_url = null,
         public readonly ?string $wallet_pass_background_color = null,
     ) {}
 

@@ -16,6 +16,7 @@ interface WalletPassSettingsForm {
     apple_wallet_enabled: boolean;
     logo_url: string;
     banner_image_url: string;
+    apple_strip_image_url: string;
     background_color: string;
 }
 
@@ -32,6 +33,7 @@ export const WalletPassSettings = () => {
             apple_wallet_enabled: false,
             logo_url: '',
             banner_image_url: '',
+            apple_strip_image_url: '',
             background_color: '',
         }
     });
@@ -45,6 +47,7 @@ export const WalletPassSettings = () => {
                 apple_wallet_enabled: organizerSettingsQuery.data.apple_wallet_enabled ?? false,
                 logo_url: passSettings?.logo_url ?? '',
                 banner_image_url: passSettings?.banner_image_url ?? '',
+                apple_strip_image_url: passSettings?.apple_strip_image_url ?? '',
                 background_color: passSettings?.background_color ?? '',
             });
         }
@@ -58,6 +61,7 @@ export const WalletPassSettings = () => {
                 wallet_pass_settings: {
                     logo_url: values.logo_url || undefined,
                     banner_image_url: values.banner_image_url || undefined,
+                    apple_strip_image_url: values.apple_strip_image_url || undefined,
                     background_color: values.background_color || undefined,
                 },
             },
@@ -108,9 +112,18 @@ export const WalletPassSettings = () => {
                     <TextInput
                         {...form.getInputProps('banner_image_url')}
                         label={t`Pass banner URL`}
-                        description={t`Wide image shown across the pass, ideally 1125x336px. Each wallet crops it to fit. Defaults to your event cover image.`}
+                        description={t`Wide image shown across Google Wallet passes, ideally 1032x336px. Also used on Apple Wallet passes when no strip image is set. Defaults to your event cover image.`}
                         placeholder={"https://example.com/banner.png"}
                     />
+
+                    {account?.is_apple_wallet_available && (
+                        <TextInput
+                            {...form.getInputProps('apple_strip_image_url')}
+                            label={t`Apple Wallet strip image URL`}
+                            description={t`Image shown behind the event name on Apple Wallet passes, ideally 1125x294px. Defaults to the pass banner.`}
+                            placeholder={"https://example.com/strip.png"}
+                        />
+                    )}
 
                     <ColorInput
                         {...form.getInputProps('background_color')}

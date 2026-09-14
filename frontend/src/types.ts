@@ -250,6 +250,7 @@ export interface EventSettings {
     maps_url?: string;
     wallet_pass_logo_url?: string | null;
     wallet_pass_banner_url?: string | null;
+    wallet_pass_apple_strip_url?: string | null;
     wallet_pass_background_color?: string | null;
     seo_title?: string;
     seo_description?: string;
@@ -708,6 +709,7 @@ export interface OrganizerSettings {
 export interface WalletPassSettings {
     logo_url?: string;
     banner_image_url?: string;
+    apple_strip_image_url?: string;
     background_color?: string;
 }
 

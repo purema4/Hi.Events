@@ -57,6 +57,7 @@ class UpdateEventSettingsHandler
                     'order_timeout_in_minutes' => $settings->order_timeout_in_minutes,
                     'wallet_pass_logo_url' => $this->trimmedOrNull($settings->wallet_pass_logo_url),
                     'wallet_pass_banner_url' => $this->trimmedOrNull($settings->wallet_pass_banner_url),
+                    'wallet_pass_apple_strip_url' => $this->trimmedOrNull($settings->wallet_pass_apple_strip_url),
                     'wallet_pass_background_color' => $settings->wallet_pass_background_color,
                     'website_url' => trim($settings->website_url),
                     'maps_url' => trim($settings->maps_url),
@@ -142,6 +143,7 @@ class UpdateEventSettingsHandler
     ): bool {
         return $existingSettings->getWalletPassLogoUrl() !== $this->trimmedOrNull($settings->wallet_pass_logo_url)
             || $existingSettings->getWalletPassBannerUrl() !== $this->trimmedOrNull($settings->wallet_pass_banner_url)
+            || $existingSettings->getWalletPassAppleStripUrl() !== $this->trimmedOrNull($settings->wallet_pass_apple_strip_url)
             || $existingSettings->getWalletPassBackgroundColor() !== $settings->wallet_pass_background_color;
     }
 

@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Services\Application\Handlers\AppleWallet;
 
+use Carbon\Carbon;
 use HiEvents\Exceptions\ResourceNotFoundException;
 use HiEvents\Services\Application\Handlers\AppleWallet\DownloadAppleWalletPassesPublicHandler;
 use HiEvents\Services\Domain\AppleWallet\AppleWalletPassService;
@@ -20,7 +21,7 @@ class DownloadAppleWalletPassesPublicHandlerTest extends TestCase
 
     public function test_the_requested_tickets_of_the_event_are_downloaded(): void
     {
-        $bundle = new AppleWalletPassFileDTO(contents: 'bundle', mimeType: 'application/vnd.apple.pkpasses', filename: 'tickets.pkpasses');
+        $bundle = new AppleWalletPassFileDTO(contents: 'bundle', mimeType: 'application/vnd.apple.pkpasses', filename: 'tickets.pkpasses', lastModified: Carbon::now());
 
         $passService = Mockery::mock(AppleWalletPassService::class);
         $passService

@@ -126,7 +126,8 @@ class PreviewAppleWalletPassCommand extends Command
             ->all();
 
         $this->info("Apple Wallet pass saved to $path");
-        $this->line('Open this link on an iPhone to add it: '.$this->urlGenerator->passesDownloadUrl($eventId, $attendeeShortIds));
+        $this->line('Open this link on an iPhone to add it:');
+        $this->line($this->urlGenerator->passesDownloadUrl($eventId, $attendeeShortIds));
 
         return self::SUCCESS;
     }

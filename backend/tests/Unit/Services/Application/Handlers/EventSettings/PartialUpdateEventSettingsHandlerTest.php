@@ -83,6 +83,17 @@ class PartialUpdateEventSettingsHandlerTest extends TestCase
         $this->assertSame('https://cdn.example.com/banner.png', $dto->wallet_pass_banner_url);
     }
 
+    public function test_explicit_wallet_pass_apple_strip_url_is_passed_through(): void
+    {
+        $dto = $this->runPartialUpdate(
+            existingValue: true,
+            settings: ['wallet_pass_apple_strip_url' => 'https://cdn.example.com/strip.png'],
+        );
+
+        $this->assertSame('https://cdn.example.com/strip.png', $dto->wallet_pass_apple_strip_url);
+        $this->assertNull($dto->wallet_pass_banner_url);
+    }
+
     /**
      * Drives the partial handler and returns the UpdateEventSettingsDTO it forwards
      * to the (mocked) full handler, so we can assert how the field was resolved.

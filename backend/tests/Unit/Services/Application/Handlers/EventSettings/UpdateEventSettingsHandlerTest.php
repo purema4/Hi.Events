@@ -266,11 +266,32 @@ class UpdateEventSettingsHandlerTest extends TestCase
         $this->handler->handle($this->createDTO(wallet_pass_banner_url: '  https://cdn.example.com/banner.png  '));
     }
 
+    public function test_queues_a_pass_sync_when_the_apple_wallet_strip_image_changes(): void
+    {
+        Event::fake();
+
+        $this->eventSettingsRepository
+            ->shouldReceive('findFirstWhere')
+            ->with(['event_id' => 1])
+            ->twice()
+            ->andReturn(new EventSettingDomainObject);
+
+        $this->eventSettingsRepository->shouldReceive('updateWhere')->once();
+
+        $this->walletPassSyncDispatcher
+            ->shouldReceive('queueEventSync')
+            ->once()
+            ->with(1);
+
+        $this->handler->handle($this->createDTO(wallet_pass_apple_strip_url: 'https://cdn.example.com/strip.png'));
+    }
+
     private function createDTO(
         ?bool $waitlist_auto_process = null,
         bool $allow_copy_details_to_all_attendees = true,
         ?string $get_tickets_button_text = null,
         ?string $wallet_pass_banner_url = null,
+        ?string $wallet_pass_apple_strip_url = null,
     ): UpdateEventSettingsDTO {
         return UpdateEventSettingsDTO::fromArray([
             'account_id' => 1,
@@ -300,6 +321,7 @@ class UpdateEventSettingsHandlerTest extends TestCase
             'waitlist_auto_process' => $waitlist_auto_process,
             'waitlist_offer_timeout_minutes' => 60,
             'wallet_pass_banner_url' => $wallet_pass_banner_url,
+            'wallet_pass_apple_strip_url' => $wallet_pass_apple_strip_url,
         ]);
     }
 }

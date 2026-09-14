@@ -23,11 +23,13 @@ class WalletPassBrandingResolverTest extends TestCase
         $branding = $this->resolve([
             'logo_url' => ' https://example.com/logo.png ',
             'banner_image_url' => 'https://example.com/banner.png',
+            'apple_strip_image_url' => 'https://example.com/strip.png',
             'background_color' => '#DE0F00FF',
         ]);
 
         $this->assertSame('https://example.com/logo.png', $branding->logoUrl);
         $this->assertSame('https://example.com/banner.png', $branding->bannerImageUrl);
+        $this->assertSame('https://example.com/strip.png', $branding->appleStripImageUrl);
         $this->assertSame('#de0f00', $branding->backgroundColor);
     }
 
@@ -41,12 +43,13 @@ class WalletPassBrandingResolverTest extends TestCase
     public function test_blank_branding_is_unset_and_the_theme_accent_is_kept_apart(): void
     {
         $branding = $this->resolve(
-            ['logo_url' => '', 'banner_image_url' => '   ', 'background_color' => ''],
+            ['logo_url' => '', 'banner_image_url' => '   ', 'apple_strip_image_url' => ' ', 'background_color' => ''],
             ['accent' => '#8b5cf6'],
         );
 
         $this->assertNull($branding->logoUrl);
         $this->assertNull($branding->bannerImageUrl);
+        $this->assertNull($branding->appleStripImageUrl);
         $this->assertNull($branding->backgroundColor);
         $this->assertSame('#8b5cf6', $branding->themeAccentColor);
     }

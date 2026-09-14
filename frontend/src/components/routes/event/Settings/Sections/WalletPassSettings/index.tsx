@@ -9,15 +9,18 @@ import {useFormErrorResponseHandler} from "../../../../../../hooks/useFormErrorR
 import {useUpdateEventSettings} from "../../../../../../mutations/useUpdateEventSettings.ts";
 import {useGetEventSettings} from "../../../../../../queries/useGetEventSettings.ts";
 import {HeadingWithDescription} from "../../../../../common/Card/CardHeading";
+import {useGetAccount} from "../../../../../../queries/useGetAccount.ts";
 
 interface WalletPassSettingsForm {
     wallet_pass_logo_url: string;
     wallet_pass_banner_url: string;
+    wallet_pass_apple_strip_url: string;
     wallet_pass_background_color: string;
 }
 
 export const WalletPassSettings = () => {
     const {eventId} = useParams();
+    const {data: account} = useGetAccount();
     const eventSettingsQuery = useGetEventSettings(eventId);
     const updateMutation = useUpdateEventSettings();
     const formErrorHandle = useFormErrorResponseHandler();
@@ -26,6 +29,7 @@ export const WalletPassSettings = () => {
         initialValues: {
             wallet_pass_logo_url: '',
             wallet_pass_banner_url: '',
+            wallet_pass_apple_strip_url: '',
             wallet_pass_background_color: '',
         }
     });
@@ -35,6 +39,7 @@ export const WalletPassSettings = () => {
             form.setValues({
                 wallet_pass_logo_url: eventSettingsQuery.data.wallet_pass_logo_url ?? '',
                 wallet_pass_banner_url: eventSettingsQuery.data.wallet_pass_banner_url ?? '',
+                wallet_pass_apple_strip_url: eventSettingsQuery.data.wallet_pass_apple_strip_url ?? '',
                 wallet_pass_background_color: eventSettingsQuery.data.wallet_pass_background_color ?? '',
             });
         }
@@ -45,6 +50,7 @@ export const WalletPassSettings = () => {
             eventSettings: {
                 wallet_pass_logo_url: values.wallet_pass_logo_url || null,
                 wallet_pass_banner_url: values.wallet_pass_banner_url || null,
+                wallet_pass_apple_strip_url: values.wallet_pass_apple_strip_url || null,
                 wallet_pass_background_color: values.wallet_pass_background_color || null,
             },
             eventId: eventId,
@@ -76,9 +82,18 @@ export const WalletPassSettings = () => {
                     <TextInput
                         {...form.getInputProps('wallet_pass_banner_url')}
                         label={t`Pass banner URL`}
-                        description={t`Wide image shown across the pass, ideally 1125x336px. Falls back to your organizer setting, then this event's cover image.`}
+                        description={t`Wide image shown across Google Wallet passes, ideally 1032x336px. Also used on Apple Wallet passes when no strip image is set. Falls back to your organizer setting, then this event's cover image.`}
                         placeholder={"https://example.com/banner.png"}
                     />
+
+                    {account?.is_apple_wallet_available && (
+                        <TextInput
+                            {...form.getInputProps('wallet_pass_apple_strip_url')}
+                            label={t`Apple Wallet strip image URL`}
+                            description={t`Image shown behind the event name on Apple Wallet passes, ideally 1125x294px. Falls back to your organizer setting, then the pass banner.`}
+                            placeholder={"https://example.com/strip.png"}
+                        />
+                    )}
 
                     <ColorInput
                         {...form.getInputProps('wallet_pass_background_color')}

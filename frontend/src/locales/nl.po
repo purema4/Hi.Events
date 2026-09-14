@@ -1175,6 +1175,11 @@ msgstr "Vragen van producthouders worden naar dit e-mailadres gestuurd. Dit e-ma
 msgid "Appearance"
 msgstr "Uiterlijk"
 
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:92
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:122
+msgid "Apple Wallet strip image URL"
+msgstr "URL van de Apple Wallet-stripafbeelding"
+
 #: src/components/routes/product-widget/SelectProducts/index.tsx:915
 msgid "applied"
 msgstr "toegepast"
@@ -3533,7 +3538,7 @@ msgstr "Standaardsjabloon wordt gebruikt"
 msgid "Defaults"
 msgstr "Standaardwaarden"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:118
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:131
 msgid "Defaults to your homepage accent colour when left blank."
 msgstr "Gebruikt standaard de accentkleur van je homepage als dit veld leeg blijft."
 
@@ -4263,7 +4268,7 @@ msgstr "Emoji"
 msgid "Emoji is required for modals"
 msgstr "Een emoji is vereist voor modals"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:95
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:99
 msgid "Enable Apple Wallet passes"
 msgstr "Apple Wallet-passes inschakelen"
 
@@ -4275,7 +4280,7 @@ msgstr "Zelfbediening voor deelnemers inschakelen"
 msgid "Enable attendee self-service by default"
 msgstr "Zelfbediening voor deelnemers standaard inschakelen"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:86
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:90
 msgid "Enable Google Wallet passes"
 msgstr "Google Wallet-passen inschakelen"
 
@@ -5114,7 +5119,7 @@ msgstr "Uploaden van afbeelding mislukt. Probeer het opnieuw."
 msgid "Failed to verify email"
 msgstr "Verifiëren e-mail mislukt"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:86
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:101
 msgid "Falls back to your organizer setting, then your homepage accent colour."
 msgstr "Anders wordt de instelling van je organisator gebruikt en daarna de accentkleur van je homepage."
 
@@ -5864,6 +5869,14 @@ msgstr "Als u een account bij ons heeft, ontvangt u een e-mail met instructies o
 msgid "Image deleted successfully"
 msgstr "Afbeelding succesvol verwijderd"
 
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:123
+msgid "Image shown behind the event name on Apple Wallet passes, ideally 1125x294px. Defaults to the pass banner."
+msgstr "Afbeelding achter de evenementnaam op Apple Wallet-passes, idealiter 1125x294px. Standaard wordt de banner van de pas gebruikt."
+
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:93
+msgid "Image shown behind the event name on Apple Wallet passes, ideally 1125x294px. Falls back to your organizer setting, then the pass banner."
+msgstr "Afbeelding achter de evenementnaam op Apple Wallet-passes, idealiter 1125x294px. Valt terug op je organisatorinstelling en daarna op de banner van de pas."
+
 #: src/components/common/ImageUploadDropzone/index.tsx:96
 msgid "Image uploaded successfully"
 msgstr "Afbeelding succesvol geüpload"
@@ -6347,7 +6360,7 @@ msgstr "Laat leeg om deze check-inlijst voor alle datums te laten gelden"
 msgid "Leave on to cover every ticket on the event. Turn off to pick specific tickets."
 msgstr "Laat aan staan om alle tickets van het evenement te dekken. Zet uit om specifieke tickets te kiezen."
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:79
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:83
 msgid "Let attendees add their tickets to Google Wallet and Apple Wallet. The branding below is used on both."
 msgstr "Laat deelnemers hun tickets aan Google Wallet en Apple Wallet toevoegen. De huisstijl hieronder wordt voor allebei gebruikt."
 
@@ -8097,7 +8110,7 @@ msgstr "Prijs aanpassen"
 msgid "Override removed"
 msgstr "Aanpassing verwijderd"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:65
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:71
 msgid "Override the branding used on this event's Google Wallet and Apple Wallet passes. Anything left blank falls back to your organizer settings."
 msgstr "Pas de huisstijl van de Google Wallet- en Apple Wallet-passes van dit evenement aan. Lege velden vallen terug op je organisatorinstellingen."
 
@@ -8160,13 +8173,13 @@ msgstr "Gedeeltelijk Terugbetaald"
 msgid "Partially refunded: {0}"
 msgstr "Gedeeltelijk terugbetaald: {0}"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:85
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:117
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:100
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:130
 msgid "Pass background colour"
 msgstr "Achtergrondkleur van de pas"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:78
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:110
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:84
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:114
 msgid "Pass banner URL"
 msgstr "Banner-URL van de pas"
 
@@ -8174,8 +8187,8 @@ msgstr "Banner-URL van de pas"
 msgid "Pass fee to buyer"
 msgstr "Kosten doorberekenen aan koper"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:71
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:103
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:77
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:107
 msgid "Pass logo URL"
 msgstr "Logo-URL van de pas"
 
@@ -9600,13 +9613,13 @@ msgstr "Zaterdag"
 #: src/components/routes/event/Settings/Sections/RecurringEventSettings/index.tsx:72
 #: src/components/routes/event/Settings/Sections/SeoSettings/index.tsx:85
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:80
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:96
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:111
 #: src/components/routes/organizer/Settings/Sections/AddressSettings/index.tsx:119
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:132
 #: src/components/routes/organizer/Settings/Sections/EventDefaults/index.tsx:103
 #: src/components/routes/organizer/Settings/Sections/SeoSettings/index.tsx:85
 #: src/components/routes/organizer/Settings/Sections/TrackingPixelSettings/index.tsx:262
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:128
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:141
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:86
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:86
 msgid "Save"
@@ -10597,11 +10610,11 @@ msgstr "Verdeel de check-in over dagen, zones of tickettypes. Deel de link met j
 msgid "Sports"
 msgstr "Sport"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:72
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:78
 msgid "Square image, at least 660x660px. Falls back to your organizer setting, then your organizer logo."
 msgstr "Vierkante afbeelding, minimaal 660x660 px. Anders wordt de instelling van je organisator gebruikt en daarna je organisatorlogo."
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:104
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:108
 msgid "Square image, at least 660x660px. Used as the pass logo and the Apple Wallet icon. Defaults to your organizer logo."
 msgstr "Vierkante afbeelding van minimaal 660x660px. Wordt gebruikt als logo van de pass en als Apple Wallet-pictogram. Standaard wordt je organisatorlogo gebruikt."
 
@@ -10951,8 +10964,8 @@ msgstr "Sociale links succesvol bijgewerkt"
 msgid "Successfully Updated Tracking Settings"
 msgstr "Trackinginstellingen succesvol bijgewerkt"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:53
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:67
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:59
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:71
 msgid "Successfully Updated Wallet Pass Settings"
 msgstr "Walletpass-instellingen succesvol bijgewerkt"
 
@@ -11730,11 +11743,11 @@ msgstr "Ticket ontwerper"
 msgid "Ticket email has been resent to attendee"
 msgstr "Ticket e-mail is opnieuw verzonden naar de deelnemer"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:96
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:100
 msgid "Ticket emails will include one \"Add to Apple Wallet\" link that adds every ticket in the order."
 msgstr "Ticket-e-mails bevatten één link \"Toevoegen aan Apple Wallet\" die alle tickets in de bestelling toevoegt."
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:87
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:91
 msgid "Ticket emails will include one \"Add to Google Wallet\" button that saves every ticket in the order."
 msgstr "Ticket-e-mails bevatten één knop \"Toevoegen aan Google Wallet\" die alle tickets in de bestelling opslaat."
 
@@ -12749,9 +12762,9 @@ msgid "Waitlist offer expired"
 msgstr "Wachtlijstaanbod verlopen"
 
 #: src/components/routes/event/Settings/index.tsx:116
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:64
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:70
 #: src/components/routes/organizer/Settings/index.tsx:92
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:78
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:82
 msgid "Wallet passes"
 msgstr "Walletpasses"
 
@@ -13155,13 +13168,13 @@ msgstr "Wie organiseert dit evenement?"
 msgid "Who should be asked this question?"
 msgstr "Aan wie moet deze vraag worden gesteld?"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:111
-msgid "Wide image shown across the pass, ideally 1125x336px. Each wallet crops it to fit. Defaults to your event cover image."
-msgstr "Brede afbeelding over de volle breedte van de pass, bij voorkeur 1125x336px. Elke wallet snijdt hem passend bij. Standaard wordt de omslagafbeelding van je evenement gebruikt."
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:115
+msgid "Wide image shown across Google Wallet passes, ideally 1032x336px. Also used on Apple Wallet passes when no strip image is set. Defaults to your event cover image."
+msgstr "Brede afbeelding over de volle breedte van Google Wallet-passes, idealiter 1032x336px. Wordt ook op Apple Wallet-passes gebruikt als er geen stripafbeelding is ingesteld. Standaard wordt de omslagafbeelding van je evenement gebruikt."
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:79
-msgid "Wide image shown across the pass, ideally 1125x336px. Falls back to your organizer setting, then this event's cover image."
-msgstr "Brede afbeelding over de volle breedte van de pass, bij voorkeur 1125x336px. Valt terug op je organisatorinstelling en daarna op de omslagafbeelding van dit evenement."
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:85
+msgid "Wide image shown across Google Wallet passes, ideally 1032x336px. Also used on Apple Wallet passes when no strip image is set. Falls back to your organizer setting, then this event's cover image."
+msgstr "Brede afbeelding over de volle breedte van Google Wallet-passes, idealiter 1032x336px. Wordt ook op Apple Wallet-passes gebruikt als er geen stripafbeelding is ingesteld. Valt terug op je organisatorinstelling en daarna op de omslagafbeelding van dit evenement."
 
 #: src/components/layouts/Event/index.tsx:144
 msgid "Widget Embed"

@@ -66,13 +66,9 @@
     ? __('Add :count tickets to Apple Wallet', ['count' => $tickets->count()])
     : __('Add to Apple Wallet'))
 <div style="text-align: center; margin: 0 0 24px; padding: 8px;">
-@if($appleWalletButtonPath)
 <a href="{{ $appleWalletPassUrl }}" style="display: inline-block; text-decoration: none;">
 <img src="{{ $message->embed($appleWalletButtonPath) }}" alt="{{ $appleWalletLabel }}" height="40" style="height: 40px; width: auto; border: 0; display: block;">
 </a>
-@else
-<a href="{{ $appleWalletPassUrl }}">{{ $appleWalletLabel }}</a>
-@endif
 </div>
 @endif
 

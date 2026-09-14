@@ -35,7 +35,7 @@ class AppleWalletPassUrlResolverTest extends TestCase
 
     private function enabled(): WalletPassBrandingDTO
     {
-        return new WalletPassBrandingDTO(logoUrl: null, bannerImageUrl: null, backgroundColor: null, themeAccentColor: null);
+        return new WalletPassBrandingDTO(logoUrl: null, bannerImageUrl: null, appleStripImageUrl: null, backgroundColor: null, themeAccentColor: null);
     }
 
     public function test_one_link_downloads_every_ticket_in_the_email(): void

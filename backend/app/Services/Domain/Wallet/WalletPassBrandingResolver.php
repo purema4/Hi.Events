@@ -18,6 +18,7 @@ class WalletPassBrandingResolver
         return new WalletPassBrandingDTO(
             logoUrl: $this->nullableString($passSettings['logo_url'] ?? null),
             bannerImageUrl: $this->nullableString($passSettings['banner_image_url'] ?? null),
+            appleStripImageUrl: $this->nullableString($passSettings['apple_strip_image_url'] ?? null),
             backgroundColor: HexColorHelper::toRgbHex($passSettings['background_color'] ?? null),
             themeAccentColor: HexColorHelper::toRgbHex($themeSettings['accent'] ?? null),
         );

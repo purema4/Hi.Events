@@ -11,6 +11,7 @@ class WalletPassBrandingDTO extends BaseDataObject
     public function __construct(
         public readonly ?string $logoUrl,
         public readonly ?string $bannerImageUrl,
+        public readonly ?string $appleStripImageUrl,
         public readonly ?string $backgroundColor,
         public readonly ?string $themeAccentColor,
     ) {}

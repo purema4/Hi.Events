@@ -24,6 +24,7 @@ class DownloadAppleWalletPassesPublicAction extends BaseAction
             return $this->notFoundResponse();
         }
 
-        return $this->fileResponse($pass->contents, $pass->mimeType, $pass->filename);
+        return $this->fileResponse($pass->contents, $pass->mimeType, $pass->filename)
+            ->setLastModified($pass->lastModified);
     }
 }

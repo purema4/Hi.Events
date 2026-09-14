@@ -66,7 +66,10 @@ class AppleWalletPassImageBuilder
         );
 
         $strip = $this->source(
-            $this->nonEmpty($event->getEventSettings()?->getWalletPassBannerUrl()) ?? $passSettings->bannerImageUrl,
+            $this->nonEmpty($event->getEventSettings()?->getWalletPassAppleStripUrl())
+                ?? $passSettings->appleStripImageUrl
+                ?? $this->nonEmpty($event->getEventSettings()?->getWalletPassBannerUrl())
+                ?? $passSettings->bannerImageUrl,
             $this->storedImage($event->getImages(), ImageType::EVENT_COVER),
         );
 

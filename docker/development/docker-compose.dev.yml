@@ -12,6 +12,8 @@ services:
             - ./../../backend/bootstrap/cache:/var/www/html/bootstrap/cache
             - ./../../VERSION:/var/www/html/VERSION:ro
             - ./google-wallet-service-account.json:/run/secrets/google-wallet-service-account.json:ro
+            - ./apple-wallet-pass.pem:/run/secrets/apple-wallet-pass.pem:ro
+            - ./apple-wallet-wwdr.cer:/run/secrets/apple-wallet-wwdr.cer:ro
         environment:
               APP_ENV: '${APP_ENV:-local}'
               APP_KEY: '${APP_KEY}'

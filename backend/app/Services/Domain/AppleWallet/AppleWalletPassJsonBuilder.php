@@ -147,7 +147,12 @@ class AppleWalletPassJsonBuilder
 
     private function coverColour(EventDomainObject $event, WalletPassBrandingDTO $passSettings): ?string
     {
-        if (trim((string) $event->getEventSettings()?->getWalletPassBannerUrl()) !== '' || $passSettings->bannerImageUrl !== null) {
+        $eventSettings = $event->getEventSettings();
+
+        if (trim((string) $eventSettings?->getWalletPassAppleStripUrl()) !== ''
+            || trim((string) $eventSettings?->getWalletPassBannerUrl()) !== ''
+            || $passSettings->appleStripImageUrl !== null
+            || $passSettings->bannerImageUrl !== null) {
             return null;
         }
 

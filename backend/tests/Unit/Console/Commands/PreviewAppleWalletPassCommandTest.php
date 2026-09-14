@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Console\Commands;
 
+use Carbon\Carbon;
 use HiEvents\Console\Commands\PreviewAppleWalletPassCommand;
 use HiEvents\DomainObjects\AttendeeDomainObject;
 use HiEvents\DomainObjects\EventDomainObject;
@@ -72,7 +73,7 @@ class PreviewAppleWalletPassCommandTest extends TestCase
         $this->passSettingsResolver
             ->shouldReceive('resolveForOrganizer')
             ->with(self::ORGANIZER_ID)
-            ->andReturn(new WalletPassBrandingDTO(logoUrl: null, bannerImageUrl: null, backgroundColor: null, themeAccentColor: null))
+            ->andReturn(new WalletPassBrandingDTO(logoUrl: null, bannerImageUrl: null, appleStripImageUrl: null, backgroundColor: null, themeAccentColor: null))
             ->byDefault();
     }
 
@@ -150,7 +151,7 @@ class PreviewAppleWalletPassCommandTest extends TestCase
             ->shouldReceive('generate')
             ->once()
             ->with(['id' => self::ATTENDEE_ID])
-            ->andReturn(new AppleWalletPassFileDTO(contents: 'pkpass', mimeType: 'application/vnd.apple.pkpass', filename: 'hievents-attendee-31.pkpass'));
+            ->andReturn(new AppleWalletPassFileDTO(contents: 'pkpass', mimeType: 'application/vnd.apple.pkpass', filename: 'hievents-attendee-31.pkpass', lastModified: Carbon::now()));
 
         $this->filesystem
             ->shouldReceive('put')
@@ -177,7 +178,7 @@ class PreviewAppleWalletPassCommandTest extends TestCase
             ->shouldReceive('generate')
             ->once()
             ->with(['order_id' => self::ORDER_ID])
-            ->andReturn(new AppleWalletPassFileDTO(contents: 'bundle', mimeType: 'application/vnd.apple.pkpasses', filename: 'tickets.pkpasses'));
+            ->andReturn(new AppleWalletPassFileDTO(contents: 'bundle', mimeType: 'application/vnd.apple.pkpasses', filename: 'tickets.pkpasses', lastModified: Carbon::now()));
 
         $this->assertSame(0, $this->runCommand('O-ORDER20'));
     }

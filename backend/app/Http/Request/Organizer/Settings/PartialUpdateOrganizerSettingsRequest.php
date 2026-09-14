@@ -119,6 +119,7 @@ class PartialUpdateOrganizerSettingsRequest extends BaseRequest
             'wallet_pass_settings' => ['sometimes', 'nullable', 'array'],
             'wallet_pass_settings.logo_url' => ['nullable', 'url', 'max:500'],
             'wallet_pass_settings.banner_image_url' => ['nullable', 'url', 'max:500'],
+            'wallet_pass_settings.apple_strip_image_url' => ['nullable', 'url', 'max:500'],
             'wallet_pass_settings.background_color' => ['nullable', 'string', ...RulesHelper::HEX_COLOR],
 
             // Tracking pixels

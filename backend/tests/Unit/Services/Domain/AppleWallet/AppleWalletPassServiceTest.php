@@ -73,7 +73,7 @@ class AppleWalletPassServiceTest extends TestCase
         $this->passSettingsResolver
             ->shouldReceive('resolveForOrganizer')
             ->with(5)
-            ->andReturn(new WalletPassBrandingDTO(logoUrl: null, bannerImageUrl: null, backgroundColor: null, themeAccentColor: null))
+            ->andReturn(new WalletPassBrandingDTO(logoUrl: null, bannerImageUrl: null, appleStripImageUrl: null, backgroundColor: null, themeAccentColor: null))
             ->byDefault();
         $this->imageBuilder->shouldReceive('build')->andReturn(['icon.png' => 'icon'])->byDefault();
         $this->passJsonBuilder->shouldReceive('build')->andReturn(['formatVersion' => 1])->byDefault();
@@ -92,9 +92,19 @@ class AppleWalletPassServiceTest extends TestCase
             ->shouldReceive('findWhere')
             ->with(self::WHERE)
             ->andReturn(collect(array_map(
-                static fn (int $attendeeId) => (new AttendeeDomainObject)->setId($attendeeId)->setEventId(10)->setLocale('en'),
+                fn (int $attendeeId) => $this->attendee($attendeeId),
                 $attendeeIds,
             )));
+    }
+
+    private function attendee(int $attendeeId, ?string $passUpdatedAt = null, string $updatedAt = '2026-09-01 10:00:00'): AttendeeDomainObject
+    {
+        return (new AttendeeDomainObject)
+            ->setId($attendeeId)
+            ->setEventId(10)
+            ->setLocale('en')
+            ->setUpdatedAt($updatedAt)
+            ->setAppleWalletPassUpdatedAt($passUpdatedAt);
     }
 
     public function test_one_ticket_is_downloaded_as_a_single_pass(): void
@@ -125,6 +135,20 @@ class AppleWalletPassServiceTest extends TestCase
         $this->assertSame('bundle', $pass->contents);
         $this->assertSame('application/vnd.apple.pkpasses', $pass->mimeType);
         $this->assertSame('tickets.pkpasses', $pass->filename);
+    }
+
+    public function test_the_pass_is_last_modified_when_its_latest_ticket_changed(): void
+    {
+        $this->attendeeRepository->shouldReceive('findWhere')->with(self::WHERE)->andReturn(collect([
+            $this->attendee(31, passUpdatedAt: '2026-09-12 08:30:00'),
+            $this->attendee(32, updatedAt: '2026-09-10 09:00:00'),
+        ]));
+        $this->packager->shouldReceive('package')->andReturn('pkpass');
+        $this->packager->shouldReceive('bundle')->andReturn('bundle');
+
+        $pass = $this->service->generate(self::WHERE);
+
+        $this->assertSame('2026-09-12 08:30:00', $pass->lastModified->format('Y-m-d H:i:s'));
     }
 
     public function test_a_ticket_for_a_single_date_event_is_shown_with_that_date(): void

@@ -1174,6 +1174,11 @@ msgstr "A terméktulajdonosoktól érkező bármilyen kérdés erre az e-mail c�
 msgid "Appearance"
 msgstr "Megjelenés"
 
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:92
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:122
+msgid "Apple Wallet strip image URL"
+msgstr "Apple Wallet csíkkép URL-címe"
+
 #: src/components/routes/product-widget/SelectProducts/index.tsx:915
 msgid "applied"
 msgstr "alkalmazva"
@@ -3532,7 +3537,7 @@ msgstr "Alapértelmezett sablon lesz használva"
 msgid "Defaults"
 msgstr "Alapértelmezések"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:118
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:131
 msgid "Defaults to your homepage accent colour when left blank."
 msgstr "Ha üresen hagyja, a kezdőlap kiemelőszínét használjuk."
 
@@ -4262,7 +4267,7 @@ msgstr "Emoji"
 msgid "Emoji is required for modals"
 msgstr "A felugró ablakokhoz emoji szükséges"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:95
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:99
 msgid "Enable Apple Wallet passes"
 msgstr "Apple Wallet-kártyák engedélyezése"
 
@@ -4274,7 +4279,7 @@ msgstr "Résztvevői önkiszolgálás engedélyezése"
 msgid "Enable attendee self-service by default"
 msgstr "Résztvevői önkiszolgálás alapértelmezett engedélyezése"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:86
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:90
 msgid "Enable Google Wallet passes"
 msgstr "Google Wallet-bérletek engedélyezése"
 
@@ -5113,7 +5118,7 @@ msgstr "Kép feltöltése sikertelen. Kérjük, próbálja újra."
 msgid "Failed to verify email"
 msgstr "E-mail ellenőrzése sikertelen"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:86
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:101
 msgid "Falls back to your organizer setting, then your homepage accent colour."
 msgstr "Ennek hiányában a szervezői beállítás, majd a kezdőlap kiemelőszíne."
 
@@ -5863,6 +5868,14 @@ msgstr "Ha van nálunk fiókja, e-mailt fog kapni a jelszó visszaállításáho
 msgid "Image deleted successfully"
 msgstr "Kép sikeresen törölve"
 
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:123
+msgid "Image shown behind the event name on Apple Wallet passes, ideally 1125x294px. Defaults to the pass banner."
+msgstr "Az Apple Wallet bérleteken az esemény neve mögött megjelenő kép, ideálisan 1125x294px. Alapértelmezés szerint a bérlet bannere."
+
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:93
+msgid "Image shown behind the event name on Apple Wallet passes, ideally 1125x294px. Falls back to your organizer setting, then the pass banner."
+msgstr "Az Apple Wallet bérleteken az esemény neve mögött megjelenő kép, ideálisan 1125x294px. Ha üres, a szervezői beállítás, majd a bérlet bannere lesz használva."
+
 #: src/components/common/ImageUploadDropzone/index.tsx:96
 msgid "Image uploaded successfully"
 msgstr "Kép sikeresen feltöltve"
@@ -6346,7 +6359,7 @@ msgstr "Hagyja üresen, ha ez a beléptetési lista minden időpontra vonatkozzo
 msgid "Leave on to cover every ticket on the event. Turn off to pick specific tickets."
 msgstr "Hagyja bekapcsolva, hogy az esemény minden jegyére vonatkozzon. Kapcsolja ki, ha konkrét jegyeket szeretne választani."
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:79
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:83
 msgid "Let attendees add their tickets to Google Wallet and Apple Wallet. The branding below is used on both."
 msgstr "Lehetővé teszi, hogy a résztvevők hozzáadják jegyeiket a Google Wallethez és az Apple Wallethez. Az alábbi arculatot mindkettő használja."
 
@@ -8096,7 +8109,7 @@ msgstr "Egyedi ár"
 msgid "Override removed"
 msgstr "Egyedi beállítás eltávolítva"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:65
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:71
 msgid "Override the branding used on this event's Google Wallet and Apple Wallet passes. Anything left blank falls back to your organizer settings."
 msgstr "Felülírhatja az esemény Google Wallet- és Apple Wallet-kártyáin használt arculatot. Az üresen hagyott mezők a szervezői beállításokat használják."
 
@@ -8159,13 +8172,13 @@ msgstr "Részben visszatérítve"
 msgid "Partially refunded: {0}"
 msgstr "Részben visszatérítve: {0}"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:85
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:117
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:100
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:130
 msgid "Pass background colour"
 msgstr "A bérlet háttérszíne"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:78
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:110
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:84
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:114
 msgid "Pass banner URL"
 msgstr "A bérlet bannerének URL-címe"
 
@@ -8173,8 +8186,8 @@ msgstr "A bérlet bannerének URL-címe"
 msgid "Pass fee to buyer"
 msgstr "Díj áthárítása a vevőre"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:71
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:103
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:77
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:107
 msgid "Pass logo URL"
 msgstr "A bérlet logójának URL-címe"
 
@@ -9599,13 +9612,13 @@ msgstr "Szombat"
 #: src/components/routes/event/Settings/Sections/RecurringEventSettings/index.tsx:72
 #: src/components/routes/event/Settings/Sections/SeoSettings/index.tsx:85
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:80
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:96
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:111
 #: src/components/routes/organizer/Settings/Sections/AddressSettings/index.tsx:119
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:132
 #: src/components/routes/organizer/Settings/Sections/EventDefaults/index.tsx:103
 #: src/components/routes/organizer/Settings/Sections/SeoSettings/index.tsx:85
 #: src/components/routes/organizer/Settings/Sections/TrackingPixelSettings/index.tsx:262
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:128
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:141
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:86
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:86
 msgid "Save"
@@ -10596,11 +10609,11 @@ msgstr "Ossza fel a beléptetést napok, területek vagy jegytípusok szerint. O
 msgid "Sports"
 msgstr "Sport"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:72
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:78
 msgid "Square image, at least 660x660px. Falls back to your organizer setting, then your organizer logo."
 msgstr "Négyzetes kép, legalább 660x660 px. Ennek hiányában a szervezői beállítás, majd a szervező logója."
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:104
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:108
 msgid "Square image, at least 660x660px. Used as the pass logo and the Apple Wallet icon. Defaults to your organizer logo."
 msgstr "Négyzetes kép, legalább 660x660px. Ez a kártya logója és az Apple Wallet ikonja. Alapértelmezés szerint a szervező logója."
 
@@ -10950,8 +10963,8 @@ msgstr "Közösségi linkek sikeresen frissítve"
 msgid "Successfully Updated Tracking Settings"
 msgstr "Követési beállítások sikeresen frissítve"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:53
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:67
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:59
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:71
 msgid "Successfully Updated Wallet Pass Settings"
 msgstr "A wallet-kártya beállításai sikeresen frissítve"
 
@@ -11729,11 +11742,11 @@ msgstr "Jegy tervező"
 msgid "Ticket email has been resent to attendee"
 msgstr "Jegy e-mailt újraküldték a résztvevőnek."
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:96
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:100
 msgid "Ticket emails will include one \"Add to Apple Wallet\" link that adds every ticket in the order."
 msgstr "A jegyes e-mailek egyetlen „Hozzáadás az Apple Wallethez” hivatkozást tartalmaznak, amely a rendelés összes jegyét hozzáadja."
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:87
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:91
 msgid "Ticket emails will include one \"Add to Google Wallet\" button that saves every ticket in the order."
 msgstr "A jegyes e-mailek egyetlen \"Hozzáadás a Google Wallethez\" gombot tartalmaznak, amely a rendelés összes jegyét menti."
 
@@ -12748,9 +12761,9 @@ msgid "Waitlist offer expired"
 msgstr "Várólista ajánlat lejárt"
 
 #: src/components/routes/event/Settings/index.tsx:116
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:64
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:70
 #: src/components/routes/organizer/Settings/index.tsx:92
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:78
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:82
 msgid "Wallet passes"
 msgstr "Wallet-kártyák"
 
@@ -13154,13 +13167,13 @@ msgstr "Ki szervezi ezt az eseményt?"
 msgid "Who should be asked this question?"
 msgstr "Kinek kell feltenni ezt a kérdést?"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:111
-msgid "Wide image shown across the pass, ideally 1125x336px. Each wallet crops it to fit. Defaults to your event cover image."
-msgstr "A kártya teljes szélességében megjelenő széles kép, ideális mérete 1125x336px. Minden wallet a saját méretére vágja. Alapértelmezés szerint az esemény borítóképe."
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:115
+msgid "Wide image shown across Google Wallet passes, ideally 1032x336px. Also used on Apple Wallet passes when no strip image is set. Defaults to your event cover image."
+msgstr "A Google Wallet bérletek teljes szélességében megjelenő széles kép, ideálisan 1032x336px. Az Apple Wallet bérleteken is ez jelenik meg, ha nincs beállítva csíkkép. Alapértelmezés szerint az esemény borítóképe."
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:79
-msgid "Wide image shown across the pass, ideally 1125x336px. Falls back to your organizer setting, then this event's cover image."
-msgstr "A kártya teljes szélességében megjelenő széles kép, ideális mérete 1125x336px. Ha üres, a szervezői beállítást, majd az esemény borítóképét használja."
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:85
+msgid "Wide image shown across Google Wallet passes, ideally 1032x336px. Also used on Apple Wallet passes when no strip image is set. Falls back to your organizer setting, then this event's cover image."
+msgstr "A Google Wallet bérletek teljes szélességében megjelenő széles kép, ideálisan 1032x336px. Az Apple Wallet bérleteken is ez jelenik meg, ha nincs beállítva csíkkép. Ha üres, a szervezői beállítás, majd az esemény borítóképe lesz használva."
 
 #: src/components/layouts/Event/index.tsx:144
 msgid "Widget Embed"

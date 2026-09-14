@@ -64,6 +64,7 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
         return new WalletPassBrandingDTO(
             logoUrl: null,
             bannerImageUrl: null,
+            appleStripImageUrl: null,
             backgroundColor: null,
             themeAccentColor: '#de0f00',
         );
@@ -103,6 +104,7 @@ class GoogleWalletClassPayloadBuilderTest extends TestCase
         return new WalletPassBrandingDTO(
             logoUrl: 'https://cdn.example.com/logo.png',
             bannerImageUrl: null,
+            appleStripImageUrl: null,
             backgroundColor: '#112233',
             themeAccentColor: null,
         );

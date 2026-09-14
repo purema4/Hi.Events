@@ -59,6 +59,10 @@ export class OrganizerPage {
     return this.walletPassSection.getByLabel(/^Pass banner URL/);
   }
 
+  get walletPassAppleStripInput(): Locator {
+    return this.walletPassSection.getByLabel(/^Apple Wallet strip image URL/);
+  }
+
   async saveWalletPassSettings(): Promise<void> {
     await this.walletPassSection.getByTestId('wallet-pass-submit-button').click();
   }

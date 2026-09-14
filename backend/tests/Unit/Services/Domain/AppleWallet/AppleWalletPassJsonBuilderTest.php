@@ -80,11 +80,16 @@ class AppleWalletPassJsonBuilderTest extends TestCase
         return (new OrganizerDomainObject)->setId(5)->setName($name);
     }
 
-    private function passSettings(?string $backgroundColor = null, ?string $themeAccentColor = null, ?string $bannerImageUrl = null): WalletPassBrandingDTO
-    {
+    private function passSettings(
+        ?string $backgroundColor = null,
+        ?string $themeAccentColor = null,
+        ?string $bannerImageUrl = null,
+        ?string $appleStripImageUrl = null,
+    ): WalletPassBrandingDTO {
         return new WalletPassBrandingDTO(
             logoUrl: null,
             bannerImageUrl: $bannerImageUrl,
+            appleStripImageUrl: $appleStripImageUrl,
             backgroundColor: $backgroundColor,
             themeAccentColor: $themeAccentColor,
         );
@@ -230,8 +235,14 @@ class AppleWalletPassJsonBuilderTest extends TestCase
             bannerImageUrl: 'https://cdn.example.com/banner.png',
         ));
 
+        $withStrip = $this->builder()->build($this->attendee(), $event, null, $this->organizer(), $this->passSettings(
+            themeAccentColor: '#1e1b4b',
+            appleStripImageUrl: 'https://cdn.example.com/strip.png',
+        ));
+
         $this->assertSame('rgb(253, 230, 138)', $pass['backgroundColor']);
         $this->assertSame('rgb(30, 27, 75)', $withBanner['backgroundColor']);
+        $this->assertSame('rgb(30, 27, 75)', $withStrip['backgroundColor']);
     }
 
     public function test_the_platform_name_is_used_when_the_organizer_has_no_name(): void

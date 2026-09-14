@@ -1,2 +1,9 @@
 test-results/
 google-wallet-service-account.json
+apple-wallet-pass.pem
+apple-wallet-wwdr.cer
+pass.cer
+pass.csr
+pass.key
+Add-to-Apple-Wallet/
+Add-to-Apple-Wallet.zip

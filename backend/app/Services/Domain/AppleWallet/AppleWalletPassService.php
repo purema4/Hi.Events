@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace HiEvents\Services\Domain\AppleWallet;
 
+use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use HiEvents\DomainObjects\AttendeeDomainObject;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventLocationDomainObject;
@@ -19,6 +21,7 @@ use HiEvents\Repository\Eloquent\Value\Relationship;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Services\Domain\AppleWallet\DTO\AppleWalletPassFileDTO;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\Localizable;
 
 class AppleWalletPassService
@@ -89,11 +92,14 @@ class AppleWalletPassService
             ),
         ]);
 
+        $lastModified = $this->lastModified($attendees);
+
         if ($passes->count() === 1) {
             return new AppleWalletPassFileDTO(
                 contents: $passes->first(),
                 mimeType: self::PASS_MIME_TYPE,
                 filename: $passes->keys()->first(),
+                lastModified: $lastModified,
             );
         }
 
@@ -101,7 +107,20 @@ class AppleWalletPassService
             contents: $this->packager->bundle($passes->all()),
             mimeType: self::BUNDLE_MIME_TYPE,
             filename: self::BUNDLE_FILENAME,
+            lastModified: $lastModified,
         );
+    }
+
+    /**
+     * @param  Collection<int, AttendeeDomainObject>  $attendees
+     */
+    private function lastModified(Collection $attendees): CarbonInterface
+    {
+        return $attendees
+            ->map(static fn (AttendeeDomainObject $attendee) => Carbon::parse(
+                $attendee->getAppleWalletPassUpdatedAt() ?? $attendee->getUpdatedAt()
+            ))
+            ->max();
     }
 
     private function resolveOccurrence(AttendeeDomainObject $attendee, EventDomainObject $event): ?EventOccurrenceDomainObject

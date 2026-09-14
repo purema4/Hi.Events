@@ -34,6 +34,7 @@ class EventSettingsResource extends JsonResource
 
             'wallet_pass_logo_url' => $this->getWalletPassLogoUrl(),
             'wallet_pass_banner_url' => $this->getWalletPassBannerUrl(),
+            'wallet_pass_apple_strip_url' => $this->getWalletPassAppleStripUrl(),
             'wallet_pass_background_color' => $this->getWalletPassBackgroundColor(),
             'website_url' => $this->getWebsiteUrl(),
             'maps_url' => $this->getMapsUrl(),

@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Services\Application\Handlers\AppleWallet;
 
+use Carbon\Carbon;
 use HiEvents\Exceptions\AppleWallet\AppleWalletAuthenticationException;
 use HiEvents\Exceptions\ResourceNotFoundException;
 use HiEvents\Services\Application\Handlers\AppleWallet\GetLatestAppleWalletPassHandler;
@@ -38,7 +39,7 @@ class GetLatestAppleWalletPassHandlerTest extends TestCase
 
     public function test_the_latest_version_of_the_pass_is_built(): void
     {
-        $pass = new AppleWalletPassFileDTO(contents: 'pkpass', mimeType: 'application/vnd.apple.pkpass', filename: 'hievents-attendee-31.pkpass');
+        $pass = new AppleWalletPassFileDTO(contents: 'pkpass', mimeType: 'application/vnd.apple.pkpass', filename: 'hievents-attendee-31.pkpass', lastModified: Carbon::now());
 
         $this->authenticator->shouldReceive('authenticate')->with('pass.events.hi.test', 'hievents-attendee-31', 'token')->andReturn(31);
         $this->passService->shouldReceive('generate')->once()->with(['id' => 31])->andReturn($pass);

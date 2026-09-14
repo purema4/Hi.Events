@@ -1174,6 +1174,11 @@ msgstr "產品持有者的任何查詢都將發送到此電子郵件地址。此
 msgid "Appearance"
 msgstr "外觀"
 
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:92
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:122
+msgid "Apple Wallet strip image URL"
+msgstr "Apple Wallet 條帶圖片網址"
+
 #: src/components/routes/product-widget/SelectProducts/index.tsx:915
 msgid "applied"
 msgstr "應用"
@@ -3532,7 +3537,7 @@ msgstr "將使用預設範本"
 msgid "Defaults"
 msgstr "預設值"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:118
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:131
 msgid "Defaults to your homepage accent colour when left blank."
 msgstr "留空時預設使用主頁的強調色。"
 
@@ -4262,7 +4267,7 @@ msgstr "表情符號"
 msgid "Emoji is required for modals"
 msgstr "彈窗必須設定表情符號"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:95
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:99
 msgid "Enable Apple Wallet passes"
 msgstr "啟用 Apple Wallet 票卡"
 
@@ -4274,7 +4279,7 @@ msgstr "啟用參與者自助服務"
 msgid "Enable attendee self-service by default"
 msgstr "預設啟用參與者自助服務"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:86
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:90
 msgid "Enable Google Wallet passes"
 msgstr "啟用 Google 錢包通行證"
 
@@ -5113,7 +5118,7 @@ msgstr "圖片上傳失敗。請再試一次。"
 msgid "Failed to verify email"
 msgstr "驗證電郵失敗"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:86
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:101
 msgid "Falls back to your organizer setting, then your homepage accent colour."
 msgstr "未設定時將使用您的主辦方設定，然後是您的主頁強調色。"
 
@@ -5863,6 +5868,14 @@ msgstr "如果您在我們這裡有帳戶，您將收到一封電子郵件，其
 msgid "Image deleted successfully"
 msgstr "圖像已成功刪除"
 
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:123
+msgid "Image shown behind the event name on Apple Wallet passes, ideally 1125x294px. Defaults to the pass banner."
+msgstr "顯示在 Apple Wallet 票卡活動名稱後方的圖片，建議尺寸 1125x294px。預設使用通行證橫幅圖片。"
+
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:93
+msgid "Image shown behind the event name on Apple Wallet passes, ideally 1125x294px. Falls back to your organizer setting, then the pass banner."
+msgstr "顯示在 Apple Wallet 票卡活動名稱後方的圖片，建議尺寸 1125x294px。留空時依次使用主辦方設定和通行證橫幅圖片。"
+
 #: src/components/common/ImageUploadDropzone/index.tsx:96
 msgid "Image uploaded successfully"
 msgstr "圖片上傳成功"
@@ -6346,7 +6359,7 @@ msgstr "留空即可讓此簽到名單適用於所有場次"
 msgid "Leave on to cover every ticket on the event. Turn off to pick specific tickets."
 msgstr "保持開啟即可涵蓋活動的所有門票；關閉後可揀選指定門票。"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:79
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:83
 msgid "Let attendees add their tickets to Google Wallet and Apple Wallet. The branding below is used on both."
 msgstr "讓參加者將門票加入 Google Wallet 及 Apple Wallet。以下品牌設定同時用於兩者。"
 
@@ -8096,7 +8109,7 @@ msgstr "設定個別價格"
 msgid "Override removed"
 msgstr "個別設定已移除"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:65
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:71
 msgid "Override the branding used on this event's Google Wallet and Apple Wallet passes. Anything left blank falls back to your organizer settings."
 msgstr "覆寫此活動 Google Wallet 及 Apple Wallet 票卡的品牌設定。留空的項目將使用主辦單位設定。"
 
@@ -8159,13 +8172,13 @@ msgstr "部分退款"
 msgid "Partially refunded: {0}"
 msgstr "部分退款：{0}"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:85
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:117
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:100
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:130
 msgid "Pass background colour"
 msgstr "通行證背景顏色"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:78
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:110
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:84
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:114
 msgid "Pass banner URL"
 msgstr "通行證橫幅圖片網址"
 
@@ -8173,8 +8186,8 @@ msgstr "通行證橫幅圖片網址"
 msgid "Pass fee to buyer"
 msgstr "將費用轉嫁給買家"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:71
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:103
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:77
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:107
 msgid "Pass logo URL"
 msgstr "通行證標誌網址"
 
@@ -9599,13 +9612,13 @@ msgstr "星期六"
 #: src/components/routes/event/Settings/Sections/RecurringEventSettings/index.tsx:72
 #: src/components/routes/event/Settings/Sections/SeoSettings/index.tsx:85
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:80
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:96
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:111
 #: src/components/routes/organizer/Settings/Sections/AddressSettings/index.tsx:119
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:132
 #: src/components/routes/organizer/Settings/Sections/EventDefaults/index.tsx:103
 #: src/components/routes/organizer/Settings/Sections/SeoSettings/index.tsx:85
 #: src/components/routes/organizer/Settings/Sections/TrackingPixelSettings/index.tsx:262
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:128
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:141
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:86
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:86
 msgid "Save"
@@ -10596,11 +10609,11 @@ msgstr "按日子、區域或門票類型分拆簽到。將連結分享給工作
 msgid "Sports"
 msgstr "體育"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:72
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:78
 msgid "Square image, at least 660x660px. Falls back to your organizer setting, then your organizer logo."
 msgstr "正方形圖片，至少 660x660 像素。未設定時將使用您的主辦方設定，然後是您的主辦方標誌。"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:104
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:108
 msgid "Square image, at least 660x660px. Used as the pass logo and the Apple Wallet icon. Defaults to your organizer logo."
 msgstr "正方形圖片，最少 660x660px。用作票卡標誌及 Apple Wallet 圖示。預設使用您的主辦單位標誌。"
 
@@ -10950,8 +10963,8 @@ msgstr "社交連結更新成功"
 msgid "Successfully Updated Tracking Settings"
 msgstr "追蹤設定更新成功"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:53
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:67
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:59
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:71
 msgid "Successfully Updated Wallet Pass Settings"
 msgstr "已成功更新電子錢包票卡設定"
 
@@ -11729,11 +11742,11 @@ msgstr "門票設計器"
 msgid "Ticket email has been resent to attendee"
 msgstr "門票電子郵件已重新發送給與會者"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:96
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:100
 msgid "Ticket emails will include one \"Add to Apple Wallet\" link that adds every ticket in the order."
 msgstr "門票電郵將包含一個「加入 Apple Wallet」連結，可加入訂單中的所有門票。"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:87
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:91
 msgid "Ticket emails will include one \"Add to Google Wallet\" button that saves every ticket in the order."
 msgstr "門票電郵將包含一個\"加入 Google 錢包\"按鈕，一次儲存訂單中的所有門票。"
 
@@ -12748,9 +12761,9 @@ msgid "Waitlist offer expired"
 msgstr "候補名單報價已過期"
 
 #: src/components/routes/event/Settings/index.tsx:116
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:64
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:70
 #: src/components/routes/organizer/Settings/index.tsx:92
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:78
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:82
 msgid "Wallet passes"
 msgstr "電子錢包票卡"
 
@@ -13154,13 +13167,13 @@ msgstr "這項活動由誰組織？"
 msgid "Who should be asked this question?"
 msgstr "這個問題應該問誰？"
 
-#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:111
-msgid "Wide image shown across the pass, ideally 1125x336px. Each wallet crops it to fit. Defaults to your event cover image."
-msgstr "橫跨整張票卡的闊幅圖片，建議尺寸 1125x336px。各錢包會自動裁剪以配合。預設使用活動封面圖片。"
+#: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:115
+msgid "Wide image shown across Google Wallet passes, ideally 1032x336px. Also used on Apple Wallet passes when no strip image is set. Defaults to your event cover image."
+msgstr "橫跨 Google Wallet 票卡顯示的闊幅圖片，建議尺寸 1032x336px。未設定條帶圖片時亦會用於 Apple Wallet 票卡。預設使用活動封面圖片。"
 
-#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:79
-msgid "Wide image shown across the pass, ideally 1125x336px. Falls back to your organizer setting, then this event's cover image."
-msgstr "橫跨整張票卡的闊幅圖片，建議尺寸 1125x336px。留空時依次使用主辦單位設定及此活動的封面圖片。"
+#: src/components/routes/event/Settings/Sections/WalletPassSettings/index.tsx:85
+msgid "Wide image shown across Google Wallet passes, ideally 1032x336px. Also used on Apple Wallet passes when no strip image is set. Falls back to your organizer setting, then this event's cover image."
+msgstr "橫跨 Google Wallet 票卡顯示的闊幅圖片，建議尺寸 1032x336px。未設定條帶圖片時亦會用於 Apple Wallet 票卡。留空時依次使用主辦方設定和此活動的封面圖片。"
 
 #: src/components/layouts/Event/index.tsx:144
 msgid "Widget Embed"

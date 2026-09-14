@@ -79,9 +79,15 @@ class AppleWalletPassImageBuilderTest extends TestCase
         return [$image->getImageWidth(), $image->getImageHeight()];
     }
 
-    private function passSettings(?string $logoUrl = null, ?string $bannerImageUrl = null): WalletPassBrandingDTO
+    private function passSettings(?string $logoUrl = null, ?string $bannerImageUrl = null, ?string $appleStripImageUrl = null): WalletPassBrandingDTO
     {
-        return new WalletPassBrandingDTO(logoUrl: $logoUrl, bannerImageUrl: $bannerImageUrl, backgroundColor: null, themeAccentColor: null);
+        return new WalletPassBrandingDTO(
+            logoUrl: $logoUrl,
+            bannerImageUrl: $bannerImageUrl,
+            appleStripImageUrl: $appleStripImageUrl,
+            backgroundColor: null,
+            themeAccentColor: null,
+        );
     }
 
     private function storedImage(ImageType $type, string $path): ImageDomainObject
@@ -119,6 +125,38 @@ class AppleWalletPassImageBuilderTest extends TestCase
         $this->assertSame([58, 58], $this->dimensions($images['icon@2x.png']));
         $this->assertSame([200, 100], $this->dimensions($images['logo@2x.png']));
         $this->assertSame([750, 196], $this->dimensions($images['strip@2x.png']));
+    }
+
+    public function test_the_apple_strip_image_is_used_instead_of_the_shared_banner(): void
+    {
+        $this->imageFetcher->shouldReceive('fetch')->with('https://example.com/apple-strip.png')->once()->andReturn($this->png(1125, 294));
+        $this->imageFetcher->shouldNotReceive('fetch')->with('https://example.com/banner.png');
+
+        $images = $this->builder->build(
+            (new EventDomainObject)->setEventSettings(
+                (new EventSettingDomainObject)->setWalletPassBannerUrl('https://example.com/banner.png')
+            ),
+            new OrganizerDomainObject,
+            $this->passSettings(appleStripImageUrl: 'https://example.com/apple-strip.png'),
+        );
+
+        $this->assertSame([1125, 294], $this->dimensions($images['strip@3x.png']));
+    }
+
+    public function test_the_event_apple_strip_image_overrides_the_organizer_one(): void
+    {
+        $this->imageFetcher->shouldReceive('fetch')->with('https://example.com/event-strip.png')->once()->andReturn($this->png(1125, 294));
+        $this->imageFetcher->shouldNotReceive('fetch')->with('https://example.com/organizer-strip.png');
+
+        $images = $this->builder->build(
+            (new EventDomainObject)->setEventSettings(
+                (new EventSettingDomainObject)->setWalletPassAppleStripUrl('https://example.com/event-strip.png')
+            ),
+            new OrganizerDomainObject,
+            $this->passSettings(appleStripImageUrl: 'https://example.com/organizer-strip.png'),
+        );
+
+        $this->assertArrayHasKey('strip.png', $images);
     }
 
     public function test_the_organizer_logo_and_event_cover_are_used_when_no_pass_images_are_set(): void

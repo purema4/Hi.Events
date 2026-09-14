@@ -39,6 +39,7 @@ class UpdateEventSettingsRequest extends BaseRequest
 
             'wallet_pass_logo_url' => ['url', 'nullable'],
             'wallet_pass_banner_url' => ['url', 'nullable'],
+            'wallet_pass_apple_strip_url' => ['url', 'nullable'],
             'wallet_pass_background_color' => ['nullable', ...RulesHelper::HEX_COLOR],
 
             'website_url' => ['url', 'nullable'],

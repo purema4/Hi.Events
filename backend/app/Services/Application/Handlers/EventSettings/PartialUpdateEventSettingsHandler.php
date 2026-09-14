@@ -65,6 +65,9 @@ class PartialUpdateEventSettingsHandler
                 'wallet_pass_banner_url' => array_key_exists('wallet_pass_banner_url', $eventSettingsDTO->settings)
                     ? $eventSettingsDTO->settings['wallet_pass_banner_url']
                     : $existingSettings->getWalletPassBannerUrl(),
+                'wallet_pass_apple_strip_url' => array_key_exists('wallet_pass_apple_strip_url', $eventSettingsDTO->settings)
+                    ? $eventSettingsDTO->settings['wallet_pass_apple_strip_url']
+                    : $existingSettings->getWalletPassAppleStripUrl(),
                 'wallet_pass_background_color' => array_key_exists('wallet_pass_background_color', $eventSettingsDTO->settings)
                     ? $eventSettingsDTO->settings['wallet_pass_background_color']
                     : $existingSettings->getWalletPassBackgroundColor(),

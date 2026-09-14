@@ -73,6 +73,7 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     final public const WALLET_PASS_LOGO_URL = 'wallet_pass_logo_url';
     final public const WALLET_PASS_BANNER_URL = 'wallet_pass_banner_url';
     final public const WALLET_PASS_BACKGROUND_COLOR = 'wallet_pass_background_color';
+    final public const WALLET_PASS_APPLE_STRIP_URL = 'wallet_pass_apple_strip_url';
 
     protected int $id;
     protected int $event_id;
@@ -137,6 +138,7 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     protected ?string $wallet_pass_logo_url = null;
     protected ?string $wallet_pass_banner_url = null;
     protected ?string $wallet_pass_background_color = null;
+    protected ?string $wallet_pass_apple_strip_url = null;
 
     public function toArray(): array
     {
@@ -204,6 +206,7 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
                     'wallet_pass_logo_url' => $this->wallet_pass_logo_url ?? null,
                     'wallet_pass_banner_url' => $this->wallet_pass_banner_url ?? null,
                     'wallet_pass_background_color' => $this->wallet_pass_background_color ?? null,
+                    'wallet_pass_apple_strip_url' => $this->wallet_pass_apple_strip_url ?? null,
                 ];
     }
 
@@ -899,5 +902,16 @@ abstract class EventSettingDomainObjectAbstract extends \HiEvents\DomainObjects\
     public function getWalletPassBackgroundColor(): ?string
     {
         return $this->wallet_pass_background_color;
+    }
+
+    public function setWalletPassAppleStripUrl(?string $wallet_pass_apple_strip_url): self
+    {
+        $this->wallet_pass_apple_strip_url = $wallet_pass_apple_strip_url;
+        return $this;
+    }
+
+    public function getWalletPassAppleStripUrl(): ?string
+    {
+        return $this->wallet_pass_apple_strip_url;
     }
 }

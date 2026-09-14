@@ -29,6 +29,7 @@ class GetLatestAppleWalletPassAction extends BaseAppleWalletWebServiceAction
             return $this->notFoundResponse();
         }
 
-        return $this->fileResponse($pass->contents, $pass->mimeType, $pass->filename);
+        return $this->fileResponse($pass->contents, $pass->mimeType, $pass->filename)
+            ->setLastModified($pass->lastModified);
     }
 }
