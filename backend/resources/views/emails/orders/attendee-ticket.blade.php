@@ -54,25 +54,26 @@
 @if($tickets->count() > 1){{ __('View Tickets') }}@else{{ __('View Ticket') }}@endif
 </x-mail::button>
 
+@if($googleWalletSaveUrl || $appleWalletPassUrl)
+<div style="text-align: center; margin: 0 0 16px; font-size: 0; line-height: 0;">
 @if($googleWalletSaveUrl)
 @php($googleWalletLabel = $tickets->count() > 1
     ? __('Add :count tickets to Google Wallet', ['count' => $tickets->count()])
     : __('Add to Google Wallet'))
-<div style="text-align: center; margin: 0 0 24px; padding: 8px;">
-<a href="{{ $googleWalletSaveUrl }}" style="display: inline-block; text-decoration: none;">
-<img src="{{ $message->embed($googleWalletButtonPath) }}" alt="{{ $googleWalletLabel }}" height="50" style="height: auto; width: auto; border: 0; display: block;">
+@php([$googleWalletImageWidth, $googleWalletImageHeight] = getimagesize($googleWalletButtonPath))
+<a href="{{ $googleWalletSaveUrl }}" style="display: inline-block; margin: 8px; text-decoration: none; vertical-align: middle; font-size: 14px; line-height: normal;">
+<img src="{{ $message->embed($googleWalletButtonPath) }}" alt="{{ $googleWalletLabel }}" width="{{ (int) round($googleWalletImageWidth * 50 / $googleWalletImageHeight) }}" height="50" style="height: 50px; width: auto; border: 0; display: block;">
 </a>
-</div>
 @endif
-
 @if($appleWalletPassUrl)
 @php($appleWalletLabel = $tickets->count() > 1
     ? __('Add :count tickets to Apple Wallet', ['count' => $tickets->count()])
     : __('Add to Apple Wallet'))
-<div style="text-align: center; margin: 0 0 24px; padding: 8px;">
-<a href="{{ $appleWalletPassUrl }}" style="display: inline-block; text-decoration: none;">
-<img src="{{ $message->embed($appleWalletButtonPath) }}" alt="{{ $appleWalletLabel }}" height="40" style="height: 40px; width: auto; border: 0; display: block;">
+@php([$appleWalletImageWidth, $appleWalletImageHeight] = getimagesize($appleWalletButtonPath))
+<a href="{{ $appleWalletPassUrl }}" style="display: inline-block; margin: 8px; text-decoration: none; vertical-align: middle; font-size: 14px; line-height: normal;">
+<img src="{{ $message->embed($appleWalletButtonPath) }}" alt="{{ $appleWalletLabel }}" width="{{ (int) round($appleWalletImageWidth * 50 / $appleWalletImageHeight) }}" height="50" style="height: 50px; width: auto; border: 0; display: block;">
 </a>
+@endif
 </div>
 @endif
 
