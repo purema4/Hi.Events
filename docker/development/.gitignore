@@ -7,3 +7,5 @@ pass.csr
 pass.key
 Add-to-Apple-Wallet/
 Add-to-Apple-Wallet.zip
+pg-backup
+.env
