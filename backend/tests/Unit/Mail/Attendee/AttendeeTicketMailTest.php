@@ -56,8 +56,10 @@ class AttendeeTicketMailTest extends TestCase
             $this->attendee(7, 'third-short-id', 'Alex', 'Ray', 'VIP'),
         ]));
 
+        $content = $mail->content();
+
         /** @var Collection<int, AttendeeTicketSummaryDTO> $tickets */
-        $tickets = $mail->content()->with['tickets'];
+        $tickets = $content->with['tickets'];
 
         $this->assertCount(3, $tickets);
         $this->assertSame(
@@ -68,11 +70,7 @@ class AttendeeTicketMailTest extends TestCase
             ['Early Bird', 'General Admission', 'VIP'],
             $tickets->map(fn (AttendeeTicketSummaryDTO $ticket) => $ticket->productTitle)->all(),
         );
-
-        $ticketUrls = $tickets->map(fn (AttendeeTicketSummaryDTO $ticket) => $ticket->ticketUrl);
-        $this->assertCount(3, $ticketUrls->unique());
-        $this->assertStringContainsString('first-short-id', $ticketUrls->first());
-        $this->assertStringContainsString('third-short-id', $ticketUrls->last());
+        $this->assertStringContainsString('/product/1/first-short-id', $content->with['ticketUrl']);
     }
 
     public function test_content_includes_a_single_ticket_when_the_attendee_has_no_siblings(): void
@@ -83,7 +81,7 @@ class AttendeeTicketMailTest extends TestCase
         $this->assertSame('Jane Doe', $tickets->first()->attendeeName);
     }
 
-    public function test_rendered_body_links_to_every_ticket(): void
+    public function test_rendered_body_lists_every_ticket_behind_one_link(): void
     {
         $mail = $this->buildMail(collect([
             $this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'General Admission'),
@@ -91,11 +89,31 @@ class AttendeeTicketMailTest extends TestCase
 
         $rendered = $mail->render();
 
-        $this->assertStringContainsString('/product/1/first-short-id', $rendered);
-        $this->assertStringContainsString('/product/1/second-short-id', $rendered);
         $this->assertStringContainsString('Early Bird', $rendered);
+        $this->assertStringContainsString('Jane Doe', $rendered);
         $this->assertStringContainsString('General Admission', $rendered);
         $this->assertStringContainsString('Sam Jones', $rendered);
+        $this->assertStringContainsString('View Tickets', $rendered);
+        $this->assertSame(1, substr_count($rendered, '/product/1/first-short-id'));
+        $this->assertStringNotContainsString('/product/1/second-short-id', $rendered);
+    }
+
+    public function test_schedule_is_shown_once_when_all_tickets_share_an_occurrence(): void
+    {
+        $newYearsEve = $this->occurrence(1, 'New Year\'s Eve', '2026-12-31 23:00:00', '2027-01-01 04:00:00');
+        $newYearsDay = $this->occurrence(2, 'New Year\'s Day', '2027-01-01 18:00:00', '2027-01-01 22:00:00');
+
+        $shared = $this->buildMail(
+            collect([$this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'VIP')->setEventOccurrence($newYearsEve)]),
+            $newYearsEve,
+        );
+        $split = $this->buildMail(
+            collect([$this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'VIP')->setEventOccurrence($newYearsDay)]),
+            $newYearsEve,
+        );
+
+        $this->assertTrue($shared->content()->with['ticketsShareSchedule']);
+        $this->assertFalse($split->content()->with['ticketsShareSchedule']);
     }
 
     public function test_calendar_attachment_holds_an_entry_per_distinct_occurrence(): void

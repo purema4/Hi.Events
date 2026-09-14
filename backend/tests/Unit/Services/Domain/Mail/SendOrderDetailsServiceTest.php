@@ -11,6 +11,7 @@ use HiEvents\DomainObjects\Status\OrderStatus;
 use HiEvents\Mail\Order\OrderSummary;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
+use HiEvents\Services\Domain\Attendee\AttendeeTicketGroupService;
 use HiEvents\Services\Domain\Attendee\SendAttendeeTicketService;
 use HiEvents\Services\Domain\Email\MailBuilderService;
 use HiEvents\Services\Domain\Mail\SendOrderDetailsService;
@@ -49,6 +50,7 @@ class SendOrderDetailsServiceTest extends TestCase
             $mailer,
             $this->sendAttendeeTicketService,
             $mailBuilderService,
+            new AttendeeTicketGroupService,
         );
     }
 

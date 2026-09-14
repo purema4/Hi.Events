@@ -13571,12 +13571,16 @@ msgstr ""
 msgid "Your Stripe account itself isn't affected, and no data is lost — you can reconnect at any time."
 msgstr ""
 
-#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:47
+#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:58
 msgid "Your ticket for"
 msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/rescheduleMessageTemplate.ts:54
 msgid "Your ticket is still valid — no action is needed unless the new time doesn't work for you. Please reply to this email if you have any questions."
+msgstr ""
+
+#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:58
+msgid "Your tickets for"
 msgstr ""
 
 #: src/components/routes/product-widget/CollectInformation/index.tsx:379

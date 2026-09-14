@@ -13575,13 +13575,17 @@ msgstr "Το αποθηκευμένο φίλτρο ημερομηνιών δεν
 msgid "Your Stripe account itself isn't affected, and no data is lost — you can reconnect at any time."
 msgstr "Ο ίδιος ο λογαριασμός σας Stripe δεν επηρεάζεται και δεν χάνονται δεδομένα — μπορείτε να επανασυνδεθείτε ανά πάσα στιγμή."
 
-#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:47
+#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:58
 msgid "Your ticket for"
 msgstr "Το εισιτήριό σας για"
 
 #: src/components/routes/event/OccurrencesTab/rescheduleMessageTemplate.ts:54
 msgid "Your ticket is still valid — no action is needed unless the new time doesn't work for you. Please reply to this email if you have any questions."
 msgstr "Το εισιτήριό σας παραμένει έγκυρο — δεν χρειάζεται να κάνετε κάτι, εκτός αν η νέα ώρα δεν σας βολεύει. Απαντήστε σε αυτό το email αν έχετε απορίες."
+
+#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:58
+msgid "Your tickets for"
+msgstr "Τα εισιτήριά σας για"
 
 #: src/components/routes/product-widget/CollectInformation/index.tsx:379
 msgid "Your tickets have been confirmed."

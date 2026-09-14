@@ -13575,13 +13575,17 @@ msgstr "Váš uložený filter termínov už nie je dostupný — zobrazujeme v�
 msgid "Your Stripe account itself isn't affected, and no data is lost — you can reconnect at any time."
 msgstr "Váš účet Stripe nie je ovplyvnený a žiadne dáta sa nestratia — kedykoľvek sa môžete znova pripojiť."
 
-#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:47
+#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:58
 msgid "Your ticket for"
 msgstr "Váš lístok pre"
 
 #: src/components/routes/event/OccurrencesTab/rescheduleMessageTemplate.ts:54
 msgid "Your ticket is still valid — no action is needed unless the new time doesn't work for you. Please reply to this email if you have any questions."
 msgstr "Váš lístok zostáva platný — nemusíte robiť nič, pokiaľ vám nový čas nevyhovuje. Ak máte otázky, odpovedzte na tento e-mail."
+
+#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:58
+msgid "Your tickets for"
+msgstr "Vaše lístky pre"
 
 #: src/components/routes/product-widget/CollectInformation/index.tsx:379
 msgid "Your tickets have been confirmed."

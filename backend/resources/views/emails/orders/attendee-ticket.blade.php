@@ -3,11 +3,17 @@
 @php /** @var \HiEvents\DomainObjects\OrganizerDomainObject $organizer */ @endphp
 @php /** @var \HiEvents\DomainObjects\OrderDomainObject $order */ @endphp
 @php /** @var \Illuminate\Support\Collection<int, \HiEvents\Services\Domain\Email\DTO\AttendeeTicketSummaryDTO> $tickets */ @endphp
+@php /** @var bool $ticketsShareSchedule */ @endphp
+@php /** @var string $ticketUrl */ @endphp
 @php /** @var string|null $googleWalletSaveUrl */ @endphp
 @php /** @var string|null $googleWalletButtonPath */ @endphp
 @php /** @var string|null $appleWalletPassUrl */ @endphp
 @php /** @var string|null $appleWalletButtonPath */ @endphp
 @php /** @see \HiEvents\Mail\Attendee\AttendeeTicketMail */ @endphp
+
+@php
+    $first = $tickets->first();
+@endphp
 
 <x-mail::message>
 # {{ __('You\'re going to') }} {{ $event->getTitle() }}! 🎉
@@ -26,29 +32,27 @@
 {{ __('Please find your ticket details below.') }}
 @endif
 
-@foreach($tickets as $ticket)
-@if($ticket->startFormatted || $ticket->venueName || $ticket->addressString || $ticket->productTitle)
 <div style="border: 1px solid #e5e7eb; border-radius: 6px; padding: 16px; margin: 16px 0; line-height: 1.6;">
-@if($ticket->startFormatted)
-<strong>{{ __('Date & Time:') }}</strong> {{ $ticket->startFormatted }}@if($ticket->endFormatted) – {{ $ticket->endFormatted }}@endif<br>
-@if($ticket->sessionLabel)
-<strong>{{ __('Session:') }}</strong> {{ $ticket->sessionLabel }}<br>
+@if($ticketsShareSchedule)
+@if($first->startFormatted)
+<strong>{{ __('Date & Time:') }}</strong> {{ $first->startFormatted }}@if($first->endFormatted) – {{ $first->endFormatted }}@endif<br>
+@if($first->sessionLabel)
+<strong>{{ __('Session:') }}</strong> {{ $first->sessionLabel }}<br>
 @endif
 @endif
-@if($ticket->venueName || $ticket->addressString)
-<strong>{{ __('Location:') }}</strong> {{ trim(($ticket->venueName ? $ticket->venueName . ($ticket->addressString ? ', ' : '') : '') . ($ticket->addressString ?? '')) }}<br>
+@if($first->venueName || $first->addressString)
+<strong>{{ __('Location:') }}</strong> {{ trim(($first->venueName ? $first->venueName . ($first->addressString ? ', ' : '') : '') . ($first->addressString ?? '')) }}<br>
 @endif
-@if($ticket->productTitle)
-<strong>{{ __('Ticket:') }}</strong> {{ $ticket->productTitle }}<br>
 @endif
-<strong>{{ __('Attendee:') }}</strong> {{ $ticket->attendeeName }}
-</div>
-@endif
-
-<x-mail::button :url="$ticket->ticketUrl">
-{{ __('View Ticket') }}
-</x-mail::button>
+<strong>@if($tickets->count() > 1){{ __('Tickets:') }}@else{{ __('Ticket:') }}@endif</strong><br>
+@foreach($tickets as $ticket)
+{{ $ticket->productTitle }} — {{ $ticket->attendeeName }}@if(! $ticketsShareSchedule && $ticket->startFormatted) · {{ $ticket->sessionLabel ?: $ticket->startFormatted }}@endif<br>
 @endforeach
+</div>
+
+<x-mail::button :url="$ticketUrl">
+@if($tickets->count() > 1){{ __('View Tickets') }}@else{{ __('View Ticket') }}@endif
+</x-mail::button>
 
 @if($googleWalletSaveUrl)
 @php($googleWalletLabel = $tickets->count() > 1

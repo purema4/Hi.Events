@@ -13575,13 +13575,17 @@ msgstr "你保存的日期筛选条件已失效 — 正在显示全部日期。"
 msgid "Your Stripe account itself isn't affected, and no data is lost — you can reconnect at any time."
 msgstr "您的 Stripe 账户本身不受影响，也不会丢失任何数据 — 您可以随时重新连接。"
 
-#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:47
+#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:58
 msgid "Your ticket for"
 msgstr "您的入场券"
 
 #: src/components/routes/event/OccurrencesTab/rescheduleMessageTemplate.ts:54
 msgid "Your ticket is still valid — no action is needed unless the new time doesn't work for you. Please reply to this email if you have any questions."
 msgstr "你的门票依然有效 — 除非新时间不合适，否则无需任何操作。如有疑问，请回复本邮件。"
+
+#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:58
+msgid "Your tickets for"
+msgstr "您的入场券"
 
 #: src/components/routes/product-widget/CollectInformation/index.tsx:379
 msgid "Your tickets have been confirmed."

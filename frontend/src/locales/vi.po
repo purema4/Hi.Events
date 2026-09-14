@@ -13575,13 +13575,17 @@ msgstr "Bộ lọc ngày đã lưu của bạn không còn khả dụng — đan
 msgid "Your Stripe account itself isn't affected, and no data is lost — you can reconnect at any time."
 msgstr "Tài khoản Stripe của bạn không bị ảnh hưởng và không mất dữ liệu — bạn có thể kết nối lại bất cứ lúc nào."
 
-#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:47
+#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:58
 msgid "Your ticket for"
 msgstr "Vé của bạn cho"
 
 #: src/components/routes/event/OccurrencesTab/rescheduleMessageTemplate.ts:54
 msgid "Your ticket is still valid — no action is needed unless the new time doesn't work for you. Please reply to this email if you have any questions."
 msgstr "Vé của bạn vẫn còn hiệu lực — bạn không cần làm gì trừ khi giờ mới không phù hợp. Vui lòng trả lời email này nếu bạn có thắc mắc."
+
+#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:58
+msgid "Your tickets for"
+msgstr "Vé của bạn cho"
 
 #: src/components/routes/product-widget/CollectInformation/index.tsx:379
 msgid "Your tickets have been confirmed."

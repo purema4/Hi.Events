@@ -14,6 +14,5 @@ class AttendeeTicketSummaryDTO extends BaseDataObject
         public readonly ?string $endFormatted,
         public readonly ?string $venueName,
         public readonly ?string $addressString,
-        public readonly string $ticketUrl,
     ) {}
 }

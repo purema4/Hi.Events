@@ -18,6 +18,7 @@ use HiEvents\Mail\Organizer\OrderSummaryForOrganizer;
 use HiEvents\Repository\Eloquent\Value\Relationship;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
+use HiEvents\Services\Domain\Attendee\AttendeeTicketGroupService;
 use HiEvents\Services\Domain\Attendee\SendAttendeeTicketService;
 use HiEvents\Services\Domain\Email\MailBuilderService;
 use Illuminate\Mail\Mailer;
@@ -30,6 +31,7 @@ class SendOrderDetailsService
         private readonly Mailer $mailer,
         private readonly SendAttendeeTicketService $sendAttendeeTicketService,
         private readonly MailBuilderService $mailBuilderService,
+        private readonly AttendeeTicketGroupService $attendeeTicketGroupService,
     ) {}
 
     public function sendOrderSummaryAndTicketEmails(OrderDomainObject $order): void
@@ -141,10 +143,10 @@ class SendOrderDetailsService
 
     private function sendAttendeeTicketEmails(OrderDomainObject $order, EventDomainObject $event): void
     {
-        $attendeesByEmail = collect($order->getAttendees())
-            ->groupBy(fn (AttendeeDomainObject $attendee) => mb_strtolower(trim((string) $attendee->getEmail())));
+        $attendeesByRecipient = $this->attendeeTicketGroupService
+            ->groupByRecipient(collect($order->getAttendees()));
 
-        foreach ($attendeesByEmail as $attendees) {
+        foreach ($attendeesByRecipient as $attendees) {
             $this->sendAttendeeTicketService->send(
                 order: $order,
                 attendee: $attendees->first(),

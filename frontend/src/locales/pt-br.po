@@ -13575,13 +13575,17 @@ msgstr "Seu filtro de datas salvo não está mais disponível — mostrando toda
 msgid "Your Stripe account itself isn't affected, and no data is lost — you can reconnect at any time."
 msgstr "Sua conta Stripe não é afetada e nenhum dado é perdido — você pode reconectá-la a qualquer momento."
 
-#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:47
+#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:58
 msgid "Your ticket for"
 msgstr "Seu ingresso para"
 
 #: src/components/routes/event/OccurrencesTab/rescheduleMessageTemplate.ts:54
 msgid "Your ticket is still valid — no action is needed unless the new time doesn't work for you. Please reply to this email if you have any questions."
 msgstr "Seu ingresso continua válido — você não precisa fazer nada, a não ser que o novo horário não sirva para você. Responda a este e-mail se tiver dúvidas."
+
+#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:58
+msgid "Your tickets for"
+msgstr "Seus ingressos para"
 
 #: src/components/routes/product-widget/CollectInformation/index.tsx:379
 msgid "Your tickets have been confirmed."

@@ -67,6 +67,7 @@ use HiEvents\Http\Actions\Attendees\ExportAttendeesAction;
 use HiEvents\Http\Actions\Attendees\GetAttendeeAction;
 use HiEvents\Http\Actions\Attendees\GetAttendeeActionPublic;
 use HiEvents\Http\Actions\Attendees\GetAttendeesAction;
+use HiEvents\Http\Actions\Attendees\GetAttendeeTicketsActionPublic;
 use HiEvents\Http\Actions\Attendees\PartialEditAttendeeAction;
 use HiEvents\Http\Actions\Attendees\ResendAttendeeTicketAction;
 use HiEvents\Http\Actions\Auth\AcceptInvitationAction;
@@ -634,6 +635,7 @@ $router->prefix('/public')->group(
 
         // Attendees
         $router->get('/events/{event_id}/attendees/{attendee_short_id}', GetAttendeeActionPublic::class);
+        $router->get('/events/{event_id}/attendees/{attendee_short_id}/tickets', GetAttendeeTicketsActionPublic::class);
         $router->get('/events/{event_id}/apple-wallet-passes', DownloadAppleWalletPassesPublicAction::class)
             ->middleware('throttle:60,1');
 

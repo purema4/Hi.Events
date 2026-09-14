@@ -13575,13 +13575,17 @@ msgstr "A mentett időpontszűrő már nem érhető el – minden időpont láth
 msgid "Your Stripe account itself isn't affected, and no data is lost — you can reconnect at any time."
 msgstr "A Stripe-fiókja nem érintett, és nem vesznek el adatok — bármikor újra összekapcsolhatja."
 
-#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:47
+#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:58
 msgid "Your ticket for"
 msgstr "Jegyéhez:"
 
 #: src/components/routes/event/OccurrencesTab/rescheduleMessageTemplate.ts:54
 msgid "Your ticket is still valid — no action is needed unless the new time doesn't work for you. Please reply to this email if you have any questions."
 msgstr "A jegye továbbra is érvényes – nincs teendője, hacsak az új időpont nem felel meg Önnek. Ha kérdése van, válaszoljon erre az e-mailre."
+
+#: src/components/routes/product-widget/AttendeeProductAndInformation/index.tsx:58
+msgid "Your tickets for"
+msgstr "Jegyeihez:"
 
 #: src/components/routes/product-widget/CollectInformation/index.tsx:379
 msgid "Your tickets have been confirmed."
