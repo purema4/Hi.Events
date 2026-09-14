@@ -39,3 +39,4 @@ apple-wallet-pass.pem
 *.csr
 *.pem
 Add-to-Apple-Wallet.zip
+docker/staging/
