@@ -31,3 +31,10 @@ test_results/
 
 /release-notes/**
 /release-notes/
+
+pass.*
+apple-wallet-pass.pem
+*.cer
+*.csr
+*.pem
+Add-to-Apple-Wallet.zip
