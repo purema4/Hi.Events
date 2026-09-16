@@ -1,0 +1,32 @@
+services:
+    backend:
+        environment:
+            APP_URL: '${NGROK_URL}'
+            APP_FRONTEND_URL: '${NGROK_URL}'
+
+    frontend:
+        environment:
+            VITE_API_URL_CLIENT: '${NGROK_URL}/api'
+            VITE_FRONTEND_URL: '${NGROK_URL}'
+
+    nginx:
+        volumes:
+            - ./nginx/nginx.ngrok.conf:/etc/nginx/nginx.conf
+
+    ngrok:
+        image: ngrok/ngrok:3
+        container_name: ngrok
+        restart: unless-stopped
+        command:
+            - http
+            - nginx:80
+            - --url=${NGROK_DOMAIN:?set NGROK_DOMAIN in docker/development/.env}
+            - --host-header=localhost
+        environment:
+            NGROK_AUTHTOKEN: '${NGROK_AUTHTOKEN:?set NGROK_AUTHTOKEN in docker/development/.env}'
+        ports:
+            - "4040:4040"
+        depends_on:
+            - nginx
+        networks:
+            - app

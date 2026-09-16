@@ -110,6 +110,40 @@ start https://localhost:8443/auth/register
 
 ---
 
+## Public HTTPS with ngrok
+
+`docker-compose.ngrok.yml` serves the running development stack on your ngrok static domain, for anything that needs a
+real HTTPS origin: Apple Pay / Google Pay buttons, Stripe webhooks, wallet passes and testing from a phone. It is an
+overlay on `docker-compose.dev.yml` — same containers, same mounted source, so hot reload still works.
+
+Fill in `NGROK_DOMAIN` and `NGROK_AUTHTOKEN` in `.env` (the authtoken comes from
+https://dashboard.ngrok.com/get-started/your-authtoken), then:
+
+```bash
+./dev-ngrok.sh up -d           # start (or reconfigure) the stack with the tunnel
+./dev-ngrok.sh logs -f ngrok
+./dev-ngrok.sh down            # stop everything
+```
+
+| What | Where |
+|------|-------|
+| App | `https://<NGROK_DOMAIN>` |
+| ngrok inspector | http://localhost:4040 |
+
+While the overlay is up, the frontend and backend are configured with the ngrok URL, and nginx serves plain HTTP on
+port 80 for the tunnel to terminate TLS in front of — `https://localhost:8443` is not served in this mode. Run
+`./start-dev.sh` to go back to the normal local-only stack.
+
+A free ngrok account allows one agent at a time, so stop the staging tunnel (`docker/staging`) before starting this one.
+
+### Stripe wallet buttons
+
+Apple Pay and Google Pay only render on a domain registered with Stripe. With the tunnel up:
+
+```bash
+./dev-ngrok.sh exec backend php artisan stripe:register-payment-method-domains
+```
+
 ## Additional configuration
 
 Hi.Events uses environment variables for configuration. You’ll find `.env` files in:
