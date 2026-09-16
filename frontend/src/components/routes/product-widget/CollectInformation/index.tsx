@@ -471,6 +471,7 @@ export const CollectInformation = () => {
                             withAsterisk
                             label={t`First Name`}
                             placeholder={t`First name`}
+                            autoComplete="given-name"
                             disabled={isLocked('first_name')}
                             {...form.getInputProps("order.first_name")}
                         />
@@ -478,6 +479,7 @@ export const CollectInformation = () => {
                             withAsterisk
                             label={t`Last Name`}
                             placeholder={t`Last Name`}
+                            autoComplete="family-name"
                             disabled={isLocked('last_name')}
                             {...form.getInputProps("order.last_name")}
                         />
@@ -489,6 +491,7 @@ export const CollectInformation = () => {
                             type={"email"}
                             label={t`Email Address`}
                             placeholder={t`Email Address`}
+                            autoComplete="email"
                             disabled={isLocked('email')}
                             rightSection={isEmailValid(form.values.order.email) ? <EmailCheckIcon/> : null}
                             {...form.getInputProps("order.email")}
@@ -498,6 +501,7 @@ export const CollectInformation = () => {
                             type={"email"}
                             label={t`Confirm Email Address`}
                             placeholder={t`Confirm Email Address`}
+                            autoComplete="email"
                             disabled={isLocked('email')}
                             rightSection={isEmailValid(form.values.order.email_confirmation) ? <EmailCheckIcon/> : null}
                             {...form.getInputProps("order.email_confirmation")}
@@ -560,11 +564,13 @@ export const CollectInformation = () => {
                                     withAsterisk
                                     label={t`Address Line 1`}
                                     placeholder={t`Address Line 1`}
+                                    autoComplete="address-line1"
                                     {...form.getInputProps("order.address.address_line_1")}
                                 />
                                 <TextInput
                                     label={t`Address Line 2`}
                                     placeholder={t`Address Line 2`}
+                                    autoComplete="address-line2"
                                     {...form.getInputProps("order.address.address_line_2")}
                                 />
                             </InputGroup>
@@ -574,12 +580,14 @@ export const CollectInformation = () => {
                                     withAsterisk
                                     label={t`City`}
                                     placeholder={t`City`}
+                                    autoComplete="address-level2"
                                     {...form.getInputProps("order.address.city")}
                                 />
                                 <TextInput
                                     withAsterisk
                                     label={t`State or Region`}
                                     placeholder={t`State or Region`}
+                                    autoComplete="address-level1"
                                     {...form.getInputProps("order.address.state_or_region")}
                                 />
                             </InputGroup>
@@ -589,12 +597,14 @@ export const CollectInformation = () => {
                                 <TextInput
                                     label={t`ZIP / Postal Code`}
                                     placeholder={t`ZIP or Postal Code`}
+                                    autoComplete="postal-code"
                                     {...form.getInputProps("order.address.zip_or_postal_code")}
                                 />
                                 <NativeSelect
                                     withAsterisk
                                     label={t`Country`}
                                     data={countries}
+                                    autoComplete="country"
                                     {...form.getInputProps("order.address.country")}
                                 />
                             </InputGroup>
@@ -687,6 +697,7 @@ export const CollectInformation = () => {
                                                         withAsterisk
                                                         label={t`First Name`}
                                                         placeholder={t`First name`}
+                                                        autoComplete={`section-attendee-${currentProductIndex} given-name`}
                                                         disabled={isLocked('first_name')}
                                                         {...form.getInputProps(`products.${currentProductIndex}.first_name`)}
                                                     />
@@ -694,6 +705,7 @@ export const CollectInformation = () => {
                                                         withAsterisk
                                                         label={t`Last Name`}
                                                         placeholder={t`Last Name`}
+                                                        autoComplete={`section-attendee-${currentProductIndex} family-name`}
                                                         disabled={isLocked('last_name')}
                                                         {...form.getInputProps(`products.${currentProductIndex}.last_name`)}
                                                     />
@@ -705,6 +717,7 @@ export const CollectInformation = () => {
                                                         type={"email"}
                                                         label={t`Email Address`}
                                                         placeholder={t`Email Address`}
+                                                        autoComplete={`section-attendee-${currentProductIndex} email`}
                                                         disabled={isLocked('email')}
                                                         rightSection={isEmailValid(form.values.products[currentProductIndex]?.email || '') ?
                                                             <EmailCheckIcon/> : null}
@@ -715,6 +728,7 @@ export const CollectInformation = () => {
                                                         type={"email"}
                                                         label={t`Confirm Email Address`}
                                                         placeholder={t`Confirm Email Address`}
+                                                        autoComplete={`section-attendee-${currentProductIndex} email`}
                                                         disabled={isLocked('email')}
                                                         rightSection={isEmailValid(form.values.products[currentProductIndex]?.email_confirmation || '') ?
                                                             <EmailCheckIcon/> : null}
