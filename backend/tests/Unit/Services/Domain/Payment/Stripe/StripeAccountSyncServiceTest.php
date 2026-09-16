@@ -3,6 +3,7 @@
 namespace Tests\Unit\Services\Domain\Payment\Stripe;
 
 use HiEvents\DomainObjects\AccountDomainObject;
+use HiEvents\DomainObjects\Enums\StripePlatform;
 use HiEvents\DomainObjects\Generated\OrganizerStripePlatformDomainObjectAbstract;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\DomainObjects\OrganizerStripePlatformDomainObject;
@@ -12,6 +13,7 @@ use HiEvents\Repository\Interfaces\OrganizerStripePlatformRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrganizerVatSettingRepositoryInterface;
 use HiEvents\Services\Domain\Organizer\AssignCurrencyDefaultOrganizerConfigurationService;
 use HiEvents\Services\Domain\Payment\Stripe\StripeAccountSyncService;
+use HiEvents\Services\Domain\Payment\Stripe\StripePaymentMethodDomainRegistrationService;
 use Illuminate\Config\Repository;
 use Mockery as m;
 use Psr\Log\LoggerInterface;
@@ -36,6 +38,8 @@ class StripeAccountSyncServiceTest extends TestCase
 
     private AssignCurrencyDefaultOrganizerConfigurationService $assignCurrencyDefaultOrganizerConfigurationService;
 
+    private StripePaymentMethodDomainRegistrationService $paymentMethodDomainRegistrationService;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -47,6 +51,8 @@ class StripeAccountSyncServiceTest extends TestCase
         $this->vatSettingRepository = m::mock(OrganizerVatSettingRepositoryInterface::class);
         $this->config = m::mock(Repository::class);
         $this->assignCurrencyDefaultOrganizerConfigurationService = m::mock(AssignCurrencyDefaultOrganizerConfigurationService::class);
+        $this->paymentMethodDomainRegistrationService = m::mock(StripePaymentMethodDomainRegistrationService::class);
+        $this->paymentMethodDomainRegistrationService->shouldReceive('registerCheckoutDomain')->andReturnTrue()->byDefault();
 
         $this->service = new StripeAccountSyncService(
             $this->logger,
@@ -56,6 +62,7 @@ class StripeAccountSyncServiceTest extends TestCase
             $this->vatSettingRepository,
             $this->config,
             $this->assignCurrencyDefaultOrganizerConfigurationService,
+            $this->paymentMethodDomainRegistrationService,
         );
     }
 
@@ -97,6 +104,12 @@ class StripeAccountSyncServiceTest extends TestCase
         ]);
 
         $this->organizerStripePlatformRepository
+            ->shouldReceive('findWhere')
+            ->once()
+            ->with([OrganizerStripePlatformDomainObjectAbstract::STRIPE_ACCOUNT_ID => 'acct_123'])
+            ->andReturn(collect([(new OrganizerStripePlatformDomainObject)->setId(1)->setOrganizerId(10)]));
+
+        $this->organizerStripePlatformRepository
             ->shouldReceive('updateWhere')
             ->once()
             ->with(
@@ -105,6 +118,8 @@ class StripeAccountSyncServiceTest extends TestCase
                 [OrganizerStripePlatformDomainObjectAbstract::STRIPE_ACCOUNT_ID => 'acct_123'],
             )
             ->andReturn(2);
+
+        $this->paymentMethodDomainRegistrationService->shouldNotReceive('registerCheckoutDomain');
 
         $this->service->syncStripeAccountStatusByAccountId($stripeAccount);
 
@@ -141,7 +156,7 @@ class StripeAccountSyncServiceTest extends TestCase
 
         $this->organizerStripePlatformRepository
             ->shouldReceive('findWhere')
-            ->once()
+            ->twice()
             ->with([OrganizerStripePlatformDomainObjectAbstract::STRIPE_ACCOUNT_ID => 'acct_123'])
             ->andReturn($rows);
 
@@ -179,6 +194,103 @@ class StripeAccountSyncServiceTest extends TestCase
         $this->service->syncStripeAccountStatusByAccountId($stripeAccount);
 
         $this->addToAssertionCount(1);
+    }
+
+    public function test_sync_by_account_id_registers_the_checkout_domain_when_setup_completes(): void
+    {
+        $rows = collect([
+            (new OrganizerStripePlatformDomainObject)
+                ->setId(1)
+                ->setOrganizerId(10)
+                ->setStripeConnectPlatform(StripePlatform::IRELAND->value),
+        ]);
+
+        $this->expectSyncForCompletedAccount($rows, 10, 100);
+
+        $this->paymentMethodDomainRegistrationService
+            ->shouldReceive('registerCheckoutDomain')
+            ->once()
+            ->with(StripePlatform::IRELAND, 'acct_123')
+            ->andReturnTrue();
+
+        $this->service->syncStripeAccountStatusByAccountId($this->completedStripeAccount());
+
+        $this->addToAssertionCount(1);
+    }
+
+    public function test_sync_by_account_id_does_not_register_the_checkout_domain_for_an_already_complete_account(): void
+    {
+        $rows = collect([
+            (new OrganizerStripePlatformDomainObject)
+                ->setId(1)
+                ->setOrganizerId(10)
+                ->setStripeSetupCompletedAt('2026-01-01 00:00:00'),
+        ]);
+
+        $this->expectSyncForCompletedAccount($rows, 10, 100);
+
+        $this->paymentMethodDomainRegistrationService->shouldNotReceive('registerCheckoutDomain');
+
+        $this->service->syncStripeAccountStatusByAccountId($this->completedStripeAccount());
+
+        $this->addToAssertionCount(1);
+    }
+
+    private function expectSyncForCompletedAccount($rows, int $organizerId, int $accountId): void
+    {
+        $this->organizerStripePlatformRepository
+            ->shouldReceive('findWhere')
+            ->twice()
+            ->with([OrganizerStripePlatformDomainObjectAbstract::STRIPE_ACCOUNT_ID => 'acct_123'])
+            ->andReturn($rows);
+
+        $this->organizerStripePlatformRepository
+            ->shouldReceive('updateWhere')
+            ->once()
+            ->andReturn(1);
+
+        $this->organizerRepository
+            ->shouldReceive('findById')
+            ->once()
+            ->with($organizerId)
+            ->andReturn((new OrganizerDomainObject)->setId($organizerId)->setAccountId($accountId));
+
+        $this->accountRepository
+            ->shouldReceive('findById')
+            ->once()
+            ->with($accountId)
+            ->andReturn(
+                (new AccountDomainObject)
+                    ->setId($accountId)
+                    ->setCountry('US')
+                    ->setIsManuallyVerified(true)
+            );
+
+        $this->config->shouldReceive('get')->with('app.saas_mode_enabled')->andReturn(false);
+
+        $this->assignCurrencyDefaultOrganizerConfigurationService
+            ->shouldReceive('assignForCountry')
+            ->once()
+            ->with($organizerId, 'US');
+    }
+
+    private function completedStripeAccount(): Account
+    {
+        return Account::constructFrom([
+            'id' => 'acct_123',
+            'charges_enabled' => true,
+            'payouts_enabled' => true,
+            'country' => 'US',
+            'type' => 'standard',
+            'business_type' => 'individual',
+            'capabilities' => [],
+            'requirements' => [
+                'currently_due' => [],
+                'eventually_due' => [],
+                'past_due' => [],
+                'pending_verification' => [],
+            ],
+        ]);
     }
 
     public function test_mark_account_as_complete_assigns_currency_default_configuration(): void

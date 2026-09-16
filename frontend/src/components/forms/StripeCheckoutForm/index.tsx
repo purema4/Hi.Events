@@ -13,6 +13,7 @@ import {eventCheckoutPath, eventHomepagePath} from "../../../utilites/urlHelper.
 import {Event} from "../../../types.ts";
 import {getEmbedParentUrl} from "../../../utilites/iframeResize.ts";
 import {getCheckoutSessionIdentifier} from "../../../utilites/checkoutSession.ts";
+import {ExpressCheckout} from "./ExpressCheckout";
 
 const buildReturnUrl = (eventId: string, orderShortId: string, sessionId: string | null): string => {
     const parentUrl = getEmbedParentUrl();
@@ -38,8 +39,9 @@ const buildReturnUrl = (eventId: string, orderShortId: string, sessionId: string
     return sessionId ? `${fallback}?session_identifier=${sessionId}` : fallback;
 };
 
-export default function StripeCheckoutForm({setSubmitHandler}: {
-    setSubmitHandler: (submitHandler: () => () => Promise<void>) => void
+export default function StripeCheckoutForm({setSubmitHandler, isDarkTheme}: {
+    setSubmitHandler: (submitHandler: () => () => Promise<void>) => void,
+    isDarkTheme: boolean
 }) {
     const {eventId, orderShortId} = useParams();
     const stripe = useStripe();
@@ -49,7 +51,7 @@ export default function StripeCheckoutForm({setSubmitHandler}: {
     const {data: order, isFetched: isOrderFetched} = useGetOrderPublic(eventId, orderShortId, ['event']);
     const event = order?.event;
 
-    const handleSubmit = async () => {
+    const confirmPayment = async () => {
         if (!stripe || !elements) {
             return;
         }
@@ -110,7 +112,7 @@ export default function StripeCheckoutForm({setSubmitHandler}: {
 
     useEffect(() => {
         if (setSubmitHandler) {
-            setSubmitHandler(() => handleSubmit);
+            setSubmitHandler(() => confirmPayment);
         }
 
     }, [setSubmitHandler, stripe, elements]);
@@ -154,6 +156,16 @@ export default function StripeCheckoutForm({setSubmitHandler}: {
             radios: false,
             spacedAccordionItems: false,
         },
+        wallets: {
+            applePay: 'never',
+            googlePay: 'never',
+        },
+        defaultValues: {
+            billingDetails: {
+                name: [order.first_name, order.last_name].filter(Boolean).join(' '),
+                email: order.email,
+            },
+        },
     };
 
     return (
@@ -165,6 +177,7 @@ export default function StripeCheckoutForm({setSubmitHandler}: {
 
                 {message !== '' && <Alert mb={20}>{message}</Alert>}
                 <LoadingMask/>
+                <ExpressCheckout isDarkTheme={isDarkTheme} onConfirm={confirmPayment}/>
                 <PaymentElement
                     className={classes.stripeForElement}
                     id="payment-element"

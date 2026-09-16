@@ -3,6 +3,7 @@
 namespace HiEvents\Services\Domain\Payment\Stripe;
 
 use HiEvents\DomainObjects\Enums\CountryCode;
+use HiEvents\DomainObjects\Enums\StripePlatform;
 use HiEvents\DomainObjects\Generated\OrganizerStripePlatformDomainObjectAbstract;
 use HiEvents\DomainObjects\Generated\OrganizerVatSettingDomainObjectAbstract;
 use HiEvents\DomainObjects\OrganizerStripePlatformDomainObject;
@@ -28,6 +29,7 @@ class StripeAccountSyncService
         private readonly OrganizerVatSettingRepositoryInterface $vatSettingRepository,
         private readonly Repository $config,
         private readonly AssignCurrencyDefaultOrganizerConfigurationService $assignCurrencyDefaultOrganizerConfigurationService,
+        private readonly StripePaymentMethodDomainRegistrationService $paymentMethodDomainRegistrationService,
     ) {}
 
     public function isStripeAccountComplete(Account $stripeAccount): bool
@@ -75,6 +77,10 @@ class StripeAccountSyncService
         $details = $this->buildAccountDetails($stripeAccount);
         $isAccountSetupCompleted = $this->isStripeAccountComplete($stripeAccount);
 
+        $wasSetupIncomplete = $this->organizerStripePlatformRepository
+            ->findWhere([OrganizerStripePlatformDomainObjectAbstract::STRIPE_ACCOUNT_ID => $stripeAccount->id])
+            ->contains(fn (OrganizerStripePlatformDomainObject $row) => $row->getStripeSetupCompletedAt() === null);
+
         $this->organizerStripePlatformRepository->updateWhere(
             attributes: [
                 OrganizerStripePlatformDomainObjectAbstract::STRIPE_SETUP_COMPLETED_AT => $isAccountSetupCompleted ? now() : null,
@@ -92,6 +98,13 @@ class StripeAccountSyncService
         $organizerRows = $this->organizerStripePlatformRepository->findWhere([
             OrganizerStripePlatformDomainObjectAbstract::STRIPE_ACCOUNT_ID => $stripeAccount->id,
         ]);
+
+        if ($wasSetupIncomplete) {
+            $this->paymentMethodDomainRegistrationService->registerCheckoutDomain(
+                platform: StripePlatform::fromString($organizerRows->first()?->getStripeConnectPlatform()),
+                stripeAccountId: $stripeAccount->id,
+            );
+        }
 
         foreach ($organizerRows as $organizerRow) {
             $this->updateOrganizerCountryAndVerificationStatus($organizerRow, $stripeAccount);
@@ -126,6 +139,11 @@ class StripeAccountSyncService
             where: [
                 OrganizerStripePlatformDomainObjectAbstract::STRIPE_ACCOUNT_ID => $stripeAccount->id,
             ]
+        );
+
+        $this->paymentMethodDomainRegistrationService->registerCheckoutDomain(
+            platform: StripePlatform::fromString($organizerStripePlatform->getStripeConnectPlatform()),
+            stripeAccountId: $stripeAccount->id,
         );
 
         $this->updateOrganizerCountryAndVerificationStatus($organizerStripePlatform, $stripeAccount);

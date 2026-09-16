@@ -114,7 +114,7 @@ export class CheckoutPage {
   }
 
   async fillStripeCard(card = '4242424242424242'): Promise<void> {
-    const stripeFrame = this.page.frameLocator('iframe[title="Secure payment input frame"]');
+    const stripeFrame = this.paymentElementFrame();
     await stripeFrame.getByPlaceholder('1234 1234 1234 1234').fill(card);
     await stripeFrame.getByPlaceholder('MM / YY').fill('12 / 34');
     await stripeFrame.getByPlaceholder('CVC').fill('123');
@@ -128,8 +128,12 @@ export class CheckoutPage {
     }
   }
 
+  private paymentElementFrame(): FrameLocator {
+    return this.page.locator('#payment-element').frameLocator('iframe[title="Secure payment input frame"]');
+  }
+
   private async waitForStripeFrameToSettle(): Promise<void> {
-    const frame = this.page.locator('iframe[title="Secure payment input frame"]');
+    const frame = this.page.locator('#payment-element iframe[title="Secure payment input frame"]').first();
     await this.page.waitForTimeout(500);
     let previousHeight = -1;
     for (let attempt = 0; attempt < 20; attempt++) {

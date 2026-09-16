@@ -1,0 +1,20 @@
+.expressCheckout {
+  margin-bottom: 8px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  color: var(--checkout-text-secondary, #6B7280);
+  font-size: 13px;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--checkout-border, #E5E7EB);
+  }
+}

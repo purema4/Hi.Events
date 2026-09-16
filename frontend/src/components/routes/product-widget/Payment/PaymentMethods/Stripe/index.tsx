@@ -75,7 +75,8 @@ export const StripePaymentMethod = ({enabled, setSubmitHandler}: StripePaymentMe
     }
 
     const themeSettings = validateThemeSettings(event?.settings?.homepage_theme_settings);
-    const stripeTheme = themeSettings.mode === 'dark' ? 'night' : 'stripe';
+    const isDarkTheme = themeSettings.mode === 'dark';
+    const stripeTheme = isDarkTheme ? 'night' : 'stripe';
 
     return (
         <>
@@ -92,7 +93,7 @@ export const StripePaymentMethod = ({enabled, setSubmitHandler}: StripePaymentMe
                         },
                     },
                 }} stripe={stripePromise}>
-                    <StripeCheckoutForm setSubmitHandler={setSubmitHandler} />
+                    <StripeCheckoutForm setSubmitHandler={setSubmitHandler} isDarkTheme={isDarkTheme}/>
                 </Elements>
             )}
         </>

@@ -1106,7 +1106,7 @@ msgstr "Een optionele beschrijving van deze categorie die op de evenementpagina 
 msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
 msgstr "Een optioneel bericht om weer te geven op het uitgelichte product, bijv. \"Snel uitverkocht 🔥\" of \"Beste waarde\""
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:71
+#: src/components/forms/StripeCheckoutForm/index.tsx:73
 msgid "An unexpected error occurred."
 msgstr "Er is een onverwachte fout opgetreden."
 
@@ -1727,7 +1727,7 @@ msgstr "Awesome Organizer Ltd."
 msgid "Back to Accounts"
 msgstr "Terug naar Accounts"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:144
+#: src/components/forms/StripeCheckoutForm/index.tsx:146
 #: src/components/routes/product-widget/CollectInformation/index.tsx:361
 #: src/components/routes/product-widget/CollectInformation/index.tsx:391
 #: src/components/routes/product-widget/CollectInformation/index.tsx:420
@@ -7782,6 +7782,10 @@ msgstr "of voeg één datum toe"
 msgid "Or enable offline payments and disable Stripe"
 msgstr "Of schakel offline betalingen in en schakel Stripe uit"
 
+#: src/components/forms/StripeCheckoutForm/ExpressCheckout/index.tsx:43
+msgid "Or pay with card"
+msgstr "Of betaal met een kaart"
+
 #: src/components/routes/event/OccurrencesTab/index.tsx:415
 msgid "order"
 msgstr "bestelling"
@@ -8126,7 +8130,7 @@ msgstr "Opvulling"
 msgid "Page"
 msgstr "Pagina"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:142
+#: src/components/forms/StripeCheckoutForm/index.tsx:144
 msgid "Page no longer available"
 msgstr "Pagina niet meer beschikbaar"
 
@@ -8313,7 +8317,7 @@ msgstr "Betaalmethoden"
 msgid "Payment provider"
 msgstr "Betalingsprovider"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:130
+#: src/components/forms/StripeCheckoutForm/index.tsx:132
 msgid "Payment received"
 msgstr "Betaling ontvangen"
 
@@ -8326,7 +8330,7 @@ msgstr "Ontvangen betaling"
 msgid "Payment Status"
 msgstr "Betalingsstatus"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:96
+#: src/components/forms/StripeCheckoutForm/index.tsx:98
 msgid "Payment succeeded!"
 msgstr "Betaling gelukt!"
 
@@ -10559,7 +10563,7 @@ msgstr "Er is iets misgegaan. Probeer het opnieuw of neem contact op met support
 msgid "Something went wrong! Please try again"
 msgstr "Er ging iets mis! Probeer het opnieuw"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:105
+#: src/components/forms/StripeCheckoutForm/index.tsx:107
 msgid "Something went wrong."
 msgstr "Er ging iets mis."
 
@@ -11583,7 +11587,7 @@ msgstr "Deze naam is zichtbaar voor eindgebruikers"
 msgid "This occurrence is at capacity"
 msgstr "Deze datum zit vol"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:131
+#: src/components/forms/StripeCheckoutForm/index.tsx:133
 msgid "This order has already been paid."
 msgstr "Deze bestelling is al betaald."
 
@@ -11607,7 +11611,7 @@ msgstr "Deze bestelling wordt verwerkt."
 msgid "This order is complete."
 msgstr "Deze bestelling is compleet."
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:143
+#: src/components/forms/StripeCheckoutForm/index.tsx:145
 msgid "This order page is no longer available."
 msgstr "Deze bestelpagina is niet langer beschikbaar."
 
@@ -12680,7 +12684,7 @@ msgstr "Bekijk op Google Maps"
 msgid "View Order"
 msgstr "Bestelling Bekijken"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:132
+#: src/components/forms/StripeCheckoutForm/index.tsx:134
 #: src/components/routes/product-widget/CollectInformation/index.tsx:381
 msgid "View Order Details"
 msgstr "Bekijk bestelgegevens"
@@ -13544,7 +13548,7 @@ msgstr "Adres van je organisator"
 msgid "Your password"
 msgstr "Uw wachtwoord"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:99
+#: src/components/forms/StripeCheckoutForm/index.tsx:101
 msgid "Your payment is processing."
 msgstr "Je betaling wordt verwerkt."
 
@@ -13552,11 +13556,11 @@ msgstr "Je betaling wordt verwerkt."
 msgid "Your payment is protected with bank-level encryption"
 msgstr "Uw betaling is beveiligd met encryptie op bankniveau"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:102
+#: src/components/forms/StripeCheckoutForm/index.tsx:104
 msgid "Your payment was not successful, please try again."
 msgstr "Uw betaling is niet gelukt, probeer het opnieuw."
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:163
+#: src/components/forms/StripeCheckoutForm/index.tsx:175
 msgid "Your payment was unsuccessful. Please try again."
 msgstr "Uw betaling is mislukt. Probeer het opnieuw."
 

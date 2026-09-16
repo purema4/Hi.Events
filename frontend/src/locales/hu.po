@@ -1105,7 +1105,7 @@ msgstr "A kategória opcionális leírása, amely az esemény oldalán jelenik m
 msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
 msgstr "Opcionális üzenet a kiemelt termék megjelenítéséhez, pl. \"Gyorsan fogy 🔥\" vagy \"Legjobb ár\""
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:71
+#: src/components/forms/StripeCheckoutForm/index.tsx:73
 msgid "An unexpected error occurred."
 msgstr "Váratlan hiba történt."
 
@@ -1726,7 +1726,7 @@ msgstr "Awesome Organizer Kft."
 msgid "Back to Accounts"
 msgstr "Vissza a fiókokhoz"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:144
+#: src/components/forms/StripeCheckoutForm/index.tsx:146
 #: src/components/routes/product-widget/CollectInformation/index.tsx:361
 #: src/components/routes/product-widget/CollectInformation/index.tsx:391
 #: src/components/routes/product-widget/CollectInformation/index.tsx:420
@@ -7781,6 +7781,10 @@ msgstr "vagy adjon hozzá egyetlen időpontot"
 msgid "Or enable offline payments and disable Stripe"
 msgstr "Vagy engedélyezd az offline fizetést és tiltsd le a Stripe-ot"
 
+#: src/components/forms/StripeCheckoutForm/ExpressCheckout/index.tsx:43
+msgid "Or pay with card"
+msgstr "Vagy fizessen kártyával"
+
 #: src/components/routes/event/OccurrencesTab/index.tsx:415
 msgid "order"
 msgstr "megrendelés"
@@ -8125,7 +8129,7 @@ msgstr "Kitöltés"
 msgid "Page"
 msgstr "Oldal"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:142
+#: src/components/forms/StripeCheckoutForm/index.tsx:144
 msgid "Page no longer available"
 msgstr "Az oldal már nem elérhető"
 
@@ -8312,7 +8316,7 @@ msgstr "Fizetési módok"
 msgid "Payment provider"
 msgstr "Fizetési szolgáltató"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:130
+#: src/components/forms/StripeCheckoutForm/index.tsx:132
 msgid "Payment received"
 msgstr "Fizetés megérkezett"
 
@@ -8325,7 +8329,7 @@ msgstr "Fizetés beérkezett"
 msgid "Payment Status"
 msgstr "Fizetési állapot"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:96
+#: src/components/forms/StripeCheckoutForm/index.tsx:98
 msgid "Payment succeeded!"
 msgstr "Fizetés sikeres!"
 
@@ -10558,7 +10562,7 @@ msgstr "Valami hiba történt, kérjük, próbálja újra, vagy vegye fel a kapc
 msgid "Something went wrong! Please try again"
 msgstr "Valami hiba történt! Kérjük, próbálja újra."
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:105
+#: src/components/forms/StripeCheckoutForm/index.tsx:107
 msgid "Something went wrong."
 msgstr "Valami hiba történt."
 
@@ -11582,7 +11586,7 @@ msgstr "Ez a név látható a végfelhasználók számára"
 msgid "This occurrence is at capacity"
 msgstr "Ez az időpont betelt"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:131
+#: src/components/forms/StripeCheckoutForm/index.tsx:133
 msgid "This order has already been paid."
 msgstr "Ez a megrendelés már ki lett fizetve."
 
@@ -11606,7 +11610,7 @@ msgstr "Ez a rendelés feldolgozás alatt áll."
 msgid "This order is complete."
 msgstr "Ez a megrendelés kész."
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:143
+#: src/components/forms/StripeCheckoutForm/index.tsx:145
 msgid "This order page is no longer available."
 msgstr "Ez a megrendelési oldal már nem elérhető."
 
@@ -12679,7 +12683,7 @@ msgstr "Megtekintés a Google Térképen"
 msgid "View Order"
 msgstr "Rendelés megtekintése"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:132
+#: src/components/forms/StripeCheckoutForm/index.tsx:134
 #: src/components/routes/product-widget/CollectInformation/index.tsx:381
 msgid "View Order Details"
 msgstr "Rendelés részleteinek megtekintése"
@@ -13543,7 +13547,7 @@ msgstr "Szervezői címe"
 msgid "Your password"
 msgstr "Az Ön jelszava"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:99
+#: src/components/forms/StripeCheckoutForm/index.tsx:101
 msgid "Your payment is processing."
 msgstr "Fizetése feldolgozás alatt áll."
 
@@ -13551,11 +13555,11 @@ msgstr "Fizetése feldolgozás alatt áll."
 msgid "Your payment is protected with bank-level encryption"
 msgstr "A fizetése banki szintű titkosítással védett"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:102
+#: src/components/forms/StripeCheckoutForm/index.tsx:104
 msgid "Your payment was not successful, please try again."
 msgstr "Fizetése sikertelen volt, kérjük, próbálja újra."
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:163
+#: src/components/forms/StripeCheckoutForm/index.tsx:175
 msgid "Your payment was unsuccessful. Please try again."
 msgstr "Fizetése sikertelen volt. Kérjük, próbálja újra."
 

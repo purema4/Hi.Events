@@ -1105,7 +1105,7 @@ msgstr "Una descrizione facoltativa di questa categoria da visualizzare sulla pa
 msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
 msgstr "Un messaggio facoltativo da visualizzare sul prodotto evidenziato, ad esempio \"In vendita veloce 🔥\" o \"Miglior rapporto qualità-prezzo\""
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:71
+#: src/components/forms/StripeCheckoutForm/index.tsx:73
 msgid "An unexpected error occurred."
 msgstr "Si è verificato un errore imprevisto."
 
@@ -1726,7 +1726,7 @@ msgstr "Awesome Organizer Srl."
 msgid "Back to Accounts"
 msgstr "Torna a Account"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:144
+#: src/components/forms/StripeCheckoutForm/index.tsx:146
 #: src/components/routes/product-widget/CollectInformation/index.tsx:361
 #: src/components/routes/product-widget/CollectInformation/index.tsx:391
 #: src/components/routes/product-widget/CollectInformation/index.tsx:420
@@ -7781,6 +7781,10 @@ msgstr "oppure aggiungi una singola data"
 msgid "Or enable offline payments and disable Stripe"
 msgstr "Oppure abilita i pagamenti offline e disabilita Stripe"
 
+#: src/components/forms/StripeCheckoutForm/ExpressCheckout/index.tsx:43
+msgid "Or pay with card"
+msgstr "Oppure paga con carta"
+
 #: src/components/routes/event/OccurrencesTab/index.tsx:415
 msgid "order"
 msgstr "ordine"
@@ -8125,7 +8129,7 @@ msgstr "Spaziatura interna"
 msgid "Page"
 msgstr "Pagina"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:142
+#: src/components/forms/StripeCheckoutForm/index.tsx:144
 msgid "Page no longer available"
 msgstr "Pagina non più disponibile"
 
@@ -8312,7 +8316,7 @@ msgstr "Metodi di Pagamento"
 msgid "Payment provider"
 msgstr "Fornitore di pagamento"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:130
+#: src/components/forms/StripeCheckoutForm/index.tsx:132
 msgid "Payment received"
 msgstr "Pagamento ricevuto"
 
@@ -8325,7 +8329,7 @@ msgstr "Pagamento Ricevuto"
 msgid "Payment Status"
 msgstr "Stato Pagamento"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:96
+#: src/components/forms/StripeCheckoutForm/index.tsx:98
 msgid "Payment succeeded!"
 msgstr "Pagamento riuscito!"
 
@@ -10558,7 +10562,7 @@ msgstr "Qualcosa è andato storto, riprova o contatta l'assistenza se il problem
 msgid "Something went wrong! Please try again"
 msgstr "Qualcosa è andato storto! Riprova"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:105
+#: src/components/forms/StripeCheckoutForm/index.tsx:107
 msgid "Something went wrong."
 msgstr "Qualcosa è andato storto."
 
@@ -11582,7 +11586,7 @@ msgstr "Questo nome è visibile agli utenti finali"
 msgid "This occurrence is at capacity"
 msgstr "Questa data ha raggiunto la capacità massima"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:131
+#: src/components/forms/StripeCheckoutForm/index.tsx:133
 msgid "This order has already been paid."
 msgstr "Questo ordine è già stato pagato."
 
@@ -11606,7 +11610,7 @@ msgstr "Questo ordine è in fase di elaborazione."
 msgid "This order is complete."
 msgstr "Questo ordine è completo."
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:143
+#: src/components/forms/StripeCheckoutForm/index.tsx:145
 msgid "This order page is no longer available."
 msgstr "Questa pagina dell'ordine non è più disponibile."
 
@@ -12679,7 +12683,7 @@ msgstr "Visualizza su Google Maps"
 msgid "View Order"
 msgstr "Visualizza Ordine"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:132
+#: src/components/forms/StripeCheckoutForm/index.tsx:134
 #: src/components/routes/product-widget/CollectInformation/index.tsx:381
 msgid "View Order Details"
 msgstr "Visualizza dettagli ordine"
@@ -13543,7 +13547,7 @@ msgstr "L'indirizzo del tuo organizzatore"
 msgid "Your password"
 msgstr "La tua password"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:99
+#: src/components/forms/StripeCheckoutForm/index.tsx:101
 msgid "Your payment is processing."
 msgstr "Il tuo pagamento è in elaborazione."
 
@@ -13551,11 +13555,11 @@ msgstr "Il tuo pagamento è in elaborazione."
 msgid "Your payment is protected with bank-level encryption"
 msgstr "Il tuo pagamento è protetto con crittografia a livello bancario"
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:102
+#: src/components/forms/StripeCheckoutForm/index.tsx:104
 msgid "Your payment was not successful, please try again."
 msgstr "Il tuo pagamento non è andato a buon fine, riprova."
 
-#: src/components/forms/StripeCheckoutForm/index.tsx:163
+#: src/components/forms/StripeCheckoutForm/index.tsx:175
 msgid "Your payment was unsuccessful. Please try again."
 msgstr "Il tuo pagamento non è andato a buon fine. Riprova."
 
