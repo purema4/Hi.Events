@@ -81,6 +81,12 @@ a {
   margin-bottom: var(--hi-spacing-lg);
 }
 
+@media (pointer: coarse) {
+  .mantine-Input-input {
+    --input-fz: 16px;
+  }
+}
+
 .mantine-ScrollArea-viewport {
   padding-bottom: 0 !important;
 }
