@@ -23,6 +23,7 @@ import {useEffect, useState} from "react";
 import {useQueryClient} from "@tanstack/react-query";
 
 import {useGetOrderPublic, GET_ORDER_PUBLIC_QUERY_KEY} from "../../../../queries/useGetOrderPublic.ts";
+import {useGetOrderWalletPassesPublic} from "../../../../queries/useGetOrderWalletPassesPublic.ts";
 import {eventCheckoutPath} from "../../../../utilites/urlHelper.ts";
 import {dateToBrowserTz} from "../../../../utilites/dates.ts";
 import {formatAddress} from "../../../../utilites/addressUtilities.ts";
@@ -37,6 +38,7 @@ import {PoweredByFooter} from "../../../common/PoweredByFooter";
 import {EventDateRange} from "../../../common/EventDateRange";
 import {OnlineEventDetails} from "../../../common/OnlineEventDetails";
 import {AddToCalendarCTA} from "../../../common/AddToCalendarCTA";
+import {WalletPassCTA} from "../../../common/WalletPassCTA";
 import {InlineOrderSummary} from "../../../common/InlineOrderSummary";
 import {CheckoutContent} from "../../../layouts/Checkout/CheckoutContent";
 import {CheckoutStepTitle} from "../../../layouts/Checkout/CheckoutStepTitle";
@@ -429,6 +431,14 @@ export const OrderSummaryAndProducts = () => {
     const [editingAttendee, setEditingAttendee] = useState<Attendee | null>(null);
     const [editOrderModalOpened, setEditOrderModalOpened] = useState(false);
 
+    const hasWalletEligibleTickets = order?.status === 'COMPLETED' || order?.status === 'AWAITING_OFFLINE_PAYMENT';
+    const walletTicketCount = order?.attendees?.filter(attendee => attendee.status !== 'CANCELLED').length ?? 0;
+    const {data: walletPasses, isLoading: walletPassesLoading} = useGetOrderWalletPassesPublic(
+        eventId,
+        orderShortId,
+        hasWalletEligibleTickets && walletTicketCount > 0,
+    );
+
     useEffect(() => {
         if (eventId && order && (order.status === 'COMPLETED' || order.status === 'AWAITING_OFFLINE_PAYMENT')) {
             clearWaitlistJoinedForEvent(eventId);
@@ -599,6 +609,14 @@ export const OrderSummaryAndProducts = () => {
                             {t`Your order details have been updated. A confirmation email has been sent to the new email address.`}
                         </Text>
                     </Alert>
+                )}
+
+                {hasWalletEligibleTickets && (
+                    <WalletPassCTA
+                        appleWalletPassUrl={walletPasses?.apple_wallet_pass_url}
+                        googleWalletSaveUrl={walletPasses?.google_wallet_save_url}
+                        isLoading={walletPassesLoading}
+                    />
                 )}
 
                 <InlineOrderSummary

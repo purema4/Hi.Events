@@ -943,6 +943,11 @@ export interface Order {
     session_identifier?: string;
 }
 
+export interface OrderWalletPasses {
+    apple_wallet_pass_url: string | null;
+    google_wallet_save_url: string | null;
+}
+
 export interface Invoice {
     download_url: string;
     invoice_number: string;

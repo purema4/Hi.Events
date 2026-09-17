@@ -4,6 +4,7 @@ import {
     GenericPaginatedResponse,
     IdParam,
     Order,
+    OrderWalletPasses,
     QueryFilters,
     StripePaymentIntent
 } from "../types.ts";
@@ -176,6 +177,11 @@ export const orderClientPublic = {
 
     abandonOrder: async (eventId: IdParam, orderShortId: IdParam) => {
         const response = await publicApi.post<GenericDataResponse<Order>>(`events/${eventId}/order/${orderShortId}/abandon`);
+        return response.data;
+    },
+
+    getWalletPasses: async (eventId: IdParam, orderShortId: IdParam) => {
+        const response = await publicApi.get<GenericDataResponse<OrderWalletPasses>>(`events/${eventId}/order/${orderShortId}/wallet-passes`);
         return response.data;
     },
 }

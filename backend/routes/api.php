@@ -264,6 +264,7 @@ use HiEvents\Http\Actions\Waitlist\Organizer\GetWaitlistStatsAction;
 use HiEvents\Http\Actions\Waitlist\Organizer\OfferWaitlistEntryAction;
 use HiEvents\Http\Actions\Waitlist\Public\CancelWaitlistEntryActionPublic;
 use HiEvents\Http\Actions\Waitlist\Public\CreateWaitlistEntryActionPublic;
+use HiEvents\Http\Actions\Wallet\Public\GetOrderWalletPassesPublicAction;
 use HiEvents\Http\Actions\Webhooks\CreateWebhookAction;
 use HiEvents\Http\Actions\Webhooks\DeleteWebhookAction;
 use HiEvents\Http\Actions\Webhooks\EditWebhookAction;
@@ -632,6 +633,8 @@ $router->prefix('/public')->group(
         $router->post('/events/{event_id}/order/{order_short_id}/abandon', AbandonOrderActionPublic::class);
         $router->post('/events/{event_id}/order/{order_short_id}/await-offline-payment', TransitionOrderToOfflinePaymentPublicAction::class);
         $router->get('/events/{event_id}/order/{order_short_id}/invoice', DownloadOrderInvoicePublicAction::class);
+        $router->get('/events/{event_id}/order/{order_short_id}/wallet-passes', GetOrderWalletPassesPublicAction::class)
+            ->middleware('throttle:30,1');
 
         // Attendees
         $router->get('/events/{event_id}/attendees/{attendee_short_id}', GetAttendeeActionPublic::class);
