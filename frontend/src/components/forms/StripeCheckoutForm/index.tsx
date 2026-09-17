@@ -51,8 +51,9 @@ export default function StripeCheckoutForm({setSubmitHandler, isDarkTheme}: {
     const {data: order, isFetched: isOrderFetched} = useGetOrderPublic(eventId, orderShortId, ['event']);
     const event = order?.event;
 
-    const confirmPayment = async () => {
+    const confirmPayment = async (onFailure?: (message?: string) => void) => {
         if (!stripe || !elements) {
+            onFailure?.();
             return;
         }
 
@@ -72,6 +73,7 @@ export default function StripeCheckoutForm({setSubmitHandler, isDarkTheme}: {
             } else {
                 setMessage(t`An unexpected error occurred.`);
             }
+            onFailure?.(error.message);
             return;
         }
 
@@ -177,7 +179,12 @@ export default function StripeCheckoutForm({setSubmitHandler, isDarkTheme}: {
 
                 {message !== '' && <Alert mb={20}>{message}</Alert>}
                 <LoadingMask/>
-                <ExpressCheckout isDarkTheme={isDarkTheme} onConfirm={confirmPayment}/>
+                <ExpressCheckout
+                    isDarkTheme={isDarkTheme}
+                    onConfirm={(event) => confirmPayment(
+                        (message) => event.paymentFailed({reason: 'fail', message})
+                    )}
+                />
                 <PaymentElement
                     className={classes.stripeForElement}
                     id="payment-element"
