@@ -6,7 +6,7 @@ import classes from "./ExpressCheckout.module.scss";
 
 interface ExpressCheckoutProps {
     isDarkTheme: boolean;
-    onConfirm: () => Promise<void>;
+    onConfirm: (event: stripeJs.StripeExpressCheckoutElementConfirmEvent) => void;
 }
 
 export const ExpressCheckout = ({isDarkTheme, onConfirm}: ExpressCheckoutProps) => {
