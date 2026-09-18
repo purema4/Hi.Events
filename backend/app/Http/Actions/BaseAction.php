@@ -149,10 +149,11 @@ abstract class BaseAction extends Controller
         string $mimeType,
         string $filename,
         int $statusCode = ResponseCodes::HTTP_OK,
+        string $disposition = HeaderUtils::DISPOSITION_ATTACHMENT,
     ): LaravelResponse {
         return Response::make($contents, $statusCode, [
             'Content-Type' => $mimeType,
-            'Content-Disposition' => HeaderUtils::makeDisposition(HeaderUtils::DISPOSITION_ATTACHMENT, $filename),
+            'Content-Disposition' => HeaderUtils::makeDisposition($disposition, $filename),
         ]);
     }
 

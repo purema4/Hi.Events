@@ -8,6 +8,7 @@ use HiEvents\Http\Actions\BaseAction;
 use HiEvents\Http\Request\AppleWallet\DownloadAppleWalletPassesPublicRequest;
 use HiEvents\Services\Application\Handlers\AppleWallet\DownloadAppleWalletPassesPublicHandler;
 use Illuminate\Http\Response;
+use Symfony\Component\HttpFoundation\HeaderUtils;
 
 class DownloadAppleWalletPassesPublicAction extends BaseAction
 {
@@ -24,7 +25,11 @@ class DownloadAppleWalletPassesPublicAction extends BaseAction
             return $this->notFoundResponse();
         }
 
-        return $this->fileResponse($pass->contents, $pass->mimeType, $pass->filename)
-            ->setLastModified($pass->lastModified);
+        return $this->fileResponse(
+            contents: $pass->contents,
+            mimeType: $pass->mimeType,
+            filename: $pass->filename,
+            disposition: HeaderUtils::DISPOSITION_INLINE,
+        )->setLastModified($pass->lastModified);
     }
 }
