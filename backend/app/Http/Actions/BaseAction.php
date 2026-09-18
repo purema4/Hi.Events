@@ -21,6 +21,7 @@ use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response as LaravelResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller;
@@ -155,6 +156,13 @@ abstract class BaseAction extends Controller
             'Content-Type' => $mimeType,
             'Content-Disposition' => HeaderUtils::makeDisposition($disposition, $filename),
         ]);
+    }
+
+    protected function redirectResponse(
+        string $url,
+        int $statusCode = ResponseCodes::HTTP_FOUND,
+    ): RedirectResponse {
+        return Response::redirectTo($url, $statusCode);
     }
 
     protected function isActionAuthorized(

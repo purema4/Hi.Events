@@ -58,6 +58,7 @@ use HiEvents\Http\Actions\AppleWallet\GetLatestAppleWalletPassAction;
 use HiEvents\Http\Actions\AppleWallet\GetUpdatableAppleWalletPassesAction;
 use HiEvents\Http\Actions\AppleWallet\LogAppleWalletMessagesAction;
 use HiEvents\Http\Actions\AppleWallet\Public\DownloadAppleWalletPassesPublicAction;
+use HiEvents\Http\Actions\GoogleWallet\Public\RedirectToGoogleWalletSavePublicAction;
 use HiEvents\Http\Actions\AppleWallet\RegisterAppleWalletDeviceAction;
 use HiEvents\Http\Actions\AppleWallet\UnregisterAppleWalletDeviceAction;
 use HiEvents\Http\Actions\Attendees\CheckInAttendeeAction;
@@ -640,6 +641,8 @@ $router->prefix('/public')->group(
         $router->get('/events/{event_id}/attendees/{attendee_short_id}', GetAttendeeActionPublic::class);
         $router->get('/events/{event_id}/attendees/{attendee_short_id}/tickets', GetAttendeeTicketsActionPublic::class);
         $router->get('/events/{event_id}/apple-wallet-passes', DownloadAppleWalletPassesPublicAction::class)
+            ->middleware('throttle:60,1');
+        $router->get('/events/{event_id}/google-wallet-save', RedirectToGoogleWalletSavePublicAction::class)
             ->middleware('throttle:60,1');
 
         // Waitlist

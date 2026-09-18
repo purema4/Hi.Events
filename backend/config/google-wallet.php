@@ -19,6 +19,9 @@ return [
         array_map('trim', explode(',', (string) env('GOOGLE_WALLET_ORIGINS', ''))),
     )),
 
+    'api_url' => env('GOOGLE_WALLET_API_URL')
+        ?: rtrim((string) env('APP_FRONTEND_URL', 'http://localhost'), '/').'/api',
+
     'api_base_url' => 'https://walletobjects.googleapis.com/walletobjects/v1',
 
     'token_endpoint' => 'https://oauth2.googleapis.com/token',
