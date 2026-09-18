@@ -34,6 +34,8 @@ export const WalletPassCTA = ({appleWalletPassUrl, googleWalletSaveUrl, isLoadin
         <a
             key="apple"
             href={appleWalletPassUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className={classes.button}
             title={appleLabel}
             data-testid="apple-wallet-button"
