@@ -14,6 +14,7 @@ use HiEvents\Exceptions\NoTicketsAvailableException;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\ProductRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Attendee\DTO\EditAttendeeDTO;
+use HiEvents\Services\Domain\Product\AvailableProductQuantitiesFetchService;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
 use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
@@ -32,6 +33,7 @@ class EditAttendeeHandler
         private readonly DatabaseManager $databaseManager,
         private readonly DomainEventDispatcherService $domainEventDispatcherService,
         private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
+        private readonly AvailableProductQuantitiesFetchService $availableProductQuantitiesFetchService,
     ) {}
 
     /**
@@ -127,12 +129,18 @@ class EditAttendeeHandler
             return;
         }
 
-        $availableQuantity = $this->productRepository->getQuantityRemainingForProductPrice(
-            productId: $editAttendeeDTO->product_id,
-            productPriceId: $product->getType() === ProductPriceType::TIERED->name
-                ? $editAttendeeDTO->product_price_id
-                : $product->getProductPrices()->first()->getId(),
-        );
+        $availableQuantity = $this->availableProductQuantitiesFetchService
+            ->getAvailableProductQuantities(
+                $editAttendeeDTO->event_id,
+                ignoreCache: true,
+                eventOccurrenceId: $attendee->getEventOccurrenceId(),
+                applyOccurrenceLimits: false,
+            )
+            ->getAvailableQuantityForPrice(
+                $product->getType() === ProductPriceType::TIERED->name
+                    ? $editAttendeeDTO->product_price_id
+                    : $product->getProductPrices()->first()->getId(),
+            );
 
         if ($availableQuantity <= 0) {
             throw new NoTicketsAvailableException(
