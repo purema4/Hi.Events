@@ -16,7 +16,7 @@ import { nonSaasOnly } from '../../utils/mode';
 
 const TOTALS: KitchenSinkTotals = {
   standardBase: '$30.00',
-  standardInclusive: '$35.75',
+  standardListed: '$32.50',
   subtotal: '$132.50',
   fees: '$5.00',
   taxes: '$4.50',
@@ -24,7 +24,7 @@ const TOTALS: KitchenSinkTotals = {
 };
 
 const OCCURRENCE_LABEL = 'Dockside Session';
-const BASE_STANDARD_INCLUSIVE = '$30.25';
+const BASE_STANDARD_LISTED = '$27.50';
 
 const utcParts = (isoDate: string) => {
   const date = new Date(isoDate);
@@ -103,7 +103,7 @@ function buildCheckoutOptions(
     await expect(paneTime).toContainText(/7:00\s?PM/i);
     await expect(paneLocation).toHaveCount(0);
     await expect(selector.productsLoadingOverlay()).toHaveCount(0);
-    await expect(standardRow.getByText(BASE_STANDARD_INCLUSIVE).first()).toBeVisible();
+    await expect(standardRow.getByText(BASE_STANDARD_LISTED).first()).toBeVisible();
 
     const secondLabel = dayButtonLabel(second.start_date);
     await selector.navigateToMonthOf(second.start_date);
@@ -113,7 +113,7 @@ function buildCheckoutOptions(
     await expect(pane.getByText(OCCURRENCE_LABEL)).toBeVisible();
     await expect(paneLocation).toContainText('Warehouse 9, Brooklyn');
     await expect(selector.productsLoadingOverlay()).toHaveCount(0);
-    await expect(standardRow.getByText(TOTALS.standardInclusive).first()).toBeVisible();
+    await expect(standardRow.getByText(TOTALS.standardListed).first()).toBeVisible();
   };
 
   const expectSummaryDetails = async (page: Page) => {

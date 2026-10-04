@@ -19,6 +19,7 @@ test.describe('password management', () => {
     await page.getByRole('button', { name: 'EO', exact: true }).click();
     await page.getByRole('menuitem', { name: 'Logout' }).click();
     await expect(page).toHaveURL(/\/auth\/login/);
+    await page.waitForLoadState('networkidle');
 
     await page.getByLabel(/^Email/).fill(freshAccount.email);
     await page.getByLabel(/^Password/).fill(newPassword);

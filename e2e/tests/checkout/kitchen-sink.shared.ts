@@ -219,7 +219,7 @@ export async function arrangeKitchenSinkEvent(
 
 export interface KitchenSinkTotals {
   standardBase: string;
-  standardInclusive: string;
+  standardListed: string;
   subtotal: string;
   fees: string;
   taxes: string;
@@ -292,7 +292,7 @@ export async function runKitchenSinkCheckout(
   await expect(selectRoot.getByRole('heading', { name: 'Tickets', exact: true })).toBeVisible();
   await expect(selectRoot.getByText('There are no tickets available for this event')).toBeVisible();
 
-  await expect(productRow('Standard Ticket').getByText(totals.standardInclusive).first()).toBeVisible();
+  await expect(productRow('Standard Ticket').getByText(totals.standardListed).first()).toBeVisible();
   const seatedRow = productRow('Seated Ticket');
   const balconyTier = seatedRow.locator('.hi-price-tier-row').filter({ hasText: 'Balcony' });
   const frontRowTier = seatedRow.locator('.hi-price-tier-row').filter({ hasText: 'Front Row' });
@@ -300,7 +300,7 @@ export async function runKitchenSinkCheckout(
   await expect(frontRowTier.getByText('$40.00')).toBeVisible();
   const donationRow = productRow('Supporter Donation');
   await expect(donationRow.getByLabel(/^Amount/)).toBeVisible();
-  await expect(productRow('Event T-Shirt').getByText('$13.75').first()).toBeVisible();
+  await expect(productRow('Event T-Shirt').getByText('$12.50').first()).toBeVisible();
   await expect(selectRoot.getByText('Secret VIP')).toHaveCount(0);
   await expect(selectRoot.getByText('Staff Comp')).toHaveCount(0);
 
@@ -308,10 +308,10 @@ export async function runKitchenSinkCheckout(
   const vipRow = productRow('Secret VIP');
   await expect(vipRow.getByText('$40.00')).toBeVisible();
   await expect(vipRow.getByText('$50.00')).toBeVisible();
-  await expect(productRow('Standard Ticket').getByText(totals.standardInclusive).first()).toBeVisible();
+  await expect(productRow('Standard Ticket').getByText(totals.standardListed).first()).toBeVisible();
   await expect(balconyTier.getByText('$15.00')).toBeVisible();
   await expect(frontRowTier.getByText('$40.00')).toBeVisible();
-  await expect(productRow('Event T-Shirt').getByText('$13.75').first()).toBeVisible();
+  await expect(productRow('Event T-Shirt').getByText('$12.50').first()).toBeVisible();
   await expect(selectRoot.getByText('Staff Comp')).toHaveCount(0);
 
   await selection.setQuantityForProduct('Standard Ticket', 1);

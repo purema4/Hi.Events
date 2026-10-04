@@ -5,7 +5,7 @@ import { nonSaasOnly } from '../../utils/mode';
 
 const TOTALS: KitchenSinkTotals = {
   standardBase: '$25.00',
-  standardInclusive: '$30.25',
+  standardListed: '$27.50',
   subtotal: '$127.50',
   fees: '$5.00',
   taxes: '$4.00',
