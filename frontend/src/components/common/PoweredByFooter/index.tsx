@@ -4,6 +4,15 @@ import classNames from "classnames";
 import React, {useMemo} from "react";
 import {iHavePurchasedALicence, isHiEvents} from "../../../utilites/helpers.ts";
 import {getConfig} from "../../../utilites/config.ts";
+import {useLocation} from "react-router";
+
+const frontendHostname = () => {
+    try {
+        return new URL(getConfig("VITE_FRONTEND_URL") ?? "").hostname;
+    } catch {
+        return "unknown";
+    }
+};
 
 /**
  * (c) Hi.Events Ltd 2025
@@ -21,27 +30,23 @@ import {getConfig} from "../../../utilites/config.ts";
 export const PoweredByFooter = (
     props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 ) => {
-    if (iHavePurchasedALicence()) {
-        return <></>;
-    }
+    const {pathname} = useLocation();
 
     const link = useMemo(() => {
-        let host = getConfig("VITE_FRONTEND_URL") ?? "unknown";
-        let medium = "app";
-
-        if (typeof window !== "undefined" && window.location) {
-            host = window.location.hostname;
-            medium = window.location.pathname.includes("/widget") ? "widget" : "app";
-        }
+        const medium = pathname.includes("/widget") ? "widget" : "app";
 
         const url = new URL("https://hi.events");
         url.searchParams.set("utm_source", "app-powered-by-footer");
         url.searchParams.set("utm_medium", isHiEvents() ? medium : 'self-hosted-' + medium);
         url.searchParams.set("utm_campaign", "powered-by");
-        url.searchParams.set("utm_content", isHiEvents() ? "hi.events" : host);
+        url.searchParams.set("utm_content", isHiEvents() ? "hi.events" : frontendHostname());
 
         return url.toString();
-    }, []);
+    }, [pathname]);
+
+    if (iHavePurchasedALicence()) {
+        return <></>;
+    }
 
     const footerContent = isHiEvents() ? (
         <>
