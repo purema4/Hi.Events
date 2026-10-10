@@ -92,6 +92,81 @@ class DuplicateEventServiceTest extends TestCase
         $this->assertNotContains($pastTodayStart->toDateTimeString(), $clonedStartDates, 'A same-UTC-day but already-past occurrence must not be cloned');
     }
 
+    public function test_duplicated_webhooks_keep_the_secret_of_the_source_webhook(): void
+    {
+        $user = User::factory()->withAccount()->create();
+        $this->actingAs($user);
+        $accountId = $user->accounts()->first()->id;
+        $now = now()->toDateTimeString();
+        $secret = str_repeat('s', 32);
+
+        $organizerId = DB::table('organizers')->insertGetId([
+            'account_id' => $accountId,
+            'name' => 'Webhook Organizer',
+            'email' => 'webhook-organizer@example.test',
+            'currency' => 'USD',
+            'timezone' => 'UTC',
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        DB::table('organizer_settings')->insert([
+            'organizer_id' => $organizerId,
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $eventId = DB::table('events')->insertGetId([
+            'title' => 'Source event with a webhook',
+            'status' => 'DRAFT',
+            'account_id' => $accountId,
+            'user_id' => $user->id,
+            'organizer_id' => $organizerId,
+            'currency' => 'USD',
+            'timezone' => 'UTC',
+            'short_id' => 'evt_'.uniqid(),
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        DB::table('webhooks')->insert([
+            'url' => 'https://example.com/webhook',
+            'event_types' => json_encode(['order.created']),
+            'status' => 'ENABLED',
+            'secret' => $secret,
+            'user_id' => $user->id,
+            'event_id' => $eventId,
+            'account_id' => $accountId,
+            'created_at' => $now,
+            'updated_at' => $now,
+        ]);
+
+        $newEvent = $this->app->make(DuplicateEventService::class)->duplicateEvent(
+            eventId: (string) $eventId,
+            accountId: (string) $accountId,
+            title: 'Duplicated event',
+            startDate: now()->utc()->addDays(10)->toDateTimeString(),
+            duplicateProducts: false,
+            duplicateQuestions: false,
+            duplicateSettings: false,
+            duplicatePromoCodes: false,
+            duplicateCapacityAssignments: false,
+            duplicateCheckInLists: false,
+            duplicateEventCoverImage: false,
+            duplicateTicketLogo: false,
+            duplicateWebhooks: true,
+            duplicateAffiliates: false,
+        );
+
+        $duplicatedSecrets = DB::table('webhooks')
+            ->where('event_id', $newEvent->getId())
+            ->whereNull('deleted_at')
+            ->pluck('secret')
+            ->all();
+
+        $this->assertSame([$secret], $duplicatedSecrets, 'The duplicated webhook must keep the secret of the source webhook');
+    }
+
     private function insertOccurrence(int $eventId, string $startDate): void
     {
         $now = now()->toDateTimeString();

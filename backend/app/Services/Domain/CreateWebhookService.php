@@ -17,6 +17,10 @@ class CreateWebhookService
 
     public function createWebhook(WebhookDomainObject $webhookDomainObject): WebhookDomainObject
     {
+        // Keep a secret set by the caller (e.g. event duplication), otherwise generate one.
+        // getSecret() can't be used: it throws when no secret was set.
+        $secret = $webhookDomainObject->toArray()[WebhookDomainObjectAbstract::SECRET] ?? Str::random(32);
+
         $webhook = $this->webhookRepository->create([
             WebhookDomainObjectAbstract::URL => $webhookDomainObject->getUrl(),
             WebhookDomainObjectAbstract::EVENT_TYPES => $webhookDomainObject->getEventTypes(),
@@ -25,7 +29,7 @@ class CreateWebhookService
             WebhookDomainObjectAbstract::EVENT_ID => $webhookDomainObject->getEventId(),
             WebhookDomainObjectAbstract::ORGANIZER_ID => $webhookDomainObject->getOrganizerId(),
             WebhookDomainObjectAbstract::USER_ID => $webhookDomainObject->getUserId(),
-            WebhookDomainObjectAbstract::SECRET => Str::random(32),
+            WebhookDomainObjectAbstract::SECRET => $secret,
         ]);
 
         $this->logger->info('Created webhook', [
