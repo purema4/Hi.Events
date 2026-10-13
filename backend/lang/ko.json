@@ -918,5 +918,11 @@
     "This offer expires on :date. Please complete your order before it expires.": "이 제안은 :date에 만료됩니다. 만료 전에 주문을 완료해 주세요.",
     "Every tier except the last needs a quantity when tiers are released in order.": "등급을 순차적으로 공개할 때는 마지막 등급을 제외한 모든 등급에 수량이 필요합니다.",
     "This price is not on sale yet": "이 가격은 아직 판매 전입니다",
-    "Price is locked until earlier tiers sell out": "이전 등급이 매진될 때까지 이 가격은 잠겨 있습니다"
+    "Price is locked until earlier tiers sell out": "이전 등급이 매진될 때까지 이 가격은 잠겨 있습니다",
+    "API keys cannot be created while impersonating a user.": "대리 로그인 중에는 API 키를 만들 수 없습니다.",
+    "API key not found": "API 키를 찾을 수 없습니다",
+    "This API key does not have the :ability ability.": "이 API 키에는 :ability 권한이 없습니다.",
+    "This route can only be called with an API key.": "이 경로는 API 키로만 호출할 수 있습니다.",
+    "This route is not available to API keys.": "이 경로는 API 키로 사용할 수 없습니다.",
+    "API keys can only check attendees in, not mark their orders as paid.": "API 키로는 참석자 체크인만 할 수 있으며, 주문을 결제 완료로 표시할 수는 없습니다."
 }

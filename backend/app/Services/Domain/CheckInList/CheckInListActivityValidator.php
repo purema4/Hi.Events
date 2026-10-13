@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace HiEvents\Services\Domain\CheckInList;
 
 use HiEvents\DomainObjects\CheckInListDomainObject;
+use HiEvents\DomainObjects\Enums\CheckInFailureCode;
 use HiEvents\Exceptions\CannotCheckInException;
 use HiEvents\Helper\DateHelper;
 
@@ -16,11 +17,11 @@ class CheckInListActivityValidator
     public function assertActive(CheckInListDomainObject $checkInList): void
     {
         if ($checkInList->getExpiresAt() && DateHelper::utcDateIsPast($checkInList->getExpiresAt())) {
-            throw new CannotCheckInException(__('Check-in list has expired'));
+            throw new CannotCheckInException(__('Check-in list has expired'), CheckInFailureCode::CHECK_IN_LIST_EXPIRED);
         }
 
         if ($checkInList->getActivatesAt() && DateHelper::utcDateIsFuture($checkInList->getActivatesAt())) {
-            throw new CannotCheckInException(__('Check-in list is not active yet'));
+            throw new CannotCheckInException(__('Check-in list is not active yet'), CheckInFailureCode::CHECK_IN_LIST_NOT_ACTIVE);
         }
     }
 }

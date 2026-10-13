@@ -281,6 +281,13 @@ export const router: RouteObject[] = [
                         }
                     },
                     {
+                        path: "api-keys",
+                        async lazy() {
+                            const ApiKeys = await import("./components/routes/account/ManageAccount/sections/ApiKeys");
+                            return { Component: ApiKeys.default };
+                        }
+                    },
+                    {
                         path: "danger-zone",
                         async lazy() {
                             const DangerZone = await import("./components/routes/account/ManageAccount/sections/DangerZone");

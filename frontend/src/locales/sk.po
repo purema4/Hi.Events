@@ -472,6 +472,10 @@ msgstr "Vzor dňa v týždni"
 msgid "Abandoned"
 msgstr "Opustené"
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:94
+msgid "Abilities"
+msgstr "Oprávnenia"
+
 #: src/components/layouts/EventHomepage/index.tsx:483
 msgid "About"
 msgstr "O udalosti"
@@ -1240,6 +1244,19 @@ msgstr "Všetky otázky od držiteľov produktov budú odoslané na túto e-mail
 msgid "Any single date can differ: change its capacity in Edit Date, or a ticket's per-date quantity on that date's Products tab."
 msgstr "Každý dátum sa môže líšiť: zmeňte jeho kapacitu v Upraviť dátum alebo množstvo lístka na dátum na karte Produkty daného dátumu."
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:60
+msgid "API key created successfully"
+msgstr "Kľúč API bol vytvorený"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:26
+msgid "API key revoked"
+msgstr "Kľúč API bol zrušený"
+
+#: src/components/routes/account/ManageAccount/index.tsx:36
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:81
+msgid "API Keys"
+msgstr "Kľúče API"
+
 #: src/components/common/WidgetEditor/index.tsx:216
 msgid "Appearance"
 msgstr "Vzhľad"
@@ -1499,6 +1516,10 @@ msgstr "Naozaj chcete obnoviť túto udalosť? Bude obnovená ako koncept."
 msgid "Are you sure you want to restore this organizer?"
 msgstr "Naozaj chcete obnoviť tohto organizátora?"
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:24
+msgid "Are you sure you want to revoke this API key? Integrations using it will stop working immediately."
+msgstr "Naozaj chcete zrušiť tento kľúč API? Integrácie, ktoré ho používajú, okamžite prestanú fungovať."
+
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:50
 msgid "Are you sure you want to revoke this invitation?"
 msgstr "Naozaj chcete zrušiť túto pozvánku?"
@@ -1656,6 +1677,7 @@ msgstr "účastníci"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:451
 #: src/components/common/StatBoxes/index.tsx:73
 #: src/components/layouts/Event/index.tsx:131
+#: src/components/modals/CreateApiKeyModal/index.tsx:24
 #: src/components/modals/ManageOccurrenceModal/index.tsx:174
 #: src/components/modals/ManageOrderModal/index.tsx:283
 #: src/components/routes/admin/Messages/index.tsx:90
@@ -2233,6 +2255,10 @@ msgstr "Platby"
 msgid "Charity"
 msgstr "Charitatívna organizácia"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:31
+msgid "Check attendees in and out"
+msgstr "Odbavovanie príchodov a odchodov účastníkov"
+
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:307
 #: src/components/layouts/CheckIn/tabs/SearchTab.tsx:82
 msgid "Check in"
@@ -2331,6 +2357,10 @@ msgstr "Zoznam odbavení nenájdený"
 #: src/components/routes/event/CheckInLists/index.tsx:60
 msgid "check-in lists"
 msgstr "check-in zoznamy"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:25
+msgid "Check-in lists"
+msgstr "Zoznamy odbavení"
 
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:51
 msgid "Check-in Lists"
@@ -3167,6 +3197,12 @@ msgstr "Vytvorte a nakonfigurujte lístky a tovar na predaj."
 msgid "Create Announcement"
 msgstr "Vytvoriť oznámenie"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:86
+#: src/components/modals/CreateApiKeyModal/index.tsx:131
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:83
+msgid "Create API Key"
+msgstr "Vytvoriť kľúč API"
+
 #: src/components/modals/CreateAttendeeModal/index.tsx:320
 msgid "Create Attendee"
 msgstr "Vytvoriť účastníka"
@@ -3307,6 +3343,10 @@ msgstr "Vytvorte vlastnú udalosť"
 #: src/components/routes/admin/Messages/index.tsx:310
 msgid "Created"
 msgstr "Vytvorené"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:95
+msgid "Created by"
+msgstr "Vytvoril"
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:593
 msgid "Creating {0} dates. This may take a moment."
@@ -3496,7 +3536,7 @@ msgstr "Nebezpečná zóna"
 
 #: src/components/common/DangerZone/index.tsx:30
 #: src/components/common/EntityActions/index.tsx:32
-#: src/components/routes/account/ManageAccount/index.tsx:36
+#: src/components/routes/account/ManageAccount/index.tsx:42
 #: src/components/routes/account/ManageAccount/sections/DangerZone/index.tsx:80
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:572
 #: src/components/routes/event/Settings/index.tsx:106
@@ -3931,6 +3971,7 @@ msgid "Donation"
 msgstr "Dar"
 
 #: src/components/modals/CheckInListSuccessModal/index.tsx:59
+#: src/components/modals/CreateApiKeyModal/index.tsx:79
 #: src/components/modals/CreateOrganizerWebhookModal/index.tsx:72
 #: src/components/modals/CreateWebhookModal/index.tsx:72
 #: src/components/modals/EventLiveCelebrationModal/index.tsx:123
@@ -4802,6 +4843,10 @@ msgstr "Výkonnosť udalostí"
 msgid "Events Starting in Next 24 Hours"
 msgstr "Udalosti začínajúce v nasledujúcich 24 hodinách"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:21
+msgid "Events, settings and occurrences"
+msgstr "Podujatia, nastavenia a termíny"
+
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:896
 msgid "Every"
 msgstr "Každé"
@@ -4874,6 +4919,7 @@ msgid "Execute now"
 msgstr "Vykonať teraz"
 
 #: src/components/forms/CheckInListForm/index.tsx:160
+#: src/components/modals/CreateApiKeyModal/index.tsx:126
 msgid "Expiration date"
 msgstr "Dátum vypršania"
 
@@ -4883,6 +4929,7 @@ msgid "Expired"
 msgstr "Vypršané"
 
 #: src/components/common/PromoCodeTable/index.tsx:73
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:97
 msgid "Expires"
 msgstr "Vyprší"
 
@@ -6492,6 +6539,10 @@ msgstr "Posledná odpoveď"
 msgid "Last Triggered"
 msgstr "Naposledy spustené"
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:96
+msgid "Last used"
+msgstr "Naposledy použitý"
+
 #: src/components/routes/event/Reports/PromoCodesReport/index.tsx:70
 msgid "Last Used"
 msgstr "Naposledy použité"
@@ -6527,6 +6578,10 @@ msgstr "Nechajte zapnuté, aby sa vzťahovalo na všetky lístky podujatia. Vypn
 #: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:83
 msgid "Let attendees add their tickets to Google Wallet and Apple Wallet. The branding below is used on both."
 msgstr "Umožnite účastníkom pridať si vstupenky do Google Wallet a Apple Wallet. Vzhľad nižšie sa používa pre obe."
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:82
+msgid "Let other applications access your account data with the abilities you choose. Keys are shown only once, when they are created."
+msgstr "Umožnite iným aplikáciám pristupovať k údajom vášho účtu s oprávneniami, ktoré zvolíte. Kľúče sa zobrazia iba raz, pri vytvorení."
 
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:305
 msgid "Let them know about the change"
@@ -7073,8 +7128,10 @@ msgstr "Nam placerat elementum..."
 #: src/components/forms/ProductCategoryForm/index.tsx:16
 #: src/components/forms/ProductForm/index.tsx:196
 #: src/components/forms/TaxAndFeeForm/index.tsx:61
+#: src/components/modals/CreateApiKeyModal/index.tsx:90
 #: src/components/modals/DuplicateEventModal/index.tsx:110
 #: src/components/routes/account/ManageAccount/sections/AccountSettings/index.tsx:63
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:93
 #: src/components/routes/admin/Configurations/index.tsx:224
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:80
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:238
@@ -7083,6 +7140,7 @@ msgstr "Meno"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:32
 #: src/components/modals/CreateAffiliateModal/index.tsx:28
+#: src/components/modals/CreateApiKeyModal/index.tsx:46
 #: src/components/modals/EditAffiliateModal/index.tsx:33
 #: src/components/routes/admin/Configurations/index.tsx:167
 msgid "Name is required"
@@ -7108,6 +7166,8 @@ msgstr "Čistý príjem"
 #: src/components/common/OrganizerWebhookTable/index.tsx:266
 #: src/components/common/PromoCodeTable/index.tsx:166
 #: src/components/common/WebhookTable/index.tsx:266
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:56
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:62
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:104
 msgid "Never"
 msgstr "Nikdy"
@@ -7192,6 +7252,10 @@ msgstr "Žiadni partneri na zobrazenie"
 #: src/components/routes/admin/Announcements/index.tsx:145
 msgid "No announcements yet"
 msgstr "Zatiaľ žiadne oznámenia"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:106
+msgid "No API keys yet"
+msgstr "Zatiaľ žiadne kľúče API"
 
 #: src/components/common/NoEventsBlankSlate/index.tsx:21
 msgid "No archived events to show."
@@ -7967,6 +8031,10 @@ msgstr "Voliteľná predpona pre čísla faktúr (napr. INV-)"
 msgid "Optional text for disclaimers, contact info, or thank you notes (single line only)"
 msgstr "Voliteľný text pre vyhlásenia, kontaktné informácie alebo poďakovania (iba jeden riadok)"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:127
+msgid "Optional. The key stops working at the end of this day."
+msgstr "Voliteľné. Kľúč prestane fungovať na konci tohto dňa."
+
 #: src/components/common/QuestionsTable/index.tsx:125
 msgid "options"
 msgstr "možnosti"
@@ -8162,6 +8230,7 @@ msgstr "objednávky"
 #: src/components/common/OccurrenceAttendeesAndOrders/index.tsx:65
 #: src/components/layouts/Admin/index.tsx:17
 #: src/components/layouts/Event/index.tsx:125
+#: src/components/modals/CreateApiKeyModal/index.tsx:23
 #: src/components/modals/ManageOccurrenceModal/index.tsx:178
 #: src/components/routes/admin/Attribution/index.tsx:200
 #: src/components/routes/admin/Orders/index.tsx:44
@@ -9066,6 +9135,10 @@ msgstr "Predané produkty"
 msgid "Products sorted successfully"
 msgstr "Produkty boli úspešne zoradené"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:22
+msgid "Products, categories, capacities, taxes and fees"
+msgstr "Produkty, kategórie, kapacity, dane a poplatky"
+
 #: src/components/routes/profile/ManageProfile/index.tsx:117
 msgid "Profile"
 msgstr "Profil"
@@ -9280,6 +9353,10 @@ msgstr "Znovu ponúknuť miesto"
 #: src/components/routes/event/OccurrenceDetail/index.tsx:94
 msgid "Reactivate this date? It will be reopened for future sales."
 msgstr "Obnoviť tento termín? Predaj sa naň znova otvorí."
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:98
+msgid "Read"
+msgstr "Čítanie"
 
 #: src/components/modals/PublishEventModal/index.tsx:147
 msgid "Ready to go live?"
@@ -9545,6 +9622,10 @@ msgstr "Správa nenájdená"
 msgid "Reports"
 msgstr "Reporty"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:26
+msgid "Reports and statistics"
+msgstr "Reporty a štatistiky"
+
 #: src/components/routes/my-tickets/index.tsx:186
 msgid "Request a new link"
 msgstr "Požiadať o nový odkaz"
@@ -9731,6 +9812,11 @@ msgstr "Súhrn príjmov"
 #: src/components/routes/admin/SpamEvents/index.tsx:102
 msgid "Review events flagged as potential spam by the automated check"
 msgstr "Skontrolujte podujatia označené automatickou kontrolou ako možný spam"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:69
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:70
+msgid "Revoke"
+msgstr "Zrušiť"
 
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:133
 msgid "Revoke invitation"
@@ -10197,6 +10283,10 @@ msgstr "Vybrať všetko — {0}"
 #: src/components/routes/organizer/Reports/PlatformFeesReport/index.tsx:119
 msgid "Select an event"
 msgstr "Vybrať udalosť"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:47
+msgid "Select at least one ability"
+msgstr "Vyberte aspoň jedno oprávnenie"
 
 #: src/components/routes/admin/Announcements/index.tsx:310
 msgid "Select at least one account"
@@ -10819,6 +10909,7 @@ msgstr "Niečo sa pokazilo pri odstraňovaní dane alebo poplatku"
 msgid "Something went wrong, please try again, or contact support if the problem persists"
 msgstr "Niečo sa pokazilo, skúste to znovu alebo kontaktujte podporu, ak problém pretrváva"
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:29
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:44
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:59
 msgid "Something went wrong! Please try again"
@@ -11518,6 +11609,14 @@ msgstr "Udalosť, ktorú hľadáte, momentálne nie je dostupná. Mohla byť ods
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "Celá suma objednávky bude vrátená na pôvodný platobný prostriedok zákazníka."
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:113
+msgid "The key can change data in your account"
+msgstr "Kľúč môže meniť údaje vo vašom účte"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:99
+msgid "The key can only read this data"
+msgstr "Kľúč môže tieto údaje iba čítať"
+
 #: src/components/modals/CreateAttendeeModal/index.tsx:237
 msgid "The language the attendee will receive emails in."
 msgstr "Jazyk, v ktorom bude účastník dostávať e-maily."
@@ -11848,6 +11947,10 @@ msgstr "Toto je meno vášho organizátora, ktoré sa zobrazí vašim používat
 #: src/components/modals/CreateWebhookModal/index.tsx:64
 msgid "This is the only time the signing secret will be shown. Please copy it now and store it securely."
 msgstr "Toto je jediný čas, kedy sa zobrazí podpisový tajný kľúč. Skopírujte ho teraz a bezpečne uložte."
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:71
+msgid "This is the only time this API key will be shown. Please copy it now and store it securely."
+msgstr "Tento kľúč API sa zobrazí iba tentoraz. Skopírujte si ho teraz a uložte ho na bezpečné miesto."
 
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:26
 #~ msgid "This limits total sales across every date in your schedule combined — it is not a per-date limit. To limit attendance for each date, set a capacity on the <0>Occurrence Schedule page</0>."
@@ -12209,6 +12312,10 @@ msgstr "Do"
 #: src/components/modals/SendMessageModal/index.tsx:315
 msgid "To increase your limits, contact us at"
 msgstr "Na zvýšenie limitov nás kontaktujte na"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:91
+msgid "To recognise the integration that uses this key"
+msgstr "Na rozpoznanie integrácie, ktorá tento kľúč používa"
 
 #: src/components/common/OccurrenceSelect/index.tsx:148
 #: src/components/common/PeriodSelector/index.tsx:30
@@ -13271,6 +13378,10 @@ msgstr "Webhook bude odosielať notifikácie"
 msgid "Webhooks"
 msgstr "Webhooky"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:27
+msgid "Webhooks and their logs"
+msgstr "Webhooky a ich protokoly"
+
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:102
 msgid "Website"
 msgstr "Webstránka"
@@ -13538,6 +13649,10 @@ msgstr "Workshop"
 msgid "Workshop with early bird"
 msgstr "Workshop s early bird"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:112
+msgid "Write"
+msgstr "Zápis"
+
 #: src/components/common/ContactOrganizerModal/index.tsx:89
 msgid "Write your message here..."
 msgstr "Napíšte správu tu..."
@@ -13787,6 +13902,10 @@ msgstr "Názov vášho účtu sa používa na stránkach udalostí a v e-mailoch
 #: src/components/routes/event/Affiliates/index.tsx:48
 msgid "Your affiliates have been exported successfully."
 msgstr "Vaši partneri boli úspešne exportovaní."
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:69
+msgid "Your API Key"
+msgstr "Váš kľúč API"
 
 #: src/components/routes/event/attendees.tsx:164
 msgid "Your attendees have been exported successfully."

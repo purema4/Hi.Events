@@ -43,6 +43,7 @@ class OrderDomainObject extends Generated\OrderDomainObjectAbstract implements I
             self::PAYMENT_STATUS,
             self::REFUND_STATUS,
             self::CREATED_AT,
+            self::UPDATED_AT,
             self::FIRST_NAME,
             self::LAST_NAME,
             self::EMAIL,
@@ -59,6 +60,10 @@ class OrderDomainObject extends Generated\OrderDomainObjectAbstract implements I
                 self::CREATED_AT => [
                     'asc' => __('Oldest First'),
                     'desc' => __('Newest First'),
+                ],
+                self::UPDATED_AT => [
+                    'desc' => __('Recently Updated First'),
+                    'asc' => __('Recently Updated Last'),
                 ],
                 self::FIRST_NAME => [
                     'asc' => __('Buyer Name A-Z'),

@@ -752,5 +752,11 @@
     "The Apple Wallet pass could not be encoded: :message": "Не удалось закодировать карту Apple Wallet: :message",
     "The Apple Wallet pass is no longer available.": "Карта Apple Wallet больше недоступна.",
     "Ticket for :event": "Билет на :event",
-    "Ticket number": "Номер билета"
+    "Ticket number": "Номер билета",
+    "API keys cannot be created while impersonating a user.": "Нельзя создавать ключи API, действуя от имени другого пользователя.",
+    "API key not found": "Ключ API не найден",
+    "This API key does not have the :ability ability.": "У этого ключа API нет разрешения :ability.",
+    "This route can only be called with an API key.": "Этот маршрут можно вызвать только с ключом API.",
+    "This route is not available to API keys.": "Этот маршрут недоступен для ключей API.",
+    "API keys can only check attendees in, not mark their orders as paid.": "Ключи API могут только регистрировать вход участников, но не отмечать их заказы как оплаченные."
 }

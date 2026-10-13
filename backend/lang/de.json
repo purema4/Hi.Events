@@ -764,5 +764,11 @@
     "The Apple Wallet pass could not be encoded: :message": "Der Apple Wallet-Pass konnte nicht kodiert werden: :message",
     "The Apple Wallet pass is no longer available.": "Der Apple Wallet-Pass ist nicht mehr verfügbar.",
     "Ticket for :event": "Ticket für :event",
-    "Ticket number": "Ticketnummer"
+    "Ticket number": "Ticketnummer",
+    "API keys cannot be created while impersonating a user.": "API-Schlüssel können während einer Identitätsübernahme nicht erstellt werden.",
+    "API key not found": "API-Schlüssel nicht gefunden",
+    "This API key does not have the :ability ability.": "Dieser API-Schlüssel hat die Berechtigung :ability nicht.",
+    "This route can only be called with an API key.": "Diese Route kann nur mit einem API-Schlüssel aufgerufen werden.",
+    "This route is not available to API keys.": "Diese Route ist für API-Schlüssel nicht verfügbar.",
+    "API keys can only check attendees in, not mark their orders as paid.": "API-Schlüssel können Teilnehmer nur einchecken, nicht ihre Bestellungen als bezahlt markieren."
 }

@@ -764,5 +764,11 @@
     "The Apple Wallet pass could not be encoded: :message": "Apple Wallet-kortet kunde inte kodas: :message",
     "The Apple Wallet pass is no longer available.": "Apple Wallet-kortet är inte längre tillgängligt.",
     "Ticket for :event": "Biljett till :event",
-    "Ticket number": "Biljettnummer"
+    "Ticket number": "Biljettnummer",
+    "API keys cannot be created while impersonating a user.": "API-nycklar kan inte skapas under personifiering av en användare.",
+    "API key not found": "API-nyckeln hittades inte",
+    "This API key does not have the :ability ability.": "Den här API-nyckeln har inte behörigheten :ability.",
+    "This route can only be called with an API key.": "Den här rutten kan bara anropas med en API-nyckel.",
+    "This route is not available to API keys.": "Den här rutten är inte tillgänglig för API-nycklar.",
+    "API keys can only check attendees in, not mark their orders as paid.": "API-nycklar kan bara checka in deltagare, inte markera deras beställningar som betalda."
 }

@@ -764,5 +764,11 @@
     "The Apple Wallet pass could not be encoded: :message": "Preukaz Apple Wallet sa nepodarilo zakódovať: :message",
     "The Apple Wallet pass is no longer available.": "Preukaz Apple Wallet už nie je dostupný.",
     "Ticket for :event": "Vstupenka na :event",
-    "Ticket number": "Číslo vstupenky"
+    "Ticket number": "Číslo vstupenky",
+    "API keys cannot be created while impersonating a user.": "Kľúče API nie je možné vytvoriť počas zosobnenia používateľa.",
+    "API key not found": "Kľúč API sa nenašiel",
+    "This API key does not have the :ability ability.": "Tento kľúč API nemá oprávnenie :ability.",
+    "This route can only be called with an API key.": "Túto trasu možno volať iba s kľúčom API.",
+    "This route is not available to API keys.": "Táto trasa nie je dostupná pre kľúče API.",
+    "API keys can only check attendees in, not mark their orders as paid.": "Kľúče API môžu účastníkov iba odbaviť, nie označiť ich objednávky ako zaplatené."
 }

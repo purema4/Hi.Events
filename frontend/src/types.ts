@@ -1316,6 +1316,39 @@ export interface InviteUserRequest {
     role: string;
 }
 
+export type ApiKeyAbility =
+    | 'events:read'
+    | 'products:read'
+    | 'orders:read'
+    | 'attendees:read'
+    | 'check-in-lists:read'
+    | 'reports:read'
+    | 'webhooks:read'
+    | 'check-ins:write';
+
+export interface ApiKey {
+    id: IdParam;
+    name: string;
+    abilities: ApiKeyAbility[];
+    partial_token: string | null;
+    created_by: {
+        id: IdParam;
+        first_name: string;
+        last_name: string;
+    } | null;
+    created_at: string;
+    last_used_at: string | null;
+    last_used_ip: string | null;
+    expires_at: string | null;
+    token?: string;
+}
+
+export interface CreateApiKeyRequest {
+    name: string;
+    abilities: ApiKeyAbility[];
+    expires_at?: string | null;
+}
+
 export interface SortableItem {
     id: IdParam;
     order: number;

@@ -4,6 +4,7 @@ namespace HiEvents\Http;
 
 use HiEvents\Http\Middleware\Authenticate;
 use HiEvents\Http\Middleware\EncryptCookies;
+use HiEvents\Http\Middleware\EnforceApiKeyScope;
 use HiEvents\Http\Middleware\EnsureAccountIsNotPendingDeletion;
 use HiEvents\Http\Middleware\HandleDeprecatedTimezones;
 use HiEvents\Http\Middleware\LogImpersonationMiddleware;
@@ -85,6 +86,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
+        'api-key.scope' => EnforceApiKeyScope::class,
         'auth' => Authenticate::class,
         'auth.basic' => AuthenticateWithBasicAuth::class,
         'auth.session' => AuthenticateSession::class,

@@ -113,7 +113,10 @@ readonly class IsAuthorizedService
         if ($authUser->getCurrentAccountUser()?->getStatus() !== UserStatus::ACTIVE->name) {
             // Log the user out if their account is not active. This can happen if a user is
             // deactivated while they are logged in.
-            $this->auth->logout();
+            $guard = $this->auth->guard();
+            if (method_exists($guard, 'logout')) {
+                $guard->logout();
+            }
             throw new UnauthorizedException(__('Your account is not active.'));
         }
     }

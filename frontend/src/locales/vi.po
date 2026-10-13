@@ -472,6 +472,10 @@ msgstr "Theo thứ trong tuần"
 msgid "Abandoned"
 msgstr "Đã bỏ"
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:94
+msgid "Abilities"
+msgstr "Quyền"
+
 #: src/components/layouts/EventHomepage/index.tsx:483
 msgid "About"
 msgstr "Thông tin sự kiện"
@@ -1240,6 +1244,19 @@ msgstr "Mọi thắc mắc từ chủ sở hữu sản phẩm sẽ được gử
 msgid "Any single date can differ: change its capacity in Edit Date, or a ticket's per-date quantity on that date's Products tab."
 msgstr "Bất kỳ ngày nào cũng có thể khác: thay đổi sức chứa trong Sửa ngày, hoặc số lượng theo ngày của vé trong tab Sản phẩm của ngày đó."
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:60
+msgid "API key created successfully"
+msgstr "Đã tạo khóa API thành công"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:26
+msgid "API key revoked"
+msgstr "Đã thu hồi khóa API"
+
+#: src/components/routes/account/ManageAccount/index.tsx:36
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:81
+msgid "API Keys"
+msgstr "Khóa API"
+
 #: src/components/common/WidgetEditor/index.tsx:216
 msgid "Appearance"
 msgstr "Giao diện"
@@ -1499,6 +1516,10 @@ msgstr "Bạn có chắc chắn muốn khôi phục sự kiện này không? S�
 msgid "Are you sure you want to restore this organizer?"
 msgstr "Bạn có chắc chắn muốn khôi phục ban tổ chức này không?"
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:24
+msgid "Are you sure you want to revoke this API key? Integrations using it will stop working immediately."
+msgstr "Bạn có chắc chắn muốn thu hồi khóa API này không? Các tích hợp đang dùng khóa này sẽ ngừng hoạt động ngay lập tức."
+
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:50
 msgid "Are you sure you want to revoke this invitation?"
 msgstr "Bạn có chắc muốn thu hồi lời mời này không?"
@@ -1656,6 +1677,7 @@ msgstr "người tham dự"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:451
 #: src/components/common/StatBoxes/index.tsx:73
 #: src/components/layouts/Event/index.tsx:131
+#: src/components/modals/CreateApiKeyModal/index.tsx:24
 #: src/components/modals/ManageOccurrenceModal/index.tsx:174
 #: src/components/modals/ManageOrderModal/index.tsx:283
 #: src/components/routes/admin/Messages/index.tsx:90
@@ -2233,6 +2255,10 @@ msgstr "Khoản thu"
 msgid "Charity"
 msgstr "Từ thiện"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:31
+msgid "Check attendees in and out"
+msgstr "Check-in và check-out người tham dự"
+
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:307
 #: src/components/layouts/CheckIn/tabs/SearchTab.tsx:82
 msgid "Check in"
@@ -2331,6 +2357,10 @@ msgstr "Danh sách Check-In không tồn tại"
 #: src/components/routes/event/CheckInLists/index.tsx:60
 msgid "check-in lists"
 msgstr "danh sách check-in"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:25
+msgid "Check-in lists"
+msgstr "Danh sách check-in"
 
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:51
 msgid "Check-in Lists"
@@ -3167,6 +3197,12 @@ msgstr "Tạo và cấu hình vé và hàng hóa để bán."
 msgid "Create Announcement"
 msgstr "Tạo thông báo"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:86
+#: src/components/modals/CreateApiKeyModal/index.tsx:131
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:83
+msgid "Create API Key"
+msgstr "Tạo khóa API"
+
 #: src/components/modals/CreateAttendeeModal/index.tsx:320
 msgid "Create Attendee"
 msgstr "Tạo người tham dự"
@@ -3307,6 +3343,10 @@ msgstr "Tạo sự kiện của riêng bạn"
 #: src/components/routes/admin/Messages/index.tsx:310
 msgid "Created"
 msgstr "Đã tạo"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:95
+msgid "Created by"
+msgstr "Người tạo"
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:593
 msgid "Creating {0} dates. This may take a moment."
@@ -3496,7 +3536,7 @@ msgstr "Vùng nguy hiểm"
 
 #: src/components/common/DangerZone/index.tsx:30
 #: src/components/common/EntityActions/index.tsx:32
-#: src/components/routes/account/ManageAccount/index.tsx:36
+#: src/components/routes/account/ManageAccount/index.tsx:42
 #: src/components/routes/account/ManageAccount/sections/DangerZone/index.tsx:80
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:572
 #: src/components/routes/event/Settings/index.tsx:106
@@ -3931,6 +3971,7 @@ msgid "Donation"
 msgstr "Quyên góp"
 
 #: src/components/modals/CheckInListSuccessModal/index.tsx:59
+#: src/components/modals/CreateApiKeyModal/index.tsx:79
 #: src/components/modals/CreateOrganizerWebhookModal/index.tsx:72
 #: src/components/modals/CreateWebhookModal/index.tsx:72
 #: src/components/modals/EventLiveCelebrationModal/index.tsx:123
@@ -4802,6 +4843,10 @@ msgstr "Hiệu suất sự kiện"
 msgid "Events Starting in Next 24 Hours"
 msgstr "Sự kiện bắt đầu trong 24 giờ tới"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:21
+msgid "Events, settings and occurrences"
+msgstr "Sự kiện, cài đặt và các ngày"
+
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:896
 msgid "Every"
 msgstr "Mỗi"
@@ -4874,6 +4919,7 @@ msgid "Execute now"
 msgstr "Thực hiện ngay"
 
 #: src/components/forms/CheckInListForm/index.tsx:160
+#: src/components/modals/CreateApiKeyModal/index.tsx:126
 msgid "Expiration date"
 msgstr "Ngày hết hạn"
 
@@ -4883,6 +4929,7 @@ msgid "Expired"
 msgstr "Đã hết hạn"
 
 #: src/components/common/PromoCodeTable/index.tsx:73
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:97
 msgid "Expires"
 msgstr "Hết hạn"
 
@@ -6492,6 +6539,10 @@ msgstr "Phản hồi cuối cùng"
 msgid "Last Triggered"
 msgstr "Trình kích hoạt cuối cùng"
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:96
+msgid "Last used"
+msgstr "Lần dùng gần nhất"
+
 #: src/components/routes/event/Reports/PromoCodesReport/index.tsx:70
 msgid "Last Used"
 msgstr "Được sử dụng lần cuối"
@@ -6527,6 +6578,10 @@ msgstr "Để bật để bao gồm mọi vé của sự kiện. Tắt để ch�
 #: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:83
 msgid "Let attendees add their tickets to Google Wallet and Apple Wallet. The branding below is used on both."
 msgstr "Cho phép người tham dự thêm vé vào Google Wallet và Apple Wallet. Nhận diện thương hiệu bên dưới được dùng cho cả hai."
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:82
+msgid "Let other applications access your account data with the abilities you choose. Keys are shown only once, when they are created."
+msgstr "Cho phép các ứng dụng khác truy cập dữ liệu tài khoản của bạn với các quyền bạn chọn. Khóa chỉ được hiển thị một lần, khi được tạo."
 
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:305
 msgid "Let them know about the change"
@@ -7073,8 +7128,10 @@ msgstr "Nam placerat elementum..."
 #: src/components/forms/ProductCategoryForm/index.tsx:16
 #: src/components/forms/ProductForm/index.tsx:196
 #: src/components/forms/TaxAndFeeForm/index.tsx:61
+#: src/components/modals/CreateApiKeyModal/index.tsx:90
 #: src/components/modals/DuplicateEventModal/index.tsx:110
 #: src/components/routes/account/ManageAccount/sections/AccountSettings/index.tsx:63
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:93
 #: src/components/routes/admin/Configurations/index.tsx:224
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:80
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:238
@@ -7083,6 +7140,7 @@ msgstr "Tên"
 
 #: src/components/common/ContactOrganizerModal/index.tsx:32
 #: src/components/modals/CreateAffiliateModal/index.tsx:28
+#: src/components/modals/CreateApiKeyModal/index.tsx:46
 #: src/components/modals/EditAffiliateModal/index.tsx:33
 #: src/components/routes/admin/Configurations/index.tsx:167
 msgid "Name is required"
@@ -7108,6 +7166,8 @@ msgstr "Doanh thu ròng"
 #: src/components/common/OrganizerWebhookTable/index.tsx:266
 #: src/components/common/PromoCodeTable/index.tsx:166
 #: src/components/common/WebhookTable/index.tsx:266
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:56
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:62
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:104
 msgid "Never"
 msgstr "Không bao giờ"
@@ -7192,6 +7252,10 @@ msgstr "Không có đối tác nào"
 #: src/components/routes/admin/Announcements/index.tsx:145
 msgid "No announcements yet"
 msgstr "Chưa có thông báo nào"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:106
+msgid "No API keys yet"
+msgstr "Chưa có khóa API nào"
 
 #: src/components/common/NoEventsBlankSlate/index.tsx:21
 msgid "No archived events to show."
@@ -7967,6 +8031,10 @@ msgstr "Tiền tố tùy chọn cho số hóa đơn (ví dụ: Inv-)"
 msgid "Optional text for disclaimers, contact info, or thank you notes (single line only)"
 msgstr "Văn bản tùy chọn cho tuyên bố từ chối, thông tin liên hệ hoặc ghi chú cảm ơn (chỉ một dòng)"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:127
+msgid "Optional. The key stops working at the end of this day."
+msgstr "Không bắt buộc. Khóa sẽ ngừng hoạt động vào cuối ngày này."
+
 #: src/components/common/QuestionsTable/index.tsx:125
 msgid "options"
 msgstr "tùy chọn"
@@ -8162,6 +8230,7 @@ msgstr "đơn hàng"
 #: src/components/common/OccurrenceAttendeesAndOrders/index.tsx:65
 #: src/components/layouts/Admin/index.tsx:17
 #: src/components/layouts/Event/index.tsx:125
+#: src/components/modals/CreateApiKeyModal/index.tsx:23
 #: src/components/modals/ManageOccurrenceModal/index.tsx:178
 #: src/components/routes/admin/Attribution/index.tsx:200
 #: src/components/routes/admin/Orders/index.tsx:44
@@ -9066,6 +9135,10 @@ msgstr "Sản phẩm đã bán"
 msgid "Products sorted successfully"
 msgstr "Sản phẩm được sắp xếp thành công"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:22
+msgid "Products, categories, capacities, taxes and fees"
+msgstr "Sản phẩm, danh mục, sức chứa, thuế và phí"
+
 #: src/components/routes/profile/ManageProfile/index.tsx:117
 msgid "Profile"
 msgstr "Hồ sơ"
@@ -9280,6 +9353,10 @@ msgstr "Cung cấp lại suất"
 #: src/components/routes/event/OccurrenceDetail/index.tsx:94
 msgid "Reactivate this date? It will be reopened for future sales."
 msgstr "Kích hoạt lại ngày này? Ngày này sẽ được mở bán lại."
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:98
+msgid "Read"
+msgstr "Đọc"
 
 #: src/components/modals/PublishEventModal/index.tsx:147
 msgid "Ready to go live?"
@@ -9545,6 +9622,10 @@ msgstr "Không tìm thấy báo cáo"
 msgid "Reports"
 msgstr "Báo cáo"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:26
+msgid "Reports and statistics"
+msgstr "Báo cáo và thống kê"
+
 #: src/components/routes/my-tickets/index.tsx:186
 msgid "Request a new link"
 msgstr "Yêu cầu liên kết mới"
@@ -9731,6 +9812,11 @@ msgstr "Tóm tắt doanh thu"
 #: src/components/routes/admin/SpamEvents/index.tsx:102
 msgid "Review events flagged as potential spam by the automated check"
 msgstr "Xem xét các sự kiện bị kiểm tra tự động gắn cờ là spam tiềm ẩn"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:69
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:70
+msgid "Revoke"
+msgstr "Thu hồi"
 
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:133
 msgid "Revoke invitation"
@@ -10197,6 +10283,10 @@ msgstr "Chọn tất cả vào {0}"
 #: src/components/routes/organizer/Reports/PlatformFeesReport/index.tsx:119
 msgid "Select an event"
 msgstr "Chọn một sự kiện"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:47
+msgid "Select at least one ability"
+msgstr "Chọn ít nhất một quyền"
 
 #: src/components/routes/admin/Announcements/index.tsx:310
 msgid "Select at least one account"
@@ -10819,6 +10909,7 @@ msgstr "Có gì đó không ổn trong khi xóa thuế hoặc phí"
 msgid "Something went wrong, please try again, or contact support if the problem persists"
 msgstr "Có gì đó không ổn, vui lòng thử lại hoặc liên hệ với hỗ trợ nếu vấn đề vẫn còn"
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:29
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:44
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:59
 msgid "Something went wrong! Please try again"
@@ -11518,6 +11609,14 @@ msgstr "Sự kiện bạn đang tìm kiếm hiện không khả dụng. Nó có 
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "Toàn bộ số tiền đơn hàng sẽ được hoàn lại phương thức thanh toán gốc của khách hàng."
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:113
+msgid "The key can change data in your account"
+msgstr "Khóa có thể thay đổi dữ liệu trong tài khoản của bạn"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:99
+msgid "The key can only read this data"
+msgstr "Khóa chỉ có thể đọc dữ liệu này"
+
 #: src/components/modals/CreateAttendeeModal/index.tsx:237
 msgid "The language the attendee will receive emails in."
 msgstr "Ngôn ngữ mà người tham dự sẽ nhận email."
@@ -11848,6 +11947,10 @@ msgstr "Đây là tên nhà tổ chức sẽ hiển thị cho người dùng c�
 #: src/components/modals/CreateWebhookModal/index.tsx:64
 msgid "This is the only time the signing secret will be shown. Please copy it now and store it securely."
 msgstr "Đây là lần duy nhất khóa bí mật ký được hiển thị. Vui lòng sao chép ngay và lưu trữ an toàn."
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:71
+msgid "This is the only time this API key will be shown. Please copy it now and store it securely."
+msgstr "Đây là lần duy nhất khóa API này được hiển thị. Hãy sao chép ngay và lưu giữ ở nơi an toàn."
 
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:26
 #~ msgid "This limits total sales across every date in your schedule combined — it is not a per-date limit. To limit attendance for each date, set a capacity on the <0>Occurrence Schedule page</0>."
@@ -12209,6 +12312,10 @@ msgstr "Đến"
 #: src/components/modals/SendMessageModal/index.tsx:315
 msgid "To increase your limits, contact us at"
 msgstr "Để tăng giới hạn của bạn, hãy liên hệ với chúng tôi tại"
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:91
+msgid "To recognise the integration that uses this key"
+msgstr "Để nhận biết tích hợp đang dùng khóa này"
 
 #: src/components/common/OccurrenceSelect/index.tsx:148
 #: src/components/common/PeriodSelector/index.tsx:30
@@ -13271,6 +13378,10 @@ msgstr "Webhook sẽ gửi thông báo"
 msgid "Webhooks"
 msgstr "Webhooks"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:27
+msgid "Webhooks and their logs"
+msgstr "Webhook và nhật ký của chúng"
+
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:102
 msgid "Website"
 msgstr "Trang web"
@@ -13538,6 +13649,10 @@ msgstr "Hội thảo"
 msgid "Workshop with early bird"
 msgstr "Hội thảo có vé sớm"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:112
+msgid "Write"
+msgstr "Ghi"
+
 #: src/components/common/ContactOrganizerModal/index.tsx:89
 msgid "Write your message here..."
 msgstr "Viết tin nhắn của bạn tại đây..."
@@ -13787,6 +13902,10 @@ msgstr "Tên tài khoản của bạn được sử dụng trên các trang sự
 #: src/components/routes/event/Affiliates/index.tsx:48
 msgid "Your affiliates have been exported successfully."
 msgstr "Danh sách đối tác của bạn đã được xuất thành công."
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:69
+msgid "Your API Key"
+msgstr "Khóa API của bạn"
 
 #: src/components/routes/event/attendees.tsx:164
 msgid "Your attendees have been exported successfully."

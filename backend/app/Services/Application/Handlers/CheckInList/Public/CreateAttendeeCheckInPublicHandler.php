@@ -10,6 +10,7 @@ use HiEvents\Services\Domain\CheckInList\DTO\CreateAttendeeCheckInsResponseDTO;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
 use HiEvents\Services\Infrastructure\DomainEvents\Events\CheckinEvent;
+use Illuminate\Support\Collection;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
@@ -26,11 +27,26 @@ class CreateAttendeeCheckInPublicHandler
      */
     public function handle(CreateAttendeeCheckInPublicDTO $checkInData): CreateAttendeeCheckInsResponseDTO
     {
-        $checkIns = $this->createAttendeeCheckInService->checkInAttendees(
-            $checkInData->checkInListUuid,
-            $checkInData->checkInUserIpAddress,
-            $checkInData->attendeesAndActions,
-        );
+        $createdCheckIns = new Collection;
+
+        try {
+            $checkIns = $this->createAttendeeCheckInService->checkInAttendees(
+                $checkInData->checkInListUuid,
+                $checkInData->checkInUserIpAddress,
+                $checkInData->attendeesAndActions,
+                $createdCheckIns,
+            );
+        } finally {
+            /** @var AttendeeCheckInDomainObject $checkIn */
+            foreach ($createdCheckIns as $checkIn) {
+                $this->domainEventDispatcherService->dispatch(
+                    new CheckinEvent(
+                        type: DomainEventType::CHECKIN_CREATED,
+                        attendeeCheckinId: $checkIn->getId(),
+                    )
+                );
+            }
+        }
 
         $this->logger->info('Attendee check-ins created', [
             'attendee_ids' => $checkIns->attendeeCheckIns
@@ -38,16 +54,6 @@ class CreateAttendeeCheckInPublicHandler
             'check_in_list_uuid' => $checkInData->checkInListUuid,
             'ip_address' => $checkInData->checkInUserIpAddress,
         ]);
-
-        /** @var AttendeeCheckInDomainObject $checkIn */
-        foreach ($checkIns->attendeeCheckIns as $checkIn) {
-            $this->domainEventDispatcherService->dispatch(
-                new CheckinEvent(
-                    type: DomainEventType::CHECKIN_CREATED,
-                    attendeeCheckinId: $checkIn->getId(),
-                )
-            );
-        }
 
         return $checkIns;
     }

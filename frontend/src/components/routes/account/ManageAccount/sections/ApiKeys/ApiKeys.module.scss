@@ -1,0 +1,12 @@
+.table {
+  tr td, tr th {
+
+    &:first-child {
+      padding-left: 20px;
+    }
+  }
+
+  div:first-child {
+    padding-bottom: 0 !important;
+  }
+}

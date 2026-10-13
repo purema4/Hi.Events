@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -25,8 +26,12 @@ class RouteServiceProvider extends ServiceProvider
     public function boot(): void
     {
         RateLimiter::for('api', function (Request $request) {
+            $accessToken = $request->user()?->currentAccessToken();
+
             return Limit::perMinute(config('app.api_rate_limit_per_minute'))
-                ->by($request->user()?->id ?: $request->ip());
+                ->by($accessToken instanceof PersonalAccessToken
+                    ? 'apikey:'.$accessToken->getKey()
+                    : ($request->user()?->id ?: $request->ip()));
         });
 
         RateLimiter::for('promo-code-lookup', function (Request $request) {

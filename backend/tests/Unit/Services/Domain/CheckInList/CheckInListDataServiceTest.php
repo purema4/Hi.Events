@@ -4,6 +4,8 @@ namespace Tests\Unit\Services\Domain\CheckInList;
 
 use HiEvents\DomainObjects\AttendeeDomainObject;
 use HiEvents\DomainObjects\CheckInListDomainObject;
+use HiEvents\DomainObjects\Enums\CheckInFailureCode;
+use HiEvents\DomainObjects\Generated\AttendeeDomainObjectAbstract;
 use HiEvents\DomainObjects\ProductDomainObject;
 use HiEvents\Exceptions\CannotCheckInException;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
@@ -121,6 +123,56 @@ class CheckInListDataServiceTest extends TestCase
         $this->expectException(CannotCheckInException::class);
 
         $this->service->verifyAttendeeBelongsToCheckInList($checkInList, $attendee);
+    }
+
+    public function test_verify_refuses_an_attendee_of_another_event_without_a_code(): void
+    {
+        $checkInList = Mockery::mock(CheckInListDomainObject::class);
+        $checkInList->shouldReceive('getProducts')->andReturn(new Collection);
+        $checkInList->shouldReceive('getEventId')->andReturn(1);
+
+        $attendee = Mockery::mock(AttendeeDomainObject::class);
+        $attendee->shouldReceive('getProductId')->andReturn(1);
+        $attendee->shouldReceive('getEventId')->andReturn(2);
+        $attendee->shouldReceive('getFullName')->andReturn('Jane Doe');
+
+        $this->assertFailureCode(
+            null,
+            fn () => $this->service->verifyAttendeeBelongsToCheckInList($checkInList, $attendee),
+        );
+    }
+
+    public function test_get_attendees_only_looks_in_the_event_of_the_list(): void
+    {
+        $attendee = Mockery::mock(AttendeeDomainObject::class);
+
+        $this->attendeeRepository->shouldReceive('findWhereIn')
+            ->once()
+            ->with(AttendeeDomainObjectAbstract::PUBLIC_ID, ['A-AAAAAAA'], [AttendeeDomainObjectAbstract::EVENT_ID => 7])
+            ->andReturn(new Collection([$attendee]));
+
+        $this->assertSame([$attendee], $this->service->getAttendees(new Collection(['A-AAAAAAA']), 7)->all());
+    }
+
+    public function test_get_check_in_list_reports_an_unknown_list_with_its_code(): void
+    {
+        $this->checkInListRepository->shouldReceive('loadRelation')->andReturnSelf();
+        $this->checkInListRepository->shouldReceive('findFirstWhere')->andReturnNull();
+
+        $this->assertFailureCode(
+            CheckInFailureCode::CHECK_IN_LIST_NOT_FOUND,
+            fn () => $this->service->getCheckInList('cil_unknown'),
+        );
+    }
+
+    private function assertFailureCode(?CheckInFailureCode $expected, callable $callback): void
+    {
+        try {
+            $callback();
+            $this->fail('A CannotCheckInException was expected.');
+        } catch (CannotCheckInException $exception) {
+            $this->assertSame($expected, $exception->getFailureCode());
+        }
     }
 
     protected function tearDown(): void

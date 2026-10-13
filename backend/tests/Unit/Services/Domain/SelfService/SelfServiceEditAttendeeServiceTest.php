@@ -126,6 +126,7 @@ class SelfServiceEditAttendeeServiceTest extends TestCase
         $this->assertFalse($result->shortIdChanged);
         $this->assertNull($result->newShortId);
         $this->assertFalse($result->emailChanged);
+        $this->assertTrue($result->updated);
 
         Mail::assertQueued(AttendeeDetailsChangedMail::class, function ($mail) {
             return $mail->hasTo('old@example.com');
@@ -248,6 +249,7 @@ class SelfServiceEditAttendeeServiceTest extends TestCase
         $this->assertFalse($result->shortIdChanged);
         $this->assertNull($result->newShortId);
         $this->assertFalse($result->emailChanged);
+        $this->assertFalse($result->updated);
 
         Mail::assertNothingSent();
     }

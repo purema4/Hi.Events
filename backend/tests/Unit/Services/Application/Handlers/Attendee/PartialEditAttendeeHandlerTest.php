@@ -133,7 +133,7 @@ class PartialEditAttendeeHandlerTest extends TestCase
             ->once()
             ->with(self::EVENT_ID, self::ORDER_CREATED_AT, 1, self::OCCURRENCE_ID);
         $this->cancellationService->shouldNotReceive('decrementForCancelledAttendee');
-        $this->domainEventDispatcherService->shouldNotReceive('dispatch');
+        $this->expectAttendeeUpdatedDomainEvent();
 
         $this->handler->handle($this->dto(AttendeeStatus::ACTIVE));
 
@@ -242,6 +242,7 @@ class PartialEditAttendeeHandlerTest extends TestCase
         $this->productQuantityService->shouldNotReceive('decreaseQuantitySold');
         $this->cancellationService->shouldNotReceive('decrementForCancelledAttendee');
         $this->reactivationService->shouldNotReceive('incrementForReactivatedAttendee');
+        $this->expectAttendeeUpdatedDomainEvent();
 
         $this->handler->handle(new PartialEditAttendeeDTO(
             attendee_id: self::ATTENDEE_ID,
@@ -335,6 +336,16 @@ class PartialEditAttendeeHandlerTest extends TestCase
             ->once()
             ->with(['id' => self::ORDER_ID, 'event_id' => self::EVENT_ID])
             ->andReturn((new OrderDomainObject)->setId(self::ORDER_ID)->setCreatedAt(self::ORDER_CREATED_AT));
+    }
+
+    private function expectAttendeeUpdatedDomainEvent(): void
+    {
+        $this->domainEventDispatcherService->shouldReceive('dispatch')
+            ->once()
+            ->with(Mockery::on(
+                fn (AttendeeEvent $event) => $event->type === DomainEventType::ATTENDEE_UPDATED
+                    && $event->attendeeId === self::ATTENDEE_ID
+            ));
     }
 
     private function expectAttendeeUpdatedWithStatus(AttendeeStatus $status): void

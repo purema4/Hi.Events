@@ -10,6 +10,9 @@ use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Services\Application\Handlers\SelfService\DTO\EditAttendeePublicDTO;
 use HiEvents\Services\Domain\SelfService\DTO\EditAttendeeResultDTO;
 use HiEvents\Services\Domain\SelfService\SelfServiceEditAttendeeService;
+use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
+use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
+use HiEvents\Services\Infrastructure\DomainEvents\Events\AttendeeEvent;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class EditAttendeePublicHandler
@@ -21,6 +24,7 @@ class EditAttendeePublicHandler
         private readonly OrderRepositoryInterface $orderRepository,
         private readonly EventRepositoryInterface $eventRepository,
         private readonly SelfServiceEditAttendeeService $selfServiceEditAttendeeService,
+        private readonly DomainEventDispatcherService $domainEventDispatcherService,
     ) {}
 
     /**
@@ -41,7 +45,7 @@ class EditAttendeePublicHandler
             throw new ResourceNotFoundException(__('Attendee not found'));
         }
 
-        return $this->selfServiceEditAttendeeService->editAttendee(
+        $result = $this->selfServiceEditAttendeeService->editAttendee(
             attendee: $attendee,
             firstName: $dto->firstName,
             lastName: $dto->lastName,
@@ -49,5 +53,16 @@ class EditAttendeePublicHandler
             ipAddress: $dto->ipAddress,
             userAgent: $dto->userAgent
         );
+
+        if ($result->updated) {
+            $this->domainEventDispatcherService->dispatch(
+                new AttendeeEvent(
+                    type: DomainEventType::ATTENDEE_UPDATED,
+                    attendeeId: $attendee->getId(),
+                )
+            );
+        }
+
+        return $result;
     }
 }

@@ -769,5 +769,11 @@
     "The Apple Wallet pass could not be encoded: :message": "Az Apple Wallet-kártya nem kódolható: :message",
     "The Apple Wallet pass is no longer available.": "Az Apple Wallet-kártya már nem érhető el.",
     "Ticket for :event": "Jegy: :event",
-    "Ticket number": "Jegyszám"
+    "Ticket number": "Jegyszám",
+    "API keys cannot be created while impersonating a user.": "API-kulcsok nem hozhatók létre egy felhasználó megszemélyesítése közben.",
+    "API key not found": "Az API-kulcs nem található",
+    "This API key does not have the :ability ability.": "Ez az API-kulcs nem rendelkezik a(z) :ability jogosultsággal.",
+    "This route can only be called with an API key.": "Ez az útvonal csak API-kulccsal hívható meg.",
+    "This route is not available to API keys.": "Ez az útvonal nem érhető el API-kulcsokkal.",
+    "API keys can only check attendees in, not mark their orders as paid.": "Az API-kulcsok csak a résztvevők beléptetésére használhatók, a rendeléseik fizetettként való megjelölésére nem."
 }

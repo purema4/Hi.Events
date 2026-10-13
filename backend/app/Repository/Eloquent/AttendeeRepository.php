@@ -103,6 +103,8 @@ class AttendeeRepository extends BaseRepository implements AttendeeRepositoryInt
             $this->model = $this->model->orderBy('attendees.'.$sortBy, $sortDirection);
         }
 
+        $this->model = $this->model->orderBy('attendees.id', $sortDirection);
+
         return $this->paginateWhere(
             where: $where,
             limit: $params->per_page,

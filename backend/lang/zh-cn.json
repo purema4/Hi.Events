@@ -764,5 +764,11 @@
     "The Apple Wallet pass could not be encoded: :message": "无法编码 Apple Wallet 票卡：:message",
     "The Apple Wallet pass is no longer available.": "Apple Wallet 票卡已不可用。",
     "Ticket for :event": ":event 门票",
-    "Ticket number": "门票编号"
+    "Ticket number": "门票编号",
+    "API keys cannot be created while impersonating a user.": "模拟用户身份时无法创建 API 密钥。",
+    "API key not found": "未找到 API 密钥",
+    "This API key does not have the :ability ability.": "此 API 密钥没有 :ability 权限。",
+    "This route can only be called with an API key.": "此路由只能使用 API 密钥调用。",
+    "This route is not available to API keys.": "API 密钥无法使用此路由。",
+    "API keys can only check attendees in, not mark their orders as paid.": "API 密钥只能为参与者签到，不能将其订单标记为已付款。"
 }

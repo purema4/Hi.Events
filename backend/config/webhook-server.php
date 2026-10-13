@@ -57,7 +57,7 @@ return [
     /*
      * The amount of times the webhook should be called before we give up.
      */
-    'tries' => 3,
+    'tries' => min(max((int) env('WEBHOOK_TRIES', 3), 1), 5),
 
     /*
      * This class determines how many seconds there should be between attempts.
