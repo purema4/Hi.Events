@@ -40,16 +40,28 @@ class PartialEditAttendeeHandler
      */
     public function handle(PartialEditAttendeeDTO $data): AttendeeDomainObject
     {
-        $attendee = $this->databaseManager->transaction(function () use ($data) {
+        [$attendee, $domainEventType] = $this->databaseManager->transaction(function () use ($data) {
             return $this->updateAttendee($data);
         });
+
+        if ($domainEventType !== null) {
+            $this->domainEventDispatcherService->dispatch(
+                new AttendeeEvent(
+                    type: $domainEventType,
+                    attendeeId: $data->attendee_id,
+                )
+            );
+        }
 
         $this->walletPassSyncDispatcher->queueAttendeeSync($data->attendee_id);
 
         return $attendee;
     }
 
-    private function updateAttendee(PartialEditAttendeeDTO $data): AttendeeDomainObject
+    /**
+     * @return array{0: AttendeeDomainObject, 1: ?DomainEventType}
+     */
+    private function updateAttendee(PartialEditAttendeeDTO $data): array
     {
         $attendee = $this->attendeeRepository->findFirstWhere([
             'id' => $data->attendee_id,
@@ -69,16 +81,7 @@ class PartialEditAttendeeHandler
             $this->adjustEventStatistics($status, $attendee);
         }
 
-        if ($statusIsUpdated && $status === AttendeeStatus::CANCELLED->name) {
-            $this->domainEventDispatcherService->dispatch(
-                new AttendeeEvent(
-                    type: DomainEventType::ATTENDEE_CANCELLED,
-                    attendeeId: $attendee->getId(),
-                )
-            );
-        }
-
-        return $this->attendeeRepository->updateByIdWhere(
+        $updatedAttendee = $this->attendeeRepository->updateByIdWhere(
             id: $data->attendee_id,
             attributes: [
                 'status' => $status ?? $attendee->getStatus(),
@@ -89,6 +92,29 @@ class PartialEditAttendeeHandler
             where: [
                 'event_id' => $data->event_id,
             ]);
+
+        return [$updatedAttendee, $this->getDomainEventType($data, $attendee, $status, $statusIsUpdated)];
+    }
+
+    private function getDomainEventType(
+        PartialEditAttendeeDTO $data,
+        AttendeeDomainObject $attendee,
+        ?string $status,
+        bool $statusIsUpdated,
+    ): ?DomainEventType {
+        if ($statusIsUpdated && $status === AttendeeStatus::CANCELLED->name) {
+            return DomainEventType::ATTENDEE_CANCELLED;
+        }
+
+        $detailsAreUpdated = ($data->first_name !== null && $data->first_name !== $attendee->getFirstName())
+            || ($data->last_name !== null && $data->last_name !== $attendee->getLastName())
+            || ($data->email !== null && $data->email !== $attendee->getEmail());
+
+        if ($statusIsUpdated || $detailsAreUpdated) {
+            return DomainEventType::ATTENDEE_UPDATED;
+        }
+
+        return null;
     }
 
     /**

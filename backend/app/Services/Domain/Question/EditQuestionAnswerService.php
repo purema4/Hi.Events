@@ -3,6 +3,7 @@
 namespace HiEvents\Services\Domain\Question;
 
 use HiEvents\DomainObjects\OrderDomainObject;
+use HiEvents\DomainObjects\QuestionAnswerDomainObject;
 use HiEvents\DomainObjects\QuestionDomainObject;
 use HiEvents\Repository\Eloquent\Value\Relationship;
 use HiEvents\Repository\Interfaces\QuestionAnswerRepositoryInterface;
@@ -21,8 +22,9 @@ class EditQuestionAnswerService
      * @throws InvalidAnswerException
      * @throws \JsonException
      */
-    public function editQuestionAnswer(int $eventId, int $questionAnswerId, null|string|array $answer): void
+    public function editQuestionAnswer(int $eventId, int $questionAnswerId, null|string|array $answer): ?QuestionAnswerDomainObject
     {
+        /** @var QuestionAnswerDomainObject $questionAnswer */
         $questionAnswer = $this->questionAnswerRepository
             ->loadRelation(new Relationship(domainObject: OrderDomainObject::class, name: 'order'))
             ->loadRelation(new Relationship(domainObject: QuestionDomainObject::class, name: 'question'))
@@ -51,6 +53,10 @@ class EditQuestionAnswerService
             throw new InvalidAnswerException('Please provide a valid answer');
         }
 
+        if ($questionAnswer->getAnswer() === $answer) {
+            return null;
+        }
+
         $this->questionAnswerRepository->updateWhere(
             attributes: [
                 'answer' => json_encode($answer, JSON_THROW_ON_ERROR),
@@ -60,5 +66,7 @@ class EditQuestionAnswerService
                 'order_id' => $order->getId(),
             ],
         );
+
+        return $questionAnswer;
     }
 }

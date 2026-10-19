@@ -8,7 +8,12 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\Psr7\UriResolver;
 use GuzzleHttp\TransferStats;
+use HiEvents\DomainObjects\Generated\WebhookDomainObjectAbstract;
+use HiEvents\DomainObjects\Status\WebhookStatus;
+use HiEvents\DomainObjects\WebhookDomainObject;
+use HiEvents\Exceptions\UnresolvableWebhookHostException;
 use HiEvents\Exceptions\UnsafeWebhookUrlException;
+use HiEvents\Repository\Interfaces\WebhookRepositoryInterface;
 use HiEvents\Services\Infrastructure\Webhook\WebhookUrlValidator;
 use Spatie\WebhookServer\CallWebhookJob;
 
@@ -17,6 +22,47 @@ class SecureCallWebhookJob extends CallWebhookJob
     private const MAX_REDIRECTS = 3;
 
     private const REDIRECT_STATUS_CODES = [301, 302, 303, 307, 308];
+
+    private bool $urlIsUnsafe = false;
+
+    public function handle()
+    {
+        if ($this->attempts() > 1 && ! $this->webhookStillTargetsThisUrl()) {
+            $this->delete();
+
+            return;
+        }
+
+        parent::handle();
+    }
+
+    public function release($delay = 0)
+    {
+        if (! $this->urlIsUnsafe) {
+            parent::release($delay);
+        }
+    }
+
+    protected function shouldBeRemovedFromQueue(): bool
+    {
+        return $this->urlIsUnsafe;
+    }
+
+    private function webhookStillTargetsThisUrl(): bool
+    {
+        if (! isset($this->meta['webhook_id'])) {
+            return true;
+        }
+
+        /** @var WebhookDomainObject|null $webhook */
+        $webhook = app(WebhookRepositoryInterface::class)->findFirstWhere([
+            WebhookDomainObjectAbstract::ID => (int) $this->meta['webhook_id'],
+        ]);
+
+        return $webhook !== null
+            && $webhook->getStatus() === WebhookStatus::ENABLED->name
+            && $webhook->getUrl() === $this->webhookUrl;
+    }
 
     /**
      * @throws UnsafeWebhookUrlException
@@ -31,6 +77,8 @@ class SecureCallWebhookJob extends CallWebhookJob
             try {
                 $target = $validator->validate($url);
             } catch (UnsafeWebhookUrlException $exception) {
+                $this->urlIsUnsafe = ! $exception instanceof UnresolvableWebhookHostException;
+
                 throw new UnsafeWebhookUrlException($this->describeUrlFailure($exception));
             }
 

@@ -764,5 +764,11 @@
     "The Apple Wallet pass could not be encoded: :message": "Không thể mã hóa thẻ Apple Wallet: :message",
     "The Apple Wallet pass is no longer available.": "Thẻ Apple Wallet không còn khả dụng.",
     "Ticket for :event": "Vé cho :event",
-    "Ticket number": "Số vé"
+    "Ticket number": "Số vé",
+    "API keys cannot be created while impersonating a user.": "Không thể tạo khóa API khi đang mạo nhận danh tính người dùng.",
+    "API key not found": "Không tìm thấy khóa API",
+    "This API key does not have the :ability ability.": "Khóa API này không có quyền :ability.",
+    "This route can only be called with an API key.": "Tuyến này chỉ có thể được gọi bằng khóa API.",
+    "This route is not available to API keys.": "Tuyến này không khả dụng cho khóa API.",
+    "API keys can only check attendees in, not mark their orders as paid.": "Khóa API chỉ có thể check-in người tham dự, không thể đánh dấu đơn hàng của họ là đã thanh toán."
 }

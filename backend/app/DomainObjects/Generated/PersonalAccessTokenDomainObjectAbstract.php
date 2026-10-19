@@ -11,6 +11,7 @@ abstract class PersonalAccessTokenDomainObjectAbstract extends \HiEvents\DomainO
     final public const SINGULAR_NAME = 'personal_access_token';
     final public const PLURAL_NAME = 'personal_access_tokens';
     final public const ID = 'id';
+    final public const ACCOUNT_ID = 'account_id';
     final public const TOKENABLE_TYPE = 'tokenable_type';
     final public const TOKENABLE_ID = 'tokenable_id';
     final public const NAME = 'name';
@@ -20,8 +21,11 @@ abstract class PersonalAccessTokenDomainObjectAbstract extends \HiEvents\DomainO
     final public const EXPIRES_AT = 'expires_at';
     final public const CREATED_AT = 'created_at';
     final public const UPDATED_AT = 'updated_at';
+    final public const PARTIAL_TOKEN = 'partial_token';
+    final public const LAST_USED_IP = 'last_used_ip';
 
     protected int $id;
+    protected ?int $account_id = null;
     protected string $tokenable_type;
     protected int $tokenable_id;
     protected string $name;
@@ -31,11 +35,14 @@ abstract class PersonalAccessTokenDomainObjectAbstract extends \HiEvents\DomainO
     protected ?string $expires_at = null;
     protected ?string $created_at = null;
     protected ?string $updated_at = null;
+    protected ?string $partial_token = null;
+    protected ?string $last_used_ip = null;
 
     public function toArray(): array
     {
         return [
                     'id' => $this->id ?? null,
+                    'account_id' => $this->account_id ?? null,
                     'tokenable_type' => $this->tokenable_type ?? null,
                     'tokenable_id' => $this->tokenable_id ?? null,
                     'name' => $this->name ?? null,
@@ -45,6 +52,8 @@ abstract class PersonalAccessTokenDomainObjectAbstract extends \HiEvents\DomainO
                     'expires_at' => $this->expires_at ?? null,
                     'created_at' => $this->created_at ?? null,
                     'updated_at' => $this->updated_at ?? null,
+                    'partial_token' => $this->partial_token ?? null,
+                    'last_used_ip' => $this->last_used_ip ?? null,
                 ];
     }
 
@@ -57,6 +66,17 @@ abstract class PersonalAccessTokenDomainObjectAbstract extends \HiEvents\DomainO
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setAccountId(?int $account_id): self
+    {
+        $this->account_id = $account_id;
+        return $this;
+    }
+
+    public function getAccountId(): ?int
+    {
+        return $this->account_id;
     }
 
     public function setTokenableType(string $tokenable_type): self
@@ -156,5 +176,27 @@ abstract class PersonalAccessTokenDomainObjectAbstract extends \HiEvents\DomainO
     public function getUpdatedAt(): ?string
     {
         return $this->updated_at;
+    }
+
+    public function setPartialToken(?string $partial_token): self
+    {
+        $this->partial_token = $partial_token;
+        return $this;
+    }
+
+    public function getPartialToken(): ?string
+    {
+        return $this->partial_token;
+    }
+
+    public function setLastUsedIp(?string $last_used_ip): self
+    {
+        $this->last_used_ip = $last_used_ip;
+        return $this;
+    }
+
+    public function getLastUsedIp(): ?string
+    {
+        return $this->last_used_ip;
     }
 }

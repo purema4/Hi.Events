@@ -141,12 +141,14 @@ class AccountHardDeletionService
                 ->delete();
         }
 
-        if ($context->soleUserIds !== []) {
-            $manifest['personal_access_tokens'] = $connection->table('personal_access_tokens')
+        $manifest['personal_access_tokens'] = $connection->table('personal_access_tokens')
+            ->where('account_id', $context->accountId)
+            ->when($context->soleUserIds !== [], fn ($query) => $query->orWhere(fn ($query) => $query
                 ->where('tokenable_type', User::class)
-                ->whereIn('tokenable_id', $context->soleUserIds)
-                ->delete();
+                ->whereIn('tokenable_id', $context->soleUserIds)))
+            ->delete();
 
+        if ($context->soleUserIds !== []) {
             $manifest['event_logs'] = $connection->table('event_logs')
                 ->whereIn('user_id', $context->soleUserIds)
                 ->delete();

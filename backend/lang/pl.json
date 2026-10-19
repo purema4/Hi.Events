@@ -961,5 +961,11 @@
     "The Apple Wallet pass could not be encoded: :message": "Nie udało się zakodować karty Apple Wallet: :message",
     "The Apple Wallet pass is no longer available.": "Karta Apple Wallet nie jest już dostępna.",
     "Ticket for :event": "Bilet na :event",
-    "Ticket number": "Numer biletu"
+    "Ticket number": "Numer biletu",
+    "API keys cannot be created while impersonating a user.": "Nie można tworzyć kluczy API podczas logowania jako inny użytkownik.",
+    "API key not found": "Nie znaleziono klucza API",
+    "This API key does not have the :ability ability.": "Ten klucz API nie ma uprawnienia :ability.",
+    "This route can only be called with an API key.": "Tę trasę można wywołać tylko za pomocą klucza API.",
+    "This route is not available to API keys.": "Ta trasa nie jest dostępna dla kluczy API.",
+    "API keys can only check attendees in, not mark their orders as paid.": "Klucze API mogą tylko meldować uczestników, a nie oznaczać ich zamówień jako opłaconych."
 }

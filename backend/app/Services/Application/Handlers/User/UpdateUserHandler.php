@@ -4,10 +4,13 @@ namespace HiEvents\Services\Application\Handlers\User;
 
 use HiEvents\DomainObjects\AccountUserDomainObject;
 use HiEvents\DomainObjects\Enums\Role;
+use HiEvents\DomainObjects\Generated\PersonalAccessTokenDomainObjectAbstract;
 use HiEvents\DomainObjects\Status\UserStatus;
 use HiEvents\DomainObjects\UserDomainObject;
 use HiEvents\Exceptions\CannotUpdateResourceException;
+use HiEvents\Models\User;
 use HiEvents\Repository\Interfaces\AccountUserRepositoryInterface;
+use HiEvents\Repository\Interfaces\PersonalAccessTokenRepositoryInterface;
 use HiEvents\Repository\Interfaces\UserRepositoryInterface;
 use HiEvents\Services\Application\Handlers\User\DTO\UpdateUserDTO;
 use Illuminate\Database\DatabaseManager;
@@ -21,6 +24,7 @@ class UpdateUserHandler
         private readonly LoggerInterface $logger,
         private readonly AccountUserRepositoryInterface $accountUserRepository,
         private readonly DatabaseManager $databaseManager,
+        private readonly PersonalAccessTokenRepositoryInterface $personalAccessTokenRepository,
     ) {}
 
     /**
@@ -85,9 +89,16 @@ class UpdateUserHandler
             ]
         );
 
+        $deletedApiKeys = $updateUserData->status === UserStatus::ACTIVE ? 0 : $this->personalAccessTokenRepository->deleteWhere([
+            PersonalAccessTokenDomainObjectAbstract::TOKENABLE_TYPE => User::class,
+            PersonalAccessTokenDomainObjectAbstract::TOKENABLE_ID => $updateUserData->id,
+            PersonalAccessTokenDomainObjectAbstract::ACCOUNT_ID => $updateUserData->account_id,
+        ]);
+
         $this->logger->info('User updated', [
             'id' => $updateUserData->id,
             'updated_by_user_id' => $updateUserData->updated_by_user_id,
+            'deleted_api_keys' => $deletedApiKeys,
         ]);
 
         return $this->userRepository->findByIdAndAccountId(

@@ -5,6 +5,7 @@ namespace HiEvents\Services\Domain\CheckInList;
 use Exception;
 use HiEvents\DomainObjects\AttendeeDomainObject;
 use HiEvents\DomainObjects\CheckInListDomainObject;
+use HiEvents\DomainObjects\Enums\CheckInFailureCode;
 use HiEvents\DomainObjects\Generated\AttendeeDomainObjectAbstract;
 use HiEvents\DomainObjects\Generated\CheckInListDomainObjectAbstract;
 use HiEvents\DomainObjects\ProductDomainObject;
@@ -33,7 +34,8 @@ class CheckInListDataService
             throw new CannotCheckInException(
                 __('Attendee :attendee_name is not allowed to check in using this check-in list', [
                     'attendee_name' => $attendee->getFullName(),
-                ])
+                ]),
+                CheckInFailureCode::ATTENDEE_PRODUCT_NOT_ON_LIST,
             );
         }
 
@@ -51,7 +53,8 @@ class CheckInListDataService
             throw new CannotCheckInException(
                 __(':attendee_name\'s ticket is for a different session — check they\'re on the right check-in list.', [
                     'attendee_name' => $attendee->getFullName(),
-                ])
+                ]),
+                CheckInFailureCode::ATTENDEE_OCCURRENCE_MISMATCH,
             );
         }
     }
@@ -62,13 +65,14 @@ class CheckInListDataService
      * @throws Exception
      * @throws CannotCheckInException
      */
-    public function getAttendees(Collection $attendeePublicIds): Collection
+    public function getAttendees(Collection $attendeePublicIds, int $eventId): Collection
     {
         $attendeePublicIds = array_unique($attendeePublicIds->toArray());
 
         $attendees = $this->attendeeRepository->findWhereIn(
             field: AttendeeDomainObjectAbstract::PUBLIC_ID,
-            values: $attendeePublicIds
+            values: $attendeePublicIds,
+            additionalWhere: [AttendeeDomainObjectAbstract::EVENT_ID => $eventId],
         );
 
         if (count($attendees) !== count($attendeePublicIds)) {
@@ -77,7 +81,7 @@ class CheckInListDataService
                     $attendeePublicIds,
                     $attendees->pluck(AttendeeDomainObjectAbstract::PUBLIC_ID)->toArray())
                 ),
-            ]));
+            ]), CheckInFailureCode::ATTENDEE_CODE_UNKNOWN);
         }
 
         return $attendees;
@@ -95,7 +99,7 @@ class CheckInListDataService
             ]);
 
         if ($checkInList === null) {
-            throw new CannotCheckInException(__('Check-in list not found'));
+            throw new CannotCheckInException(__('Check-in list not found'), CheckInFailureCode::CHECK_IN_LIST_NOT_FOUND);
         }
 
         return $checkInList;

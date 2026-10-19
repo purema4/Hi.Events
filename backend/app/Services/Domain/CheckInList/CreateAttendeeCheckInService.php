@@ -37,6 +37,7 @@ class CreateAttendeeCheckInService
 
     /**
      * @param  Collection<int, AttendeeAndActionDTO>  $attendeesAndActions
+     * @param  Collection<int, AttendeeCheckInDomainObject>  $createdCheckIns
      *
      * @throws CannotCheckInException
      * @throws Exception|Throwable
@@ -44,12 +45,13 @@ class CreateAttendeeCheckInService
     public function checkInAttendees(
         string $checkInListUuid,
         string $checkInUserIpAddress,
-        Collection $attendeesAndActions
+        Collection $attendeesAndActions,
+        Collection $createdCheckIns,
     ): CreateAttendeeCheckInsResponseDTO {
         $checkInList = $this->checkInListDataService->getCheckInList($checkInListUuid);
         $this->checkInListActivityValidator->assertActive($checkInList);
 
-        $attendees = $this->fetchAttendees($attendeesAndActions);
+        $attendees = $this->fetchAttendees($attendeesAndActions, $checkInList->getEventId());
         $eventSettings = $this->fetchEventSettings($checkInList->getEventId());
         $existingCheckIns = $this->fetchExistingCheckIns($attendees, $checkInList);
 
@@ -59,7 +61,8 @@ class CreateAttendeeCheckInService
             $checkInList,
             $eventSettings,
             $existingCheckIns,
-            $checkInUserIpAddress
+            $checkInUserIpAddress,
+            $createdCheckIns,
         );
     }
 
@@ -69,13 +72,13 @@ class CreateAttendeeCheckInService
      *
      * @throws CannotCheckInException
      */
-    private function fetchAttendees(Collection $attendeesAndActions): Collection
+    private function fetchAttendees(Collection $attendeesAndActions, int $eventId): Collection
     {
         $publicIds = $attendeesAndActions->map(
             fn (AttendeeAndActionDTO $attendeeAndAction) => $attendeeAndAction->public_id
         );
 
-        return $this->checkInListDataService->getAttendees($publicIds);
+        return $this->checkInListDataService->getAttendees($publicIds, $eventId);
     }
 
     private function fetchEventSettings(int $eventId): EventSettingDomainObject
@@ -114,10 +117,16 @@ class CreateAttendeeCheckInService
         CheckInListDomainObject $checkInList,
         EventSettingDomainObject $eventSettings,
         Collection $existingCheckIns,
-        string $checkInUserIpAddress
+        string $checkInUserIpAddress,
+        Collection $createdCheckIns,
     ): CreateAttendeeCheckInsResponseDTO {
         $errors = new ErrorBagDTO;
         $checkIns = new Collection;
+        $ordersMarkedAsPaid = new Collection;
+
+        foreach ($attendees as $attendee) {
+            $this->checkInListDataService->verifyAttendeeBelongsToCheckInList($checkInList, $attendee);
+        }
 
         foreach ($attendees as $attendee) {
             $result = $this->processIndividualCheckIn(
@@ -126,11 +135,15 @@ class CreateAttendeeCheckInService
                 $checkInList,
                 $eventSettings,
                 $existingCheckIns,
-                $checkInUserIpAddress
+                $checkInUserIpAddress,
+                $ordersMarkedAsPaid,
             );
 
             if ($result->checkIn) {
                 $checkIns->push($result->checkIn);
+            }
+            if ($result->checkIn && $result->created) {
+                $createdCheckIns->push($result->checkIn);
             }
             if ($result->error) {
                 $errors->addError($attendee->getPublicId(), $result->error);
@@ -153,10 +166,9 @@ class CreateAttendeeCheckInService
         CheckInListDomainObject $checkInList,
         EventSettingDomainObject $eventSettings,
         Collection $existingCheckIns,
-        string $checkInUserIpAddress
+        string $checkInUserIpAddress,
+        Collection $ordersMarkedAsPaid,
     ): CheckInResultDTO {
-        $this->checkInListDataService->verifyAttendeeBelongsToCheckInList($checkInList, $attendee);
-
         $attendeeAction = $attendeesAndActions->first(
             fn (AttendeeAndActionDTO $action) => $action->public_id === $attendee->getPublicId()
         );
@@ -176,19 +188,21 @@ class CreateAttendeeCheckInService
         }
 
         try {
-            return $this->db->transaction(function () use ($attendee, $checkInList, $checkInAction, $checkInUserIpAddress) {
+            return $this->db->transaction(function () use ($attendee, $checkInList, $checkInAction, $checkInUserIpAddress, $ordersMarkedAsPaid) {
                 $checkIn = $this->createCheckIn($attendee, $checkInList, $checkInUserIpAddress);
 
                 if ($checkInAction->value === AttendeeCheckInActionType::CHECK_IN_AND_MARK_ORDER_AS_PAID->value
                     && $attendee->getStatus() === AttendeeStatus::AWAITING_PAYMENT->name
+                    && ! $ordersMarkedAsPaid->contains($attendee->getOrderId())
                 ) {
                     $this->markOrderAsPaidService->markOrderAsPaid(
                         orderId: $attendee->getOrderId(),
                         eventId: $attendee->getEventId(),
                     );
+                    $ordersMarkedAsPaid->push($attendee->getOrderId());
                 }
 
-                return new CheckInResultDTO(checkIn: $checkIn);
+                return new CheckInResultDTO(checkIn: $checkIn, created: true);
             });
         } catch (UniqueConstraintViolationException) {
             return new CheckInResultDTO(

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace HiEvents\Services\Infrastructure\Webhook;
 
+use HiEvents\Exceptions\UnresolvableWebhookHostException;
 use HiEvents\Exceptions\UnsafeWebhookUrlException;
 use HiEvents\Services\Infrastructure\Webhook\DTO\WebhookTargetDTO;
 use Illuminate\Support\Facades\Config;
@@ -115,7 +116,7 @@ class WebhookUrlValidator
         }
 
         if ($addresses === []) {
-            throw new UnsafeWebhookUrlException(__('The :attribute could not be resolved to a public address.'));
+            throw new UnresolvableWebhookHostException(__('The :attribute could not be resolved to a public address.'));
         }
 
         return array_values(array_unique($addresses));

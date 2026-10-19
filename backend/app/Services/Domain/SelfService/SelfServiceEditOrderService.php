@@ -108,7 +108,8 @@ class SelfServiceEditOrderService
             success: true,
             shortIdChanged: $shortIdChanged,
             newShortId: $newShortId,
-            emailChanged: $emailChanged
+            emailChanged: $emailChanged,
+            updated: ! empty($updateData),
         );
     }
 

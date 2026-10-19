@@ -764,5 +764,11 @@
     "The Apple Wallet pass could not be encoded: :message": "Δεν ήταν δυνατή η κωδικοποίηση της κάρτας Apple Wallet: :message",
     "The Apple Wallet pass is no longer available.": "Η κάρτα Apple Wallet δεν είναι πλέον διαθέσιμη.",
     "Ticket for :event": "Εισιτήριο για :event",
-    "Ticket number": "Αριθμός εισιτηρίου"
+    "Ticket number": "Αριθμός εισιτηρίου",
+    "API keys cannot be created while impersonating a user.": "Δεν είναι δυνατή η δημιουργία κλειδιών API κατά τη σύνδεση ως άλλος χρήστης.",
+    "API key not found": "Το κλειδί API δεν βρέθηκε",
+    "This API key does not have the :ability ability.": "Αυτό το κλειδί API δεν έχει τη δυνατότητα :ability.",
+    "This route can only be called with an API key.": "Αυτή η διαδρομή μπορεί να κληθεί μόνο με κλειδί API.",
+    "This route is not available to API keys.": "Αυτή η διαδρομή δεν είναι διαθέσιμη για κλειδιά API.",
+    "API keys can only check attendees in, not mark their orders as paid.": "Τα κλειδιά API μπορούν μόνο να κάνουν check-in συμμετεχόντων, όχι να επισημαίνουν τις παραγγελίες τους ως πληρωμένες."
 }

@@ -9,6 +9,8 @@ use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\Models\Event;
 use HiEvents\Models\Organizer;
+use HiEvents\Models\User;
+use HiEvents\Services\Domain\ApiKey\ApiKeyAuthenticationService;
 use HiEvents\Services\Infrastructure\CurrencyConversion\CurrencyConversionClientInterface;
 use HiEvents\Services\Infrastructure\CurrencyConversion\NoOpCurrencyConversionClient;
 use HiEvents\Services\Infrastructure\CurrencyConversion\OpenExchangeRatesCurrencyConversionClient;
@@ -25,6 +27,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Sanctum\PersonalAccessToken;
+use Laravel\Sanctum\Sanctum;
 use Stripe\StripeClient;
 
 class AppServiceProvider extends ServiceProvider
@@ -49,6 +53,8 @@ class AppServiceProvider extends ServiceProvider
         $this->disableLazyLoading();
 
         $this->registerMorphMaps();
+
+        $this->registerApiKeyAuthentication();
     }
 
     private function bindDoctrineConnection(): void
@@ -119,7 +125,17 @@ class AppServiceProvider extends ServiceProvider
         Relation::enforceMorphMap([
             EventDomainObject::class => Event::class,
             OrganizerDomainObject::class => Organizer::class,
+            User::class => User::class,
         ]);
+    }
+
+    private function registerApiKeyAuthentication(): void
+    {
+        Sanctum::authenticateAccessTokensUsing(
+            fn (PersonalAccessToken $accessToken, bool $isValid): bool => $this->app
+                ->make(ApiKeyAuthenticationService::class)
+                ->isValid($accessToken, $isValid)
+        );
     }
 
     private function disableLazyLoading(): void

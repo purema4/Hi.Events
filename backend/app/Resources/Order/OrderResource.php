@@ -35,6 +35,7 @@ class OrderResource extends BaseResource
             'last_name' => $this->getLastName(),
             'email' => $this->getEmail(),
             'created_at' => $this->getCreatedAt(),
+            'updated_at' => $this->getUpdatedAt(),
             'public_id' => $this->getPublicId(),
             'is_partially_refunded' => $this->isPartiallyRefunded(),
             'is_fully_refunded' => $this->isFullyRefunded(),

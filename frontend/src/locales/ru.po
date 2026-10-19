@@ -472,6 +472,10 @@ msgstr "Шаблон дня недели"
 msgid "Abandoned"
 msgstr ""
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:94
+msgid "Abilities"
+msgstr ""
+
 #: src/components/layouts/EventHomepage/index.tsx:483
 msgid "About"
 msgstr ""
@@ -1240,6 +1244,19 @@ msgstr ""
 msgid "Any single date can differ: change its capacity in Edit Date, or a ticket's per-date quantity on that date's Products tab."
 msgstr ""
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:60
+msgid "API key created successfully"
+msgstr ""
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:26
+msgid "API key revoked"
+msgstr ""
+
+#: src/components/routes/account/ManageAccount/index.tsx:36
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:81
+msgid "API Keys"
+msgstr ""
+
 #: src/components/common/WidgetEditor/index.tsx:216
 msgid "Appearance"
 msgstr ""
@@ -1499,6 +1516,10 @@ msgstr ""
 msgid "Are you sure you want to restore this organizer?"
 msgstr ""
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:24
+msgid "Are you sure you want to revoke this API key? Integrations using it will stop working immediately."
+msgstr ""
+
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:50
 msgid "Are you sure you want to revoke this invitation?"
 msgstr ""
@@ -1656,6 +1677,7 @@ msgstr ""
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:451
 #: src/components/common/StatBoxes/index.tsx:73
 #: src/components/layouts/Event/index.tsx:131
+#: src/components/modals/CreateApiKeyModal/index.tsx:24
 #: src/components/modals/ManageOccurrenceModal/index.tsx:174
 #: src/components/modals/ManageOrderModal/index.tsx:283
 #: src/components/routes/admin/Messages/index.tsx:90
@@ -2233,6 +2255,10 @@ msgstr ""
 msgid "Charity"
 msgstr ""
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:31
+msgid "Check attendees in and out"
+msgstr ""
+
 #: src/components/layouts/CheckIn/AttendeeDetailSheet.tsx:307
 #: src/components/layouts/CheckIn/tabs/SearchTab.tsx:82
 msgid "Check in"
@@ -2330,6 +2356,10 @@ msgstr ""
 
 #: src/components/routes/event/CheckInLists/index.tsx:60
 msgid "check-in lists"
+msgstr ""
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:25
+msgid "Check-in lists"
 msgstr ""
 
 #: src/components/routes/organizer/Reports/CheckInSummaryReport/index.tsx:51
@@ -3167,6 +3197,12 @@ msgstr ""
 msgid "Create Announcement"
 msgstr ""
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:86
+#: src/components/modals/CreateApiKeyModal/index.tsx:131
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:83
+msgid "Create API Key"
+msgstr ""
+
 #: src/components/modals/CreateAttendeeModal/index.tsx:320
 msgid "Create Attendee"
 msgstr ""
@@ -3306,6 +3342,10 @@ msgstr ""
 #: src/components/routes/admin/Messages/index.tsx:169
 #: src/components/routes/admin/Messages/index.tsx:310
 msgid "Created"
+msgstr ""
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:95
+msgid "Created by"
 msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/index.tsx:593
@@ -3496,7 +3536,7 @@ msgstr ""
 
 #: src/components/common/DangerZone/index.tsx:30
 #: src/components/common/EntityActions/index.tsx:32
-#: src/components/routes/account/ManageAccount/index.tsx:36
+#: src/components/routes/account/ManageAccount/index.tsx:42
 #: src/components/routes/account/ManageAccount/sections/DangerZone/index.tsx:80
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:572
 #: src/components/routes/event/Settings/index.tsx:106
@@ -3931,6 +3971,7 @@ msgid "Donation"
 msgstr ""
 
 #: src/components/modals/CheckInListSuccessModal/index.tsx:59
+#: src/components/modals/CreateApiKeyModal/index.tsx:79
 #: src/components/modals/CreateOrganizerWebhookModal/index.tsx:72
 #: src/components/modals/CreateWebhookModal/index.tsx:72
 #: src/components/modals/EventLiveCelebrationModal/index.tsx:123
@@ -4800,6 +4841,10 @@ msgstr ""
 msgid "Events Starting in Next 24 Hours"
 msgstr ""
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:21
+msgid "Events, settings and occurrences"
+msgstr ""
+
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:896
 msgid "Every"
 msgstr "Каждые"
@@ -4872,6 +4917,7 @@ msgid "Execute now"
 msgstr ""
 
 #: src/components/forms/CheckInListForm/index.tsx:160
+#: src/components/modals/CreateApiKeyModal/index.tsx:126
 msgid "Expiration date"
 msgstr ""
 
@@ -4881,6 +4927,7 @@ msgid "Expired"
 msgstr ""
 
 #: src/components/common/PromoCodeTable/index.tsx:73
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:97
 msgid "Expires"
 msgstr ""
 
@@ -6490,6 +6537,10 @@ msgstr ""
 msgid "Last Triggered"
 msgstr ""
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:96
+msgid "Last used"
+msgstr ""
+
 #: src/components/routes/event/Reports/PromoCodesReport/index.tsx:70
 msgid "Last Used"
 msgstr ""
@@ -6525,6 +6576,10 @@ msgstr ""
 #: src/components/routes/organizer/Settings/Sections/WalletPassSettings/index.tsx:83
 msgid "Let attendees add their tickets to Google Wallet and Apple Wallet. The branding below is used on both."
 msgstr "Позвольте участникам добавлять билеты в Google Wallet и Apple Wallet. Оформление ниже используется для обоих."
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:82
+msgid "Let other applications access your account data with the abilities you choose. Keys are shown only once, when they are created."
+msgstr ""
 
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:305
 msgid "Let them know about the change"
@@ -7071,8 +7126,10 @@ msgstr ""
 #: src/components/forms/ProductCategoryForm/index.tsx:16
 #: src/components/forms/ProductForm/index.tsx:196
 #: src/components/forms/TaxAndFeeForm/index.tsx:61
+#: src/components/modals/CreateApiKeyModal/index.tsx:90
 #: src/components/modals/DuplicateEventModal/index.tsx:110
 #: src/components/routes/account/ManageAccount/sections/AccountSettings/index.tsx:63
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:93
 #: src/components/routes/admin/Configurations/index.tsx:224
 #: src/components/routes/event/Settings/Sections/EventDetailsForm/index.tsx:80
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:238
@@ -7081,6 +7138,7 @@ msgstr ""
 
 #: src/components/common/ContactOrganizerModal/index.tsx:32
 #: src/components/modals/CreateAffiliateModal/index.tsx:28
+#: src/components/modals/CreateApiKeyModal/index.tsx:46
 #: src/components/modals/EditAffiliateModal/index.tsx:33
 #: src/components/routes/admin/Configurations/index.tsx:167
 msgid "Name is required"
@@ -7106,6 +7164,8 @@ msgstr ""
 #: src/components/common/OrganizerWebhookTable/index.tsx:266
 #: src/components/common/PromoCodeTable/index.tsx:166
 #: src/components/common/WebhookTable/index.tsx:266
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:56
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:62
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:104
 msgid "Never"
 msgstr ""
@@ -7189,6 +7249,10 @@ msgstr ""
 
 #: src/components/routes/admin/Announcements/index.tsx:145
 msgid "No announcements yet"
+msgstr ""
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:106
+msgid "No API keys yet"
 msgstr ""
 
 #: src/components/common/NoEventsBlankSlate/index.tsx:21
@@ -7965,6 +8029,10 @@ msgstr ""
 msgid "Optional text for disclaimers, contact info, or thank you notes (single line only)"
 msgstr "Дополнительный текст для отказов от ответственности, контактной информации или благодарственных заметок (только одна строка)"
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:127
+msgid "Optional. The key stops working at the end of this day."
+msgstr ""
+
 #: src/components/common/QuestionsTable/index.tsx:125
 msgid "options"
 msgstr ""
@@ -8160,6 +8228,7 @@ msgstr ""
 #: src/components/common/OccurrenceAttendeesAndOrders/index.tsx:65
 #: src/components/layouts/Admin/index.tsx:17
 #: src/components/layouts/Event/index.tsx:125
+#: src/components/modals/CreateApiKeyModal/index.tsx:23
 #: src/components/modals/ManageOccurrenceModal/index.tsx:178
 #: src/components/routes/admin/Attribution/index.tsx:200
 #: src/components/routes/admin/Orders/index.tsx:44
@@ -9064,6 +9133,10 @@ msgstr ""
 msgid "Products sorted successfully"
 msgstr ""
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:22
+msgid "Products, categories, capacities, taxes and fees"
+msgstr ""
+
 #: src/components/routes/profile/ManageProfile/index.tsx:117
 msgid "Profile"
 msgstr ""
@@ -9275,6 +9348,10 @@ msgstr ""
 #: src/components/modals/ManageOccurrenceModal/index.tsx:70
 #: src/components/routes/event/OccurrenceDetail/index.tsx:94
 msgid "Reactivate this date? It will be reopened for future sales."
+msgstr ""
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:98
+msgid "Read"
 msgstr ""
 
 #: src/components/modals/PublishEventModal/index.tsx:147
@@ -9541,6 +9618,10 @@ msgstr ""
 msgid "Reports"
 msgstr ""
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:26
+msgid "Reports and statistics"
+msgstr ""
+
 #: src/components/routes/my-tickets/index.tsx:186
 msgid "Request a new link"
 msgstr ""
@@ -9727,6 +9808,11 @@ msgstr ""
 #: src/components/routes/admin/SpamEvents/index.tsx:102
 msgid "Review events flagged as potential spam by the automated check"
 msgstr "Проверьте события, помеченные автоматической проверкой как возможный спам"
+
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:69
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:70
+msgid "Revoke"
+msgstr ""
 
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:133
 msgid "Revoke invitation"
@@ -10192,6 +10278,10 @@ msgstr ""
 
 #: src/components/routes/organizer/Reports/PlatformFeesReport/index.tsx:119
 msgid "Select an event"
+msgstr ""
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:47
+msgid "Select at least one ability"
 msgstr ""
 
 #: src/components/routes/admin/Announcements/index.tsx:310
@@ -10815,6 +10905,7 @@ msgstr ""
 msgid "Something went wrong, please try again, or contact support if the problem persists"
 msgstr ""
 
+#: src/components/routes/account/ManageAccount/sections/ApiKeys/index.tsx:29
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:44
 #: src/components/routes/account/ManageAccount/sections/Users/index.tsx:59
 msgid "Something went wrong! Please try again"
@@ -11514,6 +11605,14 @@ msgstr ""
 msgid "The full order amount will be refunded to the customer's original payment method."
 msgstr "Полная сумма заказа будет возвращена на первоначальный способ оплаты клиента."
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:113
+msgid "The key can change data in your account"
+msgstr ""
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:99
+msgid "The key can only read this data"
+msgstr ""
+
 #: src/components/modals/CreateAttendeeModal/index.tsx:237
 msgid "The language the attendee will receive emails in."
 msgstr ""
@@ -11843,6 +11942,10 @@ msgstr ""
 #: src/components/modals/CreateOrganizerWebhookModal/index.tsx:64
 #: src/components/modals/CreateWebhookModal/index.tsx:64
 msgid "This is the only time the signing secret will be shown. Please copy it now and store it securely."
+msgstr ""
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:71
+msgid "This is the only time this API key will be shown. Please copy it now and store it securely."
 msgstr ""
 
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:26
@@ -12204,6 +12307,10 @@ msgstr ""
 
 #: src/components/modals/SendMessageModal/index.tsx:315
 msgid "To increase your limits, contact us at"
+msgstr ""
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:91
+msgid "To recognise the integration that uses this key"
 msgstr ""
 
 #: src/components/common/OccurrenceSelect/index.tsx:148
@@ -13267,6 +13374,10 @@ msgstr ""
 msgid "Webhooks"
 msgstr ""
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:27
+msgid "Webhooks and their logs"
+msgstr ""
+
 #: src/components/routes/organizer/Settings/Sections/BasicSettings/index.tsx:102
 msgid "Website"
 msgstr ""
@@ -13534,6 +13645,10 @@ msgstr ""
 msgid "Workshop with early bird"
 msgstr ""
 
+#: src/components/modals/CreateApiKeyModal/index.tsx:112
+msgid "Write"
+msgstr ""
+
 #: src/components/common/ContactOrganizerModal/index.tsx:89
 msgid "Write your message here..."
 msgstr ""
@@ -13782,6 +13897,10 @@ msgstr ""
 
 #: src/components/routes/event/Affiliates/index.tsx:48
 msgid "Your affiliates have been exported successfully."
+msgstr ""
+
+#: src/components/modals/CreateApiKeyModal/index.tsx:69
+msgid "Your API Key"
 msgstr ""
 
 #: src/components/routes/event/attendees.tsx:164

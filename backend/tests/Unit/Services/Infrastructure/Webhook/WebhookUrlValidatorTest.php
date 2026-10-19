@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Services\Infrastructure\Webhook;
 
+use HiEvents\Exceptions\UnresolvableWebhookHostException;
 use HiEvents\Exceptions\UnsafeWebhookUrlException;
 use HiEvents\Services\Infrastructure\Webhook\DTO\WebhookTargetDTO;
 use HiEvents\Services\Infrastructure\Webhook\WebhookUrlValidator;
@@ -27,6 +28,24 @@ class WebhookUrlValidatorTest extends TestCase
         $this->expectException(UnsafeWebhookUrlException::class);
 
         $this->validator->validate($url);
+    }
+
+    #[DataProvider('blockedUrlProvider')]
+    public function test_a_blocked_url_is_not_reported_as_unresolvable(string $url): void
+    {
+        try {
+            $this->validator->validate($url);
+            $this->fail('The URL should have been refused.');
+        } catch (UnsafeWebhookUrlException $exception) {
+            $this->assertNotInstanceOf(UnresolvableWebhookHostException::class, $exception);
+        }
+    }
+
+    public function test_a_host_that_does_not_resolve_is_reported_as_unresolvable(): void
+    {
+        $this->expectException(UnresolvableWebhookHostException::class);
+
+        $this->validator->validate('https://no-such-host.invalid/hook');
     }
 
     public static function blockedUrlProvider(): array

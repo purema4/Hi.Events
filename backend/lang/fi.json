@@ -917,5 +917,11 @@
     "Balance Due": "Maksettava",
     "Every tier except the last needs a quantity when tiers are released in order.": "Kun tasot julkaistaan järjestyksessä, kaikille tasoille viimeistä lukuun ottamatta on määritettävä määrä.",
     "This price is not on sale yet": "Tämä hinta ei ole vielä myynnissä",
-    "Price is locked until earlier tiers sell out": "Hinta on lukittu, kunnes aiemmat tasot on myyty loppuun"
+    "Price is locked until earlier tiers sell out": "Hinta on lukittu, kunnes aiemmat tasot on myyty loppuun",
+    "API keys cannot be created while impersonating a user.": "API-avaimia ei voi luoda, kun esiinnyt toisena henkilönä.",
+    "API key not found": "API-avainta ei löytynyt",
+    "This API key does not have the :ability ability.": "Tällä API-avaimella ei ole oikeutta :ability.",
+    "This route can only be called with an API key.": "Tätä reittiä voi kutsua vain API-avaimella.",
+    "This route is not available to API keys.": "Tämä reitti ei ole API-avainten käytettävissä.",
+    "API keys can only check attendees in, not mark their orders as paid.": "API-avaimilla voi vain kirjata osallistujia sisään, ei merkitä heidän tilauksiaan maksetuiksi."
 }

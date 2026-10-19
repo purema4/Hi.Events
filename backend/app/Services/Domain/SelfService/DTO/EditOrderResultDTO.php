@@ -9,5 +9,6 @@ class EditOrderResultDTO
         public readonly bool $shortIdChanged,
         public readonly ?string $newShortId,
         public readonly bool $emailChanged,
+        public readonly bool $updated,
     ) {}
 }

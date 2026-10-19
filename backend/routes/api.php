@@ -54,6 +54,10 @@ use HiEvents\Http\Actions\Affiliates\GetAffiliatesAction;
 use HiEvents\Http\Actions\Affiliates\UpdateAffiliateAction;
 use HiEvents\Http\Actions\Announcements\DismissAnnouncementAction;
 use HiEvents\Http\Actions\Announcements\GetActiveAnnouncementsAction;
+use HiEvents\Http\Actions\ApiKeys\CreateApiKeyAction;
+use HiEvents\Http\Actions\ApiKeys\DeleteApiKeyAction;
+use HiEvents\Http\Actions\ApiKeys\GetApiKeysAction;
+use HiEvents\Http\Actions\ApiKeys\GetCurrentApiKeyAction;
 use HiEvents\Http\Actions\AppleWallet\GetLatestAppleWalletPassAction;
 use HiEvents\Http\Actions\AppleWallet\GetUpdatableAppleWalletPassesAction;
 use HiEvents\Http\Actions\AppleWallet\LogAppleWalletMessagesAction;
@@ -83,7 +87,9 @@ use HiEvents\Http\Actions\CapacityAssignments\DeleteCapacityAssignmentAction;
 use HiEvents\Http\Actions\CapacityAssignments\GetCapacityAssignmentAction;
 use HiEvents\Http\Actions\CapacityAssignments\GetCapacityAssignmentsAction;
 use HiEvents\Http\Actions\CapacityAssignments\UpdateCapacityAssignmentAction;
+use HiEvents\Http\Actions\CheckInLists\CreateAttendeeCheckInAction;
 use HiEvents\Http\Actions\CheckInLists\CreateCheckInListAction;
+use HiEvents\Http\Actions\CheckInLists\DeleteAttendeeCheckInAction;
 use HiEvents\Http\Actions\CheckInLists\DeleteCheckInListAction;
 use HiEvents\Http\Actions\CheckInLists\GetCheckInListAction;
 use HiEvents\Http\Actions\CheckInLists\GetCheckInListsAction;
@@ -298,7 +304,7 @@ $router->prefix('/auth')->group(
 /**
  * Logged In Routes
  */
-$router->middleware(['auth:api'])->group(
+$router->middleware(['auth:api,sanctum', 'api-key.scope'])->group(
     function (Router $router): void {
         // Auth
         $router->get('/auth/logout', LogoutAction::class);
@@ -329,6 +335,12 @@ $router->middleware(['auth:api'])->group(
         $router->get('/accounts/deletion-request', GetAccountDeletionStatusAction::class);
         $router->get('/accounts/{account_id?}', GetAccountAction::class);
         $router->put('/accounts/{account_id?}', UpdateAccountAction::class);
+
+        // API keys
+        $router->get('/api-key', GetCurrentApiKeyAction::class);
+        $router->get('/accounts/{account_id}/api-keys', GetApiKeysAction::class);
+        $router->post('/accounts/{account_id}/api-keys', CreateApiKeyAction::class);
+        $router->delete('/accounts/{account_id}/api-keys/{api_key_id}', DeleteApiKeyAction::class);
 
         // Organizers
         $router->post('/organizers', CreateOrganizerAction::class);
@@ -506,6 +518,8 @@ $router->middleware(['auth:api'])->group(
         $router->get('/events/{event_id}/check-in-lists/{check_in_list_id}', GetCheckInListAction::class);
         $router->put('/events/{event_id}/check-in-lists/{check_in_list_id}', UpdateCheckInListAction::class);
         $router->delete('/events/{event_id}/check-in-lists/{check_in_list_id}', DeleteCheckInListAction::class);
+        $router->post('/events/{event_id}/check-in-lists/{check_in_list_id}/check-ins', CreateAttendeeCheckInAction::class);
+        $router->delete('/events/{event_id}/check-in-lists/{check_in_list_id}/check-ins/{check_in_short_id}', DeleteAttendeeCheckInAction::class);
 
         // Webhooks
         $router->post('/events/{event_id}/webhooks', CreateWebhookAction::class);

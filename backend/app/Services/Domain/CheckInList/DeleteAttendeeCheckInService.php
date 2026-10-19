@@ -4,6 +4,7 @@ namespace HiEvents\Services\Domain\CheckInList;
 
 use HiEvents\DomainObjects\AttendeeCheckInDomainObject;
 use HiEvents\DomainObjects\AttendeeDomainObject;
+use HiEvents\DomainObjects\Enums\CheckInFailureCode;
 use HiEvents\DomainObjects\Generated\AttendeeCheckInDomainObjectAbstract;
 use HiEvents\Exceptions\CannotCheckInException;
 use HiEvents\Repository\Eloquent\Value\Relationship;
@@ -34,7 +35,10 @@ class DeleteAttendeeCheckInService
             ]);
 
         if ($checkIn === null) {
-            throw new CannotCheckInException(__('This attendee is not checked in'));
+            throw new CannotCheckInException(
+                __('This attendee is not checked in'),
+                CheckInFailureCode::ATTENDEE_NOT_CHECKED_IN,
+            );
         }
 
         $checkInList = $this->checkInListDataService->getCheckInList($checkInListShortId);
