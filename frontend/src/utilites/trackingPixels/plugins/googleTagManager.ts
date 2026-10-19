@@ -35,13 +35,23 @@ export const googleTagManagerPlugin: TrackingPixelPlugin = {
             'InitiateCheckout': 'begin_checkout',
             'Purchase': 'purchase',
         };
+        const transactionId = data.transactionId ? String(data.transactionId) : undefined;
+        const itemId = data.contentId ? String(data.contentId) : undefined;
+
+        window.dataLayer?.push({ecommerce: null});
         window.dataLayer?.push({
             event: eventMap[data.eventName] || data.eventName,
             value: data.value,
             currency: data.currency,
-            transaction_id: data.transactionId ? String(data.transactionId) : undefined,
+            transaction_id: transactionId,
             item_name: data.contentName,
-            item_id: data.contentId ? String(data.contentId) : undefined,
+            item_id: itemId,
+            ecommerce: {
+                value: data.value,
+                currency: data.currency,
+                transaction_id: transactionId,
+                items: itemId ? [{item_id: itemId, item_name: data.contentName, price: data.value, quantity: 1}] : undefined,
+            },
         });
     },
 

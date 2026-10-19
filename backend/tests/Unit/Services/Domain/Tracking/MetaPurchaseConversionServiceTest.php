@@ -114,6 +114,23 @@ class MetaPurchaseConversionServiceTest extends TestCase
         $this->assertArrayNotHasKey('fbc', $userData);
     }
 
+    public function test_sends_complete_registration_for_free_orders(): void
+    {
+        $this->givenOrder($this->makeOrder()->setTotalGross(0));
+        $this->givenEvent();
+        $this->givenSettings($this->makeSettings());
+
+        $this->client
+            ->shouldReceive('sendEvents')
+            ->once()
+            ->with(self::PIXEL_ID, 'EAAtoken', Mockery::on(
+                fn (array $events) => $events[0]['event_name'] === 'CompleteRegistration'
+                    && $events[0]['event_id'] === 'ABC123'
+            ));
+
+        $this->service->sendPurchase(1);
+    }
+
     public function test_does_not_send_when_order_has_no_tracking_context(): void
     {
         $this->givenOrder($this->makeOrder()->setAdTrackingContext(null));

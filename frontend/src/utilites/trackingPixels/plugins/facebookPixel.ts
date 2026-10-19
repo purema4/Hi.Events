@@ -53,7 +53,8 @@ export const facebookPixelPlugin: TrackingPixelPlugin = {
             'InitiateCheckout': 'InitiateCheckout',
             'Purchase': 'Purchase',
         };
-        const fbEvent = eventMap[data.eventName] || data.eventName;
+        const isFreePurchase = data.eventName === 'Purchase' && !data.value;
+        const fbEvent = isFreePurchase ? 'CompleteRegistration' : (eventMap[data.eventName] || data.eventName);
         const parameters = {
             value: data.value,
             currency: data.currency,

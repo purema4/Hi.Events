@@ -111,7 +111,7 @@ class MetaPurchaseConversionService
         array $trackingContext,
     ): array {
         return array_filter([
-            'event_name' => 'Purchase',
+            'event_name' => $order->getTotalGross() > 0 ? 'Purchase' : 'CompleteRegistration',
             'event_time' => Carbon::now()->getTimestamp(),
             'event_id' => $order->getShortId(),
             'action_source' => 'website',
