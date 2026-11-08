@@ -86,7 +86,7 @@ export const getBeforeDiscountDisplayPrice = (
         return Number(price.price_before_discount);
     }
 
-    return price.price_before_discount_including_taxes_and_fees != null
-        ? Number(price.price_before_discount_including_taxes_and_fees)
+    return price.price_before_discount_including_fees != null
+        ? Number(price.price_before_discount_including_fees)
         : null;
 };

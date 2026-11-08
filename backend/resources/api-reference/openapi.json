@@ -34881,6 +34881,12 @@
               "null"
             ]
           },
+          "price_before_discount_including_fees": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
           "is_discounted": {
             "type": "boolean"
           },
@@ -34946,6 +34952,7 @@
           "price_including_taxes_and_fees",
           "price_before_discount",
           "price_before_discount_including_taxes_and_fees",
+          "price_before_discount_including_fees",
           "is_discounted",
           "tax_total",
           "fee_total",

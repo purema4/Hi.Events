@@ -129,6 +129,7 @@ class ProductFilterServiceDisplayPricingTest extends TestCase
         $this->assertSame(2.65, $price->getTaxTotal());
         $this->assertSame(14.15, $price->getPriceIncludingTaxAndServiceFee());
         $this->assertSame(17.22, $price->getPriceBeforeDiscountIncludingTaxesAndFees());
+        $this->assertSame(14.00, $price->getPriceBeforeDiscountIncludingFees());
     }
 
     public function test_a_promo_code_without_a_discount_type_publishes_no_struck_price(): void
@@ -147,6 +148,7 @@ class ProductFilterServiceDisplayPricingTest extends TestCase
         $this->assertSame(20.00, $price->getPrice());
         $this->assertNull($price->getPriceBeforeDiscount());
         $this->assertNull($price->getPriceBeforeDiscountIncludingTaxesAndFees());
+        $this->assertNull($price->getPriceBeforeDiscountIncludingFees());
         $this->assertSame(24.97, $price->getPriceIncludingTaxAndServiceFee());
     }
 

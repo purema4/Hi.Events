@@ -1257,6 +1257,7 @@ export interface ProductPrice {
     price_including_taxes_and_fees?: number;
     price_before_discount?: number;
     price_before_discount_including_taxes_and_fees?: number | null;
+    price_before_discount_including_fees?: number | null;
     is_discounted?: boolean;
     tax_total?: number;
     fee_total?: number;

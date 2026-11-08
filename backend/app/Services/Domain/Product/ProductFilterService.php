@@ -205,6 +205,9 @@ class ProductFilterService
                 $price->setPriceBeforeDiscountIncludingTaxesAndFees($discountedPrice->price_before_discount === null
                     ? null
                     : $this->priceIncludingTaxesAndFees($product, $discountedPrice->price_before_discount));
+                $price->setPriceBeforeDiscountIncludingFees($discountedPrice->price_before_discount === null
+                    ? null
+                    : $this->priceIncludingFees($product, $discountedPrice->price_before_discount));
                 $price->setPrice($discountedPrice->price);
             });
         }
@@ -351,6 +354,15 @@ class ProductFilterService
         $taxAndFees = $this->taxAndFeeTotals($product, $price);
 
         return Currency::round($price + Currency::round($taxAndFees->taxTotal) + Currency::round($taxAndFees->feeTotal));
+    }
+
+    private function priceIncludingFees(ProductDomainObject $product, float $price): float
+    {
+        if ($price <= 0.0) {
+            return 0.0;
+        }
+
+        return Currency::round($price + Currency::round($this->taxAndFeeTotals($product, $price)->feeTotal));
     }
 
     private function calculatePlatformFee(float $total): float

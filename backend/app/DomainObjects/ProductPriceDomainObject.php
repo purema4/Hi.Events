@@ -15,6 +15,8 @@ class ProductPriceDomainObject extends Generated\ProductPriceDomainObjectAbstrac
 
     private ?float $priceBeforeDiscountIncludingTaxesAndFees = null;
 
+    private ?float $priceBeforeDiscountIncludingFees = null;
+
     private ?float $taxTotal = null;
 
     private ?float $feeTotal = null;
@@ -52,6 +54,18 @@ class ProductPriceDomainObject extends Generated\ProductPriceDomainObjectAbstrac
     public function setPriceBeforeDiscountIncludingTaxesAndFees(?float $priceBeforeDiscountIncludingTaxesAndFees): self
     {
         $this->priceBeforeDiscountIncludingTaxesAndFees = $priceBeforeDiscountIncludingTaxesAndFees;
+
+        return $this;
+    }
+
+    public function getPriceBeforeDiscountIncludingFees(): ?float
+    {
+        return $this->priceBeforeDiscountIncludingFees;
+    }
+
+    public function setPriceBeforeDiscountIncludingFees(?float $priceBeforeDiscountIncludingFees): self
+    {
+        $this->priceBeforeDiscountIncludingFees = $priceBeforeDiscountIncludingFees;
 
         return $this;
     }

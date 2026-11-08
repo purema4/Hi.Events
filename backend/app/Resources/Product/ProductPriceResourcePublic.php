@@ -25,6 +25,8 @@ class ProductPriceResourcePublic extends BaseResource
             'price_before_discount' => $this->getPriceBeforeDiscount(),
             /** @var float|null */
             'price_before_discount_including_taxes_and_fees' => $this->getPriceBeforeDiscountIncludingTaxesAndFees(),
+            /** @var float|null */
+            'price_before_discount_including_fees' => $this->getPriceBeforeDiscountIncludingFees(),
             'is_discounted' => (bool) $this->getPriceBeforeDiscount(),
             'tax_total' => $this->getTaxTotal(),
             'fee_total' => $this->getFeeTotal(),

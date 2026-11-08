@@ -4,7 +4,7 @@ import { createLiveEventWithProduct } from '../../api/factory';
 import { uniqueCode, uniqueName } from '../../utils/unique';
 
 test.describe('promo code with tax-inclusive prices', () => {
-  test('the struck price includes VAT and the cart total matches the order total', async ({ page, api, account }) => {
+  test('the struck price leaves VAT for checkout and the cart total matches the order total', async ({ page, api, account }) => {
     const { id: accountId } = await api.getAccount();
     const vat = await api.createTaxOrFee(accountId, {
       name: uniqueName('VAT'),
@@ -26,8 +26,8 @@ test.describe('promo code with tax-inclusive prices', () => {
     await checkout.applyPromoCode(code);
 
     const productRow = page.locator('.hi-product-row').filter({ hasText: event.productTitle });
-    await expect(productRow.locator('.hi-price-amount').first()).toHaveText('$10.44');
-    await expect(productRow.locator('.hi-price-strike')).toHaveText('$12.29');
+    await expect(productRow.locator('.hi-price-amount').first()).toHaveText('$8.49');
+    await expect(productRow.locator('.hi-price-strike')).toHaveText('$9.99');
 
     await checkout.setQuantityForProduct(event.productTitle, 3);
     await page.evaluate(() => window.scrollTo(0, 0));

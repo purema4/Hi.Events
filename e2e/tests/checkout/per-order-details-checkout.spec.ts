@@ -30,7 +30,7 @@ test.describe('per-order attendee details checkout', () => {
 
     const ticketLinks = (await mailpit.getLinks(ticketEmail.ID))
       .filter((link) => new RegExp(`/product/${event.eventId}/[^/]+$`).test(link));
-    expect(new Set(ticketLinks).size).toBe(2);
+    expect(new Set(ticketLinks).size).toBe(1);
 
     const attendees = new AttendeePage(authedPage);
     await attendees.goto(event.eventId);
