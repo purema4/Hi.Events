@@ -1,6 +1,6 @@
-import {ComboboxItem, Group, Select, Skeleton, Table as MantineTable} from '@mantine/core';
+import {Button, Group, Select, Skeleton, Table as MantineTable} from '@mantine/core';
 import {t} from '@lingui/macro';
-import {DatePickerInput} from "@mantine/dates";
+import {DatePickerInput, DatesRangeValue} from "@mantine/dates";
 import {IconArrowDown, IconArrowsSort, IconArrowUp, IconCalendar} from "@tabler/icons-react";
 import React, {useMemo, useState} from "react";
 import {PageTitle} from "../PageTitle";
@@ -13,9 +13,10 @@ import {Event, EventType, IdParam} from "../../../types.ts";
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import {instantRangeToWallDates, wallDateInTimezone, wallDateRangeToInstants} from "../../../utilites/dates.ts";
 import {NoResultsSplash} from "../NoResultsSplash";
 import {OccurrenceSelect} from "../OccurrenceSelect";
-import {useGetEventOccurrences} from "../../../queries/useGetEventOccurrences.ts";
+import {useGetAllEventOccurrences} from "../../../queries/useGetAllEventOccurrences.ts";
 import classes from './ReportTable.module.scss';
 
 dayjs.extend(utc);
@@ -43,7 +44,7 @@ interface ReportProps<T> {
     showCustomDatePicker?: boolean;
 }
 
-const TIME_PERIODS = [
+const getTimePeriods = () => [
     {value: '24h', label: t`Last 24 hours`},
     {value: '48h', label: t`Last 48 hours`},
     {value: '7d', label: t`Last 7 days`},
@@ -81,13 +82,7 @@ const ReportTable = <T extends Record<string, any>>({
     const {reportType, eventId} = useParams();
 
     const isRecurring = event?.type === EventType.RECURRING;
-    const occurrencesQuery = useGetEventOccurrences(
-        eventId,
-        {pageNumber: 1, perPage: 500},
-        isRecurring && showOccurrenceFilter,
-        {includeStats: false},
-    );
-    const occurrences = occurrencesQuery?.data?.data || [];
+    const occurrences = useGetAllEventOccurrences(eventId, isRecurring && showOccurrenceFilter).data ?? [];
 
     const reportQuery = useGetEventReport(eventId, reportType, dateRange[0], dateRange[1], selectedOccurrenceId);
     const data = (reportQuery.data || []) as T[];
@@ -139,7 +134,7 @@ const ReportTable = <T extends Record<string, any>>({
         return [start.toDate(), end.toDate()];
     };
 
-    const handlePeriodChange = (value: string | null, _: ComboboxItem) => {
+    const handlePeriodChange = (value: string | null) => {
         if (!value) return;
         setSelectedPeriod(value);
         const newRange = calculateDateRange(value);
@@ -147,15 +142,8 @@ const ReportTable = <T extends Record<string, any>>({
         onDateRangeChange?.(newRange);
     };
 
-    const handleDateRangeChange = (newRange: [Date | null, Date | null]) => {
-        const [start, end] = newRange;
-        const tzStart = start ? dayjs(start).tz(event.timezone) : null;
-        const tzEnd = end ? dayjs(end).tz(event.timezone) : null;
-
-        const tzRange: [Date | null, Date | null] = [
-            tzStart?.toDate() || null,
-            tzEnd?.toDate() || null
-        ];
+    const handleDateRangeChange = (newRange: DatesRangeValue<string>) => {
+        const tzRange = wallDateRangeToInstants(newRange, event.timezone);
 
         setDateRange(tzRange);
         onDateRangeChange?.(tzRange);
@@ -249,6 +237,20 @@ const ReportTable = <T extends Record<string, any>>({
         );
     }
 
+    if (reportQuery.isError && !reportQuery.data) {
+        return (
+            <NoResultsSplash
+                heading={t`Couldn't load this report`}
+                imageHref={'/blank-slate/reports.svg'}
+                subHeading={<p>{t`Check your connection and try again.`}</p>}
+            >
+                <Button variant="default" loading={reportQuery.isFetching} onClick={() => reportQuery.refetch()}>
+                    {t`Try again`}
+                </Button>
+            </NoResultsSplash>
+        );
+    }
+
     if (reportQuery.isFetched && !reportQuery.isLoading && !data.length) {
         return (
             <NoResultsSplash
@@ -284,12 +286,13 @@ const ReportTable = <T extends Record<string, any>>({
                         <Select
                             style={{minWidth: '200px'}}
                             placeholder={t`Select time period`}
-                            data={TIME_PERIODS}
+                            data={getTimePeriods()}
                             value={selectedPeriod}
                             onChange={handlePeriodChange}
                             leftSection={<IconCalendar stroke={1.5} size={20}/>}
                             mb="0"
                             className={classes.periodSelect}
+                            data-testid="report-period-select"
                         />
                     )}
                     {showDateFilter && showDatePickerInput && (
@@ -298,11 +301,12 @@ const ReportTable = <T extends Record<string, any>>({
                             leftSection={<IconCalendar stroke={1.5} size={20}/>}
                             type="range"
                             placeholder="Pick dates range"
-                            value={dateRange}
+                            value={instantRangeToWallDates(dateRange, event.timezone)}
                             onChange={handleDateRangeChange}
-                            minDate={dayjs().subtract(1, 'year').tz(event.timezone).toDate()}
-                            maxDate={dayjs().tz(event.timezone).toDate()}
+                            minDate={wallDateInTimezone(dayjs().subtract(1, 'year').toDate(), event.timezone)}
+                            maxDate={wallDateInTimezone(new Date(), event.timezone)}
                             className={classes.datePicker}
+                            data-testid="report-date-range-picker"
                         />
                     )}
                     {enableDownload && (

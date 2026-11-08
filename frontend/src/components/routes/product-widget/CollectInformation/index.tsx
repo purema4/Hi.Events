@@ -11,14 +11,14 @@ import {
     TextInput,
     Tooltip
 } from "@mantine/core";
-import {IconArrowRight, IconCheck, IconCircleCheck, IconClock} from "@tabler/icons-react";
+import {IconArrowRight, IconCheck, IconCircleCheck, IconCircleX, IconClock} from "@tabler/icons-react";
 import {t, Trans} from "@lingui/macro";
 import {useForm} from "@mantine/form";
 import {notifications} from "@mantine/notifications";
 import {useGetOrderPublic} from "../../../../queries/useGetOrderPublic.ts";
 import {useGetEventPublic} from "../../../../queries/useGetEventPublic.ts";
 import {useGetEventQuestionsPublic} from "../../../../queries/useGetEventQuestionsPublic.ts";
-import {CheckoutOrderQuestions, CheckoutProductQuestions} from "../../../common/CheckoutQuestion";
+import {CheckoutOrderQuestions, CheckoutProductQuestions, LockedFields} from "../../../common/CheckoutQuestion";
 import {Event, IdParam, Question} from "../../../../types.ts";
 import {useEffect, useState} from "react";
 import {InputGroup} from "../../../common/InputGroup";
@@ -38,6 +38,7 @@ import {clearWaitlistJoinedForEvent} from "../../../../hooks/useWaitlistJoined.t
 import {useCheckoutPrefill, CheckoutPrefill} from "../../../../hooks/useCheckoutPrefill.ts";
 import {UserGeneratedContent} from "../../../common/UserGeneratedContent";
 import {getMetaAdTrackingContext} from "../../../../utilites/trackingPixels/metaAdTracking.ts";
+import {answersByQuestionId, findDisqualifyingQuestion, indexQuestions} from "../../../../utilites/questionLogic.ts";
 
 const LoadingSkeleton = () =>
     (
@@ -47,6 +48,11 @@ const LoadingSkeleton = () =>
             <Skeleton mb={20} height={200}/>
         </CheckoutContent>
     );
+
+interface IneligibleAnswer {
+    question: Question;
+    scope: 'order' | number;
+}
 
 export const CollectInformation = () => {
     const {eventId, orderShortId} = useParams();
@@ -204,7 +210,6 @@ export const CollectInformation = () => {
     const handleCopyOptionChange = (value: string) => {
         const option = value as 'none' | 'first' | 'all';
 
-        // Only allow copying if order details are complete
         if (option !== 'none' && !areOrderDetailsComplete()) {
             return;
         }
@@ -213,7 +218,6 @@ export const CollectInformation = () => {
         copyDetailsToAttendees(option);
     };
 
-    // Reset copy option if order details become incomplete
     useEffect(() => {
         if (copyOption !== 'none' && !areOrderDetailsComplete()) {
             setCopyOption('none');
@@ -240,7 +244,6 @@ export const CollectInformation = () => {
                     message: error?.response?.data?.message,
                 });
 
-                // if it's a 409, we need to redirect to the event page as the order is no longer valid
                 if (error.response.status === 409 && getEmbedMode() !== 'modal') {
                     navigate(eventHomepagePath(event as Event));
                 }
@@ -264,14 +267,18 @@ export const CollectInformation = () => {
         return productIdToQuestionMap;
     }
 
+    const seatsForItem = (orderItemId?: number) =>
+        (order?.seats ?? []).filter(seat => seat.order_item_id === orderItemId);
+
     const createProductsAndQuestions = (productIdToQuestionMap: Map<number, Question[]>) => {
         const products: any = [];
 
         orderItems?.forEach(orderItem => {
-            Array.from(Array(orderItem?.quantity)).map(() => {
+            Array.from(Array(orderItem?.quantity)).map((_, ticketIndex) => {
                 products.push({
                     product_price_id: orderItem?.product_price_id,
                     product_id: orderItem?.product_id,
+                    seat_uid: seatsForItem(orderItem?.id)[ticketIndex]?.seat_uid,
                     first_name: "",
                     last_name: "",
                     email: "",
@@ -301,6 +308,34 @@ export const CollectInformation = () => {
 
         return formOrderQuestions;
     }
+
+    const findIneligibleAnswer = (): IneligibleAnswer | undefined => {
+        const questionsById = indexQuestions(questions ?? []);
+        const orderAnswers = answersByQuestionId(form.values.order?.questions);
+        const ineligibleOrderQuestion = findDisqualifyingQuestion(orderQuestions ?? [], questionsById, orderAnswers);
+
+        if (ineligibleOrderQuestion) {
+            return {question: ineligibleOrderQuestion, scope: 'order'};
+        }
+
+        const entries: { product_id?: number | string; questions?: unknown }[] = form.values.products ?? [];
+
+        for (const [index, entry] of entries.entries()) {
+            const question = findDisqualifyingQuestion(
+                (productQuestions ?? []).filter(candidate => candidate.product_ids?.includes(Number(entry.product_id))),
+                questionsById,
+                orderAnswers,
+                answersByQuestionId(entry.questions),
+                Number(entry.product_id),
+            );
+
+            if (question) {
+                return {question, scope: index};
+            }
+        }
+
+        return undefined;
+    };
 
     const handleSubmit = (values: any) => {
         mutation.mutate({
@@ -342,8 +377,13 @@ export const CollectInformation = () => {
                 },
             });
         }
-        // prefill/lock intentionally omitted: they're memoized off query params that don't change during the page's lifetime
     }, [isEventFetched, isOrderFetched, isQuestionsFetched]);
+
+    useEffect(() => {
+        if (order?.status === 'RESERVED' && order.payment_link_created_at && !order.is_expired) {
+            navigate(eventCheckoutPath(eventId, order.short_id, 'payment'), {replace: true});
+        }
+    }, [order?.status, order?.payment_link_created_at]);
 
     useEffect(() => {
         if ((order && event) && order?.is_expired && getEmbedMode() !== 'modal') {
@@ -430,6 +470,10 @@ export const CollectInformation = () => {
         const product = products?.find(product => product!.id === orderItem.product_id);
         return product?.product_type === 'TICKET';
     });
+
+    const ineligibleAnswer = findIneligibleAnswer();
+    const isAttendeeLocked = (attendeeIndex: number) => ineligibleAnswer !== undefined
+        && (ineligibleAnswer.scope === 'order' || attendeeIndex > ineligibleAnswer.scope);
 
     return (
         <form onSubmit={form.onSubmit(handleSubmit)}>
@@ -605,7 +649,6 @@ export const CollectInformation = () => {
                             </InputGroup>
 
                             <InputGroup>
-                                {/* Postal Code and Country */}
                                 <TextInput
                                     label={t`ZIP / Postal Code`}
                                     placeholder={t`ZIP or Postal Code`}
@@ -625,14 +668,16 @@ export const CollectInformation = () => {
                         </>
                     )}
 
-                    {orderQuestions && <CheckoutOrderQuestions form={form} questions={orderQuestions}/>}
+                    {orderQuestions && <CheckoutOrderQuestions form={form} questions={orderQuestions} allQuestions={questions}/>}
 
                     {event?.settings?.show_marketing_opt_in && (
-                        <Checkbox
-                            mt="md"
-                            label={t`Keep me updated on news and events from ${event?.organizer?.name || t`this organizer`}`}
-                            {...form.getInputProps('order.opted_into_marketing', {type: 'checkbox'})}
-                        />
+                        <LockedFields locked={ineligibleAnswer?.scope === 'order'}>
+                            <Checkbox
+                                mt="md"
+                                label={t`Keep me updated on news and events from ${event?.organizer?.name || t`this organizer`}`}
+                                {...form.getInputProps('order.opted_into_marketing', {type: 'checkbox'})}
+                            />
+                        </LockedFields>
                     )}
                 </Card>
 
@@ -646,8 +691,6 @@ export const CollectInformation = () => {
                     }
 
                     if (!productRequiresDetails && !productHasQuestions) {
-                        // Still increment productIndex for each item in the quantity
-                        // to maintain correct form field indices
                         productIndex += orderItem.quantity ?? 0;
                         return null;
                     }
@@ -671,98 +714,100 @@ export const CollectInformation = () => {
                                     copyOption === 'all' || (copyOption === 'first' && isFirstTicketAttendee)
                                 );
 
-                                // Check if current values still match the order details
                                 const currentProduct = form.values.products[currentProductIndex];
                                 const valuesMatchOrder = currentProduct &&
                                     currentProduct.first_name === form.values.order.first_name &&
                                     currentProduct.last_name === form.values.order.last_name &&
                                     currentProduct.email === form.values.order.email;
 
-                                // Only show badge if copied AND values still match
                                 const showCopiedBadge = isCopied && productRequiresDetails && valuesMatchOrder;
 
                                 const productInputs = (
-                                    <Card key={`${orderItem.id} ${index}`} className={classes.attendeeCard}>
-                                        <div className={classes.attendeeCardHeader}>
-                                            <div className={classes.attendeeHeaderLeft}>
-                                                <div className={classes.attendeeNumber}>
-                                                    {index + 1}
+                                    <LockedFields key={`${orderItem.id} ${index}`} locked={isAttendeeLocked(currentProductIndex)}>
+                                        <Card className={classes.attendeeCard}>
+                                            <div className={classes.attendeeCardHeader}>
+                                                <div className={classes.attendeeHeaderLeft}>
+                                                    <div className={classes.attendeeNumber}>
+                                                        {index + 1}
+                                                    </div>
+                                                    <div className={classes.attendeeInfo}>
+                                                        <h4>
+                                                            {product.product_type === 'TICKET' ? t`Attendee` : t`Item`} {index + 1}
+                                                        </h4>
+                                                        <span className={classes.attendeeTicketType}>
+                                                            {[orderItem?.item_name, seatsForItem(orderItem?.id)[index]?.seat_label]
+                                                                .filter(Boolean).join(' · ')}
+                                                        </span>
+                                                    </div>
                                                 </div>
-                                                <div className={classes.attendeeInfo}>
-                                                    <h4>
-                                                        {product.product_type === 'TICKET' ? t`Attendee` : t`Item`} {index + 1}
-                                                    </h4>
-                                                    <span className={classes.attendeeTicketType}>
-                                                        {orderItem?.item_name}
+                                                {showCopiedBadge && (
+                                                    <span className={classes.copiedBadge}>
+                                                        {t`Copied from above`}
                                                     </span>
-                                                </div>
+                                                )}
                                             </div>
-                                            {showCopiedBadge && (
-                                                <span className={classes.copiedBadge}>
-                                                    {t`Copied from above`}
-                                                </span>
+
+                                            {productRequiresDetails && (
+                                                <>
+                                                    <InputGroup>
+                                                        <TextInput
+                                                            withAsterisk
+                                                            label={t`First Name`}
+                                                            placeholder={t`First name`}
+                                                            name={`attendee_${currentProductIndex}_first_name`}
+                                                            autoComplete={`section-attendee-${currentProductIndex} given-name`}
+                                                            disabled={isLocked('first_name')}
+                                                            {...form.getInputProps(`products.${currentProductIndex}.first_name`)}
+                                                        />
+                                                        <TextInput
+                                                            withAsterisk
+                                                            label={t`Last Name`}
+                                                            placeholder={t`Last Name`}
+                                                            name={`attendee_${currentProductIndex}_last_name`}
+                                                            autoComplete={`section-attendee-${currentProductIndex} family-name`}
+                                                            disabled={isLocked('last_name')}
+                                                            {...form.getInputProps(`products.${currentProductIndex}.last_name`)}
+                                                        />
+                                                    </InputGroup>
+
+                                                    <InputGroup>
+                                                        <TextInput
+                                                            withAsterisk
+                                                            type={"email"}
+                                                            label={t`Email Address`}
+                                                            placeholder={t`Email Address`}
+                                                            name={`attendee_${currentProductIndex}_email`}
+                                                            autoComplete={`section-attendee-${currentProductIndex} email`}
+                                                            disabled={isLocked('email')}
+                                                            rightSection={isEmailValid(form.values.products[currentProductIndex]?.email || '') ?
+                                                                <EmailCheckIcon/> : null}
+                                                            {...form.getInputProps(`products.${currentProductIndex}.email`)}
+                                                        />
+                                                        <TextInput
+                                                            withAsterisk
+                                                            type={"email"}
+                                                            label={t`Confirm Email Address`}
+                                                            placeholder={t`Confirm Email Address`}
+                                                            name={`attendee_${currentProductIndex}_email_confirmation`}
+                                                            autoComplete={`section-attendee-${currentProductIndex} email`}
+                                                            disabled={isLocked('email')}
+                                                            rightSection={isEmailValid(form.values.products[currentProductIndex]?.email_confirmation || '') ?
+                                                                <EmailCheckIcon/> : null}
+                                                            {...form.getInputProps(`products.${currentProductIndex}.email_confirmation`)}
+                                                        />
+                                                    </InputGroup>
+                                                </>
                                             )}
-                                        </div>
 
-                                        {productRequiresDetails && (
-                                            <>
-                                                <InputGroup>
-                                                    <TextInput
-                                                        withAsterisk
-                                                        label={t`First Name`}
-                                                        placeholder={t`First name`}
-                                                        name={`attendee_${currentProductIndex}_first_name`}
-                                                        autoComplete={`section-attendee-${currentProductIndex} given-name`}
-                                                        disabled={isLocked('first_name')}
-                                                        {...form.getInputProps(`products.${currentProductIndex}.first_name`)}
-                                                    />
-                                                    <TextInput
-                                                        withAsterisk
-                                                        label={t`Last Name`}
-                                                        placeholder={t`Last Name`}
-                                                        name={`attendee_${currentProductIndex}_last_name`}
-                                                        autoComplete={`section-attendee-${currentProductIndex} family-name`}
-                                                        disabled={isLocked('last_name')}
-                                                        {...form.getInputProps(`products.${currentProductIndex}.last_name`)}
-                                                    />
-                                                </InputGroup>
-
-                                                <InputGroup>
-                                                    <TextInput
-                                                        withAsterisk
-                                                        type={"email"}
-                                                        label={t`Email Address`}
-                                                        placeholder={t`Email Address`}
-                                                        name={`attendee_${currentProductIndex}_email`}
-                                                        autoComplete={`section-attendee-${currentProductIndex} email`}
-                                                        disabled={isLocked('email')}
-                                                        rightSection={isEmailValid(form.values.products[currentProductIndex]?.email || '') ?
-                                                            <EmailCheckIcon/> : null}
-                                                        {...form.getInputProps(`products.${currentProductIndex}.email`)}
-                                                    />
-                                                    <TextInput
-                                                        withAsterisk
-                                                        type={"email"}
-                                                        label={t`Confirm Email Address`}
-                                                        placeholder={t`Confirm Email Address`}
-                                                        name={`attendee_${currentProductIndex}_email_confirmation`}
-                                                        autoComplete={`section-attendee-${currentProductIndex} email`}
-                                                        disabled={isLocked('email')}
-                                                        rightSection={isEmailValid(form.values.products[currentProductIndex]?.email_confirmation || '') ?
-                                                            <EmailCheckIcon/> : null}
-                                                        {...form.getInputProps(`products.${currentProductIndex}.email_confirmation`)}
-                                                    />
-                                                </InputGroup>
-                                            </>
-                                        )}
-
-                                        {productQuestions &&
-                                            <CheckoutProductQuestions
-                                                index={currentProductIndex}
-                                                product={product}
-                                                form={form}
-                                                questions={productQuestions}/>}
-                                    </Card>
+                                            {productQuestions &&
+                                                <CheckoutProductQuestions
+                                                    index={currentProductIndex}
+                                                    product={product}
+                                                    form={form}
+                                                    questions={productQuestions}
+                                                    allQuestions={questions}/>}
+                                        </Card>
+                                    </LockedFields>
                                 );
 
                                 productIndex++;
@@ -783,12 +828,31 @@ export const CollectInformation = () => {
                     <Button
                         className={classes.continueButton}
                         loading={mutation.isPending}
+                        disabled={!!ineligibleAnswer}
                         type="submit"
                         rightSection={order?.is_payment_required ? <IconArrowRight size={18}/> : undefined}
                         leftSection={!order?.is_payment_required ? <IconCheck size={18}/> : undefined}
                     >
                         {order?.is_payment_required ? t`Continue to Payment` : t`Complete Order`}
                     </Button>
+                    {ineligibleAnswer && (
+                        <div className={classes.ineligibleHint} data-testid="checkout-ineligible-hint">
+                            <IconCircleX size={18} className={classes.ineligibleHintIcon} aria-hidden/>
+                            <p className={classes.ineligibleHintText}>
+                                {ineligibleAnswer.question.disqualification_message
+                                    || t`This answer means you can't register for this event.`}
+                                {getEmbedMode() !== 'modal' && (
+                                    <button
+                                        type="button"
+                                        className={classes.ineligibleHintAction}
+                                        onClick={() => navigate(eventHomepagePath(event as Event))}
+                                    >
+                                        {t`Leave checkout`}
+                                    </button>
+                                )}
+                            </p>
+                        </div>
+                    )}
                     {!!getConfig('VITE_TOS_URL') && (
                         <p className={classes.tosNotice}>
                             <Trans>

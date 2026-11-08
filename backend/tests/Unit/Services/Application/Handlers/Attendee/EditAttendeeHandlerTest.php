@@ -7,6 +7,7 @@ use HiEvents\DomainObjects\Enums\ProductPriceType;
 use HiEvents\DomainObjects\Enums\ProductType;
 use HiEvents\DomainObjects\ProductDomainObject;
 use HiEvents\DomainObjects\ProductPriceDomainObject;
+use HiEvents\Enterprise\Seating\Services\Domain\SeatClaimService;
 use HiEvents\Exceptions\NoTicketsAvailableException;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\ProductRepositoryInterface;
@@ -50,6 +51,8 @@ class EditAttendeeHandlerTest extends TestCase
 
     private EditAttendeeHandler $handler;
 
+    private SeatClaimService|MockInterface $seatClaimService;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -65,6 +68,10 @@ class EditAttendeeHandlerTest extends TestCase
         $databaseManager = Mockery::mock(DatabaseManager::class);
         $databaseManager->shouldReceive('transaction')->andReturnUsing(fn (callable $callback) => $callback());
 
+        $this->seatClaimService = Mockery::mock(SeatClaimService::class);
+        $this->seatClaimService->shouldReceive('changeProductForAttendee')->andReturn(false)->byDefault();
+        $this->seatClaimService->shouldReceive('releaseForAttendee')->byDefault();
+
         $this->handler = new EditAttendeeHandler(
             $this->attendeeRepository,
             $this->productRepository,
@@ -73,6 +80,7 @@ class EditAttendeeHandlerTest extends TestCase
             $this->domainEventDispatcherService,
             Mockery::mock(WalletPassSyncDispatcher::class, ['queueAttendeeSync' => null]),
             $this->availableProductQuantitiesFetchService,
+            $this->seatClaimService,
         );
     }
 

@@ -3,16 +3,22 @@
 namespace Tests\Unit\Services\Application\Handlers\Event;
 
 use HiEvents\DomainObjects\EventDomainObject;
+use HiEvents\DomainObjects\OrganizerConfigurationDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\DomainObjects\ProductCategoryDomainObject;
 use HiEvents\DomainObjects\ProductDomainObject;
 use HiEvents\DomainObjects\ProductPriceDomainObject;
-use HiEvents\DomainObjects\Status\EventStatus;
+use HiEvents\DomainObjects\Status\EventLifecycleStatus;
+use HiEvents\Enterprise\Seating\Services\Domain\EventSeatMapLookupService;
 use HiEvents\Http\DTO\QueryParamsDTO;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrganizerRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Event\DTO\GetPublicOrganizerEventsDTO;
 use HiEvents\Services\Application\Handlers\Event\GetPublicEventsHandler;
+use HiEvents\Services\Domain\Auth\Access\AccountUserAccessService;
+use HiEvents\Services\Domain\Product\AvailableProductQuantitiesFetchService;
+use HiEvents\Services\Domain\Product\DTO\AvailableProductQuantitiesResponseDTO;
+use HiEvents\Services\Domain\Product\DTO\ProductFilterEventContextDTO;
 use HiEvents\Services\Domain\Product\ProductFilterService;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
@@ -21,17 +27,27 @@ use Tests\TestCase;
 
 class GetPublicEventsHandlerTest extends TestCase
 {
-    private const ORGANIZER_ID = 7;
-
-    private const OWNER_ACCOUNT_ID = 42;
-
     private EventRepositoryInterface $eventRepository;
 
     private OrganizerRepositoryInterface $organizerRepository;
 
     private ProductFilterService $productFilterService;
 
+    private AvailableProductQuantitiesFetchService $productQuantitiesFetchService;
+
+    private EventSeatMapLookupService $eventSeatMapLookup;
+
+    /** @var array<int, int[]> */
+    private array $quantityFetches = [];
+
+    /** @var array<int, AvailableProductQuantitiesResponseDTO> */
+    private array $quantitiesByEventId = [];
+
     private GetPublicEventsHandler $handler;
+
+    private AccountUserAccessService $accessService;
+
+    private OrganizerConfigurationDomainObject $organizerConfiguration;
 
     protected function setUp(): void
     {
@@ -40,217 +56,208 @@ class GetPublicEventsHandlerTest extends TestCase
         $this->eventRepository = m::mock(EventRepositoryInterface::class);
         $this->organizerRepository = m::mock(OrganizerRepositoryInterface::class);
         $this->productFilterService = m::mock(ProductFilterService::class);
+        $this->productQuantitiesFetchService = m::mock(AvailableProductQuantitiesFetchService::class);
+        $this->eventSeatMapLookup = m::mock(EventSeatMapLookupService::class);
+        $this->eventSeatMapLookup->shouldReceive('findSummariesForEvents')->byDefault()->andReturn([]);
+        $this->productQuantitiesFetchService->shouldReceive('getEventWideQuantitiesForEvents')
+            ->andReturnUsing(function (Collection $events) {
+                $this->quantityFetches[] = $events->map(fn (EventDomainObject $event) => $event->getId())->values()->all();
+
+                return $events
+                    ->mapWithKeys(fn (EventDomainObject $event) => [
+                        $event->getId() => $this->quantitiesByEventId[$event->getId()] ??= new AvailableProductQuantitiesResponseDTO(collect()),
+                    ])
+                    ->all();
+            });
+
+        $this->organizerConfiguration = new OrganizerConfigurationDomainObject;
 
         $this->eventRepository->shouldReceive('loadRelation')->andReturnSelf();
+        $this->organizerRepository->shouldReceive('loadRelation')->andReturnSelf();
+        $this->organizerRepository->shouldReceive('findById')
+            ->andReturn((new OrganizerDomainObject)
+                ->setAccountId(10)
+                ->setOrganizerConfiguration($this->organizerConfiguration));
+
+        $this->accessService = m::mock(AccountUserAccessService::class);
+        $this->accessService->shouldReceive('currentMemberCanAccessOrganizer')->andReturnTrue()->byDefault();
 
         $this->handler = new GetPublicEventsHandler(
             $this->eventRepository,
             $this->organizerRepository,
             $this->productFilterService,
+            $this->productQuantitiesFetchService,
+            $this->eventSeatMapLookup,
+            $this->accessService,
         );
     }
 
-    public function test_handle_applies_tax_and_fee_totals_to_public_event_listing(): void
+    public function test_upcoming_event_products_pass_through_the_public_product_filter(): void
     {
-        $event = $this->makeEventWithProductPrice();
-        $this->setupOrganizer();
-        $this->eventRepository
-            ->shouldReceive('findEvents')
+        $unfiltered = collect([new ProductCategoryDomainObject]);
+        $filtered = collect([(new ProductCategoryDomainObject)->setName('Visible only')]);
+        $event = (new EventDomainObject)
+            ->setId(1)
+            ->setLifecycleStatus(EventLifecycleStatus::UPCOMING->name)
+            ->setProductCategories($unfiltered);
+
+        $this->eventRepository->shouldReceive('findEvents')->once()->andReturn($this->paginate([$event]));
+        $this->productFilterService->shouldReceive('filter')
             ->once()
-            ->andReturn($this->paginate(collect([$event])));
+            ->withArgs(fn (Collection $categories) => $categories === $unfiltered)
+            ->andReturn($filtered);
 
-        $this->productFilterService
-            ->shouldReceive('filter')
-            ->once()
-            ->andReturnUsing(fn (Collection $categories) => $this->withCalculatedTaxAndFees($categories));
+        $result = $this->handler->handle($this->dto());
 
-        $result = $this->handler->handle($this->makeDto());
-
-        $price = $this->firstPriceOf($result->getCollection()->first());
-
-        $this->assertSame(5.0, $price->getTaxTotal());
-        $this->assertSame(2.5, $price->getFeeTotal());
-        $this->assertSame(100.0, $price->getPrice());
+        $this->assertSame($filtered, $result->items()[0]->getProductCategories());
     }
 
-    public function test_handle_queries_live_events_for_unauthenticated_visitors(): void
+    public function test_the_filter_reuses_the_listed_event_and_organizer_configuration(): void
     {
-        $this->setupOrganizer();
-        $this->eventRepository
-            ->shouldReceive('findEvents')
+        $event = (new EventDomainObject)
+            ->setId(1)
+            ->setLifecycleStatus(EventLifecycleStatus::UPCOMING->name)
+            ->setProductCategories(collect([new ProductCategoryDomainObject]));
+
+        $this->eventRepository->shouldReceive('findEvents')->once()->andReturn($this->paginate([$event]));
+        $this->productFilterService->shouldReceive('filter')
             ->once()
-            ->with(
-                m::on(static fn (array $where) => $where['organizer_id'] === self::ORGANIZER_ID
-                    && $where['status'] === EventStatus::LIVE->name),
-                m::type(QueryParamsDTO::class),
-            )
-            ->andReturn($this->paginate(collect()));
+            ->withArgs(function (...$args) use ($event) {
+                $context = collect($args)->first(fn ($arg) => $arg instanceof ProductFilterEventContextDTO);
 
-        $this->productFilterService->shouldNotReceive('filter');
+                return $context?->event === $event
+                    && $context->organizerConfiguration === $this->organizerConfiguration
+                    && $context->productQuantities === $this->quantitiesByEventId[1];
+            })
+            ->andReturn(collect());
 
-        $this->handler->handle($this->makeDto());
+        $this->handler->handle($this->dto());
     }
 
-    public function test_handle_applies_tax_and_fee_totals_for_the_owning_organizer(): void
+    public function test_an_event_whose_public_products_are_all_sold_out_is_flagged(): void
     {
-        $event = $this->makeEventWithProductPrice();
-        $this->setupOrganizer();
-        $this->eventRepository
-            ->shouldReceive('findEventsForOrganizer')
-            ->once()
-            ->with(self::ORGANIZER_ID, self::OWNER_ACCOUNT_ID, m::type(QueryParamsDTO::class))
-            ->andReturn($this->paginate(collect([$event])));
-        $this->eventRepository->shouldNotReceive('findEvents');
-
-        $this->productFilterService
-            ->shouldReceive('filter')
-            ->once()
-            ->andReturnUsing(fn (Collection $categories) => $this->withCalculatedTaxAndFees($categories));
-
-        $result = $this->handler->handle($this->makeDto(self::OWNER_ACCOUNT_ID));
-
-        $this->assertSame(5.0, $this->firstPriceOf($result->getCollection()->first())->getTaxTotal());
-    }
-
-    public function test_handle_filters_every_event_in_the_page(): void
-    {
-        $events = collect([
-            $this->makeEventWithProductPrice(1),
-            $this->makeEventWithProductPrice(2),
-            $this->makeEventWithProductPrice(3),
+        $event = $this->eventWithProducts([
+            $this->product(quantityAvailable: 0, hideWhenSoldOut: true),
+            $this->product(quantityAvailable: 5, isHidden: true),
         ]);
-        $this->setupOrganizer();
-        $this->eventRepository
-            ->shouldReceive('findEvents')
-            ->once()
-            ->andReturn($this->paginate($events));
 
-        $this->productFilterService
-            ->shouldReceive('filter')
-            ->times(3)
-            ->andReturnUsing(fn (Collection $categories) => $this->withCalculatedTaxAndFees($categories));
+        $this->eventRepository->shouldReceive('findEvents')->once()->andReturn($this->paginate([$event]));
+        $this->productFilterService->shouldReceive('filter')->once()->andReturn(collect());
 
-        $result = $this->handler->handle($this->makeDto());
+        $result = $this->handler->handle($this->dto());
 
-        $result->getCollection()->each(function (EventDomainObject $event): void {
-            $this->assertSame(5.0, $this->firstPriceOf($event)->getTaxTotal());
-        });
+        $this->assertTrue($result->items()[0]->getProductsSoldOut());
     }
 
-    public function test_handle_passes_the_events_own_categories_to_the_filter_service(): void
+    public function test_an_event_with_an_available_public_product_is_not_flagged_sold_out(): void
     {
-        $event = $this->makeEventWithProductPrice();
-        $categories = $event->getProductCategories();
-        $this->setupOrganizer();
-        $this->eventRepository
-            ->shouldReceive('findEvents')
-            ->once()
-            ->andReturn($this->paginate(collect([$event])));
+        $event = $this->eventWithProducts([
+            $this->product(quantityAvailable: 0, hideWhenSoldOut: true),
+            $this->product(quantityAvailable: 3),
+        ]);
 
-        $this->productFilterService
-            ->shouldReceive('filter')
-            ->once()
-            ->with(m::on(static fn (Collection $passed) => $passed === $categories))
-            ->andReturn($categories);
+        $this->eventRepository->shouldReceive('findEvents')->once()->andReturn($this->paginate([$event]));
+        $this->productFilterService->shouldReceive('filter')->once()->andReturn(collect());
 
-        $this->handler->handle($this->makeDto());
+        $result = $this->handler->handle($this->dto());
+
+        $this->assertFalse($result->items()[0]->getProductsSoldOut());
     }
 
-    public function test_handle_skips_events_without_loaded_product_categories(): void
+    public function test_products_in_hidden_categories_do_not_keep_an_event_off_sale(): void
     {
-        $event = new EventDomainObject;
-        $this->setupOrganizer();
-        $this->eventRepository
-            ->shouldReceive('findEvents')
-            ->once()
-            ->andReturn($this->paginate(collect([$event])));
+        $event = $this->eventWithProducts([$this->product(quantityAvailable: 0, hideWhenSoldOut: true)]);
+        $hiddenCategory = (new ProductCategoryDomainObject)->setIsHidden(true);
+        $hiddenCategory->setProducts(collect([$this->product(quantityAvailable: 5)]));
+        $event->getProductCategories()->push($hiddenCategory);
 
+        $this->eventRepository->shouldReceive('findEvents')->once()->andReturn($this->paginate([$event]));
+        $this->productFilterService->shouldReceive('filter')->once()->andReturn(collect());
+
+        $result = $this->handler->handle($this->dto());
+
+        $this->assertTrue($result->items()[0]->getProductsSoldOut());
+    }
+
+    public function test_quantities_for_every_on_sale_event_are_fetched_in_one_batch(): void
+    {
+        $first = $this->eventWithProducts([$this->product(quantityAvailable: 1)])->setId(1);
+        $second = $this->eventWithProducts([$this->product(quantityAvailable: 1)])->setId(2);
+        $ended = $this->eventWithProducts([$this->product(quantityAvailable: 1)])
+            ->setId(3)
+            ->setLifecycleStatus(EventLifecycleStatus::ENDED->name);
+
+        $this->eventRepository->shouldReceive('findEvents')->once()->andReturn($this->paginate([$first, $second, $ended]));
+        $this->productFilterService->shouldReceive('filter')->twice()->andReturn(collect());
+        $this->eventSeatMapLookup->shouldReceive('findSummariesForEvents')->once()->with([1, 2])->andReturn([]);
+
+        $this->handler->handle($this->dto());
+
+        $this->assertSame([[1, 2]], $this->quantityFetches);
+    }
+
+    public function test_ended_events_expose_no_products(): void
+    {
+        $event = (new EventDomainObject)
+            ->setId(1)
+            ->setLifecycleStatus(EventLifecycleStatus::ENDED->name)
+            ->setProductCategories(collect([new ProductCategoryDomainObject]));
+
+        $this->eventRepository->shouldReceive('findEvents')->once()->andReturn($this->paginate([$event]));
         $this->productFilterService->shouldNotReceive('filter');
 
-        $result = $this->handler->handle($this->makeDto());
+        $result = $this->handler->handle($this->dto());
 
-        $this->assertNull($result->getCollection()->first()->getProductCategories());
+        $this->assertTrue($result->items()[0]->getProductCategories()->isEmpty());
     }
 
-    public function test_handle_returns_the_paginator_with_its_metadata_intact(): void
+    public function test_the_organizers_own_view_is_filtered_too(): void
     {
-        $this->setupOrganizer();
-        $paginator = new LengthAwarePaginator(collect([$this->makeEventWithProductPrice()]), 31, 25, 2);
-        $this->eventRepository->shouldReceive('findEvents')->once()->andReturn($paginator);
-        $this->productFilterService
-            ->shouldReceive('filter')
-            ->once()
-            ->andReturnUsing(fn (Collection $categories) => $categories);
+        $event = (new EventDomainObject)
+            ->setId(1)
+            ->setLifecycleStatus(EventLifecycleStatus::UPCOMING->name)
+            ->setProductCategories(collect([new ProductCategoryDomainObject]));
 
-        $result = $this->handler->handle($this->makeDto());
+        $this->eventRepository->shouldReceive('findEventsForOrganizer')->once()->andReturn($this->paginate([$event]));
+        $this->productFilterService->shouldReceive('filter')->once()->andReturn(collect());
 
-        $this->assertSame(31, $result->total());
-        $this->assertSame(25, $result->perPage());
-        $this->assertSame(2, $result->currentPage());
+        $result = $this->handler->handle($this->dto(authenticatedAccountId: 10));
+
+        $this->assertTrue($result->items()[0]->getProductCategories()->isEmpty());
     }
 
-    private function setupOrganizer(): void
+    private function eventWithProducts(array $products): EventDomainObject
     {
-        $organizer = (new OrganizerDomainObject)
-            ->setId(self::ORGANIZER_ID)
-            ->setAccountId(self::OWNER_ACCOUNT_ID);
+        $category = new ProductCategoryDomainObject;
+        $category->setProducts(collect($products));
 
-        $this->organizerRepository
-            ->shouldReceive('findById')
-            ->with(self::ORGANIZER_ID)
-            ->andReturn($organizer);
+        return (new EventDomainObject)
+            ->setId(1)
+            ->setLifecycleStatus(EventLifecycleStatus::UPCOMING->name)
+            ->setProductCategories(collect([$category]));
     }
 
-    private function makeDto(?int $authenticatedAccountId = null): GetPublicOrganizerEventsDTO
+    private function product(int $quantityAvailable, bool $hideWhenSoldOut = false, bool $isHidden = false): ProductDomainObject
+    {
+        return (new ProductDomainObject)
+            ->setHideWhenSoldOut($hideWhenSoldOut)
+            ->setIsHidden($isHidden)
+            ->setIsHiddenWithoutPromoCode(false)
+            ->setIsAddonOnly(false)
+            ->setProductPrices(collect([(new ProductPriceDomainObject)->setQuantityAvailable($quantityAvailable)]));
+    }
+
+    private function dto(?int $authenticatedAccountId = null): GetPublicOrganizerEventsDTO
     {
         return new GetPublicOrganizerEventsDTO(
-            organizerId: self::ORGANIZER_ID,
+            organizerId: 1,
             queryParams: new QueryParamsDTO,
             authenticatedAccountId: $authenticatedAccountId,
         );
     }
 
-    private function makeEventWithProductPrice(int $eventId = 1): EventDomainObject
+    private function paginate(array $events): LengthAwarePaginator
     {
-        $price = (new ProductPriceDomainObject)
-            ->setId($eventId * 100)
-            ->setProductId($eventId * 10)
-            ->setPrice(100.0);
-
-        $product = (new ProductDomainObject)
-            ->setId($eventId * 10)
-            ->setEventId($eventId)
-            ->setProductCategoryId($eventId)
-            ->setProductPrices(collect([$price]));
-
-        $category = (new ProductCategoryDomainObject)->setId($eventId);
-        $category->setProducts(collect([$product]));
-
-        return (new EventDomainObject)
-            ->setId($eventId)
-            ->setProductCategories(collect([$category]));
-    }
-
-    private function withCalculatedTaxAndFees(Collection $categories): Collection
-    {
-        $categories->each(
-            static fn (ProductCategoryDomainObject $category) => $category->getProducts()->each(
-                static fn (ProductDomainObject $product) => $product->getProductPrices()->each(
-                    static fn (ProductPriceDomainObject $price) => $price->setTaxTotal(5.0)->setFeeTotal(2.5)
-                )
-            )
-        );
-
-        return $categories;
-    }
-
-    private function firstPriceOf(EventDomainObject $event): ProductPriceDomainObject
-    {
-        return $event->getProductCategories()->first()->getProducts()->first()->getProductPrices()->first();
-    }
-
-    private function paginate(Collection $events): LengthAwarePaginator
-    {
-        return new LengthAwarePaginator($events, $events->count(), 25, 1);
+        return new LengthAwarePaginator($events, count($events), 25);
     }
 }

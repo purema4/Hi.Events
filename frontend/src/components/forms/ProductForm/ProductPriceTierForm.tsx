@@ -13,12 +13,14 @@ import {InputLabelWithHelp} from "../../common/InputLabelWithHelp";
 import {closestCenter, DndContext, DragEndEvent, PointerSensor, TouchSensor, useSensor, useSensors} from "@dnd-kit/core";
 import {SortableContext, useSortable, verticalListSortingStrategy} from "@dnd-kit/sortable";
 import {CSS} from "@dnd-kit/utilities";
-import {ReactNode} from "react";
+import {ReactNode, useId} from "react";
+import {DateTimeField} from "../../common/DateTimeField";
 
 interface ProductPriceTierFormProps {
     form: UseFormReturnType<Product>,
     product?: Product,
     event?: Event,
+    isSeated: boolean,
 }
 
 export const defaultQuantityAppliesTo = (productType?: ProductType): ProductQuantityAppliesTo =>
@@ -28,10 +30,11 @@ interface QuantityFieldProps {
     form: UseFormReturnType<Product>;
     index: number;
     isRecurring: boolean;
+    isSeated: boolean;
     testId?: string;
 }
 
-export const QuantityField = ({form, index, isRecurring, testId}: QuantityFieldProps) => {
+export const QuantityField = ({form, index, isRecurring, isSeated, testId}: QuantityFieldProps) => {
     const appliesTo = form.values.prices?.[index]?.quantity_applies_to
         ?? defaultQuantityAppliesTo(form.values.product_type);
     const perDate = isRecurring && appliesTo === ProductQuantityAppliesTo.Occurrence;
@@ -96,11 +99,13 @@ export const QuantityField = ({form, index, isRecurring, testId}: QuantityFieldP
     return (
         <NumberInput
             min={0}
-            placeholder={t`Unlimited`}
+            placeholder={isSeated ? t`Limited by seats` : t`Unlimited`}
             {...form.getInputProps(`prices.${index}.initial_quantity_available`)}
             label={<InputLabelWithHelp label={t`Quantity Available`} helpText={helpText}/>}
+            description={isSeated ? t`Leave empty to sell every seat in its price bands` : undefined}
+            inputWrapperOrder={['label', 'input', 'description', 'error']}
             rightSection={scopeMenu}
-            rightSectionWidth={isRecurring ? 96 : undefined}
+            rightSectionWidth={scopeMenu ? 96 : undefined}
             rightSectionPointerEvents="all"
         />
     );
@@ -127,11 +132,12 @@ const SortableTierCard = ({index, sortable, children}: { index: number; sortable
     );
 };
 
-export const ProductPriceTierForm = ({form, product, event}: ProductPriceTierFormProps) => {
+export const ProductPriceTierForm = ({form, product, event, isSeated}: ProductPriceTierFormProps) => {
     const isRecurring = event?.type === EventType.RECURRING;
     const prices: ProductPrice[] = form.values.prices ?? [];
     const sortable = prices.length > 1;
     const sensors = useSensors(useSensor(PointerSensor), useSensor(TouchSensor));
+    const dndId = useId();
 
     const handleDragEnd = ({active, over}: DragEndEvent) => {
         if (over && active.id !== over.id) {
@@ -140,7 +146,7 @@ export const ProductPriceTierForm = ({form, product, event}: ProductPriceTierFor
     };
 
     return (
-        <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <DndContext id={dndId} sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
             <SortableContext items={prices.map((_, index) => index)} strategy={verticalListSortingStrategy}>
                 {prices.map((price, index) => {
                     const existingPrice = product?.prices?.find((p) => Number(p.id) === Number(price.id));
@@ -177,18 +183,18 @@ export const ProductPriceTierForm = ({form, product, event}: ProductPriceTierFor
                                 form={form}
                                 index={index}
                                 isRecurring={isRecurring}
+                                isSeated={isSeated}
                                 testId={`product-tier-${index}-quantity-applies-to`}
                             />
                             <InputGroup>
-                                <TextInput
-                                    type={'datetime-local'}
+                                <DateTimeField
                                     {...form.getInputProps(`prices.${index}.sale_start_date`)}
                                     label={t`Sale Start Date`}
                                 />
-                                <TextInput
-                                    type={'datetime-local'}
+                                <DateTimeField
                                     {...form.getInputProps(`prices.${index}.sale_end_date`)}
                                     label={t`Sale End Date`}
+                                    defaultTime="23:59"
                                 />
                             </InputGroup>
 

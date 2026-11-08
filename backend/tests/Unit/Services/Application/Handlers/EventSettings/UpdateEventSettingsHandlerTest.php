@@ -8,6 +8,8 @@ use HiEvents\Events\CapacityChangedEvent;
 use HiEvents\Repository\Interfaces\EventSettingsRepositoryInterface;
 use HiEvents\Services\Application\Handlers\EventSettings\DTO\UpdateEventSettingsDTO;
 use HiEvents\Services\Application\Handlers\EventSettings\UpdateEventSettingsHandler;
+use HiEvents\Services\Domain\Event\EventSpamCheckDispatchService;
+use HiEvents\Services\Domain\Event\HomepageSectionsSanitizer;
 use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\HtmlPurifier\HtmlPurifierService;
 use Illuminate\Database\DatabaseManager;
@@ -50,6 +52,8 @@ class UpdateEventSettingsHandlerTest extends TestCase
             eventSettingsRepository: $this->eventSettingsRepository,
             purifier: $this->purifier,
             databaseManager: $this->databaseManager,
+            eventSpamCheckDispatchService: Mockery::mock(EventSpamCheckDispatchService::class)->shouldIgnoreMissing(),
+            homepageSectionsSanitizer: Mockery::mock(HomepageSectionsSanitizer::class),
             walletPassSyncDispatcher: $this->walletPassSyncDispatcher,
         );
     }

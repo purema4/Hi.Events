@@ -5,19 +5,31 @@ namespace Tests\Unit\Services\Application\Handlers\Order;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\DomainObjects\OrderDomainObject;
+use HiEvents\DomainObjects\ProductDomainObject;
 use HiEvents\DomainObjects\PromoCodeDomainObject;
+use HiEvents\Enterprise\Seating\Services\Domain\EventSeatMapLookupService;
+use HiEvents\Enterprise\Seating\Services\Domain\SeatClaimService;
+use HiEvents\Enterprise\Seating\Services\Domain\SeatedProductLookupService;
+use HiEvents\Enterprise\Seating\Services\Domain\SeatingEventLockService;
+use HiEvents\Exceptions\ResourceNotFoundException;
 use HiEvents\Repository\Interfaces\AffiliateRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
+use HiEvents\Repository\Interfaces\ProductRepositoryInterface;
 use HiEvents\Repository\Interfaces\PromoCodeRepositoryInterface;
+use HiEvents\Repository\Interfaces\WidgetRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Order\CreateOrderHandler;
 use HiEvents\Services\Application\Handlers\Order\DTO\CreateOrderPublicDTO;
+use HiEvents\Services\Application\Handlers\Order\DTO\ProductOrderDetailsDTO;
 use HiEvents\Services\Domain\EventOccurrence\OccurrencePurchaseEligibilityService;
 use HiEvents\Services\Domain\Order\OrderItemProcessingService;
 use HiEvents\Services\Domain\Order\OrderManagementService;
 use HiEvents\Services\Domain\Product\AvailableProductQuantitiesFetchService;
 use HiEvents\Services\Domain\Product\DTO\AvailableProductQuantitiesResponseDTO;
 use HiEvents\Services\Domain\PromoCode\PromoCodeUsageValidationService;
+use HiEvents\Services\Infrastructure\Lock\TransactionLockService;
 use Illuminate\Database\DatabaseManager;
+use Illuminate\Support\Collection;
+use Illuminate\Validation\ValidationException;
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Tests\TestCase;
@@ -29,6 +41,8 @@ class CreateOrderHandlerPromoCodeTest extends TestCase
     private const EVENT_ID = 1;
 
     private const PROMO_CODE_ID = 5;
+
+    private const GATED_PRODUCT_ID = 10;
 
     public function test_promo_code_is_dropped_when_not_usable(): void
     {
@@ -45,11 +59,45 @@ class CreateOrderHandlerPromoCodeTest extends TestCase
         $this->assertSame(self::PROMO_CODE_ID, $captured->getId());
     }
 
-    private function runHandler(bool $isUsable): mixed
+    public function test_a_product_hidden_without_a_code_is_refused_as_an_invalid_code_when_the_code_is_used_up(): void
     {
+        $this->expectException(ValidationException::class);
+
+        $this->runHandler(isUsable: false, products: collect([$this->gatedProduct()]));
+    }
+
+    public function test_a_product_hidden_without_a_code_is_refused_when_the_code_does_not_apply_to_it(): void
+    {
+        $this->expectException(ResourceNotFoundException::class);
+
+        $this->runHandler(isUsable: true, products: collect([$this->gatedProduct()]), applicableProductIds: [self::GATED_PRODUCT_ID + 1]);
+    }
+
+    public function test_a_product_hidden_without_a_code_is_sold_with_a_usable_code_that_applies_to_it(): void
+    {
+        $captured = $this->runHandler(isUsable: true, products: collect([$this->gatedProduct()]));
+
+        $this->assertSame(self::PROMO_CODE_ID, $captured->getId());
+    }
+
+    private function gatedProduct(): ProductDomainObject
+    {
+        return (new ProductDomainObject)
+            ->setId(self::GATED_PRODUCT_ID)
+            ->setIsHiddenWithoutPromoCode(true);
+    }
+
+    private function runHandler(bool $isUsable, ?Collection $products = null, array $applicableProductIds = [self::GATED_PRODUCT_ID]): mixed
+    {
+        $products ??= collect();
+
         $promoCode = (new PromoCodeDomainObject)
             ->setId(self::PROMO_CODE_ID)
-            ->setCode('save50');
+            ->setCode('save50')
+            ->setApplicableProductIds($applicableProductIds);
+
+        $productRepository = Mockery::mock(ProductRepositoryInterface::class);
+        $productRepository->shouldReceive('findWhereIn')->andReturn($products);
 
         $eventSettings = Mockery::mock(EventSettingDomainObject::class);
         $eventSettings->shouldReceive('getOrderTimeoutInMinutes')->andReturn(15);
@@ -57,6 +105,7 @@ class CreateOrderHandlerPromoCodeTest extends TestCase
         $event = Mockery::mock(EventDomainObject::class);
         $event->shouldReceive('getEventSettings')->andReturn($eventSettings);
         $event->shouldReceive('getCurrency')->andReturn('USD');
+        $event->shouldReceive('getStatus')->andReturn('LIVE');
 
         $eventRepository = Mockery::mock(EventRepositoryInterface::class);
         $eventRepository->shouldReceive('loadRelation')->andReturnSelf();
@@ -110,11 +159,22 @@ class CreateOrderHandlerPromoCodeTest extends TestCase
             $availabilityService,
             $occurrenceEligibilityService,
             $databaseManager,
+            Mockery::mock(SeatClaimService::class)->shouldIgnoreMissing(),
+            new SeatingEventLockService(
+                new TransactionLockService($databaseManager),
+                Mockery::mock(EventSeatMapLookupService::class)->shouldIgnoreMissing(),
+                Mockery::mock(SeatedProductLookupService::class)->shouldIgnoreMissing(),
+            ),
+            Mockery::mock(WidgetRepositoryInterface::class),
+            $productRepository,
         );
 
         $dto = new CreateOrderPublicDTO(
-            products: collect(),
-            is_user_authenticated: true,
+            products: $products->map(fn (ProductDomainObject $product) => new ProductOrderDetailsDTO(
+                product_id: $product->getId(),
+                quantities: collect(),
+            )),
+            can_order_unpublished_event: true,
             session_identifier: 'sess-123',
             order_locale: 'en',
             promo_code: 'save50',

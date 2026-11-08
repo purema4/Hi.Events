@@ -9,6 +9,7 @@ import {useEffect, useRef, useState} from "react";
 import {ProductPriceAvailability} from "../../../../../common/ProductPriceAvailability";
 import {formatCurrency, getCurrencySymbol} from "../../../../../../utilites/currency.ts";
 import {FeeBreakdown, FeeBreakdownRow} from "../FeeBreakdown";
+import {getBeforeDiscountDisplayPrice} from "../../priceTotals.ts";
 
 const LIMIT_MESSAGE_TIMEOUT_MS = 4000;
 
@@ -19,7 +20,6 @@ interface TieredPricingProps {
     productIndex: number;
     eventOccurrenceId?: IdParam;
     displayMode?: 'header' | 'list';
-    showStepper?: boolean;
 }
 
 const getFeesAndTaxTotal = (price: ProductPrice): number => (price.tax_total || 0) + (price.fee_total || 0);
@@ -47,7 +47,6 @@ export const TieredPricing = ({
                                   productIndex,
                                   eventOccurrenceId,
                                   displayMode = 'list',
-                                  showStepper = true,
                               }: TieredPricingProps) => {
     const [limitMessages, setLimitMessages] = useState<{ [priceIndex: number]: string }>({});
     const limitTimeoutsRef = useRef<{ [priceIndex: number]: ReturnType<typeof setTimeout> }>({});
@@ -99,7 +98,7 @@ export const TieredPricing = ({
 
     const renderQuantityControl = (price: ProductPrice, index: number) => (
         <div className={'hi-product-quantity-selector'}>
-            {(product.is_available && price.is_available) && showStepper && (
+            {(product.is_available && price.is_available) && (
                 <NumberSelector
                     min={product.min_per_order ?? 0}
                     max={getQuantityCap(price)}
@@ -143,6 +142,7 @@ export const TieredPricing = ({
         }
         const feesAndTax = getFeesAndTaxTotal(price);
         const isPriceAvailable = product.is_available && price.is_available;
+        const beforeDiscountPrice = getBeforeDiscountDisplayPrice(price, priceDisplayMode);
 
         return (
             <div className={'hi-product-header-pricing'}
@@ -159,10 +159,10 @@ export const TieredPricing = ({
                                 taxAndServiceFeeDisplayType={priceDisplayMode}
                                 feeDisplay={'none'}
                             />
-                            {price.is_discounted && (
+                            {beforeDiscountPrice !== null && (
                                 <div className={'hi-price-strike'}>
                                     <Currency
-                                        price={price.price_before_discount}
+                                        price={beforeDiscountPrice}
                                         currency={event?.currency}
                                         className={'hi-price-tier-price-amount'}
                                     />
@@ -192,6 +192,7 @@ export const TieredPricing = ({
             {product?.prices?.map((price, index) => {
                 const feesAndTax = getFeesAndTaxTotal(price);
                 const isPriceAvailable = product.is_available && price.is_available;
+                const beforeDiscountPrice = getBeforeDiscountDisplayPrice(price, priceDisplayMode);
 
                 return (
                     <div key={index} className={'hi-price-tier-row'}
@@ -247,10 +248,10 @@ export const TieredPricing = ({
                             />
                         )}
 
-                        {price.is_discounted && (
+                        {beforeDiscountPrice !== null && (
                             <div className={'hi-price-strike'}>
                                 <Currency
-                                    price={price.price_before_discount}
+                                    price={beforeDiscountPrice}
                                     currency={event?.currency}
                                     className={'hi-price-tier-price-amount'}
                                 />

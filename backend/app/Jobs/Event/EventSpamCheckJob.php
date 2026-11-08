@@ -2,6 +2,8 @@
 
 namespace HiEvents\Jobs\Event;
 
+use HiEvents\DomainObjects\AccountDomainObject;
+use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\Status\EventSpamCheckStatus;
 use HiEvents\DomainObjects\Status\EventStatus;
 use HiEvents\Mail\Admin\EventFlaggedAsSpamMail;
@@ -62,7 +64,7 @@ class EventSpamCheckJob implements ShouldBeUniqueUntilProcessing, ShouldQueue
 
         $event = $eventSpamCheckContentService->loadEvent($this->eventId);
 
-        if ($event === null || $event->getStatus() !== EventStatus::LIVE->name) {
+        if ($event === null || ! in_array($event->getStatus(), EventSpamCheckService::CHECKED_EVENT_STATUSES, true)) {
             return;
         }
 
@@ -80,10 +82,26 @@ class EventSpamCheckJob implements ShouldBeUniqueUntilProcessing, ShouldQueue
             return;
         }
 
+        $wasApprovedByAdmin = $eventSpamCheckRepository->findFirstWhere([
+            'event_id' => $this->eventId,
+            'status' => EventSpamCheckStatus::APPROVED->name,
+        ]) !== null;
+
+        if ($wasApprovedByAdmin && $existingCheck !== null) {
+            return;
+        }
+
         $result = $eventSpamCheckService->checkContent($content);
 
         if (! $result->isSpam) {
             $this->storeCheck($eventSpamCheckRepository, $result, EventSpamCheckStatus::CLEAN, $contentHash);
+
+            return;
+        }
+
+        if ($wasApprovedByAdmin) {
+            $this->storeCheck($eventSpamCheckRepository, $result, EventSpamCheckStatus::FLAGGED, $contentHash);
+            $this->notifySupport($mailer, $config, $accountRepository->findByEventId($event->getId()), $event, $result, eventStillLive: true);
 
             return;
         }
@@ -102,7 +120,7 @@ class EventSpamCheckJob implements ShouldBeUniqueUntilProcessing, ShouldQueue
                 attributes: ['status' => EventStatus::PENDING_MANUAL_REVIEW->name],
                 where: [
                     'id' => $this->eventId,
-                    'status' => EventStatus::LIVE->name,
+                    'status' => $event->getStatus(),
                 ],
             );
 
@@ -110,24 +128,38 @@ class EventSpamCheckJob implements ShouldBeUniqueUntilProcessing, ShouldQueue
                 return;
             }
 
-            $this->storeCheck($eventSpamCheckRepository, $result, EventSpamCheckStatus::FLAGGED, $contentHash);
+            $this->storeCheck($eventSpamCheckRepository, $result, EventSpamCheckStatus::FLAGGED, $contentHash, $event->getStatus());
 
-            $organizerEmail = $event->getOrganizer()?->getEmail();
+            $account = $accountRepository->findByEventId($event->getId());
 
-            if ($organizerEmail) {
-                $mailer->to($organizerEmail)->send(new EventPendingManualReviewMail($event));
+            if ($account->getEmail()) {
+                $mailer->to($account->getEmail())->send(new EventPendingManualReviewMail($event));
             }
 
-            $supportEmail = $config->get('app.platform_support_email');
-
-            if ($supportEmail) {
-                $account = $accountRepository->findByEventId($event->getId());
-
-                $mailer->to($supportEmail)->send(
-                    new EventFlaggedAsSpamMail($event, $account, $result->toVerdictArray())
-                );
-            }
+            $this->notifySupport($mailer, $config, $account, $event, $result, eventStillLive: false);
         });
+    }
+
+    private function notifySupport(
+        Mailer $mailer,
+        Repository $config,
+        AccountDomainObject $account,
+        EventDomainObject $event,
+        EventSpamCheckResultDTO $result,
+        bool $eventStillLive,
+    ): void {
+        $supportEmail = $config->get('app.platform_support_email');
+
+        if (! $supportEmail) {
+            return;
+        }
+
+        $mailer->to($supportEmail)->send(new EventFlaggedAsSpamMail(
+            event: $event,
+            account: $account,
+            verdict: $result->toVerdictArray(),
+            eventStillLive: $eventStillLive,
+        ));
     }
 
     public function failed(Throwable $exception): void
@@ -143,6 +175,7 @@ class EventSpamCheckJob implements ShouldBeUniqueUntilProcessing, ShouldQueue
         EventSpamCheckResultDTO $result,
         EventSpamCheckStatus $status,
         string $contentHash,
+        ?string $previousEventStatus = null,
     ): void {
         $eventSpamCheckRepository->create([
             'event_id' => $this->eventId,
@@ -150,6 +183,7 @@ class EventSpamCheckJob implements ShouldBeUniqueUntilProcessing, ShouldQueue
             'verdict' => $result->toVerdictArray(),
             'content_hash' => $contentHash,
             'checked_at' => now(),
+            'previous_event_status' => $previousEventStatus,
         ]);
     }
 }

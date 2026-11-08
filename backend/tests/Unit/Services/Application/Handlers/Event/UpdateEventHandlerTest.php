@@ -18,6 +18,7 @@ use HiEvents\Services\Domain\Event\EventSpamCheckDispatchService;
 use HiEvents\Services\Domain\Event\EventSpamCheckService;
 use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\HtmlPurifier\HtmlPurifierService;
+use HiEvents\Services\Infrastructure\Lock\TransactionLockService;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Support\Facades\Bus;
 use Mockery;
@@ -67,7 +68,8 @@ class UpdateEventHandlerTest extends TestCase
             $this->orderRepository,
             $this->purifier,
             $this->occurrenceRepository,
-            new EventSpamCheckDispatchService($this->eventSpamCheckService),
+            new EventSpamCheckDispatchService($this->eventSpamCheckService, Mockery::mock(EventRepositoryInterface::class)),
+            new TransactionLockService($this->databaseManager),
             Mockery::mock(WalletPassSyncDispatcher::class)->shouldIgnoreMissing(),
         );
     }
@@ -90,7 +92,7 @@ class UpdateEventHandlerTest extends TestCase
         $this->databaseManager
             ->shouldReceive('statement')
             ->once()
-            ->with('SELECT pg_advisory_xact_lock(?)', [1]);
+            ->with('SELECT pg_advisory_xact_lock(?, ?)', [TransactionLockService::EVENT_LOCK_KEYSPACE, 1]);
 
         $this->orderRepository
             ->shouldReceive('findFirstWhere')
@@ -129,7 +131,7 @@ class UpdateEventHandlerTest extends TestCase
         $this->databaseManager
             ->shouldReceive('statement')
             ->once()
-            ->with('SELECT pg_advisory_xact_lock(?)', [1]);
+            ->with('SELECT pg_advisory_xact_lock(?, ?)', [TransactionLockService::EVENT_LOCK_KEYSPACE, 1]);
 
         $this->orderRepository
             ->shouldReceive('findFirstWhere')
@@ -204,6 +206,17 @@ class UpdateEventHandlerTest extends TestCase
     public function test_dispatches_spam_check_when_live_event_content_changes(): void
     {
         $existing = $this->liveEvent(title: 'Old Title', description: 'Old description');
+
+        $this->eventSpamCheckService->shouldReceive('isEnabled')->andReturnTrue();
+
+        $this->handleContentUpdate($existing, title: 'New Title');
+
+        Bus::assertDispatched(EventSpamCheckJob::class);
+    }
+
+    public function test_dispatches_spam_check_when_archived_event_content_changes(): void
+    {
+        $existing = $this->liveEvent(title: 'Old Title', description: 'Old description', status: 'ARCHIVED');
 
         $this->eventSpamCheckService->shouldReceive('isEnabled')->andReturnTrue();
 
@@ -303,7 +316,7 @@ class UpdateEventHandlerTest extends TestCase
         ));
     }
 
-    public function test_does_not_dispatch_spam_check_when_event_not_live(): void
+    public function test_does_not_dispatch_spam_check_when_event_is_a_draft(): void
     {
         $existing = Mockery::mock(EventDomainObject::class);
         $existing->shouldReceive('getCurrency')->andReturn('USD');
@@ -319,14 +332,14 @@ class UpdateEventHandlerTest extends TestCase
         Bus::assertNotDispatched(EventSpamCheckJob::class);
     }
 
-    private function liveEvent(string $title, string $description): EventDomainObject|MockInterface
+    private function liveEvent(string $title, string $description, string $status = 'LIVE'): EventDomainObject|MockInterface
     {
         $existing = Mockery::mock(EventDomainObject::class);
         $existing->shouldReceive('getCurrency')->andReturn('USD');
         $existing->shouldReceive('getCategory')->andReturn('OTHER');
         $existing->shouldReceive('getTimezone')->andReturn('UTC');
         $existing->shouldReceive('getType')->andReturn('OTHER_NOT_SINGLE');
-        $existing->shouldReceive('getStatus')->andReturn('LIVE');
+        $existing->shouldReceive('getStatus')->andReturn($status);
         $existing->shouldReceive('getId')->andReturn(1);
         $existing->shouldReceive('getTitle')->andReturn($title);
         $existing->shouldReceive('getDescription')->andReturn($description);

@@ -9,7 +9,6 @@ use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventLocationDomainObject;
 use HiEvents\DomainObjects\EventOccurrenceDomainObject;
 use HiEvents\DomainObjects\LocationDomainObject;
-use HiEvents\DomainObjects\Status\EventStatus;
 use HiEvents\Events\Dispatcher;
 use HiEvents\Events\EventUpdateEvent;
 use HiEvents\Exceptions\CannotChangeCurrencyException;
@@ -22,9 +21,11 @@ use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Event\DTO\UpdateEventDTO;
 use HiEvents\Services\Domain\Event\EventSpamCheckDispatchService;
+use HiEvents\Services\Domain\Event\EventSpamCheckService;
 use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
 use HiEvents\Services\Infrastructure\HtmlPurifier\HtmlPurifierService;
+use HiEvents\Services\Infrastructure\Lock\TransactionLockService;
 use Illuminate\Database\DatabaseManager;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Throwable;
@@ -39,6 +40,7 @@ readonly class UpdateEventHandler
         private HtmlPurifierService $purifier,
         private EventOccurrenceRepositoryInterface $occurrenceRepository,
         private readonly EventSpamCheckDispatchService $eventSpamCheckDispatchService,
+        private readonly TransactionLockService $transactionLockService,
         private WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
@@ -77,7 +79,7 @@ readonly class UpdateEventHandler
         $isCurrencyChanging = $eventData->currency !== null && $eventData->currency !== $existingEvent->getCurrency();
 
         if ($isCurrencyChanging) {
-            $this->databaseManager->statement('SELECT pg_advisory_xact_lock(?)', [$eventData->id]);
+            $this->transactionLockService->lockEvent($eventData->id);
             $this->guardCurrencyChange($eventData);
         }
 
@@ -116,7 +118,7 @@ readonly class UpdateEventHandler
 
     private function dispatchSpamCheckIfContentChanged(EventDomainObject $existingEvent, array $attributes): void
     {
-        if ($existingEvent->getStatus() !== EventStatus::LIVE->name) {
+        if (! in_array($existingEvent->getStatus(), EventSpamCheckService::CHECKED_EVENT_STATUSES, true)) {
             return;
         }
 

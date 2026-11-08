@@ -2,6 +2,7 @@
 
 namespace HiEvents\Resources\Organizer;
 
+use HiEvents\DomainObjects\Enums\HomepageSectionType;
 use HiEvents\DomainObjects\Enums\TrackingPixelProvider;
 use HiEvents\DomainObjects\OrganizerSettingDomainObject;
 
@@ -19,6 +20,8 @@ class OrganizerSettingsPublicResource extends OrganizerSettingsResource
             $data['meta_conversions_api_configured'],
             $data['homepage_password'],
         );
+
+        $data['homepage_sections'] = HomepageSectionType::publicSections($data['homepage_sections']);
 
         if (config('app.saas_mode_enabled') && ! empty($data['tracking_pixels'])) {
             $data['tracking_pixels'] = array_values(array_filter(

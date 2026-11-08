@@ -8,6 +8,8 @@ use HiEvents\Repository\Interfaces\OrganizerRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrganizerSettingsRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Organizer\DTO\PartialUpdateOrganizerSettingsDTO;
 use HiEvents\Services\Application\Handlers\Organizer\Settings\PartialUpdateOrganizerSettingsHandler;
+use HiEvents\Services\Domain\Event\EventSpamCheckDispatchService;
+use HiEvents\Services\Domain\Event\HomepageSectionsSanitizer;
 use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use Illuminate\Encryption\Encrypter;
 use Mockery;
@@ -37,6 +39,8 @@ class PartialUpdateOrganizerSettingsHandlerTest extends TestCase
         $this->handler = new PartialUpdateOrganizerSettingsHandler(
             organizerSettingsRepository: $this->settingsRepository,
             organizerRepository: $this->organizerRepository,
+            eventSpamCheckDispatchService: Mockery::mock(EventSpamCheckDispatchService::class)->shouldIgnoreMissing(),
+            homepageSectionsSanitizer: Mockery::mock(HomepageSectionsSanitizer::class),
             walletPassSyncDispatcher: Mockery::mock(WalletPassSyncDispatcher::class)->shouldIgnoreMissing(),
             encrypter: $this->encrypter,
         );
@@ -199,6 +203,30 @@ class PartialUpdateOrganizerSettingsHandlerTest extends TestCase
             'organizer_id' => 1,
             'account_id' => '100',
             'seo_title' => 'New Title',
+        ]));
+    }
+
+    public function test_first_day_of_week_is_persisted_when_provided(): void
+    {
+        $this->assertFirstDayOfWeekWritten(['first_day_of_week' => 0], existing: 1, expected: 0);
+    }
+
+    public function test_first_day_of_week_keeps_existing_value_when_not_provided(): void
+    {
+        $this->assertFirstDayOfWeekWritten(['seo_title' => 'New Title'], existing: 6, expected: 6);
+    }
+
+    private function assertFirstDayOfWeekWritten(array $input, int $existing, int $expected): void
+    {
+        $existingSettings = new OrganizerSettingDomainObject;
+        $existingSettings->setFirstDayOfWeek($existing);
+
+        $this->expectSettingsUpdate($existingSettings, fn (array $attributes) => $attributes['first_day_of_week'] === $expected);
+
+        $this->handler->handle(PartialUpdateOrganizerSettingsDTO::from([
+            'organizer_id' => 1,
+            'account_id' => '100',
+            ...$input,
         ]));
     }
 

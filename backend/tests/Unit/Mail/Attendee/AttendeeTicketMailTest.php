@@ -12,8 +12,7 @@ use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\DomainObjects\ProductDomainObject;
 use HiEvents\DomainObjects\Status\OrderStatus;
 use HiEvents\Mail\Attendee\AttendeeTicketMail;
-use HiEvents\Services\Domain\Email\DTO\AttendeeTicketSummaryDTO;
-use Illuminate\Support\Collection;
+use HiEvents\Services\Domain\Email\DTO\AttendeeTicketWalletButtonsDTO;
 use ReflectionClass;
 use Tests\TestCase;
 
@@ -49,45 +48,62 @@ class AttendeeTicketMailTest extends TestCase
         $this->assertCount(1, $attachments);
     }
 
-    public function test_content_includes_a_ticket_for_every_attendee_sharing_the_email_address(): void
+    public function test_content_renders_one_ticket_for_a_mail_queued_before_grouping(): void
     {
-        $mail = $this->buildMail(collect([
-            $this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'General Admission'),
-            $this->attendee(7, 'third-short-id', 'Alex', 'Ray', 'VIP'),
-        ]));
+        $event = (new EventDomainObject)
+            ->setId(1)
+            ->setTitle('Test Event')
+            ->setTimezone('UTC')
+            ->setEventOccurrences(collect());
+
+        $attendee = (new AttendeeDomainObject)->setId(5)->setShortId('a_old');
+        $occurrence = (new EventOccurrenceDomainObject)
+            ->setId(3)
+            ->setStartDate('2026-09-01 18:00:00');
+
+        $mail = (new ReflectionClass(AttendeeTicketMail::class))->newInstanceWithoutConstructor();
+        Closure::bind(function () use ($event, $attendee, $occurrence): void {
+            $this->event = $event;
+            $this->attendee = $attendee;
+            $this->occurrence = $occurrence;
+            $this->order = new OrderDomainObject;
+            $this->organizer = new OrganizerDomainObject;
+            $this->eventSettings = new EventSettingDomainObject;
+            $this->renderedTemplate = null;
+        }, $mail, AttendeeTicketMail::class)();
 
         $content = $mail->content();
+        $tickets = $content->with['tickets'];
 
-        /** @var Collection<int, AttendeeTicketSummaryDTO> $tickets */
+        $this->assertSame('🎟️ Your Ticket for Test Event', $mail->envelope()->subject);
+        $this->assertCount(1, $tickets);
+        $this->assertSame($attendee, $tickets[0]['attendee']);
+        $this->assertSame($occurrence, $tickets[0]['occurrence']);
+        $this->assertNull($content->with['walletButtons']);
+    }
+
+    public function test_content_includes_a_ticket_for_every_attendee_sharing_the_email_address(): void
+    {
+        $content = $this->buildMail([
+            $this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'General Admission'),
+            $this->attendee(7, 'third-short-id', 'Alex', 'Ray', 'VIP'),
+        ])->content();
+
         $tickets = $content->with['tickets'];
 
         $this->assertCount(3, $tickets);
         $this->assertSame(
-            ['Jane Doe', 'Sam Jones', 'Alex Ray'],
-            $tickets->map(fn (AttendeeTicketSummaryDTO $ticket) => $ticket->attendeeName)->all(),
-        );
-        $this->assertSame(
-            ['Early Bird', 'General Admission', 'VIP'],
-            $tickets->map(fn (AttendeeTicketSummaryDTO $ticket) => $ticket->productTitle)->all(),
+            ['Jane', 'Sam', 'Alex'],
+            array_map(fn (array $ticket) => $ticket['attendee']->getFirstName(), $tickets),
         );
         $this->assertStringContainsString('/product/1/first-short-id', $content->with['ticketUrl']);
     }
 
-    public function test_content_includes_a_single_ticket_when_the_attendee_has_no_siblings(): void
-    {
-        $tickets = $this->buildMail(null)->content()->with['tickets'];
-
-        $this->assertCount(1, $tickets);
-        $this->assertSame('Jane Doe', $tickets->first()->attendeeName);
-    }
-
     public function test_rendered_body_lists_every_ticket_behind_one_link(): void
     {
-        $mail = $this->buildMail(collect([
+        $rendered = $this->buildMail([
             $this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'General Admission'),
-        ]));
-
-        $rendered = $mail->render();
+        ])->render();
 
         $this->assertStringContainsString('Early Bird', $rendered);
         $this->assertStringContainsString('Jane Doe', $rendered);
@@ -98,22 +114,18 @@ class AttendeeTicketMailTest extends TestCase
         $this->assertStringNotContainsString('/product/1/second-short-id', $rendered);
     }
 
-    public function test_schedule_is_shown_once_when_all_tickets_share_an_occurrence(): void
+    public function test_content_passes_the_wallet_buttons_to_the_view(): void
     {
-        $newYearsEve = $this->occurrence(1, 'New Year\'s Eve', '2026-12-31 23:00:00', '2027-01-01 04:00:00');
-        $newYearsDay = $this->occurrence(2, 'New Year\'s Day', '2027-01-01 18:00:00', '2027-01-01 22:00:00');
-
-        $shared = $this->buildMail(
-            collect([$this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'VIP')->setEventOccurrence($newYearsEve)]),
-            $newYearsEve,
-        );
-        $split = $this->buildMail(
-            collect([$this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'VIP')->setEventOccurrence($newYearsDay)]),
-            $newYearsEve,
+        $walletButtons = new AttendeeTicketWalletButtonsDTO(
+            googleWalletSaveUrl: 'https://pay.google.com/gp/v/save/token',
+            googleWalletButtonPath: '/tmp/google.png',
+            appleWalletPassUrl: 'https://example.com/apple-wallet/passes',
+            appleWalletButtonPath: '/tmp/apple.png',
         );
 
-        $this->assertTrue($shared->content()->with['ticketsShareSchedule']);
-        $this->assertFalse($split->content()->with['ticketsShareSchedule']);
+        $content = $this->buildMail([], $walletButtons)->content();
+
+        $this->assertSame($walletButtons, $content->with['walletButtons']);
     }
 
     public function test_calendar_attachment_holds_an_entry_per_distinct_occurrence(): void
@@ -121,13 +133,10 @@ class AttendeeTicketMailTest extends TestCase
         $newYearsEve = $this->occurrence(1, 'New Year\'s Eve', '2026-12-31 23:00:00', '2027-01-01 04:00:00');
         $newYearsDay = $this->occurrence(2, 'New Year\'s Day', '2027-01-01 18:00:00', '2027-01-01 22:00:00');
 
-        $mail = $this->buildMail(
-            collect([
-                $this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'General Admission')->setEventOccurrence($newYearsEve),
-                $this->attendee(7, 'third-short-id', 'Alex', 'Ray', 'VIP')->setEventOccurrence($newYearsDay),
-            ]),
-            $newYearsEve,
-        );
+        $mail = $this->buildMail([
+            $this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'General Admission')->setEventOccurrence($newYearsEve),
+            $this->attendee(7, 'third-short-id', 'Alex', 'Ray', 'VIP')->setEventOccurrence($newYearsDay),
+        ], firstAttendeeOccurrence: $newYearsEve);
 
         $attachments = $mail->attachments();
         $this->assertCount(1, $attachments);
@@ -144,16 +153,20 @@ class AttendeeTicketMailTest extends TestCase
 
     public function test_subject_is_pluralised_when_the_email_carries_multiple_tickets(): void
     {
-        $single = $this->buildMail(null);
-        $multiple = $this->buildMail(collect([$this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'VIP')]));
+        $single = $this->buildMail([]);
+        $multiple = $this->buildMail([$this->attendee(6, 'second-short-id', 'Sam', 'Jones', 'VIP')]);
 
         $this->assertSame('🎟️ Your Ticket for Test Event', $single->envelope()->subject);
         $this->assertSame('🎟️ Your Tickets for Test Event', $multiple->envelope()->subject);
     }
 
+    /**
+     * @param  AttendeeDomainObject[]  $otherAttendees
+     */
     private function buildMail(
-        ?Collection $additionalAttendees,
-        ?EventOccurrenceDomainObject $attendeeOccurrence = null,
+        array $otherAttendees,
+        ?AttendeeTicketWalletButtonsDTO $walletButtons = null,
+        ?EventOccurrenceDomainObject $firstAttendeeOccurrence = null,
     ): AttendeeTicketMail {
         $event = (new EventDomainObject)
             ->setId(1)
@@ -163,15 +176,18 @@ class AttendeeTicketMailTest extends TestCase
                 $this->occurrence(1, 'New Year\'s Eve', '2026-12-31 23:00:00', '2027-01-01 04:00:00'),
             ]));
 
+        $attendee = $this->attendee(5, 'first-short-id', 'Jane', 'Doe', 'Early Bird')
+            ->setEventOccurrence($firstAttendeeOccurrence);
+
         return new AttendeeTicketMail(
             order: (new OrderDomainObject)->setStatus(OrderStatus::COMPLETED->name),
-            attendee: $this->attendee(5, 'first-short-id', 'Jane', 'Doe', 'Early Bird')
-                ->setEventOccurrence($attendeeOccurrence),
+            attendee: $attendee,
             event: $event,
             eventSettings: (new EventSettingDomainObject)->setSupportEmail('support@example.com'),
             organizer: (new OrganizerDomainObject)->setEmail('organizer@example.com')->setName('Organizer'),
-            occurrence: $attendeeOccurrence,
-            additionalAttendees: $additionalAttendees,
+            occurrence: $firstAttendeeOccurrence,
+            attendees: $otherAttendees === [] ? null : collect([$attendee, ...$otherAttendees]),
+            walletButtons: $walletButtons,
         );
     }
 

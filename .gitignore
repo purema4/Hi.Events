@@ -40,3 +40,7 @@ apple-wallet-pass.pem
 *.pem
 Add-to-Apple-Wallet.zip
 docker/staging/
+/release-notes.md
+
+.amp/portals/*
+.cloudflare/

@@ -13,6 +13,7 @@ use HiEvents\DomainObjects\OrderDomainObject;
 use HiEvents\DomainObjects\OrderItemDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
 use HiEvents\DomainObjects\ProductDomainObject;
+use HiEvents\DomainObjects\Status\AttendeeStatus;
 use HiEvents\Mail\Order\OrderFailed;
 use HiEvents\Mail\Organizer\OrderSummaryForOrganizer;
 use HiEvents\Repository\Eloquent\Value\Relationship;
@@ -22,6 +23,7 @@ use HiEvents\Services\Domain\Attendee\AttendeeTicketGroupService;
 use HiEvents\Services\Domain\Attendee\SendAttendeeTicketService;
 use HiEvents\Services\Domain\Email\MailBuilderService;
 use Illuminate\Mail\Mailer;
+use Illuminate\Support\Collection;
 
 class SendOrderDetailsService
 {
@@ -31,6 +33,7 @@ class SendOrderDetailsService
         private readonly Mailer $mailer,
         private readonly SendAttendeeTicketService $sendAttendeeTicketService,
         private readonly MailBuilderService $mailBuilderService,
+        private readonly TeamOrderNotificationRecipientService $teamRecipientService,
         private readonly AttendeeTicketGroupService $attendeeTicketGroupService,
     ) {}
 
@@ -90,7 +93,7 @@ class SendOrderDetailsService
             $this->sendAttendeeTicketEmails($order, $event);
         }
 
-        if ($order->isOrderFailed()) {
+        if ($order->isOrderFailed() && $order->getEmail() !== null && ! $order->isBoxOfficeOrder()) {
             $this->mailer
                 ->to($order->getEmail())
                 ->locale($order->getLocale())
@@ -109,15 +112,17 @@ class SendOrderDetailsService
         OrganizerDomainObject $organizer,
         EventSettingDomainObject $eventSettings,
         ?InvoiceDomainObject $invoice = null,
-        ?EventOccurrenceDomainObject $occurrence = null,
     ): void {
+        if ($order->getEmail() === null) {
+            return;
+        }
+
         $mail = $this->mailBuilderService->buildOrderSummaryMail(
             $order,
             $event,
             $eventSettings,
             $organizer,
             $invoice,
-            $occurrence ?? $this->resolvePrimaryOccurrence($order),
         );
 
         $this->mailer
@@ -126,36 +131,19 @@ class SendOrderDetailsService
             ->send($mail);
     }
 
-    private function resolvePrimaryOccurrence(OrderDomainObject $order): ?EventOccurrenceDomainObject
-    {
-        $items = $order->getOrderItems();
-        if ($items === null || $items->isEmpty()) {
-            return null;
-        }
-
-        $distinct = $items
-            ->map(fn (OrderItemDomainObject $item) => $item->getEventOccurrence())
-            ->filter()
-            ->unique(fn (EventOccurrenceDomainObject $occ) => $occ->getId());
-
-        return $distinct->count() === 1 ? $distinct->first() : null;
-    }
-
     private function sendAttendeeTicketEmails(OrderDomainObject $order, EventDomainObject $event): void
     {
-        $attendeesByRecipient = $this->attendeeTicketGroupService
-            ->groupByRecipient(collect($order->getAttendees()));
-
-        foreach ($attendeesByRecipient as $attendees) {
-            $this->sendAttendeeTicketService->send(
+        $this->attendeeTicketGroupService
+            ->groupByRecipient(($order->getAttendees() ?? collect())
+                ->filter(fn (AttendeeDomainObject $attendee) => $attendee->getEmail() !== null
+                    && $attendee->getStatus() !== AttendeeStatus::CANCELLED->name))
+            ->each(fn (Collection $attendees) => $this->sendAttendeeTicketService->sendTickets(
                 order: $order,
-                attendee: $attendees->first(),
+                attendees: $attendees->values(),
                 event: $event,
                 eventSettings: $event->getEventSettings(),
                 organizer: $event->getOrganizer(),
-                additionalAttendees: $attendees->slice(1)->values(),
-            );
-        }
+            ));
     }
 
     private function sendOrderSummaryEmails(OrderDomainObject $order, EventDomainObject $event): void
@@ -168,12 +156,28 @@ class SendOrderDetailsService
             invoice: $order->getLatestInvoice(),
         );
 
-        if ($order->getIsManuallyCreated() || ! $event->getEventSettings()->getNotifyOrganizerOfNewOrders()) {
+        if ($order->getIsManuallyCreated() || $order->isBoxOfficeOrder()) {
             return;
         }
 
-        $this->mailer
-            ->to($event->getOrganizer()->getEmail())
-            ->send(new OrderSummaryForOrganizer($order, $event));
+        $notifiesOrganizer = $event->getEventSettings()->getNotifyOrganizerOfNewOrders();
+
+        if ($notifiesOrganizer) {
+            $this->mailer
+                ->to($event->getOrganizer()->getEmail())
+                ->send(new OrderSummaryForOrganizer($order, $event));
+        }
+
+        $teamRecipients = $this->teamRecipientService->recipientsFor(
+            event: $event,
+            excludeEmail: $notifiesOrganizer ? $event->getOrganizer()->getEmail() : null,
+        );
+
+        foreach ($teamRecipients as $user) {
+            $this->mailer
+                ->to($user->getEmail())
+                ->locale($user->getLocale())
+                ->send(new OrderSummaryForOrganizer($order, $event));
+        }
     }
 }

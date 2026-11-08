@@ -51,7 +51,7 @@ class UpdateEventStatusHandlerTest extends TestCase
             $this->accountRepository,
             new NullLogger,
             $databaseManager,
-            new EventSpamCheckDispatchService($this->eventSpamCheckService),
+            new EventSpamCheckDispatchService($this->eventSpamCheckService, Mockery::mock(EventRepositoryInterface::class)),
         );
 
         $this->accountRepository
@@ -85,6 +85,17 @@ class UpdateEventStatusHandlerTest extends TestCase
         $this->eventSpamCheckService->shouldReceive('isEnabled')->andReturnTrue();
 
         $this->handler->handle($this->makeDTO(EventStatus::LIVE->name));
+
+        Bus::assertDispatched(EventSpamCheckJob::class);
+    }
+
+    public function test_dispatches_spam_check_when_a_draft_event_is_archived(): void
+    {
+        $this->arrangeStatusUpdate(currentStatus: EventStatus::DRAFT->name);
+
+        $this->eventSpamCheckService->shouldReceive('isEnabled')->andReturnTrue();
+
+        $this->handler->handle($this->makeDTO(EventStatus::ARCHIVED->name));
 
         Bus::assertDispatched(EventSpamCheckJob::class);
     }

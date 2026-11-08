@@ -34,10 +34,25 @@ class UserAnonymizer implements AccountAnonymizerInterface
 
         if ($context->soleUserIds !== []) {
             $results[] = $this->executor->delete(
+                query: $this->databaseManager->table('oauth_connections')->whereIn('user_id', $context->soleUserIds),
+                entity: 'oauth_connections',
+            );
+
+            $results[] = $this->executor->delete(
                 query: $this->databaseManager->table('personal_access_tokens')
                     ->where('tokenable_type', User::class)
                     ->whereIn('tokenable_id', $context->soleUserIds),
                 entity: 'personal_access_tokens',
+            );
+
+            $results[] = $this->executor->delete(
+                query: $this->databaseManager->table('user_trusted_devices')->whereIn('user_id', $context->soleUserIds),
+                entity: 'user_trusted_devices',
+            );
+
+            $results[] = $this->executor->delete(
+                query: $this->databaseManager->table('user_identities')->whereIn('user_id', $context->soleUserIds),
+                entity: 'user_identities',
             );
 
             $results[] = $this->executor->scrub(
@@ -50,6 +65,10 @@ class UserAnonymizer implements AccountAnonymizerInterface
                     'pending_email' => AnonymizationStrategy::NULLIFY,
                     'password' => AnonymizationStrategy::RANDOM_TOKEN,
                     'remember_token' => AnonymizationStrategy::NULLIFY,
+                    'two_factor_secret' => AnonymizationStrategy::NULLIFY,
+                    'two_factor_recovery_codes' => AnonymizationStrategy::NULLIFY,
+                    'two_factor_confirmed_at' => AnonymizationStrategy::NULLIFY,
+                    'two_factor_last_used_timestep' => AnonymizationStrategy::NULLIFY,
                 ],
                 context: $context,
             );

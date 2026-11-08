@@ -1,4 +1,5 @@
 import {ActionIcon, Tooltip} from '@mantine/core';
+import {useAccess} from "../../../hooks/useAccess.ts";
 import {Event, EventType, IdParam, LocationType, Product} from "../../../types.ts";
 import classes from "./EventCard.module.scss";
 import {NavLink, useNavigate} from "react-router";
@@ -7,6 +8,7 @@ import {
     IconCopy,
     IconDotsVertical,
     IconEye,
+    IconArmchair,
     IconRepeat,
     IconSettings,
 } from "@tabler/icons-react";
@@ -44,6 +46,7 @@ interface EventCardProps {
 
 export function EventCard({event, compact = false}: EventCardProps) {
     const navigate = useNavigate();
+    const access = useAccess();
     const [isDuplicateModalOpen, duplicateModal] = useDisclosure(false);
     const [eventId, setEventId] = useState<IdParam>();
     const statusToggleMutation = useUpdateEventStatus();
@@ -160,11 +163,13 @@ export function EventCard({event, compact = false}: EventCardProps) {
                     icon: <IconCopy size={14}/>,
                     onClick: handleDuplicate,
                     dataTestId: 'event-duplicate-menu-item',
+                    visible: !access.isReadOnly && access.canManageOrganizer(event.organizer_id),
                 },
                 {
                     label: event?.status === 'ARCHIVED' ? t`Restore event` : t`Archive event`,
                     icon: <IconArchive size={14}/>,
                     onClick: handleStatusToggle,
+                    visible: !access.isReadOnly,
                 },
             ],
         },
@@ -172,6 +177,7 @@ export function EventCard({event, compact = false}: EventCardProps) {
 
     const locationText = getLocationText();
 
+    const canViewFinancials = access.can('VIEW_FINANCIALS');
     const revenue = event?.statistics?.sales_total_gross || 0;
     const attendees = event?.statistics?.attendees_registered || 0;
 
@@ -181,6 +187,7 @@ export function EventCard({event, compact = false}: EventCardProps) {
     const isEnded = event.lifecycle_status === 'ENDED';
     const isDraft = event.status === 'DRAFT';
     const isRecurring = event.type === EventType.RECURRING;
+    const isSeated = event.has_seat_map === true;
 
     const displayDate = (isRecurring && event.next_occurrence_start_date) || event.start_date;
     const hasDate = isValidDate(displayDate);
@@ -216,6 +223,11 @@ export function EventCard({event, compact = false}: EventCardProps) {
                                 {isRecurring && (
                                     <span className={classes.compactRecurringIcon} aria-label={t`Recurring`}>
                                         <IconRepeat size={12}/>
+                                    </span>
+                                )}
+                                {isSeated && (
+                                    <span className={classes.compactRecurringIcon} aria-label={t`Reserved seating`}>
+                                        <IconArmchair size={12}/>
                                     </span>
                                 )}
                             </div>
@@ -258,10 +270,10 @@ export function EventCard({event, compact = false}: EventCardProps) {
                                 <span className={classes.compactStatValue}>{formatNumber(attendees)}</span>
                                 <span className={classes.compactStatLabel}>{t`Attendees`}</span>
                             </div>
-                            <div className={classes.compactStat}>
+                            {canViewFinancials && <div className={classes.compactStat}>
                                 <span className={classes.compactStatValue}>{formatCurrency(revenue, event?.currency)}</span>
                                 <span className={classes.compactStatLabel}>{t`Revenue`}</span>
-                            </div>
+                            </div>}
                         </div>
 
                         <div className={classes.compactMenuButton} onClick={(e) => e.preventDefault()}>
@@ -311,9 +323,10 @@ export function EventCard({event, compact = false}: EventCardProps) {
                             </div>
                         )}
 
-                        {isRecurring && (
+                        {(isRecurring || isSeated) && (
                             <div className={classes.recurringBadge}>
-                                <IconRepeat size={12}/>
+                                {isRecurring && <IconRepeat size={12} aria-label={t`Recurring`}/>}
+                                {isSeated && <IconArmchair size={12} aria-label={t`Reserved seating`}/>}
                             </div>
                         )}
                     </div>
@@ -330,6 +343,12 @@ export function EventCard({event, compact = false}: EventCardProps) {
                                             {t`Recurring`}
                                         </span>
                                     )}
+                                    {isSeated && (
+                                        <span className={classes.recurringLabel}>
+                                            <IconArmchair size={11}/>
+                                            {t`Seated`}
+                                        </span>
+                                    )}
                                 </span>
                                 {hasDate && <span className={classes.relativeDate}>({relativeDateStr})</span>}
                                 {locationText && (
@@ -340,25 +359,29 @@ export function EventCard({event, compact = false}: EventCardProps) {
                                 )}
                             </div>
                             <div className={classes.footer}>
-                                <span
-                                    role="link"
-                                    tabIndex={0}
-                                    className={classes.organizer}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        e.stopPropagation();
-                                        navigate(`/manage/organizer/${event?.organizer?.id}`);
-                                    }}
-                                    onKeyDown={(e) => {
-                                        if (e.key === 'Enter' || e.key === ' ') {
+                                {access.canManageOrganizer(event.organizer_id) ? (
+                                    <span
+                                        role="link"
+                                        tabIndex={0}
+                                        className={classes.organizer}
+                                        onClick={(e) => {
                                             e.preventDefault();
                                             e.stopPropagation();
                                             navigate(`/manage/organizer/${event?.organizer?.id}`);
-                                        }
-                                    }}
-                                >
-                                    {event?.organizer?.name}
-                                </span>
+                                        }}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter' || e.key === ' ') {
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                navigate(`/manage/organizer/${event?.organizer?.id}`);
+                                            }
+                                        }}
+                                    >
+                                        {event?.organizer?.name}
+                                    </span>
+                                ) : (
+                                    <span className={classes.organizer}>{event?.organizer?.name}</span>
+                                )}
                                 {ticketAvailability && (
                                     <span className={`${classes.ticketStatus} ${classes[`ticket-${ticketAvailability.status}`]}`}>
                                         {ticketAvailability.text}
@@ -374,14 +397,14 @@ export function EventCard({event, compact = false}: EventCardProps) {
                                     <span className={classes.statLabel}>{t`Attendees`}</span>
                                 </div>
                             </Tooltip>
-                            <Tooltip label={t`Gross revenue`} withArrow position="top">
+                            {canViewFinancials && <Tooltip label={t`Gross revenue`} withArrow position="top">
                                 <div className={classes.stat}>
                                     <span className={classes.statValueRevenue}>
                                         {formatCurrency(revenue, event?.currency)}
                                     </span>
                                     <span className={classes.statLabel}>{t`Revenue`}</span>
                                 </div>
-                            </Tooltip>
+                            </Tooltip>}
                         </div>
 
                         <div className={classes.menuButton} onClick={(e) => e.preventDefault()}>

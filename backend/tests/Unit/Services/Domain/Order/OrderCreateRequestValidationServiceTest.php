@@ -11,6 +11,7 @@ use HiEvents\DomainObjects\ProductDomainObject;
 use HiEvents\DomainObjects\ProductOccurrenceVisibilityDomainObject;
 use HiEvents\DomainObjects\ProductPriceDomainObject;
 use HiEvents\DomainObjects\Status\EventOccurrenceStatus;
+use HiEvents\Enterprise\Seating\Services\Domain\SeatSelectionValidationService;
 use HiEvents\Repository\Interfaces\EventOccurrenceRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\ProductOccurrenceVisibilityRepositoryInterface;
@@ -107,6 +108,7 @@ class OrderCreateRequestValidationServiceTest extends TestCase
             $this->availabilityService,
             $eligibilityService,
             $this->productPriceService,
+            Mockery::mock(SeatSelectionValidationService::class)->shouldIgnoreMissing(),
         );
     }
 
@@ -1095,6 +1097,7 @@ class OrderCreateRequestValidationServiceTest extends TestCase
         $price->shouldReceive('getLabel')->andReturn(null);
         $price->shouldReceive('isBeforeSaleStartDate')->andReturn($priceBeforeSaleStart);
         $price->shouldReceive('isAfterSaleEndDate')->andReturn($priceAfterSaleEnd);
+        $price->shouldReceive('isOnSale')->andReturn(! $priceBeforeSaleStart && ! $priceAfterSaleEnd);
         $price->shouldReceive('setQuantityReserved')->andReturnSelf();
         $price->shouldReceive('isQuantityPerOccurrence')->andReturn(false);
         $price->shouldReceive('isLockedBehindEarlierTier')->andReturn(false);
@@ -1137,6 +1140,7 @@ class OrderCreateRequestValidationServiceTest extends TestCase
         $price->shouldReceive('getLabel')->andReturn(null);
         $price->shouldReceive('isBeforeSaleStartDate')->andReturn(false);
         $price->shouldReceive('isAfterSaleEndDate')->andReturn(false);
+        $price->shouldReceive('isOnSale')->andReturn(true);
         $price->shouldReceive('setQuantityReserved')->andReturnSelf();
         $price->shouldReceive('isQuantityPerOccurrence')->andReturn(false);
         $price->shouldReceive('isLockedBehindEarlierTier')->andReturn(false);

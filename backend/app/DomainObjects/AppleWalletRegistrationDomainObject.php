@@ -2,6 +2,4 @@
 
 namespace HiEvents\DomainObjects;
 
-class AppleWalletRegistrationDomainObject extends Generated\AppleWalletRegistrationDomainObjectAbstract
-{
-}
+class AppleWalletRegistrationDomainObject extends Generated\AppleWalletRegistrationDomainObjectAbstract {}

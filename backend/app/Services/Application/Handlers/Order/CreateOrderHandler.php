@@ -9,16 +9,26 @@ use HiEvents\DomainObjects\Enums\ProductType;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\DomainObjects\Generated\AffiliateDomainObjectAbstract;
+use HiEvents\DomainObjects\Generated\ProductDomainObjectAbstract;
 use HiEvents\DomainObjects\Generated\PromoCodeDomainObjectAbstract;
 use HiEvents\DomainObjects\OrderDomainObject;
+use HiEvents\DomainObjects\ProductDomainObject;
 use HiEvents\DomainObjects\PromoCodeDomainObject;
 use HiEvents\DomainObjects\Status\AffiliateStatus;
 use HiEvents\DomainObjects\Status\EventStatus;
+use HiEvents\DomainObjects\WidgetDomainObject;
+use HiEvents\Enterprise\Seating\Services\Domain\SeatClaimService;
+use HiEvents\Enterprise\Seating\Services\Domain\SeatingEventLockService;
+use HiEvents\Exceptions\EventNotOpenForOrdersException;
+use HiEvents\Exceptions\ResourceNotFoundException;
 use HiEvents\Repository\Interfaces\AffiliateRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
+use HiEvents\Repository\Interfaces\ProductRepositoryInterface;
 use HiEvents\Repository\Interfaces\PromoCodeRepositoryInterface;
+use HiEvents\Repository\Interfaces\WidgetRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Order\DTO\CreateOrderPublicDTO;
 use HiEvents\Services\Domain\EventOccurrence\OccurrencePurchaseEligibilityService;
+use HiEvents\Services\Domain\Order\DTO\ProcessedOrderItemDTO;
 use HiEvents\Services\Domain\Order\OrderItemProcessingService;
 use HiEvents\Services\Domain\Order\OrderManagementService;
 use HiEvents\Services\Domain\Product\AvailableProductQuantitiesFetchService;
@@ -27,7 +37,6 @@ use HiEvents\Services\Domain\Product\DTO\AvailableProductQuantitiesResponseDTO;
 use HiEvents\Services\Domain\PromoCode\PromoCodeUsageValidationService;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Support\Collection;
-use Illuminate\Validation\UnauthorizedException;
 use Illuminate\Validation\ValidationException;
 use Throwable;
 
@@ -43,6 +52,10 @@ class CreateOrderHandler
         private readonly AvailableProductQuantitiesFetchService $availableProductQuantitiesFetchService,
         private readonly OccurrencePurchaseEligibilityService $occurrencePurchaseEligibilityService,
         private readonly DatabaseManager $databaseManager,
+        private readonly SeatClaimService $seatClaimService,
+        private readonly SeatingEventLockService $seatingEventLock,
+        private readonly WidgetRepositoryInterface $widgetRepository,
+        private readonly ProductRepositoryInterface $productRepository,
     ) {}
 
     /**
@@ -54,7 +67,7 @@ class CreateOrderHandler
         bool $deleteExistingOrdersForSession = true
     ): OrderDomainObject {
         return $this->databaseManager->transaction(function () use ($eventId, $createOrderPublicDTO, $deleteExistingOrdersForSession) {
-            $this->databaseManager->statement('SELECT pg_advisory_xact_lock(?)', [$eventId]);
+            $this->seatingEventLock->lock($eventId);
 
             $event = $this->eventRepository
                 ->loadRelation(EventSettingDomainObject::class)
@@ -67,7 +80,9 @@ class CreateOrderHandler
             }
 
             $promoCode = $this->getPromoCode($createOrderPublicDTO, $eventId);
+            $this->assertPromoCodeGatedProductsUnlocked($eventId, $createOrderPublicDTO, $promoCode);
             $affiliate = $this->getAffiliate($createOrderPublicDTO, $eventId);
+            $widget = $this->getWidget($createOrderPublicDTO, $event);
 
             $this->validateProductAvailability($eventId, $createOrderPublicDTO);
 
@@ -79,6 +94,7 @@ class CreateOrderHandler
                 promoCode: $promoCode,
                 affiliate: $affiliate,
                 sessionId: $createOrderPublicDTO->session_identifier,
+                widget: $widget,
             );
 
             $orderItems = $this->orderItemProcessingService->process(
@@ -88,7 +104,12 @@ class CreateOrderHandler
                 promoCode: $promoCode,
             );
 
-            return $this->orderManagementService->updateOrderTotals($order, $orderItems);
+            $this->seatClaimService->claimForOrderItems($order, $orderItems, enforceSelectionRules: true);
+
+            return $this->orderManagementService->updateOrderTotals(
+                $order,
+                $orderItems->map(fn (ProcessedOrderItemDTO $item) => $item->order_item),
+            );
         });
     }
 
@@ -110,6 +131,36 @@ class CreateOrderHandler
         return $promoCode;
     }
 
+    /**
+     * @throws ResourceNotFoundException
+     * @throws ValidationException
+     */
+    private function assertPromoCodeGatedProductsUnlocked(int $eventId, CreateOrderPublicDTO $createOrderPublicDTO, ?PromoCodeDomainObject $promoCode): void
+    {
+        $lockedProduct = $this->productRepository
+            ->findWhereIn(
+                field: ProductDomainObjectAbstract::ID,
+                values: $createOrderPublicDTO->products->pluck('product_id')->unique()->values()->all(),
+                additionalWhere: [ProductDomainObjectAbstract::EVENT_ID => $eventId],
+            )
+            ->first(fn (ProductDomainObject $product) => $product->getIsHiddenWithoutPromoCode()
+                && ! ($promoCode && $promoCode->appliesToProduct($product)));
+
+        if ($lockedProduct === null) {
+            return;
+        }
+
+        if ($promoCode === null && $createOrderPublicDTO->promo_code !== null) {
+            throw ValidationException::withMessages([
+                'promo_code' => __('This promo code is invalid'),
+            ]);
+        }
+
+        throw new ResourceNotFoundException(
+            __('Product with id :id not found', ['id' => $lockedProduct->getId()])
+        );
+    }
+
     private function getAffiliate(CreateOrderPublicDTO $createOrderPublicDTO, int $eventId): ?AffiliateDomainObject
     {
         if ($createOrderPublicDTO->affiliate_code === null) {
@@ -123,10 +174,32 @@ class CreateOrderHandler
         ]);
     }
 
+    private function getWidget(CreateOrderPublicDTO $createOrderPublicDTO, EventDomainObject $event): ?WidgetDomainObject
+    {
+        if ($createOrderPublicDTO->widget_id === null || trim($createOrderPublicDTO->widget_id) === '') {
+            return null;
+        }
+
+        return $this->widgetRepository->findForOrderAttribution(
+            shortId: trim($createOrderPublicDTO->widget_id),
+            eventId: $event->getId(),
+            organizerId: $event->getOrganizerId(),
+        );
+    }
+
+    /**
+     * @throws EventNotOpenForOrdersException
+     */
     public function validateEventStatus(EventDomainObject $event, CreateOrderPublicDTO $createOrderPublicDTO): void
     {
-        if (! $createOrderPublicDTO->is_user_authenticated && $event->getStatus() !== EventStatus::LIVE->name) {
-            throw new UnauthorizedException(
+        if ($event->getStatus() === EventStatus::PENDING_MANUAL_REVIEW->name) {
+            throw new EventNotOpenForOrdersException(
+                __('This event is not live.')
+            );
+        }
+
+        if (! $createOrderPublicDTO->can_order_unpublished_event && $event->getStatus() !== EventStatus::LIVE->name) {
+            throw new EventNotOpenForOrdersException(
                 __('This event is not live.')
             );
         }
@@ -166,6 +239,7 @@ class CreateOrderHandler
             $this->assertQuantitiesAvailable(
                 $createOrderPublicDTO->products,
                 $this->availableProductQuantitiesFetchService->getAvailableProductQuantities($eventId, ignoreCache: true),
+                ignoreSeats: true,
             );
         }
     }
@@ -173,8 +247,11 @@ class CreateOrderHandler
     /**
      * @throws ValidationException
      */
-    private function assertQuantitiesAvailable(Collection $products, AvailableProductQuantitiesResponseDTO $availability): void
-    {
+    private function assertQuantitiesAvailable(
+        Collection $products,
+        AvailableProductQuantitiesResponseDTO $availability,
+        bool $ignoreSeats = false,
+    ): void {
         $requestedQuantities = [];
         foreach ($products as $product) {
             foreach ($product->quantities as $priceQuantity) {
@@ -189,10 +266,13 @@ class CreateOrderHandler
 
         foreach ($requestedQuantities as $productId => $priceQuantities) {
             foreach ($priceQuantities as $priceId => $requestedQuantity) {
-                $available = $availability->productQuantities
+                $priceAvailability = $availability->productQuantities
                     ->where('product_id', $productId)
                     ->where('price_id', $priceId)
-                    ->first()?->quantity_available ?? 0;
+                    ->first();
+                $available = $ignoreSeats
+                    ? $priceAvailability?->quantity_available_before_seats ?? $priceAvailability?->quantity_available ?? 0
+                    : $priceAvailability?->quantity_available ?? 0;
 
                 if ($requestedQuantity > $available) {
                     throw ValidationException::withMessages([
@@ -200,6 +280,14 @@ class CreateOrderHandler
                     ]);
                 }
             }
+        }
+
+        $quantityByProductId = array_map(array_sum(...), $requestedQuantities);
+
+        if ($availability->firstOverflowingPool($quantityByProductId) !== null) {
+            throw ValidationException::withMessages([
+                'products' => __('Not enough products available. Please try again.'),
+            ]);
         }
     }
 

@@ -1,5 +1,6 @@
 import {hydrateRoot} from "react-dom/client";
-import {createBrowserRouter, matchRoutes, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, matchRoutes} from "react-router";
+import {RouterProvider} from "react-router/dom";
 
 import {router} from "./router";
 import {App} from "./App";
@@ -12,6 +13,7 @@ declare global {
     interface Window {
         __REHYDRATED_STATE__?: DehydratedState;
         __THEME_COLORS__?: ThemeColors;
+        __SSR_STYLED__?: boolean;
     }
 }
 
@@ -29,7 +31,7 @@ async function initClientApp() {
     if (matches && matches.length > 0) {
         await Promise.all(
             matches.map(async (m) => {
-                const routeModule = await m.route.lazy?.();
+                const routeModule = typeof m.route.lazy === "function" ? await m.route.lazy() : undefined;
                 Object.assign(m.route, {...routeModule, lazy: undefined});
             })
         );
@@ -39,7 +41,7 @@ async function initClientApp() {
 
     hydrateRoot(
         document.getElementById("app") as HTMLElement,
-        <App queryClient={queryClient} locale={rawLocale} themeColors={themeColors} dehydratedState={dehydratedState}>
+        <App queryClient={queryClient} locale={rawLocale} themeColors={themeColors} dehydratedState={dehydratedState} ssrStyled={window.__SSR_STYLED__}>
             <RouterProvider router={browserRouter}/>
         </App>
     );

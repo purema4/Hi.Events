@@ -16,7 +16,7 @@ return [
     'reset_password_token_expiry_in_min' => 15,
     'frontend_url' => env('APP_FRONTEND_URL', 'http://localhost'),
     'api_url' => env('APP_URL', 'https://localhost:8443'),
-    'cnd_url' => env('APP_CDN_URL', '/storage'),
+    'cdn_url' => env('APP_CDN_URL'),
     'default_timezone' => 'America/Vancouver',
     'default_currency_code' => 'USD',
     'saas_mode_enabled' => env('APP_SAAS_MODE_ENABLED', false),
@@ -25,7 +25,13 @@ return [
     'saas_default_pass_platform_fee_to_buyer' => env('APP_SAAS_DEFAULT_PASS_PLATFORM_FEE_TO_BUYER', true),
     'disable_registration' => env('APP_DISABLE_REGISTRATION', false),
     'api_rate_limit_per_minute' => env('APP_API_RATE_LIMIT_PER_MINUTE', 180),
-    'promo_code_lookup_rate_limit_per_minute' => env('APP_PROMO_CODE_LOOKUP_RATE_LIMIT_PER_MINUTE', 10),
+    'trusted_proxies' => env('APP_TRUSTED_PROXIES', '*'),
+    'ssr_shared_secret' => env('APP_SSR_SHARED_SECRET'),
+    'public_order_rate_limit_per_minute' => env('APP_PUBLIC_ORDER_RATE_LIMIT_PER_MINUTE', 60),
+    'public_order_reserved_quantity_per_ip' => env('APP_PUBLIC_ORDER_RESERVED_QUANTITY_PER_IP'),
+    'public_promo_code_rate_limit_per_minute' => env('APP_PUBLIC_PROMO_CODE_RATE_LIMIT_PER_MINUTE', 10),
+    'register_rate_limit_per_hour' => env('APP_REGISTER_RATE_LIMIT_PER_HOUR', 10),
+    'public_payment_intent_rate_limit_per_hour' => env('APP_PUBLIC_PAYMENT_INTENT_RATE_LIMIT_PER_HOUR', 120),
     'stripe_connect_account_type' => env('APP_STRIPE_CONNECT_ACCOUNT_TYPE', 'express'),
     'platform_support_email' => env('APP_PLATFORM_SUPPORT_EMAIL', 'support@example.com'),
     'event_spam_check_enabled' => env('APP_EVENT_SPAM_CHECK_ENABLED', false),
@@ -48,6 +54,8 @@ return [
      */
     'homepage_product_quantities_cache_ttl' => env('APP_HOMEPAGE_TICKET_QUANTITIES_CACHE_TTL', 2),
 
+    'seat_map_max_seats' => env('APP_SEAT_MAP_MAX_SEATS', 3000),
+
     /**
      * Frontend URL patterns for various actions. It is unlikely you will need to change these
      */
@@ -59,12 +67,25 @@ return [
         'stripe_connect_return_url' => '/manage/organizer/%d/settings#payouts',
         'stripe_connect_refresh_url' => '/manage/organizer/%d/settings#payouts',
         'event_homepage' => '/event/%d/%s',
+        'event_preview' => '/event/%d/preview',
         'attendee_product' => '/product/%d/%s',
         'order_summary' => '/checkout/%d/%s/summary',
         'order_details' => '/checkout/%d/%s/details',
+        'order_payment' => '/checkout/%d/%s/payment',
         'organizer_order_summary' => '/manage/event/%d/orders#order-%d',
         'ticket_lookup' => '/my-tickets/%s',
-        'account_danger_zone' => '/account/danger-zone',
+        'account_danger_zone' => '/settings/account#delete-account',
+        'account_users' => '/settings/team',
+        'account_settings' => '/settings/account',
+        'account_billing' => '/settings/billing',
+        'register' => '/auth/register',
+        'profile_security' => '/settings/security',
+        'api_keys' => '/settings/api-keys',
+        'event_dashboard' => '/manage/event/%d/dashboard',
+        'organizer_events' => '/manage/organizer/%d/events/%s',
+        'welcome' => '/welcome',
+        'lifecycle_email_unsubscribe' => '/emails/unsubscribe/%s',
+        'sso_callback' => '/sso/callback',
     ],
 
     /**

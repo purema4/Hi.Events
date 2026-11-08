@@ -8,19 +8,26 @@ use Exception;
 use HiEvents\DomainObjects\Enums\CapacityChangeDirection;
 use HiEvents\DomainObjects\Enums\ProductPriceType;
 use HiEvents\DomainObjects\Enums\ProductQuantityAppliesTo;
+use HiEvents\DomainObjects\Enums\ProductType;
+use HiEvents\DomainObjects\Generated\EventSeatMapBandProductDomainObjectAbstract;
 use HiEvents\DomainObjects\Interfaces\DomainObjectInterface;
 use HiEvents\DomainObjects\ProductDomainObject;
 use HiEvents\DomainObjects\ProductPriceDomainObject;
+use HiEvents\Enterprise\Seating\Repository\Interfaces\EventSeatMapBandProductRepositoryInterface;
+use HiEvents\Enterprise\Seating\Services\Domain\SeatedProductLookupService;
 use HiEvents\Events\CapacityChangedEvent;
 use HiEvents\Exceptions\CannotChangeProductTypeException;
+use HiEvents\Exceptions\ResourceNotFoundException;
 use HiEvents\Helper\DateHelper;
 use HiEvents\Repository\Eloquent\Value\Relationship;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\ProductRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Product\DTO\UpsertProductDTO;
+use HiEvents\Services\Domain\Event\EventSpamCheckDispatchService;
 use HiEvents\Services\Domain\Product\ProductAddonAssociationService;
 use HiEvents\Services\Domain\Product\ProductPriceUpdateService;
 use HiEvents\Services\Domain\ProductCategory\GetProductCategoryService;
+use HiEvents\Services\Domain\Question\QuestionTicketScopeService;
 use HiEvents\Services\Domain\Tax\DTO\TaxAndProductAssociateParams;
 use HiEvents\Services\Domain\Tax\TaxAndProductAssociationService;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
@@ -46,6 +53,10 @@ class EditProductHandler
         private readonly EventRepositoryInterface $eventRepository,
         private readonly GetProductCategoryService $getProductCategoryService,
         private readonly DomainEventDispatcherService $domainEventDispatcherService,
+        private readonly SeatedProductLookupService $seatedProductLookup,
+        private readonly EventSeatMapBandProductRepositoryInterface $bandProductRepository,
+        private readonly EventSpamCheckDispatchService $eventSpamCheckDispatchService,
+        private readonly QuestionTicketScopeService $questionTicketScopeService,
     ) {}
 
     /**
@@ -59,9 +70,20 @@ class EditProductHandler
                 'id' => $productsData->product_id,
             ];
 
+            if ($this->productRepository->findFirstWhere($where) === null) {
+                throw new ResourceNotFoundException(__('Product not found'));
+            }
+
             $oldPriceQuantities = $this->getExistingPriceQuantities($productsData->product_id);
 
             $product = $this->updateProduct($productsData, $where);
+
+            if ($productsData->type === ProductPriceType::FREE) {
+                $this->bandProductRepository->updateWhere(
+                    [EventSeatMapBandProductDomainObjectAbstract::PRICE_ADJUSTMENT => 0],
+                    [EventSeatMapBandProductDomainObjectAbstract::PRODUCT_ID => $product->getId()],
+                );
+            }
 
             $this->addTaxes($product, $productsData);
 
@@ -70,6 +92,8 @@ class EditProductHandler
                 eventId: $productsData->event_id,
                 addonProductIds: $productsData->is_addon_only ? [] : ($productsData->addon_product_ids ?? []),
             );
+
+            $this->questionTicketScopeService->syncProduct($product);
 
             $this->priceUpdateService->updatePrices(
                 $product,
@@ -89,6 +113,8 @@ class EditProductHandler
                 $productsData,
                 $oldPriceQuantities,
             );
+
+            $this->eventSpamCheckDispatchService->dispatchForEvent($productsData->event_id);
 
             return $this->productRepository
                 ->loadRelation(ProductPriceDomainObject::class)
@@ -237,6 +263,13 @@ class EditProductHandler
         if ($product->getType() !== $productsData->type->name && $quantitySold > 0) {
             throw new CannotChangeProductTypeException(
                 __('Product type cannot be changed as products have been registered for this type')
+            );
+        }
+
+        $staysSeatable = $productsData->product_type === ProductType::TICKET && $productsData->type !== ProductPriceType::DONATION;
+        if (! $staysSeatable && $this->seatedProductLookup->isSeated($productsData->product_id)) {
+            throw new CannotChangeProductTypeException(
+                __('Unlink this ticket from the seat map before making it a donation or a non-ticket product')
             );
         }
     }

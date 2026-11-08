@@ -10,13 +10,15 @@ use HiEvents\DomainObjects\EventOccurrenceDomainObject;
 use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\DomainObjects\OrderDomainObject;
 use HiEvents\DomainObjects\OrganizerDomainObject;
-use HiEvents\Helper\DateHelper;
 use HiEvents\Helper\EventVenueHelper;
 use HiEvents\Helper\StringHelper;
 use HiEvents\Helper\Url;
 use HiEvents\Mail\BaseMail;
-use HiEvents\Services\Domain\Email\DTO\AttendeeTicketSummaryDTO;
+use HiEvents\Mail\Concerns\ContainsEventContent;
+use HiEvents\Mail\Concerns\ProvidesEventContent;
+use HiEvents\Services\Domain\Email\DTO\AttendeeTicketWalletButtonsDTO;
 use HiEvents\Services\Domain\Email\DTO\RenderedEmailTemplateDTO;
+use HiEvents\Services\Domain\Lineup\DTO\EmailLineupHighlightsDTO;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -28,13 +30,14 @@ use Spatie\IcalendarGenerator\Components\Event;
 /**
  * @uses /backend/resources/views/emails/orders/attendee-ticket.blade.php
  */
-class AttendeeTicketMail extends BaseMail
+class AttendeeTicketMail extends BaseMail implements ContainsEventContent
 {
+    use ProvidesEventContent;
+
     private readonly ?RenderedEmailTemplateDTO $renderedTemplate;
 
-    /**
-     * @param  Collection<int, AttendeeDomainObject>|null  $additionalAttendees  Other attendees in the order sharing $attendee's email address
-     */
+    private ?EmailLineupHighlightsDTO $lineup = null;
+
     public function __construct(
         private readonly OrderDomainObject $order,
         private readonly AttendeeDomainObject $attendee,
@@ -43,19 +46,26 @@ class AttendeeTicketMail extends BaseMail
         private readonly OrganizerDomainObject $organizer,
         ?RenderedEmailTemplateDTO $renderedTemplate = null,
         private readonly ?EventOccurrenceDomainObject $occurrence = null,
-        private readonly ?Collection $additionalAttendees = null,
-        private readonly ?string $googleWalletSaveUrl = null,
-        private readonly ?string $googleWalletButtonPath = null,
-        private readonly ?string $appleWalletPassUrl = null,
-        private readonly ?string $appleWalletButtonPath = null,
+        private readonly ?Collection $attendees = null,
+        ?EmailLineupHighlightsDTO $lineup = null,
+        private readonly ?AttendeeTicketWalletButtonsDTO $walletButtons = null,
     ) {
         parent::__construct();
         $this->renderedTemplate = $renderedTemplate;
+        $this->lineup = $lineup;
+    }
+
+    public function showsHiEventsPromo(): bool
+    {
+        return true;
     }
 
     public function envelope(): Envelope
     {
-        $subject = $this->renderedTemplate?->subject ?? $this->defaultSubject();
+        $replacements = ['event' => Str::limit($this->event->getTitle(), 50)];
+        $subject = $this->renderedTemplate?->subject ?? ($this->tickets()->count() > 1
+            ? __('🎟️ Your Tickets for :event', $replacements)
+            : __('🎟️ Your Ticket for :event', $replacements));
 
         return new Envelope(
             replyTo: $this->eventSettings->getSupportEmail(),
@@ -76,9 +86,6 @@ class AttendeeTicketMail extends BaseMail
             );
         }
 
-        $tickets = $this->ticketAttendees()
-            ->map(fn (AttendeeDomainObject $attendee) => $this->summariseTicket($attendee));
-
         return new Content(
             markdown: 'emails.orders.attendee-ticket',
             with: [
@@ -86,32 +93,85 @@ class AttendeeTicketMail extends BaseMail
                 'eventSettings' => $this->eventSettings,
                 'organizer' => $this->organizer,
                 'order' => $this->order,
-                'tickets' => $tickets,
-                'ticketsShareSchedule' => $this->distinctOccurrences()->count() === 1,
+                'lineup' => $this->lineup,
+                'tickets' => $this->tickets()
+                    ->map(fn (AttendeeDomainObject $attendee) => $this->ticketViewData($attendee))
+                    ->all(),
                 'ticketUrl' => sprintf(
                     Url::getFrontEndUrlFromConfig(Url::ATTENDEE_TICKET),
                     $this->event->getId(),
                     $this->attendee->getShortId(),
                 ),
-                'googleWalletSaveUrl' => $this->googleWalletSaveUrl,
-                'googleWalletButtonPath' => $this->googleWalletButtonPath,
-                'appleWalletPassUrl' => $this->appleWalletPassUrl,
-                'appleWalletButtonPath' => $this->appleWalletButtonPath,
+                'walletButtons' => $this->walletButtons ?? null,
             ]
         );
     }
 
+    /**
+     * @return Collection<int, AttendeeDomainObject>
+     */
+    private function tickets(): Collection
+    {
+        return ($this->attendees ?? null) ?? collect([$this->attendee]);
+    }
+
+    private function occurrenceFor(AttendeeDomainObject $attendee): ?EventOccurrenceDomainObject
+    {
+        if ($this->tickets()->count() > 1) {
+            return $attendee->getEventOccurrence();
+        }
+
+        return $this->occurrence ?? $attendee->getEventOccurrence();
+    }
+
+    private function ticketViewData(AttendeeDomainObject $attendee): array
+    {
+        $occurrence = $this->occurrenceFor($attendee);
+        $eventLocation = $occurrence?->getEventLocation() ?? $this->event->getEventLocation();
+
+        return [
+            'attendee' => $attendee,
+            'occurrence' => $occurrence,
+            'startDate' => $this->startDateFor($occurrence),
+            'endDate' => $this->endDateFor($occurrence),
+            'venueName' => EventVenueHelper::venueName($eventLocation),
+            'addressString' => EventVenueHelper::formattedAddress($eventLocation),
+        ];
+    }
+
+    private function startDateFor(?EventOccurrenceDomainObject $occurrence): ?string
+    {
+        return $occurrence?->getStartDate() ?? $this->event->getStartDate();
+    }
+
+    private function endDateFor(?EventOccurrenceDomainObject $occurrence): ?string
+    {
+        $start = $this->startDateFor($occurrence);
+        $end = $occurrence === null ? $this->event->getEndDate() : $occurrence->getEndDate();
+
+        if ($start === null || $end === null || ! Carbon::parse($end)->greaterThan(Carbon::parse($start))) {
+            return null;
+        }
+
+        return $end;
+    }
+
     public function attachments(): array
     {
-        $calendarEvents = $this->distinctOccurrences()
-            ->map(fn (?EventOccurrenceDomainObject $occurrence) => $this->buildCalendarEvent($occurrence))
-            ->filter();
+        $calendarEvents = $this->tickets()
+            ->groupBy(fn (AttendeeDomainObject $attendee) => $this->occurrenceFor($attendee)?->getId() ?? 0)
+            ->map(fn (Collection $attendees) => $this->calendarEventFor($attendees->first()))
+            ->filter()
+            ->values()
+            ->all();
 
-        if ($calendarEvents->isEmpty()) {
+        if ($calendarEvents === []) {
             return [];
         }
 
-        $calendar = Calendar::create()->event($calendarEvents->values()->all())->get();
+        $calendar = Calendar::create()
+            ->event($calendarEvents)
+            ->get();
 
         return [
             Attachment::fromData(static fn () => $calendar, 'event.ics')
@@ -119,69 +179,17 @@ class AttendeeTicketMail extends BaseMail
         ];
     }
 
-    /**
-     * @return Collection<int, AttendeeDomainObject>
-     */
-    private function ticketAttendees(): Collection
-    {
-        return collect([$this->attendee])->merge($this->additionalAttendees ?? collect());
-    }
-
-    private function defaultSubject(): string
-    {
-        $eventTitle = Str::limit($this->event->getTitle(), 50);
-
-        if ($this->ticketAttendees()->count() > 1) {
-            return __('🎟️ Your Tickets for :event', ['event' => $eventTitle]);
-        }
-
-        return __('🎟️ Your Ticket for :event', ['event' => $eventTitle]);
-    }
-
-    private function summariseTicket(AttendeeDomainObject $attendee): AttendeeTicketSummaryDTO
+    private function calendarEventFor(AttendeeDomainObject $attendee): ?Event
     {
         $occurrence = $this->occurrenceFor($attendee);
-        $eventLocation = $occurrence?->getEventLocation() ?? $this->event->getEventLocation();
 
-        $startDate = $occurrence?->getStartDate() ?? $this->event->getStartDate();
-        $endDate = $occurrence?->getEndDate() ?? $this->event->getEndDate();
+        $startDateRaw = $this->startDateFor($occurrence);
+        $endDateRaw = $this->endDateFor($occurrence);
 
-        return new AttendeeTicketSummaryDTO(
-            attendeeName: trim($attendee->getFirstName().' '.$attendee->getLastName()),
-            productTitle: $attendee->getProduct()?->getTitle(),
-            sessionLabel: $occurrence?->getLabel(),
-            startFormatted: $this->formatDateTime($startDate),
-            endFormatted: $this->formatEndDate($startDate, $endDate),
-            venueName: EventVenueHelper::venueName($eventLocation),
-            addressString: EventVenueHelper::formattedAddress($eventLocation),
-        );
-    }
+        $startDateTime = $startDateRaw ? Carbon::parse($startDateRaw, $this->event->getTimezone()) : null;
+        $endDateTime = $endDateRaw ? Carbon::parse($endDateRaw, $this->event->getTimezone()) : null;
 
-    private function occurrenceFor(AttendeeDomainObject $attendee): ?EventOccurrenceDomainObject
-    {
-        return $attendee->getEventOccurrence() ?? $this->occurrence ?? null;
-    }
-
-    /**
-     * @return Collection<int, EventOccurrenceDomainObject|null>
-     */
-    private function distinctOccurrences(): Collection
-    {
-        $occurrences = $this->ticketAttendees()
-            ->map(fn (AttendeeDomainObject $attendee) => $this->occurrenceFor($attendee))
-            ->filter()
-            ->unique(static fn (EventOccurrenceDomainObject $occurrence) => $occurrence->getId())
-            ->values();
-
-        return $occurrences->isEmpty() ? collect([null]) : $occurrences;
-    }
-
-    private function buildCalendarEvent(?EventOccurrenceDomainObject $occurrence): ?Event
-    {
-        $startDateRaw = $occurrence?->getStartDate() ?? $this->event->getStartDate();
-        $endDateRaw = $occurrence?->getEndDate() ?? $this->event->getEndDate();
-
-        if ($startDateRaw === null) {
+        if ($startDateTime === null) {
             return null;
         }
 
@@ -190,63 +198,30 @@ class AttendeeTicketMail extends BaseMail
             $eventTitle .= ' - '.$occurrence->getLabel();
         }
 
-        $calendarEvent = Event::create()
+        $event = Event::create()
             ->name($eventTitle)
-            ->uniqueIdentifier($this->calendarIdentifier($occurrence))
-            ->startsAt(Carbon::parse($startDateRaw, $this->event->getTimezone()))
+            ->uniqueIdentifier('event-'.$attendee->getId())
+            ->startsAt($startDateTime)
             ->url($this->event->getEventUrl())
             ->organizer($this->organizer->getEmail(), $this->organizer->getName());
 
         if ($this->event->getDescription()) {
-            $calendarEvent->description(StringHelper::previewFromHtml($this->event->getDescription()));
+            $event->description(StringHelper::previewFromHtml($this->event->getDescription()));
         }
 
         $eventLocation = $occurrence?->getEventLocation() ?? $this->event->getEventLocation();
         $address = EventVenueHelper::formattedAddress($eventLocation);
         if ($address !== null) {
-            $calendarEvent->address($address);
+            $event->address($address);
         } elseif ($eventLocation?->getType() === LocationType::ONLINE->name
             && $eventLocation->getOnlineEventConnectionDetails() !== null) {
-            $calendarEvent->address(__('Online event'));
+            $event->address(__('Online event'));
         }
 
-        if ($endDateRaw) {
-            $calendarEvent->endsAt(Carbon::parse($endDateRaw, $this->event->getTimezone()));
+        if ($endDateTime) {
+            $event->endsAt($endDateTime);
         }
 
-        return $calendarEvent;
-    }
-
-    private function calendarIdentifier(?EventOccurrenceDomainObject $occurrence): string
-    {
-        if ($occurrence !== null) {
-            return 'event-'.$this->event->getId().'-occurrence-'.$occurrence->getId();
-        }
-
-        return 'event-'.$this->attendee->getId();
-    }
-
-    private function formatDateTime(?string $utcDate): ?string
-    {
-        if ($utcDate === null) {
-            return null;
-        }
-
-        return (new Carbon(DateHelper::convertFromUTC($utcDate, $this->event->getTimezone())))
-            ->format('D, M j, Y · g:i A');
-    }
-
-    private function formatEndDate(?string $utcStartDate, ?string $utcEndDate): ?string
-    {
-        if ($utcStartDate === null || $utcEndDate === null) {
-            return null;
-        }
-
-        if (substr($utcStartDate, 0, 10) !== substr($utcEndDate, 0, 10)) {
-            return $this->formatDateTime($utcEndDate);
-        }
-
-        return (new Carbon(DateHelper::convertFromUTC($utcEndDate, $this->event->getTimezone())))
-            ->format('g:i A');
+        return $event;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace HiEvents\Resources\Event;
 
+use HiEvents\DomainObjects\Enums\HomepageSectionType;
 use HiEvents\DomainObjects\EventSettingDomainObject;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -65,6 +66,10 @@ class EventSettingsResourcePublic extends JsonResource
             'payment_providers' => $this->getPaymentProviders(),
             'offline_payment_instructions' => $this->getOfflinePaymentInstructions(),
             'allow_orders_awaiting_offline_payment_to_check_in' => $this->getAllowOrdersAwaitingOfflinePaymentToCheckIn(),
+            'offline_payment_reporting_enabled' => $this->getOfflinePaymentReportingEnabled(),
+            'offline_payment_order_reference_enabled' => $this->getOfflinePaymentOrderReferenceEnabled(),
+            'payment_links_enabled' => $this->getPaymentLinksEnabled(),
+            'payment_link_expiry_hours' => $this->getPaymentLinkExpiryHours(),
 
             // Invoice settings
             'require_billing_address' => $this->getRequireBillingAddress(),
@@ -81,6 +86,7 @@ class EventSettingsResourcePublic extends JsonResource
 
             // Homepage theme settings
             'homepage_theme_settings' => $this->getHomepageThemeSettings(),
+            'homepage_sections' => HomepageSectionType::publicSections($this->getHomepageSections()),
 
             // Self-service settings
             'allow_attendee_self_edit' => $this->getAllowAttendeeSelfEdit(),

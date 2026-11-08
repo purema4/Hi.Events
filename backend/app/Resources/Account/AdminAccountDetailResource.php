@@ -6,6 +6,7 @@ use HiEvents\DomainObjects\AccountMessagingTierDomainObject;
 use HiEvents\Http\Resources\Admin\AccountMessagingTierResource;
 use HiEvents\Models\Account;
 use HiEvents\Resources\BaseResource;
+use HiEvents\Services\Domain\LifecycleEmail\LifecycleEmailAvailability;
 use Illuminate\Http\Request;
 
 /**
@@ -22,6 +23,8 @@ class AdminAccountDetailResource extends BaseResource
             'timezone' => $this->resource->timezone,
             'currency_code' => $this->resource->currency_code,
             'is_manually_verified' => (bool) $this->resource->is_manually_verified,
+            'suspended_at' => $this->resource->suspended_at,
+            'suspension_reason' => $this->resource->suspension_reason,
             'created_at' => $this->resource->created_at,
             'updated_at' => $this->resource->updated_at,
             'events_count' => $this->resource->events_count ?? 0,
@@ -68,11 +71,26 @@ class AdminAccountDetailResource extends BaseResource
                     'role' => $user->pivot->role,
                 ];
             }),
+            'active_deletion_request' => $this->resource->active_deletion_request ? [
+                'id' => $this->resource->active_deletion_request->id,
+                'scheduled_deletion_at' => $this->resource->active_deletion_request->scheduled_deletion_at,
+                'expected_outcome' => $this->resource->active_deletion_request->expected_outcome,
+            ] : null,
             'messaging_tier' => $this->resource->messagingTier
                 ? new AccountMessagingTierResource(
                     AccountMessagingTierDomainObject::hydrateFromModel($this->resource->messagingTier)
                 )
                 : null,
+            'lifecycle_nudges' => $this->when(
+                app(LifecycleEmailAvailability::class)->isAvailable(),
+                fn () => $this->resource->lifecycleNudges
+                    ->sortByDesc('created_at')
+                    ->map(fn ($nudge) => [
+                        'nudge_type' => $nudge->nudge_type,
+                        'sent_at' => $nudge->created_at,
+                        'event_id' => $nudge->event_id,
+                    ])->values(),
+            ),
         ];
     }
 }

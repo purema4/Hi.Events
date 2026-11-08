@@ -13,13 +13,18 @@ use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\DomainObjects\Generated\AttendeeDomainObjectAbstract;
 use HiEvents\DomainObjects\Generated\OrderDomainObjectAbstract;
 use HiEvents\DomainObjects\Generated\ProductPriceDomainObjectAbstract;
+use HiEvents\DomainObjects\Generated\QuestionDomainObjectAbstract;
 use HiEvents\DomainObjects\OrderDomainObject;
 use HiEvents\DomainObjects\OrderItemDomainObject;
 use HiEvents\DomainObjects\ProductDomainObject;
 use HiEvents\DomainObjects\ProductPriceDomainObject;
+use HiEvents\DomainObjects\SeatClaimDomainObject;
 use HiEvents\DomainObjects\Status\AttendeeStatus;
 use HiEvents\DomainObjects\Status\OrderPaymentStatus;
 use HiEvents\DomainObjects\Status\OrderStatus;
+use HiEvents\Enterprise\Seating\Services\Domain\EventSeatMapLookupService;
+use HiEvents\Enterprise\Seating\Services\Domain\SeatClaimService;
+use HiEvents\Enterprise\Seating\Services\Domain\SeatedOrderCompletionGuard;
 use HiEvents\Events\OrderStatusChangedEvent;
 use HiEvents\Exceptions\ResourceConflictException;
 use HiEvents\Exceptions\UnauthorizedException;
@@ -31,19 +36,21 @@ use HiEvents\Repository\Interfaces\EventSettingsRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Repository\Interfaces\ProductPriceRepositoryInterface;
 use HiEvents\Repository\Interfaces\QuestionAnswerRepositoryInterface;
+use HiEvents\Repository\Interfaces\QuestionRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Order\DTO\CompleteOrderDTO;
 use HiEvents\Services\Application\Handlers\Order\DTO\CompleteOrderOrderDTO;
 use HiEvents\Services\Application\Handlers\Order\DTO\CompleteOrderProductDataDTO;
 use HiEvents\Services\Application\Handlers\Order\DTO\CreatedProductDataDTO;
 use HiEvents\Services\Application\Handlers\Order\DTO\OrderQuestionsDTO;
 use HiEvents\Services\Domain\Order\OccurrenceStatusValidator;
-use HiEvents\Services\Domain\Payment\Stripe\EventHandlers\PaymentIntentSucceededHandler;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
+use HiEvents\Services\Domain\Question\QuestionVisibilityService;
 use HiEvents\Services\Domain\Tracking\DTO\AdTrackingContextDTO;
 use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
 use HiEvents\Services\Infrastructure\DomainEvents\Enums\DomainEventType;
 use HiEvents\Services\Infrastructure\DomainEvents\Events\OrderEvent;
+use HiEvents\Services\Infrastructure\Lock\TransactionLockService;
 use HiEvents\Services\Infrastructure\Session\CheckoutSessionManagementService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -66,6 +73,12 @@ class CompleteOrderHandler
         private readonly EventSettingsRepositoryInterface $eventSettingsRepository,
         private readonly CheckoutSessionManagementService $sessionManagementService,
         private readonly OccurrenceStatusValidator $occurrenceStatusValidator,
+        private readonly SeatClaimService $seatClaimService,
+        private readonly SeatedOrderCompletionGuard $seatedOrderCompletionGuard,
+        private readonly EventSeatMapLookupService $eventSeatMapLookup,
+        private readonly TransactionLockService $transactionLockService,
+        private readonly QuestionRepositoryInterface $questionRepository,
+        private readonly QuestionVisibilityService $questionVisibilityService,
         private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
     ) {}
 
@@ -82,26 +95,29 @@ class CompleteOrderHandler
         $updatedOrder = DB::transaction(function () use ($orderData, $orderShortId, $eventSettings) {
             $orderDTO = $orderData->order;
 
-            DB::statement('SELECT pg_advisory_xact_lock(hashtext(?))', [$orderShortId]);
+            $this->transactionLockService->lockOrder($orderShortId);
 
             $order = $this->getOrder($orderShortId);
 
             $this->occurrenceStatusValidator->assertOrderOccurrencesArePurchasable($order);
 
+            $this->seatedOrderCompletionGuard->assertSeatsHeld($order);
+
             $updatedOrder = $this->updateOrder($order, $orderDTO, $orderData->ad_tracking_context);
 
-            $this->createAttendees($orderData->products, $order, $orderDTO, $eventSettings);
+            $questionsById = $this->questionVisibilityService->keyById(
+                $this->questionRepository
+                    ->loadRelation(ProductDomainObject::class)
+                    ->findWhere([QuestionDomainObjectAbstract::EVENT_ID => $orderData->event_id])
+            );
+            $orderAnswers = $this->answersByQuestionId($orderDTO->questions);
+
+            $this->createAttendees($orderData->products, $order, $orderDTO, $eventSettings, $questionsById, $orderAnswers);
 
             if ($orderData->order->questions) {
-                $this->createOrderQuestions($orderDTO->questions, $order);
+                $this->createOrderQuestions($orderDTO->questions, $order, $questionsById, $orderAnswers);
             }
 
-            /**
-             * If there's no payment required, immediately update the product quantities, otherwise handle
-             * this in the PaymentIntentEventHandlerService
-             *
-             * @see PaymentIntentSucceededHandler
-             */
             if (! $order->isPaymentRequired()) {
                 $this->productQuantityUpdateService->updateQuantitiesFromOrder($updatedOrder);
             }
@@ -139,6 +155,8 @@ class CompleteOrderHandler
         OrderDomainObject $order,
         CompleteOrderOrderDTO $orderDTO,
         EventSettingDomainObject $eventSettings,
+        Collection $questionsById,
+        array $orderAnswers,
     ): void {
         $inserts = [];
         $createdProductData = collect();
@@ -153,8 +171,13 @@ class CompleteOrderHandler
         $isPerOrderCollection = $eventSettings->getAttendeeDetailsCollectionMethod() === AttendeeDetailsCollectionMethod::PER_ORDER->name;
         $this->validateTicketProductsCount($order, $orderProducts);
 
-        $orderItemRemainingQuantities = $order->getOrderItems()
-            ->mapWithKeys(fn (OrderItemDomainObject $item) => [$item->getId() => $item->getQuantity()]);
+        $unassignedSeatClaims = $this->eventSeatMapLookup->existsForEvent($order->getEventId())
+            ? $this->seatClaimService->claimsForOrder($order->getId())
+            : collect();
+        $orderHasSeatClaims = $unassignedSeatClaims->isNotEmpty();
+        $unseatedRemainingByItem = $order->getOrderItems()
+            ->mapWithKeys(fn (OrderItemDomainObject $item) => [$item->getId() => $item->getQuantity()
+                - $unassignedSeatClaims->filter(fn (SeatClaimDomainObject $claim) => $claim->getOrderItemId() === $item->getId())->count()]);
 
         foreach ($orderProducts as $attendee) {
             $productId = $productsPrices->first(
@@ -171,13 +194,13 @@ class CompleteOrderHandler
                 continue;
             }
 
-            $orderItem = $order->getOrderItems()->first(
-                fn (OrderItemDomainObject $item) => $item->getProductPriceId() === $attendee->product_price_id
-                    && ($orderItemRemainingQuantities[$item->getId()] ?? 0) > 0
-            );
+            $seatClaim = $this->takeSeatClaim($unassignedSeatClaims, $attendee);
+            $orderItem = $seatClaim === null
+                ? $this->takeUnseatedOrderItem($order, $unseatedRemainingByItem, $attendee->product_price_id)
+                : $order->getOrderItems()->first(fn (OrderItemDomainObject $item) => $item->getId() === $seatClaim->getOrderItemId());
 
-            if ($orderItem !== null) {
-                $orderItemRemainingQuantities[$orderItem->getId()] = $orderItemRemainingQuantities[$orderItem->getId()] - 1;
+            if ($orderItem === null) {
+                throw new ResourceConflictException(__('The selected seats do not match the tickets in this order'));
             }
 
             $shortId = IdHelper::shortId(IdHelper::ATTENDEE_PREFIX);
@@ -186,7 +209,7 @@ class CompleteOrderHandler
                 AttendeeDomainObjectAbstract::EVENT_ID => $order->getEventId(),
                 AttendeeDomainObjectAbstract::PRODUCT_ID => $productId,
                 AttendeeDomainObjectAbstract::PRODUCT_PRICE_ID => $attendee->product_price_id,
-                AttendeeDomainObjectAbstract::EVENT_OCCURRENCE_ID => $orderItem?->getEventOccurrenceId(),
+                AttendeeDomainObjectAbstract::EVENT_OCCURRENCE_ID => $orderItem->getEventOccurrenceId(),
                 AttendeeDomainObjectAbstract::STATUS => $order->isPaymentRequired()
                     ? AttendeeStatus::AWAITING_PAYMENT->name
                     : AttendeeStatus::ACTIVE->name,
@@ -197,6 +220,8 @@ class CompleteOrderHandler
                 AttendeeDomainObjectAbstract::PUBLIC_ID => IdHelper::publicId(IdHelper::ATTENDEE_PREFIX),
                 AttendeeDomainObjectAbstract::SHORT_ID => $shortId,
                 AttendeeDomainObjectAbstract::LOCALE => $order->getLocale(),
+                AttendeeDomainObjectAbstract::SEAT_UID => $seatClaim?->getSeatUid(),
+                AttendeeDomainObjectAbstract::SEAT_LABEL => $seatClaim?->getSeatLabel(),
             ];
 
             $createdProductData->push(new CreatedProductDataDTO(
@@ -205,22 +230,80 @@ class CompleteOrderHandler
             ));
         }
 
+        if ($unassignedSeatClaims->isNotEmpty()) {
+            throw new ResourceConflictException(__('The selected seats do not match the tickets in this order'));
+        }
+
         if (! $this->attendeeRepository->insert($inserts)) {
             throw new RuntimeException(__('Failed to create attendee'));
+        }
+
+        if ($orderHasSeatClaims) {
+            $this->seatClaimService->pairWithAttendees($order->getId());
         }
 
         $this->createProductQuestions(
             createdAttendees: $createdProductData,
             order: $order,
             productPrices: $productsPrices,
+            questionsById: $questionsById,
+            orderAnswers: $orderAnswers,
         );
     }
 
-    private function createOrderQuestions(Collection $questions, OrderDomainObject $order): void
+    /**
+     * @param  Collection<SeatClaimDomainObject>  $unassignedSeatClaims
+     *
+     * @throws ResourceConflictException
+     */
+    private function takeSeatClaim(Collection $unassignedSeatClaims, CompleteOrderProductDataDTO $attendee): ?SeatClaimDomainObject
     {
-        $questions->each(function (OrderQuestionsDTO $orderQuestionsDTO) use ($order) {
+        $key = $unassignedSeatClaims->search(
+            fn (SeatClaimDomainObject $claim) => $claim->getProductPriceId() === $attendee->product_price_id
+                && ($attendee->seat_uid === null || $claim->getSeatUid() === $attendee->seat_uid)
+        );
+
+        if ($key !== false) {
+            return $unassignedSeatClaims->pull($key);
+        }
+
+        if ($attendee->seat_uid !== null) {
+            throw new ResourceConflictException(__('One of the selected seats does not belong to this order'));
+        }
+
+        return null;
+    }
+
+    /**
+     * @param  Collection<int, int>  $unseatedRemainingByItem
+     */
+    private function takeUnseatedOrderItem(OrderDomainObject $order, Collection $unseatedRemainingByItem, int $productPriceId): ?OrderItemDomainObject
+    {
+        $orderItem = $order->getOrderItems()->first(
+            fn (OrderItemDomainObject $item) => $item->getProductPriceId() === $productPriceId
+                && $unseatedRemainingByItem->get($item->getId(), 0) > 0
+        );
+
+        if ($orderItem !== null) {
+            $unseatedRemainingByItem->put($orderItem->getId(), $unseatedRemainingByItem->get($orderItem->getId()) - 1);
+        }
+
+        return $orderItem;
+    }
+
+    private function createOrderQuestions(
+        Collection $questions,
+        OrderDomainObject $order,
+        Collection $questionsById,
+        array $orderAnswers,
+    ): void {
+        $questions->each(function (OrderQuestionsDTO $orderQuestionsDTO) use ($order, $questionsById, $orderAnswers) {
             $answer = $this->extractAnswer($orderQuestionsDTO->response);
             if ($answer === null) {
+                return;
+            }
+
+            if (! $this->questionVisibilityService->shouldKeepAnswer((int) $orderQuestionsDTO->question_id, $questionsById, $orderAnswers)) {
                 return;
             }
             $this->questionAnswersRepository->create([
@@ -240,7 +323,9 @@ class CompleteOrderHandler
     private function createProductQuestions(
         Collection $createdAttendees,
         OrderDomainObject $order,
-        Collection $productPrices
+        Collection $productPrices,
+        Collection $questionsById,
+        array $orderAnswers,
     ): void {
         $newAttendees = $this->attendeeRepository->findWhereIn(
             field: AttendeeDomainObjectAbstract::SHORT_ID,
@@ -258,14 +343,25 @@ class CompleteOrderHandler
                 fn (ProductPriceDomainObject $productPrice) => $productPrice->getId() === $productRequestData->product_price_id
             )->getProductId();
 
-            // This will be null for non-ticket products
             $insertedAttendee = $newAttendees->first(
                 fn (AttendeeDomainObject $attendee) => $attendee->getShortId() === $createdAttendee->shortId,
             );
 
+            $attendeeAnswers = $this->answersByQuestionId($productRequestData->questions);
+
             foreach ($productRequestData->questions as $question) {
                 $answer = $this->extractAnswer($question->response);
                 if ($answer === null) {
+                    continue;
+                }
+
+                if (! $this->questionVisibilityService->shouldKeepAnswer(
+                    (int) $question->question_id,
+                    $questionsById,
+                    $orderAnswers,
+                    $attendeeAnswers,
+                    $productId,
+                )) {
                     continue;
                 }
 
@@ -278,6 +374,18 @@ class CompleteOrderHandler
                 ]);
             }
         }
+    }
+
+    private function answersByQuestionId(?Collection $questions): array
+    {
+        return $this->questionVisibilityService->answersByQuestionId(
+            ($questions ?? collect())
+                ->map(fn (OrderQuestionsDTO $question) => [
+                    'question_id' => $question->question_id,
+                    'response' => $question->response,
+                ])
+                ->all()
+        );
     }
 
     private function extractAnswer(array $response): mixed
@@ -365,7 +473,6 @@ class CompleteOrderHandler
                 ]
             );
 
-        // Update affiliate sales if this is a free order (no payment required) and has an affiliate
         if (! $order->isPaymentRequired() && $updatedOrder->getAffiliateId()) {
             $this->affiliateRepository->incrementSales(
                 $updatedOrder->getAffiliateId(),
@@ -377,8 +484,6 @@ class CompleteOrderHandler
     }
 
     /**
-     * Check if the passed product price IDs match what exist in the order_items table
-     *
      * @throws ResourceConflictException
      */
     private function validateProductPriceIdsMatchOrder(OrderDomainObject $order, Collection $productsPrices): void

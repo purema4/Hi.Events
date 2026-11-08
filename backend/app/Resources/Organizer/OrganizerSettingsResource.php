@@ -21,6 +21,7 @@ class OrganizerSettingsResource extends BaseResource
             'default_allow_attendee_self_edit' => $this->getDefaultAllowAttendeeSelfEdit(),
             'social_media_handles' => $this->getSocialMediaHandles(),
             'homepage_theme_settings' => $this->getHomepageThemeSettings(),
+            'homepage_sections' => $this->getHomepageSections(),
             'homepage_visibility' => $this->getHomepageVisibility(),
             'homepage_password' => $this->getHomepagePassword(),
             'website_url' => $this->getWebsiteUrl(),
@@ -34,6 +35,7 @@ class OrganizerSettingsResource extends BaseResource
             'tracking_pixels' => $this->getTrackingPixels(),
             'tracking_consent_acknowledged' => $this->getTrackingConsentAcknowledged(),
             'meta_conversions_api_configured' => $this->getMetaConversionsApiAccessToken() !== null,
+            'first_day_of_week' => $this->getFirstDayOfWeek(),
         ];
     }
 }

@@ -1,5 +1,7 @@
 import {PageBody} from "../../../common/PageBody";
+import {useAccess} from "../../../../hooks/useAccess.ts";
 import {EventDetailsForm} from "./Sections/EventDetailsForm";
+import {EventTypeSettings} from "./Sections/EventTypeSettings";
 import {LocationSettings} from "./Sections/LocationSettings";
 import {HomepageAndCheckoutSettings} from "./Sections/HomepageAndCheckoutSettings";
 import {EmailSettings} from "./Sections/EmailSettings";
@@ -14,6 +16,7 @@ import {
     IconAlertTriangle,
     IconAt,
     IconBrandGoogleAnalytics,
+    IconCalendarRepeat,
     IconBuildingStore,
     IconCreditCard,
     IconHome,
@@ -44,6 +47,7 @@ export const Settings = () => {
     const isRecurring = event?.type === EventType.RECURRING;
     const isGoogleWalletAvailable = account?.is_google_wallet_available;
     const isAppleWalletAvailable = account?.is_apple_wallet_available;
+    const canViewFinancials = useAccess().can('VIEW_FINANCIALS');
 
     const SECTIONS = useMemo(() => {
         const baseSections = [
@@ -52,6 +56,12 @@ export const Settings = () => {
                 label: t`Event Details`,
                 icon: IconBuildingStore,
                 component: EventDetailsForm
+            },
+            {
+                id: 'event-type',
+                label: t`Event Type`,
+                icon: IconCalendarRepeat,
+                component: EventTypeSettings
             },
             {
                 id: 'location-settings',
@@ -119,7 +129,7 @@ export const Settings = () => {
             });
         }
 
-        if (isSaasMode) {
+        if (isSaasMode && canViewFinancials) {
             baseSections.splice(baseSections.length - 1, 0, {
                 id: 'platform-fees',
                 label: t`Platform Fees`,
@@ -129,7 +139,7 @@ export const Settings = () => {
         }
 
         return baseSections;
-    }, [isSaasMode, isRecurring, isGoogleWalletAvailable, isAppleWalletAvailable]);
+    }, [isSaasMode, isRecurring, canViewFinancials, isGoogleWalletAvailable, isAppleWalletAvailable]);
 
     const isLargeScreen = useMediaQuery('(min-width: 1200px)', true);
     const [activeSection, setActiveSection] = useState(() => {

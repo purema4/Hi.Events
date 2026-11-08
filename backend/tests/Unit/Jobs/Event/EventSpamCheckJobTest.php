@@ -90,7 +90,7 @@ class EventSpamCheckJobTest extends TestCase
         $this->runJob();
     }
 
-    public function test_skips_when_event_no_longer_live(): void
+    public function test_skips_when_event_is_neither_live_nor_archived(): void
     {
         $this->expectNotToPerformAssertions();
 
@@ -149,24 +149,63 @@ class EventSpamCheckJobTest extends TestCase
             $this->makeResult(isSpam: true),
         );
 
-        $this->eventRepository
-            ->shouldReceive('updateWhere')
-            ->once()
-            ->with(
-                ['status' => EventStatus::PENDING_MANUAL_REVIEW->name],
-                ['id' => 1, 'status' => EventStatus::LIVE->name],
-            )
-            ->andReturn(1);
+        $this->expectDemotionFrom(EventStatus::LIVE->name);
+        $this->accountRepository->shouldReceive('findByEventId')->andReturn($this->makeAccount());
 
+        $this->expectMail('owner@example.com', EventPendingManualReviewMail::class);
+        $this->expectMail('support@example.com', EventFlaggedAsSpamMail::class);
+
+        $this->runJob();
+    }
+
+    public function test_flags_spam_on_an_archived_event_and_demotes_it_from_archived(): void
+    {
+        $this->expectNotToPerformAssertions();
+
+        $this->arrangeCheckableEvent(status: EventStatus::ARCHIVED->name);
+        $this->eventSpamCheckService->shouldReceive('checkContent')->andReturn(
+            $this->makeResult(isSpam: true),
+        );
+
+        $this->expectDemotionFrom(EventStatus::ARCHIVED->name);
+        $this->accountRepository->shouldReceive('findByEventId')->andReturn($this->makeAccount());
+
+        $this->expectMail('owner@example.com', EventPendingManualReviewMail::class);
+        $this->expectMail('support@example.com', EventFlaggedAsSpamMail::class);
+
+        $this->runJob();
+    }
+
+    public function test_admin_approved_event_stays_live_and_only_support_is_alerted(): void
+    {
+        $this->expectNotToPerformAssertions();
+
+        $this->arrangePreviouslyApprovedEvent(existingCheckForHash: null);
+        $this->eventSpamCheckService->shouldReceive('checkContent')->once()->andReturn(
+            $this->makeResult(isSpam: true),
+        );
+
+        $this->eventRepository->shouldNotReceive('updateWhere');
         $this->eventSpamCheckRepository
             ->shouldReceive('create')
             ->once()
             ->with(Mockery::on(fn ($attrs) => $attrs['status'] === EventSpamCheckStatus::FLAGGED->name));
-
         $this->accountRepository->shouldReceive('findByEventId')->andReturn(new AccountDomainObject);
 
-        $this->expectMail('organizer@example.com', EventPendingManualReviewMail::class);
         $this->expectMail('support@example.com', EventFlaggedAsSpamMail::class);
+
+        $this->runJob();
+    }
+
+    public function test_admin_approved_event_is_not_rechecked_for_already_flagged_content(): void
+    {
+        $this->expectNotToPerformAssertions();
+
+        $this->arrangePreviouslyApprovedEvent(
+            existingCheckForHash: (new EventSpamCheckDomainObject)->setStatus(EventSpamCheckStatus::FLAGGED->name),
+        );
+        $this->eventSpamCheckService->shouldNotReceive('checkContent');
+        $this->mailer->shouldNotReceive('to');
 
         $this->runJob();
     }
@@ -187,7 +226,7 @@ class EventSpamCheckJobTest extends TestCase
         $this->runJob();
     }
 
-    public function test_sends_only_organizer_mail_when_support_email_unset(): void
+    public function test_sends_only_the_account_mail_when_support_email_unset(): void
     {
         $this->expectNotToPerformAssertions();
 
@@ -198,22 +237,41 @@ class EventSpamCheckJobTest extends TestCase
 
         $this->eventRepository->shouldReceive('updateWhere')->once()->andReturn(1);
         $this->eventSpamCheckRepository->shouldReceive('create')->once();
+        $this->accountRepository->shouldReceive('findByEventId')->andReturn($this->makeAccount());
 
-        $this->expectMail('organizer@example.com', EventPendingManualReviewMail::class);
-        $this->accountRepository->shouldNotReceive('findByEventId');
+        $this->expectMail('owner@example.com', EventPendingManualReviewMail::class);
 
         $this->runJob();
     }
 
-    private function arrangeCheckableEvent(?string $supportEmail = 'support@example.com'): void
+    private function arrangeCheckableEvent(
+        ?string $supportEmail = 'support@example.com',
+        string $status = EventStatus::LIVE->name,
+    ): void {
+        $this->eventSpamCheckService->shouldReceive('isEnabled')->andReturnTrue();
+        $this->eventSpamCheckContentService->shouldReceive('loadEvent')->andReturn(
+            $this->makeEvent($status),
+        );
+        $this->eventSpamCheckService->shouldReceive('hashContent')->andReturn(self::CONTENT_HASH);
+        $this->eventSpamCheckRepository->shouldReceive('findFirstWhere')->andReturnNull();
+        $this->supportEmail = $supportEmail;
+    }
+
+    private function arrangePreviouslyApprovedEvent(?EventSpamCheckDomainObject $existingCheckForHash): void
     {
         $this->eventSpamCheckService->shouldReceive('isEnabled')->andReturnTrue();
         $this->eventSpamCheckContentService->shouldReceive('loadEvent')->andReturn(
             $this->makeEvent(EventStatus::LIVE->name),
         );
         $this->eventSpamCheckService->shouldReceive('hashContent')->andReturn(self::CONTENT_HASH);
-        $this->eventSpamCheckRepository->shouldReceive('findFirstWhere')->andReturnNull();
-        $this->supportEmail = $supportEmail;
+        $this->eventSpamCheckRepository
+            ->shouldReceive('findFirstWhere')
+            ->with(['event_id' => 1, 'content_hash' => self::CONTENT_HASH])
+            ->andReturn($existingCheckForHash);
+        $this->eventSpamCheckRepository
+            ->shouldReceive('findFirstWhere')
+            ->with(['event_id' => 1, 'status' => EventSpamCheckStatus::APPROVED->name])
+            ->andReturn((new EventSpamCheckDomainObject)->setStatus(EventSpamCheckStatus::APPROVED->name));
     }
 
     private ?string $supportEmail = 'support@example.com';
@@ -242,6 +300,29 @@ class EventSpamCheckJobTest extends TestCase
             ->setTitle('Event Title')
             ->setDescription('Event description')
             ->setOrganizer((new OrganizerDomainObject)->setEmail('organizer@example.com'));
+    }
+
+    private function expectDemotionFrom(string $status): void
+    {
+        $this->eventRepository
+            ->shouldReceive('updateWhere')
+            ->once()
+            ->with(
+                ['status' => EventStatus::PENDING_MANUAL_REVIEW->name],
+                ['id' => 1, 'status' => $status],
+            )
+            ->andReturn(1);
+
+        $this->eventSpamCheckRepository
+            ->shouldReceive('create')
+            ->once()
+            ->with(Mockery::on(fn ($attrs) => $attrs['status'] === EventSpamCheckStatus::FLAGGED->name
+                && $attrs['previous_event_status'] === $status));
+    }
+
+    private function makeAccount(): AccountDomainObject
+    {
+        return (new AccountDomainObject)->setId(9)->setEmail('owner@example.com');
     }
 
     private function makeResult(bool $isSpam): EventSpamCheckResultDTO

@@ -1,14 +1,13 @@
+import 'dotenv/config';
 import { defineConfig, devices } from '@playwright/test';
-import { config as loadEnv } from 'dotenv';
 import { grantedConsentCookie } from './utils/consent';
-
-loadEnv();
 
 const baseURL = process.env.E2E_BASE_URL ?? 'http://localhost:8123';
 const isCI = !!process.env.CI;
 
 export default defineConfig({
   testDir: './tests',
+  globalSetup: './global-setup.ts',
   fullyParallel: true,
   forbidOnly: isCI,
   retries: isCI ? 2 : 0,
@@ -30,7 +29,10 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+        launchOptions: { args: ['--host-resolver-rules=MAP mock-oidc 127.0.0.1'] },
+      },
     },
   ],
 });
