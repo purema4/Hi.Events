@@ -170,6 +170,6 @@ class AttendeeTicketMailOccurrenceDatesTest extends TestCase
             },
         );
 
-        return $data;
+        return preg_replace('/^DTSTAMP:.*$/m', '', $data);
     }
 }
