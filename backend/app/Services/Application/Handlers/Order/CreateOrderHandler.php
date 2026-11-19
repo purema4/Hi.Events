@@ -271,8 +271,8 @@ class CreateOrderHandler
                     ->where('price_id', $priceId)
                     ->first();
                 $available = $ignoreSeats
-                    ? $priceAvailability?->quantity_available_before_seats ?? $priceAvailability?->quantity_available ?? 0
-                    : $priceAvailability?->quantity_available ?? 0;
+                    ? $priceAvailability?->purchasableQuantityBeforeSeats() ?? 0
+                    : $priceAvailability?->purchasableQuantity() ?? 0;
 
                 if ($requestedQuantity > $available) {
                     throw ValidationException::withMessages([

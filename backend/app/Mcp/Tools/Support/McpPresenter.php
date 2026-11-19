@@ -120,6 +120,7 @@ class McpPresenter
             'addon_ids' => $product['addon_product_ids'] ?? [],
             'min_per_order' => $product['min_per_order'] ?? null,
             'max_per_order' => $product['max_per_order'] ?? null,
+            'soft_quantity_limit' => (bool) ($product['soft_quantity_limit'] ?? false),
             'sale_start_date' => self::localDate($product['sale_start_date'] ?? null, $timezone),
             'sale_end_date' => self::localDate($product['sale_end_date'] ?? null, $timezone),
             'prices' => collect($product['prices'] ?? [])

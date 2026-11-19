@@ -60,6 +60,7 @@ class CreateProductHandler
                 ->setHideAfterSaleEndDate($productsData->hide_after_sale_end_date)
                 ->setHideWhenSoldOut($productsData->hide_when_sold_out)
                 ->setSequentialTierReleaseEnabled($productsData->type === ProductPriceType::TIERED && $productsData->sequential_tier_release_enabled)
+                ->setSoftQuantityLimit($productsData->soft_quantity_limit ?? false)
                 ->setShowQuantityRemaining($productsData->show_quantity_remaining)
                 ->setIsHiddenWithoutPromoCode($productsData->is_hidden_without_promo_code)
                 ->setIsHighlighted($productsData->is_highlighted ?? false)

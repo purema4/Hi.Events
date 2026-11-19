@@ -58,12 +58,15 @@ export const TieredPricing = ({
     const priceDisplayMode = event?.settings?.price_display_mode;
     const isInclusive = priceDisplayMode === 'INCLUSIVE';
 
+    const stockLimit = (price: ProductPrice): number | undefined =>
+        product.soft_quantity_limit ? undefined : price.quantity_remaining;
+
     const getQuantityCap = (price: ProductPrice): number =>
-        Math.min(price.quantity_remaining ?? 50, product.max_per_order ?? 50);
+        Math.min(stockLimit(price) ?? 50, product.max_per_order ?? 50);
 
     const flashLimitMessage = (price: ProductPrice, index: number) => {
         const cap = getQuantityCap(price);
-        const limitedByStock = (price.quantity_remaining ?? Infinity) < (product.max_per_order ?? 50);
+        const limitedByStock = (stockLimit(price) ?? Infinity) < (product.max_per_order ?? 50);
         const message = limitedByStock ? t`Only ${cap} available` : t`Maximum ${cap} per order`;
 
         setLimitMessages(previous => ({...previous, [index]: message}));

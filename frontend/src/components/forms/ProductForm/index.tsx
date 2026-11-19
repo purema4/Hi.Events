@@ -90,7 +90,7 @@ const FIELD_TO_LEDGER_ROW: Array<[RegExp, LedgerRowId]> = [
     [/^(show_quantity_remaining|hide_when_sold_out|start_collapsed)$/, 'event-page'],
     [/^waitlist_enabled$/, 'waitlist'],
     [/^tax_and_fee_ids/, 'taxes'],
-    [/^(min_per_order|max_per_order)$/, 'order-limits'],
+    [/^(min_per_order|max_per_order|soft_quantity_limit)$/, 'order-limits'],
     [/^(addon_product_ids|is_addon_only)$/, 'addons'],
     [/^(is_highlighted|highlight_message)$/, 'highlight'],
     [/^(is_hidden|is_hidden_without_promo_code)$/, 'access'],
@@ -534,6 +534,11 @@ export const ProductForm = ({form, product}: ProductFormProps) => {
                         <NumberInput {...form.getInputProps('max_per_order')} label={t`Maximum Per Order`}
                                      placeholder="10"/>
                     </InputGroup>
+                    <Switch
+                        {...form.getInputProps('soft_quantity_limit', {type: 'checkbox'})}
+                        label={t`Let the last order go over the limit`}
+                        description={t`When an order asks for more than remain, it goes through as long as at least one is left. The product, or the current tier, then sells out and the next tier opens. Shared capacity limits still apply.`}
+                    />
                 </LedgerRow>
 
                 <LedgerRow

@@ -73,6 +73,34 @@ class ProductPriceUpdateServiceTest extends TestCase
         $this->assertTrue(true);
     }
 
+    public function test_allows_saving_an_oversold_price_with_its_quantity_unchanged(): void
+    {
+        $existingPrices = new Collection([$this->createExistingPrice(id: 1, quantitySold: 12, label: 'Early Bird', initialQuantity: 10)]);
+        [$product, $event] = $this->createProductAndEvent($existingPrices);
+
+        $this->productPriceRepository->shouldReceive('updateWhere')->once();
+
+        $productsData = $this->createUpsertDTO(ProductPriceType::PAID, [
+            new ProductPriceDTO(price: 10.00, initial_quantity_available: 10, id: 1),
+        ]);
+
+        $this->service->updatePrices($product, $productsData, $existingPrices, $event);
+        $this->assertTrue(true);
+    }
+
+    public function test_still_rejects_lowering_an_oversold_price_below_its_sales(): void
+    {
+        $existingPrices = new Collection([$this->createExistingPrice(id: 1, quantitySold: 12, label: 'Early Bird', initialQuantity: 10)]);
+        [$product, $event] = $this->createProductAndEvent($existingPrices);
+
+        $productsData = $this->createUpsertDTO(ProductPriceType::PAID, [
+            new ProductPriceDTO(price: 10.00, initial_quantity_available: 8, id: 1),
+        ]);
+
+        $this->expectException(ValidationException::class);
+        $this->service->updatePrices($product, $productsData, $existingPrices, $event);
+    }
+
     public function test_allows_null_initial_quantity_available(): void
     {
         $existingPrices = new Collection([$this->createExistingPrice(id: 1, quantitySold: 10, label: 'Early Bird')]);
@@ -293,10 +321,17 @@ class ProductPriceUpdateServiceTest extends TestCase
         $this->assertSame([2 => 1, 1 => 2], $orders);
     }
 
-    private function createExistingPrice(int $id, int $quantitySold, string $label): MockInterface
-    {
+    private function createExistingPrice(
+        int $id,
+        int $quantitySold,
+        string $label,
+        ?int $initialQuantity = null,
+        string $appliesTo = 'EVENT',
+    ): MockInterface {
         $price = Mockery::mock(ProductPriceDomainObject::class);
         $price->shouldReceive('getId')->andReturn($id);
+        $price->shouldReceive('getInitialQuantityAvailable')->andReturn($initialQuantity);
+        $price->shouldReceive('getQuantityAppliesTo')->andReturn($appliesTo);
         $price->shouldReceive('getQuantitySold')->andReturn($quantitySold);
         $price->shouldReceive('getLabel')->andReturn($label);
 

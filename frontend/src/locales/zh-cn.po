@@ -349,7 +349,7 @@ msgid "{count, plural, one {# slot} other {# slots}}"
 msgstr "{count, plural, other {# 个时段}}"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:59
-#: src/components/forms/ProductForm/ledgerSummaries.ts:127
+#: src/components/forms/ProductForm/ledgerSummaries.ts:137
 msgid "{count} add-ons"
 msgstr "{count} 个附加产品"
 
@@ -479,7 +479,7 @@ msgstr "{listed} 等另外 {remaining} 个"
 msgid "{loadedAffectedAttendees} attendees are registered across the affected sessions."
 msgstr "受影响的场次共有 {loadedAffectedAttendees} 位参与者已登记。"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:112
+#: src/components/forms/ProductForm/ledgerSummaries.ts:122
 msgid "{min}–{max} per order"
 msgstr "每单 {min}–{max} 件"
 
@@ -756,7 +756,7 @@ msgid "1 Active Webhook"
 msgstr "1 个活动的 Webhook"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:59
-#: src/components/forms/ProductForm/ledgerSummaries.ts:127
+#: src/components/forms/ProductForm/ledgerSummaries.ts:137
 msgid "1 add-on"
 msgstr "1 个附加产品"
 
@@ -1068,7 +1068,7 @@ msgstr "通过 Stripe 接受信用卡支付"
 #: src/components/common/TeamAccessFields/index.tsx:205
 #: src/components/common/TeamAccessFields/index.tsx:207
 #: src/components/common/TeamAccessPanel/index.tsx:137
-#: src/components/forms/ProductForm/index.tsx:605
+#: src/components/forms/ProductForm/index.tsx:610
 #: src/components/routes/oauth/Connect/index.tsx:117
 #: src/components/routes/settings/ApiKeys/CreateApiKeyModal.tsx:237
 #: src/components/routes/settings/Team/index.tsx:218
@@ -1654,16 +1654,16 @@ msgid "Add your social media handles and website URL. These will be displayed on
 msgstr "添加您的社交媒体账号和网站链接。这些信息将显示在您的公开组织者页面上。"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:484
-#: src/components/forms/ProductForm/ledgerSummaries.ts:128
+#: src/components/forms/ProductForm/ledgerSummaries.ts:138
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:25
 msgid "Add-on only"
 msgstr "仅作为附加产品"
 
-#: src/components/forms/ProductForm/index.tsx:561
+#: src/components/forms/ProductForm/index.tsx:566
 msgid "Add-on products"
 msgstr "附加产品"
 
-#: src/components/forms/ProductForm/index.tsx:542
+#: src/components/forms/ProductForm/index.tsx:547
 #: src/components/routes/product-widget/SelectProducts/index.tsx:520
 msgid "Add-ons"
 msgstr "附加产品"
@@ -1676,7 +1676,7 @@ msgstr "仅附加功能"
 msgid "Added"
 msgstr "已添加"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:81
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:84
 msgid "Added at checkout"
 msgstr "结账时添加"
 
@@ -2152,7 +2152,7 @@ msgid "Amazing, Event, Keywords..."
 msgstr "令人惊叹, 活动, 关键词..."
 
 #: src/components/common/OrdersTable/index.tsx:281
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:214
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:217
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:69
 msgid "Amount"
 msgstr "金额"
@@ -2209,7 +2209,7 @@ msgstr "{0} 中有一项缺少名称"
 msgid "An optional description of this category to display on the event page."
 msgstr "此类别的可选描述，将显示在活动页面上。"
 
-#: src/components/forms/ProductForm/index.tsx:595
+#: src/components/forms/ProductForm/index.tsx:600
 msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
 msgstr "在突出显示的产品上显示的可选消息,例如\"热卖中🔥\"或\"超值优惠\""
 
@@ -3214,7 +3214,7 @@ msgid "Bar"
 msgstr "吧台"
 
 #: src/components/routes/event/OccurrencesTab/PriceOverrideForm/index.tsx:306
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:87
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:90
 msgid "Base price"
 msgstr "基础价格"
 
@@ -3505,7 +3505,7 @@ msgstr "买家信息"
 msgid "Buyer pays"
 msgstr "买家支付"
 
-#: src/components/forms/ProductForm/index.tsx:571
+#: src/components/forms/ProductForm/index.tsx:576
 msgid "Buyers can add these to their order when they select this product at checkout."
 msgstr "买家在结账选择该产品时可将这些一并加入订单。"
 
@@ -5766,7 +5766,7 @@ msgstr "创建费用"
 msgid "Create key"
 msgstr "创建密钥"
 
-#: src/components/forms/ProductForm/index.tsx:568
+#: src/components/forms/ProductForm/index.tsx:573
 msgid "Create more tickets or products to offer them as add-ons"
 msgstr "创建更多门票或产品，即可将它们作为附加产品提供"
 
@@ -5793,7 +5793,7 @@ msgstr "创建组织器"
 msgid "Create payment link"
 msgstr "创建付款链接"
 
-#: src/components/modals/CreateProductModal/index.tsx:91
+#: src/components/modals/CreateProductModal/index.tsx:92
 msgid "Create Product"
 msgstr "创建产品"
 
@@ -5832,7 +5832,7 @@ msgstr "创建税费"
 msgid "Create the profile first, then add photos here."
 msgstr "请先创建简介，然后在此添加照片。"
 
-#: src/components/modals/CreateProductModal/index.tsx:88
+#: src/components/modals/CreateProductModal/index.tsx:89
 msgid "Create Ticket or Product"
 msgstr "创建门票或产品"
 
@@ -6984,8 +6984,8 @@ msgstr "复制活动"
 msgid "Duplicate Event"
 msgstr "复制活动"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:129
-#: src/components/modals/DuplicateProductModal/index.tsx:133
+#: src/components/modals/DuplicateProductModal/index.tsx:131
+#: src/components/modals/DuplicateProductModal/index.tsx:135
 msgid "Duplicate Product"
 msgstr "复制产品"
 
@@ -7256,8 +7256,8 @@ msgstr "编辑成员"
 msgid "Edit Order Details"
 msgstr "编辑订单详情"
 
-#: src/components/modals/EditProductModal/index.tsx:113
-#: src/components/modals/EditProductModal/index.tsx:117
+#: src/components/modals/EditProductModal/index.tsx:115
+#: src/components/modals/EditProductModal/index.tsx:119
 msgid "Edit Product"
 msgstr "编辑产品"
 
@@ -8802,7 +8802,7 @@ msgstr "费用已更新"
 #: src/components/common/OrdersTable/index.tsx:292
 #: src/components/forms/ProductForm/index.tsx:497
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:89
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
 msgid "Fees"
 msgstr "费用"
@@ -9114,8 +9114,8 @@ msgstr "门厅"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:160
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:170
 #: src/components/forms/ProductForm/index.tsx:296
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:158
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:230
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:161
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:233
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:37
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:54
 #: src/ee/box-office/utilites/boxOfficeTender.ts:15
@@ -9638,7 +9638,7 @@ msgstr "内容为空时自动隐藏。"
 msgid "Hidden from event page: {hiddenNames}"
 msgstr "在活动页面中隐藏：{hiddenNames}"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:151
+#: src/components/forms/ProductForm/ledgerSummaries.ts:161
 msgid "Hidden from everyone"
 msgstr "对所有人隐藏"
 
@@ -9724,7 +9724,7 @@ msgstr "在销售结束日期后隐藏产品"
 msgid "Hide product before sale start date"
 msgstr "在销售开始日期前隐藏产品"
 
-#: src/components/forms/ProductForm/index.tsx:617
+#: src/components/forms/ProductForm/index.tsx:622
 msgid "Hide product unless user has applicable promo code"
 msgstr "除非用户有适用的促销代码，否则隐藏产品"
 
@@ -9748,7 +9748,7 @@ msgstr "隐藏日期"
 msgid "Hide this category?"
 msgstr "隐藏此类别？"
 
-#: src/components/forms/ProductForm/index.tsx:622
+#: src/components/forms/ProductForm/index.tsx:627
 msgid "Hide this product from customers"
 msgstr "对客户隐藏此产品"
 
@@ -9764,24 +9764,24 @@ msgstr "隐藏售罄项"
 msgid "Hiding a product will prevent users from seeing it on the event page."
 msgstr "隐藏产品将防止用户在活动页面上看到它。"
 
-#: src/components/forms/ProductForm/index.tsx:580
+#: src/components/forms/ProductForm/index.tsx:585
 msgid "Highlight"
 msgstr "突出显示"
 
-#: src/components/forms/ProductForm/index.tsx:594
+#: src/components/forms/ProductForm/index.tsx:599
 msgid "Highlight Message"
 msgstr "突出显示消息"
 
-#: src/components/forms/ProductForm/index.tsx:587
+#: src/components/forms/ProductForm/index.tsx:592
 msgid "Highlight this product"
 msgstr "突出显示此产品"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:460
-#: src/components/forms/ProductForm/ledgerSummaries.ts:144
+#: src/components/forms/ProductForm/ledgerSummaries.ts:154
 msgid "Highlighted"
 msgstr "已突出显示"
 
-#: src/components/forms/ProductForm/index.tsx:588
+#: src/components/forms/ProductForm/index.tsx:593
 msgid "Highlighted products will have a different background color to make them stand out on the event page."
 msgstr "突出显示的产品将具有不同的背景色，使其在活动页面上脱颖而出。"
 
@@ -10671,6 +10671,10 @@ msgstr "姓氏"
 msgid "Last name is required"
 msgstr "姓氏为必填项"
 
+#: src/components/forms/ProductForm/ledgerSummaries.ts:113
+msgid "Last order can go over"
+msgstr "最后一笔订单可超出"
+
 #: src/components/common/OrganizerWebhookTable/index.tsx:245
 #: src/components/common/WebhookTable/index.tsx:245
 msgid "Last Response"
@@ -10807,6 +10811,10 @@ msgstr "允许未付款订单的来宾签到"
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:232
 msgid "Let someone else pay for an order"
 msgstr "允许他人为订单付款"
+
+#: src/components/forms/ProductForm/index.tsx:539
+msgid "Let the last order go over the limit"
+msgstr "允许最后一笔订单超出限额"
 
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:307
 msgid "Let them know about the change"
@@ -11347,7 +11355,7 @@ msgstr "最大消息数 / 24小时"
 msgid "Max Recipients / Message"
 msgstr "最大收件人数 / 消息"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:67
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
 msgid "Maximum {cap} per order"
 msgstr "每笔订单最多 {cap} 件"
 
@@ -11490,7 +11498,7 @@ msgstr "夹层吧台"
 msgid "Mezzanine standing"
 msgstr "夹层站席"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:115
+#: src/components/forms/ProductForm/ledgerSummaries.ts:125
 msgid "Min {min} per order"
 msgstr "每单最少 {min} 件"
 
@@ -12292,7 +12300,7 @@ msgstr "尚未向此账户发送任何生命周期邮件。"
 msgid "No limit"
 msgstr "无限制"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:121
+#: src/components/forms/ProductForm/ledgerSummaries.ts:131
 msgid "No limits"
 msgstr "没有限制"
 
@@ -12635,7 +12643,7 @@ msgstr "未编辑"
 #: src/components/common/PromoCodeTable/index.tsx:85
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:108
 #: src/components/forms/ProductForm/ledgerSummaries.ts:92
-#: src/components/forms/ProductForm/ledgerSummaries.ts:132
+#: src/components/forms/ProductForm/ledgerSummaries.ts:142
 #: src/components/routes/event/Questions/questionTemplates.ts:17
 #: src/components/routes/product-widget/CollectInformation/index.tsx:597
 #: src/ee/seating/components/SeatMapDesigner/Inspector.tsx:50
@@ -12921,7 +12929,7 @@ msgid "of every month"
 msgstr "每月"
 
 #: src/components/forms/ProductForm/ledgerSummaries.ts:77
-#: src/components/forms/ProductForm/ledgerSummaries.ts:140
+#: src/components/forms/ProductForm/ledgerSummaries.ts:150
 #: src/components/routes/admin/Accounts/AccountDetail/AccountFeatureFlags.tsx:79
 #: src/components/routes/admin/FeatureFlags/index.tsx:46
 #: src/components/routes/admin/LifecycleEmails/LifecycleEmailEditor.tsx:124
@@ -13152,7 +13160,7 @@ msgstr "在线活动详情"
 msgid "Online ticket sales for events with reserved seating keep working."
 msgstr "使用预留座位的活动仍可继续在线售票。"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:67
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
 msgid "Only {cap} available"
 msgstr "仅剩 {cap} 件"
 
@@ -13184,7 +13192,7 @@ msgstr "只有账户管理员可以更改这些设置。"
 msgid "Only admins can manage team access."
 msgstr "只有管理员可以管理团队访问权限。"
 
-#: src/components/forms/ProductForm/index.tsx:555
+#: src/components/forms/ProductForm/index.tsx:560
 msgid "Only available as an add-on"
 msgstr "仅作为附加产品提供"
 
@@ -14099,7 +14107,7 @@ msgstr "立即付款"
 msgid "Pay using the instructions below. {registrantName} has been emailed the order details, and the organizer will confirm the order once your payment arrives."
 msgstr "请按照以下说明付款。{registrantName} 已通过邮件收到订单详情，主办方将在收到您的付款后确认订单。"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:213
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:216
 msgid "Pay what you want"
 msgstr "随心付"
 
@@ -15039,11 +15047,11 @@ msgstr "促销代码"
 msgid "Promo code only"
 msgstr "仅限优惠码"
 
-#: src/components/forms/ProductForm/index.tsx:615
+#: src/components/forms/ProductForm/index.tsx:620
 msgid "Promo Code page"
 msgstr "促销代码页面"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:154
+#: src/components/forms/ProductForm/ledgerSummaries.ts:164
 msgid "Promo code required"
 msgstr "需要优惠码"
 
@@ -15094,7 +15102,7 @@ msgstr "请至少填写一个地址字段（场地、街道、城市或国家）
 msgid "Provide the following before Stripe's next review to keep payouts flowing."
 msgstr "请在 Stripe 下次审核前补齐以下资料，以免影响打款。"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:157
+#: src/components/forms/ProductForm/ledgerSummaries.ts:167
 msgid "Public"
 msgstr "公开"
 
@@ -17158,7 +17166,7 @@ msgstr "选择产品等级"
 msgid "Select products"
 msgstr "选择产品"
 
-#: src/components/forms/ProductForm/index.tsx:562
+#: src/components/forms/ProductForm/index.tsx:567
 msgid "Select products..."
 msgstr "选择产品..."
 
@@ -17275,7 +17283,7 @@ msgstr "销售员"
 msgid "Selling as {signedInName}"
 msgstr "以 {signedInName} 身份销售"
 
-#: src/components/forms/ProductForm/index.tsx:596
+#: src/components/forms/ProductForm/index.tsx:601
 msgid "Selling fast 🔥"
 msgstr "热卖中 🔥"
 
@@ -18890,7 +18898,7 @@ msgstr "成功确认电子邮件更改"
 msgid "Successfully created attendee"
 msgstr "成功创建与会者"
 
-#: src/components/modals/CreateProductModal/index.tsx:61
+#: src/components/modals/CreateProductModal/index.tsx:62
 msgid "Successfully Created Product"
 msgstr "产品创建成功"
 
@@ -18898,7 +18906,7 @@ msgstr "产品创建成功"
 msgid "Successfully Created Promo Code"
 msgstr "成功创建促销代码"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:113
+#: src/components/modals/DuplicateProductModal/index.tsx:115
 msgid "Successfully Duplicated Product"
 msgstr "产品复制成功"
 
@@ -18983,7 +18991,7 @@ msgstr "平台费用默认设置更新成功"
 msgid "Successfully Updated Platform Fee Settings"
 msgstr "平台费用设置更新成功"
 
-#: src/components/modals/EditProductModal/index.tsx:102
+#: src/components/modals/EditProductModal/index.tsx:104
 msgid "Successfully updated product"
 msgstr "产品更新成功"
 
@@ -19169,7 +19177,7 @@ msgstr "将面向所选 {0} 个场次的参与者。"
 #: src/components/common/OrdersTable/index.tsx:291
 #: src/components/forms/TaxAndFeeForm/index.tsx:21
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:89
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:95
 msgid "Tax"
 msgstr "税收"
 
@@ -20206,7 +20214,7 @@ msgstr "此主办方"
 msgid "This organizer profile is not published yet"
 msgstr "此主办方资料尚未发布"
 
-#: src/components/forms/ProductForm/index.tsx:620
+#: src/components/forms/ProductForm/index.tsx:625
 msgid "This overrides all visibility settings and will hide the product from all customers."
 msgstr "这将覆盖所有可见性设置，并将该产品对所有客户隐藏。"
 
@@ -20230,7 +20238,7 @@ msgstr "此产品在活动页面上已突出显示"
 msgid "This product is sold out"
 msgstr "此产品已售罄"
 
-#: src/components/forms/ProductForm/index.tsx:556
+#: src/components/forms/ProductForm/index.tsx:561
 msgid "This product won't appear on the event page on its own — buyers only see it as an add-on to the products it's attached to."
 msgstr "该产品不会单独出现在活动页面上 — 买家只能在其所关联的产品下看到它作为附加产品。"
 
@@ -20720,7 +20728,7 @@ msgstr "总计"
 #: src/components/layouts/CheckIn/tabs/StatsTab.tsx:99
 #: src/components/modals/ManageOrderModal/index.tsx:117
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:359
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
 #: src/ee/box-office/components/layouts/BoxOffice/tabs/OrdersTab.tsx:114
 msgid "Total"
 msgstr "总计"
@@ -21069,7 +21077,7 @@ msgstr "无法签退参与者"
 msgid "Unable to complete sale"
 msgstr "无法完成销售"
 
-#: src/components/modals/CreateProductModal/index.tsx:70
+#: src/components/modals/CreateProductModal/index.tsx:71
 msgid "Unable to create product. Please check the your details"
 msgstr "无法创建产品。请检查您的详细信息"
 
@@ -21081,7 +21089,7 @@ msgstr "无法创建产品。请检查您的详细信息"
 msgid "Unable to delete the widget"
 msgstr "无法删除小部件"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:121
+#: src/components/modals/DuplicateProductModal/index.tsx:123
 msgid "Unable to duplicate product. Please check the your details"
 msgstr "无法复制产品。请检查您的详细信息"
 
@@ -21332,7 +21340,7 @@ msgstr "不受信任"
 msgid "Unverified"
 msgstr "未验证"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:118
+#: src/components/forms/ProductForm/ledgerSummaries.ts:128
 msgid "Up to {max} per order"
 msgstr "每单最多 {max} 件"
 
@@ -22573,6 +22581,10 @@ msgstr "当活动被归档时"
 msgid "When an event is updated"
 msgstr "当活动被更新时"
 
+#: src/components/forms/ProductForm/index.tsx:540
+msgid "When an order asks for more than remain, it goes through as long as at least one is left. The product, or the current tier, then sells out and the next tier opens. Shared capacity limits still apply."
+msgstr "当订单请求的数量超过剩余数量时，只要至少还剩一个，订单仍会成功。之后该产品或当前档位将售罄，并开放下一档位。共享容量限制仍然适用。"
+
 #: src/components/common/WidgetEditor/InstallPanel.tsx:94
 msgid "When an order completes, the widget fires an hievents:order-completed event on your page with the order total and currency. This example sends it to Google Analytics and Meta."
 msgstr "订单完成后，小部件会在你的页面上触发一个 hievents:order-completed 事件，其中包含订单总额和币种。此示例会将其发送到 Google Analytics 和 Meta。"
@@ -22905,7 +22917,7 @@ msgstr "每笔订单最多可选择 {max} 个座位"
 msgid "You can configure additional service fees and taxes in your account settings."
 msgstr "您可以在账户设置中配置额外的服务费和税费。"
 
-#: src/components/forms/ProductForm/index.tsx:612
+#: src/components/forms/ProductForm/index.tsx:617
 msgid "You can create a promo code which targets this product on the"
 msgstr "您可以创建一个促销代码，针对该产品"
 

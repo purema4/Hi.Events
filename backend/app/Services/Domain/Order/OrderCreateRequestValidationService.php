@@ -663,7 +663,7 @@ class OrderCreateRequestValidationService
                 ->productQuantities
                 ->where('product_id', $product->getId())
                 ->where('price_id', $productQuantity['price_id'])
-                ->first()?->quantity_available;
+                ->first()?->purchasableQuantity();
 
             /** @var ProductPriceDomainObject $productPrice */
             $productPrice = $product->getProductPrices()

@@ -349,7 +349,7 @@ msgid "{count, plural, one {# slot} other {# slots}}"
 msgstr "{count, plural, other {# khung giờ}}"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:59
-#: src/components/forms/ProductForm/ledgerSummaries.ts:127
+#: src/components/forms/ProductForm/ledgerSummaries.ts:137
 msgid "{count} add-ons"
 msgstr "{count} sản phẩm bổ sung"
 
@@ -479,7 +479,7 @@ msgstr "{listed} và {remaining} mục khác"
 msgid "{loadedAffectedAttendees} attendees are registered across the affected sessions."
 msgstr "Có {loadedAffectedAttendees} người tham dự đã đăng ký cho các buổi bị ảnh hưởng."
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:112
+#: src/components/forms/ProductForm/ledgerSummaries.ts:122
 msgid "{min}–{max} per order"
 msgstr "{min}–{max} mỗi đơn"
 
@@ -756,7 +756,7 @@ msgid "1 Active Webhook"
 msgstr "1 Webhook đang hoạt động"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:59
-#: src/components/forms/ProductForm/ledgerSummaries.ts:127
+#: src/components/forms/ProductForm/ledgerSummaries.ts:137
 msgid "1 add-on"
 msgstr "1 sản phẩm bổ sung"
 
@@ -1068,7 +1068,7 @@ msgstr "Chấp nhận thanh toán thẻ tín dụng với Stripe"
 #: src/components/common/TeamAccessFields/index.tsx:205
 #: src/components/common/TeamAccessFields/index.tsx:207
 #: src/components/common/TeamAccessPanel/index.tsx:137
-#: src/components/forms/ProductForm/index.tsx:605
+#: src/components/forms/ProductForm/index.tsx:610
 #: src/components/routes/oauth/Connect/index.tsx:117
 #: src/components/routes/settings/ApiKeys/CreateApiKeyModal.tsx:237
 #: src/components/routes/settings/Team/index.tsx:218
@@ -1654,16 +1654,16 @@ msgid "Add your social media handles and website URL. These will be displayed on
 msgstr "Thêm tài khoản mạng xã hội và URL trang web của bạn. Chúng sẽ được hiển thị trên trang công khai của nhà tổ chức."
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:484
-#: src/components/forms/ProductForm/ledgerSummaries.ts:128
+#: src/components/forms/ProductForm/ledgerSummaries.ts:138
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:25
 msgid "Add-on only"
 msgstr "Chỉ dưới dạng bổ sung"
 
-#: src/components/forms/ProductForm/index.tsx:561
+#: src/components/forms/ProductForm/index.tsx:566
 msgid "Add-on products"
 msgstr "Sản phẩm bổ sung"
 
-#: src/components/forms/ProductForm/index.tsx:542
+#: src/components/forms/ProductForm/index.tsx:547
 #: src/components/routes/product-widget/SelectProducts/index.tsx:520
 msgid "Add-ons"
 msgstr "Sản phẩm bổ sung"
@@ -1676,7 +1676,7 @@ msgstr "Chỉ tiện ích bổ sung"
 msgid "Added"
 msgstr "Đã thêm"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:81
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:84
 msgid "Added at checkout"
 msgstr "Được thêm khi thanh toán"
 
@@ -2152,7 +2152,7 @@ msgid "Amazing, Event, Keywords..."
 msgstr "Tuyệt vời, sự kiện, từ khóa ..."
 
 #: src/components/common/OrdersTable/index.tsx:281
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:214
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:217
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:69
 msgid "Amount"
 msgstr "Số tiền"
@@ -2209,7 +2209,7 @@ msgstr "Một mục trong {0} thiếu tên"
 msgid "An optional description of this category to display on the event page."
 msgstr "Mô tả tùy chọn của danh mục này để hiển thị trên trang sự kiện."
 
-#: src/components/forms/ProductForm/index.tsx:595
+#: src/components/forms/ProductForm/index.tsx:600
 msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
 msgstr "Thông báo tùy chọn để hiển thị trên sản phẩm nổi bật, ví dụ: \"Bán nhanh 🔥\" hoặc \"Giá trị tốt nhất\""
 
@@ -3214,7 +3214,7 @@ msgid "Bar"
 msgstr "Quầy bar"
 
 #: src/components/routes/event/OccurrencesTab/PriceOverrideForm/index.tsx:306
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:87
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:90
 msgid "Base price"
 msgstr "Giá gốc"
 
@@ -3505,7 +3505,7 @@ msgstr "Thông tin người mua"
 msgid "Buyer pays"
 msgstr "Người mua trả"
 
-#: src/components/forms/ProductForm/index.tsx:571
+#: src/components/forms/ProductForm/index.tsx:576
 msgid "Buyers can add these to their order when they select this product at checkout."
 msgstr "Người mua có thể thêm những mục này vào đơn hàng khi chọn sản phẩm này lúc thanh toán."
 
@@ -5766,7 +5766,7 @@ msgstr "Tạo phí"
 msgid "Create key"
 msgstr "Tạo khóa"
 
-#: src/components/forms/ProductForm/index.tsx:568
+#: src/components/forms/ProductForm/index.tsx:573
 msgid "Create more tickets or products to offer them as add-ons"
 msgstr "Tạo thêm vé hoặc sản phẩm để cung cấp chúng dưới dạng bổ sung"
 
@@ -5793,7 +5793,7 @@ msgstr "Tạo tổ chức"
 msgid "Create payment link"
 msgstr "Tạo liên kết thanh toán"
 
-#: src/components/modals/CreateProductModal/index.tsx:91
+#: src/components/modals/CreateProductModal/index.tsx:92
 msgid "Create Product"
 msgstr "Tạo sản phẩm"
 
@@ -5832,7 +5832,7 @@ msgstr "Tạo thuế hoặc phí"
 msgid "Create the profile first, then add photos here."
 msgstr "Hãy tạo hồ sơ trước, sau đó thêm ảnh tại đây."
 
-#: src/components/modals/CreateProductModal/index.tsx:88
+#: src/components/modals/CreateProductModal/index.tsx:89
 msgid "Create Ticket or Product"
 msgstr "Tạo vé hoặc sản phẩm"
 
@@ -6984,8 +6984,8 @@ msgstr "Nhân bản sự kiện"
 msgid "Duplicate Event"
 msgstr "Nhân bản sự kiện"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:129
-#: src/components/modals/DuplicateProductModal/index.tsx:133
+#: src/components/modals/DuplicateProductModal/index.tsx:131
+#: src/components/modals/DuplicateProductModal/index.tsx:135
 msgid "Duplicate Product"
 msgstr "Nhân bản sản phẩm"
 
@@ -7256,8 +7256,8 @@ msgstr "Chỉnh sửa thành viên"
 msgid "Edit Order Details"
 msgstr "Chỉnh sửa thông tin đơn hàng"
 
-#: src/components/modals/EditProductModal/index.tsx:113
-#: src/components/modals/EditProductModal/index.tsx:117
+#: src/components/modals/EditProductModal/index.tsx:115
+#: src/components/modals/EditProductModal/index.tsx:119
 msgid "Edit Product"
 msgstr "Chỉnh sửa sản phẩm"
 
@@ -8802,7 +8802,7 @@ msgstr "Đã cập nhật phí"
 #: src/components/common/OrdersTable/index.tsx:292
 #: src/components/forms/ProductForm/index.tsx:497
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:89
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
 msgid "Fees"
 msgstr "Các khoản phí"
@@ -9114,8 +9114,8 @@ msgstr "Tiền sảnh"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:160
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:170
 #: src/components/forms/ProductForm/index.tsx:296
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:158
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:230
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:161
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:233
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:37
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:54
 #: src/ee/box-office/utilites/boxOfficeTender.ts:15
@@ -9638,7 +9638,7 @@ msgstr "Tự động ẩn khi trống."
 msgid "Hidden from event page: {hiddenNames}"
 msgstr "Ẩn khỏi trang sự kiện: {hiddenNames}"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:151
+#: src/components/forms/ProductForm/ledgerSummaries.ts:161
 msgid "Hidden from everyone"
 msgstr "Ẩn với mọi người"
 
@@ -9724,7 +9724,7 @@ msgstr "ẩn sản phẩm sau ngày kết thúc bán"
 msgid "Hide product before sale start date"
 msgstr "ẩn sản phẩm trước ngày bắt đầu bán"
 
-#: src/components/forms/ProductForm/index.tsx:617
+#: src/components/forms/ProductForm/index.tsx:622
 msgid "Hide product unless user has applicable promo code"
 msgstr "ẩn sản phẩm trừ khi người dùng có mã khuyến mãi áp dụng"
 
@@ -9748,7 +9748,7 @@ msgstr "Ẩn ngày"
 msgid "Hide this category?"
 msgstr "Ẩn danh mục này?"
 
-#: src/components/forms/ProductForm/index.tsx:622
+#: src/components/forms/ProductForm/index.tsx:627
 msgid "Hide this product from customers"
 msgstr "Ẩn sản phẩm này khỏi khách hàng"
 
@@ -9764,24 +9764,24 @@ msgstr "Ẩn các mục đã bán hết"
 msgid "Hiding a product will prevent users from seeing it on the event page."
 msgstr "Việc ẩn một sản phẩm sẽ ngăn người dùng xem nó trên trang sự kiện."
 
-#: src/components/forms/ProductForm/index.tsx:580
+#: src/components/forms/ProductForm/index.tsx:585
 msgid "Highlight"
 msgstr "Nổi bật"
 
-#: src/components/forms/ProductForm/index.tsx:594
+#: src/components/forms/ProductForm/index.tsx:599
 msgid "Highlight Message"
 msgstr "Tin nhắn nổi bật"
 
-#: src/components/forms/ProductForm/index.tsx:587
+#: src/components/forms/ProductForm/index.tsx:592
 msgid "Highlight this product"
 msgstr "Làm nổi bật sản phẩm này"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:460
-#: src/components/forms/ProductForm/ledgerSummaries.ts:144
+#: src/components/forms/ProductForm/ledgerSummaries.ts:154
 msgid "Highlighted"
 msgstr "Nổi bật"
 
-#: src/components/forms/ProductForm/index.tsx:588
+#: src/components/forms/ProductForm/index.tsx:593
 msgid "Highlighted products will have a different background color to make them stand out on the event page."
 msgstr "Sản phẩm nổi bật sẽ có màu nền khác để nổi bật trên trang sự kiện."
 
@@ -10671,6 +10671,10 @@ msgstr "Họ"
 msgid "Last name is required"
 msgstr "Họ là bắt buộc"
 
+#: src/components/forms/ProductForm/ledgerSummaries.ts:113
+msgid "Last order can go over"
+msgstr "Đơn cuối có thể vượt"
+
 #: src/components/common/OrganizerWebhookTable/index.tsx:245
 #: src/components/common/WebhookTable/index.tsx:245
 msgid "Last Response"
@@ -10807,6 +10811,10 @@ msgstr "Cho phép khách của đơn chưa thanh toán check-in"
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:232
 msgid "Let someone else pay for an order"
 msgstr "Cho phép người khác thanh toán đơn hàng"
+
+#: src/components/forms/ProductForm/index.tsx:539
+msgid "Let the last order go over the limit"
+msgstr "Cho phép đơn hàng cuối vượt giới hạn"
 
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:307
 msgid "Let them know about the change"
@@ -11347,7 +11355,7 @@ msgstr "Tin nhắn tối đa / 24h"
 msgid "Max Recipients / Message"
 msgstr "Người nhận tối đa / tin nhắn"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:67
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
 msgid "Maximum {cap} per order"
 msgstr "Tối đa {cap} mỗi đơn hàng"
 
@@ -11490,7 +11498,7 @@ msgstr "Quầy bar tầng lửng"
 msgid "Mezzanine standing"
 msgstr "Khu đứng tầng lửng"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:115
+#: src/components/forms/ProductForm/ledgerSummaries.ts:125
 msgid "Min {min} per order"
 msgstr "Tối thiểu {min} mỗi đơn"
 
@@ -12292,7 +12300,7 @@ msgstr "Chưa có email vòng đời nào được gửi đến tài khoản nà
 msgid "No limit"
 msgstr "Không giới hạn"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:121
+#: src/components/forms/ProductForm/ledgerSummaries.ts:131
 msgid "No limits"
 msgstr "Không giới hạn"
 
@@ -12635,7 +12643,7 @@ msgstr "chưa sửa"
 #: src/components/common/PromoCodeTable/index.tsx:85
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:108
 #: src/components/forms/ProductForm/ledgerSummaries.ts:92
-#: src/components/forms/ProductForm/ledgerSummaries.ts:132
+#: src/components/forms/ProductForm/ledgerSummaries.ts:142
 #: src/components/routes/event/Questions/questionTemplates.ts:17
 #: src/components/routes/product-widget/CollectInformation/index.tsx:597
 #: src/ee/seating/components/SeatMapDesigner/Inspector.tsx:50
@@ -12921,7 +12929,7 @@ msgid "of every month"
 msgstr "của mỗi tháng"
 
 #: src/components/forms/ProductForm/ledgerSummaries.ts:77
-#: src/components/forms/ProductForm/ledgerSummaries.ts:140
+#: src/components/forms/ProductForm/ledgerSummaries.ts:150
 #: src/components/routes/admin/Accounts/AccountDetail/AccountFeatureFlags.tsx:79
 #: src/components/routes/admin/FeatureFlags/index.tsx:46
 #: src/components/routes/admin/LifecycleEmails/LifecycleEmailEditor.tsx:124
@@ -13152,7 +13160,7 @@ msgstr "Chi tiết sự kiện trực tuyến"
 msgid "Online ticket sales for events with reserved seating keep working."
 msgstr "Việc bán vé trực tuyến cho các sự kiện có chỗ ngồi đặt trước vẫn tiếp tục hoạt động."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:67
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
 msgid "Only {cap} available"
 msgstr "Chỉ còn {cap}"
 
@@ -13184,7 +13192,7 @@ msgstr "Chỉ quản trị viên tài khoản mới có thể thay đổi các c
 msgid "Only admins can manage team access."
 msgstr "Chỉ quản trị viên mới có thể quản lý quyền truy cập của nhóm."
 
-#: src/components/forms/ProductForm/index.tsx:555
+#: src/components/forms/ProductForm/index.tsx:560
 msgid "Only available as an add-on"
 msgstr "Chỉ có sẵn dưới dạng bổ sung"
 
@@ -14099,7 +14107,7 @@ msgstr "Thanh toán ngay"
 msgid "Pay using the instructions below. {registrantName} has been emailed the order details, and the organizer will confirm the order once your payment arrives."
 msgstr "Hãy thanh toán theo hướng dẫn bên dưới. {registrantName} đã nhận chi tiết đơn hàng qua email và ban tổ chức sẽ xác nhận đơn hàng khi nhận được thanh toán của bạn."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:213
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:216
 msgid "Pay what you want"
 msgstr "Trả tùy tâm"
 
@@ -15039,11 +15047,11 @@ msgstr "Mã khuyến mãi"
 msgid "Promo code only"
 msgstr "Chỉ với mã khuyến mãi"
 
-#: src/components/forms/ProductForm/index.tsx:615
+#: src/components/forms/ProductForm/index.tsx:620
 msgid "Promo Code page"
 msgstr "Trang mã khuyến mãi"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:154
+#: src/components/forms/ProductForm/ledgerSummaries.ts:164
 msgid "Promo code required"
 msgstr "Cần mã khuyến mãi"
 
@@ -15094,7 +15102,7 @@ msgstr "Cung cấp ít nhất một trường địa chỉ (địa điểm, đư
 msgid "Provide the following before Stripe's next review to keep payouts flowing."
 msgstr "Hãy cung cấp những mục sau trước lần rà soát tiếp theo của Stripe để việc chi trả không bị gián đoạn."
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:157
+#: src/components/forms/ProductForm/ledgerSummaries.ts:167
 msgid "Public"
 msgstr "Công khai"
 
@@ -17158,7 +17166,7 @@ msgstr "Chọn bậc sản phẩm"
 msgid "Select products"
 msgstr "Chọn sản phẩm"
 
-#: src/components/forms/ProductForm/index.tsx:562
+#: src/components/forms/ProductForm/index.tsx:567
 msgid "Select products..."
 msgstr "Chọn sản phẩm..."
 
@@ -17275,7 +17283,7 @@ msgstr "Bán với tên"
 msgid "Selling as {signedInName}"
 msgstr "Bán với tên {signedInName}"
 
-#: src/components/forms/ProductForm/index.tsx:596
+#: src/components/forms/ProductForm/index.tsx:601
 msgid "Selling fast 🔥"
 msgstr "Bán chạy 🔥"
 
@@ -18890,7 +18898,7 @@ msgstr "Thay đổi email được xác nhận thành công"
 msgid "Successfully created attendee"
 msgstr "Người tham dự được tạo thành công"
 
-#: src/components/modals/CreateProductModal/index.tsx:61
+#: src/components/modals/CreateProductModal/index.tsx:62
 msgid "Successfully Created Product"
 msgstr "Sản phẩm được tạo thành công"
 
@@ -18898,7 +18906,7 @@ msgstr "Sản phẩm được tạo thành công"
 msgid "Successfully Created Promo Code"
 msgstr "Mã khuyến mãi được tạo thành công"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:113
+#: src/components/modals/DuplicateProductModal/index.tsx:115
 msgid "Successfully Duplicated Product"
 msgstr "Sản phẩm nhân đôi thành công"
 
@@ -18983,7 +18991,7 @@ msgstr "Cài đặt phí nền tảng mặc định đã được cập nhật t
 msgid "Successfully Updated Platform Fee Settings"
 msgstr "Cài đặt phí nền tảng đã được cập nhật thành công"
 
-#: src/components/modals/EditProductModal/index.tsx:102
+#: src/components/modals/EditProductModal/index.tsx:104
 msgid "Successfully updated product"
 msgstr "Cập nhật sản phẩm thành công"
 
@@ -19169,7 +19177,7 @@ msgstr "Nhắm tới người tham dự thuộc {0} buổi đã chọn."
 #: src/components/common/OrdersTable/index.tsx:291
 #: src/components/forms/TaxAndFeeForm/index.tsx:21
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:89
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:95
 msgid "Tax"
 msgstr "Thuế"
 
@@ -20206,7 +20214,7 @@ msgstr "Nhà tổ chức này"
 msgid "This organizer profile is not published yet"
 msgstr "Hồ sơ nhà tổ chức này chưa được xuất bản"
 
-#: src/components/forms/ProductForm/index.tsx:620
+#: src/components/forms/ProductForm/index.tsx:625
 msgid "This overrides all visibility settings and will hide the product from all customers."
 msgstr "Điều này ghi đè tất cả các cài đặt khả năng hiển thị và sẽ ẩn sản phẩm khỏi tất cả các khách hàng."
 
@@ -20230,7 +20238,7 @@ msgstr "Sản phẩm này được nổi bật trên trang sự kiện"
 msgid "This product is sold out"
 msgstr "Sản phẩm này đã bán hết"
 
-#: src/components/forms/ProductForm/index.tsx:556
+#: src/components/forms/ProductForm/index.tsx:561
 msgid "This product won't appear on the event page on its own — buyers only see it as an add-on to the products it's attached to."
 msgstr "Sản phẩm này sẽ không xuất hiện riêng trên trang sự kiện — người mua chỉ thấy nó như phần bổ sung của những sản phẩm mà nó được gắn vào."
 
@@ -20720,7 +20728,7 @@ msgstr "tổng"
 #: src/components/layouts/CheckIn/tabs/StatsTab.tsx:99
 #: src/components/modals/ManageOrderModal/index.tsx:117
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:359
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
 #: src/ee/box-office/components/layouts/BoxOffice/tabs/OrdersTab.tsx:114
 msgid "Total"
 msgstr "Tổng"
@@ -21069,7 +21077,7 @@ msgstr "Không thể kiểm tra người tham dự"
 msgid "Unable to complete sale"
 msgstr "Không thể hoàn tất giao dịch"
 
-#: src/components/modals/CreateProductModal/index.tsx:70
+#: src/components/modals/CreateProductModal/index.tsx:71
 msgid "Unable to create product. Please check the your details"
 msgstr "Không thể tạo sản phẩm. Vui lòng kiểm tra thông tin của bạn"
 
@@ -21081,7 +21089,7 @@ msgstr "Không thể tạo sản phẩm. Vui lòng kiểm tra thông tin của b
 msgid "Unable to delete the widget"
 msgstr "Không thể xóa widget"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:121
+#: src/components/modals/DuplicateProductModal/index.tsx:123
 msgid "Unable to duplicate product. Please check the your details"
 msgstr "Không thể nhân bản sản phẩm. Vui lòng kiểm tra thông tin của bạn"
 
@@ -21332,7 +21340,7 @@ msgstr "Không đáng tin cậy"
 msgid "Unverified"
 msgstr "Chưa xác minh"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:118
+#: src/components/forms/ProductForm/ledgerSummaries.ts:128
 msgid "Up to {max} per order"
 msgstr "Tối đa {max} mỗi đơn"
 
@@ -22573,6 +22581,10 @@ msgstr "Khi một sự kiện được lưu trữ"
 msgid "When an event is updated"
 msgstr "Khi một sự kiện được cập nhật"
 
+#: src/components/forms/ProductForm/index.tsx:540
+msgid "When an order asks for more than remain, it goes through as long as at least one is left. The product, or the current tier, then sells out and the next tier opens. Shared capacity limits still apply."
+msgstr "Khi một đơn hàng yêu cầu nhiều hơn số còn lại, đơn vẫn được chấp nhận miễn là còn ít nhất một. Sau đó sản phẩm, hoặc hạng hiện tại, sẽ hết và hạng tiếp theo được mở. Giới hạn sức chứa dùng chung vẫn được áp dụng."
+
 #: src/components/common/WidgetEditor/InstallPanel.tsx:94
 msgid "When an order completes, the widget fires an hievents:order-completed event on your page with the order total and currency. This example sends it to Google Analytics and Meta."
 msgstr "Khi một đơn hàng hoàn tất, widget sẽ phát sự kiện hievents:order-completed trên trang của bạn kèm tổng tiền và đơn vị tiền tệ của đơn hàng. Ví dụ này gửi sự kiện đến Google Analytics và Meta."
@@ -22905,7 +22917,7 @@ msgstr "Bạn có thể chọn tối đa {max} ghế mỗi đơn hàng"
 msgid "You can configure additional service fees and taxes in your account settings."
 msgstr "Bạn có thể cấu hình phí dịch vụ và thuế bổ sung trong cài đặt tài khoản của mình."
 
-#: src/components/forms/ProductForm/index.tsx:612
+#: src/components/forms/ProductForm/index.tsx:617
 msgid "You can create a promo code which targets this product on the"
 msgstr "Bạn có thể tạo mã khuyến mãi nhắm mục tiêu sản phẩm này trên"
 

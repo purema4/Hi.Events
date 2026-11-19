@@ -39,6 +39,7 @@ class TicketPayload
         'hide_after_sale_end_date',
         'hide_when_sold_out',
         'sequential_tier_release_enabled',
+        'soft_quantity_limit',
         'start_collapsed',
         'show_quantity_remaining',
         'is_hidden_without_promo_code',
@@ -64,7 +65,7 @@ class TicketPayload
     public static function forNewProduct(array $input, ?int $categoryId, string $defaultProductType): array
     {
         return [
-            ...Arr::only($input, ['title', 'type', 'description', 'sale_start_date', 'sale_end_date', 'min_per_order', 'max_per_order', 'is_hidden']),
+            ...Arr::only($input, ['title', 'type', 'description', 'sale_start_date', 'sale_end_date', 'min_per_order', 'max_per_order', 'is_hidden', 'soft_quantity_limit']),
             'product_type' => array_key_exists('product_type', $input) ? $input['product_type'] : $defaultProductType,
             'product_category_id' => $categoryId,
             'prices' => ($input['type'] ?? null) === ProductPriceType::TIERED->name

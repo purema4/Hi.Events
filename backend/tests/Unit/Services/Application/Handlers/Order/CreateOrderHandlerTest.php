@@ -246,6 +246,39 @@ class CreateOrderHandlerTest extends TestCase
         $this->assertInstanceOf(OrderDomainObject::class, $result);
     }
 
+    public function test_soft_limited_price_accepts_more_than_remain(): void
+    {
+        $eventId = 1;
+
+        $this->databaseManager->shouldReceive('statement')->andReturn(true);
+
+        $availability = $this->createAvailabilityDTO(10, 100, 2);
+        $availability->setOwnQuantity(2, softQuantityLimit: true);
+        $this->setupSuccessfulOrderCreation($eventId, availability: $availability);
+
+        $result = $this->handler->handle($eventId, $this->createOrderDTO(quantity: 5));
+        $this->assertInstanceOf(OrderDomainObject::class, $result);
+    }
+
+    public function test_soft_limited_price_is_rejected_once_nothing_remains(): void
+    {
+        $eventId = 1;
+
+        $this->databaseManager->shouldReceive('statement')->andReturn(true);
+        $this->setupEventMock($eventId);
+        $this->orderManagementService->shouldReceive('deleteExistingOrders');
+
+        $availability = $this->createAvailabilityDTO(10, 100, 0);
+        $availability->setOwnQuantity(0, softQuantityLimit: true);
+
+        $this->availabilityService->shouldReceive('getAvailableProductQuantities')
+            ->with($eventId, true, Mockery::any())
+            ->andReturn(new AvailableProductQuantitiesResponseDTO(productQuantities: collect([$availability])));
+
+        $this->expectException(ValidationException::class);
+        $this->handler->handle($eventId, $this->createOrderDTO(quantity: 1));
+    }
+
     public function test_skips_zero_quantity_products(): void
     {
         $eventId = 1;
@@ -573,6 +606,7 @@ class CreateOrderHandlerTest extends TestCase
         int $productId = 10,
         int $priceId = 100,
         int $available = 10,
+        ?AvailableProductQuantitiesDTO $availability = null,
     ): void {
         $this->setupEventMock($eventId);
 
@@ -582,7 +616,7 @@ class CreateOrderHandlerTest extends TestCase
             ->with($eventId, true, Mockery::any())
             ->andReturn(new AvailableProductQuantitiesResponseDTO(
                 productQuantities: collect([
-                    $this->createAvailabilityDTO($productId, $priceId, $available),
+                    $availability ?? $this->createAvailabilityDTO($productId, $priceId, $available),
                 ]),
             ));
 

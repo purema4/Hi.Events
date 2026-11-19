@@ -349,7 +349,7 @@ msgid "{count, plural, one {# slot} other {# slots}}"
 msgstr "{count, plural, one {# fascia} other {# fasce}}"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:59
-#: src/components/forms/ProductForm/ledgerSummaries.ts:127
+#: src/components/forms/ProductForm/ledgerSummaries.ts:137
 msgid "{count} add-ons"
 msgstr "{count} prodotti aggiuntivi"
 
@@ -479,7 +479,7 @@ msgstr "{listed} e altri {remaining}"
 msgid "{loadedAffectedAttendees} attendees are registered across the affected sessions."
 msgstr "{loadedAffectedAttendees} partecipanti sono registrati nelle sessioni interessate."
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:112
+#: src/components/forms/ProductForm/ledgerSummaries.ts:122
 msgid "{min}–{max} per order"
 msgstr "{min}–{max} per ordine"
 
@@ -756,7 +756,7 @@ msgid "1 Active Webhook"
 msgstr "1 Webhook Attivo"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:59
-#: src/components/forms/ProductForm/ledgerSummaries.ts:127
+#: src/components/forms/ProductForm/ledgerSummaries.ts:137
 msgid "1 add-on"
 msgstr "1 prodotto aggiuntivo"
 
@@ -1068,7 +1068,7 @@ msgstr "Accetta pagamenti con carta di credito tramite Stripe"
 #: src/components/common/TeamAccessFields/index.tsx:205
 #: src/components/common/TeamAccessFields/index.tsx:207
 #: src/components/common/TeamAccessPanel/index.tsx:137
-#: src/components/forms/ProductForm/index.tsx:605
+#: src/components/forms/ProductForm/index.tsx:610
 #: src/components/routes/oauth/Connect/index.tsx:117
 #: src/components/routes/settings/ApiKeys/CreateApiKeyModal.tsx:237
 #: src/components/routes/settings/Team/index.tsx:218
@@ -1654,16 +1654,16 @@ msgid "Add your social media handles and website URL. These will be displayed on
 msgstr "Aggiungi i tuoi profili social e l'URL del sito. Verranno mostrati nella pagina pubblica dell'organizzatore."
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:484
-#: src/components/forms/ProductForm/ledgerSummaries.ts:128
+#: src/components/forms/ProductForm/ledgerSummaries.ts:138
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:25
 msgid "Add-on only"
 msgstr "Solo come prodotto aggiuntivo"
 
-#: src/components/forms/ProductForm/index.tsx:561
+#: src/components/forms/ProductForm/index.tsx:566
 msgid "Add-on products"
 msgstr "Prodotti aggiuntivi"
 
-#: src/components/forms/ProductForm/index.tsx:542
+#: src/components/forms/ProductForm/index.tsx:547
 #: src/components/routes/product-widget/SelectProducts/index.tsx:520
 msgid "Add-ons"
 msgstr "Prodotti aggiuntivi"
@@ -1676,7 +1676,7 @@ msgstr "Solo componenti aggiuntivi"
 msgid "Added"
 msgstr "Aggiunta"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:81
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:84
 msgid "Added at checkout"
 msgstr "Aggiunto al pagamento"
 
@@ -2152,7 +2152,7 @@ msgid "Amazing, Event, Keywords..."
 msgstr "Fantastico, Evento, Parole chiave..."
 
 #: src/components/common/OrdersTable/index.tsx:281
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:214
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:217
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:69
 msgid "Amount"
 msgstr "Importo"
@@ -2209,7 +2209,7 @@ msgstr "Un elemento in {0} non ha un nome"
 msgid "An optional description of this category to display on the event page."
 msgstr "Una descrizione facoltativa di questa categoria da visualizzare sulla pagina dell'evento."
 
-#: src/components/forms/ProductForm/index.tsx:595
+#: src/components/forms/ProductForm/index.tsx:600
 msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
 msgstr "Un messaggio facoltativo da visualizzare sul prodotto evidenziato, ad esempio \"In vendita veloce 🔥\" o \"Miglior rapporto qualità-prezzo\""
 
@@ -3214,7 +3214,7 @@ msgid "Bar"
 msgstr "Bar"
 
 #: src/components/routes/event/OccurrencesTab/PriceOverrideForm/index.tsx:306
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:87
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:90
 msgid "Base price"
 msgstr "Prezzo base"
 
@@ -3505,7 +3505,7 @@ msgstr "Dati acquirente"
 msgid "Buyer pays"
 msgstr "L'acquirente paga"
 
-#: src/components/forms/ProductForm/index.tsx:571
+#: src/components/forms/ProductForm/index.tsx:576
 msgid "Buyers can add these to their order when they select this product at checkout."
 msgstr "Gli acquirenti possono aggiungerli al proprio ordine quando selezionano questo prodotto al momento del pagamento."
 
@@ -5766,7 +5766,7 @@ msgstr "Crea commissione"
 msgid "Create key"
 msgstr "Crea chiave"
 
-#: src/components/forms/ProductForm/index.tsx:568
+#: src/components/forms/ProductForm/index.tsx:573
 msgid "Create more tickets or products to offer them as add-ons"
 msgstr "Crea altri biglietti o prodotti per offrirli come prodotti aggiuntivi"
 
@@ -5793,7 +5793,7 @@ msgstr "Crea Organizzatore"
 msgid "Create payment link"
 msgstr "Crea link di pagamento"
 
-#: src/components/modals/CreateProductModal/index.tsx:91
+#: src/components/modals/CreateProductModal/index.tsx:92
 msgid "Create Product"
 msgstr "Crea Prodotto"
 
@@ -5832,7 +5832,7 @@ msgstr "Crea Tassa o Commissione"
 msgid "Create the profile first, then add photos here."
 msgstr "Crea prima il profilo, poi aggiungi qui le foto."
 
-#: src/components/modals/CreateProductModal/index.tsx:88
+#: src/components/modals/CreateProductModal/index.tsx:89
 msgid "Create Ticket or Product"
 msgstr "Crea biglietto o prodotto"
 
@@ -6984,8 +6984,8 @@ msgstr "Duplica evento"
 msgid "Duplicate Event"
 msgstr "Duplica Evento"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:129
-#: src/components/modals/DuplicateProductModal/index.tsx:133
+#: src/components/modals/DuplicateProductModal/index.tsx:131
+#: src/components/modals/DuplicateProductModal/index.tsx:135
 msgid "Duplicate Product"
 msgstr "Duplica Prodotto"
 
@@ -7256,8 +7256,8 @@ msgstr "Modifica membro"
 msgid "Edit Order Details"
 msgstr "Modifica dettagli ordine"
 
-#: src/components/modals/EditProductModal/index.tsx:113
-#: src/components/modals/EditProductModal/index.tsx:117
+#: src/components/modals/EditProductModal/index.tsx:115
+#: src/components/modals/EditProductModal/index.tsx:119
 msgid "Edit Product"
 msgstr "Modifica Prodotto"
 
@@ -8802,7 +8802,7 @@ msgstr "Commissione aggiornata"
 #: src/components/common/OrdersTable/index.tsx:292
 #: src/components/forms/ProductForm/index.tsx:497
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:89
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
 msgid "Fees"
 msgstr "Commissioni"
@@ -9114,8 +9114,8 @@ msgstr "Foyer"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:160
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:170
 #: src/components/forms/ProductForm/index.tsx:296
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:158
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:230
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:161
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:233
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:37
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:54
 #: src/ee/box-office/utilites/boxOfficeTender.ts:15
@@ -9638,7 +9638,7 @@ msgstr "Nascosta automaticamente se vuota."
 msgid "Hidden from event page: {hiddenNames}"
 msgstr "Nascosto nella pagina dell'evento: {hiddenNames}"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:151
+#: src/components/forms/ProductForm/ledgerSummaries.ts:161
 msgid "Hidden from everyone"
 msgstr "Nascosto a tutti"
 
@@ -9724,7 +9724,7 @@ msgstr "Nascondi prodotto dopo la data di fine vendita"
 msgid "Hide product before sale start date"
 msgstr "Nascondi prodotto prima della data di inizio vendita"
 
-#: src/components/forms/ProductForm/index.tsx:617
+#: src/components/forms/ProductForm/index.tsx:622
 msgid "Hide product unless user has applicable promo code"
 msgstr "Nascondi prodotto a meno che l'utente non abbia un codice promozionale applicabile"
 
@@ -9748,7 +9748,7 @@ msgstr "Nascondi la data"
 msgid "Hide this category?"
 msgstr "Nascondere questa categoria?"
 
-#: src/components/forms/ProductForm/index.tsx:622
+#: src/components/forms/ProductForm/index.tsx:627
 msgid "Hide this product from customers"
 msgstr "Nascondi questo prodotto ai clienti"
 
@@ -9764,24 +9764,24 @@ msgstr "Nasconde gli esauriti"
 msgid "Hiding a product will prevent users from seeing it on the event page."
 msgstr "Nascondere un prodotto impedirà agli utenti di vederlo sulla pagina dell'evento."
 
-#: src/components/forms/ProductForm/index.tsx:580
+#: src/components/forms/ProductForm/index.tsx:585
 msgid "Highlight"
 msgstr "Evidenzia"
 
-#: src/components/forms/ProductForm/index.tsx:594
+#: src/components/forms/ProductForm/index.tsx:599
 msgid "Highlight Message"
 msgstr "Messaggio evidenziato"
 
-#: src/components/forms/ProductForm/index.tsx:587
+#: src/components/forms/ProductForm/index.tsx:592
 msgid "Highlight this product"
 msgstr "Evidenzia questo prodotto"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:460
-#: src/components/forms/ProductForm/ledgerSummaries.ts:144
+#: src/components/forms/ProductForm/ledgerSummaries.ts:154
 msgid "Highlighted"
 msgstr "Evidenziato"
 
-#: src/components/forms/ProductForm/index.tsx:588
+#: src/components/forms/ProductForm/index.tsx:593
 msgid "Highlighted products will have a different background color to make them stand out on the event page."
 msgstr "I prodotti evidenziati avranno un colore di sfondo diverso per farli risaltare nella pagina dell'evento."
 
@@ -10671,6 +10671,10 @@ msgstr "Cognome"
 msgid "Last name is required"
 msgstr "Il cognome è obbligatorio"
 
+#: src/components/forms/ProductForm/ledgerSummaries.ts:113
+msgid "Last order can go over"
+msgstr "L'ultimo ordine può superare il limite"
+
 #: src/components/common/OrganizerWebhookTable/index.tsx:245
 #: src/components/common/WebhookTable/index.tsx:245
 msgid "Last Response"
@@ -10807,6 +10811,10 @@ msgstr "Consenti il check-in agli ospiti di ordini non pagati"
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:232
 msgid "Let someone else pay for an order"
 msgstr "Lascia che qualcun altro paghi un ordine"
+
+#: src/components/forms/ProductForm/index.tsx:539
+msgid "Let the last order go over the limit"
+msgstr "Consenti all'ultimo ordine di superare il limite"
 
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:307
 msgid "Let them know about the change"
@@ -11347,7 +11355,7 @@ msgstr "Max messaggi / 24h"
 msgid "Max Recipients / Message"
 msgstr "Max destinatari / messaggio"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:67
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
 msgid "Maximum {cap} per order"
 msgstr "Massimo {cap} per ordine"
 
@@ -11490,7 +11498,7 @@ msgstr "Bar del mezzanino"
 msgid "Mezzanine standing"
 msgstr "Mezzanino in piedi"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:115
+#: src/components/forms/ProductForm/ledgerSummaries.ts:125
 msgid "Min {min} per order"
 msgstr "Min. {min} per ordine"
 
@@ -12292,7 +12300,7 @@ msgstr "Nessuna e-mail del ciclo di vita è stata inviata a questo account."
 msgid "No limit"
 msgstr "Nessun limite"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:121
+#: src/components/forms/ProductForm/ledgerSummaries.ts:131
 msgid "No limits"
 msgstr "Nessun limite"
 
@@ -12635,7 +12643,7 @@ msgstr "non modificate"
 #: src/components/common/PromoCodeTable/index.tsx:85
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:108
 #: src/components/forms/ProductForm/ledgerSummaries.ts:92
-#: src/components/forms/ProductForm/ledgerSummaries.ts:132
+#: src/components/forms/ProductForm/ledgerSummaries.ts:142
 #: src/components/routes/event/Questions/questionTemplates.ts:17
 #: src/components/routes/product-widget/CollectInformation/index.tsx:597
 #: src/ee/seating/components/SeatMapDesigner/Inspector.tsx:50
@@ -12921,7 +12929,7 @@ msgid "of every month"
 msgstr "di ogni mese"
 
 #: src/components/forms/ProductForm/ledgerSummaries.ts:77
-#: src/components/forms/ProductForm/ledgerSummaries.ts:140
+#: src/components/forms/ProductForm/ledgerSummaries.ts:150
 #: src/components/routes/admin/Accounts/AccountDetail/AccountFeatureFlags.tsx:79
 #: src/components/routes/admin/FeatureFlags/index.tsx:46
 #: src/components/routes/admin/LifecycleEmails/LifecycleEmailEditor.tsx:124
@@ -13152,7 +13160,7 @@ msgstr "Dettagli Evento Online"
 msgid "Online ticket sales for events with reserved seating keep working."
 msgstr "La vendita online dei biglietti per gli eventi con posti riservati continua a funzionare."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:67
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
 msgid "Only {cap} available"
 msgstr "Solo {cap} disponibili"
 
@@ -13184,7 +13192,7 @@ msgstr "Solo gli amministratori dell'account possono modificare queste impostazi
 msgid "Only admins can manage team access."
 msgstr "Solo gli amministratori possono gestire l'accesso del team."
 
-#: src/components/forms/ProductForm/index.tsx:555
+#: src/components/forms/ProductForm/index.tsx:560
 msgid "Only available as an add-on"
 msgstr "Disponibile solo come prodotto aggiuntivo"
 
@@ -14099,7 +14107,7 @@ msgstr "Paga ora"
 msgid "Pay using the instructions below. {registrantName} has been emailed the order details, and the organizer will confirm the order once your payment arrives."
 msgstr "Paga seguendo le istruzioni qui sotto. {registrantName} ha ricevuto i dettagli dell'ordine via email e l'organizzatore confermerà l'ordine quando arriverà il tuo pagamento."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:213
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:216
 msgid "Pay what you want"
 msgstr "Paga quanto vuoi"
 
@@ -15039,11 +15047,11 @@ msgstr "Codice Promo"
 msgid "Promo code only"
 msgstr "Solo con codice promozionale"
 
-#: src/components/forms/ProductForm/index.tsx:615
+#: src/components/forms/ProductForm/index.tsx:620
 msgid "Promo Code page"
 msgstr "Pagina Codice Promo"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:154
+#: src/components/forms/ProductForm/ledgerSummaries.ts:164
 msgid "Promo code required"
 msgstr "Codice promo obbligatorio"
 
@@ -15094,7 +15102,7 @@ msgstr "Fornisci almeno un campo dell'indirizzo (sede, via, città o paese)."
 msgid "Provide the following before Stripe's next review to keep payouts flowing."
 msgstr "Fornisci quanto segue prima della prossima verifica di Stripe per non interrompere i pagamenti."
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:157
+#: src/components/forms/ProductForm/ledgerSummaries.ts:167
 msgid "Public"
 msgstr "Pubblico"
 
@@ -17158,7 +17166,7 @@ msgstr "Seleziona Livello Prodotto"
 msgid "Select products"
 msgstr "Seleziona prodotti"
 
-#: src/components/forms/ProductForm/index.tsx:562
+#: src/components/forms/ProductForm/index.tsx:567
 msgid "Select products..."
 msgstr "Seleziona prodotti..."
 
@@ -17275,7 +17283,7 @@ msgstr "Vendi come"
 msgid "Selling as {signedInName}"
 msgstr "Vendi come {signedInName}"
 
-#: src/components/forms/ProductForm/index.tsx:596
+#: src/components/forms/ProductForm/index.tsx:601
 msgid "Selling fast 🔥"
 msgstr "Si vende velocemente 🔥"
 
@@ -18890,7 +18898,7 @@ msgstr "Modifica email confermata con successo"
 msgid "Successfully created attendee"
 msgstr "Partecipante creato con successo"
 
-#: src/components/modals/CreateProductModal/index.tsx:61
+#: src/components/modals/CreateProductModal/index.tsx:62
 msgid "Successfully Created Product"
 msgstr "Prodotto Creato con Successo"
 
@@ -18898,7 +18906,7 @@ msgstr "Prodotto Creato con Successo"
 msgid "Successfully Created Promo Code"
 msgstr "Codice Promo Creato con Successo"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:113
+#: src/components/modals/DuplicateProductModal/index.tsx:115
 msgid "Successfully Duplicated Product"
 msgstr "Prodotto Duplicato con Successo"
 
@@ -18983,7 +18991,7 @@ msgstr "Impostazioni predefinite delle commissioni aggiornate con successo"
 msgid "Successfully Updated Platform Fee Settings"
 msgstr "Impostazioni delle commissioni della piattaforma aggiornate con successo"
 
-#: src/components/modals/EditProductModal/index.tsx:102
+#: src/components/modals/EditProductModal/index.tsx:104
 msgid "Successfully updated product"
 msgstr "Prodotto aggiornato con successo"
 
@@ -19169,7 +19177,7 @@ msgstr "Verranno raggiunti i partecipanti di {0} sessioni selezionate."
 #: src/components/common/OrdersTable/index.tsx:291
 #: src/components/forms/TaxAndFeeForm/index.tsx:21
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:89
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:95
 msgid "Tax"
 msgstr "Tassa"
 
@@ -20206,7 +20214,7 @@ msgstr "Questo organizzatore"
 msgid "This organizer profile is not published yet"
 msgstr "Questo profilo organizzatore non è ancora pubblicato"
 
-#: src/components/forms/ProductForm/index.tsx:620
+#: src/components/forms/ProductForm/index.tsx:625
 msgid "This overrides all visibility settings and will hide the product from all customers."
 msgstr "Questo sovrascrive tutte le impostazioni di visibilità e nasconderà il prodotto a tutti i clienti."
 
@@ -20230,7 +20238,7 @@ msgstr "Questo prodotto è evidenziato nella pagina dell'evento"
 msgid "This product is sold out"
 msgstr "Questo prodotto è esaurito"
 
-#: src/components/forms/ProductForm/index.tsx:556
+#: src/components/forms/ProductForm/index.tsx:561
 msgid "This product won't appear on the event page on its own — buyers only see it as an add-on to the products it's attached to."
 msgstr "Questo prodotto non comparirà da solo sulla pagina dell'evento: gli acquirenti lo vedono solo come prodotto aggiuntivo di quelli a cui è associato."
 
@@ -20720,7 +20728,7 @@ msgstr "totale"
 #: src/components/layouts/CheckIn/tabs/StatsTab.tsx:99
 #: src/components/modals/ManageOrderModal/index.tsx:117
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:359
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
 #: src/ee/box-office/components/layouts/BoxOffice/tabs/OrdersTab.tsx:114
 msgid "Total"
 msgstr "Totale"
@@ -21069,7 +21077,7 @@ msgstr "Impossibile registrare l'uscita del partecipante"
 msgid "Unable to complete sale"
 msgstr "Impossibile completare la vendita"
 
-#: src/components/modals/CreateProductModal/index.tsx:70
+#: src/components/modals/CreateProductModal/index.tsx:71
 msgid "Unable to create product. Please check the your details"
 msgstr "Impossibile creare il prodotto. Controlla i tuoi dati"
 
@@ -21081,7 +21089,7 @@ msgstr "Impossibile creare il prodotto. Controlla i tuoi dati"
 msgid "Unable to delete the widget"
 msgstr "Impossibile eliminare il widget"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:121
+#: src/components/modals/DuplicateProductModal/index.tsx:123
 msgid "Unable to duplicate product. Please check the your details"
 msgstr "Impossibile duplicare il prodotto. Controlla i tuoi dati"
 
@@ -21332,7 +21340,7 @@ msgstr "Non attendibile"
 msgid "Unverified"
 msgstr "Non verificato"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:118
+#: src/components/forms/ProductForm/ledgerSummaries.ts:128
 msgid "Up to {max} per order"
 msgstr "Fino a {max} per ordine"
 
@@ -22573,6 +22581,10 @@ msgstr "Quando un evento viene archiviato"
 msgid "When an event is updated"
 msgstr "Quando un evento viene aggiornato"
 
+#: src/components/forms/ProductForm/index.tsx:540
+msgid "When an order asks for more than remain, it goes through as long as at least one is left. The product, or the current tier, then sells out and the next tier opens. Shared capacity limits still apply."
+msgstr "Se un ordine richiede più di quanti ne restano, viene accettato purché ne resti almeno uno. Il prodotto, o il livello attuale, risulta poi esaurito e si apre il livello successivo. I limiti di capacità condivisa restano validi."
+
 #: src/components/common/WidgetEditor/InstallPanel.tsx:94
 msgid "When an order completes, the widget fires an hievents:order-completed event on your page with the order total and currency. This example sends it to Google Analytics and Meta."
 msgstr "Quando un ordine viene completato, il widget genera un evento hievents:order-completed sulla tua pagina con il totale dell'ordine e la valuta. Questo esempio lo invia a Google Analytics e Meta."
@@ -22905,7 +22917,7 @@ msgstr "Puoi scegliere fino a {max} posti per ordine"
 msgid "You can configure additional service fees and taxes in your account settings."
 msgstr "Puoi configurare commissioni di servizio aggiuntive e tasse nelle impostazioni del tuo account."
 
-#: src/components/forms/ProductForm/index.tsx:612
+#: src/components/forms/ProductForm/index.tsx:617
 msgid "You can create a promo code which targets this product on the"
 msgstr "Puoi creare un codice promo che ha come target questo prodotto nella"
 

@@ -69,9 +69,7 @@ class ProductPriceUpdateService
                     ? DateHelper::convertToUTC($price->sale_end_date, $event->getTimezone())
                     : null,
                 'initial_quantity_available' => $price->initial_quantity_available,
-                'quantity_applies_to' => $event->isRecurring()
-                    ? ($price->quantity_applies_to ?? $defaultAppliesTo)->name
-                    : ProductQuantityAppliesTo::EVENT->name,
+                'quantity_applies_to' => $this->storedAppliesTo($price, $event->isRecurring(), $defaultAppliesTo),
                 'is_hidden' => $price->is_hidden,
                 'order' => $order++,
             ];
@@ -105,6 +103,23 @@ class ProductPriceUpdateService
         }
     }
 
+    private function isQuantityUnchanged(
+        ProductPriceDTO $price,
+        ProductPriceDomainObject $existingPrice,
+        bool $isRecurring,
+        ProductQuantityAppliesTo $defaultAppliesTo,
+    ): bool {
+        return $price->initial_quantity_available === $existingPrice->getInitialQuantityAvailable()
+            && $this->storedAppliesTo($price, $isRecurring, $defaultAppliesTo) === $existingPrice->getQuantityAppliesTo();
+    }
+
+    private function storedAppliesTo(ProductPriceDTO $price, bool $isRecurring, ProductQuantityAppliesTo $defaultAppliesTo): string
+    {
+        return $isRecurring
+            ? ($price->quantity_applies_to ?? $defaultAppliesTo)->name
+            : ProductQuantityAppliesTo::EVENT->name;
+    }
+
     /**
      * @throws ValidationException
      */
@@ -136,7 +151,7 @@ class ProductPriceUpdateService
             /** @var ProductPriceDomainObject|null $existingPrice */
             $existingPrice = $existingPrices->first(fn (ProductPriceDomainObject $p) => $p->getId() === $price->id);
 
-            if ($existingPrice === null) {
+            if ($existingPrice === null || $this->isQuantityUnchanged($price, $existingPrice, $isRecurring, $defaultAppliesTo)) {
                 continue;
             }
 

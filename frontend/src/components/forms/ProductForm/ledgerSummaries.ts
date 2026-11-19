@@ -104,6 +104,16 @@ export const taxesSummary = (values: Product, taxesAndFees?: TaxAndFee[], curren
 };
 
 export const orderLimitsSummary = (values: Product): RowSummary => {
+    const summary = perOrderLimitsSummary(values);
+
+    if (!values.soft_quantity_limit) {
+        return summary;
+    }
+
+    return {text: `${summary.text} · ${t`Last order can go over`}`, emphasized: true};
+};
+
+const perOrderLimitsSummary = (values: Product): RowSummary => {
     const min = hasValue(values.min_per_order) ? Number(values.min_per_order) : undefined;
     const max = hasValue(values.max_per_order) ? Number(values.max_per_order) : undefined;
     const emphasized = (min !== undefined && min !== 1) || (max !== undefined && max !== 100);

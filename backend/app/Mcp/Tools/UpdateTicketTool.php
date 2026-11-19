@@ -22,7 +22,7 @@ use Laravel\Mcp\Server\Tools\Annotations\IsDestructive;
 #[IsDestructive]
 class UpdateTicketTool extends WriteApiTool
 {
-    private const PRODUCT_FIELDS = ['title', 'description', 'sale_start_date', 'sale_end_date', 'min_per_order', 'max_per_order', 'is_hidden'];
+    private const PRODUCT_FIELDS = ['title', 'description', 'sale_start_date', 'sale_end_date', 'min_per_order', 'max_per_order', 'is_hidden', 'soft_quantity_limit'];
 
     public function schema(JsonSchema $schema): array
     {
@@ -39,6 +39,7 @@ class UpdateTicketTool extends WriteApiTool
             'min_per_order' => $schema->integer(),
             'max_per_order' => $schema->integer(),
             'is_hidden' => $schema->boolean()->description('Hide from the public event page.'),
+            'soft_quantity_limit' => $schema->boolean()->description('When an order asks for more than remain, sell the whole order (up to the per-order maximum) as long as at least one remains, then mark the ticket or tier sold out. Shared capacities stay strict.'),
         ];
     }
 

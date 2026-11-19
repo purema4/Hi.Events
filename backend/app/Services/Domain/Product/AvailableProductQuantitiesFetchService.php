@@ -221,9 +221,8 @@ class AvailableProductQuantitiesFetchService
             if (isset($freeByProduct[$dto->product_id])) {
                 $dto->seats_available = $freeByProduct[$dto->product_id];
                 $dto->quantity_available_before_seats = $dto->quantity_available;
-                $dto->quantity_available = $dto->quantity_available === Constants::INFINITE
-                    ? $dto->seats_available
-                    : min($dto->quantity_available, $dto->seats_available);
+                $dto->quantity_purchasable_before_seats = $dto->purchasableQuantity();
+                $dto->capAt($dto->seats_available);
             }
 
             return $dto;
@@ -260,7 +259,7 @@ class AvailableProductQuantitiesFetchService
         return $quantities->map(function (AvailableProductQuantitiesDTO $dto) use ($productCapacities) {
             $productId = $dto->product_id;
             if (isset($productCapacities[$productId])) {
-                $dto->quantity_available = min(array_merge([$dto->quantity_available], $productCapacities[$productId]->map->getAvailableCapacity()->toArray()));
+                $dto->capAt(min($productCapacities[$productId]->map->getAvailableCapacity()->toArray()));
                 $dto->capacities = $productCapacities[$productId];
             }
 
@@ -301,15 +300,18 @@ class AvailableProductQuantitiesFetchService
             $override = $overrides->get($dto->price_id);
             $cap = $override?->getQuantityAvailable() ?? $dto->initial_quantity_available;
 
+            $dto->quantity_reserved = $reserved[$dto->price_id] ?? 0;
+
             if ($cap === null) {
-                $dto->quantity_available = Constants::INFINITE;
-                $dto->quantity_reserved = $reserved[$dto->price_id] ?? 0;
+                $dto->setOwnQuantity(Constants::INFINITE, $dto->soft_quantity_limit);
 
                 return $dto;
             }
 
-            $dto->quantity_reserved = $reserved[$dto->price_id] ?? 0;
-            $dto->quantity_available = max(0, $cap - ($sold[$dto->product_type][$dto->price_id] ?? 0) - $dto->quantity_reserved);
+            $dto->setOwnQuantity(
+                max(0, $cap - ($sold[$dto->product_type][$dto->price_id] ?? 0) - $dto->quantity_reserved),
+                $dto->soft_quantity_limit,
+            );
 
             return $dto;
         });
@@ -319,7 +321,7 @@ class AvailableProductQuantitiesFetchService
     {
         return $quantities->map(function (AvailableProductQuantitiesDTO $dto) {
             if ($dto->quantity_applies_to === ProductQuantityAppliesTo::OCCURRENCE->name) {
-                $dto->quantity_available = Constants::INFINITE;
+                $dto->setOwnQuantity(Constants::INFINITE, $dto->soft_quantity_limit);
             }
 
             return $dto;
@@ -342,7 +344,7 @@ class AvailableProductQuantitiesFetchService
     ): Collection {
         if ($occurrence === null || $occurrence->isCancelled() || ($occurrence->isPast() && ! $allowPastOccurrence)) {
             return $quantities->map(function (AvailableProductQuantitiesDTO $dto) {
-                $dto->quantity_available = 0;
+                $dto->capAt(0);
 
                 return $dto;
             });
@@ -359,11 +361,7 @@ class AvailableProductQuantitiesFetchService
                 return $dto;
             }
 
-            if ($dto->quantity_available !== Constants::INFINITE) {
-                $dto->quantity_available = min($dto->quantity_available, $occurrenceAvailable);
-            } else {
-                $dto->quantity_available = $occurrenceAvailable;
-            }
+            $dto->capAt($occurrenceAvailable);
 
             return $dto;
         });
@@ -382,6 +380,7 @@ class AvailableProductQuantitiesFetchService
             product_prices.id AS product_price_id,
             products.title AS product_title,
             products.product_type AS product_type,
+            products.soft_quantity_limit,
             product_prices.label AS price_label,
             product_prices.initial_quantity_available,
             product_prices.quantity_sold,
@@ -401,20 +400,28 @@ class AvailableProductQuantitiesFetchService
             ->map(fn (Collection $eventRows) => $eventRows->map(function ($row) use ($reserved) {
                 $quantityReserved = $reserved[$row->product_price_id] ?? 0;
 
-                return AvailableProductQuantitiesDTO::fromArray([
+                $dto = AvailableProductQuantitiesDTO::fromArray([
                     'product_id' => $row->product_id,
                     'price_id' => $row->product_price_id,
                     'product_title' => $row->product_title,
                     'product_type' => $row->product_type,
                     'quantity_applies_to' => $row->quantity_applies_to,
                     'price_label' => $row->price_label,
-                    'quantity_available' => $row->initial_quantity_available === null
-                        ? Constants::INFINITE
-                        : max(0, $row->initial_quantity_available - $row->quantity_sold - $quantityReserved),
+                    'quantity_available' => Constants::INFINITE,
                     'initial_quantity_available' => $row->initial_quantity_available,
                     'quantity_reserved' => $quantityReserved,
+                    'soft_quantity_limit' => (bool) $row->soft_quantity_limit,
                     'capacities' => new Collection,
                 ]);
+
+                $dto->setOwnQuantity(
+                    $row->initial_quantity_available === null
+                        ? Constants::INFINITE
+                        : max(0, $row->initial_quantity_available - $row->quantity_sold - $quantityReserved),
+                    $dto->soft_quantity_limit,
+                );
+
+                return $dto;
             })->values())
             ->all();
     }

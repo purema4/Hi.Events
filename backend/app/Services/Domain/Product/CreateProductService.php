@@ -99,6 +99,7 @@ class CreateProductService
             'hide_after_sale_end_date' => $productsData->getHideAfterSaleEndDate(),
             'hide_when_sold_out' => $productsData->getHideWhenSoldOut(),
             'sequential_tier_release_enabled' => $productsData->getSequentialTierReleaseEnabled(),
+            'soft_quantity_limit' => $productsData->getSoftQuantityLimit(),
             'show_quantity_remaining' => $productsData->getShowQuantityRemaining(),
             'is_hidden_without_promo_code' => $productsData->getIsHiddenWithoutPromoCode(),
             'event_id' => $productsData->getEventId(),

@@ -35215,6 +35215,9 @@
           "sequential_tier_release_enabled": {
             "type": "boolean"
           },
+          "soft_quantity_limit": {
+            "type": "boolean"
+          },
           "is_hidden_without_promo_code": {
             "type": "boolean"
           },
@@ -35324,6 +35327,7 @@
           "show_quantity_remaining",
           "hide_when_sold_out",
           "sequential_tier_release_enabled",
+          "soft_quantity_limit",
           "is_hidden_without_promo_code",
           "is_hidden",
           "is_before_sale_start_date",
@@ -35403,6 +35407,9 @@
             "type": "boolean"
           },
           "start_collapsed": {
+            "type": "boolean"
+          },
+          "soft_quantity_limit": {
             "type": "boolean"
           },
           "quantity_available": {
@@ -35485,6 +35492,7 @@
           "is_before_sale_start_date",
           "is_after_sale_end_date",
           "start_collapsed",
+          "soft_quantity_limit",
           "product_category_id",
           "is_highlighted",
           "highlight_message",
@@ -39106,6 +39114,9 @@
             "type": "boolean"
           },
           "sequential_tier_release_enabled": {
+            "type": "boolean"
+          },
+          "soft_quantity_limit": {
             "type": "boolean"
           },
           "start_collapsed": {

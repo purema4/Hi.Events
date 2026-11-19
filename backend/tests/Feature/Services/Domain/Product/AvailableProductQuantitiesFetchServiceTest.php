@@ -212,6 +212,62 @@ class AvailableProductQuantitiesFetchServiceTest extends TestCase
         $this->assertSame(6, $this->availableFor($priceId, null));
     }
 
+    public function test_soft_limit_lets_the_whole_order_through_while_one_remains(): void
+    {
+        $this->eventId = $this->insertEvent(EventType::SINGLE->name);
+        $day1 = $this->insertOccurrence();
+        $productId = $this->insertSoftLimitedProduct();
+        $priceId = $this->insertPrice($productId, initialQuantity: 10, quantitySold: 8);
+
+        $row = $this->row($priceId, $day1);
+        $this->assertSame(2, $row->quantity_available);
+        $this->assertSame(Constants::INFINITE, $row->purchasableQuantity());
+    }
+
+    public function test_soft_limit_closes_once_nothing_remains(): void
+    {
+        $this->eventId = $this->insertEvent(EventType::SINGLE->name);
+        $day1 = $this->insertOccurrence();
+        $productId = $this->insertSoftLimitedProduct();
+        $priceId = $this->insertPrice($productId, initialQuantity: 10, quantitySold: 9);
+        $this->reserve($productId, $priceId, $day1, 1);
+
+        $this->assertSame(0, $this->row($priceId, $day1)->purchasableQuantity());
+    }
+
+    public function test_soft_limit_is_still_capped_by_a_capacity_assignment(): void
+    {
+        $this->eventId = $this->insertEvent(EventType::SINGLE->name);
+        $day1 = $this->insertOccurrence();
+        $productId = $this->insertSoftLimitedProduct();
+        $priceId = $this->insertPrice($productId, initialQuantity: 10, quantitySold: 8);
+        $this->insertCapacityAssignment($productId, capacity: 20, usedCapacity: 17);
+
+        $this->assertSame(3, $this->row($priceId, $day1)->purchasableQuantity());
+    }
+
+    public function test_soft_limit_per_date_is_still_capped_by_the_occurrence_capacity(): void
+    {
+        $day1 = $this->insertOccurrence(capacity: 5, usedCapacity: 1);
+        $productId = $this->insertSoftLimitedProduct();
+        $priceId = $this->insertPrice($productId, initialQuantity: 3);
+        $this->sellTickets($productId, $priceId, $day1, 2);
+
+        $row = $this->row($priceId, $day1);
+        $this->assertSame(1, $row->quantity_available);
+        $this->assertSame(4, $row->purchasableQuantity());
+    }
+
+    public function test_without_soft_limit_purchasable_matches_available(): void
+    {
+        $this->eventId = $this->insertEvent(EventType::SINGLE->name);
+        $day1 = $this->insertOccurrence();
+        $productId = $this->insertProduct();
+        $priceId = $this->insertPrice($productId, initialQuantity: 10, quantitySold: 8);
+
+        $this->assertSame(2, $this->row($priceId, $day1)->purchasableQuantity());
+    }
+
     public function test_a_seated_tier_is_capped_by_its_own_quantity_below_the_free_seats(): void
     {
         $this->eventId = $this->insertEvent(EventType::SINGLE->name);
@@ -483,6 +539,14 @@ class AvailableProductQuantitiesFetchServiceTest extends TestCase
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+    }
+
+    private function insertSoftLimitedProduct(): int
+    {
+        $productId = $this->insertProduct();
+        DB::table('products')->where('id', $productId)->update(['soft_quantity_limit' => true]);
+
+        return $productId;
     }
 
     private function row(int $priceId, ?int $occurrenceId): AvailableProductQuantitiesDTO

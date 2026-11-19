@@ -350,7 +350,7 @@ msgid "{count, plural, one {# slot} other {# slots}}"
 msgstr "{count, plural, one {# tijdslot} other {# tijdsloten}}"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:59
-#: src/components/forms/ProductForm/ledgerSummaries.ts:127
+#: src/components/forms/ProductForm/ledgerSummaries.ts:137
 msgid "{count} add-ons"
 msgstr "{count} add-ons"
 
@@ -480,7 +480,7 @@ msgstr "{listed} en nog {remaining}"
 msgid "{loadedAffectedAttendees} attendees are registered across the affected sessions."
 msgstr "{loadedAffectedAttendees} deelnemers zijn aangemeld voor de betrokken sessies."
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:112
+#: src/components/forms/ProductForm/ledgerSummaries.ts:122
 msgid "{min}–{max} per order"
 msgstr "{min}–{max} per bestelling"
 
@@ -757,7 +757,7 @@ msgid "1 Active Webhook"
 msgstr "1 Actieve webhook"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:59
-#: src/components/forms/ProductForm/ledgerSummaries.ts:127
+#: src/components/forms/ProductForm/ledgerSummaries.ts:137
 msgid "1 add-on"
 msgstr "1 add-on"
 
@@ -1069,7 +1069,7 @@ msgstr "Accepteer creditcardbetalingen met Stripe"
 #: src/components/common/TeamAccessFields/index.tsx:205
 #: src/components/common/TeamAccessFields/index.tsx:207
 #: src/components/common/TeamAccessPanel/index.tsx:137
-#: src/components/forms/ProductForm/index.tsx:605
+#: src/components/forms/ProductForm/index.tsx:610
 #: src/components/routes/oauth/Connect/index.tsx:117
 #: src/components/routes/settings/ApiKeys/CreateApiKeyModal.tsx:237
 #: src/components/routes/settings/Team/index.tsx:218
@@ -1655,16 +1655,16 @@ msgid "Add your social media handles and website URL. These will be displayed on
 msgstr "Voeg je sociale media en website-URL toe. Deze worden weergegeven op je openbare organisatorpagina."
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:484
-#: src/components/forms/ProductForm/ledgerSummaries.ts:128
+#: src/components/forms/ProductForm/ledgerSummaries.ts:138
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:25
 msgid "Add-on only"
 msgstr "Alleen als add-on"
 
-#: src/components/forms/ProductForm/index.tsx:561
+#: src/components/forms/ProductForm/index.tsx:566
 msgid "Add-on products"
 msgstr "Add-onproducten"
 
-#: src/components/forms/ProductForm/index.tsx:542
+#: src/components/forms/ProductForm/index.tsx:547
 #: src/components/routes/product-widget/SelectProducts/index.tsx:520
 msgid "Add-ons"
 msgstr "Add-ons"
@@ -1677,7 +1677,7 @@ msgstr "Alleen add-ons"
 msgid "Added"
 msgstr "Toegevoegd"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:81
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:84
 msgid "Added at checkout"
 msgstr "Toegevoegd bij het afrekenen"
 
@@ -2153,7 +2153,7 @@ msgid "Amazing, Event, Keywords..."
 msgstr "Verbazingwekkend, evenement, trefwoorden..."
 
 #: src/components/common/OrdersTable/index.tsx:281
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:214
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:217
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:69
 msgid "Amount"
 msgstr "Bedrag"
@@ -2210,7 +2210,7 @@ msgstr "Een item in {0} heeft geen naam"
 msgid "An optional description of this category to display on the event page."
 msgstr "Een optionele beschrijving van deze categorie die op de evenementpagina wordt weergegeven."
 
-#: src/components/forms/ProductForm/index.tsx:595
+#: src/components/forms/ProductForm/index.tsx:600
 msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
 msgstr "Een optioneel bericht om weer te geven op het uitgelichte product, bijv. \"Snel uitverkocht 🔥\" of \"Beste waarde\""
 
@@ -3215,7 +3215,7 @@ msgid "Bar"
 msgstr "Bar"
 
 #: src/components/routes/event/OccurrencesTab/PriceOverrideForm/index.tsx:306
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:87
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:90
 msgid "Base price"
 msgstr "Basisprijs"
 
@@ -3506,7 +3506,7 @@ msgstr "Kopergegevens"
 msgid "Buyer pays"
 msgstr "Koper betaalt"
 
-#: src/components/forms/ProductForm/index.tsx:571
+#: src/components/forms/ProductForm/index.tsx:576
 msgid "Buyers can add these to their order when they select this product at checkout."
 msgstr "Kopers kunnen deze aan hun bestelling toevoegen wanneer ze dit product kiezen tijdens het afrekenen."
 
@@ -5767,7 +5767,7 @@ msgstr "Heffing aanmaken"
 msgid "Create key"
 msgstr "Sleutel maken"
 
-#: src/components/forms/ProductForm/index.tsx:568
+#: src/components/forms/ProductForm/index.tsx:573
 msgid "Create more tickets or products to offer them as add-ons"
 msgstr "Maak meer tickets of producten aan om ze als add-on aan te bieden"
 
@@ -5794,7 +5794,7 @@ msgstr "Organisator maken"
 msgid "Create payment link"
 msgstr "Betaallink maken"
 
-#: src/components/modals/CreateProductModal/index.tsx:91
+#: src/components/modals/CreateProductModal/index.tsx:92
 msgid "Create Product"
 msgstr "Product maken"
 
@@ -5833,7 +5833,7 @@ msgstr "Creëer belasting of heffing"
 msgid "Create the profile first, then add photos here."
 msgstr "Maak eerst het profiel aan en voeg hier daarna foto's toe."
 
-#: src/components/modals/CreateProductModal/index.tsx:88
+#: src/components/modals/CreateProductModal/index.tsx:89
 msgid "Create Ticket or Product"
 msgstr "Maak ticket of product aan"
 
@@ -6985,8 +6985,8 @@ msgstr "Dupliceer evenement"
 msgid "Duplicate Event"
 msgstr "Dupliceer Evenement"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:129
-#: src/components/modals/DuplicateProductModal/index.tsx:133
+#: src/components/modals/DuplicateProductModal/index.tsx:131
+#: src/components/modals/DuplicateProductModal/index.tsx:135
 msgid "Duplicate Product"
 msgstr "Dupliceer product"
 
@@ -7257,8 +7257,8 @@ msgstr "Lid bewerken"
 msgid "Edit Order Details"
 msgstr "Bestelgegevens bewerken"
 
-#: src/components/modals/EditProductModal/index.tsx:113
-#: src/components/modals/EditProductModal/index.tsx:117
+#: src/components/modals/EditProductModal/index.tsx:115
+#: src/components/modals/EditProductModal/index.tsx:119
 msgid "Edit Product"
 msgstr "Bewerk product"
 
@@ -8803,7 +8803,7 @@ msgstr "Heffing bijgewerkt"
 #: src/components/common/OrdersTable/index.tsx:292
 #: src/components/forms/ProductForm/index.tsx:497
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:89
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
 msgid "Fees"
 msgstr "Tarieven"
@@ -9115,8 +9115,8 @@ msgstr "Foyer"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:160
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:170
 #: src/components/forms/ProductForm/index.tsx:296
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:158
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:230
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:161
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:233
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:37
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:54
 #: src/ee/box-office/utilites/boxOfficeTender.ts:15
@@ -9639,7 +9639,7 @@ msgstr "Automatisch verborgen als leeg."
 msgid "Hidden from event page: {hiddenNames}"
 msgstr "Verborgen op de evenementpagina: {hiddenNames}"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:151
+#: src/components/forms/ProductForm/ledgerSummaries.ts:161
 msgid "Hidden from everyone"
 msgstr "Voor iedereen verborgen"
 
@@ -9725,7 +9725,7 @@ msgstr "Verberg product na einddatum verkoop"
 msgid "Hide product before sale start date"
 msgstr "Verberg product voor start verkoopdatum"
 
-#: src/components/forms/ProductForm/index.tsx:617
+#: src/components/forms/ProductForm/index.tsx:622
 msgid "Hide product unless user has applicable promo code"
 msgstr "Verberg product tenzij gebruiker toepasselijke promotiecode heeft"
 
@@ -9749,7 +9749,7 @@ msgstr "Datum verbergen"
 msgid "Hide this category?"
 msgstr "Deze categorie verbergen?"
 
-#: src/components/forms/ProductForm/index.tsx:622
+#: src/components/forms/ProductForm/index.tsx:627
 msgid "Hide this product from customers"
 msgstr "Verberg dit product voor klanten"
 
@@ -9765,24 +9765,24 @@ msgstr "Verbergt uitverkocht"
 msgid "Hiding a product will prevent users from seeing it on the event page."
 msgstr "Door een product te verbergen, kunnen gebruikers het niet zien op de evenementpagina."
 
-#: src/components/forms/ProductForm/index.tsx:580
+#: src/components/forms/ProductForm/index.tsx:585
 msgid "Highlight"
 msgstr "Markeren"
 
-#: src/components/forms/ProductForm/index.tsx:594
+#: src/components/forms/ProductForm/index.tsx:599
 msgid "Highlight Message"
 msgstr "Markeringsbericht"
 
-#: src/components/forms/ProductForm/index.tsx:587
+#: src/components/forms/ProductForm/index.tsx:592
 msgid "Highlight this product"
 msgstr "Dit product markeren"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:460
-#: src/components/forms/ProductForm/ledgerSummaries.ts:144
+#: src/components/forms/ProductForm/ledgerSummaries.ts:154
 msgid "Highlighted"
 msgstr "Uitgelicht"
 
-#: src/components/forms/ProductForm/index.tsx:588
+#: src/components/forms/ProductForm/index.tsx:593
 msgid "Highlighted products will have a different background color to make them stand out on the event page."
 msgstr "Gemarkeerde producten krijgen een andere achtergrondkleur om op te vallen op de evenementenpagina."
 
@@ -10672,6 +10672,10 @@ msgstr "Achternaam"
 msgid "Last name is required"
 msgstr "Achternaam is verplicht"
 
+#: src/components/forms/ProductForm/ledgerSummaries.ts:113
+msgid "Last order can go over"
+msgstr "Laatste bestelling mag overschrijden"
+
 #: src/components/common/OrganizerWebhookTable/index.tsx:245
 #: src/components/common/WebhookTable/index.tsx:245
 msgid "Last Response"
@@ -10808,6 +10812,10 @@ msgstr "Gasten van onbetaalde bestellingen laten inchecken"
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:232
 msgid "Let someone else pay for an order"
 msgstr "Laat iemand anders een bestelling betalen"
+
+#: src/components/forms/ProductForm/index.tsx:539
+msgid "Let the last order go over the limit"
+msgstr "Laat de laatste bestelling de limiet overschrijden"
 
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:307
 msgid "Let them know about the change"
@@ -11348,7 +11356,7 @@ msgstr "Max berichten / 24u"
 msgid "Max Recipients / Message"
 msgstr "Max ontvangers / bericht"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:67
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
 msgid "Maximum {cap} per order"
 msgstr "Maximaal {cap} per bestelling"
 
@@ -11491,7 +11499,7 @@ msgstr "Bar tussenverdieping"
 msgid "Mezzanine standing"
 msgstr "Staanplaatsen tussenverdieping"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:115
+#: src/components/forms/ProductForm/ledgerSummaries.ts:125
 msgid "Min {min} per order"
 msgstr "Min. {min} per bestelling"
 
@@ -12293,7 +12301,7 @@ msgstr "Er zijn geen lifecycle-e-mails naar dit account verzonden."
 msgid "No limit"
 msgstr "Geen limiet"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:121
+#: src/components/forms/ProductForm/ledgerSummaries.ts:131
 msgid "No limits"
 msgstr "Geen limieten"
 
@@ -12636,7 +12644,7 @@ msgstr "niet bewerkt"
 #: src/components/common/PromoCodeTable/index.tsx:85
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:108
 #: src/components/forms/ProductForm/ledgerSummaries.ts:92
-#: src/components/forms/ProductForm/ledgerSummaries.ts:132
+#: src/components/forms/ProductForm/ledgerSummaries.ts:142
 #: src/components/routes/event/Questions/questionTemplates.ts:17
 #: src/components/routes/product-widget/CollectInformation/index.tsx:597
 #: src/ee/seating/components/SeatMapDesigner/Inspector.tsx:50
@@ -12922,7 +12930,7 @@ msgid "of every month"
 msgstr "van elke maand"
 
 #: src/components/forms/ProductForm/ledgerSummaries.ts:77
-#: src/components/forms/ProductForm/ledgerSummaries.ts:140
+#: src/components/forms/ProductForm/ledgerSummaries.ts:150
 #: src/components/routes/admin/Accounts/AccountDetail/AccountFeatureFlags.tsx:79
 #: src/components/routes/admin/FeatureFlags/index.tsx:46
 #: src/components/routes/admin/LifecycleEmails/LifecycleEmailEditor.tsx:124
@@ -13153,7 +13161,7 @@ msgstr "Details online evenement"
 msgid "Online ticket sales for events with reserved seating keep working."
 msgstr "Online ticketverkoop voor evenementen met gereserveerde plaatsen blijft werken."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:67
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
 msgid "Only {cap} available"
 msgstr "Slechts {cap} beschikbaar"
 
@@ -13185,7 +13193,7 @@ msgstr "Alleen accountbeheerders kunnen deze instellingen wijzigen."
 msgid "Only admins can manage team access."
 msgstr "Alleen beheerders kunnen teamtoegang beheren."
 
-#: src/components/forms/ProductForm/index.tsx:555
+#: src/components/forms/ProductForm/index.tsx:560
 msgid "Only available as an add-on"
 msgstr "Alleen beschikbaar als add-on"
 
@@ -14100,7 +14108,7 @@ msgstr "Nu betalen"
 msgid "Pay using the instructions below. {registrantName} has been emailed the order details, and the organizer will confirm the order once your payment arrives."
 msgstr "Betaal volgens de onderstaande instructies. {registrantName} heeft de bestelgegevens per e-mail ontvangen en de organisator bevestigt de bestelling zodra je betaling binnen is."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:213
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:216
 msgid "Pay what you want"
 msgstr "Betaal wat je wilt"
 
@@ -15040,11 +15048,11 @@ msgstr "Kortingscode"
 msgid "Promo code only"
 msgstr "Alleen met promotiecode"
 
-#: src/components/forms/ProductForm/index.tsx:615
+#: src/components/forms/ProductForm/index.tsx:620
 msgid "Promo Code page"
 msgstr "Promo Code pagina"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:154
+#: src/components/forms/ProductForm/ledgerSummaries.ts:164
 msgid "Promo code required"
 msgstr "Kortingscode vereist"
 
@@ -15095,7 +15103,7 @@ msgstr "Vul minimaal één adresveld in (locatie, straat, stad of land)."
 msgid "Provide the following before Stripe's next review to keep payouts flowing."
 msgstr "Lever het volgende aan vóór de volgende controle van Stripe, zodat de uitbetalingen doorlopen."
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:157
+#: src/components/forms/ProductForm/ledgerSummaries.ts:167
 msgid "Public"
 msgstr "Openbaar"
 
@@ -17159,7 +17167,7 @@ msgstr "Selecteer productcategorie"
 msgid "Select products"
 msgstr "Selecteer producten"
 
-#: src/components/forms/ProductForm/index.tsx:562
+#: src/components/forms/ProductForm/index.tsx:567
 msgid "Select products..."
 msgstr "Producten selecteren..."
 
@@ -17276,7 +17284,7 @@ msgstr "Verkoopt als"
 msgid "Selling as {signedInName}"
 msgstr "Verkopen als {signedInName}"
 
-#: src/components/forms/ProductForm/index.tsx:596
+#: src/components/forms/ProductForm/index.tsx:601
 msgid "Selling fast 🔥"
 msgstr "Verkoopt snel 🔥"
 
@@ -18891,7 +18899,7 @@ msgstr "E-mailwijziging succesvol bevestigd"
 msgid "Successfully created attendee"
 msgstr "Succesvol aangemaakte deelnemer"
 
-#: src/components/modals/CreateProductModal/index.tsx:61
+#: src/components/modals/CreateProductModal/index.tsx:62
 msgid "Successfully Created Product"
 msgstr "Succesvol gecreëerd product"
 
@@ -18899,7 +18907,7 @@ msgstr "Succesvol gecreëerd product"
 msgid "Successfully Created Promo Code"
 msgstr "Succesvol aangemaakte promotiecode"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:113
+#: src/components/modals/DuplicateProductModal/index.tsx:115
 msgid "Successfully Duplicated Product"
 msgstr "Succesvol gedupliceerd product"
 
@@ -18984,7 +18992,7 @@ msgstr "Standaard platformkosteninstellingen succesvol bijgewerkt"
 msgid "Successfully Updated Platform Fee Settings"
 msgstr "Platformkosteninstellingen succesvol bijgewerkt"
 
-#: src/components/modals/EditProductModal/index.tsx:102
+#: src/components/modals/EditProductModal/index.tsx:104
 msgid "Successfully updated product"
 msgstr "Product succesvol bijgewerkt"
 
@@ -19170,7 +19178,7 @@ msgstr "Er worden deelnemers uit {0} geselecteerde sessies benaderd."
 #: src/components/common/OrdersTable/index.tsx:291
 #: src/components/forms/TaxAndFeeForm/index.tsx:21
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:89
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:95
 msgid "Tax"
 msgstr "Belasting"
 
@@ -20207,7 +20215,7 @@ msgstr "Deze organisator"
 msgid "This organizer profile is not published yet"
 msgstr "Dit organisatorprofiel is nog niet gepubliceerd"
 
-#: src/components/forms/ProductForm/index.tsx:620
+#: src/components/forms/ProductForm/index.tsx:625
 msgid "This overrides all visibility settings and will hide the product from all customers."
 msgstr "Dit overschrijft alle zichtbaarheidsinstellingen en verbergt het product voor alle klanten."
 
@@ -20231,7 +20239,7 @@ msgstr "Dit product is uitgelicht op de evenementpagina"
 msgid "This product is sold out"
 msgstr "Dit product is uitverkocht"
 
-#: src/components/forms/ProductForm/index.tsx:556
+#: src/components/forms/ProductForm/index.tsx:561
 msgid "This product won't appear on the event page on its own — buyers only see it as an add-on to the products it's attached to."
 msgstr "Dit product verschijnt niet zelfstandig op de evenementpagina — kopers zien het alleen als add-on bij de producten waaraan het gekoppeld is."
 
@@ -20721,7 +20729,7 @@ msgstr "totaal"
 #: src/components/layouts/CheckIn/tabs/StatsTab.tsx:99
 #: src/components/modals/ManageOrderModal/index.tsx:117
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:359
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
 #: src/ee/box-office/components/layouts/BoxOffice/tabs/OrdersTab.tsx:114
 msgid "Total"
 msgstr "Totaal"
@@ -21070,7 +21078,7 @@ msgstr "Deelnemer kan niet worden uitgecheckt"
 msgid "Unable to complete sale"
 msgstr "Verkoop afronden mislukt"
 
-#: src/components/modals/CreateProductModal/index.tsx:70
+#: src/components/modals/CreateProductModal/index.tsx:71
 msgid "Unable to create product. Please check the your details"
 msgstr "Kan geen product maken. Controleer uw gegevens"
 
@@ -21082,7 +21090,7 @@ msgstr "Kan geen product maken. Controleer uw gegevens"
 msgid "Unable to delete the widget"
 msgstr "Kan de widget niet verwijderen"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:121
+#: src/components/modals/DuplicateProductModal/index.tsx:123
 msgid "Unable to duplicate product. Please check the your details"
 msgstr "Kan product niet dupliceren. Controleer uw gegevens"
 
@@ -21333,7 +21341,7 @@ msgstr "Niet vertrouwd"
 msgid "Unverified"
 msgstr "Niet geverifieerd"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:118
+#: src/components/forms/ProductForm/ledgerSummaries.ts:128
 msgid "Up to {max} per order"
 msgstr "Maximaal {max} per bestelling"
 
@@ -22574,6 +22582,10 @@ msgstr "Wanneer een evenement wordt gearchiveerd"
 msgid "When an event is updated"
 msgstr "Wanneer een evenement wordt bijgewerkt"
 
+#: src/components/forms/ProductForm/index.tsx:540
+msgid "When an order asks for more than remain, it goes through as long as at least one is left. The product, or the current tier, then sells out and the next tier opens. Shared capacity limits still apply."
+msgstr "Als een bestelling meer vraagt dan er over is, gaat ze door zolang er nog minstens één over is. Het product of de huidige prijsklasse is daarna uitverkocht en de volgende prijsklasse opent. Gedeelde capaciteitslimieten blijven gelden."
+
 #: src/components/common/WidgetEditor/InstallPanel.tsx:94
 msgid "When an order completes, the widget fires an hievents:order-completed event on your page with the order total and currency. This example sends it to Google Analytics and Meta."
 msgstr "Wanneer een bestelling is voltooid, stuurt de widget een hievents:order-completed-event op je pagina met het totaalbedrag en de valuta van de bestelling. Dit voorbeeld stuurt het door naar Google Analytics en Meta."
@@ -22906,7 +22918,7 @@ msgstr "Je kunt maximaal {max} stoelen per bestelling kiezen"
 msgid "You can configure additional service fees and taxes in your account settings."
 msgstr "U kunt extra servicekosten en belastingen configureren in uw accountinstellingen."
 
-#: src/components/forms/ProductForm/index.tsx:612
+#: src/components/forms/ProductForm/index.tsx:617
 msgid "You can create a promo code which targets this product on the"
 msgstr "Je kunt een promotiecode maken die gericht is op dit product op de"
 

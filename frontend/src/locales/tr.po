@@ -349,7 +349,7 @@ msgid "{count, plural, one {# slot} other {# slots}}"
 msgstr "{count, plural, one {# zaman dilimi} other {# zaman dilimi}}"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:59
-#: src/components/forms/ProductForm/ledgerSummaries.ts:127
+#: src/components/forms/ProductForm/ledgerSummaries.ts:137
 msgid "{count} add-ons"
 msgstr "{count} ek ürün"
 
@@ -479,7 +479,7 @@ msgstr "{listed} ve {remaining} tane daha"
 msgid "{loadedAffectedAttendees} attendees are registered across the affected sessions."
 msgstr "Etkilenen oturumlara {loadedAffectedAttendees} katılımcı kayıtlı."
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:112
+#: src/components/forms/ProductForm/ledgerSummaries.ts:122
 msgid "{min}–{max} per order"
 msgstr "Sipariş başına {min}–{max}"
 
@@ -756,7 +756,7 @@ msgid "1 Active Webhook"
 msgstr "1 Aktif Webhook"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:59
-#: src/components/forms/ProductForm/ledgerSummaries.ts:127
+#: src/components/forms/ProductForm/ledgerSummaries.ts:137
 msgid "1 add-on"
 msgstr "1 ek ürün"
 
@@ -1068,7 +1068,7 @@ msgstr "Stripe ile kredi kartı ödemelerini kabul et"
 #: src/components/common/TeamAccessFields/index.tsx:205
 #: src/components/common/TeamAccessFields/index.tsx:207
 #: src/components/common/TeamAccessPanel/index.tsx:137
-#: src/components/forms/ProductForm/index.tsx:605
+#: src/components/forms/ProductForm/index.tsx:610
 #: src/components/routes/oauth/Connect/index.tsx:117
 #: src/components/routes/settings/ApiKeys/CreateApiKeyModal.tsx:237
 #: src/components/routes/settings/Team/index.tsx:218
@@ -1654,16 +1654,16 @@ msgid "Add your social media handles and website URL. These will be displayed on
 msgstr "Sosyal medya hesaplarınızı ve web sitesi URL'nizi ekleyin. Bunlar herkese açık organizatör sayfanızda görüntülenecektir."
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:484
-#: src/components/forms/ProductForm/ledgerSummaries.ts:128
+#: src/components/forms/ProductForm/ledgerSummaries.ts:138
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:25
 msgid "Add-on only"
 msgstr "Yalnızca ek ürün olarak"
 
-#: src/components/forms/ProductForm/index.tsx:561
+#: src/components/forms/ProductForm/index.tsx:566
 msgid "Add-on products"
 msgstr "Ek ürünler"
 
-#: src/components/forms/ProductForm/index.tsx:542
+#: src/components/forms/ProductForm/index.tsx:547
 #: src/components/routes/product-widget/SelectProducts/index.tsx:520
 msgid "Add-ons"
 msgstr "Ek ürünler"
@@ -1676,7 +1676,7 @@ msgstr "Yalnızca eklentiler"
 msgid "Added"
 msgstr "Eklendi"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:81
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:84
 msgid "Added at checkout"
 msgstr "Ödeme sırasında eklenir"
 
@@ -2152,7 +2152,7 @@ msgid "Amazing, Event, Keywords..."
 msgstr "Harika, Etkinlik, Anahtar Kelimeler..."
 
 #: src/components/common/OrdersTable/index.tsx:281
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:214
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:217
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:69
 msgid "Amount"
 msgstr "Miktar"
@@ -2209,7 +2209,7 @@ msgstr "{0} içindeki bir öğenin adı eksik"
 msgid "An optional description of this category to display on the event page."
 msgstr "Etkinlik sayfasında gösterilecek bu kategorinin isteğe bağlı açıklaması."
 
-#: src/components/forms/ProductForm/index.tsx:595
+#: src/components/forms/ProductForm/index.tsx:600
 msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
 msgstr "Vurgulanan üründe görüntülenecek isteğe bağlı bir mesaj, örn. \"Hızlı satılıyor 🔥\" veya \"En iyi değer\""
 
@@ -3214,7 +3214,7 @@ msgid "Bar"
 msgstr "Bar"
 
 #: src/components/routes/event/OccurrencesTab/PriceOverrideForm/index.tsx:306
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:87
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:90
 msgid "Base price"
 msgstr "Taban fiyat"
 
@@ -3505,7 +3505,7 @@ msgstr "Alıcı bilgileri"
 msgid "Buyer pays"
 msgstr "Alıcı öder"
 
-#: src/components/forms/ProductForm/index.tsx:571
+#: src/components/forms/ProductForm/index.tsx:576
 msgid "Buyers can add these to their order when they select this product at checkout."
 msgstr "Alıcılar, ödeme sırasında bu ürünü seçtiklerinde bunları siparişlerine ekleyebilir."
 
@@ -5766,7 +5766,7 @@ msgstr "Ücret oluştur"
 msgid "Create key"
 msgstr "Anahtar oluştur"
 
-#: src/components/forms/ProductForm/index.tsx:568
+#: src/components/forms/ProductForm/index.tsx:573
 msgid "Create more tickets or products to offer them as add-ons"
 msgstr "Ek ürün olarak sunabilmek için daha fazla bilet veya ürün oluşturun"
 
@@ -5793,7 +5793,7 @@ msgstr "Organizatör Oluştur"
 msgid "Create payment link"
 msgstr "Ödeme bağlantısı oluştur"
 
-#: src/components/modals/CreateProductModal/index.tsx:91
+#: src/components/modals/CreateProductModal/index.tsx:92
 msgid "Create Product"
 msgstr "Ürün Oluştur"
 
@@ -5832,7 +5832,7 @@ msgstr "Vergi veya Ücret Oluştur"
 msgid "Create the profile first, then add photos here."
 msgstr "Önce profili oluşturun, ardından fotoğrafları buraya ekleyin."
 
-#: src/components/modals/CreateProductModal/index.tsx:88
+#: src/components/modals/CreateProductModal/index.tsx:89
 msgid "Create Ticket or Product"
 msgstr "Bilet veya Ürün Oluştur"
 
@@ -6984,8 +6984,8 @@ msgstr "Etkinliği çoğalt"
 msgid "Duplicate Event"
 msgstr "Etkinliği Çoğalt"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:129
-#: src/components/modals/DuplicateProductModal/index.tsx:133
+#: src/components/modals/DuplicateProductModal/index.tsx:131
+#: src/components/modals/DuplicateProductModal/index.tsx:135
 msgid "Duplicate Product"
 msgstr "Ürünü Çoğalt"
 
@@ -7256,8 +7256,8 @@ msgstr "Üyeyi düzenle"
 msgid "Edit Order Details"
 msgstr "Sipariş Detaylarını Düzenle"
 
-#: src/components/modals/EditProductModal/index.tsx:113
-#: src/components/modals/EditProductModal/index.tsx:117
+#: src/components/modals/EditProductModal/index.tsx:115
+#: src/components/modals/EditProductModal/index.tsx:119
 msgid "Edit Product"
 msgstr "Ürünü Düzenle"
 
@@ -8802,7 +8802,7 @@ msgstr "Ücret güncellendi"
 #: src/components/common/OrdersTable/index.tsx:292
 #: src/components/forms/ProductForm/index.tsx:497
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:89
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
 msgid "Fees"
 msgstr "Ücretler"
@@ -9114,8 +9114,8 @@ msgstr "Fuaye"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:160
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:170
 #: src/components/forms/ProductForm/index.tsx:296
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:158
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:230
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:161
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:233
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:37
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:54
 #: src/ee/box-office/utilites/boxOfficeTender.ts:15
@@ -9638,7 +9638,7 @@ msgstr "Boş olduğunda otomatik olarak gizlenir."
 msgid "Hidden from event page: {hiddenNames}"
 msgstr "Etkinlik sayfasında gizli: {hiddenNames}"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:151
+#: src/components/forms/ProductForm/ledgerSummaries.ts:161
 msgid "Hidden from everyone"
 msgstr "Herkesten gizli"
 
@@ -9724,7 +9724,7 @@ msgstr "Satış bitiş tarihinden sonra ürünü gizle"
 msgid "Hide product before sale start date"
 msgstr "Satış başlama tarihinden önce ürünü gizle"
 
-#: src/components/forms/ProductForm/index.tsx:617
+#: src/components/forms/ProductForm/index.tsx:622
 msgid "Hide product unless user has applicable promo code"
 msgstr "Kullanıcının uygun promosyon kodu yoksa ürünü gizle"
 
@@ -9748,7 +9748,7 @@ msgstr "Tarihi gizle"
 msgid "Hide this category?"
 msgstr "Bu kategori gizlensin mi?"
 
-#: src/components/forms/ProductForm/index.tsx:622
+#: src/components/forms/ProductForm/index.tsx:627
 msgid "Hide this product from customers"
 msgstr "Bu ürünü müşterilerden gizle"
 
@@ -9764,24 +9764,24 @@ msgstr "Tükenenleri gizler"
 msgid "Hiding a product will prevent users from seeing it on the event page."
 msgstr "Bir ürünü gizlemek, kullanıcıların onu etkinlik sayfasında görmesini engeller."
 
-#: src/components/forms/ProductForm/index.tsx:580
+#: src/components/forms/ProductForm/index.tsx:585
 msgid "Highlight"
 msgstr "Vurgula"
 
-#: src/components/forms/ProductForm/index.tsx:594
+#: src/components/forms/ProductForm/index.tsx:599
 msgid "Highlight Message"
 msgstr "Vurgu Mesajı"
 
-#: src/components/forms/ProductForm/index.tsx:587
+#: src/components/forms/ProductForm/index.tsx:592
 msgid "Highlight this product"
 msgstr "Bu ürünü vurgula"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:460
-#: src/components/forms/ProductForm/ledgerSummaries.ts:144
+#: src/components/forms/ProductForm/ledgerSummaries.ts:154
 msgid "Highlighted"
 msgstr "Vurgulandı"
 
-#: src/components/forms/ProductForm/index.tsx:588
+#: src/components/forms/ProductForm/index.tsx:593
 msgid "Highlighted products will have a different background color to make them stand out on the event page."
 msgstr "Vurgulanan ürünler, etkinlik sayfasında öne çıkmaları için farklı bir arka plan rengine sahip olacaktır."
 
@@ -10671,6 +10671,10 @@ msgstr "Soyad"
 msgid "Last name is required"
 msgstr "Soyad gereklidir"
 
+#: src/components/forms/ProductForm/ledgerSummaries.ts:113
+msgid "Last order can go over"
+msgstr "Son sipariş limiti aşabilir"
+
 #: src/components/common/OrganizerWebhookTable/index.tsx:245
 #: src/components/common/WebhookTable/index.tsx:245
 msgid "Last Response"
@@ -10807,6 +10811,10 @@ msgstr "Ödenmemiş siparişlerin misafirlerinin girişine izin ver"
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:232
 msgid "Let someone else pay for an order"
 msgstr "Bir siparişi başka birinin ödemesine izin ver"
+
+#: src/components/forms/ProductForm/index.tsx:539
+msgid "Let the last order go over the limit"
+msgstr "Son siparişin limiti aşmasına izin ver"
 
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:307
 msgid "Let them know about the change"
@@ -11347,7 +11355,7 @@ msgstr "Maks Mesaj / 24s"
 msgid "Max Recipients / Message"
 msgstr "Maks Alıcı / Mesaj"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:67
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
 msgid "Maximum {cap} per order"
 msgstr "Sipariş başına en fazla {cap}"
 
@@ -11490,7 +11498,7 @@ msgstr "Asma kat barı"
 msgid "Mezzanine standing"
 msgstr "Asma kat ayakta"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:115
+#: src/components/forms/ProductForm/ledgerSummaries.ts:125
 msgid "Min {min} per order"
 msgstr "Sipariş başına en az {min}"
 
@@ -12292,7 +12300,7 @@ msgstr "Bu hesaba hiç yaşam döngüsü e-postası gönderilmedi."
 msgid "No limit"
 msgstr "Sınır yok"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:121
+#: src/components/forms/ProductForm/ledgerSummaries.ts:131
 msgid "No limits"
 msgstr "Sınır yok"
 
@@ -12635,7 +12643,7 @@ msgstr "düzenlenmemiş"
 #: src/components/common/PromoCodeTable/index.tsx:85
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:108
 #: src/components/forms/ProductForm/ledgerSummaries.ts:92
-#: src/components/forms/ProductForm/ledgerSummaries.ts:132
+#: src/components/forms/ProductForm/ledgerSummaries.ts:142
 #: src/components/routes/event/Questions/questionTemplates.ts:17
 #: src/components/routes/product-widget/CollectInformation/index.tsx:597
 #: src/ee/seating/components/SeatMapDesigner/Inspector.tsx:50
@@ -12921,7 +12929,7 @@ msgid "of every month"
 msgstr "her ay"
 
 #: src/components/forms/ProductForm/ledgerSummaries.ts:77
-#: src/components/forms/ProductForm/ledgerSummaries.ts:140
+#: src/components/forms/ProductForm/ledgerSummaries.ts:150
 #: src/components/routes/admin/Accounts/AccountDetail/AccountFeatureFlags.tsx:79
 #: src/components/routes/admin/FeatureFlags/index.tsx:46
 #: src/components/routes/admin/LifecycleEmails/LifecycleEmailEditor.tsx:124
@@ -13152,7 +13160,7 @@ msgstr "Online Etkinlik Detayları"
 msgid "Online ticket sales for events with reserved seating keep working."
 msgstr "Rezerve koltuklu etkinliklerin çevrimiçi bilet satışları çalışmaya devam eder."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:67
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
 msgid "Only {cap} available"
 msgstr "Yalnızca {cap} adet kaldı"
 
@@ -13184,7 +13192,7 @@ msgstr "Bu ayarları yalnızca hesap yöneticileri değiştirebilir."
 msgid "Only admins can manage team access."
 msgstr "Ekip erişimini yalnızca yöneticiler yönetebilir."
 
-#: src/components/forms/ProductForm/index.tsx:555
+#: src/components/forms/ProductForm/index.tsx:560
 msgid "Only available as an add-on"
 msgstr "Yalnızca ek ürün olarak sunulur"
 
@@ -14099,7 +14107,7 @@ msgstr "Şimdi öde"
 msgid "Pay using the instructions below. {registrantName} has been emailed the order details, and the organizer will confirm the order once your payment arrives."
 msgstr "Aşağıdaki talimatlara göre ödeme yapın. {registrantName} sipariş ayrıntılarını e-postayla aldı ve organizatör ödemeniz ulaştığında siparişi onaylayacak."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:213
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:216
 msgid "Pay what you want"
 msgstr "Dilediğin kadar öde"
 
@@ -15039,11 +15047,11 @@ msgstr "Promosyon Kodu"
 msgid "Promo code only"
 msgstr "Yalnızca promosyon koduyla"
 
-#: src/components/forms/ProductForm/index.tsx:615
+#: src/components/forms/ProductForm/index.tsx:620
 msgid "Promo Code page"
 msgstr "Promosyon Kodu sayfası"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:154
+#: src/components/forms/ProductForm/ledgerSummaries.ts:164
 msgid "Promo code required"
 msgstr "Promosyon kodu gerekli"
 
@@ -15094,7 +15102,7 @@ msgstr "En az bir adres alanı girin (mekan, sokak, şehir veya ülke)."
 msgid "Provide the following before Stripe's next review to keep payouts flowing."
 msgstr "Ödemelerin sürmesi için Stripe'ın bir sonraki incelemesinden önce şunları sağlayın."
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:157
+#: src/components/forms/ProductForm/ledgerSummaries.ts:167
 msgid "Public"
 msgstr "Herkese açık"
 
@@ -17158,7 +17166,7 @@ msgstr "Ürün Katmanı Seç"
 msgid "Select products"
 msgstr "Ürünleri seç"
 
-#: src/components/forms/ProductForm/index.tsx:562
+#: src/components/forms/ProductForm/index.tsx:567
 msgid "Select products..."
 msgstr "Ürün seç..."
 
@@ -17275,7 +17283,7 @@ msgstr "Satıcı"
 msgid "Selling as {signedInName}"
 msgstr "{signedInName} olarak satış"
 
-#: src/components/forms/ProductForm/index.tsx:596
+#: src/components/forms/ProductForm/index.tsx:601
 msgid "Selling fast 🔥"
 msgstr "Hızlı satılıyor 🔥"
 
@@ -18890,7 +18898,7 @@ msgstr "E-posta değişikliği başarıyla onaylandı"
 msgid "Successfully created attendee"
 msgstr "Katılımcı başarıyla oluşturuldu"
 
-#: src/components/modals/CreateProductModal/index.tsx:61
+#: src/components/modals/CreateProductModal/index.tsx:62
 msgid "Successfully Created Product"
 msgstr "Ürün Başarıyla Oluşturuldu"
 
@@ -18898,7 +18906,7 @@ msgstr "Ürün Başarıyla Oluşturuldu"
 msgid "Successfully Created Promo Code"
 msgstr "Promosyon Kodu Başarıyla Oluşturuldu"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:113
+#: src/components/modals/DuplicateProductModal/index.tsx:115
 msgid "Successfully Duplicated Product"
 msgstr "Ürün Başarıyla Çoğaltıldı"
 
@@ -18983,7 +18991,7 @@ msgstr "Platform ücreti varsayılanları başarıyla güncellendi"
 msgid "Successfully Updated Platform Fee Settings"
 msgstr "Platform ücreti ayarları başarıyla güncellendi"
 
-#: src/components/modals/EditProductModal/index.tsx:102
+#: src/components/modals/EditProductModal/index.tsx:104
 msgid "Successfully updated product"
 msgstr "Ürün başarıyla güncellendi"
 
@@ -19169,7 +19177,7 @@ msgstr "Seçili {0} oturumdaki katılımcılar hedefleniyor."
 #: src/components/common/OrdersTable/index.tsx:291
 #: src/components/forms/TaxAndFeeForm/index.tsx:21
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:89
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:95
 msgid "Tax"
 msgstr "Vergi"
 
@@ -20206,7 +20214,7 @@ msgstr "Bu organizatör"
 msgid "This organizer profile is not published yet"
 msgstr "Bu organizatör profili henüz yayınlanmadı"
 
-#: src/components/forms/ProductForm/index.tsx:620
+#: src/components/forms/ProductForm/index.tsx:625
 msgid "This overrides all visibility settings and will hide the product from all customers."
 msgstr "Bu tüm görünürlük ayarlarını geçersiz kılar ve ürünü tüm müşterilerden gizler."
 
@@ -20230,7 +20238,7 @@ msgstr "Bu ürün etkinlik sayfasında vurgulanmıştır"
 msgid "This product is sold out"
 msgstr "Bu ürün tükendi"
 
-#: src/components/forms/ProductForm/index.tsx:556
+#: src/components/forms/ProductForm/index.tsx:561
 msgid "This product won't appear on the event page on its own — buyers only see it as an add-on to the products it's attached to."
 msgstr "Bu ürün etkinlik sayfasında tek başına görünmez — alıcılar onu yalnızca bağlı olduğu ürünlerin ek ürünü olarak görür."
 
@@ -20720,7 +20728,7 @@ msgstr "toplam"
 #: src/components/layouts/CheckIn/tabs/StatsTab.tsx:99
 #: src/components/modals/ManageOrderModal/index.tsx:117
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:359
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
 #: src/ee/box-office/components/layouts/BoxOffice/tabs/OrdersTab.tsx:114
 msgid "Total"
 msgstr "Toplam"
@@ -21069,7 +21077,7 @@ msgstr "Katılımcı check-out'u yapılamadı"
 msgid "Unable to complete sale"
 msgstr "Satış tamamlanamadı"
 
-#: src/components/modals/CreateProductModal/index.tsx:70
+#: src/components/modals/CreateProductModal/index.tsx:71
 msgid "Unable to create product. Please check the your details"
 msgstr "Ürün oluşturulamadı. Lütfen bilgilerinizi kontrol edin"
 
@@ -21081,7 +21089,7 @@ msgstr "Ürün oluşturulamadı. Lütfen bilgilerinizi kontrol edin"
 msgid "Unable to delete the widget"
 msgstr "Widget silinemedi"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:121
+#: src/components/modals/DuplicateProductModal/index.tsx:123
 msgid "Unable to duplicate product. Please check the your details"
 msgstr "Ürün çoğaltılamıyor. Lütfen bilgilerinizi kontrol edin"
 
@@ -21332,7 +21340,7 @@ msgstr "Güvenilmez"
 msgid "Unverified"
 msgstr "Doğrulanmamış"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:118
+#: src/components/forms/ProductForm/ledgerSummaries.ts:128
 msgid "Up to {max} per order"
 msgstr "Sipariş başına en fazla {max}"
 
@@ -22573,6 +22581,10 @@ msgstr "Bir etkinlik arşivlendiğinde"
 msgid "When an event is updated"
 msgstr "Bir etkinlik güncellendiğinde"
 
+#: src/components/forms/ProductForm/index.tsx:540
+msgid "When an order asks for more than remain, it goes through as long as at least one is left. The product, or the current tier, then sells out and the next tier opens. Shared capacity limits still apply."
+msgstr "Bir sipariş kalandan fazlasını isterse, en az bir tane kaldığı sürece kabul edilir. Ardından ürün veya mevcut kademe tükenir ve sonraki kademe açılır. Paylaşılan kapasite sınırları geçerliliğini korur."
+
 #: src/components/common/WidgetEditor/InstallPanel.tsx:94
 msgid "When an order completes, the widget fires an hievents:order-completed event on your page with the order total and currency. This example sends it to Google Analytics and Meta."
 msgstr "Bir sipariş tamamlandığında widget, sayfanızda sipariş toplamı ve para birimiyle birlikte bir hievents:order-completed olayı tetikler. Bu örnek, olayı Google Analytics ve Meta'ya gönderir."
@@ -22905,7 +22917,7 @@ msgstr "Sipariş başına en fazla {max} koltuk seçebilirsiniz"
 msgid "You can configure additional service fees and taxes in your account settings."
 msgstr "Hesap ayarlarınızda ek hizmet ücretleri ve vergileri yapılandırabilirsiniz."
 
-#: src/components/forms/ProductForm/index.tsx:612
+#: src/components/forms/ProductForm/index.tsx:617
 msgid "You can create a promo code which targets this product on the"
 msgstr "Bu ürünü hedefleyen bir promosyon kodu oluşturabilirsiniz"
 

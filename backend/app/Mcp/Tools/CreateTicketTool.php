@@ -36,6 +36,7 @@ class CreateTicketTool extends WriteApiTool
             'min_per_order' => $schema->integer()->description('Minimum per order.'),
             'max_per_order' => $schema->integer()->description('Maximum per order.'),
             'is_hidden' => $schema->boolean()->description('Hide from the public event page.'),
+            'soft_quantity_limit' => $schema->boolean()->description('When an order asks for more than remain, sell the whole order (up to the per-order maximum) as long as at least one remains, then mark the ticket or tier sold out. Shared capacities stay strict.'),
             'category_id' => $schema->integer()->description('Ticket category to put it in. Defaults to the event\'s first category.'),
             'product_type' => $schema->string()->enum(ProductType::valuesArray())->description('TICKET (default) issues attendee tickets; GENERAL is for merchandise and extras.'),
         ];

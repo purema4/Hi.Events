@@ -1297,6 +1297,7 @@ export interface Product {
     hide_after_sale_end_date?: boolean;
     hide_when_sold_out?: boolean;
     sequential_tier_release_enabled?: boolean;
+    soft_quantity_limit?: boolean;
     start_collapsed?: boolean;
     show_quantity_remaining?: boolean;
     quantity_available?: number;

@@ -349,7 +349,7 @@ msgid "{count, plural, one {# slot} other {# slots}}"
 msgstr "{count, plural, one {# tidspass} other {# tidspass}}"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:59
-#: src/components/forms/ProductForm/ledgerSummaries.ts:127
+#: src/components/forms/ProductForm/ledgerSummaries.ts:137
 msgid "{count} add-ons"
 msgstr "{count} tillägg"
 
@@ -479,7 +479,7 @@ msgstr "{listed} och {remaining} till"
 msgid "{loadedAffectedAttendees} attendees are registered across the affected sessions."
 msgstr "{loadedAffectedAttendees} deltagare är anmälda till de berörda tillfällena."
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:112
+#: src/components/forms/ProductForm/ledgerSummaries.ts:122
 msgid "{min}–{max} per order"
 msgstr "{min}–{max} per order"
 
@@ -756,7 +756,7 @@ msgid "1 Active Webhook"
 msgstr "1 aktiv webhook"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:59
-#: src/components/forms/ProductForm/ledgerSummaries.ts:127
+#: src/components/forms/ProductForm/ledgerSummaries.ts:137
 msgid "1 add-on"
 msgstr "1 tillägg"
 
@@ -1068,7 +1068,7 @@ msgstr "Acceptera kreditkortsbetalningar med Stripe"
 #: src/components/common/TeamAccessFields/index.tsx:205
 #: src/components/common/TeamAccessFields/index.tsx:207
 #: src/components/common/TeamAccessPanel/index.tsx:137
-#: src/components/forms/ProductForm/index.tsx:605
+#: src/components/forms/ProductForm/index.tsx:610
 #: src/components/routes/oauth/Connect/index.tsx:117
 #: src/components/routes/settings/ApiKeys/CreateApiKeyModal.tsx:237
 #: src/components/routes/settings/Team/index.tsx:218
@@ -1654,16 +1654,16 @@ msgid "Add your social media handles and website URL. These will be displayed on
 msgstr "Lägg till dina sociala mediekonton och din webbplats URL. Dessa kommer att visas på din offentliga arrangörssida."
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:484
-#: src/components/forms/ProductForm/ledgerSummaries.ts:128
+#: src/components/forms/ProductForm/ledgerSummaries.ts:138
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:25
 msgid "Add-on only"
 msgstr "Endast som tillägg"
 
-#: src/components/forms/ProductForm/index.tsx:561
+#: src/components/forms/ProductForm/index.tsx:566
 msgid "Add-on products"
 msgstr "Tilläggsprodukter"
 
-#: src/components/forms/ProductForm/index.tsx:542
+#: src/components/forms/ProductForm/index.tsx:547
 #: src/components/routes/product-widget/SelectProducts/index.tsx:520
 msgid "Add-ons"
 msgstr "Tillägg"
@@ -1676,7 +1676,7 @@ msgstr "Endast tillägg"
 msgid "Added"
 msgstr "Tillagd"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:81
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:84
 msgid "Added at checkout"
 msgstr "Läggs till i kassan"
 
@@ -2152,7 +2152,7 @@ msgid "Amazing, Event, Keywords..."
 msgstr "Fantastiskt, Evenemang, Nyckelord..."
 
 #: src/components/common/OrdersTable/index.tsx:281
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:214
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:217
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:69
 msgid "Amount"
 msgstr "Belopp"
@@ -2209,7 +2209,7 @@ msgstr "En rad i {0} saknar namn"
 msgid "An optional description of this category to display on the event page."
 msgstr "En valfri beskrivning av denna kategori som visas på evenemangssidan."
 
-#: src/components/forms/ProductForm/index.tsx:595
+#: src/components/forms/ProductForm/index.tsx:600
 msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
 msgstr "Ett valfritt meddelande att visa på den markerade produkten, t.ex. \"Säljer snabbt 🔥\" eller \"Bästa värdet\""
 
@@ -3214,7 +3214,7 @@ msgid "Bar"
 msgstr "Bar"
 
 #: src/components/routes/event/OccurrencesTab/PriceOverrideForm/index.tsx:306
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:87
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:90
 msgid "Base price"
 msgstr "Grundpris"
 
@@ -3505,7 +3505,7 @@ msgstr "Köparuppgifter"
 msgid "Buyer pays"
 msgstr "Köparen betalar"
 
-#: src/components/forms/ProductForm/index.tsx:571
+#: src/components/forms/ProductForm/index.tsx:576
 msgid "Buyers can add these to their order when they select this product at checkout."
 msgstr "Köpare kan lägga till dessa i sin order när de väljer den här produkten i kassan."
 
@@ -5766,7 +5766,7 @@ msgstr "Skapa avgift"
 msgid "Create key"
 msgstr "Skapa nyckel"
 
-#: src/components/forms/ProductForm/index.tsx:568
+#: src/components/forms/ProductForm/index.tsx:573
 msgid "Create more tickets or products to offer them as add-ons"
 msgstr "Skapa fler biljetter eller produkter för att erbjuda dem som tillägg"
 
@@ -5793,7 +5793,7 @@ msgstr "Skapa organisatör"
 msgid "Create payment link"
 msgstr "Skapa betalningslänk"
 
-#: src/components/modals/CreateProductModal/index.tsx:91
+#: src/components/modals/CreateProductModal/index.tsx:92
 msgid "Create Product"
 msgstr "Skapa produkt"
 
@@ -5832,7 +5832,7 @@ msgstr "Skapa skatt eller avgift"
 msgid "Create the profile first, then add photos here."
 msgstr "Skapa profilen först och lägg sedan till bilder här."
 
-#: src/components/modals/CreateProductModal/index.tsx:88
+#: src/components/modals/CreateProductModal/index.tsx:89
 msgid "Create Ticket or Product"
 msgstr "Skapa biljett eller produkt"
 
@@ -6984,8 +6984,8 @@ msgstr "Duplicera evenemang"
 msgid "Duplicate Event"
 msgstr "Duplicera evenemang"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:129
-#: src/components/modals/DuplicateProductModal/index.tsx:133
+#: src/components/modals/DuplicateProductModal/index.tsx:131
+#: src/components/modals/DuplicateProductModal/index.tsx:135
 msgid "Duplicate Product"
 msgstr "Duplicera produkt"
 
@@ -7256,8 +7256,8 @@ msgstr "Redigera medlem"
 msgid "Edit Order Details"
 msgstr "Redigera orderdetaljer"
 
-#: src/components/modals/EditProductModal/index.tsx:113
-#: src/components/modals/EditProductModal/index.tsx:117
+#: src/components/modals/EditProductModal/index.tsx:115
+#: src/components/modals/EditProductModal/index.tsx:119
 msgid "Edit Product"
 msgstr "Redigera produkt"
 
@@ -8802,7 +8802,7 @@ msgstr "Avgift uppdaterad"
 #: src/components/common/OrdersTable/index.tsx:292
 #: src/components/forms/ProductForm/index.tsx:497
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:89
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
 msgid "Fees"
 msgstr "Avgifter"
@@ -9114,8 +9114,8 @@ msgstr "Foajé"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:160
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:170
 #: src/components/forms/ProductForm/index.tsx:296
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:158
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:230
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:161
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:233
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:37
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:54
 #: src/ee/box-office/utilites/boxOfficeTender.ts:15
@@ -9638,7 +9638,7 @@ msgstr "Döljs automatiskt när den är tom."
 msgid "Hidden from event page: {hiddenNames}"
 msgstr "Dold på evenemangssidan: {hiddenNames}"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:151
+#: src/components/forms/ProductForm/ledgerSummaries.ts:161
 msgid "Hidden from everyone"
 msgstr "Dold för alla"
 
@@ -9724,7 +9724,7 @@ msgstr "Dölj produkt efter försäljningens slutdatum"
 msgid "Hide product before sale start date"
 msgstr "Dölj produkt före försäljningens startdatum"
 
-#: src/components/forms/ProductForm/index.tsx:617
+#: src/components/forms/ProductForm/index.tsx:622
 msgid "Hide product unless user has applicable promo code"
 msgstr "Dölj produkt om användaren saknar giltig kampanjkod"
 
@@ -9748,7 +9748,7 @@ msgstr "Dölj datumet"
 msgid "Hide this category?"
 msgstr "Dölj denna kategori?"
 
-#: src/components/forms/ProductForm/index.tsx:622
+#: src/components/forms/ProductForm/index.tsx:627
 msgid "Hide this product from customers"
 msgstr "Dölj denna produkt för kunder"
 
@@ -9764,24 +9764,24 @@ msgstr "Döljer slutsålda"
 msgid "Hiding a product will prevent users from seeing it on the event page."
 msgstr "Att dölja en produkt förhindrar att användare ser den på evenemangssidan."
 
-#: src/components/forms/ProductForm/index.tsx:580
+#: src/components/forms/ProductForm/index.tsx:585
 msgid "Highlight"
 msgstr "Markera"
 
-#: src/components/forms/ProductForm/index.tsx:594
+#: src/components/forms/ProductForm/index.tsx:599
 msgid "Highlight Message"
 msgstr "Markeringsmeddelande"
 
-#: src/components/forms/ProductForm/index.tsx:587
+#: src/components/forms/ProductForm/index.tsx:592
 msgid "Highlight this product"
 msgstr "Markera denna produkt"
 
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:460
-#: src/components/forms/ProductForm/ledgerSummaries.ts:144
+#: src/components/forms/ProductForm/ledgerSummaries.ts:154
 msgid "Highlighted"
 msgstr "Markerad"
 
-#: src/components/forms/ProductForm/index.tsx:588
+#: src/components/forms/ProductForm/index.tsx:593
 msgid "Highlighted products will have a different background color to make them stand out on the event page."
 msgstr "Markerade produkter får en annan bakgrundsfärg för att sticka ut på evenemangssidan."
 
@@ -10671,6 +10671,10 @@ msgstr "Efternamn"
 msgid "Last name is required"
 msgstr "Efternamn är obligatoriskt"
 
+#: src/components/forms/ProductForm/ledgerSummaries.ts:113
+msgid "Last order can go over"
+msgstr "Sista beställningen kan gå över"
+
 #: src/components/common/OrganizerWebhookTable/index.tsx:245
 #: src/components/common/WebhookTable/index.tsx:245
 msgid "Last Response"
@@ -10807,6 +10811,10 @@ msgstr "Låt gäster från obetalda ordrar checka in"
 #: src/components/routes/event/Settings/Sections/PaymentSettings/index.tsx:232
 msgid "Let someone else pay for an order"
 msgstr "Låt någon annan betala en beställning"
+
+#: src/components/forms/ProductForm/index.tsx:539
+msgid "Let the last order go over the limit"
+msgstr "Låt den sista beställningen gå över gränsen"
 
 #: src/components/routes/event/OccurrencesTab/OccurrenceEditModal/index.tsx:307
 msgid "Let them know about the change"
@@ -11347,7 +11355,7 @@ msgstr "Max meddelanden / 24h"
 msgid "Max Recipients / Message"
 msgstr "Max mottagare / meddelande"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:67
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
 msgid "Maximum {cap} per order"
 msgstr "Max {cap} per beställning"
 
@@ -11490,7 +11498,7 @@ msgstr "Mezzaninbar"
 msgid "Mezzanine standing"
 msgstr "Mezzanin ståplats"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:115
+#: src/components/forms/ProductForm/ledgerSummaries.ts:125
 msgid "Min {min} per order"
 msgstr "Minst {min} per order"
 
@@ -12292,7 +12300,7 @@ msgstr "Inga livscykelmejl har skickats till det här kontot."
 msgid "No limit"
 msgstr "Ingen gräns"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:121
+#: src/components/forms/ProductForm/ledgerSummaries.ts:131
 msgid "No limits"
 msgstr "Inga gränser"
 
@@ -12635,7 +12643,7 @@ msgstr "oredigerade"
 #: src/components/common/PromoCodeTable/index.tsx:85
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:108
 #: src/components/forms/ProductForm/ledgerSummaries.ts:92
-#: src/components/forms/ProductForm/ledgerSummaries.ts:132
+#: src/components/forms/ProductForm/ledgerSummaries.ts:142
 #: src/components/routes/event/Questions/questionTemplates.ts:17
 #: src/components/routes/product-widget/CollectInformation/index.tsx:597
 #: src/ee/seating/components/SeatMapDesigner/Inspector.tsx:50
@@ -12921,7 +12929,7 @@ msgid "of every month"
 msgstr "varje månad"
 
 #: src/components/forms/ProductForm/ledgerSummaries.ts:77
-#: src/components/forms/ProductForm/ledgerSummaries.ts:140
+#: src/components/forms/ProductForm/ledgerSummaries.ts:150
 #: src/components/routes/admin/Accounts/AccountDetail/AccountFeatureFlags.tsx:79
 #: src/components/routes/admin/FeatureFlags/index.tsx:46
 #: src/components/routes/admin/LifecycleEmails/LifecycleEmailEditor.tsx:124
@@ -13152,7 +13160,7 @@ msgstr "Information om onlineevenemang"
 msgid "Online ticket sales for events with reserved seating keep working."
 msgstr "Onlineförsäljningen av biljetter till evenemang med reserverade platser fortsätter att fungera."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:67
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
 msgid "Only {cap} available"
 msgstr "Endast {cap} tillgängliga"
 
@@ -13184,7 +13192,7 @@ msgstr "Endast kontoadministratörer kan ändra de här inställningarna."
 msgid "Only admins can manage team access."
 msgstr "Endast administratörer kan hantera teamets åtkomst."
 
-#: src/components/forms/ProductForm/index.tsx:555
+#: src/components/forms/ProductForm/index.tsx:560
 msgid "Only available as an add-on"
 msgstr "Tillgänglig endast som tillägg"
 
@@ -14099,7 +14107,7 @@ msgstr "Betala nu"
 msgid "Pay using the instructions below. {registrantName} has been emailed the order details, and the organizer will confirm the order once your payment arrives."
 msgstr "Betala enligt instruktionerna nedan. {registrantName} har fått beställningsuppgifterna via e-post, och arrangören bekräftar beställningen när din betalning har kommit in."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:213
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:216
 msgid "Pay what you want"
 msgstr "Betala vad du vill"
 
@@ -15039,11 +15047,11 @@ msgstr "Kampanjkod"
 msgid "Promo code only"
 msgstr "Endast med kampanjkod"
 
-#: src/components/forms/ProductForm/index.tsx:615
+#: src/components/forms/ProductForm/index.tsx:620
 msgid "Promo Code page"
 msgstr "Sida för kampanjkoder"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:154
+#: src/components/forms/ProductForm/ledgerSummaries.ts:164
 msgid "Promo code required"
 msgstr "Kampanjkod krävs"
 
@@ -15094,7 +15102,7 @@ msgstr "Ange minst ett adressfält (plats, gata, stad eller land)."
 msgid "Provide the following before Stripe's next review to keep payouts flowing."
 msgstr "Lämna följande före Stripes nästa granskning så att utbetalningarna fortsätter."
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:157
+#: src/components/forms/ProductForm/ledgerSummaries.ts:167
 msgid "Public"
 msgstr "Offentlig"
 
@@ -17158,7 +17166,7 @@ msgstr "Välj produktnivå"
 msgid "Select products"
 msgstr "Välj produkter"
 
-#: src/components/forms/ProductForm/index.tsx:562
+#: src/components/forms/ProductForm/index.tsx:567
 msgid "Select products..."
 msgstr "Välj produkter..."
 
@@ -17275,7 +17283,7 @@ msgstr "Säljer som"
 msgid "Selling as {signedInName}"
 msgstr "Säljer som {signedInName}"
 
-#: src/components/forms/ProductForm/index.tsx:596
+#: src/components/forms/ProductForm/index.tsx:601
 msgid "Selling fast 🔥"
 msgstr "Säljer snabbt 🔥"
 
@@ -18890,7 +18898,7 @@ msgstr "E-poständringen bekräftades"
 msgid "Successfully created attendee"
 msgstr "Deltagaren skapades"
 
-#: src/components/modals/CreateProductModal/index.tsx:61
+#: src/components/modals/CreateProductModal/index.tsx:62
 msgid "Successfully Created Product"
 msgstr "Produkten skapades"
 
@@ -18898,7 +18906,7 @@ msgstr "Produkten skapades"
 msgid "Successfully Created Promo Code"
 msgstr "Kampanjkoden skapades"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:113
+#: src/components/modals/DuplicateProductModal/index.tsx:115
 msgid "Successfully Duplicated Product"
 msgstr "Produkten duplicerades"
 
@@ -18983,7 +18991,7 @@ msgstr "Standardinställningar för plattformsavgifter uppdaterades"
 msgid "Successfully Updated Platform Fee Settings"
 msgstr "Inställningar för plattformsavgifter uppdaterades"
 
-#: src/components/modals/EditProductModal/index.tsx:102
+#: src/components/modals/EditProductModal/index.tsx:104
 msgid "Successfully updated product"
 msgstr "Produkt uppdaterad"
 
@@ -19169,7 +19177,7 @@ msgstr "Riktar sig till deltagare på {0} valda tillfällen."
 #: src/components/common/OrdersTable/index.tsx:291
 #: src/components/forms/TaxAndFeeForm/index.tsx:21
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:89
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:95
 msgid "Tax"
 msgstr "Moms"
 
@@ -20206,7 +20214,7 @@ msgstr "Den här arrangören"
 msgid "This organizer profile is not published yet"
 msgstr "Den här arrangörsprofilen är inte publicerad ännu"
 
-#: src/components/forms/ProductForm/index.tsx:620
+#: src/components/forms/ProductForm/index.tsx:625
 msgid "This overrides all visibility settings and will hide the product from all customers."
 msgstr "Detta åsidosätter alla synlighetsinställningar och döljer produkten för alla kunder."
 
@@ -20230,7 +20238,7 @@ msgstr "Den här produkten är markerad på evenemangssidan"
 msgid "This product is sold out"
 msgstr "Den här produkten är slutsåld"
 
-#: src/components/forms/ProductForm/index.tsx:556
+#: src/components/forms/ProductForm/index.tsx:561
 msgid "This product won't appear on the event page on its own — buyers only see it as an add-on to the products it's attached to."
 msgstr "Den här produkten visas inte separat på evenemangssidan – köpare ser den bara som tillägg till de produkter den är kopplad till."
 
@@ -20720,7 +20728,7 @@ msgstr "totalt"
 #: src/components/layouts/CheckIn/tabs/StatsTab.tsx:99
 #: src/components/modals/ManageOrderModal/index.tsx:117
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:359
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
 #: src/ee/box-office/components/layouts/BoxOffice/tabs/OrdersTab.tsx:114
 msgid "Total"
 msgstr "Totalt"
@@ -21069,7 +21077,7 @@ msgstr "Det gick inte att checka ut deltagaren"
 msgid "Unable to complete sale"
 msgstr "Kunde inte slutföra försäljningen"
 
-#: src/components/modals/CreateProductModal/index.tsx:70
+#: src/components/modals/CreateProductModal/index.tsx:71
 msgid "Unable to create product. Please check the your details"
 msgstr "Det gick inte att skapa produkten. Kontrollera dina uppgifter"
 
@@ -21081,7 +21089,7 @@ msgstr "Det gick inte att skapa produkten. Kontrollera dina uppgifter"
 msgid "Unable to delete the widget"
 msgstr "Det gick inte att ta bort widgeten"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:121
+#: src/components/modals/DuplicateProductModal/index.tsx:123
 msgid "Unable to duplicate product. Please check the your details"
 msgstr "Det gick inte att duplicera produkten. Kontrollera dina uppgifter"
 
@@ -21332,7 +21340,7 @@ msgstr "Ej betrodd"
 msgid "Unverified"
 msgstr "Overifierad"
 
-#: src/components/forms/ProductForm/ledgerSummaries.ts:118
+#: src/components/forms/ProductForm/ledgerSummaries.ts:128
 msgid "Up to {max} per order"
 msgstr "Upp till {max} per order"
 
@@ -22573,6 +22581,10 @@ msgstr "När ett evenemang arkiveras"
 msgid "When an event is updated"
 msgstr "När ett evenemang uppdateras"
 
+#: src/components/forms/ProductForm/index.tsx:540
+msgid "When an order asks for more than remain, it goes through as long as at least one is left. The product, or the current tier, then sells out and the next tier opens. Shared capacity limits still apply."
+msgstr "Om en beställning ber om fler än vad som finns kvar går den igenom så länge minst en finns kvar. Produkten, eller den aktuella nivån, blir sedan slutsåld och nästa nivå öppnas. Delade kapacitetsgränser gäller fortfarande."
+
 #: src/components/common/WidgetEditor/InstallPanel.tsx:94
 msgid "When an order completes, the widget fires an hievents:order-completed event on your page with the order total and currency. This example sends it to Google Analytics and Meta."
 msgstr "När en beställning slutförs skickar widgeten ett hievents:order-completed-event på din sida med beställningens totalbelopp och valuta. Det här exemplet skickar det till Google Analytics och Meta."
@@ -22905,7 +22917,7 @@ msgstr "Du kan välja upp till {max} platser per beställning"
 msgid "You can configure additional service fees and taxes in your account settings."
 msgstr "Du kan konfigurera ytterligare serviceavgifter och skatter i dina kontoinställningar."
 
-#: src/components/forms/ProductForm/index.tsx:612
+#: src/components/forms/ProductForm/index.tsx:617
 msgid "You can create a promo code which targets this product on the"
 msgstr "Du kan skapa en kampanjkod som riktar sig mot den här produkten på"
 
