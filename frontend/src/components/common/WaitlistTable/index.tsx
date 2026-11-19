@@ -178,6 +178,9 @@ export const WaitlistTable = ({eventId, entries, event}: WaitlistTableProps) => 
                 cell: (info: CellContext<WaitlistEntry, unknown>) => {
                     const entry = info.row.original;
                     const title = entry.product?.title || '';
+                    if (entry.any_tier) {
+                        return `${title} - ${t`Any tier`}`;
+                    }
                     const label = entry.product_price?.label;
                     return label ? `${title} - ${label}` : title;
                 }

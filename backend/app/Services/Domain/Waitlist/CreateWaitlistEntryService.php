@@ -36,27 +36,33 @@ class CreateWaitlistEntryService
         ?PromoCodeDomainObject $promoCode = null,
     ): WaitlistEntryDomainObject {
         $this->validateWaitlistEnabled($product);
-        $this->validateOnPublicSaleOrUpcoming($product, $productPrice, $promoCode);
-        $awaitingSaleStart = $product->isBeforeSaleStartDate() || $productPrice->isBeforeSaleStartDate();
+
+        $anyTier = $product->isTieredType();
+        $queuePrice = $anyTier ? $product->getWaitlistablePrices()->first() : $productPrice;
+
+        $this->validateOnPublicSaleOrUpcoming($product, $queuePrice, $anyTier, $promoCode);
+
+        $queuePriceId = $queuePrice->getId();
+        $nextSaleStartAt = $product->getNextSaleStartDate($queuePrice);
         $promoCodeId = $promoCode?->getId();
 
         /** @var WaitlistEntryDomainObject $entry */
-        $entry = $this->databaseManager->transaction(function () use ($dto, $awaitingSaleStart, $promoCodeId) {
-            $this->waitlistEntryRepository->lockForProductPrice($dto->product_price_id, $dto->event_occurrence_id);
-            $this->validateNoDuplicate($dto);
-            $position = $this->calculatePosition($dto);
+        $entry = $this->databaseManager->transaction(function () use ($dto, $queuePriceId, $anyTier, $nextSaleStartAt, $promoCodeId) {
+            $this->waitlistEntryRepository->lockForProductPrice($queuePriceId, $dto->event_occurrence_id);
+            $this->validateNoDuplicate($dto, $queuePriceId);
 
             return $this->waitlistEntryRepository->create([
                 'event_id' => $dto->event_id,
-                'product_price_id' => $dto->product_price_id,
+                'product_price_id' => $queuePriceId,
                 'event_occurrence_id' => $dto->event_occurrence_id,
                 'email' => EmailHelper::normalize($dto->email),
                 'first_name' => trim($dto->first_name),
                 'last_name' => $dto->last_name ? trim($dto->last_name) : null,
                 'status' => WaitlistEntryStatus::WAITING->name,
                 'cancel_token' => Str::random(64),
-                'position' => $position,
-                'awaiting_sale_start' => $awaitingSaleStart,
+                'position' => $this->waitlistEntryRepository->getMaxPosition($queuePriceId, $dto->event_occurrence_id) + 1,
+                'any_tier' => $anyTier,
+                'next_sale_start_at' => $nextSaleStartAt,
                 'promo_code_id' => $promoCodeId,
                 'locale' => $dto->locale,
             ]);
@@ -86,29 +92,40 @@ class CreateWaitlistEntryService
      */
     private function validateOnPublicSaleOrUpcoming(
         ProductDomainObject $product,
-        ProductPriceDomainObject $productPrice,
+        ?ProductPriceDomainObject $queuePrice,
+        bool $anyTier,
         ?PromoCodeDomainObject $promoCode,
     ): void {
-        $priceHiddenUntilSaleStart = $productPrice->isBeforeSaleStartDate() && $product->getHideBeforeSaleStartDate();
-
         if (! $product->isOnPublicSaleOrUpcoming($promoCode)
-            || ! $productPrice->isOnSaleOrUpcoming()
-            || $priceHiddenUntilSaleStart
+            || $queuePrice === null
+            || ! $queuePrice->isOnSaleOrUpcoming()
+            || ($product->getHideBeforeSaleStartDate() && $this->isHiddenUntilSaleStart($product, $queuePrice, $anyTier))
         ) {
             throw new ResourceConflictException(__('Waitlist is not enabled for this product'));
         }
     }
 
+    private function isHiddenUntilSaleStart(ProductDomainObject $product, ProductPriceDomainObject $queuePrice, bool $anyTier): bool
+    {
+        if (! $anyTier) {
+            return $queuePrice->isBeforeSaleStartDate();
+        }
+
+        return $product->getWaitlistablePrices()->every(
+            fn (ProductPriceDomainObject $price) => $price->isBeforeSaleStartDate()
+        );
+    }
+
     /**
      * @throws ResourceConflictException
      */
-    private function validateNoDuplicate(CreateWaitlistEntryDTO $dto): void
+    private function validateNoDuplicate(CreateWaitlistEntryDTO $dto, int $queuePriceId): void
     {
         $conditions = [
             'email' => EmailHelper::normalize($dto->email),
             'event_id' => $dto->event_id,
             ['status', 'in', [WaitlistEntryStatus::WAITING->name, WaitlistEntryStatus::OFFERED->name]],
-            'product_price_id' => $dto->product_price_id,
+            'product_price_id' => $queuePriceId,
             'event_occurrence_id' => $dto->event_occurrence_id,
         ];
 
@@ -119,10 +136,5 @@ class CreateWaitlistEntryService
                 __('You are already on the waitlist for this product')
             );
         }
-    }
-
-    private function calculatePosition(CreateWaitlistEntryDTO $dto): int
-    {
-        return $this->waitlistEntryRepository->getMaxPosition($dto->product_price_id, $dto->event_occurrence_id) + 1;
     }
 }

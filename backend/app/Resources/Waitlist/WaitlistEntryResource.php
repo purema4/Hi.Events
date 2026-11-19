@@ -20,6 +20,7 @@ class WaitlistEntryResource extends BaseResource
             'id' => $this->getId(),
             'event_id' => $this->getEventId(),
             'product_price_id' => $this->getProductPriceId(),
+            'any_tier' => $this->getAnyTier(),
             'event_occurrence_id' => $this->getEventOccurrenceId(),
             'email' => $this->getEmail(),
             'first_name' => $this->getFirstName(),

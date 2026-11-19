@@ -1,5 +1,5 @@
 import {Currency, getExclusiveFeeNote, getInclusiveFeeNote, ProductPriceDisplay} from "../../../../../common/Currency";
-import {Event, IdParam, Product, ProductPrice, TaxAndFeeType} from "../../../../../../types.ts";
+import {Event, EventType, IdParam, Product, ProductPrice, TaxAndFeeType} from "../../../../../../types.ts";
 import {TextInput} from "@mantine/core";
 import {NumberSelector} from "../../../../../common/NumberSelector";
 import {UseFormReturnType} from "@mantine/form";
@@ -7,6 +7,8 @@ import {t} from "@lingui/macro";
 import {IconClock} from "@tabler/icons-react";
 import {useEffect, useRef, useState} from "react";
 import {ProductPriceAvailability} from "../../../../../common/ProductPriceAvailability";
+import {JoinWaitlistButton} from "../../../../../common/JoinWaitlistButton";
+import {canJoinTieredWaitlist} from "../../../../../../utilites/waitlist.ts";
 import {formatCurrency, getCurrencySymbol} from "../../../../../../utilites/currency.ts";
 import {FeeBreakdown, FeeBreakdownRow} from "../FeeBreakdown";
 import {getBeforeDiscountDisplayPrice} from "../../priceTotals.ts";
@@ -265,6 +267,15 @@ export const TieredPricing = ({
                     </div>
                 );
             })}
+            {product.type === 'TIERED' && product.prices?.[0] && canJoinTieredWaitlist(product)
+                && (event.type !== EventType.RECURRING || eventOccurrenceId) && (
+                <div className={'hi-tier-waitlist-row'}>
+                    <JoinWaitlistButton product={product}
+                                        event={event}
+                                        productPriceId={product.prices[0].id}
+                                        eventOccurrenceId={eventOccurrenceId}/>
+                </div>
+            )}
         </>
     );
 }

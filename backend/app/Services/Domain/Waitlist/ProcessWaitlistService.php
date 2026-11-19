@@ -7,6 +7,7 @@ use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\DomainObjects\Generated\EventOccurrenceDomainObjectAbstract;
 use HiEvents\DomainObjects\OrderDomainObject;
+use HiEvents\DomainObjects\ProductDomainObject;
 use HiEvents\DomainObjects\ProductPriceDomainObject;
 use HiEvents\DomainObjects\PromoCodeDomainObject;
 use HiEvents\DomainObjects\Status\WaitlistEntryStatus;
@@ -78,9 +79,8 @@ class ProcessWaitlistService
             $this->transactionLockService->lockEvent($event->getId());
             $this->waitlistEntryRepository->lockForProductPrice($productPriceId, $eventOccurrenceId);
 
-            $entries = $eventOccurrenceId !== null
-                ? $this->waitlistEntryRepository->getNextWaitingEntries($productPriceId, eventOccurrenceId: $eventOccurrenceId)
-                : $this->waitlistEntryRepository->getNextWaitingEntries($productPriceId);
+            $product = $this->loadProductWithPrices($productPriceId);
+            $entries = $this->getWaitingEntriesFor($product, $productPriceId, $eventOccurrenceId);
 
             if ($entries->isEmpty()) {
                 throw new NoCapacityAvailableException(
@@ -95,14 +95,10 @@ class ProcessWaitlistService
             }
 
             $offeredEntries = collect();
-            $priceQuantitiesByOccurrence = [];
-            $offeredTicketsByOccurrenceAndPrice = [];
+            $quantitiesByOccurrence = [];
+            $offeredTicketsByOccurrence = [];
 
             foreach ($entries as $entry) {
-                if ($entry->getAwaitingSaleStart()) {
-                    continue;
-                }
-
                 try {
                     $occurrenceId = $this->resolveEventOccurrenceId($event, $entry);
                 } catch (ResourceConflictException|ResourceNotFoundException) {
@@ -113,28 +109,22 @@ class ProcessWaitlistService
                     continue;
                 }
 
-                $priceId = $entry->getProductPriceId();
+                $quantitiesByOccurrence[$occurrenceId] ??= $this->availableQuantitiesService->getAvailableProductQuantities(
+                    $event->getId(),
+                    ignoreCache: true,
+                    eventOccurrenceId: $occurrenceId,
+                )->productQuantities;
+                $offeredTickets = $offeredTicketsByOccurrence[$occurrenceId] ?? [];
 
-                if (! isset($priceQuantitiesByOccurrence[$occurrenceId][$priceId])) {
-                    $quantities = $this->availableQuantitiesService->getAvailableProductQuantities(
-                        $event->getId(),
-                        ignoreCache: true,
-                        eventOccurrenceId: $occurrenceId,
-                    );
-                    $priceQuantitiesByOccurrence[$occurrenceId][$priceId] = $this->findPriceQuantities($quantities, $priceId);
-                    $offeredTicketsByOccurrenceAndPrice[$occurrenceId][$priceId] = 0;
-                }
+                $offeredPrice = $this->findOfferablePrice($entry, $product, $quantitiesByOccurrence[$occurrenceId], $offeredTickets);
 
-                $priceQuantities = $priceQuantitiesByOccurrence[$occurrenceId][$priceId];
-                $offeredTickets = $offeredTicketsByOccurrenceAndPrice[$occurrenceId][$priceId];
-
-                if ($priceQuantities === null || ! $this->hasRoomForOffer($priceQuantities, $offeredTickets)) {
+                if ($offeredPrice === null) {
                     continue;
                 }
 
-                $updatedEntry = $this->offerEntry($entry, $event, $eventSettings);
-                $offeredEntries->push($updatedEntry);
-                $offeredTicketsByOccurrenceAndPrice[$occurrenceId][$priceId] += $priceQuantities->minimumPerOrder();
+                $offeredEntries->push($this->offerEntry($entry, $event, $eventSettings, $offeredPrice));
+                $offeredTicketsByOccurrence[$occurrenceId][$offeredPrice->getId()] = ($offeredTickets[$offeredPrice->getId()] ?? 0)
+                    + $this->findPriceQuantities($quantitiesByOccurrence[$occurrenceId], $offeredPrice->getId())->minimumPerOrder();
 
                 if ($offeredEntries->count() >= $quantity) {
                     break;
@@ -151,9 +141,6 @@ class ProcessWaitlistService
         });
     }
 
-    /**
-     * @return Collection<int, WaitlistEntryDomainObject>
-     */
     public function offerSpecificEntry(
         int $entryId,
         int $eventId,
@@ -206,13 +193,15 @@ class ProcessWaitlistService
                 );
             }
 
-            if (! $this->hasCapacityForEntry($entry, $event)) {
+            $offeredPrice = $this->findOfferablePriceForEntry($entry, $event, $occurrenceId);
+
+            if ($offeredPrice === null) {
                 throw new NoCapacityAvailableException(
                     __('No capacity available to offer this waitlist entry. You will need to increase the available quantity for the product or date.')
                 );
             }
 
-            $updatedEntry = $this->offerEntry($entry, $event, $eventSettings);
+            $updatedEntry = $this->offerEntry($entry, $event, $eventSettings, $offeredPrice);
 
             return collect([$updatedEntry]);
         });
@@ -251,10 +240,11 @@ class ProcessWaitlistService
         WaitlistEntryDomainObject $entry,
         EventDomainObject $event,
         EventSettingDomainObject $eventSettings,
+        ProductPriceDomainObject $offeredPrice,
     ): WaitlistEntryDomainObject {
         $offerExpiresAt = $this->calculateOfferExpiry($eventSettings);
         $sessionIdentifier = sha1(Str::uuid().Str::random(40));
-        $order = $this->createReservedOrder($entry, $event, $eventSettings, $sessionIdentifier);
+        $order = $this->createReservedOrder($entry, $event, $eventSettings, $sessionIdentifier, $offeredPrice);
 
         $this->waitlistEntryRepository->updateWhere(
             attributes: [
@@ -280,6 +270,7 @@ class ProcessWaitlistService
         EventDomainObject $event,
         EventSettingDomainObject $eventSettings,
         string $sessionIdentifier,
+        ProductPriceDomainObject $productPrice,
     ): OrderDomainObject {
         $timeoutMinutes = $eventSettings->getWaitlistOfferTimeoutMinutes() ?? self::DEFAULT_OFFER_TIMEOUT_MINUTES;
         $promoCode = $this->getUsablePromoCode($entry);
@@ -292,8 +283,6 @@ class ProcessWaitlistService
             promoCode: $promoCode,
             sessionId: $sessionIdentifier,
         );
-
-        $productPrice = $this->productPriceRepository->findById($entry->getProductPriceId());
 
         $product = $this->productRepository
             ->loadRelation(TaxAndFeesDomainObject::class)
@@ -375,28 +364,110 @@ class ProcessWaitlistService
         return $this->seatedProductLookup->isSeated($this->productPriceRepository->findById($productPriceId)->getProductId());
     }
 
-    private function hasCapacityForEntry(WaitlistEntryDomainObject $entry, EventDomainObject $event): bool
-    {
-        try {
-            $eventOccurrenceId = $this->resolveEventOccurrenceId($event, $entry);
-        } catch (ResourceConflictException|ResourceNotFoundException) {
-            return false;
-        }
-
+    private function findOfferablePriceForEntry(
+        WaitlistEntryDomainObject $entry,
+        EventDomainObject $event,
+        ?int $eventOccurrenceId,
+    ): ?ProductPriceDomainObject {
         $quantities = $this->availableQuantitiesService->getAvailableProductQuantities(
             $event->getId(),
             ignoreCache: true,
             eventOccurrenceId: $eventOccurrenceId,
         );
 
-        $priceQuantities = $this->findPriceQuantities($quantities, $entry->getProductPriceId());
-
-        return $priceQuantities !== null && $this->hasRoomForOffer($priceQuantities);
+        return $this->findOfferablePrice(
+            $entry,
+            $this->loadProductWithPrices($entry->getProductPriceId()),
+            $quantities->productQuantities,
+        );
     }
 
-    private function findPriceQuantities(object $quantities, int $priceId): ?AvailableProductQuantitiesDTO
+    /**
+     * @param  Collection<int, AvailableProductQuantitiesDTO>  $priceQuantities
+     * @param  array<int, int>  $offeredTickets
+     */
+    private function findOfferablePrice(
+        WaitlistEntryDomainObject $entry,
+        ProductDomainObject $product,
+        Collection $priceQuantities,
+        array $offeredTickets = [],
+    ): ?ProductPriceDomainObject {
+        if (! $product->isOnSale()) {
+            return null;
+        }
+
+        if (! $entry->getAnyTier()) {
+            $price = $product->getPriceById($entry->getProductPriceId());
+            $quantities = $this->findPriceQuantities($priceQuantities, $entry->getProductPriceId());
+
+            return $price !== null && $quantities !== null && $price->isOnSale()
+                && $this->hasRoomForOffer($quantities, $offeredTickets[$price->getId()] ?? 0)
+                ? $price
+                : null;
+        }
+
+        foreach ($product->getWaitlistablePrices() as $tier) {
+            $quantities = $this->findPriceQuantities($priceQuantities, $tier->getId());
+
+            if ($quantities === null) {
+                continue;
+            }
+
+            $alreadyOffered = $offeredTickets[$tier->getId()] ?? 0;
+
+            if (! $tier->isBeforeSaleStartDate() && $this->remainingAfter($quantities->quantity_available, $alreadyOffered) <= 0) {
+                continue;
+            }
+
+            if ($tier->isOnSale() && $this->hasRoomForOffer($quantities, $alreadyOffered)) {
+                return $tier;
+            }
+
+            if ($product->getSequentialTierReleaseEnabled()) {
+                return null;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @return Collection<int, WaitlistEntryDomainObject>
+     */
+    private function getWaitingEntriesFor(ProductDomainObject $product, int $productPriceId, ?int $eventOccurrenceId): Collection
     {
-        return collect($quantities->productQuantities)
+        $entries = $eventOccurrenceId !== null
+            ? $this->waitlistEntryRepository->getNextWaitingEntries($productPriceId, eventOccurrenceId: $eventOccurrenceId)
+            : $this->waitlistEntryRepository->getNextWaitingEntries($productPriceId);
+
+        if (! $product->isTieredType()) {
+            return $entries;
+        }
+
+        $this->waitlistEntryRepository->lockForProduct($product->getId(), $eventOccurrenceId);
+
+        return $entries
+            ->reject(fn (WaitlistEntryDomainObject $entry) => $entry->getAnyTier())
+            ->merge($this->waitlistEntryRepository->getNextWaitingAnyTierEntries($product->getId(), $eventOccurrenceId))
+            ->sortBy(fn (WaitlistEntryDomainObject $entry) => $entry->getId())
+            ->values();
+    }
+
+    private function loadProductWithPrices(int $productPriceId): ProductDomainObject
+    {
+        $productPrice = $this->productPriceRepository->findById($productPriceId);
+
+        return $this->productRepository
+            ->loadRelation(ProductPriceDomainObject::class)
+            ->findById($productPrice->getProductId());
+    }
+
+    /**
+     * @param  Collection<int, AvailableProductQuantitiesDTO>  $priceQuantities
+     */
+    private function findPriceQuantities(Collection $priceQuantities, int $priceId): ?AvailableProductQuantitiesDTO
+    {
+        return $priceQuantities
             ->first(fn (AvailableProductQuantitiesDTO $productQuantity) => $productQuantity->price_id === $priceId);
     }
 

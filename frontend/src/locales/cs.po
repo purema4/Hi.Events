@@ -1228,7 +1228,7 @@ msgstr "Vyžadována akce: Potřebné informace o DPH"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:548
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:555
 #: src/components/common/WaitlistTable/index.tsx:57
-#: src/components/common/WaitlistTable/index.tsx:237
+#: src/components/common/WaitlistTable/index.tsx:240
 #: src/components/routes/admin/FailedJobs/index.tsx:167
 #: src/components/routes/event/Lineup/ProfileDrawer.tsx:187
 msgid "Actions"
@@ -1676,7 +1676,7 @@ msgstr "Pouze doplňky"
 msgid "Added"
 msgstr "Přidáno"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:84
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:86
 msgid "Added at checkout"
 msgstr "Přidáno v pokladně"
 
@@ -2152,7 +2152,7 @@ msgid "Amazing, Event, Keywords..."
 msgstr "Úžasná, událost, klíčová slova..."
 
 #: src/components/common/OrdersTable/index.tsx:281
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:217
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:219
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:69
 msgid "Amount"
 msgstr "Částka"
@@ -2330,6 +2330,10 @@ msgstr "Veškeré dotazy od držitelů produktů budou odeslány na tuto e-mailo
 #: src/components/common/CapacityHelp/index.tsx:151
 msgid "Any single date can differ: change its capacity in Edit Date, or a ticket's per-date quantity on that date's Products tab."
 msgstr "Každý termín se může lišit: jeho kapacitu změníte v Upravit termín, množství vstupenky na termín pak na kartě Produkty daného termínu."
+
+#: src/components/common/WaitlistTable/index.tsx:182
+msgid "Any tier"
+msgstr "Jakákoli cenová úroveň"
 
 #: src/components/common/WidgetEditor/installGuides.ts:31
 msgid "Any website (HTML)"
@@ -3214,7 +3218,7 @@ msgid "Bar"
 msgstr "Bar"
 
 #: src/components/routes/event/OccurrencesTab/PriceOverrideForm/index.tsx:306
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:90
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
 msgid "Base price"
 msgstr "Základní cena"
 
@@ -4619,8 +4623,8 @@ msgstr "zavřít"
 #: src/components/layouts/EventHomepage/Lineup/SessionModal.tsx:86
 #: src/components/layouts/EventHomepage/Sections/GallerySection.tsx:122
 #: src/components/modals/CreateEventModal/index.tsx:288
-#: src/components/modals/JoinWaitlistModal/index.tsx:121
-#: src/components/modals/JoinWaitlistModal/index.tsx:148
+#: src/components/modals/JoinWaitlistModal/index.tsx:130
+#: src/components/modals/JoinWaitlistModal/index.tsx:157
 #: src/components/modals/RefundOrderModal/index.tsx:172
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:892
 #: src/components/routes/product-widget/SelectProducts/index.tsx:1245
@@ -6118,7 +6122,7 @@ msgstr "Nástěnka"
 #: src/components/common/AdminOrdersTable/index.tsx:94
 #: src/components/common/CheckInListTable/index.tsx:107
 #: src/components/common/OrderDetails/index.tsx:44
-#: src/components/common/WaitlistTable/index.tsx:187
+#: src/components/common/WaitlistTable/index.tsx:190
 #: src/components/common/WidgetEditor/ContentFields.tsx:77
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:117
 #: src/components/forms/QuestionForm/questionTypes.ts:29
@@ -7354,7 +7358,7 @@ msgstr "Způsobilé seznamy pro odbavení"
 #: src/components/common/OrderDetails/index.tsx:34
 #: src/components/forms/AffiliateForm/index.tsx:89
 #: src/components/modals/InviteUserModal/index.tsx:61
-#: src/components/modals/JoinWaitlistModal/index.tsx:194
+#: src/components/modals/JoinWaitlistModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:174
 #: src/components/modals/ManageOrderModal/index.tsx:141
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:165
@@ -7846,7 +7850,7 @@ msgstr "Vchod"
 msgid "entries"
 msgstr "záznamy"
 
-#: src/components/common/WaitlistTable/index.tsx:267
+#: src/components/common/WaitlistTable/index.tsx:270
 msgid "Entries will appear here when customers join the waitlist for sold out products."
 msgstr "Záznamy se zde zobrazí, když se zákazníci přihlásí na seznam čekajících u vyprodaných produktů."
 
@@ -8810,7 +8814,7 @@ msgstr "Poplatek aktualizován"
 #: src/components/common/OrdersTable/index.tsx:292
 #: src/components/forms/ProductForm/index.tsx:497
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
 msgid "Fees"
 msgstr "Poplatky"
@@ -8959,7 +8963,7 @@ msgstr "Jméno"
 
 #: src/components/modals/EditUserModal/index.tsx:87
 #: src/components/modals/InviteUserModal/index.tsx:54
-#: src/components/modals/JoinWaitlistModal/index.tsx:184
+#: src/components/modals/JoinWaitlistModal/index.tsx:193
 #: src/components/routes/auth/AcceptInvitation/index.tsx:226
 #: src/components/routes/auth/Register/index.tsx:139
 #: src/components/routes/product-widget/CollectInformation/index.tsx:520
@@ -8969,7 +8973,7 @@ msgstr "Jméno"
 msgid "First Name"
 msgstr "Jméno"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:58
+#: src/components/modals/JoinWaitlistModal/index.tsx:61
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:31
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:31
 msgid "First name is required"
@@ -9122,8 +9126,8 @@ msgstr "Foyer"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:160
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:170
 #: src/components/forms/ProductForm/index.tsx:296
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:161
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:233
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:163
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:235
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:37
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:54
 #: src/ee/box-office/utilites/boxOfficeTender.ts:15
@@ -9943,7 +9947,7 @@ msgstr "Beru na vědomí své povinnosti jako správce údajů"
 msgid "I agree to follow the event code of conduct"
 msgstr "Souhlasím s dodržováním pravidel chování na události"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:200
+#: src/components/modals/JoinWaitlistModal/index.tsx:209
 msgid "I agree to receive email notifications related to this event"
 msgstr "Souhlasím se zasíláním e-mailových upozornění týkajících se této události"
 
@@ -10447,15 +10451,15 @@ msgid "Join from anywhere"
 msgstr "Připojte se odkudkoli"
 
 #: src/components/common/JoinWaitlistButton/index.tsx:38
-#: src/components/modals/JoinWaitlistModal/index.tsx:212
+#: src/components/modals/JoinWaitlistModal/index.tsx:221
 msgid "Join Waitlist"
 msgstr "Přidat se na čekací listinu"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:161
+#: src/components/modals/JoinWaitlistModal/index.tsx:170
 msgid "Join Waitlist for {productDisplayName}"
 msgstr "Přidat se na čekací listinu pro {productDisplayName}"
 
-#: src/components/common/WaitlistTable/index.tsx:224
+#: src/components/common/WaitlistTable/index.tsx:227
 msgid "Joined"
 msgstr "Připojil se"
 
@@ -10662,7 +10666,7 @@ msgstr "Příjmení"
 
 #: src/components/modals/EditUserModal/index.tsx:88
 #: src/components/modals/InviteUserModal/index.tsx:55
-#: src/components/modals/JoinWaitlistModal/index.tsx:189
+#: src/components/modals/JoinWaitlistModal/index.tsx:198
 #: src/components/routes/auth/AcceptInvitation/index.tsx:232
 #: src/components/routes/auth/Register/index.tsx:145
 #: src/components/routes/product-widget/CollectInformation/index.tsx:529
@@ -11363,7 +11367,7 @@ msgstr "Max. zpráv / 24 h"
 msgid "Max Recipients / Message"
 msgstr "Max. příjemců / zpráva"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:72
 msgid "Maximum {cap} per order"
 msgstr "Maximálně {cap} na objednávku"
 
@@ -12592,7 +12596,7 @@ msgstr "Žádné nadcházející akce"
 msgid "No users found"
 msgstr "Nebyli nalezeni žádní uživatelé"
 
-#: src/components/common/WaitlistTable/index.tsx:263
+#: src/components/common/WaitlistTable/index.tsx:266
 msgid "No waitlist entries"
 msgstr "Žádné záznamy v pořadníku"
 
@@ -12676,8 +12680,8 @@ msgstr "Zatím nic"
 msgid "Normally {0}"
 msgstr "Běžně {0}"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:67
-#: src/components/common/ProductPriceAvailability/index.tsx:97
+#: src/components/common/ProductPriceAvailability/index.tsx:46
+#: src/components/common/ProductPriceAvailability/index.tsx:76
 msgid "Not available"
 msgstr "Není k dispozici"
 
@@ -12788,7 +12792,7 @@ msgstr "Zatím netestováno"
 msgid "Not using reserved seating, the box office or enterprise single sign-on? Remove <0>APP_LICENCE_KEY</0> and redeploy."
 msgstr "Nepoužíváte rezervovaná místa, pokladnu na místě ani podnikové jednotné přihlášení? Odeberte <0>APP_LICENCE_KEY</0> a znovu nasaďte aplikaci."
 
-#: src/components/common/ProductPriceAvailability/index.tsx:64
+#: src/components/common/ProductPriceAvailability/index.tsx:43
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:31
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:53
 msgid "Not yet on sale"
@@ -13168,7 +13172,7 @@ msgstr "Podrobnosti o online akci"
 msgid "Online ticket sales for events with reserved seating keep working."
 msgstr "Online prodej vstupenek na události s rezervovanými místy funguje dál."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:72
 msgid "Only {cap} available"
 msgstr "K dispozici pouze {cap}"
 
@@ -14115,7 +14119,7 @@ msgstr "Zaplatit nyní"
 msgid "Pay using the instructions below. {registrantName} has been emailed the order details, and the organizer will confirm the order once your payment arrives."
 msgstr "Zaplaťte podle pokynů níže. {registrantName} obdržel(a) podrobnosti objednávky e-mailem a organizátor objednávku potvrdí, jakmile vaše platba dorazí."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:216
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:218
 msgid "Pay what you want"
 msgstr "Zaplaťte, kolik chcete"
 
@@ -14612,7 +14616,7 @@ msgstr "Vytvořte prosím vstupenku"
 msgid "Please don't leave a single empty seat: {0}"
 msgstr "Nenechávejte prosím jedno osamocené volné místo: {0}"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:59
+#: src/components/modals/JoinWaitlistModal/index.tsx:62
 msgid "Please enter a valid email address"
 msgstr "Zadejte prosím platnou e-mailovou adresu"
 
@@ -16362,14 +16366,18 @@ msgstr "Prodej je pozastaven"
 msgid "Sales by licence year"
 msgstr "Prodeje podle licenčního roku"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:34
-#: src/components/common/ProductPriceAvailability/index.tsx:84
+#: src/components/common/ProductPriceAvailability/index.tsx:31
+#: src/components/common/ProductPriceAvailability/index.tsx:63
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:33
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:54
 msgid "Sales ended"
 msgstr "Prodej skončil"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:115
+#: src/components/modals/JoinWaitlistModal/index.tsx:119
+msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do, with the tier on sale at that time."
+msgstr "Prodej pro {productDisplayName} ještě nezačal. Jakmile začne, napíšeme vám v pořadí čekací listiny, za cenovou úroveň, která bude právě v prodeji."
+
+#: src/components/modals/JoinWaitlistModal/index.tsx:124
 msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do."
 msgstr "Prodej pro {productDisplayName} ještě nezačal. Jakmile začne, napíšeme vám v pořadí čekací listiny."
 
@@ -18199,8 +18207,8 @@ msgstr "vyprodáno"
 
 #: src/components/common/EventCard/index.tsx:136
 #: src/components/common/EventDateRange/index.tsx:65
-#: src/components/common/ProductPriceAvailability/index.tsx:30
-#: src/components/common/ProductPriceAvailability/index.tsx:81
+#: src/components/common/ProductPriceAvailability/index.tsx:27
+#: src/components/common/ProductPriceAvailability/index.tsx:60
 #: src/components/layouts/OrganizerEventsWidget/index.tsx:57
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:92
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:311
@@ -18311,7 +18319,7 @@ msgstr "Něco se pokazilo! Zkuste to prosím znovu"
 msgid "Something went wrong."
 msgstr "Něco se pokazilo."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:145
+#: src/components/modals/JoinWaitlistModal/index.tsx:154
 msgid "Something went wrong. Please try again later."
 msgstr "Něco se pokazilo. Zkuste to prosím znovu později."
 
@@ -18686,7 +18694,7 @@ msgstr "Statistiky"
 #: src/components/common/OrdersTable/index.tsx:342
 #: src/components/common/OrganizerWebhookTable/index.tsx:244
 #: src/components/common/ProductsTable/index.tsx:100
-#: src/components/common/WaitlistTable/index.tsx:208
+#: src/components/common/WaitlistTable/index.tsx:211
 #: src/components/common/WebhookTable/index.tsx:244
 #: src/components/forms/AffiliateForm/index.tsx:98
 #: src/components/forms/CapaciyAssigmentForm/index.tsx:56
@@ -19188,7 +19196,7 @@ msgstr "Cílení na účastníky vybraných termínů ({0})."
 #: src/components/common/OrdersTable/index.tsx:291
 #: src/components/forms/TaxAndFeeForm/index.tsx:21
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:89
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:95
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
 msgid "Tax"
 msgstr "Daň"
 
@@ -20739,7 +20747,7 @@ msgstr "celkem"
 #: src/components/layouts/CheckIn/tabs/StatsTab.tsx:99
 #: src/components/modals/ManageOrderModal/index.tsx:117
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:359
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:99
 #: src/ee/box-office/components/layouts/BoxOffice/tabs/OrdersTab.tsx:114
 msgid "Total"
 msgstr "Celkem"
@@ -21112,7 +21120,7 @@ msgstr "Účastníka se nepodařilo načíst"
 msgid "Unable to find seats. Check the connection and try again."
 msgstr "Místa se nepodařilo najít. Zkontrolujte připojení a zkuste to znovu."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:142
+#: src/components/modals/JoinWaitlistModal/index.tsx:151
 msgid "Unable to join waitlist"
 msgstr "Na čekací listinu se nepodařilo přihlásit"
 
@@ -22325,11 +22333,19 @@ msgstr "Pošleme e-mailem odkaz pro připojení k vašemu účtu."
 msgid "We'll email you the link too, and send your order confirmation as soon as they complete checkout."
 msgstr "Odkaz vám pošleme také e-mailem a potvrzení objednávky odešleme, jakmile plátce dokončí platbu."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:117
+#: src/components/modals/JoinWaitlistModal/index.tsx:121
+msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}, at the tier on sale at that time."
+msgstr "E-mailem vám dáme vědět, pokud se uvolní místo pro {productDisplayName} dne {occurrenceDate}, za cenovou úroveň, která bude právě v prodeji."
+
+#: src/components/modals/JoinWaitlistModal/index.tsx:126
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}."
 msgstr "Pokud se pro {productDisplayName} uvolní místo na termín {occurrenceDate}, dáme vám vědět e-mailem."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:118
+#: src/components/modals/JoinWaitlistModal/index.tsx:122
+msgid "We'll notify you by email if a spot becomes available for {productDisplayName}, at the tier on sale at that time."
+msgstr "E-mailem vám dáme vědět, pokud se uvolní místo pro {productDisplayName}, za cenovou úroveň, která bude právě v prodeji."
+
+#: src/components/modals/JoinWaitlistModal/index.tsx:127
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName}."
 msgstr "Pokud se uvolní místo pro {productDisplayName}, upozorníme vás e-mailem."
 
@@ -22775,7 +22791,7 @@ msgstr "Pracuje se"
 #: src/components/modals/CreatePromoCodeModal/index.tsx:59
 #: src/components/modals/EditProductCategoryModal/index.tsx:73
 #: src/components/modals/EditPromoCodeModal/index.tsx:87
-#: src/components/modals/JoinWaitlistModal/index.tsx:211
+#: src/components/modals/JoinWaitlistModal/index.tsx:220
 #: src/components/routes/auth/Register/index.tsx:188
 msgid "Working..."
 msgstr "Pracuje se..."
@@ -23031,7 +23047,7 @@ msgstr "Musíte potvrdit, že tento e-mail není propagační"
 msgid "You must acknowledge your responsibilities before saving"
 msgstr "Před uložením musíte potvrdit své povinnosti"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:60
+#: src/components/modals/JoinWaitlistModal/index.tsx:63
 msgid "You must agree to receive messages"
 msgstr "Musíte souhlasit s přijímáním zpráv"
 
@@ -23147,11 +23163,11 @@ msgstr "Měníte časy termínů"
 msgid "You're going to {0}!"
 msgstr "Jdete na {0}!"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:178
+#: src/components/modals/JoinWaitlistModal/index.tsx:187
 msgid "You're joining the waitlist for {occurrenceDate}."
 msgstr "Zapisujete se na seznam náhradníků pro termín {occurrenceDate}."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:111
+#: src/components/modals/JoinWaitlistModal/index.tsx:114
 msgid "You're on the waitlist!"
 msgstr "Jste na seznamu náhradníků!"
 

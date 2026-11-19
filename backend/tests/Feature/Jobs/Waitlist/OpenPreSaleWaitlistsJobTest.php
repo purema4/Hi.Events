@@ -3,10 +3,12 @@
 namespace Tests\Feature\Jobs\Waitlist;
 
 use DateTimeInterface;
+use HiEvents\DomainObjects\Enums\CapacityChangeDirection;
 use HiEvents\DomainObjects\Enums\EventType;
 use HiEvents\DomainObjects\Enums\ProductQuantityAppliesTo;
 use HiEvents\DomainObjects\Status\EventStatus;
 use HiEvents\DomainObjects\Status\WaitlistEntryStatus;
+use HiEvents\Events\CapacityChangedEvent;
 use HiEvents\Jobs\Waitlist\OpenPreSaleWaitlistsJob;
 use HiEvents\Jobs\Waitlist\SendWaitlistConfirmationEmailJob;
 use HiEvents\Jobs\Waitlist\SendWaitlistOfferEmailJob;
@@ -58,12 +60,11 @@ class OpenPreSaleWaitlistsJobTest extends TestCase
 
         $this->joinWaitlist($priceId, 'first@example.com')->assertCreated();
 
-        $this->assertDatabaseHas('waitlist_entries', [
-            'email' => 'first@example.com',
-            'product_price_id' => $priceId,
-            'status' => WaitlistEntryStatus::WAITING->name,
-            'awaiting_sale_start' => true,
-        ]);
+        $entry = DB::table('waitlist_entries')->where('email', 'first@example.com')->first();
+        $this->assertSame($priceId, $entry->product_price_id);
+        $this->assertSame(WaitlistEntryStatus::WAITING->name, $entry->status);
+        $this->assertNotNull($entry->next_sale_start_at);
+        $this->assertFalse($entry->any_tier);
     }
 
     public function test_a_product_hidden_until_its_sale_starts_cannot_be_waitlisted_early(): void
@@ -81,11 +82,9 @@ class OpenPreSaleWaitlistsJobTest extends TestCase
 
         app()->call([new OpenPreSaleWaitlistsJob, 'handle']);
 
-        $this->assertDatabaseHas('waitlist_entries', [
-            'email' => 'first@example.com',
-            'status' => WaitlistEntryStatus::WAITING->name,
-            'awaiting_sale_start' => true,
-        ]);
+        $entry = DB::table('waitlist_entries')->where('email', 'first@example.com')->first();
+        $this->assertSame(WaitlistEntryStatus::WAITING->name, $entry->status);
+        $this->assertNotNull($entry->next_sale_start_at);
     }
 
     public function test_when_sales_open_the_waitlist_gets_offers_in_order_up_to_the_quantity(): void
@@ -105,7 +104,7 @@ class OpenPreSaleWaitlistsJobTest extends TestCase
             'second@example.com' => WaitlistEntryStatus::OFFERED->name,
             'third@example.com' => WaitlistEntryStatus::WAITING->name,
         ], $statuses);
-        $this->assertSame(0, DB::table('waitlist_entries')->where('product_price_id', $priceId)->where('awaiting_sale_start', true)->count());
+        $this->assertSame(0, DB::table('waitlist_entries')->where('product_price_id', $priceId)->whereNotNull('next_sale_start_at')->count());
         Bus::assertDispatchedTimes(SendWaitlistOfferEmailJob::class, 2);
     }
 
@@ -194,8 +193,105 @@ class OpenPreSaleWaitlistsJobTest extends TestCase
         $this->assertDatabaseHas('waitlist_entries', [
             'email' => 'first@example.com',
             'status' => WaitlistEntryStatus::WAITING->name,
-            'awaiting_sale_start' => false,
+            'next_sale_start_at' => null,
         ]);
+    }
+
+    public function test_a_tiered_ticket_has_one_waitlist_for_all_its_tiers(): void
+    {
+        [$tierOne, $tierTwo] = $this->insertTieredProduct(saleStartsAt: now()->addDay(), tiers: [[2, 0], [10, 0]]);
+
+        $this->joinWaitlist($tierTwo, 'first@example.com')->assertCreated();
+        $this->joinWaitlist($tierOne, 'first@example.com')->assertStatus(409);
+
+        $entry = DB::table('waitlist_entries')->where('email', 'first@example.com')->first();
+        $this->assertTrue($entry->any_tier);
+        $this->assertSame($tierOne, $entry->product_price_id);
+    }
+
+    public function test_when_sales_open_each_person_is_offered_the_tier_on_sale_at_that_moment(): void
+    {
+        [$tierOne, $tierTwo] = $this->insertTieredProduct(saleStartsAt: now()->addDay(), tiers: [[2, 0], [10, 0]]);
+        foreach (['first', 'second', 'third'] as $name) {
+            $this->joinWaitlist($tierOne, "{$name}@example.com")->assertCreated();
+        }
+
+        DB::table('products')->where('id', $this->productIdOf($tierOne))->update(['sale_start_date' => now()->subMinute()]);
+        app()->call([new OpenPreSaleWaitlistsJob, 'handle']);
+
+        $this->assertSame([
+            'first@example.com' => $tierOne,
+            'second@example.com' => $tierOne,
+            'third@example.com' => $tierTwo,
+        ], $this->offeredPriceByEmail());
+    }
+
+    public function test_a_tier_that_opens_later_triggers_the_offers_when_it_opens(): void
+    {
+        [$tierOne, $tierTwo] = $this->insertTieredProduct(saleStartsAt: now()->subDay(), tiers: [[5, 5], [10, 0, now()->addDay()]]);
+
+        $this->joinWaitlist($tierOne, 'first@example.com')->assertCreated();
+        $this->assertNotNull(DB::table('waitlist_entries')->where('email', 'first@example.com')->value('next_sale_start_at'));
+
+        app()->call([new OpenPreSaleWaitlistsJob, 'handle']);
+        $this->assertSame([], $this->offeredPriceByEmail());
+
+        DB::table('product_prices')->where('id', $tierTwo)->update(['sale_start_date' => now()->subMinute()]);
+        app()->call([new OpenPreSaleWaitlistsJob, 'handle']);
+
+        $this->assertSame(['first@example.com' => $tierTwo], $this->offeredPriceByEmail());
+    }
+
+    public function test_a_sold_out_tiered_ticket_offers_the_tier_that_reopens(): void
+    {
+        [$tierOne, $tierTwo] = $this->insertTieredProduct(saleStartsAt: now()->subDay(), tiers: [[5, 5], [5, 5]]);
+        $this->joinWaitlist($tierTwo, 'first@example.com')->assertCreated();
+
+        DB::table('product_prices')->where('id', $tierOne)->update(['quantity_sold' => 4]);
+        event(new CapacityChangedEvent(
+            eventId: $this->eventId,
+            direction: CapacityChangeDirection::INCREASED,
+            productId: $this->productIdOf($tierOne),
+            productPriceId: $tierOne,
+            eventOccurrenceId: $this->occurrenceId,
+        ));
+
+        $this->assertSame(['first@example.com' => $tierOne], $this->offeredPriceByEmail());
+    }
+
+    /**
+     * @param  array<int, array{0: int, 1: int, 2?: DateTimeInterface}>  $tiers
+     * @return array<int, int>
+     */
+    private function insertTieredProduct(DateTimeInterface $saleStartsAt, array $tiers): array
+    {
+        $productId = $this->insertProduct(priceType: 'TIERED');
+        DB::table('products')->where('id', $productId)->update([
+            'waitlist_enabled' => true,
+            'sale_start_date' => $saleStartsAt,
+            'sequential_tier_release_enabled' => true,
+        ]);
+
+        return collect($tiers)->map(function (array $tier, int $index) use ($productId) {
+            $priceId = $this->insertPrice($productId, initialQuantity: $tier[0], appliesTo: ProductQuantityAppliesTo::EVENT->name, quantitySold: $tier[1], label: 'Tier '.($index + 1), price: 0.00);
+            DB::table('product_prices')->where('id', $priceId)->update(['order' => $index + 1, 'sale_start_date' => $tier[2] ?? null]);
+
+            return $priceId;
+        })->all();
+    }
+
+    /**
+     * @return array<string, int>
+     */
+    private function offeredPriceByEmail(): array
+    {
+        return DB::table('waitlist_entries')
+            ->join('order_items', 'order_items.order_id', '=', 'waitlist_entries.order_id')
+            ->where('waitlist_entries.status', WaitlistEntryStatus::OFFERED->name)
+            ->orderBy('waitlist_entries.id')
+            ->pluck('order_items.product_price_id', 'waitlist_entries.email')
+            ->map(fn ($priceId) => (int) $priceId)
+            ->all();
     }
 
     private function insertWaitlistedPrice(DateTimeInterface $saleStartsAt, int $quantity = 10, string $priceType = 'FREE', float $price = 0.00): int

@@ -11,7 +11,7 @@ import {detectMode} from "../../../utilites/themeUtils.ts";
 import {BouncingEmoji} from "../../common/BouncingEmoji";
 import {formatDateWithLocale, getSafeLocale} from "../../../utilites/dates.ts";
 import {getClientLocale} from "../../../locales.ts";
-import {isAwaitingSaleStart} from "../../../utilites/waitlist.ts";
+import {isAwaitingSaleStart, isTieredProductAwaitingSaleStart} from "../../../utilites/waitlist.ts";
 
 const DEFAULT_ACCENT = '#7c3aed';
 
@@ -31,7 +31,10 @@ export const JoinWaitlistModal = ({onClose, product, event, productPriceId, even
     const [errorMessage, setErrorMessage] = useState('');
 
     const productDisplayName = priceLabel ? `${product?.title} - ${priceLabel}` : product?.title;
-    const salesNotOpenYet = isAwaitingSaleStart(product, product?.prices?.find(price => Number(price.id) === Number(productPriceId)));
+    const isAnyTier = product?.type === 'TIERED';
+    const salesNotOpenYet = isAnyTier
+        ? isTieredProductAwaitingSaleStart(product)
+        : isAwaitingSaleStart(product, product?.prices?.find(price => Number(price.id) === Number(productPriceId)));
 
     const occurrence = (event?.type === EventType.RECURRING && eventOccurrenceId)
         ? event?.occurrences?.find(o => Number(o.id) === Number(eventOccurrenceId))
@@ -111,11 +114,17 @@ export const JoinWaitlistModal = ({onClose, product, event, productPriceId, even
                             {t`You're on the waitlist!`}
                         </Text>
                         <Text size="sm" c="dimmed" mb="xl">
-                            {salesNotOpenYet
-                                ? t`Sales for ${productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do.`
-                                : occurrenceDate
-                                    ? t`We'll notify you by email if a spot becomes available for ${productDisplayName} on ${occurrenceDate}.`
-                                    : t`We'll notify you by email if a spot becomes available for ${productDisplayName}.`}
+                            {isAnyTier
+                                ? (salesNotOpenYet
+                                    ? t`Sales for ${productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do, with the tier on sale at that time.`
+                                    : occurrenceDate
+                                        ? t`We'll notify you by email if a spot becomes available for ${productDisplayName} on ${occurrenceDate}, at the tier on sale at that time.`
+                                        : t`We'll notify you by email if a spot becomes available for ${productDisplayName}, at the tier on sale at that time.`)
+                                : salesNotOpenYet
+                                    ? t`Sales for ${productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do.`
+                                    : occurrenceDate
+                                        ? t`We'll notify you by email if a spot becomes available for ${productDisplayName} on ${occurrenceDate}.`
+                                        : t`We'll notify you by email if a spot becomes available for ${productDisplayName}.`}
                         </Text>
                         <Button fullWidth onClick={handleClose}>
                             {t`Close`}

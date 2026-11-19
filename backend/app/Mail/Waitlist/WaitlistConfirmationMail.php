@@ -80,7 +80,7 @@ class WaitlistConfirmationMail extends BaseMail implements ContainsEventContent
 
         $name = $this->product->getTitle();
 
-        if ($this->productPrice?->getLabel()) {
+        if ($this->productPrice?->getLabel() && ! $this->entry->getAnyTier()) {
             $name .= ' - '.$this->productPrice->getLabel();
         }
 

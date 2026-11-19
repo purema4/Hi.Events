@@ -292,6 +292,13 @@
     }
   }
 
+  .hi-tier-waitlist-row {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 12px;
+    border-top: 1px solid var(--hi-hairline);
+  }
+
   .hi-price-tier-main {
     display: flex;
     flex-wrap: wrap;

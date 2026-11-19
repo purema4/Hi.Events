@@ -72,7 +72,8 @@ class CreateWaitlistEntryServiceTest extends TestCase
 
         $product = Mockery::mock(ProductDomainObject::class);
         $product->shouldReceive('isOnPublicSaleOrUpcoming')->andReturn(true);
-        $product->shouldReceive('isBeforeSaleStartDate')->andReturn(false);
+        $product->shouldReceive('isTieredType')->andReturn(false);
+        $product->shouldReceive('getNextSaleStartDate')->andReturn(null);
         $product->shouldReceive('getHideBeforeSaleStartDate')->andReturn(false);
         $product->shouldReceive('getWaitlistEnabled')->andReturn(true);
         $product->shouldReceive('getId')->andReturn(5);
@@ -127,7 +128,7 @@ class CreateWaitlistEntryServiceTest extends TestCase
             }))
             ->andReturn($createdEntry);
 
-        $result = $this->service->createEntry($dto, $eventSettings, $product, new ProductPriceDomainObject);
+        $result = $this->service->createEntry($dto, $eventSettings, $product, (new ProductPriceDomainObject)->setId(10));
 
         $this->assertInstanceOf(WaitlistEntryDomainObject::class, $result);
         $this->assertEquals(4, $result->getPosition());
@@ -150,7 +151,8 @@ class CreateWaitlistEntryServiceTest extends TestCase
 
         $product = Mockery::mock(ProductDomainObject::class);
         $product->shouldReceive('isOnPublicSaleOrUpcoming')->andReturn(true);
-        $product->shouldReceive('isBeforeSaleStartDate')->andReturn(false);
+        $product->shouldReceive('isTieredType')->andReturn(false);
+        $product->shouldReceive('getNextSaleStartDate')->andReturn(null);
         $product->shouldReceive('getHideBeforeSaleStartDate')->andReturn(false);
         $product->shouldReceive('getWaitlistEnabled')->andReturn(true);
         $product->shouldReceive('getId')->andReturn(5);
@@ -177,7 +179,7 @@ class CreateWaitlistEntryServiceTest extends TestCase
         $this->expectException(ResourceConflictException::class);
         $this->expectExceptionMessage('You are already on the waitlist for this product');
 
-        $this->service->createEntry($dto, $eventSettings, $product, new ProductPriceDomainObject);
+        $this->service->createEntry($dto, $eventSettings, $product, (new ProductPriceDomainObject)->setId(10));
     }
 
     public function test_dispatches_send_waitlist_confirmation_email_job(): void
@@ -197,7 +199,8 @@ class CreateWaitlistEntryServiceTest extends TestCase
 
         $product = Mockery::mock(ProductDomainObject::class);
         $product->shouldReceive('isOnPublicSaleOrUpcoming')->andReturn(true);
-        $product->shouldReceive('isBeforeSaleStartDate')->andReturn(false);
+        $product->shouldReceive('isTieredType')->andReturn(false);
+        $product->shouldReceive('getNextSaleStartDate')->andReturn(null);
         $product->shouldReceive('getHideBeforeSaleStartDate')->andReturn(false);
         $product->shouldReceive('getWaitlistEnabled')->andReturn(true);
         $product->shouldReceive('getId')->andReturn(5);
@@ -226,7 +229,7 @@ class CreateWaitlistEntryServiceTest extends TestCase
             ->once()
             ->andReturn($createdEntry);
 
-        $this->service->createEntry($dto, $eventSettings, $product, new ProductPriceDomainObject);
+        $this->service->createEntry($dto, $eventSettings, $product, (new ProductPriceDomainObject)->setId(10));
 
         Bus::assertDispatched(SendWaitlistConfirmationEmailJob::class);
     }
@@ -246,7 +249,8 @@ class CreateWaitlistEntryServiceTest extends TestCase
 
         $product = Mockery::mock(ProductDomainObject::class);
         $product->shouldReceive('isOnPublicSaleOrUpcoming')->andReturn(true);
-        $product->shouldReceive('isBeforeSaleStartDate')->andReturn(false);
+        $product->shouldReceive('isTieredType')->andReturn(false);
+        $product->shouldReceive('getNextSaleStartDate')->andReturn(null);
         $product->shouldReceive('getHideBeforeSaleStartDate')->andReturn(false);
         $product->shouldReceive('getWaitlistEnabled')->andReturn(true);
         $product->shouldReceive('getId')->andReturn(5);
@@ -273,7 +277,7 @@ class CreateWaitlistEntryServiceTest extends TestCase
         $this->expectException(ResourceConflictException::class);
         $this->expectExceptionMessage('You are already on the waitlist for this product');
 
-        $this->service->createEntry($dto, $eventSettings, $product, new ProductPriceDomainObject);
+        $this->service->createEntry($dto, $eventSettings, $product, (new ProductPriceDomainObject)->setId(10));
     }
 
     public function test_normalize_email_strips_plus_for_known_providers(): void
@@ -310,14 +314,15 @@ class CreateWaitlistEntryServiceTest extends TestCase
 
         $product = Mockery::mock(ProductDomainObject::class);
         $product->shouldReceive('isOnPublicSaleOrUpcoming')->andReturn(true);
-        $product->shouldReceive('isBeforeSaleStartDate')->andReturn(false);
+        $product->shouldReceive('isTieredType')->andReturn(false);
+        $product->shouldReceive('getNextSaleStartDate')->andReturn(null);
         $product->shouldReceive('getHideBeforeSaleStartDate')->andReturn(false);
         $product->shouldReceive('getWaitlistEnabled')->andReturn(false);
 
         $this->expectException(ResourceConflictException::class);
         $this->expectExceptionMessage('Waitlist is not enabled for this product');
 
-        $this->service->createEntry($dto, $eventSettings, $product, new ProductPriceDomainObject);
+        $this->service->createEntry($dto, $eventSettings, $product, (new ProductPriceDomainObject)->setId(10));
     }
 
     public function test_throws_exception_when_product_waitlist_was_never_enabled(): void
@@ -334,14 +339,15 @@ class CreateWaitlistEntryServiceTest extends TestCase
 
         $product = Mockery::mock(ProductDomainObject::class);
         $product->shouldReceive('isOnPublicSaleOrUpcoming')->andReturn(true);
-        $product->shouldReceive('isBeforeSaleStartDate')->andReturn(false);
+        $product->shouldReceive('isTieredType')->andReturn(false);
+        $product->shouldReceive('getNextSaleStartDate')->andReturn(null);
         $product->shouldReceive('getHideBeforeSaleStartDate')->andReturn(false);
         $product->shouldReceive('getWaitlistEnabled')->andReturn(null);
 
         $this->expectException(ResourceConflictException::class);
         $this->expectExceptionMessage('Waitlist is not enabled for this product');
 
-        $this->service->createEntry($dto, $eventSettings, $product, new ProductPriceDomainObject);
+        $this->service->createEntry($dto, $eventSettings, $product, (new ProductPriceDomainObject)->setId(10));
     }
 
     protected function tearDown(): void
@@ -363,7 +369,8 @@ class CreateWaitlistEntryServiceTest extends TestCase
 
         $product = Mockery::mock(ProductDomainObject::class);
         $product->shouldReceive('isOnPublicSaleOrUpcoming')->andReturn(true);
-        $product->shouldReceive('isBeforeSaleStartDate')->andReturn(false);
+        $product->shouldReceive('isTieredType')->andReturn(false);
+        $product->shouldReceive('getNextSaleStartDate')->andReturn(null);
         $product->shouldReceive('getHideBeforeSaleStartDate')->andReturn(false);
         $product->shouldReceive('getWaitlistEnabled')->andReturn(true);
         $product->shouldReceive('getId')->andReturn(5);
@@ -373,7 +380,7 @@ class CreateWaitlistEntryServiceTest extends TestCase
 
         $this->expectException(ResourceConflictException::class);
 
-        $this->service->createEntry($dto, new EventSettingDomainObject, $product, new ProductPriceDomainObject);
+        $this->service->createEntry($dto, new EventSettingDomainObject, $product, (new ProductPriceDomainObject)->setId(10));
     }
 
     public static function restrictedPrices(): array
@@ -440,7 +447,7 @@ class CreateWaitlistEntryServiceTest extends TestCase
         $this->waitlistEntryRepository
             ->shouldReceive('create')
             ->once()
-            ->with(Mockery::on(fn (array $attributes) => $attributes['awaiting_sale_start'] === true))
+            ->with(Mockery::on(fn (array $attributes) => $attributes['next_sale_start_at'] !== null && $attributes['any_tier'] === false))
             ->andReturn(new WaitlistEntryDomainObject);
 
         $entry = $this->service->createEntry($this->promoDto(), new EventSettingDomainObject, $product, $price);
@@ -459,10 +466,10 @@ class CreateWaitlistEntryServiceTest extends TestCase
         $this->waitlistEntryRepository
             ->shouldReceive('create')
             ->once()
-            ->with(Mockery::on(fn (array $attributes) => $attributes['awaiting_sale_start'] === false && $attributes['promo_code_id'] === null))
+            ->with(Mockery::on(fn (array $attributes) => $attributes['next_sale_start_at'] === null && $attributes['promo_code_id'] === null))
             ->andReturn(new WaitlistEntryDomainObject);
 
-        $entry = $this->service->createEntry($this->promoDto(), new EventSettingDomainObject, $product, new ProductPriceDomainObject);
+        $entry = $this->service->createEntry($this->promoDto(), new EventSettingDomainObject, $product, (new ProductPriceDomainObject)->setId(10));
 
         $this->assertInstanceOf(WaitlistEntryDomainObject::class, $entry);
     }
@@ -482,7 +489,7 @@ class CreateWaitlistEntryServiceTest extends TestCase
             ->with(Mockery::on(fn (array $attributes) => $attributes['promo_code_id'] === 7))
             ->andReturn(new WaitlistEntryDomainObject);
 
-        $entry = $this->service->createEntry($this->promoDto(), new EventSettingDomainObject, $product, new ProductPriceDomainObject, $promoCode);
+        $entry = $this->service->createEntry($this->promoDto(), new EventSettingDomainObject, $product, (new ProductPriceDomainObject)->setId(10), $promoCode);
 
         $this->assertInstanceOf(WaitlistEntryDomainObject::class, $entry);
     }
@@ -495,7 +502,7 @@ class CreateWaitlistEntryServiceTest extends TestCase
         $this->waitlistEntryRepository->shouldNotReceive('create');
         $this->expectException(ResourceConflictException::class);
 
-        $this->service->createEntry($this->promoDto(), new EventSettingDomainObject, $product, new ProductPriceDomainObject, $promoCode);
+        $this->service->createEntry($this->promoDto(), new EventSettingDomainObject, $product, (new ProductPriceDomainObject)->setId(10), $promoCode);
     }
 
     private function promoDto(): CreateWaitlistEntryDTO

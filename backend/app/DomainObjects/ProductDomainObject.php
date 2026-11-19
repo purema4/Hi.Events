@@ -202,6 +202,31 @@ class ProductDomainObject extends Generated\ProductDomainObjectAbstract implemen
         return ! $this->getIsHiddenWithoutPromoCode() || $promoCode?->appliesToProduct($this) === true;
     }
 
+    /**
+     * @return Collection<int, ProductPriceDomainObject>
+     */
+    public function getWaitlistablePrices(): Collection
+    {
+        return ($this->getProductPrices() ?? collect())
+            ->reject(fn (ProductPriceDomainObject $price) => $price->getIsHidden() || $price->isAfterSaleEndDate())
+            ->sortBy(fn (ProductPriceDomainObject $price) => $price->getOrder())
+            ->values();
+    }
+
+    public function getNextSaleStartDate(ProductPriceDomainObject $price): ?string
+    {
+        $prices = $this->isTieredType() ? $this->getWaitlistablePrices() : collect([$price]);
+
+        return $prices
+            ->map(fn (ProductPriceDomainObject $tier) => collect([$this->getSaleStartDate(), $tier->getSaleStartDate()])
+                ->filter()
+                ->sortBy(fn (string $date) => Carbon::parse($date)->getTimestamp())
+                ->last())
+            ->filter(fn (?string $start) => $start !== null && Carbon::parse($start)->isFuture())
+            ->sortBy(fn (string $start) => Carbon::parse($start)->getTimestamp())
+            ->first();
+    }
+
     public function isAvailable(): bool
     {
         if ($this->getType() === ProductPriceType::TIERED->name && $this->getProductPrices()?->isEmpty()) {

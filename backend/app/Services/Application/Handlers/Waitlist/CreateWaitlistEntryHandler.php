@@ -98,6 +98,8 @@ class CreateWaitlistEntryHandler
             throw new ResourceNotFoundException(__('Product not found for this event'));
         }
 
+        $product->setProductPrices($this->productPriceRepository->findWhere(['product_id' => $product->getId()]));
+
         if ($dto->event_occurrence_id !== null) {
             $occurrence = $this->occurrenceRepository->findFirstWhere([
                 'id' => $dto->event_occurrence_id,

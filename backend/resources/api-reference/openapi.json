@@ -39649,6 +39649,9 @@
           "product_price_id": {
             "type": "integer"
           },
+          "any_tier": {
+            "type": "boolean"
+          },
           "event_occurrence_id": {
             "type": [
               "integer",
@@ -39753,6 +39756,7 @@
           "id",
           "event_id",
           "product_price_id",
+          "any_tier",
           "event_occurrence_id",
           "email",
           "first_name",

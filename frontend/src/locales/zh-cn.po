@@ -1228,7 +1228,7 @@ msgstr "需要操作:需要提供增值税信息"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:548
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:555
 #: src/components/common/WaitlistTable/index.tsx:57
-#: src/components/common/WaitlistTable/index.tsx:237
+#: src/components/common/WaitlistTable/index.tsx:240
 #: src/components/routes/admin/FailedJobs/index.tsx:167
 #: src/components/routes/event/Lineup/ProfileDrawer.tsx:187
 msgid "Actions"
@@ -1676,7 +1676,7 @@ msgstr "仅附加功能"
 msgid "Added"
 msgstr "已添加"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:84
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:86
 msgid "Added at checkout"
 msgstr "结账时添加"
 
@@ -2152,7 +2152,7 @@ msgid "Amazing, Event, Keywords..."
 msgstr "令人惊叹, 活动, 关键词..."
 
 #: src/components/common/OrdersTable/index.tsx:281
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:217
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:219
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:69
 msgid "Amount"
 msgstr "金额"
@@ -2330,6 +2330,10 @@ msgstr "产品持有者的任何查询都将发送到此电子邮件地址。此
 #: src/components/common/CapacityHelp/index.tsx:151
 msgid "Any single date can differ: change its capacity in Edit Date, or a ticket's per-date quantity on that date's Products tab."
 msgstr "任何单个日期都可以不同：在“编辑日期”中更改其容量，或在该日期的“产品”标签页中更改某种票的每日数量。"
+
+#: src/components/common/WaitlistTable/index.tsx:182
+msgid "Any tier"
+msgstr "任意价位"
 
 #: src/components/common/WidgetEditor/installGuides.ts:31
 msgid "Any website (HTML)"
@@ -3214,7 +3218,7 @@ msgid "Bar"
 msgstr "吧台"
 
 #: src/components/routes/event/OccurrencesTab/PriceOverrideForm/index.tsx:306
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:90
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
 msgid "Base price"
 msgstr "基础价格"
 
@@ -4619,8 +4623,8 @@ msgstr "关闭"
 #: src/components/layouts/EventHomepage/Lineup/SessionModal.tsx:86
 #: src/components/layouts/EventHomepage/Sections/GallerySection.tsx:122
 #: src/components/modals/CreateEventModal/index.tsx:288
-#: src/components/modals/JoinWaitlistModal/index.tsx:121
-#: src/components/modals/JoinWaitlistModal/index.tsx:148
+#: src/components/modals/JoinWaitlistModal/index.tsx:130
+#: src/components/modals/JoinWaitlistModal/index.tsx:157
 #: src/components/modals/RefundOrderModal/index.tsx:172
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:892
 #: src/components/routes/product-widget/SelectProducts/index.tsx:1245
@@ -6118,7 +6122,7 @@ msgstr "Dashboard"
 #: src/components/common/AdminOrdersTable/index.tsx:94
 #: src/components/common/CheckInListTable/index.tsx:107
 #: src/components/common/OrderDetails/index.tsx:44
-#: src/components/common/WaitlistTable/index.tsx:187
+#: src/components/common/WaitlistTable/index.tsx:190
 #: src/components/common/WidgetEditor/ContentFields.tsx:77
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:117
 #: src/components/forms/QuestionForm/questionTypes.ts:29
@@ -7354,7 +7358,7 @@ msgstr "符合条件的签到列表"
 #: src/components/common/OrderDetails/index.tsx:34
 #: src/components/forms/AffiliateForm/index.tsx:89
 #: src/components/modals/InviteUserModal/index.tsx:61
-#: src/components/modals/JoinWaitlistModal/index.tsx:194
+#: src/components/modals/JoinWaitlistModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:174
 #: src/components/modals/ManageOrderModal/index.tsx:141
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:165
@@ -7846,7 +7850,7 @@ msgstr "入口"
 msgid "entries"
 msgstr "条"
 
-#: src/components/common/WaitlistTable/index.tsx:267
+#: src/components/common/WaitlistTable/index.tsx:270
 msgid "Entries will appear here when customers join the waitlist for sold out products."
 msgstr "当客户加入已售罄产品的候补名单时，条目将显示在此处。"
 
@@ -8810,7 +8814,7 @@ msgstr "费用已更新"
 #: src/components/common/OrdersTable/index.tsx:292
 #: src/components/forms/ProductForm/index.tsx:497
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
 msgid "Fees"
 msgstr "费用"
@@ -8959,7 +8963,7 @@ msgstr "姓名"
 
 #: src/components/modals/EditUserModal/index.tsx:87
 #: src/components/modals/InviteUserModal/index.tsx:54
-#: src/components/modals/JoinWaitlistModal/index.tsx:184
+#: src/components/modals/JoinWaitlistModal/index.tsx:193
 #: src/components/routes/auth/AcceptInvitation/index.tsx:226
 #: src/components/routes/auth/Register/index.tsx:139
 #: src/components/routes/product-widget/CollectInformation/index.tsx:520
@@ -8969,7 +8973,7 @@ msgstr "姓名"
 msgid "First Name"
 msgstr "姓名"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:58
+#: src/components/modals/JoinWaitlistModal/index.tsx:61
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:31
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:31
 msgid "First name is required"
@@ -9122,8 +9126,8 @@ msgstr "门厅"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:160
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:170
 #: src/components/forms/ProductForm/index.tsx:296
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:161
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:233
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:163
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:235
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:37
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:54
 #: src/ee/box-office/utilites/boxOfficeTender.ts:15
@@ -9943,7 +9947,7 @@ msgstr "我确认我作为数据控制者的责任"
 msgid "I agree to follow the event code of conduct"
 msgstr "我同意遵守活动行为准则"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:200
+#: src/components/modals/JoinWaitlistModal/index.tsx:209
 msgid "I agree to receive email notifications related to this event"
 msgstr "我同意接收与此活动相关的电子邮件通知"
 
@@ -10447,15 +10451,15 @@ msgid "Join from anywhere"
 msgstr "随时随地加入"
 
 #: src/components/common/JoinWaitlistButton/index.tsx:38
-#: src/components/modals/JoinWaitlistModal/index.tsx:212
+#: src/components/modals/JoinWaitlistModal/index.tsx:221
 msgid "Join Waitlist"
 msgstr "加入候补名单"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:161
+#: src/components/modals/JoinWaitlistModal/index.tsx:170
 msgid "Join Waitlist for {productDisplayName}"
 msgstr "加入{productDisplayName}的等候名单"
 
-#: src/components/common/WaitlistTable/index.tsx:224
+#: src/components/common/WaitlistTable/index.tsx:227
 msgid "Joined"
 msgstr "已加入"
 
@@ -10662,7 +10666,7 @@ msgstr "姓氏"
 
 #: src/components/modals/EditUserModal/index.tsx:88
 #: src/components/modals/InviteUserModal/index.tsx:55
-#: src/components/modals/JoinWaitlistModal/index.tsx:189
+#: src/components/modals/JoinWaitlistModal/index.tsx:198
 #: src/components/routes/auth/AcceptInvitation/index.tsx:232
 #: src/components/routes/auth/Register/index.tsx:145
 #: src/components/routes/product-widget/CollectInformation/index.tsx:529
@@ -11363,7 +11367,7 @@ msgstr "最大消息数 / 24小时"
 msgid "Max Recipients / Message"
 msgstr "最大收件人数 / 消息"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:72
 msgid "Maximum {cap} per order"
 msgstr "每笔订单最多 {cap} 件"
 
@@ -12592,7 +12596,7 @@ msgstr "没有即将到来的活动"
 msgid "No users found"
 msgstr "未找到用户"
 
-#: src/components/common/WaitlistTable/index.tsx:263
+#: src/components/common/WaitlistTable/index.tsx:266
 msgid "No waitlist entries"
 msgstr "没有候补名单条目"
 
@@ -12676,8 +12680,8 @@ msgstr "暂无"
 msgid "Normally {0}"
 msgstr "通常为 {0}"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:67
-#: src/components/common/ProductPriceAvailability/index.tsx:97
+#: src/components/common/ProductPriceAvailability/index.tsx:46
+#: src/components/common/ProductPriceAvailability/index.tsx:76
 msgid "Not available"
 msgstr "不详"
 
@@ -12788,7 +12792,7 @@ msgstr "尚未测试"
 msgid "Not using reserved seating, the box office or enterprise single sign-on? Remove <0>APP_LICENCE_KEY</0> and redeploy."
 msgstr "不使用预留座位、售票处或企业单点登录？删除 <0>APP_LICENCE_KEY</0> 并重新部署。"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:64
+#: src/components/common/ProductPriceAvailability/index.tsx:43
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:31
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:53
 msgid "Not yet on sale"
@@ -13168,7 +13172,7 @@ msgstr "在线活动详情"
 msgid "Online ticket sales for events with reserved seating keep working."
 msgstr "使用预留座位的活动仍可继续在线售票。"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:72
 msgid "Only {cap} available"
 msgstr "仅剩 {cap} 件"
 
@@ -14115,7 +14119,7 @@ msgstr "立即付款"
 msgid "Pay using the instructions below. {registrantName} has been emailed the order details, and the organizer will confirm the order once your payment arrives."
 msgstr "请按照以下说明付款。{registrantName} 已通过邮件收到订单详情，主办方将在收到您的付款后确认订单。"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:216
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:218
 msgid "Pay what you want"
 msgstr "随心付"
 
@@ -14612,7 +14616,7 @@ msgstr "请创建一张票"
 msgid "Please don't leave a single empty seat: {0}"
 msgstr "请勿留下单个空座位:{0}"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:59
+#: src/components/modals/JoinWaitlistModal/index.tsx:62
 msgid "Please enter a valid email address"
 msgstr "请输入有效的电子邮件地址"
 
@@ -16362,14 +16366,18 @@ msgstr "销售已暂停"
 msgid "Sales by licence year"
 msgstr "按许可证年度划分的销售额"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:34
-#: src/components/common/ProductPriceAvailability/index.tsx:84
+#: src/components/common/ProductPriceAvailability/index.tsx:31
+#: src/components/common/ProductPriceAvailability/index.tsx:63
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:33
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:54
 msgid "Sales ended"
 msgstr "销售结束"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:115
+#: src/components/modals/JoinWaitlistModal/index.tsx:119
+msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do, with the tier on sale at that time."
+msgstr "{productDisplayName} 尚未开售。开售后我们将按候补顺序给您发送邮件，价格为届时在售的价位。"
+
+#: src/components/modals/JoinWaitlistModal/index.tsx:124
 msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do."
 msgstr "{productDisplayName} 尚未开售。开售后我们将按候补顺序给您发送邮件。"
 
@@ -18199,8 +18207,8 @@ msgstr "已售罄"
 
 #: src/components/common/EventCard/index.tsx:136
 #: src/components/common/EventDateRange/index.tsx:65
-#: src/components/common/ProductPriceAvailability/index.tsx:30
-#: src/components/common/ProductPriceAvailability/index.tsx:81
+#: src/components/common/ProductPriceAvailability/index.tsx:27
+#: src/components/common/ProductPriceAvailability/index.tsx:60
 #: src/components/layouts/OrganizerEventsWidget/index.tsx:57
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:92
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:311
@@ -18311,7 +18319,7 @@ msgstr "出错了！请重试"
 msgid "Something went wrong."
 msgstr "出问题了"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:145
+#: src/components/modals/JoinWaitlistModal/index.tsx:154
 msgid "Something went wrong. Please try again later."
 msgstr "出了点问题。请稍后再试。"
 
@@ -18686,7 +18694,7 @@ msgstr "统计"
 #: src/components/common/OrdersTable/index.tsx:342
 #: src/components/common/OrganizerWebhookTable/index.tsx:244
 #: src/components/common/ProductsTable/index.tsx:100
-#: src/components/common/WaitlistTable/index.tsx:208
+#: src/components/common/WaitlistTable/index.tsx:211
 #: src/components/common/WebhookTable/index.tsx:244
 #: src/components/forms/AffiliateForm/index.tsx:98
 #: src/components/forms/CapaciyAssigmentForm/index.tsx:56
@@ -19188,7 +19196,7 @@ msgstr "将面向所选 {0} 个场次的参与者。"
 #: src/components/common/OrdersTable/index.tsx:291
 #: src/components/forms/TaxAndFeeForm/index.tsx:21
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:89
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:95
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
 msgid "Tax"
 msgstr "税收"
 
@@ -20739,7 +20747,7 @@ msgstr "总计"
 #: src/components/layouts/CheckIn/tabs/StatsTab.tsx:99
 #: src/components/modals/ManageOrderModal/index.tsx:117
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:359
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:99
 #: src/ee/box-office/components/layouts/BoxOffice/tabs/OrdersTab.tsx:114
 msgid "Total"
 msgstr "总计"
@@ -21112,7 +21120,7 @@ msgstr "无法获取参与者"
 msgid "Unable to find seats. Check the connection and try again."
 msgstr "无法找到座位。请检查网络连接后重试。"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:142
+#: src/components/modals/JoinWaitlistModal/index.tsx:151
 msgid "Unable to join waitlist"
 msgstr "无法加入候补名单"
 
@@ -22325,11 +22333,19 @@ msgstr "我们会通过邮件向对方发送加入你账户的链接。"
 msgid "We'll email you the link too, and send your order confirmation as soon as they complete checkout."
 msgstr "我们也会通过邮件将链接发送给您，并在对方完成付款后立即发送订单确认。"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:117
+#: src/components/modals/JoinWaitlistModal/index.tsx:121
+msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}, at the tier on sale at that time."
+msgstr "如果 {occurrenceDate} 的 {productDisplayName} 有空位，我们将通过邮件通知您，价格为届时在售的价位。"
+
+#: src/components/modals/JoinWaitlistModal/index.tsx:126
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}."
 msgstr "如果{productDisplayName}在{occurrenceDate}有空位，我们将通过电子邮件通知您。"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:118
+#: src/components/modals/JoinWaitlistModal/index.tsx:122
+msgid "We'll notify you by email if a spot becomes available for {productDisplayName}, at the tier on sale at that time."
+msgstr "如果 {productDisplayName} 有空位，我们将通过邮件通知您，价格为届时在售的价位。"
+
+#: src/components/modals/JoinWaitlistModal/index.tsx:127
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName}."
 msgstr "如果{productDisplayName}有空位，我们将通过电子邮件通知您。"
 
@@ -22775,7 +22791,7 @@ msgstr "工作"
 #: src/components/modals/CreatePromoCodeModal/index.tsx:59
 #: src/components/modals/EditProductCategoryModal/index.tsx:73
 #: src/components/modals/EditPromoCodeModal/index.tsx:87
-#: src/components/modals/JoinWaitlistModal/index.tsx:211
+#: src/components/modals/JoinWaitlistModal/index.tsx:220
 #: src/components/routes/auth/Register/index.tsx:188
 msgid "Working..."
 msgstr "工作..."
@@ -23031,7 +23047,7 @@ msgstr "您必须确认此电子邮件并非促销邮件"
 msgid "You must acknowledge your responsibilities before saving"
 msgstr "保存前必须确认您的责任"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:60
+#: src/components/modals/JoinWaitlistModal/index.tsx:63
 msgid "You must agree to receive messages"
 msgstr "您必须同意接收消息"
 
@@ -23147,11 +23163,11 @@ msgstr "你正在修改场次时间"
 msgid "You're going to {0}!"
 msgstr "您将参加 {0}！"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:178
+#: src/components/modals/JoinWaitlistModal/index.tsx:187
 msgid "You're joining the waitlist for {occurrenceDate}."
 msgstr "您正在加入{occurrenceDate}的候补名单。"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:111
+#: src/components/modals/JoinWaitlistModal/index.tsx:114
 msgid "You're on the waitlist!"
 msgstr "您已加入候补名单！"
 

@@ -2186,6 +2186,7 @@ export interface WaitlistEntry {
     id?: number;
     event_id?: number;
     product_price_id?: number;
+    any_tier?: boolean;
     event_occurrence_id?: number | null;
     event_occurrence?: EventOccurrence | null;
     product?: Product;

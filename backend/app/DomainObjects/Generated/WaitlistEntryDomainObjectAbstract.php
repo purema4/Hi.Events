@@ -31,7 +31,8 @@ abstract class WaitlistEntryDomainObjectAbstract extends \HiEvents\DomainObjects
     final public const CREATED_AT = 'created_at';
     final public const UPDATED_AT = 'updated_at';
     final public const DELETED_AT = 'deleted_at';
-    final public const AWAITING_SALE_START = 'awaiting_sale_start';
+    final public const ANY_TIER = 'any_tier';
+    final public const NEXT_SALE_START_AT = 'next_sale_start_at';
 
     protected int $id;
     protected int $event_id;
@@ -54,7 +55,8 @@ abstract class WaitlistEntryDomainObjectAbstract extends \HiEvents\DomainObjects
     protected ?string $created_at = null;
     protected ?string $updated_at = null;
     protected ?string $deleted_at = null;
-    protected bool $awaiting_sale_start = false;
+    protected bool $any_tier = false;
+    protected ?string $next_sale_start_at = null;
 
     public function toArray(): array
     {
@@ -80,7 +82,8 @@ abstract class WaitlistEntryDomainObjectAbstract extends \HiEvents\DomainObjects
                     'created_at' => $this->created_at ?? null,
                     'updated_at' => $this->updated_at ?? null,
                     'deleted_at' => $this->deleted_at ?? null,
-                    'awaiting_sale_start' => $this->awaiting_sale_start ?? null,
+                    'any_tier' => $this->any_tier ?? null,
+                    'next_sale_start_at' => $this->next_sale_start_at ?? null,
                 ];
     }
 
@@ -315,14 +318,25 @@ abstract class WaitlistEntryDomainObjectAbstract extends \HiEvents\DomainObjects
         return $this->deleted_at;
     }
 
-    public function setAwaitingSaleStart(bool $awaiting_sale_start): self
+    public function setAnyTier(bool $any_tier): self
     {
-        $this->awaiting_sale_start = $awaiting_sale_start;
+        $this->any_tier = $any_tier;
         return $this;
     }
 
-    public function getAwaitingSaleStart(): bool
+    public function getAnyTier(): bool
     {
-        return $this->awaiting_sale_start;
+        return $this->any_tier;
+    }
+
+    public function setNextSaleStartAt(?string $next_sale_start_at): self
+    {
+        $this->next_sale_start_at = $next_sale_start_at;
+        return $this;
+    }
+
+    public function getNextSaleStartAt(): ?string
+    {
+        return $this->next_sale_start_at;
     }
 }

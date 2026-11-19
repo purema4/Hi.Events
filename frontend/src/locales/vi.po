@@ -1228,7 +1228,7 @@ msgstr "Cần hành động: Cần thông tin VAT"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:548
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:555
 #: src/components/common/WaitlistTable/index.tsx:57
-#: src/components/common/WaitlistTable/index.tsx:237
+#: src/components/common/WaitlistTable/index.tsx:240
 #: src/components/routes/admin/FailedJobs/index.tsx:167
 #: src/components/routes/event/Lineup/ProfileDrawer.tsx:187
 msgid "Actions"
@@ -1676,7 +1676,7 @@ msgstr "Chỉ tiện ích bổ sung"
 msgid "Added"
 msgstr "Đã thêm"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:84
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:86
 msgid "Added at checkout"
 msgstr "Được thêm khi thanh toán"
 
@@ -2152,7 +2152,7 @@ msgid "Amazing, Event, Keywords..."
 msgstr "Tuyệt vời, sự kiện, từ khóa ..."
 
 #: src/components/common/OrdersTable/index.tsx:281
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:217
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:219
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:69
 msgid "Amount"
 msgstr "Số tiền"
@@ -2330,6 +2330,10 @@ msgstr "Mọi thắc mắc từ chủ sở hữu sản phẩm sẽ được gử
 #: src/components/common/CapacityHelp/index.tsx:151
 msgid "Any single date can differ: change its capacity in Edit Date, or a ticket's per-date quantity on that date's Products tab."
 msgstr "Bất kỳ ngày nào cũng có thể khác: thay đổi sức chứa trong Sửa ngày, hoặc số lượng theo ngày của vé trong tab Sản phẩm của ngày đó."
+
+#: src/components/common/WaitlistTable/index.tsx:182
+msgid "Any tier"
+msgstr "Bất kỳ hạng giá"
 
 #: src/components/common/WidgetEditor/installGuides.ts:31
 msgid "Any website (HTML)"
@@ -3214,7 +3218,7 @@ msgid "Bar"
 msgstr "Quầy bar"
 
 #: src/components/routes/event/OccurrencesTab/PriceOverrideForm/index.tsx:306
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:90
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
 msgid "Base price"
 msgstr "Giá gốc"
 
@@ -4619,8 +4623,8 @@ msgstr "đóng"
 #: src/components/layouts/EventHomepage/Lineup/SessionModal.tsx:86
 #: src/components/layouts/EventHomepage/Sections/GallerySection.tsx:122
 #: src/components/modals/CreateEventModal/index.tsx:288
-#: src/components/modals/JoinWaitlistModal/index.tsx:121
-#: src/components/modals/JoinWaitlistModal/index.tsx:148
+#: src/components/modals/JoinWaitlistModal/index.tsx:130
+#: src/components/modals/JoinWaitlistModal/index.tsx:157
 #: src/components/modals/RefundOrderModal/index.tsx:172
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:892
 #: src/components/routes/product-widget/SelectProducts/index.tsx:1245
@@ -6118,7 +6122,7 @@ msgstr "Dashboard"
 #: src/components/common/AdminOrdersTable/index.tsx:94
 #: src/components/common/CheckInListTable/index.tsx:107
 #: src/components/common/OrderDetails/index.tsx:44
-#: src/components/common/WaitlistTable/index.tsx:187
+#: src/components/common/WaitlistTable/index.tsx:190
 #: src/components/common/WidgetEditor/ContentFields.tsx:77
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:117
 #: src/components/forms/QuestionForm/questionTypes.ts:29
@@ -7354,7 +7358,7 @@ msgstr "Danh Sách Đăng Ký Đủ Điều Kiện"
 #: src/components/common/OrderDetails/index.tsx:34
 #: src/components/forms/AffiliateForm/index.tsx:89
 #: src/components/modals/InviteUserModal/index.tsx:61
-#: src/components/modals/JoinWaitlistModal/index.tsx:194
+#: src/components/modals/JoinWaitlistModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:174
 #: src/components/modals/ManageOrderModal/index.tsx:141
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:165
@@ -7846,7 +7850,7 @@ msgstr "Lối vào"
 msgid "entries"
 msgstr "mục"
 
-#: src/components/common/WaitlistTable/index.tsx:267
+#: src/components/common/WaitlistTable/index.tsx:270
 msgid "Entries will appear here when customers join the waitlist for sold out products."
 msgstr "Các mục sẽ xuất hiện ở đây khi khách hàng tham gia danh sách chờ cho các sản phẩm đã bán hết."
 
@@ -8810,7 +8814,7 @@ msgstr "Đã cập nhật phí"
 #: src/components/common/OrdersTable/index.tsx:292
 #: src/components/forms/ProductForm/index.tsx:497
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
 msgid "Fees"
 msgstr "Các khoản phí"
@@ -8959,7 +8963,7 @@ msgstr "Tên"
 
 #: src/components/modals/EditUserModal/index.tsx:87
 #: src/components/modals/InviteUserModal/index.tsx:54
-#: src/components/modals/JoinWaitlistModal/index.tsx:184
+#: src/components/modals/JoinWaitlistModal/index.tsx:193
 #: src/components/routes/auth/AcceptInvitation/index.tsx:226
 #: src/components/routes/auth/Register/index.tsx:139
 #: src/components/routes/product-widget/CollectInformation/index.tsx:520
@@ -8969,7 +8973,7 @@ msgstr "Tên"
 msgid "First Name"
 msgstr "Tên"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:58
+#: src/components/modals/JoinWaitlistModal/index.tsx:61
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:31
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:31
 msgid "First name is required"
@@ -9122,8 +9126,8 @@ msgstr "Tiền sảnh"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:160
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:170
 #: src/components/forms/ProductForm/index.tsx:296
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:161
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:233
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:163
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:235
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:37
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:54
 #: src/ee/box-office/utilites/boxOfficeTender.ts:15
@@ -9943,7 +9947,7 @@ msgstr "Tôi thừa nhận trách nhiệm của mình với tư cách là ngư�
 msgid "I agree to follow the event code of conduct"
 msgstr "Tôi đồng ý tuân thủ quy tắc ứng xử của sự kiện"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:200
+#: src/components/modals/JoinWaitlistModal/index.tsx:209
 msgid "I agree to receive email notifications related to this event"
 msgstr "Tôi đồng ý nhận thông báo qua email liên quan đến sự kiện này"
 
@@ -10447,15 +10451,15 @@ msgid "Join from anywhere"
 msgstr "Tham gia từ bất cứ đâu"
 
 #: src/components/common/JoinWaitlistButton/index.tsx:38
-#: src/components/modals/JoinWaitlistModal/index.tsx:212
+#: src/components/modals/JoinWaitlistModal/index.tsx:221
 msgid "Join Waitlist"
 msgstr "Tham gia danh sách chờ"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:161
+#: src/components/modals/JoinWaitlistModal/index.tsx:170
 msgid "Join Waitlist for {productDisplayName}"
 msgstr "Tham gia danh sách chờ cho {productDisplayName}"
 
-#: src/components/common/WaitlistTable/index.tsx:224
+#: src/components/common/WaitlistTable/index.tsx:227
 msgid "Joined"
 msgstr "Đã tham gia"
 
@@ -10662,7 +10666,7 @@ msgstr "Họ"
 
 #: src/components/modals/EditUserModal/index.tsx:88
 #: src/components/modals/InviteUserModal/index.tsx:55
-#: src/components/modals/JoinWaitlistModal/index.tsx:189
+#: src/components/modals/JoinWaitlistModal/index.tsx:198
 #: src/components/routes/auth/AcceptInvitation/index.tsx:232
 #: src/components/routes/auth/Register/index.tsx:145
 #: src/components/routes/product-widget/CollectInformation/index.tsx:529
@@ -11363,7 +11367,7 @@ msgstr "Tin nhắn tối đa / 24h"
 msgid "Max Recipients / Message"
 msgstr "Người nhận tối đa / tin nhắn"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:72
 msgid "Maximum {cap} per order"
 msgstr "Tối đa {cap} mỗi đơn hàng"
 
@@ -12592,7 +12596,7 @@ msgstr "Không có sự kiện sắp tới"
 msgid "No users found"
 msgstr "Không tìm thấy người dùng"
 
-#: src/components/common/WaitlistTable/index.tsx:263
+#: src/components/common/WaitlistTable/index.tsx:266
 msgid "No waitlist entries"
 msgstr "Không có mục trong danh sách chờ"
 
@@ -12676,8 +12680,8 @@ msgstr "Chưa có"
 msgid "Normally {0}"
 msgstr "Thông thường {0}"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:67
-#: src/components/common/ProductPriceAvailability/index.tsx:97
+#: src/components/common/ProductPriceAvailability/index.tsx:46
+#: src/components/common/ProductPriceAvailability/index.tsx:76
 msgid "Not available"
 msgstr "Không có sẵn"
 
@@ -12788,7 +12792,7 @@ msgstr "Chưa thử nghiệm"
 msgid "Not using reserved seating, the box office or enterprise single sign-on? Remove <0>APP_LICENCE_KEY</0> and redeploy."
 msgstr "Không dùng chỗ ngồi đặt trước, quầy bán vé hoặc đăng nhập một lần doanh nghiệp? Hãy xóa <0>APP_LICENCE_KEY</0> và triển khai lại."
 
-#: src/components/common/ProductPriceAvailability/index.tsx:64
+#: src/components/common/ProductPriceAvailability/index.tsx:43
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:31
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:53
 msgid "Not yet on sale"
@@ -13168,7 +13172,7 @@ msgstr "Chi tiết sự kiện trực tuyến"
 msgid "Online ticket sales for events with reserved seating keep working."
 msgstr "Việc bán vé trực tuyến cho các sự kiện có chỗ ngồi đặt trước vẫn tiếp tục hoạt động."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:72
 msgid "Only {cap} available"
 msgstr "Chỉ còn {cap}"
 
@@ -14115,7 +14119,7 @@ msgstr "Thanh toán ngay"
 msgid "Pay using the instructions below. {registrantName} has been emailed the order details, and the organizer will confirm the order once your payment arrives."
 msgstr "Hãy thanh toán theo hướng dẫn bên dưới. {registrantName} đã nhận chi tiết đơn hàng qua email và ban tổ chức sẽ xác nhận đơn hàng khi nhận được thanh toán của bạn."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:216
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:218
 msgid "Pay what you want"
 msgstr "Trả tùy tâm"
 
@@ -14612,7 +14616,7 @@ msgstr "Vui lòng tạo vé"
 msgid "Please don't leave a single empty seat: {0}"
 msgstr "Vui lòng không để lại một ghế trống lẻ: {0}"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:59
+#: src/components/modals/JoinWaitlistModal/index.tsx:62
 msgid "Please enter a valid email address"
 msgstr "Vui lòng nhập địa chỉ email hợp lệ"
 
@@ -16362,14 +16366,18 @@ msgstr "Bán hàng đang tạm dừng"
 msgid "Sales by licence year"
 msgstr "Doanh thu theo năm giấy phép"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:34
-#: src/components/common/ProductPriceAvailability/index.tsx:84
+#: src/components/common/ProductPriceAvailability/index.tsx:31
+#: src/components/common/ProductPriceAvailability/index.tsx:63
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:33
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:54
 msgid "Sales ended"
 msgstr "Bán hàng kết thúc"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:115
+#: src/components/modals/JoinWaitlistModal/index.tsx:119
+msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do, with the tier on sale at that time."
+msgstr "{productDisplayName} chưa mở bán. Chúng tôi sẽ gửi email cho bạn theo thứ tự danh sách chờ ngay khi mở bán, với hạng giá đang bán lúc đó."
+
+#: src/components/modals/JoinWaitlistModal/index.tsx:124
 msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do."
 msgstr "{productDisplayName} chưa mở bán. Chúng tôi sẽ gửi email cho bạn theo thứ tự danh sách chờ ngay khi mở bán."
 
@@ -18199,8 +18207,8 @@ msgstr "đã bán hết"
 
 #: src/components/common/EventCard/index.tsx:136
 #: src/components/common/EventDateRange/index.tsx:65
-#: src/components/common/ProductPriceAvailability/index.tsx:30
-#: src/components/common/ProductPriceAvailability/index.tsx:81
+#: src/components/common/ProductPriceAvailability/index.tsx:27
+#: src/components/common/ProductPriceAvailability/index.tsx:60
 #: src/components/layouts/OrganizerEventsWidget/index.tsx:57
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:92
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:311
@@ -18311,7 +18319,7 @@ msgstr "Có gì đó không ổn! Vui lòng thử lại"
 msgid "Something went wrong."
 msgstr "Có gì đó không ổn."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:145
+#: src/components/modals/JoinWaitlistModal/index.tsx:154
 msgid "Something went wrong. Please try again later."
 msgstr "Đã xảy ra lỗi. Vui lòng thử lại sau."
 
@@ -18686,7 +18694,7 @@ msgstr "Thống kê"
 #: src/components/common/OrdersTable/index.tsx:342
 #: src/components/common/OrganizerWebhookTable/index.tsx:244
 #: src/components/common/ProductsTable/index.tsx:100
-#: src/components/common/WaitlistTable/index.tsx:208
+#: src/components/common/WaitlistTable/index.tsx:211
 #: src/components/common/WebhookTable/index.tsx:244
 #: src/components/forms/AffiliateForm/index.tsx:98
 #: src/components/forms/CapaciyAssigmentForm/index.tsx:56
@@ -19188,7 +19196,7 @@ msgstr "Nhắm tới người tham dự thuộc {0} buổi đã chọn."
 #: src/components/common/OrdersTable/index.tsx:291
 #: src/components/forms/TaxAndFeeForm/index.tsx:21
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:89
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:95
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
 msgid "Tax"
 msgstr "Thuế"
 
@@ -20739,7 +20747,7 @@ msgstr "tổng"
 #: src/components/layouts/CheckIn/tabs/StatsTab.tsx:99
 #: src/components/modals/ManageOrderModal/index.tsx:117
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:359
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:99
 #: src/ee/box-office/components/layouts/BoxOffice/tabs/OrdersTab.tsx:114
 msgid "Total"
 msgstr "Tổng"
@@ -21112,7 +21120,7 @@ msgstr "Không thể lấy thông tin người tham dự"
 msgid "Unable to find seats. Check the connection and try again."
 msgstr "Không tìm được ghế. Hãy kiểm tra kết nối và thử lại."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:142
+#: src/components/modals/JoinWaitlistModal/index.tsx:151
 msgid "Unable to join waitlist"
 msgstr "Không thể tham gia danh sách chờ"
 
@@ -22325,11 +22333,19 @@ msgstr "Chúng tôi sẽ gửi email kèm liên kết để họ tham gia tài k
 msgid "We'll email you the link too, and send your order confirmation as soon as they complete checkout."
 msgstr "Chúng tôi cũng sẽ gửi liên kết cho bạn qua email và gửi xác nhận đơn hàng ngay khi họ hoàn tất thanh toán."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:117
+#: src/components/modals/JoinWaitlistModal/index.tsx:121
+msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}, at the tier on sale at that time."
+msgstr "Chúng tôi sẽ gửi email nếu có chỗ trống cho {productDisplayName} vào {occurrenceDate}, với hạng giá đang bán lúc đó."
+
+#: src/components/modals/JoinWaitlistModal/index.tsx:126
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}."
 msgstr "Chúng tôi sẽ thông báo cho bạn qua email nếu có chỗ trống cho {productDisplayName} vào {occurrenceDate}."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:118
+#: src/components/modals/JoinWaitlistModal/index.tsx:122
+msgid "We'll notify you by email if a spot becomes available for {productDisplayName}, at the tier on sale at that time."
+msgstr "Chúng tôi sẽ gửi email nếu có chỗ trống cho {productDisplayName}, với hạng giá đang bán lúc đó."
+
+#: src/components/modals/JoinWaitlistModal/index.tsx:127
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName}."
 msgstr "Chúng tôi sẽ thông báo cho bạn qua email nếu có chỗ trống cho {productDisplayName}."
 
@@ -22775,7 +22791,7 @@ msgstr "Làm việc"
 #: src/components/modals/CreatePromoCodeModal/index.tsx:59
 #: src/components/modals/EditProductCategoryModal/index.tsx:73
 #: src/components/modals/EditPromoCodeModal/index.tsx:87
-#: src/components/modals/JoinWaitlistModal/index.tsx:211
+#: src/components/modals/JoinWaitlistModal/index.tsx:220
 #: src/components/routes/auth/Register/index.tsx:188
 msgid "Working..."
 msgstr "Làm việc ..."
@@ -23031,7 +23047,7 @@ msgstr "Bạn phải hiểu rằng email này không phải là email quảng c�
 msgid "You must acknowledge your responsibilities before saving"
 msgstr "Bạn phải thừa nhận trách nhiệm của mình trước khi lưu"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:60
+#: src/components/modals/JoinWaitlistModal/index.tsx:63
 msgid "You must agree to receive messages"
 msgstr "Bạn phải đồng ý nhận tin nhắn"
 
@@ -23147,11 +23163,11 @@ msgstr "Bạn đang thay đổi giờ của các buổi"
 msgid "You're going to {0}!"
 msgstr "Bạn sẽ tham gia {0}!"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:178
+#: src/components/modals/JoinWaitlistModal/index.tsx:187
 msgid "You're joining the waitlist for {occurrenceDate}."
 msgstr "Bạn đang tham gia danh sách chờ cho {occurrenceDate}."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:111
+#: src/components/modals/JoinWaitlistModal/index.tsx:114
 msgid "You're on the waitlist!"
 msgstr "Bạn đã được thêm vào danh sách chờ!"
 

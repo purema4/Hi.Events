@@ -26,7 +26,14 @@ interface WaitlistEntryRepositoryInterface extends RepositoryInterface
      */
     public function getNextWaitingEntries(int $productPriceId, ?int $limit = null, ?int $eventOccurrenceId = null): Collection;
 
+    /**
+     * @return Collection<int, WaitlistEntryDomainObject>
+     */
+    public function getNextWaitingAnyTierEntries(int $productId, ?int $eventOccurrenceId = null): Collection;
+
     public function lockForProductPrice(int $productPriceId, ?int $eventOccurrenceId = null): void;
+
+    public function lockForProduct(int $productId, ?int $eventOccurrenceId = null): void;
 
     public function findByIdLocked(int $id): ?WaitlistEntryDomainObject;
 }

@@ -19,6 +19,7 @@ use HiEvents\Repository\Interfaces\WaitlistEntryRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Waitlist\DTO\WaitlistStatsDTO;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -76,6 +77,7 @@ class WaitlistEntryRepository extends BaseRepository implements WaitlistEntryRep
             ->selectRaw("
                 waitlist_entries.product_price_id,
                 CASE
+                    WHEN BOOL_OR(waitlist_entries.any_tier) THEN products.title
                     WHEN product_prices.label IS NOT NULL AND product_prices.label != ''
                     THEN products.title || ' - ' || product_prices.label
                     ELSE products.title
@@ -129,6 +131,33 @@ class WaitlistEntryRepository extends BaseRepository implements WaitlistEntryRep
         $models = $query->get();
 
         return $this->handleResults($models);
+    }
+
+    /**
+     * @return Collection<int, WaitlistEntryDomainObject>
+     */
+    public function getNextWaitingAnyTierEntries(int $productId, ?int $eventOccurrenceId = null): Collection
+    {
+        $query = WaitlistEntry::query()
+            ->whereIn('product_price_id', $this->productPriceIdsOf($productId))
+            ->where('any_tier', true)
+            ->where('status', WaitlistEntryStatus::WAITING->name)
+            ->orderBy('id');
+
+        $this->applyOccurrenceScope($query, $eventOccurrenceId);
+
+        return $this->handleResults($query->get());
+    }
+
+    public function lockForProduct(int $productId, ?int $eventOccurrenceId = null): void
+    {
+        $query = DB::table('waitlist_entries')
+            ->whereIn('product_price_id', $this->productPriceIdsOf($productId))
+            ->whereIn('status', [WaitlistEntryStatus::WAITING->name, WaitlistEntryStatus::OFFERED->name]);
+
+        $this->applyOccurrenceScope($query, $eventOccurrenceId);
+
+        $query->lockForUpdate()->select('id')->get();
     }
 
     public function lockForProductPrice(int $productPriceId, ?int $eventOccurrenceId = null): void
@@ -203,6 +232,11 @@ class WaitlistEntryRepository extends BaseRepository implements WaitlistEntryRep
                 limit: $params->per_page,
                 page: $params->page,
             );
+    }
+
+    private function productPriceIdsOf(int $productId): QueryBuilder
+    {
+        return DB::table('product_prices')->select('id')->where('product_id', $productId);
     }
 
     private function applyOccurrenceScope($query, ?int $eventOccurrenceId): void

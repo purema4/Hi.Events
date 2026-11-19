@@ -56,6 +56,7 @@ class CreateWaitlistEntryHandlerTest extends TestCase
         $this->eventSettingsRepository = Mockery::mock(EventSettingsRepositoryInterface::class);
         $this->eventRepository = Mockery::mock(EventRepositoryInterface::class);
         $this->productPriceRepository = Mockery::mock(ProductPriceRepositoryInterface::class);
+        $this->productPriceRepository->shouldReceive('findWhere')->andReturn(collect())->byDefault();
         $this->productRepository = Mockery::mock(ProductRepositoryInterface::class);
         $this->occurrenceRepository = Mockery::mock(EventOccurrenceRepositoryInterface::class);
         $this->occurrenceEligibilityService = Mockery::mock(OccurrencePurchaseEligibilityService::class);

@@ -24,9 +24,6 @@ interface ProductPriceSaleDateMessageProps {
 
 const ProductPriceSaleDateMessage = ({price, event, product, eventOccurrenceId}: ProductPriceSaleDateMessageProps) => {
     if (price.is_sold_out) {
-        if (canJoinWaitlist(product, price) && (event.type !== EventType.RECURRING || eventOccurrenceId)) {
-            return <JoinWaitlistButton product={product} event={event} productPriceId={price.id} priceLabel={price.label} eventOccurrenceId={eventOccurrenceId}/>;
-        }
         return t`Sold out`;
     }
 
@@ -35,25 +32,7 @@ const ProductPriceSaleDateMessage = ({price, event, product, eventOccurrenceId}:
     }
 
     if (price.is_before_sale_start_date) {
-        return (
-            <>
-                <SalesStartMessage saleStartDate={price.sale_start_date} event={event}/>
-                {canJoinWaitlist(product, price) && (event.type !== EventType.RECURRING || eventOccurrenceId) && (
-                    <JoinWaitlistButton product={product} event={event} productPriceId={price.id} priceLabel={price.label} eventOccurrenceId={eventOccurrenceId}/>
-                )}
-            </>
-        );
-    }
-
-    if (product.is_before_sale_start_date && !product.is_sold_out && !product.is_after_sale_end_date) {
-        return (
-            <>
-                <SalesStartMessage saleStartDate={product.sale_start_date} event={event}/>
-                {canJoinWaitlist(product, price) && (event.type !== EventType.RECURRING || eventOccurrenceId) && (
-                    <JoinWaitlistButton product={product} event={event} productPriceId={price.id} priceLabel={price.label} eventOccurrenceId={eventOccurrenceId}/>
-                )}
-            </>
-        );
+        return <SalesStartMessage saleStartDate={price.sale_start_date} event={event}/>;
     }
 
     if (product.is_sold_out || product.is_after_sale_end_date || product.is_before_sale_start_date) {

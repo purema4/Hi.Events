@@ -1229,7 +1229,7 @@ msgstr "Actie vereist: BTW-informatie nodig"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:548
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:555
 #: src/components/common/WaitlistTable/index.tsx:57
-#: src/components/common/WaitlistTable/index.tsx:237
+#: src/components/common/WaitlistTable/index.tsx:240
 #: src/components/routes/admin/FailedJobs/index.tsx:167
 #: src/components/routes/event/Lineup/ProfileDrawer.tsx:187
 msgid "Actions"
@@ -1677,7 +1677,7 @@ msgstr "Alleen add-ons"
 msgid "Added"
 msgstr "Toegevoegd"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:84
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:86
 msgid "Added at checkout"
 msgstr "Toegevoegd bij het afrekenen"
 
@@ -2153,7 +2153,7 @@ msgid "Amazing, Event, Keywords..."
 msgstr "Verbazingwekkend, evenement, trefwoorden..."
 
 #: src/components/common/OrdersTable/index.tsx:281
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:217
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:219
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:69
 msgid "Amount"
 msgstr "Bedrag"
@@ -2331,6 +2331,10 @@ msgstr "Vragen van producthouders worden naar dit e-mailadres gestuurd. Dit e-ma
 #: src/components/common/CapacityHelp/index.tsx:151
 msgid "Any single date can differ: change its capacity in Edit Date, or a ticket's per-date quantity on that date's Products tab."
 msgstr "Elke datum kan afwijken: wijzig de capaciteit via Datum bewerken, of het aantal per datum van een ticket op het tabblad Producten van die datum."
+
+#: src/components/common/WaitlistTable/index.tsx:182
+msgid "Any tier"
+msgstr "Elke prijsronde"
 
 #: src/components/common/WidgetEditor/installGuides.ts:31
 msgid "Any website (HTML)"
@@ -3215,7 +3219,7 @@ msgid "Bar"
 msgstr "Bar"
 
 #: src/components/routes/event/OccurrencesTab/PriceOverrideForm/index.tsx:306
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:90
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
 msgid "Base price"
 msgstr "Basisprijs"
 
@@ -4620,8 +4624,8 @@ msgstr "sluiten"
 #: src/components/layouts/EventHomepage/Lineup/SessionModal.tsx:86
 #: src/components/layouts/EventHomepage/Sections/GallerySection.tsx:122
 #: src/components/modals/CreateEventModal/index.tsx:288
-#: src/components/modals/JoinWaitlistModal/index.tsx:121
-#: src/components/modals/JoinWaitlistModal/index.tsx:148
+#: src/components/modals/JoinWaitlistModal/index.tsx:130
+#: src/components/modals/JoinWaitlistModal/index.tsx:157
 #: src/components/modals/RefundOrderModal/index.tsx:172
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:892
 #: src/components/routes/product-widget/SelectProducts/index.tsx:1245
@@ -6119,7 +6123,7 @@ msgstr "Dashboard"
 #: src/components/common/AdminOrdersTable/index.tsx:94
 #: src/components/common/CheckInListTable/index.tsx:107
 #: src/components/common/OrderDetails/index.tsx:44
-#: src/components/common/WaitlistTable/index.tsx:187
+#: src/components/common/WaitlistTable/index.tsx:190
 #: src/components/common/WidgetEditor/ContentFields.tsx:77
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:117
 #: src/components/forms/QuestionForm/questionTypes.ts:29
@@ -7355,7 +7359,7 @@ msgstr "In Aanmerking Komende Incheck Lijsten"
 #: src/components/common/OrderDetails/index.tsx:34
 #: src/components/forms/AffiliateForm/index.tsx:89
 #: src/components/modals/InviteUserModal/index.tsx:61
-#: src/components/modals/JoinWaitlistModal/index.tsx:194
+#: src/components/modals/JoinWaitlistModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:174
 #: src/components/modals/ManageOrderModal/index.tsx:141
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:165
@@ -7847,7 +7851,7 @@ msgstr "Ingang"
 msgid "entries"
 msgstr "items"
 
-#: src/components/common/WaitlistTable/index.tsx:267
+#: src/components/common/WaitlistTable/index.tsx:270
 msgid "Entries will appear here when customers join the waitlist for sold out products."
 msgstr "Inschrijvingen verschijnen hier wanneer klanten zich aanmelden voor de wachtlijst van uitverkochte producten."
 
@@ -8811,7 +8815,7 @@ msgstr "Heffing bijgewerkt"
 #: src/components/common/OrdersTable/index.tsx:292
 #: src/components/forms/ProductForm/index.tsx:497
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
 msgid "Fees"
 msgstr "Tarieven"
@@ -8960,7 +8964,7 @@ msgstr "Voornaam"
 
 #: src/components/modals/EditUserModal/index.tsx:87
 #: src/components/modals/InviteUserModal/index.tsx:54
-#: src/components/modals/JoinWaitlistModal/index.tsx:184
+#: src/components/modals/JoinWaitlistModal/index.tsx:193
 #: src/components/routes/auth/AcceptInvitation/index.tsx:226
 #: src/components/routes/auth/Register/index.tsx:139
 #: src/components/routes/product-widget/CollectInformation/index.tsx:520
@@ -8970,7 +8974,7 @@ msgstr "Voornaam"
 msgid "First Name"
 msgstr "Voornaam"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:58
+#: src/components/modals/JoinWaitlistModal/index.tsx:61
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:31
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:31
 msgid "First name is required"
@@ -9123,8 +9127,8 @@ msgstr "Foyer"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:160
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:170
 #: src/components/forms/ProductForm/index.tsx:296
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:161
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:233
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:163
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:235
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:37
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:54
 #: src/ee/box-office/utilites/boxOfficeTender.ts:15
@@ -9944,7 +9948,7 @@ msgstr "Ik erken mijn verantwoordelijkheden als verwerkingsverantwoordelijke"
 msgid "I agree to follow the event code of conduct"
 msgstr "Ik ga akkoord met de gedragscode van het evenement"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:200
+#: src/components/modals/JoinWaitlistModal/index.tsx:209
 msgid "I agree to receive email notifications related to this event"
 msgstr "Ik ga akkoord met het ontvangen van e-mailmeldingen met betrekking tot dit evenement"
 
@@ -10448,15 +10452,15 @@ msgid "Join from anywhere"
 msgstr "Neem overal vandaan deel"
 
 #: src/components/common/JoinWaitlistButton/index.tsx:38
-#: src/components/modals/JoinWaitlistModal/index.tsx:212
+#: src/components/modals/JoinWaitlistModal/index.tsx:221
 msgid "Join Waitlist"
 msgstr "Aanmelden voor wachtlijst"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:161
+#: src/components/modals/JoinWaitlistModal/index.tsx:170
 msgid "Join Waitlist for {productDisplayName}"
 msgstr "Wachtlijst voor {productDisplayName} bijtreden"
 
-#: src/components/common/WaitlistTable/index.tsx:224
+#: src/components/common/WaitlistTable/index.tsx:227
 msgid "Joined"
 msgstr "Aangemeld"
 
@@ -10663,7 +10667,7 @@ msgstr "Achternaam"
 
 #: src/components/modals/EditUserModal/index.tsx:88
 #: src/components/modals/InviteUserModal/index.tsx:55
-#: src/components/modals/JoinWaitlistModal/index.tsx:189
+#: src/components/modals/JoinWaitlistModal/index.tsx:198
 #: src/components/routes/auth/AcceptInvitation/index.tsx:232
 #: src/components/routes/auth/Register/index.tsx:145
 #: src/components/routes/product-widget/CollectInformation/index.tsx:529
@@ -11364,7 +11368,7 @@ msgstr "Max berichten / 24u"
 msgid "Max Recipients / Message"
 msgstr "Max ontvangers / bericht"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:72
 msgid "Maximum {cap} per order"
 msgstr "Maximaal {cap} per bestelling"
 
@@ -12593,7 +12597,7 @@ msgstr "Geen aankomende evenementen"
 msgid "No users found"
 msgstr "Geen gebruikers gevonden"
 
-#: src/components/common/WaitlistTable/index.tsx:263
+#: src/components/common/WaitlistTable/index.tsx:266
 msgid "No waitlist entries"
 msgstr "Geen wachtlijstinschrijvingen"
 
@@ -12677,8 +12681,8 @@ msgstr "Nog geen"
 msgid "Normally {0}"
 msgstr "Normaal {0}"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:67
-#: src/components/common/ProductPriceAvailability/index.tsx:97
+#: src/components/common/ProductPriceAvailability/index.tsx:46
+#: src/components/common/ProductPriceAvailability/index.tsx:76
 msgid "Not available"
 msgstr "Niet beschikbaar"
 
@@ -12789,7 +12793,7 @@ msgstr "Nog niet getest"
 msgid "Not using reserved seating, the box office or enterprise single sign-on? Remove <0>APP_LICENCE_KEY</0> and redeploy."
 msgstr "Gebruik je geen gereserveerde plaatsen, kassa of enterprise single sign-on? Verwijder <0>APP_LICENCE_KEY</0> en deploy opnieuw."
 
-#: src/components/common/ProductPriceAvailability/index.tsx:64
+#: src/components/common/ProductPriceAvailability/index.tsx:43
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:31
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:53
 msgid "Not yet on sale"
@@ -13169,7 +13173,7 @@ msgstr "Details online evenement"
 msgid "Online ticket sales for events with reserved seating keep working."
 msgstr "Online ticketverkoop voor evenementen met gereserveerde plaatsen blijft werken."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:72
 msgid "Only {cap} available"
 msgstr "Slechts {cap} beschikbaar"
 
@@ -14116,7 +14120,7 @@ msgstr "Nu betalen"
 msgid "Pay using the instructions below. {registrantName} has been emailed the order details, and the organizer will confirm the order once your payment arrives."
 msgstr "Betaal volgens de onderstaande instructies. {registrantName} heeft de bestelgegevens per e-mail ontvangen en de organisator bevestigt de bestelling zodra je betaling binnen is."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:216
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:218
 msgid "Pay what you want"
 msgstr "Betaal wat je wilt"
 
@@ -14613,7 +14617,7 @@ msgstr "Maak een ticket aan"
 msgid "Please don't leave a single empty seat: {0}"
 msgstr "Laat geen losse lege stoel achter: {0}"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:59
+#: src/components/modals/JoinWaitlistModal/index.tsx:62
 msgid "Please enter a valid email address"
 msgstr "Voer een geldig e-mailadres in"
 
@@ -16363,14 +16367,18 @@ msgstr "Verkoop is gepauzeerd"
 msgid "Sales by licence year"
 msgstr "Verkopen per licentiejaar"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:34
-#: src/components/common/ProductPriceAvailability/index.tsx:84
+#: src/components/common/ProductPriceAvailability/index.tsx:31
+#: src/components/common/ProductPriceAvailability/index.tsx:63
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:33
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:54
 msgid "Sales ended"
 msgstr "Verkoop beëindigd"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:115
+#: src/components/modals/JoinWaitlistModal/index.tsx:119
+msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do, with the tier on sale at that time."
+msgstr "De verkoop voor {productDisplayName} is nog niet geopend. We mailen je in volgorde van de wachtlijst zodra die opent, voor de prijsronde die dan in de verkoop is."
+
+#: src/components/modals/JoinWaitlistModal/index.tsx:124
 msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do."
 msgstr "De verkoop voor {productDisplayName} is nog niet geopend. We mailen je in volgorde van de wachtlijst zodra die opent."
 
@@ -18200,8 +18208,8 @@ msgstr "uitverkocht"
 
 #: src/components/common/EventCard/index.tsx:136
 #: src/components/common/EventDateRange/index.tsx:65
-#: src/components/common/ProductPriceAvailability/index.tsx:30
-#: src/components/common/ProductPriceAvailability/index.tsx:81
+#: src/components/common/ProductPriceAvailability/index.tsx:27
+#: src/components/common/ProductPriceAvailability/index.tsx:60
 #: src/components/layouts/OrganizerEventsWidget/index.tsx:57
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:92
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:311
@@ -18312,7 +18320,7 @@ msgstr "Er ging iets mis! Probeer het opnieuw"
 msgid "Something went wrong."
 msgstr "Er ging iets mis."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:145
+#: src/components/modals/JoinWaitlistModal/index.tsx:154
 msgid "Something went wrong. Please try again later."
 msgstr "Er is iets misgegaan. Probeer het later opnieuw."
 
@@ -18687,7 +18695,7 @@ msgstr "Statistieken"
 #: src/components/common/OrdersTable/index.tsx:342
 #: src/components/common/OrganizerWebhookTable/index.tsx:244
 #: src/components/common/ProductsTable/index.tsx:100
-#: src/components/common/WaitlistTable/index.tsx:208
+#: src/components/common/WaitlistTable/index.tsx:211
 #: src/components/common/WebhookTable/index.tsx:244
 #: src/components/forms/AffiliateForm/index.tsx:98
 #: src/components/forms/CapaciyAssigmentForm/index.tsx:56
@@ -19189,7 +19197,7 @@ msgstr "Er worden deelnemers uit {0} geselecteerde sessies benaderd."
 #: src/components/common/OrdersTable/index.tsx:291
 #: src/components/forms/TaxAndFeeForm/index.tsx:21
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:89
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:95
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
 msgid "Tax"
 msgstr "Belasting"
 
@@ -20740,7 +20748,7 @@ msgstr "totaal"
 #: src/components/layouts/CheckIn/tabs/StatsTab.tsx:99
 #: src/components/modals/ManageOrderModal/index.tsx:117
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:359
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:99
 #: src/ee/box-office/components/layouts/BoxOffice/tabs/OrdersTab.tsx:114
 msgid "Total"
 msgstr "Totaal"
@@ -21113,7 +21121,7 @@ msgstr "Kan deelnemer niet ophalen"
 msgid "Unable to find seats. Check the connection and try again."
 msgstr "Kan geen stoelen vinden. Controleer de verbinding en probeer het opnieuw."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:142
+#: src/components/modals/JoinWaitlistModal/index.tsx:151
 msgid "Unable to join waitlist"
 msgstr "Kan niet aan de wachtlijst worden toegevoegd"
 
@@ -22326,11 +22334,19 @@ msgstr "We sturen een e-mail met een link om lid te worden van je account."
 msgid "We'll email you the link too, and send your order confirmation as soon as they complete checkout."
 msgstr "We mailen je de link ook en sturen je orderbevestiging zodra de betaling is voltooid."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:117
+#: src/components/modals/JoinWaitlistModal/index.tsx:121
+msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}, at the tier on sale at that time."
+msgstr "We laten het je per e-mail weten als er een plek vrijkomt voor {productDisplayName} op {occurrenceDate}, voor de prijsronde die dan in de verkoop is."
+
+#: src/components/modals/JoinWaitlistModal/index.tsx:126
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}."
 msgstr "We sturen u een e-mail als er een plek beschikbaar komt voor {productDisplayName} op {occurrenceDate}."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:118
+#: src/components/modals/JoinWaitlistModal/index.tsx:122
+msgid "We'll notify you by email if a spot becomes available for {productDisplayName}, at the tier on sale at that time."
+msgstr "We laten het je per e-mail weten als er een plek vrijkomt voor {productDisplayName}, voor de prijsronde die dan in de verkoop is."
+
+#: src/components/modals/JoinWaitlistModal/index.tsx:127
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName}."
 msgstr "We sturen u een e-mail als er een plek beschikbaar komt voor {productDisplayName}."
 
@@ -22776,7 +22792,7 @@ msgstr "Werken"
 #: src/components/modals/CreatePromoCodeModal/index.tsx:59
 #: src/components/modals/EditProductCategoryModal/index.tsx:73
 #: src/components/modals/EditPromoCodeModal/index.tsx:87
-#: src/components/modals/JoinWaitlistModal/index.tsx:211
+#: src/components/modals/JoinWaitlistModal/index.tsx:220
 #: src/components/routes/auth/Register/index.tsx:188
 msgid "Working..."
 msgstr "Werken..."
@@ -23032,7 +23048,7 @@ msgstr "U moet erkennen dat deze e-mail geen promotie is"
 msgid "You must acknowledge your responsibilities before saving"
 msgstr "U moet uw verantwoordelijkheden erkennen voordat u opslaat"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:60
+#: src/components/modals/JoinWaitlistModal/index.tsx:63
 msgid "You must agree to receive messages"
 msgstr "U moet akkoord gaan met het ontvangen van berichten"
 
@@ -23148,11 +23164,11 @@ msgstr "Je wijzigt sessietijden"
 msgid "You're going to {0}!"
 msgstr "Je gaat naar {0}!"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:178
+#: src/components/modals/JoinWaitlistModal/index.tsx:187
 msgid "You're joining the waitlist for {occurrenceDate}."
 msgstr "U meldt zich aan voor de wachtlijst voor {occurrenceDate}."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:111
+#: src/components/modals/JoinWaitlistModal/index.tsx:114
 msgid "You're on the waitlist!"
 msgstr "Je staat op de wachtlijst!"
 

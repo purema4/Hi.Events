@@ -1228,7 +1228,7 @@ msgstr "Toimenpide vaaditaan: ALV-tiedot tarvitaan"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:548
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:555
 #: src/components/common/WaitlistTable/index.tsx:57
-#: src/components/common/WaitlistTable/index.tsx:237
+#: src/components/common/WaitlistTable/index.tsx:240
 #: src/components/routes/admin/FailedJobs/index.tsx:167
 #: src/components/routes/event/Lineup/ProfileDrawer.tsx:187
 msgid "Actions"
@@ -1676,7 +1676,7 @@ msgstr "Vain lisäosat"
 msgid "Added"
 msgstr "Lisätty"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:84
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:86
 msgid "Added at checkout"
 msgstr "Lisätään kassalla"
 
@@ -2152,7 +2152,7 @@ msgid "Amazing, Event, Keywords..."
 msgstr "Upea, Tapahtuma, Avainsanat..."
 
 #: src/components/common/OrdersTable/index.tsx:281
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:217
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:219
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:69
 msgid "Amount"
 msgstr "Summa"
@@ -2330,6 +2330,10 @@ msgstr "Kaikki lipunhaltijoiden kyselyt lähetetään tähän sähköpostiosoitt
 #: src/components/common/CapacityHelp/index.tsx:151
 msgid "Any single date can differ: change its capacity in Edit Date, or a ticket's per-date quantity on that date's Products tab."
 msgstr "Yksittäinen päivämäärä voi poiketa: muuta sen kapasiteettia kohdassa Muokkaa päivämäärää tai lipun päivämääräkohtaista määrää kyseisen päivämäärän Tuotteet-välilehdellä."
+
+#: src/components/common/WaitlistTable/index.tsx:182
+msgid "Any tier"
+msgstr "Mikä tahansa hintataso"
 
 #: src/components/common/WidgetEditor/installGuides.ts:31
 msgid "Any website (HTML)"
@@ -3214,7 +3218,7 @@ msgid "Bar"
 msgstr "Baari"
 
 #: src/components/routes/event/OccurrencesTab/PriceOverrideForm/index.tsx:306
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:90
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
 msgid "Base price"
 msgstr "Perushinta"
 
@@ -4619,8 +4623,8 @@ msgstr "sulje"
 #: src/components/layouts/EventHomepage/Lineup/SessionModal.tsx:86
 #: src/components/layouts/EventHomepage/Sections/GallerySection.tsx:122
 #: src/components/modals/CreateEventModal/index.tsx:288
-#: src/components/modals/JoinWaitlistModal/index.tsx:121
-#: src/components/modals/JoinWaitlistModal/index.tsx:148
+#: src/components/modals/JoinWaitlistModal/index.tsx:130
+#: src/components/modals/JoinWaitlistModal/index.tsx:157
 #: src/components/modals/RefundOrderModal/index.tsx:172
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:892
 #: src/components/routes/product-widget/SelectProducts/index.tsx:1245
@@ -6118,7 +6122,7 @@ msgstr "Hallintapaneeli"
 #: src/components/common/AdminOrdersTable/index.tsx:94
 #: src/components/common/CheckInListTable/index.tsx:107
 #: src/components/common/OrderDetails/index.tsx:44
-#: src/components/common/WaitlistTable/index.tsx:187
+#: src/components/common/WaitlistTable/index.tsx:190
 #: src/components/common/WidgetEditor/ContentFields.tsx:77
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:117
 #: src/components/forms/QuestionForm/questionTypes.ts:29
@@ -7354,7 +7358,7 @@ msgstr "Kelpoiset sisäänkirjautumislistat"
 #: src/components/common/OrderDetails/index.tsx:34
 #: src/components/forms/AffiliateForm/index.tsx:89
 #: src/components/modals/InviteUserModal/index.tsx:61
-#: src/components/modals/JoinWaitlistModal/index.tsx:194
+#: src/components/modals/JoinWaitlistModal/index.tsx:203
 #: src/components/modals/ManageAttendeeModal/index.tsx:174
 #: src/components/modals/ManageOrderModal/index.tsx:141
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:165
@@ -7846,7 +7850,7 @@ msgstr "Sisäänkäynti"
 msgid "entries"
 msgstr "merkintöjä"
 
-#: src/components/common/WaitlistTable/index.tsx:267
+#: src/components/common/WaitlistTable/index.tsx:270
 msgid "Entries will appear here when customers join the waitlist for sold out products."
 msgstr "Merkinnät näkyvät tässä, kun asiakkaat liittyvät jonotuslistalle loppuunmyytyjen tuotteiden kohdalla."
 
@@ -8810,7 +8814,7 @@ msgstr "Maksu päivitetty"
 #: src/components/common/OrdersTable/index.tsx:292
 #: src/components/forms/ProductForm/index.tsx:497
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:92
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
 msgid "Fees"
 msgstr "Kulut"
@@ -8959,7 +8963,7 @@ msgstr "Etunimi"
 
 #: src/components/modals/EditUserModal/index.tsx:87
 #: src/components/modals/InviteUserModal/index.tsx:54
-#: src/components/modals/JoinWaitlistModal/index.tsx:184
+#: src/components/modals/JoinWaitlistModal/index.tsx:193
 #: src/components/routes/auth/AcceptInvitation/index.tsx:226
 #: src/components/routes/auth/Register/index.tsx:139
 #: src/components/routes/product-widget/CollectInformation/index.tsx:520
@@ -8969,7 +8973,7 @@ msgstr "Etunimi"
 msgid "First Name"
 msgstr "Etunimi"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:58
+#: src/components/modals/JoinWaitlistModal/index.tsx:61
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:31
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:31
 msgid "First name is required"
@@ -9122,8 +9126,8 @@ msgstr "Aula"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:160
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:170
 #: src/components/forms/ProductForm/index.tsx:296
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:161
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:233
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:163
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:235
 #: src/ee/box-office/components/layouts/BoxOffice/AmountSheet.tsx:37
 #: src/ee/box-office/components/layouts/BoxOffice/ProductTile.tsx:54
 #: src/ee/box-office/utilites/boxOfficeTender.ts:15
@@ -9943,7 +9947,7 @@ msgstr "Vahvistan vastuuni rekisterinpitäjänä"
 msgid "I agree to follow the event code of conduct"
 msgstr "Sitoudun noudattamaan tapahtuman käytössääntöjä"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:200
+#: src/components/modals/JoinWaitlistModal/index.tsx:209
 msgid "I agree to receive email notifications related to this event"
 msgstr "Hyväksyn vastaanottaa sähköpostitiedotteita tähän tapahtumaan liittyen"
 
@@ -10447,15 +10451,15 @@ msgid "Join from anywhere"
 msgstr "Liity mistä tahansa"
 
 #: src/components/common/JoinWaitlistButton/index.tsx:38
-#: src/components/modals/JoinWaitlistModal/index.tsx:212
+#: src/components/modals/JoinWaitlistModal/index.tsx:221
 msgid "Join Waitlist"
 msgstr "Liity jonolistalle"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:161
+#: src/components/modals/JoinWaitlistModal/index.tsx:170
 msgid "Join Waitlist for {productDisplayName}"
 msgstr "Liity jonolistalle tuotteelle {productDisplayName}"
 
-#: src/components/common/WaitlistTable/index.tsx:224
+#: src/components/common/WaitlistTable/index.tsx:227
 msgid "Joined"
 msgstr "Liittynyt"
 
@@ -10662,7 +10666,7 @@ msgstr "Sukunimi"
 
 #: src/components/modals/EditUserModal/index.tsx:88
 #: src/components/modals/InviteUserModal/index.tsx:55
-#: src/components/modals/JoinWaitlistModal/index.tsx:189
+#: src/components/modals/JoinWaitlistModal/index.tsx:198
 #: src/components/routes/auth/AcceptInvitation/index.tsx:232
 #: src/components/routes/auth/Register/index.tsx:145
 #: src/components/routes/product-widget/CollectInformation/index.tsx:529
@@ -11363,7 +11367,7 @@ msgstr "Enimmäisviestit / 24 h"
 msgid "Max Recipients / Message"
 msgstr "Enimmäisvastaanottajat / viesti"
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:72
 msgid "Maximum {cap} per order"
 msgstr "Enintään {cap} tilausta kohden"
 
@@ -12592,7 +12596,7 @@ msgstr "Ei tulevia tapahtumia"
 msgid "No users found"
 msgstr "Käyttäjiä ei löytynyt"
 
-#: src/components/common/WaitlistTable/index.tsx:263
+#: src/components/common/WaitlistTable/index.tsx:266
 msgid "No waitlist entries"
 msgstr "Ei jonotustietueita"
 
@@ -12676,8 +12680,8 @@ msgstr "Ei vielä"
 msgid "Normally {0}"
 msgstr "Yleensä {0}"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:67
-#: src/components/common/ProductPriceAvailability/index.tsx:97
+#: src/components/common/ProductPriceAvailability/index.tsx:46
+#: src/components/common/ProductPriceAvailability/index.tsx:76
 msgid "Not available"
 msgstr "Ei saatavilla"
 
@@ -12788,7 +12792,7 @@ msgstr "Ei vielä testattu"
 msgid "Not using reserved seating, the box office or enterprise single sign-on? Remove <0>APP_LICENCE_KEY</0> and redeploy."
 msgstr "Etkö käytä varattuja istumapaikkoja, lipunmyyntiä ovella tai yritysten kertakirjautumista? Poista <0>APP_LICENCE_KEY</0> ja ota taustajärjestelmä uudelleen käyttöön."
 
-#: src/components/common/ProductPriceAvailability/index.tsx:64
+#: src/components/common/ProductPriceAvailability/index.tsx:43
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:31
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:53
 msgid "Not yet on sale"
@@ -13168,7 +13172,7 @@ msgstr "Verkkotapahtuman tiedot"
 msgid "Online ticket sales for events with reserved seating keep working."
 msgstr "Verkkolipunmyynti tapahtumiin, joissa on varatut istumapaikat, toimii edelleen."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:70
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:72
 msgid "Only {cap} available"
 msgstr "Saatavilla vain {cap}"
 
@@ -14115,7 +14119,7 @@ msgstr "Maksa nyt"
 msgid "Pay using the instructions below. {registrantName} has been emailed the order details, and the organizer will confirm the order once your payment arrives."
 msgstr "Maksa alla olevien ohjeiden mukaan. {registrantName} on saanut tilauksen tiedot sähköpostilla, ja järjestäjä vahvistaa tilauksen, kun maksusi on saapunut."
 
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:216
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:218
 msgid "Pay what you want"
 msgstr "Maksa mitä haluat"
 
@@ -14612,7 +14616,7 @@ msgstr "Luo ensin lippu"
 msgid "Please don't leave a single empty seat: {0}"
 msgstr "Älä jätä yksittäistä tyhjää paikkaa: {0}"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:59
+#: src/components/modals/JoinWaitlistModal/index.tsx:62
 msgid "Please enter a valid email address"
 msgstr "Anna kelvollinen sähköpostiosoite"
 
@@ -16362,14 +16366,18 @@ msgstr "Myynti on tauolla"
 msgid "Sales by licence year"
 msgstr "Myynti lisenssivuosittain"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:34
-#: src/components/common/ProductPriceAvailability/index.tsx:84
+#: src/components/common/ProductPriceAvailability/index.tsx:31
+#: src/components/common/ProductPriceAvailability/index.tsx:63
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:33
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:54
 msgid "Sales ended"
 msgstr "Myynti päättynyt"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:115
+#: src/components/modals/JoinWaitlistModal/index.tsx:119
+msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do, with the tier on sale at that time."
+msgstr "Tuotteen {productDisplayName} myynti ei ole vielä alkanut. Lähetämme sinulle sähköpostia jonotuslistan järjestyksessä heti kun se alkaa, silloin myynnissä olevalla hintatasolla."
+
+#: src/components/modals/JoinWaitlistModal/index.tsx:124
 msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do."
 msgstr "Tuotteen {productDisplayName} myynti ei ole vielä alkanut. Lähetämme sinulle sähköpostia jonotuslistan järjestyksessä heti kun se alkaa."
 
@@ -18199,8 +18207,8 @@ msgstr "loppuunmyyty"
 
 #: src/components/common/EventCard/index.tsx:136
 #: src/components/common/EventDateRange/index.tsx:65
-#: src/components/common/ProductPriceAvailability/index.tsx:30
-#: src/components/common/ProductPriceAvailability/index.tsx:81
+#: src/components/common/ProductPriceAvailability/index.tsx:27
+#: src/components/common/ProductPriceAvailability/index.tsx:60
 #: src/components/layouts/OrganizerEventsWidget/index.tsx:57
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:92
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:311
@@ -18311,7 +18319,7 @@ msgstr "Jotain meni pieleen! Yritä uudelleen"
 msgid "Something went wrong."
 msgstr "Jotain meni pieleen."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:145
+#: src/components/modals/JoinWaitlistModal/index.tsx:154
 msgid "Something went wrong. Please try again later."
 msgstr "Jotain meni pieleen. Yritä myöhemmin uudelleen."
 
@@ -18686,7 +18694,7 @@ msgstr "Tilastot"
 #: src/components/common/OrdersTable/index.tsx:342
 #: src/components/common/OrganizerWebhookTable/index.tsx:244
 #: src/components/common/ProductsTable/index.tsx:100
-#: src/components/common/WaitlistTable/index.tsx:208
+#: src/components/common/WaitlistTable/index.tsx:211
 #: src/components/common/WebhookTable/index.tsx:244
 #: src/components/forms/AffiliateForm/index.tsx:98
 #: src/components/forms/CapaciyAssigmentForm/index.tsx:56
@@ -19188,7 +19196,7 @@ msgstr "Kohdennetaan osallistujia {0} valitun istunnon yli."
 #: src/components/common/OrdersTable/index.tsx:291
 #: src/components/forms/TaxAndFeeForm/index.tsx:21
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:89
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:95
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
 msgid "Tax"
 msgstr "Vero"
 
@@ -20739,7 +20747,7 @@ msgstr "yhteensä"
 #: src/components/layouts/CheckIn/tabs/StatsTab.tsx:99
 #: src/components/modals/ManageOrderModal/index.tsx:117
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:359
-#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:97
+#: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:99
 #: src/ee/box-office/components/layouts/BoxOffice/tabs/OrdersTab.tsx:114
 msgid "Total"
 msgstr "Yhteensä"
@@ -21112,7 +21120,7 @@ msgstr "Osallistujan tietojen hakeminen ei onnistu"
 msgid "Unable to find seats. Check the connection and try again."
 msgstr "Paikkoja ei löytynyt. Tarkista yhteys ja yritä uudelleen."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:142
+#: src/components/modals/JoinWaitlistModal/index.tsx:151
 msgid "Unable to join waitlist"
 msgstr "Jonotuslistalle liittyminen ei onnistu"
 
@@ -22325,11 +22333,19 @@ msgstr "Lähetämme sähköpostilla linkin tiliisi liittymistä varten."
 msgid "We'll email you the link too, and send your order confirmation as soon as they complete checkout."
 msgstr "Lähetämme linkin myös sinulle sähköpostilla ja lähetämme tilausvahvistuksesi heti, kun maksu on suoritettu."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:117
+#: src/components/modals/JoinWaitlistModal/index.tsx:121
+msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}, at the tier on sale at that time."
+msgstr "Ilmoitamme sähköpostilla, jos tuotteeseen {productDisplayName} vapautuu paikka {occurrenceDate}, silloin myynnissä olevalla hintatasolla."
+
+#: src/components/modals/JoinWaitlistModal/index.tsx:126
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}."
 msgstr "Ilmoitamme sinulle sähköpostitse, jos tuotteelle {productDisplayName} vapautuu paikka päivänä {occurrenceDate}."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:118
+#: src/components/modals/JoinWaitlistModal/index.tsx:122
+msgid "We'll notify you by email if a spot becomes available for {productDisplayName}, at the tier on sale at that time."
+msgstr "Ilmoitamme sähköpostilla, jos tuotteeseen {productDisplayName} vapautuu paikka, silloin myynnissä olevalla hintatasolla."
+
+#: src/components/modals/JoinWaitlistModal/index.tsx:127
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName}."
 msgstr "Ilmoitamme sinulle sähköpostitse, jos tuotteelle {productDisplayName} vapautuu paikka."
 
@@ -22775,7 +22791,7 @@ msgstr "Käsitellään"
 #: src/components/modals/CreatePromoCodeModal/index.tsx:59
 #: src/components/modals/EditProductCategoryModal/index.tsx:73
 #: src/components/modals/EditPromoCodeModal/index.tsx:87
-#: src/components/modals/JoinWaitlistModal/index.tsx:211
+#: src/components/modals/JoinWaitlistModal/index.tsx:220
 #: src/components/routes/auth/Register/index.tsx:188
 msgid "Working..."
 msgstr "Käsitellään..."
@@ -23031,7 +23047,7 @@ msgstr "Sinun on vahvistettava, että tämä sähköposti ei ole markkinointivie
 msgid "You must acknowledge your responsibilities before saving"
 msgstr "Sinun on vahvistettava vastuusi ennen tallentamista"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:60
+#: src/components/modals/JoinWaitlistModal/index.tsx:63
 msgid "You must agree to receive messages"
 msgstr "Sinun on hyväksyttävä viestien vastaanottaminen"
 
@@ -23147,11 +23163,11 @@ msgstr "Olet muuttamassa istuntojen aikoja"
 msgid "You're going to {0}!"
 msgstr "Olet menossa tapahtumaan {0}!"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:178
+#: src/components/modals/JoinWaitlistModal/index.tsx:187
 msgid "You're joining the waitlist for {occurrenceDate}."
 msgstr "Liityt päivämäärän {occurrenceDate} jonotuslistalle."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:111
+#: src/components/modals/JoinWaitlistModal/index.tsx:114
 msgid "You're on the waitlist!"
 msgstr "Olet jonotuslistalla!"
 

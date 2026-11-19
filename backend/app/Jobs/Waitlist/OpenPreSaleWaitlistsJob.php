@@ -2,7 +2,9 @@
 
 namespace HiEvents\Jobs\Waitlist;
 
+use Carbon\Carbon;
 use HiEvents\DomainObjects\Enums\CapacityChangeDirection;
+use HiEvents\DomainObjects\ProductPriceDomainObject;
 use HiEvents\DomainObjects\Status\WaitlistEntryStatus;
 use HiEvents\DomainObjects\WaitlistEntryDomainObject;
 use HiEvents\Events\CapacityChangedEvent;
@@ -26,38 +28,44 @@ class OpenPreSaleWaitlistsJob implements ShouldQueue
         ProductPriceRepositoryInterface $productPriceRepository,
         ProductRepositoryInterface $productRepository,
     ): void {
-        $entriesByPriceAndOccurrence = $waitlistEntryRepository
+        $entryGroups = $waitlistEntryRepository
             ->findWhere([
                 'status' => WaitlistEntryStatus::WAITING->name,
-                'awaiting_sale_start' => true,
+                ['next_sale_start_at', '!=', null],
             ])
-            ->groupBy(fn (WaitlistEntryDomainObject $entry) => $entry->getProductPriceId().':'.($entry->getEventOccurrenceId() ?? ''));
+            ->groupBy(fn (WaitlistEntryDomainObject $entry) => implode(':', [
+                $entry->getProductPriceId(),
+                $entry->getEventOccurrenceId() ?? '',
+                $entry->getNextSaleStartAt(),
+            ]));
 
-        foreach ($entriesByPriceAndOccurrence as $entries) {
+        foreach ($entryGroups as $entries) {
             /** @var WaitlistEntryDomainObject $firstEntry */
             $firstEntry = $entries->first();
+            $storedStart = $firstEntry->getNextSaleStartAt();
 
             try {
                 $productPrice = $productPriceRepository->findFirstWhere(['id' => $firstEntry->getProductPriceId()]);
                 $product = $productPrice
-                    ? $productRepository->findFirstWhere(['id' => $productPrice->getProductId()])
+                    ? $productRepository->loadRelation(ProductPriceDomainObject::class)->findFirstWhere(['id' => $productPrice->getProductId()])
                     : null;
+                $nextStart = $product?->getNextSaleStartDate($productPrice);
 
-                if ($product !== null && ($product->isBeforeSaleStartDate() || $productPrice->isBeforeSaleStartDate())) {
+                if ($nextStart !== null && Carbon::parse($nextStart)->equalTo(Carbon::parse($storedStart))) {
                     continue;
                 }
 
                 $waitlistEntryRepository->updateWhere(
-                    attributes: ['awaiting_sale_start' => false],
+                    attributes: ['next_sale_start_at' => $nextStart],
                     where: [
                         'product_price_id' => $firstEntry->getProductPriceId(),
                         'event_occurrence_id' => $firstEntry->getEventOccurrenceId(),
                         'status' => WaitlistEntryStatus::WAITING->name,
-                        'awaiting_sale_start' => true,
+                        'next_sale_start_at' => $storedStart,
                     ],
                 );
 
-                if ($product === null) {
+                if ($product === null || ! $product->isOnSale()) {
                     continue;
                 }
 
