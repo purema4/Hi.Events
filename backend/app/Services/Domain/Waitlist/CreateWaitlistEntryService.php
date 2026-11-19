@@ -38,7 +38,7 @@ class CreateWaitlistEntryService
         $this->validateWaitlistEnabled($product);
         $this->validateOnPublicSaleOrUpcoming($product, $productPrice, $promoCode);
         $awaitingSaleStart = $product->isBeforeSaleStartDate() || $productPrice->isBeforeSaleStartDate();
-        $promoCodeId = $promoCode?->appliesToProduct($product) ? $promoCode->getId() : null;
+        $promoCodeId = $promoCode?->getId();
 
         /** @var WaitlistEntryDomainObject $entry */
         $entry = $this->databaseManager->transaction(function () use ($dto, $awaitingSaleStart, $promoCodeId) {

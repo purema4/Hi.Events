@@ -136,6 +136,51 @@ class OpenPreSaleWaitlistsJobTest extends TestCase
         $this->assertEquals(18.00, (float) $orderItem->price);
     }
 
+    public function test_each_offer_reserves_the_minimum_per_order_and_stops_when_it_no_longer_fits(): void
+    {
+        $priceId = $this->insertWaitlistedPrice(saleStartsAt: now()->addDay(), quantity: 10);
+        DB::table('products')->where('id', $this->productIdOf($priceId))->update(['min_per_order' => 4]);
+        $this->joinWaitlist($priceId, 'first@example.com')->assertCreated();
+        $this->joinWaitlist($priceId, 'second@example.com')->assertCreated();
+        $this->joinWaitlist($priceId, 'third@example.com')->assertCreated();
+
+        DB::table('products')->where('id', $this->productIdOf($priceId))->update(['sale_start_date' => now()->subMinute()]);
+
+        app()->call([new OpenPreSaleWaitlistsJob, 'handle']);
+
+        $entries = DB::table('waitlist_entries')->where('product_price_id', $priceId)->orderBy('position')->get();
+        $this->assertSame(
+            [WaitlistEntryStatus::OFFERED->name, WaitlistEntryStatus::OFFERED->name, WaitlistEntryStatus::WAITING->name],
+            $entries->pluck('status')->all(),
+        );
+        foreach ($entries->take(2) as $entry) {
+            $this->assertSame(4, (int) DB::table('order_items')->where('order_id', $entry->order_id)->sum('quantity'));
+        }
+    }
+
+    public function test_a_promo_code_for_other_tickets_is_still_remembered(): void
+    {
+        $priceId = $this->insertWaitlistedPrice(saleStartsAt: now()->addDay(), priceType: 'PAID', price: 20.00);
+        $promoCodeId = DB::table('promo_codes')->insertGetId([
+            'event_id' => $this->eventId,
+            'code' => 'vip',
+            'discount' => 10,
+            'discount_type' => 'PERCENTAGE',
+            'applicable_product_ids' => json_encode([$this->productIdOf($priceId) + 1000]),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $this->joinWaitlist($priceId, 'first@example.com', promoCode: 'vip')->assertCreated();
+        DB::table('products')->where('id', $this->productIdOf($priceId))->update(['sale_start_date' => now()->subMinute()]);
+
+        app()->call([new OpenPreSaleWaitlistsJob, 'handle']);
+
+        $orderId = DB::table('waitlist_entries')->where('email', 'first@example.com')->value('order_id');
+        $this->assertSame($promoCodeId, DB::table('orders')->where('id', $orderId)->value('promo_code_id'));
+        $this->assertEquals(20.00, (float) DB::table('order_items')->where('order_id', $orderId)->value('price'));
+    }
+
     public function test_without_automatic_processing_the_entries_stay_waiting_for_the_organizer(): void
     {
         DB::table('event_settings')->where('event_id', $this->eventId)->update(['waitlist_auto_process' => false]);

@@ -228,6 +228,7 @@
 
     > .hi-price-tier-row {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       gap: 14px;
@@ -293,13 +294,14 @@
 
   .hi-price-tier-main {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     gap: 12px;
   }
 
   .hi-price-tier {
-    flex: 1;
+    flex: 1 1 140px;
     min-width: 0;
 
     .hi-price-tier-label {
@@ -358,6 +360,8 @@
     flex-shrink: 0;
     display: flex;
     align-items: center;
+    max-width: 100%;
+    margin-left: auto;
   }
 
   .hi-product-availability {

@@ -13,6 +13,8 @@ class AvailableProductQuantitiesDTO extends BaseDTO
 
     public ?int $quantity_purchasable_before_seats = null;
 
+    public ?int $min_per_order = null;
+
     public function __construct(
         public int $product_id,
         public int $price_id,
@@ -29,6 +31,11 @@ class AvailableProductQuantitiesDTO extends BaseDTO
         public ?int $quantity_available_before_seats = null,
         public bool $soft_quantity_limit = false,
     ) {}
+
+    public function minimumPerOrder(): int
+    {
+        return max(1, $this->min_per_order ?? 1);
+    }
 
     public function purchasableQuantity(): int
     {

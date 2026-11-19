@@ -29,6 +29,7 @@ use HiEvents\Services\Domain\Order\DTO\ProcessedOrderItemDTO;
 use HiEvents\Services\Domain\Order\OrderItemProcessingService;
 use HiEvents\Services\Domain\Order\OrderManagementService;
 use HiEvents\Services\Domain\Product\AvailableProductQuantitiesFetchService;
+use HiEvents\Services\Domain\Product\DTO\AvailableProductQuantitiesDTO;
 use HiEvents\Services\Domain\Product\DTO\OrderProductPriceDTO;
 use HiEvents\Services\Domain\PromoCode\PromoCodeUsageValidationService;
 use HiEvents\Services\Infrastructure\Lock\TransactionLockService;
@@ -94,7 +95,8 @@ class ProcessWaitlistService
             }
 
             $offeredEntries = collect();
-            $remainingByOccurrenceAndPrice = [];
+            $priceQuantitiesByOccurrence = [];
+            $offeredTicketsByOccurrenceAndPrice = [];
 
             foreach ($entries as $entry) {
                 if ($entry->getAwaitingSaleStart()) {
@@ -113,25 +115,26 @@ class ProcessWaitlistService
 
                 $priceId = $entry->getProductPriceId();
 
-                if (! isset($remainingByOccurrenceAndPrice[$occurrenceId][$priceId])) {
+                if (! isset($priceQuantitiesByOccurrence[$occurrenceId][$priceId])) {
                     $quantities = $this->availableQuantitiesService->getAvailableProductQuantities(
                         $event->getId(),
                         ignoreCache: true,
                         eventOccurrenceId: $occurrenceId,
                     );
-                    $remainingByOccurrenceAndPrice[$occurrenceId][$priceId] = $this->getAvailableCountForPrice($quantities, $priceId);
+                    $priceQuantitiesByOccurrence[$occurrenceId][$priceId] = $this->findPriceQuantities($quantities, $priceId);
+                    $offeredTicketsByOccurrenceAndPrice[$occurrenceId][$priceId] = 0;
                 }
 
-                if ($remainingByOccurrenceAndPrice[$occurrenceId][$priceId] <= 0) {
+                $priceQuantities = $priceQuantitiesByOccurrence[$occurrenceId][$priceId];
+                $offeredTickets = $offeredTicketsByOccurrenceAndPrice[$occurrenceId][$priceId];
+
+                if ($priceQuantities === null || ! $this->hasRoomForOffer($priceQuantities, $offeredTickets)) {
                     continue;
                 }
 
                 $updatedEntry = $this->offerEntry($entry, $event, $eventSettings);
                 $offeredEntries->push($updatedEntry);
-
-                if ($remainingByOccurrenceAndPrice[$occurrenceId][$priceId] !== Constants::INFINITE) {
-                    $remainingByOccurrenceAndPrice[$occurrenceId][$priceId]--;
-                }
+                $offeredTicketsByOccurrenceAndPrice[$occurrenceId][$priceId] += $priceQuantities->minimumPerOrder();
 
                 if ($offeredEntries->count() >= $quantity) {
                     break;
@@ -304,7 +307,7 @@ class ProcessWaitlistService
                 product_id: $product->getId(),
                 quantities: collect([
                     new OrderProductPriceDTO(
-                        quantity: 1,
+                        quantity: max(1, $product->getMinPerOrder() ?? 1),
                         price_id: $productPrice->getId(),
                     ),
                 ]),
@@ -367,22 +370,6 @@ class ProcessWaitlistService
         return $occurrence->getId();
     }
 
-    private function getAvailableCountForPrice(object $quantities, int $priceId): int
-    {
-        foreach ($quantities->productQuantities as $productQuantity) {
-            if ($productQuantity->price_id === $priceId) {
-                $available = max(0, $productQuantity->quantity_available);
-                if ($available === Constants::INFINITE) {
-                    return Constants::INFINITE;
-                }
-
-                return $available;
-            }
-        }
-
-        return 0;
-    }
-
     private function isSeatedPrice(int $productPriceId): bool
     {
         return $this->seatedProductLookup->isSeated($this->productPriceRepository->findById($productPriceId)->getProductId());
@@ -402,7 +389,29 @@ class ProcessWaitlistService
             eventOccurrenceId: $eventOccurrenceId,
         );
 
-        return $this->getAvailableCountForPrice($quantities, $entry->getProductPriceId()) > 0;
+        $priceQuantities = $this->findPriceQuantities($quantities, $entry->getProductPriceId());
+
+        return $priceQuantities !== null && $this->hasRoomForOffer($priceQuantities);
+    }
+
+    private function findPriceQuantities(object $quantities, int $priceId): ?AvailableProductQuantitiesDTO
+    {
+        return collect($quantities->productQuantities)
+            ->first(fn (AvailableProductQuantitiesDTO $productQuantity) => $productQuantity->price_id === $priceId);
+    }
+
+    private function hasRoomForOffer(AvailableProductQuantitiesDTO $priceQuantities, int $alreadyOfferedTickets = 0): bool
+    {
+        $ticketsPerOffer = $priceQuantities->minimumPerOrder();
+        $remaining = $this->remainingAfter($priceQuantities->quantity_available, $alreadyOfferedTickets);
+        $purchasable = $this->remainingAfter($priceQuantities->purchasableQuantity(), $alreadyOfferedTickets);
+
+        return $remaining > 0 && ($remaining >= $ticketsPerOffer || $purchasable >= $ticketsPerOffer);
+    }
+
+    private function remainingAfter(int $quantity, int $alreadyOfferedTickets): int
+    {
+        return $quantity === Constants::INFINITE ? Constants::INFINITE : max(0, $quantity - $alreadyOfferedTickets);
     }
 
     private function calculateOfferExpiry(EventSettingDomainObject $eventSettings): string

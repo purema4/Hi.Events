@@ -381,6 +381,7 @@ class AvailableProductQuantitiesFetchService
             products.title AS product_title,
             products.product_type AS product_type,
             products.soft_quantity_limit,
+            products.min_per_order,
             product_prices.label AS price_label,
             product_prices.initial_quantity_available,
             product_prices.quantity_sold,
@@ -413,6 +414,7 @@ class AvailableProductQuantitiesFetchService
                     'soft_quantity_limit' => (bool) $row->soft_quantity_limit,
                     'capacities' => new Collection,
                 ]);
+                $dto->min_per_order = $row->min_per_order;
 
                 $dto->setOwnQuantity(
                     $row->initial_quantity_available === null
