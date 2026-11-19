@@ -21,6 +21,7 @@ use HiEvents\Jobs\Waitlist\SendWaitlistOfferEmailJob;
 use HiEvents\Repository\Interfaces\EventOccurrenceRepositoryInterface;
 use HiEvents\Repository\Interfaces\ProductPriceRepositoryInterface;
 use HiEvents\Repository\Interfaces\ProductRepositoryInterface;
+use HiEvents\Repository\Interfaces\PromoCodeRepositoryInterface;
 use HiEvents\Repository\Interfaces\WaitlistEntryRepositoryInterface;
 use HiEvents\Services\Domain\EventOccurrence\OccurrencePurchaseEligibilityService;
 use HiEvents\Services\Domain\Order\DTO\ProcessedOrderItemDTO;
@@ -29,6 +30,7 @@ use HiEvents\Services\Domain\Order\OrderManagementService;
 use HiEvents\Services\Domain\Product\AvailableProductQuantitiesFetchService;
 use HiEvents\Services\Domain\Product\DTO\AvailableProductQuantitiesDTO;
 use HiEvents\Services\Domain\Product\DTO\AvailableProductQuantitiesResponseDTO;
+use HiEvents\Services\Domain\PromoCode\PromoCodeUsageValidationService;
 use HiEvents\Services\Domain\Waitlist\ProcessWaitlistService;
 use HiEvents\Services\Infrastructure\Lock\TransactionLockService;
 use Illuminate\Database\DatabaseManager;
@@ -135,6 +137,8 @@ class ProcessWaitlistServiceTest extends TestCase
             eligibilityService: $this->eligibilityService,
             seatedProductLookup: $this->seatedProductLookup,
             transactionLockService: new TransactionLockService($this->databaseManager),
+            promoCodeRepository: Mockery::mock(PromoCodeRepositoryInterface::class),
+            promoCodeUsageValidationService: Mockery::mock(PromoCodeUsageValidationService::class),
         );
     }
 
@@ -245,6 +249,8 @@ class ProcessWaitlistServiceTest extends TestCase
         $this->mockAvailableQuantities($event->getId(), $productPriceId);
 
         $waitingEntry = Mockery::mock(WaitlistEntryDomainObject::class);
+        $waitingEntry->shouldReceive('getAwaitingSaleStart')->andReturn(false);
+        $waitingEntry->shouldReceive('getPromoCodeId')->andReturn(null);
         $waitingEntry->shouldReceive('getId')->andReturn(1);
         $waitingEntry->shouldReceive('getLocale')->andReturn('en');
         $waitingEntry->shouldReceive('getProductPriceId')->andReturn($productPriceId);
@@ -318,6 +324,8 @@ class ProcessWaitlistServiceTest extends TestCase
         $this->mockAvailableQuantities($event->getId(), $productPriceId);
 
         $waitingEntry = Mockery::mock(WaitlistEntryDomainObject::class);
+        $waitingEntry->shouldReceive('getAwaitingSaleStart')->andReturn(false);
+        $waitingEntry->shouldReceive('getPromoCodeId')->andReturn(null);
         $waitingEntry->shouldReceive('getId')->andReturn(5);
         $waitingEntry->shouldReceive('getLocale')->andReturn('en');
         $waitingEntry->shouldReceive('getProductPriceId')->andReturn($productPriceId);
@@ -383,6 +391,8 @@ class ProcessWaitlistServiceTest extends TestCase
         $this->mockAvailableQuantities($event->getId(), $productPriceId);
 
         $waitingEntry = Mockery::mock(WaitlistEntryDomainObject::class);
+        $waitingEntry->shouldReceive('getAwaitingSaleStart')->andReturn(false);
+        $waitingEntry->shouldReceive('getPromoCodeId')->andReturn(null);
         $waitingEntry->shouldReceive('getId')->andReturn(1);
         $waitingEntry->shouldReceive('getLocale')->andReturn('en');
         $waitingEntry->shouldReceive('getProductPriceId')->andReturn($productPriceId);
@@ -493,6 +503,8 @@ class ProcessWaitlistServiceTest extends TestCase
         $this->mockAvailableQuantities($event->getId(), $productPriceId, occurrenceId: $occurrenceId);
 
         $waitingEntry = Mockery::mock(WaitlistEntryDomainObject::class);
+        $waitingEntry->shouldReceive('getAwaitingSaleStart')->andReturn(false);
+        $waitingEntry->shouldReceive('getPromoCodeId')->andReturn(null);
         $waitingEntry->shouldReceive('getId')->andReturn(1);
         $waitingEntry->shouldReceive('getLocale')->andReturn('en');
         $waitingEntry->shouldReceive('getProductPriceId')->andReturn($productPriceId);
@@ -638,6 +650,8 @@ class ProcessWaitlistServiceTest extends TestCase
         $this->mockAvailableQuantities($event->getId(), $productPriceId, 1);
 
         $waitingEntry = Mockery::mock(WaitlistEntryDomainObject::class);
+        $waitingEntry->shouldReceive('getAwaitingSaleStart')->andReturn(false);
+        $waitingEntry->shouldReceive('getPromoCodeId')->andReturn(null);
         $waitingEntry->shouldReceive('getId')->andReturn(1);
         $waitingEntry->shouldReceive('getLocale')->andReturn('en');
         $waitingEntry->shouldReceive('getProductPriceId')->andReturn($productPriceId);
@@ -780,6 +794,8 @@ class ProcessWaitlistServiceTest extends TestCase
         $this->mockAvailableQuantities($event->getId(), $productPriceId, 0);
 
         $waitingEntry = Mockery::mock(WaitlistEntryDomainObject::class);
+        $waitingEntry->shouldReceive('getAwaitingSaleStart')->andReturn(false);
+        $waitingEntry->shouldReceive('getPromoCodeId')->andReturn(null);
         $waitingEntry->shouldReceive('getProductPriceId')->andReturn($productPriceId);
         $waitingEntry->shouldReceive('getEventOccurrenceId')->andReturn(null);
 
@@ -813,6 +829,8 @@ class ProcessWaitlistServiceTest extends TestCase
         $this->mockAvailableQuantities($event->getId(), $productPriceId);
 
         $waitingEntry = Mockery::mock(WaitlistEntryDomainObject::class);
+        $waitingEntry->shouldReceive('getAwaitingSaleStart')->andReturn(false);
+        $waitingEntry->shouldReceive('getPromoCodeId')->andReturn(null);
         $waitingEntry->shouldReceive('getId')->andReturn(1);
         $waitingEntry->shouldReceive('getLocale')->andReturn('en');
         $waitingEntry->shouldReceive('getProductPriceId')->andReturn($productPriceId);

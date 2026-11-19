@@ -71,7 +71,9 @@ class CreateWaitlistEntryServiceTest extends TestCase
         $eventSettings->setWaitlistEnabled(true);
 
         $product = Mockery::mock(ProductDomainObject::class);
-        $product->shouldReceive('isOnPublicSale')->andReturn(true);
+        $product->shouldReceive('isOnPublicSaleOrUpcoming')->andReturn(true);
+        $product->shouldReceive('isBeforeSaleStartDate')->andReturn(false);
+        $product->shouldReceive('getHideBeforeSaleStartDate')->andReturn(false);
         $product->shouldReceive('getWaitlistEnabled')->andReturn(true);
         $product->shouldReceive('getId')->andReturn(5);
 
@@ -147,7 +149,9 @@ class CreateWaitlistEntryServiceTest extends TestCase
         $eventSettings->setWaitlistEnabled(true);
 
         $product = Mockery::mock(ProductDomainObject::class);
-        $product->shouldReceive('isOnPublicSale')->andReturn(true);
+        $product->shouldReceive('isOnPublicSaleOrUpcoming')->andReturn(true);
+        $product->shouldReceive('isBeforeSaleStartDate')->andReturn(false);
+        $product->shouldReceive('getHideBeforeSaleStartDate')->andReturn(false);
         $product->shouldReceive('getWaitlistEnabled')->andReturn(true);
         $product->shouldReceive('getId')->andReturn(5);
 
@@ -192,7 +196,9 @@ class CreateWaitlistEntryServiceTest extends TestCase
         $eventSettings->setWaitlistEnabled(true);
 
         $product = Mockery::mock(ProductDomainObject::class);
-        $product->shouldReceive('isOnPublicSale')->andReturn(true);
+        $product->shouldReceive('isOnPublicSaleOrUpcoming')->andReturn(true);
+        $product->shouldReceive('isBeforeSaleStartDate')->andReturn(false);
+        $product->shouldReceive('getHideBeforeSaleStartDate')->andReturn(false);
         $product->shouldReceive('getWaitlistEnabled')->andReturn(true);
         $product->shouldReceive('getId')->andReturn(5);
 
@@ -239,7 +245,9 @@ class CreateWaitlistEntryServiceTest extends TestCase
         $eventSettings->setWaitlistEnabled(true);
 
         $product = Mockery::mock(ProductDomainObject::class);
-        $product->shouldReceive('isOnPublicSale')->andReturn(true);
+        $product->shouldReceive('isOnPublicSaleOrUpcoming')->andReturn(true);
+        $product->shouldReceive('isBeforeSaleStartDate')->andReturn(false);
+        $product->shouldReceive('getHideBeforeSaleStartDate')->andReturn(false);
         $product->shouldReceive('getWaitlistEnabled')->andReturn(true);
         $product->shouldReceive('getId')->andReturn(5);
 
@@ -301,7 +309,9 @@ class CreateWaitlistEntryServiceTest extends TestCase
         $eventSettings->setWaitlistEnabled(true);
 
         $product = Mockery::mock(ProductDomainObject::class);
-        $product->shouldReceive('isOnPublicSale')->andReturn(true);
+        $product->shouldReceive('isOnPublicSaleOrUpcoming')->andReturn(true);
+        $product->shouldReceive('isBeforeSaleStartDate')->andReturn(false);
+        $product->shouldReceive('getHideBeforeSaleStartDate')->andReturn(false);
         $product->shouldReceive('getWaitlistEnabled')->andReturn(false);
 
         $this->expectException(ResourceConflictException::class);
@@ -323,7 +333,9 @@ class CreateWaitlistEntryServiceTest extends TestCase
         $eventSettings = new EventSettingDomainObject;
 
         $product = Mockery::mock(ProductDomainObject::class);
-        $product->shouldReceive('isOnPublicSale')->andReturn(true);
+        $product->shouldReceive('isOnPublicSaleOrUpcoming')->andReturn(true);
+        $product->shouldReceive('isBeforeSaleStartDate')->andReturn(false);
+        $product->shouldReceive('getHideBeforeSaleStartDate')->andReturn(false);
         $product->shouldReceive('getWaitlistEnabled')->andReturn(null);
 
         $this->expectException(ResourceConflictException::class);
@@ -350,7 +362,9 @@ class CreateWaitlistEntryServiceTest extends TestCase
         );
 
         $product = Mockery::mock(ProductDomainObject::class);
-        $product->shouldReceive('isOnPublicSale')->andReturn(true);
+        $product->shouldReceive('isOnPublicSaleOrUpcoming')->andReturn(true);
+        $product->shouldReceive('isBeforeSaleStartDate')->andReturn(false);
+        $product->shouldReceive('getHideBeforeSaleStartDate')->andReturn(false);
         $product->shouldReceive('getWaitlistEnabled')->andReturn(true);
         $product->shouldReceive('getId')->andReturn(5);
 
@@ -368,10 +382,13 @@ class CreateWaitlistEntryServiceTest extends TestCase
             'hidden product' => [fn (ProductDomainObject $product, ProductPriceDomainObject $price) => $product->setIsHidden(true)],
             'product hidden without a promo code' => [fn (ProductDomainObject $product, ProductPriceDomainObject $price) => $product->setIsHiddenWithoutPromoCode(true)],
             'product sale ended' => [fn (ProductDomainObject $product, ProductPriceDomainObject $price) => $product->setSaleEndDate(now()->subDay()->toDateTimeString())],
-            'product not yet on sale' => [fn (ProductDomainObject $product, ProductPriceDomainObject $price) => $product->setSaleStartDate(now()->addDay()->toDateTimeString())],
+            'product hidden until its sale starts' => [fn (ProductDomainObject $product, ProductPriceDomainObject $price) => $product->setSaleStartDate(now()->addDay()->toDateTimeString())->setHideBeforeSaleStartDate(true)],
             'hidden price' => [fn (ProductDomainObject $product, ProductPriceDomainObject $price) => $price->setIsHidden(true)],
             'price sale ended' => [fn (ProductDomainObject $product, ProductPriceDomainObject $price) => $price->setSaleEndDate(now()->subDay()->toDateTimeString())],
-            'price not yet on sale' => [fn (ProductDomainObject $product, ProductPriceDomainObject $price) => $price->setSaleStartDate(now()->addDay()->toDateTimeString())],
+            'price hidden until its sale starts' => [function (ProductDomainObject $product, ProductPriceDomainObject $price) {
+                $product->setHideBeforeSaleStartDate(true);
+                $price->setSaleStartDate(now()->addDay()->toDateTimeString());
+            }],
         ];
     }
 
@@ -401,16 +418,69 @@ class CreateWaitlistEntryServiceTest extends TestCase
         );
     }
 
-    public function test_a_promo_gated_product_can_be_waitlisted_with_a_code_that_unlocks_it(): void
+    public static function upcomingSales(): array
+    {
+        return [
+            'product sale not started' => [fn (ProductDomainObject $product, ProductPriceDomainObject $price) => $product->setSaleStartDate(now()->addDay()->toDateTimeString())],
+            'price sale not started' => [fn (ProductDomainObject $product, ProductPriceDomainObject $price) => $price->setSaleStartDate(now()->addDay()->toDateTimeString())],
+        ];
+    }
+
+    #[DataProvider('upcomingSales')]
+    public function test_a_price_whose_sale_has_not_started_can_be_waitlisted_and_is_flagged(callable $delay): void
     {
         Bus::fake();
-        $product = (new ProductDomainObject)->setId(5)->setWaitlistEnabled(true)->setIsHiddenWithoutPromoCode(true);
-        $promoCode = (new PromoCodeDomainObject)->setApplicableProductIds([5]);
+        $product = (new ProductDomainObject)->setId(5)->setWaitlistEnabled(true)->setIsHiddenWithoutPromoCode(false);
+        $price = (new ProductPriceDomainObject)->setId(10)->setProductId(5);
+        $delay($product, $price);
 
         $this->waitlistEntryRepository->shouldReceive('lockForProductPrice');
         $this->waitlistEntryRepository->shouldReceive('findFirstWhere')->andReturnNull();
         $this->waitlistEntryRepository->shouldReceive('getMaxPosition')->andReturn(0);
-        $this->waitlistEntryRepository->shouldReceive('create')->once()->andReturn(new WaitlistEntryDomainObject);
+        $this->waitlistEntryRepository
+            ->shouldReceive('create')
+            ->once()
+            ->with(Mockery::on(fn (array $attributes) => $attributes['awaiting_sale_start'] === true))
+            ->andReturn(new WaitlistEntryDomainObject);
+
+        $entry = $this->service->createEntry($this->promoDto(), new EventSettingDomainObject, $product, $price);
+
+        $this->assertInstanceOf(WaitlistEntryDomainObject::class, $entry);
+    }
+
+    public function test_a_price_on_sale_is_not_flagged_as_awaiting_its_sale_start(): void
+    {
+        Bus::fake();
+        $product = (new ProductDomainObject)->setId(5)->setWaitlistEnabled(true)->setIsHiddenWithoutPromoCode(false);
+
+        $this->waitlistEntryRepository->shouldReceive('lockForProductPrice');
+        $this->waitlistEntryRepository->shouldReceive('findFirstWhere')->andReturnNull();
+        $this->waitlistEntryRepository->shouldReceive('getMaxPosition')->andReturn(0);
+        $this->waitlistEntryRepository
+            ->shouldReceive('create')
+            ->once()
+            ->with(Mockery::on(fn (array $attributes) => $attributes['awaiting_sale_start'] === false && $attributes['promo_code_id'] === null))
+            ->andReturn(new WaitlistEntryDomainObject);
+
+        $entry = $this->service->createEntry($this->promoDto(), new EventSettingDomainObject, $product, new ProductPriceDomainObject);
+
+        $this->assertInstanceOf(WaitlistEntryDomainObject::class, $entry);
+    }
+
+    public function test_a_promo_gated_product_can_be_waitlisted_with_a_code_that_unlocks_it(): void
+    {
+        Bus::fake();
+        $product = (new ProductDomainObject)->setId(5)->setWaitlistEnabled(true)->setIsHiddenWithoutPromoCode(true);
+        $promoCode = (new PromoCodeDomainObject)->setId(7)->setApplicableProductIds([5]);
+
+        $this->waitlistEntryRepository->shouldReceive('lockForProductPrice');
+        $this->waitlistEntryRepository->shouldReceive('findFirstWhere')->andReturnNull();
+        $this->waitlistEntryRepository->shouldReceive('getMaxPosition')->andReturn(0);
+        $this->waitlistEntryRepository
+            ->shouldReceive('create')
+            ->once()
+            ->with(Mockery::on(fn (array $attributes) => $attributes['promo_code_id'] === 7))
+            ->andReturn(new WaitlistEntryDomainObject);
 
         $entry = $this->service->createEntry($this->promoDto(), new EventSettingDomainObject, $product, new ProductPriceDomainObject, $promoCode);
 

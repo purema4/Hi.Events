@@ -12,6 +12,7 @@ use HiEvents\Jobs\ApiKey\SendApiKeyExpiryRemindersJob;
 use HiEvents\Jobs\Lifecycle\SendLifecycleNudgesJob;
 use HiEvents\Jobs\Message\SendScheduledMessagesJob;
 use HiEvents\Jobs\OAuth\PruneOAuthDataJob;
+use HiEvents\Jobs\Waitlist\OpenPreSaleWaitlistsJob;
 use HiEvents\Jobs\Waitlist\ProcessExpiredWaitlistOffersJob;
 use HiEvents\Services\Domain\LifecycleEmail\LifecycleEmailSender;
 use Illuminate\Console\Scheduling\Schedule;
@@ -31,6 +32,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->job(new SendScheduledMessagesJob)->everyMinute()->withoutOverlapping();
         $schedule->job(new ProcessExpiredWaitlistOffersJob)->everyMinute()->withoutOverlapping();
+        $schedule->job(new OpenPreSaleWaitlistsJob)->everyMinute()->withoutOverlapping();
         $schedule->job(new ProcessScheduledAccountDeletionsJob)->hourly()->withoutOverlapping();
         $schedule->job(new RecheckSsoDomainsJob)->daily()->withoutOverlapping();
         $schedule->job(new SendApiKeyExpiryRemindersJob)->dailyAt('09:00')->withoutOverlapping();

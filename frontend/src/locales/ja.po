@@ -2043,12 +2043,12 @@ msgid "Allow buyers to copy their details to all attendees"
 msgstr "購入者が自分の情報をすべての参加者にコピーできるようにする"
 
 #: src/components/forms/ProductForm/index.tsx:474
-msgid "Allow customers to join a waitlist when this product is sold out"
-msgstr "この商品が完売した場合に、お客様がキャンセル待ちリストに登録できるようにする"
+msgid "Allow customers to join a waitlist when this product is sold out or before its sales open"
+msgstr "この商品が売り切れのとき、または販売開始前に、顧客がキャンセル待ちに登録できるようにする"
 
 #: src/components/forms/ProductForm/index.tsx:473
-msgid "Allow customers to join a waitlist when this product is sold out. Customers join the waitlist for a specific date."
-msgstr "この商品が完売した場合に、お客様がキャンセル待ちリストに登録できるようにします。お客様は特定の日付に対してキャンセル待ちに登録します。"
+msgid "Allow customers to join a waitlist when this product is sold out or before its sales open. Customers join the waitlist for a specific date."
+msgstr "この商品が売り切れのとき、または販売開始前に、顧客がキャンセル待ちに登録できるようにする。顧客は特定の日付のキャンセル待ちに登録します。"
 
 #: src/ee/box-office/components/forms/BoxOfficeForm/index.tsx:145
 msgid "Allow discounts"
@@ -3005,8 +3005,8 @@ msgid "Automatic emails that help organizers who get stuck. The sweep runs hourl
 msgstr "つまずいている主催者を手助けする自動メールです。処理は 1 時間ごとに実行され、メールを有効にした後のアクティビティのみが対象になります。"
 
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:65
-msgid "Automatically offer tickets to the next person when capacity becomes available. If disabled, you can manually process the waitlist from the Waitlist page."
-msgstr "空きが出たときに、次の人へ自動的にチケットを提供します。無効にした場合は、キャンセル待ちページから手動で処理できます。"
+msgid "Automatically offer tickets to the next person when capacity becomes available, and to people who joined early as soon as sales open. If disabled, you can manually process the waitlist from the Waitlist page."
+msgstr "空きが出たときに次の人へ、販売開始時には事前登録した人へ、自動的にチケットを案内します。無効の場合は、キャンセル待ちページから手動で処理できます。"
 
 #: src/ee/seating/components/SeatPicker/SeatListView.tsx:53
 msgid "available"
@@ -4619,8 +4619,8 @@ msgstr "閉じる"
 #: src/components/layouts/EventHomepage/Lineup/SessionModal.tsx:86
 #: src/components/layouts/EventHomepage/Sections/GallerySection.tsx:122
 #: src/components/modals/CreateEventModal/index.tsx:288
-#: src/components/modals/JoinWaitlistModal/index.tsx:117
-#: src/components/modals/JoinWaitlistModal/index.tsx:144
+#: src/components/modals/JoinWaitlistModal/index.tsx:121
+#: src/components/modals/JoinWaitlistModal/index.tsx:148
 #: src/components/modals/RefundOrderModal/index.tsx:172
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:892
 #: src/components/routes/product-widget/SelectProducts/index.tsx:1245
@@ -6002,6 +6002,14 @@ msgstr "お客様に返金を確認するメールが送信されます"
 msgid "Customers"
 msgstr "お客様"
 
+#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:58
+msgid "Customers can join a waitlist when a product sells out, or before its sales open."
+msgstr "商品が売り切れのとき、または販売開始前に、顧客はキャンセル待ちに登録できます。"
+
+#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:57
+msgid "Customers can join a waitlist when a product sells out, or before its sales open. Customers join the waitlist for a specific date, and offers are made per date."
+msgstr "商品が売り切れのとき、または販売開始前に、顧客はキャンセル待ちに登録できます。顧客は特定の日付に登録し、案内は日付ごとに行われます。"
+
 #: src/components/common/WidgetEditor/index.tsx:281
 msgid "Customise"
 msgstr "カスタマイズ"
@@ -7346,7 +7354,7 @@ msgstr "対象のチェックインリスト"
 #: src/components/common/OrderDetails/index.tsx:34
 #: src/components/forms/AffiliateForm/index.tsx:89
 #: src/components/modals/InviteUserModal/index.tsx:61
-#: src/components/modals/JoinWaitlistModal/index.tsx:190
+#: src/components/modals/JoinWaitlistModal/index.tsx:194
 #: src/components/modals/ManageAttendeeModal/index.tsx:174
 #: src/components/modals/ManageOrderModal/index.tsx:141
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:165
@@ -8951,7 +8959,7 @@ msgstr "名"
 
 #: src/components/modals/EditUserModal/index.tsx:87
 #: src/components/modals/InviteUserModal/index.tsx:54
-#: src/components/modals/JoinWaitlistModal/index.tsx:180
+#: src/components/modals/JoinWaitlistModal/index.tsx:184
 #: src/components/routes/auth/AcceptInvitation/index.tsx:226
 #: src/components/routes/auth/Register/index.tsx:139
 #: src/components/routes/product-widget/CollectInformation/index.tsx:520
@@ -8961,7 +8969,7 @@ msgstr "名"
 msgid "First Name"
 msgstr "名"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:56
+#: src/components/modals/JoinWaitlistModal/index.tsx:58
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:31
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:31
 msgid "First name is required"
@@ -9935,7 +9943,7 @@ msgstr "データ管理者としての責任を理解しました"
 msgid "I agree to follow the event code of conduct"
 msgstr "イベントの行動規範に従うことに同意します"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:196
+#: src/components/modals/JoinWaitlistModal/index.tsx:200
 msgid "I agree to receive email notifications related to this event"
 msgstr "このイベントに関するメール通知の受信に同意します"
 
@@ -10439,11 +10447,11 @@ msgid "Join from anywhere"
 msgstr "どこからでも参加"
 
 #: src/components/common/JoinWaitlistButton/index.tsx:38
-#: src/components/modals/JoinWaitlistModal/index.tsx:208
+#: src/components/modals/JoinWaitlistModal/index.tsx:212
 msgid "Join Waitlist"
 msgstr "キャンセル待ちに登録"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:157
+#: src/components/modals/JoinWaitlistModal/index.tsx:161
 msgid "Join Waitlist for {productDisplayName}"
 msgstr "{productDisplayName}のキャンセル待ちに登録"
 
@@ -10654,7 +10662,7 @@ msgstr "姓"
 
 #: src/components/modals/EditUserModal/index.tsx:88
 #: src/components/modals/InviteUserModal/index.tsx:55
-#: src/components/modals/JoinWaitlistModal/index.tsx:185
+#: src/components/modals/JoinWaitlistModal/index.tsx:189
 #: src/components/routes/auth/AcceptInvitation/index.tsx:232
 #: src/components/routes/auth/Register/index.tsx:145
 #: src/components/routes/product-widget/CollectInformation/index.tsx:529
@@ -12668,8 +12676,8 @@ msgstr "まだありません"
 msgid "Normally {0}"
 msgstr "通常{0}"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:47
-#: src/components/common/ProductPriceAvailability/index.tsx:77
+#: src/components/common/ProductPriceAvailability/index.tsx:67
+#: src/components/common/ProductPriceAvailability/index.tsx:97
 msgid "Not available"
 msgstr "利用できません"
 
@@ -12780,7 +12788,7 @@ msgstr "まだテストされていません"
 msgid "Not using reserved seating, the box office or enterprise single sign-on? Remove <0>APP_LICENCE_KEY</0> and redeploy."
 msgstr "指定席、ボックスオフィス、エンタープライズシングルサインオンを使用しない場合は、<0>APP_LICENCE_KEY</0>を削除して再デプロイしてください。"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:44
+#: src/components/common/ProductPriceAvailability/index.tsx:64
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:31
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:53
 msgid "Not yet on sale"
@@ -14604,7 +14612,7 @@ msgstr "チケットを作成してください"
 msgid "Please don't leave a single empty seat: {0}"
 msgstr "1席だけ空席を残さないでください：{0}"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:57
+#: src/components/modals/JoinWaitlistModal/index.tsx:59
 msgid "Please enter a valid email address"
 msgstr "有効なメールアドレスを入力してください"
 
@@ -16354,19 +16362,22 @@ msgstr "販売は一時停止中です"
 msgid "Sales by licence year"
 msgstr "ライセンス年度別の売上"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:25
-#: src/components/common/ProductPriceAvailability/index.tsx:64
+#: src/components/common/ProductPriceAvailability/index.tsx:34
+#: src/components/common/ProductPriceAvailability/index.tsx:84
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:33
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:54
 msgid "Sales ended"
 msgstr "販売終了"
 
+#: src/components/modals/JoinWaitlistModal/index.tsx:115
+msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do."
+msgstr "{productDisplayName} の販売はまだ始まっていません。販売が始まり次第、キャンセル待ちの順番にメールでお知らせします。"
+
 #: src/ee/box-office/components/layouts/BoxOffice/index.tsx:115
 msgid "Sales open in"
 msgstr "販売開始まで"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:31
-#: src/components/common/ProductPriceAvailability/index.tsx:69
+#: src/components/common/ProductPriceAvailability/index.tsx:11
 msgid "Sales start"
 msgstr "販売開始"
 
@@ -18188,8 +18199,8 @@ msgstr "完売"
 
 #: src/components/common/EventCard/index.tsx:136
 #: src/components/common/EventDateRange/index.tsx:65
-#: src/components/common/ProductPriceAvailability/index.tsx:21
-#: src/components/common/ProductPriceAvailability/index.tsx:61
+#: src/components/common/ProductPriceAvailability/index.tsx:30
+#: src/components/common/ProductPriceAvailability/index.tsx:81
 #: src/components/layouts/OrganizerEventsWidget/index.tsx:57
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:92
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:311
@@ -18300,7 +18311,7 @@ msgstr "問題が発生しました！もう一度お試しください"
 msgid "Something went wrong."
 msgstr "問題が発生しました。"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:141
+#: src/components/modals/JoinWaitlistModal/index.tsx:145
 msgid "Something went wrong. Please try again later."
 msgstr "問題が発生しました。しばらくしてからもう一度お試しください。"
 
@@ -21101,7 +21112,7 @@ msgstr "参加者を取得できません"
 msgid "Unable to find seats. Check the connection and try again."
 msgstr "座席を見つけられません。接続を確認して、もう一度お試しください。"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:138
+#: src/components/modals/JoinWaitlistModal/index.tsx:142
 msgid "Unable to join waitlist"
 msgstr "キャンセル待ちに登録できません"
 
@@ -22314,11 +22325,11 @@ msgstr "アカウントに参加するためのリンクをメールで送信し
 msgid "We'll email you the link too, and send your order confirmation as soon as they complete checkout."
 msgstr "リンクはあなたにもメールでお送りし、支払いが完了次第、注文確認をお送りします。"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:113
+#: src/components/modals/JoinWaitlistModal/index.tsx:117
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}."
 msgstr "{occurrenceDate}の{productDisplayName}に空きが出た場合は、メールでお知らせします。"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:114
+#: src/components/modals/JoinWaitlistModal/index.tsx:118
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName}."
 msgstr "{productDisplayName}に空きが出た場合は、メールでお知らせします。"
 
@@ -22553,14 +22564,6 @@ msgstr "商品が削除されたとき"
 msgid "When a product is updated"
 msgstr "商品が更新されたとき"
 
-#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:58
-msgid "When a product sells out, customers can join a waitlist to be notified when spots become available."
-msgstr "商品が完売すると、お客様はキャンセル待ちに登録して、空きが出たときに通知を受け取れます。"
-
-#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:57
-msgid "When a product sells out, customers can join a waitlist to be notified when spots become available. Customers join the waitlist for a specific date, and offers are made per date."
-msgstr "商品が完売すると、お客様はキャンセル待ちに登録して、空きが出たときに通知を受け取れます。お客様は特定の日付に対してキャンセル待ちに登録し、オファーは日付ごとに行われます。"
-
 #: src/components/forms/WebhookForm/index.tsx:117
 msgid "When an attendee is cancelled"
 msgstr "参加者がキャンセルされたとき"
@@ -22772,7 +22775,7 @@ msgstr "処理中"
 #: src/components/modals/CreatePromoCodeModal/index.tsx:59
 #: src/components/modals/EditProductCategoryModal/index.tsx:73
 #: src/components/modals/EditPromoCodeModal/index.tsx:87
-#: src/components/modals/JoinWaitlistModal/index.tsx:207
+#: src/components/modals/JoinWaitlistModal/index.tsx:211
 #: src/components/routes/auth/Register/index.tsx:188
 msgid "Working..."
 msgstr "処理中..."
@@ -23028,7 +23031,7 @@ msgstr "このメールが宣伝目的ではないことを確認する必要が
 msgid "You must acknowledge your responsibilities before saving"
 msgstr "保存する前に、ご自身の責任を確認する必要があります"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:58
+#: src/components/modals/JoinWaitlistModal/index.tsx:60
 msgid "You must agree to receive messages"
 msgstr "メッセージの受信に同意する必要があります"
 
@@ -23144,11 +23147,11 @@ msgstr "セッション時間を変更しています"
 msgid "You're going to {0}!"
 msgstr "{0}に参加します！"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:174
+#: src/components/modals/JoinWaitlistModal/index.tsx:178
 msgid "You're joining the waitlist for {occurrenceDate}."
 msgstr "{occurrenceDate}のキャンセル待ちに登録しようとしています。"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:109
+#: src/components/modals/JoinWaitlistModal/index.tsx:111
 msgid "You're on the waitlist!"
 msgstr "キャンセル待ちに登録しました！"
 

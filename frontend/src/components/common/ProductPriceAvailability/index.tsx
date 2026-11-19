@@ -6,6 +6,15 @@ import {IconInfoCircle} from "@tabler/icons-react";
 import {JoinWaitlistButton} from "../JoinWaitlistButton";
 import {canJoinWaitlist} from "../../../utilites/waitlist.ts";
 
+const SalesStartMessage = ({saleStartDate, event}: { saleStartDate?: string | Date, event: Event }) => (
+    <span>
+        {t`Sales start`}{' '}
+        <Tooltip label={prettyDate(String(saleStartDate), event.timezone)}>
+            <span>{relativeDate(String(saleStartDate))}{' '}<IconInfoCircle size={12}/></span>
+        </Tooltip>
+    </span>
+);
+
 interface ProductPriceSaleDateMessageProps {
     price: ProductPrice;
     event: Event;
@@ -27,12 +36,23 @@ const ProductPriceSaleDateMessage = ({price, event, product, eventOccurrenceId}:
 
     if (price.is_before_sale_start_date) {
         return (
-            <span>
-                {t`Sales start`}{' '}
-                <Tooltip label={prettyDate(String(price.sale_start_date), event.timezone)}>
-                    <span>{relativeDate(String(price.sale_start_date))}{' '}<IconInfoCircle size={12}/></span>
-                </Tooltip>
-            </span>
+            <>
+                <SalesStartMessage saleStartDate={price.sale_start_date} event={event}/>
+                {canJoinWaitlist(product, price) && (event.type !== EventType.RECURRING || eventOccurrenceId) && (
+                    <JoinWaitlistButton product={product} event={event} productPriceId={price.id} priceLabel={price.label} eventOccurrenceId={eventOccurrenceId}/>
+                )}
+            </>
+        );
+    }
+
+    if (product.is_before_sale_start_date && !product.is_sold_out && !product.is_after_sale_end_date) {
+        return (
+            <>
+                <SalesStartMessage saleStartDate={product.sale_start_date} event={event}/>
+                {canJoinWaitlist(product, price) && (event.type !== EventType.RECURRING || eventOccurrenceId) && (
+                    <JoinWaitlistButton product={product} event={event} productPriceId={price.id} priceLabel={price.label} eventOccurrenceId={eventOccurrenceId}/>
+                )}
+            </>
         );
     }
 
@@ -65,12 +85,12 @@ export const ProductAvailabilityMessage = ({product, event, eventOccurrenceId}: 
     }
     if (product.is_before_sale_start_date) {
         return (
-            <span>
-                {t`Sales start`}{' '}
-                <Tooltip label={prettyDate(String(product.sale_start_date), event.timezone)}>
-                    <span>{relativeDate(String(product.sale_start_date))}{' '}<IconInfoCircle size={12}/></span>
-                </Tooltip>
-            </span>
+            <>
+                <SalesStartMessage saleStartDate={product.sale_start_date} event={event}/>
+                {canJoinWaitlist(product, product.prices?.[0]) && (event.type !== EventType.RECURRING || eventOccurrenceId) && product.type !== 'TIERED' && (
+                    <JoinWaitlistButton product={product} event={event} productPriceId={product.prices?.[0]?.id} eventOccurrenceId={eventOccurrenceId}/>
+                )}
+            </>
         );
     }
 

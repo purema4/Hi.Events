@@ -2043,12 +2043,12 @@ msgid "Allow buyers to copy their details to all attendees"
 msgstr "Επιτρέψτε στους αγοραστές να αντιγράφουν τα στοιχεία τους σε όλους τους συμμετέχοντες"
 
 #: src/components/forms/ProductForm/index.tsx:474
-msgid "Allow customers to join a waitlist when this product is sold out"
-msgstr "Να επιτρέπεται στους πελάτες να εγγράφονται στη λίστα αναμονής όταν αυτό το προϊόν εξαντληθεί"
+msgid "Allow customers to join a waitlist when this product is sold out or before its sales open"
+msgstr "Επιτρέψτε στους πελάτες να εγγραφούν σε λίστα αναμονής όταν το προϊόν έχει εξαντληθεί ή πριν ανοίξουν οι πωλήσεις"
 
 #: src/components/forms/ProductForm/index.tsx:473
-msgid "Allow customers to join a waitlist when this product is sold out. Customers join the waitlist for a specific date."
-msgstr "Να επιτρέπεται στους πελάτες να εγγράφονται στη λίστα αναμονής όταν αυτό το προϊόν εξαντληθεί. Οι πελάτες εγγράφονται στη λίστα αναμονής για συγκεκριμένη ημερομηνία."
+msgid "Allow customers to join a waitlist when this product is sold out or before its sales open. Customers join the waitlist for a specific date."
+msgstr "Επιτρέψτε στους πελάτες να εγγραφούν σε λίστα αναμονής όταν το προϊόν έχει εξαντληθεί ή πριν ανοίξουν οι πωλήσεις. Οι πελάτες εγγράφονται για συγκεκριμένη ημερομηνία."
 
 #: src/ee/box-office/components/forms/BoxOfficeForm/index.tsx:145
 msgid "Allow discounts"
@@ -3005,8 +3005,8 @@ msgid "Automatic emails that help organizers who get stuck. The sweep runs hourl
 msgstr "Αυτόματα email που βοηθούν διοργανωτές που έχουν κολλήσει. Ο έλεγχος τρέχει ανά ώρα και αφορά μόνο δραστηριότητα μετά την ενεργοποίηση ενός email."
 
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:65
-msgid "Automatically offer tickets to the next person when capacity becomes available. If disabled, you can manually process the waitlist from the Waitlist page."
-msgstr "Αυτόματη προσφορά εισιτηρίων στο επόμενο άτομο όταν η χωρητικότητα είναι διαθέσιμη. Εάν απενεργοποιηθεί, μπορείτε να επεξεργαστείτε χειροκίνητα τη λίστα αναμονής."
+msgid "Automatically offer tickets to the next person when capacity becomes available, and to people who joined early as soon as sales open. If disabled, you can manually process the waitlist from the Waitlist page."
+msgstr "Αυτόματη προσφορά εισιτηρίων στο επόμενο άτομο όταν ελευθερώνεται χωρητικότητα, και σε όσους εγγράφηκαν νωρίς μόλις ανοίξουν οι πωλήσεις. Αν είναι απενεργοποιημένο, μπορείτε να διαχειριστείτε τη λίστα αναμονής χειροκίνητα από τη σελίδα Λίστα αναμονής."
 
 #: src/ee/seating/components/SeatPicker/SeatListView.tsx:53
 msgid "available"
@@ -4619,8 +4619,8 @@ msgstr "κλείσιμο"
 #: src/components/layouts/EventHomepage/Lineup/SessionModal.tsx:86
 #: src/components/layouts/EventHomepage/Sections/GallerySection.tsx:122
 #: src/components/modals/CreateEventModal/index.tsx:288
-#: src/components/modals/JoinWaitlistModal/index.tsx:117
-#: src/components/modals/JoinWaitlistModal/index.tsx:144
+#: src/components/modals/JoinWaitlistModal/index.tsx:121
+#: src/components/modals/JoinWaitlistModal/index.tsx:148
 #: src/components/modals/RefundOrderModal/index.tsx:172
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:892
 #: src/components/routes/product-widget/SelectProducts/index.tsx:1245
@@ -6002,6 +6002,14 @@ msgstr "Ο πελάτης θα λάβει email επιβεβαίωσης επι�
 msgid "Customers"
 msgstr "Πελάτες"
 
+#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:58
+msgid "Customers can join a waitlist when a product sells out, or before its sales open."
+msgstr "Οι πελάτες μπορούν να εγγραφούν σε λίστα αναμονής όταν ένα προϊόν εξαντληθεί ή πριν ανοίξουν οι πωλήσεις."
+
+#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:57
+msgid "Customers can join a waitlist when a product sells out, or before its sales open. Customers join the waitlist for a specific date, and offers are made per date."
+msgstr "Οι πελάτες μπορούν να εγγραφούν σε λίστα αναμονής όταν ένα προϊόν εξαντληθεί ή πριν ανοίξουν οι πωλήσεις. Οι πελάτες εγγράφονται για συγκεκριμένη ημερομηνία και οι προσφορές γίνονται ανά ημερομηνία."
+
 #: src/components/common/WidgetEditor/index.tsx:281
 msgid "Customise"
 msgstr "Προσαρμογή"
@@ -7346,7 +7354,7 @@ msgstr "Επιλέξιμες Λίστες Check-In"
 #: src/components/common/OrderDetails/index.tsx:34
 #: src/components/forms/AffiliateForm/index.tsx:89
 #: src/components/modals/InviteUserModal/index.tsx:61
-#: src/components/modals/JoinWaitlistModal/index.tsx:190
+#: src/components/modals/JoinWaitlistModal/index.tsx:194
 #: src/components/modals/ManageAttendeeModal/index.tsx:174
 #: src/components/modals/ManageOrderModal/index.tsx:141
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:165
@@ -8951,7 +8959,7 @@ msgstr "Όνομα"
 
 #: src/components/modals/EditUserModal/index.tsx:87
 #: src/components/modals/InviteUserModal/index.tsx:54
-#: src/components/modals/JoinWaitlistModal/index.tsx:180
+#: src/components/modals/JoinWaitlistModal/index.tsx:184
 #: src/components/routes/auth/AcceptInvitation/index.tsx:226
 #: src/components/routes/auth/Register/index.tsx:139
 #: src/components/routes/product-widget/CollectInformation/index.tsx:520
@@ -8961,7 +8969,7 @@ msgstr "Όνομα"
 msgid "First Name"
 msgstr "Όνομα"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:56
+#: src/components/modals/JoinWaitlistModal/index.tsx:58
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:31
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:31
 msgid "First name is required"
@@ -9935,7 +9943,7 @@ msgstr "Αναγνωρίζω τις ευθύνες μου ως υπεύθυνο�
 msgid "I agree to follow the event code of conduct"
 msgstr "Συμφωνώ να τηρώ τον κώδικα δεοντολογίας της εκδήλωσης"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:196
+#: src/components/modals/JoinWaitlistModal/index.tsx:200
 msgid "I agree to receive email notifications related to this event"
 msgstr "Συμφωνώ να λαμβάνω ειδοποιήσεις email σχετικά με αυτή την εκδήλωση"
 
@@ -10439,11 +10447,11 @@ msgid "Join from anywhere"
 msgstr "Συμμετοχή από οπουδήποτε"
 
 #: src/components/common/JoinWaitlistButton/index.tsx:38
-#: src/components/modals/JoinWaitlistModal/index.tsx:208
+#: src/components/modals/JoinWaitlistModal/index.tsx:212
 msgid "Join Waitlist"
 msgstr "Εγγραφή στη Λίστα Αναμονής"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:157
+#: src/components/modals/JoinWaitlistModal/index.tsx:161
 msgid "Join Waitlist for {productDisplayName}"
 msgstr "Εγγραφή στη Λίστα Αναμονής για {productDisplayName}"
 
@@ -10654,7 +10662,7 @@ msgstr "Επώνυμο"
 
 #: src/components/modals/EditUserModal/index.tsx:88
 #: src/components/modals/InviteUserModal/index.tsx:55
-#: src/components/modals/JoinWaitlistModal/index.tsx:185
+#: src/components/modals/JoinWaitlistModal/index.tsx:189
 #: src/components/routes/auth/AcceptInvitation/index.tsx:232
 #: src/components/routes/auth/Register/index.tsx:145
 #: src/components/routes/product-widget/CollectInformation/index.tsx:529
@@ -12668,8 +12676,8 @@ msgstr "Κανένα ακόμη"
 msgid "Normally {0}"
 msgstr "Κανονικά {0}"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:47
-#: src/components/common/ProductPriceAvailability/index.tsx:77
+#: src/components/common/ProductPriceAvailability/index.tsx:67
+#: src/components/common/ProductPriceAvailability/index.tsx:97
 msgid "Not available"
 msgstr "Δεν είναι διαθέσιμο"
 
@@ -12780,7 +12788,7 @@ msgstr "Δεν έχει δοκιμαστεί ακόμη"
 msgid "Not using reserved seating, the box office or enterprise single sign-on? Remove <0>APP_LICENCE_KEY</0> and redeploy."
 msgstr "Δεν χρησιμοποιείτε κρατημένες θέσεις, το ταμείο ή την εταιρική ενιαία σύνδεση; Αφαιρέστε το <0>APP_LICENCE_KEY</0> και αναπτύξτε ξανά."
 
-#: src/components/common/ProductPriceAvailability/index.tsx:44
+#: src/components/common/ProductPriceAvailability/index.tsx:64
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:31
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:53
 msgid "Not yet on sale"
@@ -14604,7 +14612,7 @@ msgstr "Παρακαλώ δημιουργήστε ένα εισιτήριο"
 msgid "Please don't leave a single empty seat: {0}"
 msgstr "Παρακαλούμε μην αφήσετε μία μεμονωμένη κενή θέση: {0}"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:57
+#: src/components/modals/JoinWaitlistModal/index.tsx:59
 msgid "Please enter a valid email address"
 msgstr "Παρακαλώ εισάγετε έγκυρη διεύθυνση email"
 
@@ -16354,19 +16362,22 @@ msgstr "Οι πωλήσεις είναι σε παύση"
 msgid "Sales by licence year"
 msgstr "Πωλήσεις ανά έτος άδειας"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:25
-#: src/components/common/ProductPriceAvailability/index.tsx:64
+#: src/components/common/ProductPriceAvailability/index.tsx:34
+#: src/components/common/ProductPriceAvailability/index.tsx:84
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:33
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:54
 msgid "Sales ended"
 msgstr "Οι πωλήσεις έχουν λήξει"
 
+#: src/components/modals/JoinWaitlistModal/index.tsx:115
+msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do."
+msgstr "Οι πωλήσεις για {productDisplayName} δεν έχουν ανοίξει ακόμη. Θα σας στείλουμε email με τη σειρά της λίστας αναμονής μόλις ανοίξουν."
+
 #: src/ee/box-office/components/layouts/BoxOffice/index.tsx:115
 msgid "Sales open in"
 msgstr "Οι πωλήσεις ανοίγουν σε"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:31
-#: src/components/common/ProductPriceAvailability/index.tsx:69
+#: src/components/common/ProductPriceAvailability/index.tsx:11
 msgid "Sales start"
 msgstr "Έναρξη πωλήσεων"
 
@@ -18188,8 +18199,8 @@ msgstr "εξαντλημένο"
 
 #: src/components/common/EventCard/index.tsx:136
 #: src/components/common/EventDateRange/index.tsx:65
-#: src/components/common/ProductPriceAvailability/index.tsx:21
-#: src/components/common/ProductPriceAvailability/index.tsx:61
+#: src/components/common/ProductPriceAvailability/index.tsx:30
+#: src/components/common/ProductPriceAvailability/index.tsx:81
 #: src/components/layouts/OrganizerEventsWidget/index.tsx:57
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:92
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:311
@@ -18300,7 +18311,7 @@ msgstr "Κάτι πήγε στραβά! Παρακαλώ δοκιμάστε ξα
 msgid "Something went wrong."
 msgstr "Κάτι πήγε στραβά."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:141
+#: src/components/modals/JoinWaitlistModal/index.tsx:145
 msgid "Something went wrong. Please try again later."
 msgstr "Κάτι πήγε στραβά. Παρακαλώ δοκιμάστε ξανά αργότερα."
 
@@ -21101,7 +21112,7 @@ msgstr "Αδύνατη φόρτωση συμμετέχοντα"
 msgid "Unable to find seats. Check the connection and try again."
 msgstr "Δεν ήταν δυνατή η εύρεση θέσεων. Ελέγξτε τη σύνδεση και δοκιμάστε ξανά."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:138
+#: src/components/modals/JoinWaitlistModal/index.tsx:142
 msgid "Unable to join waitlist"
 msgstr "Αδύνατη εγγραφή στη λίστα αναμονής"
 
@@ -22314,11 +22325,11 @@ msgstr "Θα του στείλουμε email με σύνδεσμο για να �
 msgid "We'll email you the link too, and send your order confirmation as soon as they complete checkout."
 msgstr "Θα σας στείλουμε και τον σύνδεσμο με email, καθώς και την επιβεβαίωση της παραγγελίας μόλις ολοκληρωθεί η πληρωμή."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:113
+#: src/components/modals/JoinWaitlistModal/index.tsx:117
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}."
 msgstr "Θα σας ειδοποιήσουμε μέσω email εάν διατεθεί θέση για {productDisplayName} στις {occurrenceDate}."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:114
+#: src/components/modals/JoinWaitlistModal/index.tsx:118
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName}."
 msgstr "Θα σας ειδοποιήσουμε μέσω email εάν διατεθεί θέση για {productDisplayName}."
 
@@ -22553,14 +22564,6 @@ msgstr "Όταν διαγράφεται ένα προϊόν"
 msgid "When a product is updated"
 msgstr "Όταν ενημερώνεται ένα προϊόν"
 
-#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:58
-msgid "When a product sells out, customers can join a waitlist to be notified when spots become available."
-msgstr "Όταν ένα προϊόν εξαντληθεί, οι πελάτες μπορούν να εγγραφούν σε λίστα αναμονής."
-
-#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:57
-msgid "When a product sells out, customers can join a waitlist to be notified when spots become available. Customers join the waitlist for a specific date, and offers are made per date."
-msgstr "Όταν ένα προϊόν εξαντληθεί, οι πελάτες μπορούν να εγγραφούν σε λίστα αναμονής για να ειδοποιηθούν όταν διατεθούν θέσεις. Οι πελάτες εγγράφονται στη λίστα αναμονής για συγκεκριμένη ημερομηνία και οι προσφορές γίνονται ανά ημερομηνία."
-
 #: src/components/forms/WebhookForm/index.tsx:117
 msgid "When an attendee is cancelled"
 msgstr "Όταν ακυρωθεί συμμετέχων"
@@ -22772,7 +22775,7 @@ msgstr "Εργασία"
 #: src/components/modals/CreatePromoCodeModal/index.tsx:59
 #: src/components/modals/EditProductCategoryModal/index.tsx:73
 #: src/components/modals/EditPromoCodeModal/index.tsx:87
-#: src/components/modals/JoinWaitlistModal/index.tsx:207
+#: src/components/modals/JoinWaitlistModal/index.tsx:211
 #: src/components/routes/auth/Register/index.tsx:188
 msgid "Working..."
 msgstr "Επεξεργασία..."
@@ -23028,7 +23031,7 @@ msgstr "Πρέπει να αναγνωρίσετε ότι αυτό το email δ
 msgid "You must acknowledge your responsibilities before saving"
 msgstr "Πρέπει να αναγνωρίσετε τις ευθύνες σας πριν αποθηκεύσετε"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:58
+#: src/components/modals/JoinWaitlistModal/index.tsx:60
 msgid "You must agree to receive messages"
 msgstr "Πρέπει να συμφωνήσετε να λαμβάνετε μηνύματα"
 
@@ -23144,11 +23147,11 @@ msgstr "Αλλάζετε ώρες συνεδριών"
 msgid "You're going to {0}!"
 msgstr "Θα πάτε στο {0}!"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:174
+#: src/components/modals/JoinWaitlistModal/index.tsx:178
 msgid "You're joining the waitlist for {occurrenceDate}."
 msgstr "Εγγράφεστε στη λίστα αναμονής για τις {occurrenceDate}."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:109
+#: src/components/modals/JoinWaitlistModal/index.tsx:111
 msgid "You're on the waitlist!"
 msgstr "Είστε στη λίστα αναμονής!"
 

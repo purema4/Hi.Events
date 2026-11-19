@@ -2043,12 +2043,12 @@ msgid "Allow buyers to copy their details to all attendees"
 msgstr "Povoliť kupujúcim skopírovať svoje údaje všetkým účastníkom"
 
 #: src/components/forms/ProductForm/index.tsx:474
-msgid "Allow customers to join a waitlist when this product is sold out"
-msgstr "Umožniť zákazníkom pripojiť sa na čakaciu listinu, keď je tento produkt vypredaný"
+msgid "Allow customers to join a waitlist when this product is sold out or before its sales open"
+msgstr "Umožniť zákazníkom zapísať sa na čakaciu listinu, keď je produkt vypredaný alebo pred začiatkom predaja"
 
 #: src/components/forms/ProductForm/index.tsx:473
-msgid "Allow customers to join a waitlist when this product is sold out. Customers join the waitlist for a specific date."
-msgstr "Umožniť zákazníkom pripojiť sa na čakaciu listinu, keď je tento produkt vypredaný. Zákazníci sa pripájajú na čakaciu listinu pre konkrétny dátum."
+msgid "Allow customers to join a waitlist when this product is sold out or before its sales open. Customers join the waitlist for a specific date."
+msgstr "Umožniť zákazníkom zapísať sa na čakaciu listinu, keď je produkt vypredaný alebo pred začiatkom predaja. Zákazníci sa zapisujú na konkrétny termín."
 
 #: src/ee/box-office/components/forms/BoxOfficeForm/index.tsx:145
 msgid "Allow discounts"
@@ -3005,8 +3005,8 @@ msgid "Automatic emails that help organizers who get stuck. The sweep runs hourl
 msgstr "Automatické e-maily, ktoré pomáhajú organizátorom, ktorí sa zasekli. Kontrola beží každú hodinu a zachytí iba aktivitu po zapnutí e-mailu."
 
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:65
-msgid "Automatically offer tickets to the next person when capacity becomes available. If disabled, you can manually process the waitlist from the Waitlist page."
-msgstr "Automaticky ponúkať lístky ďalšej osobe, keď sa uvoľní kapacita. Ak je zakázané, môžete manuálne spracovať zoznam čakateľov na stránke Zoznam čakateľov."
+msgid "Automatically offer tickets to the next person when capacity becomes available, and to people who joined early as soon as sales open. If disabled, you can manually process the waitlist from the Waitlist page."
+msgstr "Automaticky ponúknuť vstupenky ďalšiemu v poradí, keď sa uvoľní kapacita, a ľuďom zapísaným vopred hneď po začiatku predaja. Ak je vypnuté, čakaciu listinu môžete spracovať ručne na stránke Čakacia listina."
 
 #: src/ee/seating/components/SeatPicker/SeatListView.tsx:53
 msgid "available"
@@ -4619,8 +4619,8 @@ msgstr "zavrieť"
 #: src/components/layouts/EventHomepage/Lineup/SessionModal.tsx:86
 #: src/components/layouts/EventHomepage/Sections/GallerySection.tsx:122
 #: src/components/modals/CreateEventModal/index.tsx:288
-#: src/components/modals/JoinWaitlistModal/index.tsx:117
-#: src/components/modals/JoinWaitlistModal/index.tsx:144
+#: src/components/modals/JoinWaitlistModal/index.tsx:121
+#: src/components/modals/JoinWaitlistModal/index.tsx:148
 #: src/components/modals/RefundOrderModal/index.tsx:172
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:892
 #: src/components/routes/product-widget/SelectProducts/index.tsx:1245
@@ -6002,6 +6002,14 @@ msgstr "Zákazník dostane e-mail potvrdzujúci vrátenie platby"
 msgid "Customers"
 msgstr "Zákazníci"
 
+#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:58
+msgid "Customers can join a waitlist when a product sells out, or before its sales open."
+msgstr "Zákazníci sa môžu zapísať na čakaciu listinu, keď je produkt vypredaný alebo pred začiatkom predaja."
+
+#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:57
+msgid "Customers can join a waitlist when a product sells out, or before its sales open. Customers join the waitlist for a specific date, and offers are made per date."
+msgstr "Zákazníci sa môžu zapísať na čakaciu listinu, keď je produkt vypredaný alebo pred začiatkom predaja. Zákazníci sa zapisujú na konkrétny termín a ponuky sa robia pre každý termín zvlášť."
+
 #: src/components/common/WidgetEditor/index.tsx:281
 msgid "Customise"
 msgstr "Prispôsobiť"
@@ -7346,7 +7354,7 @@ msgstr "Oprávnené zoznamy odbavení"
 #: src/components/common/OrderDetails/index.tsx:34
 #: src/components/forms/AffiliateForm/index.tsx:89
 #: src/components/modals/InviteUserModal/index.tsx:61
-#: src/components/modals/JoinWaitlistModal/index.tsx:190
+#: src/components/modals/JoinWaitlistModal/index.tsx:194
 #: src/components/modals/ManageAttendeeModal/index.tsx:174
 #: src/components/modals/ManageOrderModal/index.tsx:141
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:165
@@ -8951,7 +8959,7 @@ msgstr "Meno"
 
 #: src/components/modals/EditUserModal/index.tsx:87
 #: src/components/modals/InviteUserModal/index.tsx:54
-#: src/components/modals/JoinWaitlistModal/index.tsx:180
+#: src/components/modals/JoinWaitlistModal/index.tsx:184
 #: src/components/routes/auth/AcceptInvitation/index.tsx:226
 #: src/components/routes/auth/Register/index.tsx:139
 #: src/components/routes/product-widget/CollectInformation/index.tsx:520
@@ -8961,7 +8969,7 @@ msgstr "Meno"
 msgid "First Name"
 msgstr "Meno"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:56
+#: src/components/modals/JoinWaitlistModal/index.tsx:58
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:31
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:31
 msgid "First name is required"
@@ -9935,7 +9943,7 @@ msgstr "Beriem na vedomie svoje povinnosti ako správca údajov"
 msgid "I agree to follow the event code of conduct"
 msgstr "Súhlasím s dodržiavaním kódexu správania podujatia"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:196
+#: src/components/modals/JoinWaitlistModal/index.tsx:200
 msgid "I agree to receive email notifications related to this event"
 msgstr "Súhlasím s prijímaním e-mailových notifikácií súvisiacich s touto udalosťou"
 
@@ -10439,11 +10447,11 @@ msgid "Join from anywhere"
 msgstr "Pripojte sa odkiaľkoľvek"
 
 #: src/components/common/JoinWaitlistButton/index.tsx:38
-#: src/components/modals/JoinWaitlistModal/index.tsx:208
+#: src/components/modals/JoinWaitlistModal/index.tsx:212
 msgid "Join Waitlist"
 msgstr "Pridať sa do zoznamu čakateľov"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:157
+#: src/components/modals/JoinWaitlistModal/index.tsx:161
 msgid "Join Waitlist for {productDisplayName}"
 msgstr "Pridať sa do zoznamu čakateľov pre {productDisplayName}"
 
@@ -10654,7 +10662,7 @@ msgstr "Priezvisko"
 
 #: src/components/modals/EditUserModal/index.tsx:88
 #: src/components/modals/InviteUserModal/index.tsx:55
-#: src/components/modals/JoinWaitlistModal/index.tsx:185
+#: src/components/modals/JoinWaitlistModal/index.tsx:189
 #: src/components/routes/auth/AcceptInvitation/index.tsx:232
 #: src/components/routes/auth/Register/index.tsx:145
 #: src/components/routes/product-widget/CollectInformation/index.tsx:529
@@ -12668,8 +12676,8 @@ msgstr "Zatiaľ žiadne"
 msgid "Normally {0}"
 msgstr "Zvyčajne {0}"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:47
-#: src/components/common/ProductPriceAvailability/index.tsx:77
+#: src/components/common/ProductPriceAvailability/index.tsx:67
+#: src/components/common/ProductPriceAvailability/index.tsx:97
 msgid "Not available"
 msgstr "Nie je dostupné"
 
@@ -12780,7 +12788,7 @@ msgstr "Zatiaľ netestované"
 msgid "Not using reserved seating, the box office or enterprise single sign-on? Remove <0>APP_LICENCE_KEY</0> and redeploy."
 msgstr "Nepoužívate rezervované miesta, pokladňu ani firemné jednotné prihlásenie? Odstráňte <0>APP_LICENCE_KEY</0> a znova nasaďte."
 
-#: src/components/common/ProductPriceAvailability/index.tsx:44
+#: src/components/common/ProductPriceAvailability/index.tsx:64
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:31
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:53
 msgid "Not yet on sale"
@@ -14604,7 +14612,7 @@ msgstr "Vytvorte lístok"
 msgid "Please don't leave a single empty seat: {0}"
 msgstr "Prosím, nenechávajte jedno osamotené voľné sedadlo: {0}"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:57
+#: src/components/modals/JoinWaitlistModal/index.tsx:59
 msgid "Please enter a valid email address"
 msgstr "Zadajte platnú e-mailovú adresu"
 
@@ -16354,19 +16362,22 @@ msgstr "Predaj je pozastavený"
 msgid "Sales by licence year"
 msgstr "Predaj podľa licenčného roka"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:25
-#: src/components/common/ProductPriceAvailability/index.tsx:64
+#: src/components/common/ProductPriceAvailability/index.tsx:34
+#: src/components/common/ProductPriceAvailability/index.tsx:84
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:33
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:54
 msgid "Sales ended"
 msgstr "Predaj skončil"
 
+#: src/components/modals/JoinWaitlistModal/index.tsx:115
+msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do."
+msgstr "Predaj pre {productDisplayName} sa ešte nezačal. Hneď ako začne, napíšeme vám v poradí čakacej listiny."
+
 #: src/ee/box-office/components/layouts/BoxOffice/index.tsx:115
 msgid "Sales open in"
 msgstr "Predaj začína o"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:31
-#: src/components/common/ProductPriceAvailability/index.tsx:69
+#: src/components/common/ProductPriceAvailability/index.tsx:11
 msgid "Sales start"
 msgstr "Začiatok predaja"
 
@@ -18188,8 +18199,8 @@ msgstr "vypredané"
 
 #: src/components/common/EventCard/index.tsx:136
 #: src/components/common/EventDateRange/index.tsx:65
-#: src/components/common/ProductPriceAvailability/index.tsx:21
-#: src/components/common/ProductPriceAvailability/index.tsx:61
+#: src/components/common/ProductPriceAvailability/index.tsx:30
+#: src/components/common/ProductPriceAvailability/index.tsx:81
 #: src/components/layouts/OrganizerEventsWidget/index.tsx:57
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:92
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:311
@@ -18300,7 +18311,7 @@ msgstr "Niečo sa pokazilo! Skúste to znovu"
 msgid "Something went wrong."
 msgstr "Niečo sa pokazilo."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:141
+#: src/components/modals/JoinWaitlistModal/index.tsx:145
 msgid "Something went wrong. Please try again later."
 msgstr "Niečo sa pokazilo. Skúste to neskôr."
 
@@ -21101,7 +21112,7 @@ msgstr "Nie je možné načítať účastníka"
 msgid "Unable to find seats. Check the connection and try again."
 msgstr "Sedadlá sa nepodarilo nájsť. Skontrolujte pripojenie a skúste to znova."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:138
+#: src/components/modals/JoinWaitlistModal/index.tsx:142
 msgid "Unable to join waitlist"
 msgstr "Nie je možné pridať sa do zoznamu čakateľov"
 
@@ -22314,11 +22325,11 @@ msgstr "Pošleme e-mailom odkaz na pripojenie k vášmu účtu."
 msgid "We'll email you the link too, and send your order confirmation as soon as they complete checkout."
 msgstr "Odkaz vám pošleme aj e-mailom a potvrdenie objednávky odošleme hneď, ako bude platba dokončená."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:113
+#: src/components/modals/JoinWaitlistModal/index.tsx:117
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}."
 msgstr "Upozorníme vás e-mailom, ak sa uvoľní miesto pre {productDisplayName} dňa {occurrenceDate}."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:114
+#: src/components/modals/JoinWaitlistModal/index.tsx:118
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName}."
 msgstr "Upozorníme vás e-mailom, ak sa uvoľní miesto pre {productDisplayName}."
 
@@ -22553,14 +22564,6 @@ msgstr "Keď je produkt odstránený"
 msgid "When a product is updated"
 msgstr "Keď je produkt aktualizovaný"
 
-#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:58
-msgid "When a product sells out, customers can join a waitlist to be notified when spots become available."
-msgstr "Keď sa produkt vypredá, zákazníci sa môžu pridať do zoznamu čakateľov a byť upozornení, keď sa uvoľnia miesta."
-
-#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:57
-msgid "When a product sells out, customers can join a waitlist to be notified when spots become available. Customers join the waitlist for a specific date, and offers are made per date."
-msgstr "Keď sa produkt vypredá, zákazníci sa môžu pridať do zoznamu čakateľov a byť upozornení, keď sa uvoľnia miesta. Zákazníci sa pridávajú do zoznamu čakateľov pre konkrétny dátum a ponuky sa robia podľa dátumu."
-
 #: src/components/forms/WebhookForm/index.tsx:117
 msgid "When an attendee is cancelled"
 msgstr "Keď je účastník zrušený"
@@ -22772,7 +22775,7 @@ msgstr "Pracuje"
 #: src/components/modals/CreatePromoCodeModal/index.tsx:59
 #: src/components/modals/EditProductCategoryModal/index.tsx:73
 #: src/components/modals/EditPromoCodeModal/index.tsx:87
-#: src/components/modals/JoinWaitlistModal/index.tsx:207
+#: src/components/modals/JoinWaitlistModal/index.tsx:211
 #: src/components/routes/auth/Register/index.tsx:188
 msgid "Working..."
 msgstr "Pracuje..."
@@ -23028,7 +23031,7 @@ msgstr "Musíte potvrdiť, že tento e-mail nie je propagačný"
 msgid "You must acknowledge your responsibilities before saving"
 msgstr "Pred uložením musíte potvrdiť svoje povinnosti"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:58
+#: src/components/modals/JoinWaitlistModal/index.tsx:60
 msgid "You must agree to receive messages"
 msgstr "Musíte súhlasiť s prijímaním správ"
 
@@ -23144,11 +23147,11 @@ msgstr "Meníte časy termínov"
 msgid "You're going to {0}!"
 msgstr "Idete na {0}!"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:174
+#: src/components/modals/JoinWaitlistModal/index.tsx:178
 msgid "You're joining the waitlist for {occurrenceDate}."
 msgstr "Prihlasujete sa na čakaciu listinu na {occurrenceDate}."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:109
+#: src/components/modals/JoinWaitlistModal/index.tsx:111
 msgid "You're on the waitlist!"
 msgstr "Ste v zozname čakateľov!"
 

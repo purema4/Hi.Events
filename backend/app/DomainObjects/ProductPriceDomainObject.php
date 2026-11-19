@@ -118,6 +118,11 @@ class ProductPriceDomainObject extends Generated\ProductPriceDomainObjectAbstrac
             && ! $this->isAfterSaleEndDate();
     }
 
+    public function isOnSaleOrUpcoming(): bool
+    {
+        return ! $this->getIsHidden() && ! $this->isAfterSaleEndDate();
+    }
+
     public function isSoldOut(): bool
     {
         if ($this->getQuantityAvailable() < 0) {

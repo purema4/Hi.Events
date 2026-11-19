@@ -189,6 +189,19 @@ class ProductDomainObject extends Generated\ProductDomainObjectAbstract implemen
         return $this->isOnSale();
     }
 
+    public function isOnPublicSaleOrUpcoming(?PromoCodeDomainObject $promoCode = null): bool
+    {
+        if (! $this->isBeforeSaleStartDate()) {
+            return $this->isOnPublicSale($promoCode);
+        }
+
+        if ($this->getHideBeforeSaleStartDate() || $this->getIsHidden() || $this->isAfterSaleEndDate()) {
+            return false;
+        }
+
+        return ! $this->getIsHiddenWithoutPromoCode() || $promoCode?->appliesToProduct($this) === true;
+    }
+
     public function isAvailable(): bool
     {
         if ($this->getType() === ProductPriceType::TIERED->name && $this->getProductPrices()?->isEmpty()) {

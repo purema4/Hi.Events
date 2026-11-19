@@ -8,6 +8,7 @@ use HiEvents\DomainObjects\EventSettingDomainObject;
 use HiEvents\DomainObjects\Generated\EventOccurrenceDomainObjectAbstract;
 use HiEvents\DomainObjects\OrderDomainObject;
 use HiEvents\DomainObjects\ProductPriceDomainObject;
+use HiEvents\DomainObjects\PromoCodeDomainObject;
 use HiEvents\DomainObjects\Status\WaitlistEntryStatus;
 use HiEvents\DomainObjects\TaxAndFeesDomainObject;
 use HiEvents\DomainObjects\WaitlistEntryDomainObject;
@@ -20,6 +21,7 @@ use HiEvents\Repository\Eloquent\Value\OrderAndDirection;
 use HiEvents\Repository\Interfaces\EventOccurrenceRepositoryInterface;
 use HiEvents\Repository\Interfaces\ProductPriceRepositoryInterface;
 use HiEvents\Repository\Interfaces\ProductRepositoryInterface;
+use HiEvents\Repository\Interfaces\PromoCodeRepositoryInterface;
 use HiEvents\Repository\Interfaces\WaitlistEntryRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Order\DTO\ProductOrderDetailsDTO;
 use HiEvents\Services\Domain\EventOccurrence\OccurrencePurchaseEligibilityService;
@@ -28,6 +30,7 @@ use HiEvents\Services\Domain\Order\OrderItemProcessingService;
 use HiEvents\Services\Domain\Order\OrderManagementService;
 use HiEvents\Services\Domain\Product\AvailableProductQuantitiesFetchService;
 use HiEvents\Services\Domain\Product\DTO\OrderProductPriceDTO;
+use HiEvents\Services\Domain\PromoCode\PromoCodeUsageValidationService;
 use HiEvents\Services\Infrastructure\Lock\TransactionLockService;
 use Illuminate\Database\DatabaseManager;
 use Illuminate\Support\Collection;
@@ -50,6 +53,8 @@ class ProcessWaitlistService
         private readonly OccurrencePurchaseEligibilityService $eligibilityService,
         private readonly SeatedProductLookupService $seatedProductLookup,
         private readonly TransactionLockService $transactionLockService,
+        private readonly PromoCodeRepositoryInterface $promoCodeRepository,
+        private readonly PromoCodeUsageValidationService $promoCodeUsageValidationService,
     ) {}
 
     /**
@@ -92,6 +97,10 @@ class ProcessWaitlistService
             $remainingByOccurrenceAndPrice = [];
 
             foreach ($entries as $entry) {
+                if ($entry->getAwaitingSaleStart()) {
+                    continue;
+                }
+
                 try {
                     $occurrenceId = $this->resolveEventOccurrenceId($event, $entry);
                 } catch (ResourceConflictException|ResourceNotFoundException) {
@@ -270,13 +279,14 @@ class ProcessWaitlistService
         string $sessionIdentifier,
     ): OrderDomainObject {
         $timeoutMinutes = $eventSettings->getWaitlistOfferTimeoutMinutes() ?? self::DEFAULT_OFFER_TIMEOUT_MINUTES;
+        $promoCode = $this->getUsablePromoCode($entry);
 
         $order = $this->orderManagementService->createNewOrder(
             eventId: $event->getId(),
             event: $event,
             timeOutMinutes: $timeoutMinutes,
             locale: $entry->getLocale(),
-            promoCode: null,
+            promoCode: $promoCode,
             sessionId: $sessionIdentifier,
         );
 
@@ -306,13 +316,27 @@ class ProcessWaitlistService
             order: $order,
             productsOrderDetails: $orderDetails,
             event: $event,
-            promoCode: null,
+            promoCode: $promoCode,
         );
 
         return $this->orderManagementService->updateOrderTotals(
             $order,
             $orderItems->map(fn (ProcessedOrderItemDTO $item) => $item->order_item),
         );
+    }
+
+    private function getUsablePromoCode(WaitlistEntryDomainObject $entry): ?PromoCodeDomainObject
+    {
+        if ($entry->getPromoCodeId() === null) {
+            return null;
+        }
+
+        $promoCode = $this->promoCodeRepository->findFirstWhere([
+            'id' => $entry->getPromoCodeId(),
+            'event_id' => $entry->getEventId(),
+        ]);
+
+        return $this->promoCodeUsageValidationService->isPromoCodeUsable($promoCode) ? $promoCode : null;
     }
 
     private function resolveEventOccurrenceId(EventDomainObject $event, WaitlistEntryDomainObject $entry): ?int

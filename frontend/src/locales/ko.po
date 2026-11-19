@@ -2043,12 +2043,12 @@ msgid "Allow buyers to copy their details to all attendees"
 msgstr "구매자가 자신의 정보를 모든 참가자에게 복사할 수 있도록 허용"
 
 #: src/components/forms/ProductForm/index.tsx:474
-msgid "Allow customers to join a waitlist when this product is sold out"
-msgstr "이 상품이 매진되면 고객이 대기자 명단에 등록할 수 있도록 허용"
+msgid "Allow customers to join a waitlist when this product is sold out or before its sales open"
+msgstr "이 상품이 매진되었거나 판매 시작 전에 고객이 대기자 명단에 등록할 수 있도록 허용"
 
 #: src/components/forms/ProductForm/index.tsx:473
-msgid "Allow customers to join a waitlist when this product is sold out. Customers join the waitlist for a specific date."
-msgstr "이 상품이 매진되면 고객이 대기자 명단에 등록할 수 있도록 허용합니다. 고객은 특정 날짜의 대기자 명단에 등록합니다."
+msgid "Allow customers to join a waitlist when this product is sold out or before its sales open. Customers join the waitlist for a specific date."
+msgstr "이 상품이 매진되었거나 판매 시작 전에 고객이 대기자 명단에 등록할 수 있도록 허용합니다. 고객은 특정 날짜의 대기자 명단에 등록합니다."
 
 #: src/ee/box-office/components/forms/BoxOfficeForm/index.tsx:145
 msgid "Allow discounts"
@@ -3005,8 +3005,8 @@ msgid "Automatic emails that help organizers who get stuck. The sweep runs hourl
 msgstr "막힌 주최자를 돕는 자동 이메일입니다. 매시간 점검하며 이메일을 켠 이후에 발생한 활동만 대상으로 합니다."
 
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:65
-msgid "Automatically offer tickets to the next person when capacity becomes available. If disabled, you can manually process the waitlist from the Waitlist page."
-msgstr "자리가 생기면 다음 대기자에게 자동으로 티켓을 제안합니다. 비활성화하면 대기자 명단 페이지에서 수동으로 처리할 수 있습니다."
+msgid "Automatically offer tickets to the next person when capacity becomes available, and to people who joined early as soon as sales open. If disabled, you can manually process the waitlist from the Waitlist page."
+msgstr "자리가 나면 다음 사람에게, 판매가 시작되면 미리 등록한 사람에게 자동으로 티켓을 제안합니다. 비활성화하면 대기자 명단 페이지에서 수동으로 처리할 수 있습니다."
 
 #: src/ee/seating/components/SeatPicker/SeatListView.tsx:53
 msgid "available"
@@ -4619,8 +4619,8 @@ msgstr "닫기"
 #: src/components/layouts/EventHomepage/Lineup/SessionModal.tsx:86
 #: src/components/layouts/EventHomepage/Sections/GallerySection.tsx:122
 #: src/components/modals/CreateEventModal/index.tsx:288
-#: src/components/modals/JoinWaitlistModal/index.tsx:117
-#: src/components/modals/JoinWaitlistModal/index.tsx:144
+#: src/components/modals/JoinWaitlistModal/index.tsx:121
+#: src/components/modals/JoinWaitlistModal/index.tsx:148
 #: src/components/modals/RefundOrderModal/index.tsx:172
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:892
 #: src/components/routes/product-widget/SelectProducts/index.tsx:1245
@@ -6002,6 +6002,14 @@ msgstr "고객에게 환불 확인 이메일이 발송됩니다"
 msgid "Customers"
 msgstr "고객"
 
+#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:58
+msgid "Customers can join a waitlist when a product sells out, or before its sales open."
+msgstr "상품이 매진되었거나 판매 시작 전에 고객이 대기자 명단에 등록할 수 있습니다."
+
+#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:57
+msgid "Customers can join a waitlist when a product sells out, or before its sales open. Customers join the waitlist for a specific date, and offers are made per date."
+msgstr "상품이 매진되었거나 판매 시작 전에 고객이 대기자 명단에 등록할 수 있습니다. 고객은 특정 날짜에 등록하며, 제안은 날짜별로 이루어집니다."
+
 #: src/components/common/WidgetEditor/index.tsx:281
 msgid "Customise"
 msgstr "사용자 지정"
@@ -7346,7 +7354,7 @@ msgstr "해당하는 체크인 목록"
 #: src/components/common/OrderDetails/index.tsx:34
 #: src/components/forms/AffiliateForm/index.tsx:89
 #: src/components/modals/InviteUserModal/index.tsx:61
-#: src/components/modals/JoinWaitlistModal/index.tsx:190
+#: src/components/modals/JoinWaitlistModal/index.tsx:194
 #: src/components/modals/ManageAttendeeModal/index.tsx:174
 #: src/components/modals/ManageOrderModal/index.tsx:141
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:165
@@ -8951,7 +8959,7 @@ msgstr "이름"
 
 #: src/components/modals/EditUserModal/index.tsx:87
 #: src/components/modals/InviteUserModal/index.tsx:54
-#: src/components/modals/JoinWaitlistModal/index.tsx:180
+#: src/components/modals/JoinWaitlistModal/index.tsx:184
 #: src/components/routes/auth/AcceptInvitation/index.tsx:226
 #: src/components/routes/auth/Register/index.tsx:139
 #: src/components/routes/product-widget/CollectInformation/index.tsx:520
@@ -8961,7 +8969,7 @@ msgstr "이름"
 msgid "First Name"
 msgstr "이름"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:56
+#: src/components/modals/JoinWaitlistModal/index.tsx:58
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:31
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:31
 msgid "First name is required"
@@ -9935,7 +9943,7 @@ msgstr "데이터 관리자로서의 책임을 인지하고 동의합니다"
 msgid "I agree to follow the event code of conduct"
 msgstr "이벤트 행동 강령을 준수하는 데 동의합니다"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:196
+#: src/components/modals/JoinWaitlistModal/index.tsx:200
 msgid "I agree to receive email notifications related to this event"
 msgstr "이 이벤트와 관련된 이메일 알림 수신에 동의합니다"
 
@@ -10439,11 +10447,11 @@ msgid "Join from anywhere"
 msgstr "어디서든 참여하세요"
 
 #: src/components/common/JoinWaitlistButton/index.tsx:38
-#: src/components/modals/JoinWaitlistModal/index.tsx:208
+#: src/components/modals/JoinWaitlistModal/index.tsx:212
 msgid "Join Waitlist"
 msgstr "대기자 명단 등록"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:157
+#: src/components/modals/JoinWaitlistModal/index.tsx:161
 msgid "Join Waitlist for {productDisplayName}"
 msgstr "{productDisplayName} 대기자 명단 등록"
 
@@ -10654,7 +10662,7 @@ msgstr "성"
 
 #: src/components/modals/EditUserModal/index.tsx:88
 #: src/components/modals/InviteUserModal/index.tsx:55
-#: src/components/modals/JoinWaitlistModal/index.tsx:185
+#: src/components/modals/JoinWaitlistModal/index.tsx:189
 #: src/components/routes/auth/AcceptInvitation/index.tsx:232
 #: src/components/routes/auth/Register/index.tsx:145
 #: src/components/routes/product-widget/CollectInformation/index.tsx:529
@@ -12668,8 +12676,8 @@ msgstr "아직 없음"
 msgid "Normally {0}"
 msgstr "일반 가격 {0}"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:47
-#: src/components/common/ProductPriceAvailability/index.tsx:77
+#: src/components/common/ProductPriceAvailability/index.tsx:67
+#: src/components/common/ProductPriceAvailability/index.tsx:97
 msgid "Not available"
 msgstr "이용 불가"
 
@@ -12780,7 +12788,7 @@ msgstr "아직 테스트하지 않음"
 msgid "Not using reserved seating, the box office or enterprise single sign-on? Remove <0>APP_LICENCE_KEY</0> and redeploy."
 msgstr "지정 좌석, 현장 매표소 또는 엔터프라이즈 싱글 사인온을 사용하지 않나요? <0>APP_LICENCE_KEY</0>를 제거하고 다시 배포하세요."
 
-#: src/components/common/ProductPriceAvailability/index.tsx:44
+#: src/components/common/ProductPriceAvailability/index.tsx:64
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:31
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:53
 msgid "Not yet on sale"
@@ -14604,7 +14612,7 @@ msgstr "티켓을 생성해 주세요"
 msgid "Please don't leave a single empty seat: {0}"
 msgstr "좌석 하나만 비워두지 마세요: {0}"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:57
+#: src/components/modals/JoinWaitlistModal/index.tsx:59
 msgid "Please enter a valid email address"
 msgstr "유효한 이메일 주소를 입력해 주세요"
 
@@ -16354,19 +16362,22 @@ msgstr "판매가 일시중지되었습니다"
 msgid "Sales by licence year"
 msgstr "라이선스 연도별 매출"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:25
-#: src/components/common/ProductPriceAvailability/index.tsx:64
+#: src/components/common/ProductPriceAvailability/index.tsx:34
+#: src/components/common/ProductPriceAvailability/index.tsx:84
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:33
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:54
 msgid "Sales ended"
 msgstr "판매 종료됨"
 
+#: src/components/modals/JoinWaitlistModal/index.tsx:115
+msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do."
+msgstr "{productDisplayName} 판매가 아직 시작되지 않았습니다. 판매가 시작되면 대기자 명단 순서대로 이메일을 보내드립니다."
+
 #: src/ee/box-office/components/layouts/BoxOffice/index.tsx:115
 msgid "Sales open in"
 msgstr "판매 시작까지"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:31
-#: src/components/common/ProductPriceAvailability/index.tsx:69
+#: src/components/common/ProductPriceAvailability/index.tsx:11
 msgid "Sales start"
 msgstr "판매 시작"
 
@@ -18188,8 +18199,8 @@ msgstr "매진"
 
 #: src/components/common/EventCard/index.tsx:136
 #: src/components/common/EventDateRange/index.tsx:65
-#: src/components/common/ProductPriceAvailability/index.tsx:21
-#: src/components/common/ProductPriceAvailability/index.tsx:61
+#: src/components/common/ProductPriceAvailability/index.tsx:30
+#: src/components/common/ProductPriceAvailability/index.tsx:81
 #: src/components/layouts/OrganizerEventsWidget/index.tsx:57
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:92
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:311
@@ -18300,7 +18311,7 @@ msgstr "문제가 발생했습니다! 다시 시도해 주세요"
 msgid "Something went wrong."
 msgstr "문제가 발생했습니다."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:141
+#: src/components/modals/JoinWaitlistModal/index.tsx:145
 msgid "Something went wrong. Please try again later."
 msgstr "문제가 발생했습니다. 나중에 다시 시도해 주세요."
 
@@ -21101,7 +21112,7 @@ msgstr "참가자 정보를 가져올 수 없습니다"
 msgid "Unable to find seats. Check the connection and try again."
 msgstr "좌석을 찾을 수 없습니다. 연결을 확인하고 다시 시도하세요."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:138
+#: src/components/modals/JoinWaitlistModal/index.tsx:142
 msgid "Unable to join waitlist"
 msgstr "대기자 명단에 등록할 수 없습니다"
 
@@ -22314,11 +22325,11 @@ msgstr "계정에 참여할 수 있는 링크를 이메일로 보내드립니다
 msgid "We'll email you the link too, and send your order confirmation as soon as they complete checkout."
 msgstr "링크를 이메일로도 보내 드리며, 결제가 완료되는 즉시 주문 확인을 보내 드립니다."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:113
+#: src/components/modals/JoinWaitlistModal/index.tsx:117
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}."
 msgstr "{occurrenceDate}의 {productDisplayName} 자리가 나면 이메일로 알려드립니다."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:114
+#: src/components/modals/JoinWaitlistModal/index.tsx:118
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName}."
 msgstr "{productDisplayName}에 자리가 생기면 이메일로 알려드리겠습니다."
 
@@ -22553,14 +22564,6 @@ msgstr "상품이 삭제되면"
 msgid "When a product is updated"
 msgstr "상품이 수정되면"
 
-#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:58
-msgid "When a product sells out, customers can join a waitlist to be notified when spots become available."
-msgstr "상품이 매진되면 고객은 자리가 생겼을 때 알림을 받도록 대기자 명단에 등록할 수 있습니다."
-
-#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:57
-msgid "When a product sells out, customers can join a waitlist to be notified when spots become available. Customers join the waitlist for a specific date, and offers are made per date."
-msgstr "상품이 매진되면 고객이 대기자 명단에 등록하여 자리가 나면 알림을 받을 수 있습니다. 고객은 특정 날짜의 대기자 명단에 등록하며, 제안은 날짜별로 이루어집니다."
-
 #: src/components/forms/WebhookForm/index.tsx:117
 msgid "When an attendee is cancelled"
 msgstr "참가자가 취소되면"
@@ -22772,7 +22775,7 @@ msgstr "작동 중"
 #: src/components/modals/CreatePromoCodeModal/index.tsx:59
 #: src/components/modals/EditProductCategoryModal/index.tsx:73
 #: src/components/modals/EditPromoCodeModal/index.tsx:87
-#: src/components/modals/JoinWaitlistModal/index.tsx:207
+#: src/components/modals/JoinWaitlistModal/index.tsx:211
 #: src/components/routes/auth/Register/index.tsx:188
 msgid "Working..."
 msgstr "작동 중..."
@@ -23028,7 +23031,7 @@ msgstr "이 이메일이 홍보성이 아님을 확인해야 합니다"
 msgid "You must acknowledge your responsibilities before saving"
 msgstr "저장하기 전에 책임 사항에 동의해야 합니다"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:58
+#: src/components/modals/JoinWaitlistModal/index.tsx:60
 msgid "You must agree to receive messages"
 msgstr "메시지 수신에 동의해야 합니다"
 
@@ -23144,11 +23147,11 @@ msgstr "세션 시간을 변경하고 있습니다"
 msgid "You're going to {0}!"
 msgstr "{0}에 참석하시는군요!"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:174
+#: src/components/modals/JoinWaitlistModal/index.tsx:178
 msgid "You're joining the waitlist for {occurrenceDate}."
 msgstr "{occurrenceDate}의 대기자 명단에 등록합니다."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:109
+#: src/components/modals/JoinWaitlistModal/index.tsx:111
 msgid "You're on the waitlist!"
 msgstr "대기자 명단에 등록되었습니다!"
 

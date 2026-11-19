@@ -54,15 +54,15 @@ export const WaitlistSettings = () => {
             <HeadingWithDescription
                 heading={t`Waitlist`}
                 description={isRecurring
-                    ? t`When a product sells out, customers can join a waitlist to be notified when spots become available. Customers join the waitlist for a specific date, and offers are made per date.`
-                    : t`When a product sells out, customers can join a waitlist to be notified when spots become available.`}
+                    ? t`Customers can join a waitlist when a product sells out, or before its sales open. Customers join the waitlist for a specific date, and offers are made per date.`
+                    : t`Customers can join a waitlist when a product sells out, or before its sales open.`}
             />
             <form onSubmit={form.onSubmit(handleSubmit)}>
                 <fieldset disabled={eventSettingsQuery.isLoading || updateMutation.isPending}>
                     <Switch
                         {...form.getInputProps('waitlist_auto_process', {type: 'checkbox'})}
                         label={t`Auto-Process Waitlist`}
-                        description={t`Automatically offer tickets to the next person when capacity becomes available. If disabled, you can manually process the waitlist from the Waitlist page.`}
+                        description={t`Automatically offer tickets to the next person when capacity becomes available, and to people who joined early as soon as sales open. If disabled, you can manually process the waitlist from the Waitlist page.`}
                     />
 
                     <NumberInput

@@ -889,6 +889,7 @@
     "You have been added to the waitlist on **:date** for the event **:event**.": "Sinut on lisätty jonotuslistalle päivämäärälle **:date** tapahtumassa **:event**.",
     "You have been added to the waitlist for **:product** for the event **:event**.": "Sinut on lisätty jonotuslistalle tuotteelle **:product** tapahtumassa **:event**.",
     "You have been added to the waitlist for the event **:event**.": "Sinut on lisätty tapahtuman **:event** jonotuslistalle.",
+    "Sales haven't opened yet. We'll email you in waitlist order as soon as they do.": "Myynti ei ole vielä alkanut. Lähetämme sinulle sähköpostia jonotuslistan järjestyksessä heti kun se alkaa.",
     "We'll notify you as soon as a spot becomes available.": "Ilmoitamme sinulle heti, kun paikka vapautuu.",
     "Unfortunately, your waitlist offer for **:product** on **:date** for the event **:event** has expired.": "Valitettavasti jonotuslistatarjouksesi tuotteelle **:product** päivämäärälle **:date** tapahtumassa **:event** on vanhentunut.",
     "Unfortunately, your waitlist offer on **:date** for the event **:event** has expired.": "Valitettavasti jonotuslistatarjouksesi päivämäärälle **:date** tapahtumassa **:event** on vanhentunut.",

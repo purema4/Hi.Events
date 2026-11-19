@@ -369,6 +369,11 @@
     color: var(--hi-muted);
     white-space: nowrap;
 
+    &[data-reason='upcoming']:has(.hi-waitlist-button, .hi-waitlist-joined) {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
     &[data-reason='sold-out']:not(:has(.hi-waitlist-button)):not(:has(.hi-waitlist-joined)) {
       text-transform: uppercase;
       letter-spacing: 0.05em;

@@ -2043,12 +2043,12 @@ msgid "Allow buyers to copy their details to all attendees"
 msgstr "Permitir que los compradores copien sus datos a todos los asistentes"
 
 #: src/components/forms/ProductForm/index.tsx:474
-msgid "Allow customers to join a waitlist when this product is sold out"
-msgstr "Permitir que los clientes se unan a una lista de espera cuando este producto esté agotado"
+msgid "Allow customers to join a waitlist when this product is sold out or before its sales open"
+msgstr "Permitir que los clientes se unan a una lista de espera cuando este producto esté agotado o antes de que abra la venta"
 
 #: src/components/forms/ProductForm/index.tsx:473
-msgid "Allow customers to join a waitlist when this product is sold out. Customers join the waitlist for a specific date."
-msgstr "Permitir que los clientes se unan a una lista de espera cuando este producto esté agotado. Los clientes se unen a la lista de espera para una fecha específica."
+msgid "Allow customers to join a waitlist when this product is sold out or before its sales open. Customers join the waitlist for a specific date."
+msgstr "Permitir que los clientes se unan a una lista de espera cuando este producto esté agotado o antes de que abra la venta. Los clientes se unen a la lista de espera para una fecha específica."
 
 #: src/ee/box-office/components/forms/BoxOfficeForm/index.tsx:145
 msgid "Allow discounts"
@@ -3005,8 +3005,8 @@ msgid "Automatic emails that help organizers who get stuck. The sweep runs hourl
 msgstr "Correos automáticos que ayudan a los organizadores que se quedan atascados. El barrido se ejecuta cada hora y solo alcanza la actividad que ocurre después de activar un correo."
 
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:65
-msgid "Automatically offer tickets to the next person when capacity becomes available. If disabled, you can manually process the waitlist from the Waitlist page."
-msgstr "Ofrecer automáticamente entradas a la siguiente persona cuando haya disponibilidad. Si está deshabilitado, puedes procesar manualmente la lista de espera desde la página de Lista de espera."
+msgid "Automatically offer tickets to the next person when capacity becomes available, and to people who joined early as soon as sales open. If disabled, you can manually process the waitlist from the Waitlist page."
+msgstr "Ofrecer entradas automáticamente a la siguiente persona cuando haya capacidad disponible, y a quienes se apuntaron antes en cuanto abra la venta. Si está desactivado, puedes procesar la lista de espera manualmente desde la página Lista de espera."
 
 #: src/ee/seating/components/SeatPicker/SeatListView.tsx:53
 msgid "available"
@@ -4619,8 +4619,8 @@ msgstr "cerrar"
 #: src/components/layouts/EventHomepage/Lineup/SessionModal.tsx:86
 #: src/components/layouts/EventHomepage/Sections/GallerySection.tsx:122
 #: src/components/modals/CreateEventModal/index.tsx:288
-#: src/components/modals/JoinWaitlistModal/index.tsx:117
-#: src/components/modals/JoinWaitlistModal/index.tsx:144
+#: src/components/modals/JoinWaitlistModal/index.tsx:121
+#: src/components/modals/JoinWaitlistModal/index.tsx:148
 #: src/components/modals/RefundOrderModal/index.tsx:172
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:892
 #: src/components/routes/product-widget/SelectProducts/index.tsx:1245
@@ -6002,6 +6002,14 @@ msgstr "El cliente recibirá un correo electrónico confirmando el reembolso"
 msgid "Customers"
 msgstr "Clientes"
 
+#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:58
+msgid "Customers can join a waitlist when a product sells out, or before its sales open."
+msgstr "Los clientes pueden unirse a una lista de espera cuando un producto se agota o antes de que abra la venta."
+
+#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:57
+msgid "Customers can join a waitlist when a product sells out, or before its sales open. Customers join the waitlist for a specific date, and offers are made per date."
+msgstr "Los clientes pueden unirse a una lista de espera cuando un producto se agota o antes de que abra la venta. Los clientes se unen a la lista de espera para una fecha específica y las ofertas se hacen por fecha."
+
 #: src/components/common/WidgetEditor/index.tsx:281
 msgid "Customise"
 msgstr "Personalizar"
@@ -7346,7 +7354,7 @@ msgstr "Listas de Check-In Elegibles"
 #: src/components/common/OrderDetails/index.tsx:34
 #: src/components/forms/AffiliateForm/index.tsx:89
 #: src/components/modals/InviteUserModal/index.tsx:61
-#: src/components/modals/JoinWaitlistModal/index.tsx:190
+#: src/components/modals/JoinWaitlistModal/index.tsx:194
 #: src/components/modals/ManageAttendeeModal/index.tsx:174
 #: src/components/modals/ManageOrderModal/index.tsx:141
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:165
@@ -8951,7 +8959,7 @@ msgstr "Primer Nombre"
 
 #: src/components/modals/EditUserModal/index.tsx:87
 #: src/components/modals/InviteUserModal/index.tsx:54
-#: src/components/modals/JoinWaitlistModal/index.tsx:180
+#: src/components/modals/JoinWaitlistModal/index.tsx:184
 #: src/components/routes/auth/AcceptInvitation/index.tsx:226
 #: src/components/routes/auth/Register/index.tsx:139
 #: src/components/routes/product-widget/CollectInformation/index.tsx:520
@@ -8961,7 +8969,7 @@ msgstr "Primer Nombre"
 msgid "First Name"
 msgstr "Primer Nombre"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:56
+#: src/components/modals/JoinWaitlistModal/index.tsx:58
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:31
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:31
 msgid "First name is required"
@@ -9935,7 +9943,7 @@ msgstr "Reconozco mis responsabilidades como responsable del tratamiento de dato
 msgid "I agree to follow the event code of conduct"
 msgstr "Acepto cumplir el código de conducta del evento"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:196
+#: src/components/modals/JoinWaitlistModal/index.tsx:200
 msgid "I agree to receive email notifications related to this event"
 msgstr "Acepto recibir notificaciones por correo electrónico relacionadas con este evento"
 
@@ -10439,11 +10447,11 @@ msgid "Join from anywhere"
 msgstr "Únete desde cualquier lugar"
 
 #: src/components/common/JoinWaitlistButton/index.tsx:38
-#: src/components/modals/JoinWaitlistModal/index.tsx:208
+#: src/components/modals/JoinWaitlistModal/index.tsx:212
 msgid "Join Waitlist"
 msgstr "Unirse a la lista de espera"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:157
+#: src/components/modals/JoinWaitlistModal/index.tsx:161
 msgid "Join Waitlist for {productDisplayName}"
 msgstr "Unirse a la lista de espera para {productDisplayName}"
 
@@ -10654,7 +10662,7 @@ msgstr "Apellido"
 
 #: src/components/modals/EditUserModal/index.tsx:88
 #: src/components/modals/InviteUserModal/index.tsx:55
-#: src/components/modals/JoinWaitlistModal/index.tsx:185
+#: src/components/modals/JoinWaitlistModal/index.tsx:189
 #: src/components/routes/auth/AcceptInvitation/index.tsx:232
 #: src/components/routes/auth/Register/index.tsx:145
 #: src/components/routes/product-widget/CollectInformation/index.tsx:529
@@ -12668,8 +12676,8 @@ msgstr "Ninguno todavía"
 msgid "Normally {0}"
 msgstr "Normalmente {0}"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:47
-#: src/components/common/ProductPriceAvailability/index.tsx:77
+#: src/components/common/ProductPriceAvailability/index.tsx:67
+#: src/components/common/ProductPriceAvailability/index.tsx:97
 msgid "Not available"
 msgstr "No disponible"
 
@@ -12780,7 +12788,7 @@ msgstr "Aún sin probar"
 msgid "Not using reserved seating, the box office or enterprise single sign-on? Remove <0>APP_LICENCE_KEY</0> and redeploy."
 msgstr "¿No usas asientos reservados, la taquilla ni el inicio de sesión único empresarial? Elimina <0>APP_LICENCE_KEY</0> y vuelve a desplegar."
 
-#: src/components/common/ProductPriceAvailability/index.tsx:44
+#: src/components/common/ProductPriceAvailability/index.tsx:64
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:31
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:53
 msgid "Not yet on sale"
@@ -14604,7 +14612,7 @@ msgstr "Por favor, crea un ticket"
 msgid "Please don't leave a single empty seat: {0}"
 msgstr "No dejes un asiento vacío aislado: {0}"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:57
+#: src/components/modals/JoinWaitlistModal/index.tsx:59
 msgid "Please enter a valid email address"
 msgstr "Por favor, introduzca una dirección de correo electrónico válida"
 
@@ -16354,19 +16362,22 @@ msgstr "Las ventas están pausadas"
 msgid "Sales by licence year"
 msgstr "Ventas por año de licencia"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:25
-#: src/components/common/ProductPriceAvailability/index.tsx:64
+#: src/components/common/ProductPriceAvailability/index.tsx:34
+#: src/components/common/ProductPriceAvailability/index.tsx:84
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:33
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:54
 msgid "Sales ended"
 msgstr "Ventas terminadas"
 
+#: src/components/modals/JoinWaitlistModal/index.tsx:115
+msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do."
+msgstr "La venta de {productDisplayName} aún no ha comenzado. Te escribiremos por orden de la lista de espera en cuanto empiece."
+
 #: src/ee/box-office/components/layouts/BoxOffice/index.tsx:115
 msgid "Sales open in"
 msgstr "Las ventas abren en"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:31
-#: src/components/common/ProductPriceAvailability/index.tsx:69
+#: src/components/common/ProductPriceAvailability/index.tsx:11
 msgid "Sales start"
 msgstr "Inicio de ventas"
 
@@ -18188,8 +18199,8 @@ msgstr "agotado"
 
 #: src/components/common/EventCard/index.tsx:136
 #: src/components/common/EventDateRange/index.tsx:65
-#: src/components/common/ProductPriceAvailability/index.tsx:21
-#: src/components/common/ProductPriceAvailability/index.tsx:61
+#: src/components/common/ProductPriceAvailability/index.tsx:30
+#: src/components/common/ProductPriceAvailability/index.tsx:81
 #: src/components/layouts/OrganizerEventsWidget/index.tsx:57
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:92
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:311
@@ -18300,7 +18311,7 @@ msgstr "¡Algo salió mal! Inténtalo de nuevo"
 msgid "Something went wrong."
 msgstr "Algo salió mal."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:141
+#: src/components/modals/JoinWaitlistModal/index.tsx:145
 msgid "Something went wrong. Please try again later."
 msgstr "Algo salió mal. Por favor, inténtelo de nuevo más tarde."
 
@@ -21101,7 +21112,7 @@ msgstr "No se pudo obtener el asistente"
 msgid "Unable to find seats. Check the connection and try again."
 msgstr "No se pudieron encontrar asientos. Comprueba la conexión e inténtalo de nuevo."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:138
+#: src/components/modals/JoinWaitlistModal/index.tsx:142
 msgid "Unable to join waitlist"
 msgstr "No se pudo unir a la lista de espera"
 
@@ -22314,11 +22325,11 @@ msgstr "Le enviaremos un enlace por correo para unirse a tu cuenta."
 msgid "We'll email you the link too, and send your order confirmation as soon as they complete checkout."
 msgstr "También te enviaremos el enlace por correo y te mandaremos la confirmación del pedido en cuanto completen el pago."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:113
+#: src/components/modals/JoinWaitlistModal/index.tsx:117
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}."
 msgstr "Te notificaremos por correo electrónico si hay una plaza disponible para {productDisplayName} el {occurrenceDate}."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:114
+#: src/components/modals/JoinWaitlistModal/index.tsx:118
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName}."
 msgstr "Te notificaremos por correo electrónico si hay una plaza disponible para {productDisplayName}."
 
@@ -22553,14 +22564,6 @@ msgstr "Cuando se elimina un producto"
 msgid "When a product is updated"
 msgstr "Cuando se actualiza un producto"
 
-#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:58
-msgid "When a product sells out, customers can join a waitlist to be notified when spots become available."
-msgstr "Cuando un producto se agota, los clientes pueden unirse a una lista de espera para ser notificados cuando haya plazas disponibles."
-
-#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:57
-msgid "When a product sells out, customers can join a waitlist to be notified when spots become available. Customers join the waitlist for a specific date, and offers are made per date."
-msgstr "Cuando un producto se agota, los clientes pueden unirse a una lista de espera para ser notificados cuando haya plazas disponibles. Los clientes se unen a la lista de espera para una fecha específica y las ofertas se realizan por fecha."
-
 #: src/components/forms/WebhookForm/index.tsx:117
 msgid "When an attendee is cancelled"
 msgstr "Cuando se cancela un asistente"
@@ -22772,7 +22775,7 @@ msgstr "Laboral"
 #: src/components/modals/CreatePromoCodeModal/index.tsx:59
 #: src/components/modals/EditProductCategoryModal/index.tsx:73
 #: src/components/modals/EditPromoCodeModal/index.tsx:87
-#: src/components/modals/JoinWaitlistModal/index.tsx:207
+#: src/components/modals/JoinWaitlistModal/index.tsx:211
 #: src/components/routes/auth/Register/index.tsx:188
 msgid "Working..."
 msgstr "Laboral..."
@@ -23028,7 +23031,7 @@ msgstr "Debes reconocer que este correo electrónico no es promocional."
 msgid "You must acknowledge your responsibilities before saving"
 msgstr "Debes reconocer tus responsabilidades antes de guardar"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:58
+#: src/components/modals/JoinWaitlistModal/index.tsx:60
 msgid "You must agree to receive messages"
 msgstr "Debe aceptar recibir mensajes"
 
@@ -23144,11 +23147,11 @@ msgstr "Estás cambiando los horarios de las sesiones"
 msgid "You're going to {0}!"
 msgstr "¡Vas a ir a {0}!"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:174
+#: src/components/modals/JoinWaitlistModal/index.tsx:178
 msgid "You're joining the waitlist for {occurrenceDate}."
 msgstr "Te estás uniendo a la lista de espera para el {occurrenceDate}."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:109
+#: src/components/modals/JoinWaitlistModal/index.tsx:111
 msgid "You're on the waitlist!"
 msgstr "¡Estás en la lista de espera!"
 

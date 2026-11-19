@@ -36,10 +36,12 @@ class CreateWaitlistEntryService
         ?PromoCodeDomainObject $promoCode = null,
     ): WaitlistEntryDomainObject {
         $this->validateWaitlistEnabled($product);
-        $this->validateOnPublicSale($product, $productPrice, $promoCode);
+        $this->validateOnPublicSaleOrUpcoming($product, $productPrice, $promoCode);
+        $awaitingSaleStart = $product->isBeforeSaleStartDate() || $productPrice->isBeforeSaleStartDate();
+        $promoCodeId = $promoCode?->appliesToProduct($product) ? $promoCode->getId() : null;
 
         /** @var WaitlistEntryDomainObject $entry */
-        $entry = $this->databaseManager->transaction(function () use ($dto) {
+        $entry = $this->databaseManager->transaction(function () use ($dto, $awaitingSaleStart, $promoCodeId) {
             $this->waitlistEntryRepository->lockForProductPrice($dto->product_price_id, $dto->event_occurrence_id);
             $this->validateNoDuplicate($dto);
             $position = $this->calculatePosition($dto);
@@ -54,6 +56,8 @@ class CreateWaitlistEntryService
                 'status' => WaitlistEntryStatus::WAITING->name,
                 'cancel_token' => Str::random(64),
                 'position' => $position,
+                'awaiting_sale_start' => $awaitingSaleStart,
+                'promo_code_id' => $promoCodeId,
                 'locale' => $dto->locale,
             ]);
         });
@@ -80,12 +84,17 @@ class CreateWaitlistEntryService
     /**
      * @throws ResourceConflictException
      */
-    private function validateOnPublicSale(
+    private function validateOnPublicSaleOrUpcoming(
         ProductDomainObject $product,
         ProductPriceDomainObject $productPrice,
         ?PromoCodeDomainObject $promoCode,
     ): void {
-        if (! $product->isOnPublicSale($promoCode) || ! $productPrice->isOnSale()) {
+        $priceHiddenUntilSaleStart = $productPrice->isBeforeSaleStartDate() && $product->getHideBeforeSaleStartDate();
+
+        if (! $product->isOnPublicSaleOrUpcoming($promoCode)
+            || ! $productPrice->isOnSaleOrUpcoming()
+            || $priceHiddenUntilSaleStart
+        ) {
             throw new ResourceConflictException(__('Waitlist is not enabled for this product'));
         }
     }

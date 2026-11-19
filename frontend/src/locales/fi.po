@@ -2043,12 +2043,12 @@ msgid "Allow buyers to copy their details to all attendees"
 msgstr "Salli ostajien kopioida tietonsa kaikille osallistujille"
 
 #: src/components/forms/ProductForm/index.tsx:474
-msgid "Allow customers to join a waitlist when this product is sold out"
-msgstr "Salli asiakkaiden liittyä jonotuslistalle, kun tämä tuote on loppuunmyyty"
+msgid "Allow customers to join a waitlist when this product is sold out or before its sales open"
+msgstr "Salli asiakkaiden liittyä jonotuslistalle, kun tuote on loppuunmyyty tai ennen myynnin alkua"
 
 #: src/components/forms/ProductForm/index.tsx:473
-msgid "Allow customers to join a waitlist when this product is sold out. Customers join the waitlist for a specific date."
-msgstr "Salli asiakkaiden liittyä jonotuslistalle, kun tämä tuote on loppuunmyyty. Asiakkaat liittyvät jonotuslistalle tietylle päivämäärälle."
+msgid "Allow customers to join a waitlist when this product is sold out or before its sales open. Customers join the waitlist for a specific date."
+msgstr "Salli asiakkaiden liittyä jonotuslistalle, kun tuote on loppuunmyyty tai ennen myynnin alkua. Asiakkaat liittyvät tietyn päivämäärän jonotuslistalle."
 
 #: src/ee/box-office/components/forms/BoxOfficeForm/index.tsx:145
 msgid "Allow discounts"
@@ -3005,8 +3005,8 @@ msgid "Automatic emails that help organizers who get stuck. The sweep runs hourl
 msgstr "Automaattiset sähköpostit, jotka auttavat jumiin jääneitä järjestäjiä. Tarkistus ajetaan tunneittain, ja se koskee vain toimintaa, joka tapahtuu sähköpostin käyttöönoton jälkeen."
 
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:65
-msgid "Automatically offer tickets to the next person when capacity becomes available. If disabled, you can manually process the waitlist from the Waitlist page."
-msgstr "Tarjoa lippuja automaattisesti seuraavalle henkilölle, kun kapasiteettia vapautuu. Jos pois käytöstä, voit käsitellä jonotuslistaa manuaalisesti Jonotuslista-sivulta."
+msgid "Automatically offer tickets to the next person when capacity becomes available, and to people who joined early as soon as sales open. If disabled, you can manually process the waitlist from the Waitlist page."
+msgstr "Tarjoa lippuja automaattisesti seuraavalle, kun kapasiteettia vapautuu, ja etukäteen liittyneille heti myynnin alkaessa. Jos pois päältä, voit käsitellä jonotuslistaa manuaalisesti Jonotuslista-sivulla."
 
 #: src/ee/seating/components/SeatPicker/SeatListView.tsx:53
 msgid "available"
@@ -4619,8 +4619,8 @@ msgstr "sulje"
 #: src/components/layouts/EventHomepage/Lineup/SessionModal.tsx:86
 #: src/components/layouts/EventHomepage/Sections/GallerySection.tsx:122
 #: src/components/modals/CreateEventModal/index.tsx:288
-#: src/components/modals/JoinWaitlistModal/index.tsx:117
-#: src/components/modals/JoinWaitlistModal/index.tsx:144
+#: src/components/modals/JoinWaitlistModal/index.tsx:121
+#: src/components/modals/JoinWaitlistModal/index.tsx:148
 #: src/components/modals/RefundOrderModal/index.tsx:172
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:892
 #: src/components/routes/product-widget/SelectProducts/index.tsx:1245
@@ -6002,6 +6002,14 @@ msgstr "Asiakas saa sähköpostin, joka vahvistaa hyvityksen"
 msgid "Customers"
 msgstr "Asiakkaat"
 
+#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:58
+msgid "Customers can join a waitlist when a product sells out, or before its sales open."
+msgstr "Asiakkaat voivat liittyä jonotuslistalle, kun tuote on loppuunmyyty tai ennen myynnin alkua."
+
+#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:57
+msgid "Customers can join a waitlist when a product sells out, or before its sales open. Customers join the waitlist for a specific date, and offers are made per date."
+msgstr "Asiakkaat voivat liittyä jonotuslistalle, kun tuote on loppuunmyyty tai ennen myynnin alkua. Asiakkaat liittyvät tietyn päivämäärän jonotuslistalle, ja tarjoukset tehdään päivämääräkohtaisesti."
+
 #: src/components/common/WidgetEditor/index.tsx:281
 msgid "Customise"
 msgstr "Mukauta"
@@ -7346,7 +7354,7 @@ msgstr "Kelpoiset sisäänkirjautumislistat"
 #: src/components/common/OrderDetails/index.tsx:34
 #: src/components/forms/AffiliateForm/index.tsx:89
 #: src/components/modals/InviteUserModal/index.tsx:61
-#: src/components/modals/JoinWaitlistModal/index.tsx:190
+#: src/components/modals/JoinWaitlistModal/index.tsx:194
 #: src/components/modals/ManageAttendeeModal/index.tsx:174
 #: src/components/modals/ManageOrderModal/index.tsx:141
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:165
@@ -8951,7 +8959,7 @@ msgstr "Etunimi"
 
 #: src/components/modals/EditUserModal/index.tsx:87
 #: src/components/modals/InviteUserModal/index.tsx:54
-#: src/components/modals/JoinWaitlistModal/index.tsx:180
+#: src/components/modals/JoinWaitlistModal/index.tsx:184
 #: src/components/routes/auth/AcceptInvitation/index.tsx:226
 #: src/components/routes/auth/Register/index.tsx:139
 #: src/components/routes/product-widget/CollectInformation/index.tsx:520
@@ -8961,7 +8969,7 @@ msgstr "Etunimi"
 msgid "First Name"
 msgstr "Etunimi"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:56
+#: src/components/modals/JoinWaitlistModal/index.tsx:58
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditAttendeeModal/index.tsx:31
 #: src/components/routes/product-widget/OrderSummaryAndProducts/EditOrderModal/index.tsx:31
 msgid "First name is required"
@@ -9935,7 +9943,7 @@ msgstr "Vahvistan vastuuni rekisterinpitäjänä"
 msgid "I agree to follow the event code of conduct"
 msgstr "Sitoudun noudattamaan tapahtuman käytössääntöjä"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:196
+#: src/components/modals/JoinWaitlistModal/index.tsx:200
 msgid "I agree to receive email notifications related to this event"
 msgstr "Hyväksyn vastaanottaa sähköpostitiedotteita tähän tapahtumaan liittyen"
 
@@ -10439,11 +10447,11 @@ msgid "Join from anywhere"
 msgstr "Liity mistä tahansa"
 
 #: src/components/common/JoinWaitlistButton/index.tsx:38
-#: src/components/modals/JoinWaitlistModal/index.tsx:208
+#: src/components/modals/JoinWaitlistModal/index.tsx:212
 msgid "Join Waitlist"
 msgstr "Liity jonolistalle"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:157
+#: src/components/modals/JoinWaitlistModal/index.tsx:161
 msgid "Join Waitlist for {productDisplayName}"
 msgstr "Liity jonolistalle tuotteelle {productDisplayName}"
 
@@ -10654,7 +10662,7 @@ msgstr "Sukunimi"
 
 #: src/components/modals/EditUserModal/index.tsx:88
 #: src/components/modals/InviteUserModal/index.tsx:55
-#: src/components/modals/JoinWaitlistModal/index.tsx:185
+#: src/components/modals/JoinWaitlistModal/index.tsx:189
 #: src/components/routes/auth/AcceptInvitation/index.tsx:232
 #: src/components/routes/auth/Register/index.tsx:145
 #: src/components/routes/product-widget/CollectInformation/index.tsx:529
@@ -12668,8 +12676,8 @@ msgstr "Ei vielä"
 msgid "Normally {0}"
 msgstr "Yleensä {0}"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:47
-#: src/components/common/ProductPriceAvailability/index.tsx:77
+#: src/components/common/ProductPriceAvailability/index.tsx:67
+#: src/components/common/ProductPriceAvailability/index.tsx:97
 msgid "Not available"
 msgstr "Ei saatavilla"
 
@@ -12780,7 +12788,7 @@ msgstr "Ei vielä testattu"
 msgid "Not using reserved seating, the box office or enterprise single sign-on? Remove <0>APP_LICENCE_KEY</0> and redeploy."
 msgstr "Etkö käytä varattuja istumapaikkoja, lipunmyyntiä ovella tai yritysten kertakirjautumista? Poista <0>APP_LICENCE_KEY</0> ja ota taustajärjestelmä uudelleen käyttöön."
 
-#: src/components/common/ProductPriceAvailability/index.tsx:44
+#: src/components/common/ProductPriceAvailability/index.tsx:64
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:31
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:53
 msgid "Not yet on sale"
@@ -14604,7 +14612,7 @@ msgstr "Luo ensin lippu"
 msgid "Please don't leave a single empty seat: {0}"
 msgstr "Älä jätä yksittäistä tyhjää paikkaa: {0}"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:57
+#: src/components/modals/JoinWaitlistModal/index.tsx:59
 msgid "Please enter a valid email address"
 msgstr "Anna kelvollinen sähköpostiosoite"
 
@@ -16354,19 +16362,22 @@ msgstr "Myynti on tauolla"
 msgid "Sales by licence year"
 msgstr "Myynti lisenssivuosittain"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:25
-#: src/components/common/ProductPriceAvailability/index.tsx:64
+#: src/components/common/ProductPriceAvailability/index.tsx:34
+#: src/components/common/ProductPriceAvailability/index.tsx:84
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:33
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:54
 msgid "Sales ended"
 msgstr "Myynti päättynyt"
 
+#: src/components/modals/JoinWaitlistModal/index.tsx:115
+msgid "Sales for {productDisplayName} haven't opened yet. We'll email you in waitlist order as soon as they do."
+msgstr "Tuotteen {productDisplayName} myynti ei ole vielä alkanut. Lähetämme sinulle sähköpostia jonotuslistan järjestyksessä heti kun se alkaa."
+
 #: src/ee/box-office/components/layouts/BoxOffice/index.tsx:115
 msgid "Sales open in"
 msgstr "Myynti avautuu"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:31
-#: src/components/common/ProductPriceAvailability/index.tsx:69
+#: src/components/common/ProductPriceAvailability/index.tsx:11
 msgid "Sales start"
 msgstr "Myynti alkaa"
 
@@ -18188,8 +18199,8 @@ msgstr "loppuunmyyty"
 
 #: src/components/common/EventCard/index.tsx:136
 #: src/components/common/EventDateRange/index.tsx:65
-#: src/components/common/ProductPriceAvailability/index.tsx:21
-#: src/components/common/ProductPriceAvailability/index.tsx:61
+#: src/components/common/ProductPriceAvailability/index.tsx:30
+#: src/components/common/ProductPriceAvailability/index.tsx:81
 #: src/components/layouts/OrganizerEventsWidget/index.tsx:57
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:92
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:311
@@ -18300,7 +18311,7 @@ msgstr "Jotain meni pieleen! Yritä uudelleen"
 msgid "Something went wrong."
 msgstr "Jotain meni pieleen."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:141
+#: src/components/modals/JoinWaitlistModal/index.tsx:145
 msgid "Something went wrong. Please try again later."
 msgstr "Jotain meni pieleen. Yritä myöhemmin uudelleen."
 
@@ -21101,7 +21112,7 @@ msgstr "Osallistujan tietojen hakeminen ei onnistu"
 msgid "Unable to find seats. Check the connection and try again."
 msgstr "Paikkoja ei löytynyt. Tarkista yhteys ja yritä uudelleen."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:138
+#: src/components/modals/JoinWaitlistModal/index.tsx:142
 msgid "Unable to join waitlist"
 msgstr "Jonotuslistalle liittyminen ei onnistu"
 
@@ -22314,11 +22325,11 @@ msgstr "Lähetämme sähköpostilla linkin tiliisi liittymistä varten."
 msgid "We'll email you the link too, and send your order confirmation as soon as they complete checkout."
 msgstr "Lähetämme linkin myös sinulle sähköpostilla ja lähetämme tilausvahvistuksesi heti, kun maksu on suoritettu."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:113
+#: src/components/modals/JoinWaitlistModal/index.tsx:117
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName} on {occurrenceDate}."
 msgstr "Ilmoitamme sinulle sähköpostitse, jos tuotteelle {productDisplayName} vapautuu paikka päivänä {occurrenceDate}."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:114
+#: src/components/modals/JoinWaitlistModal/index.tsx:118
 msgid "We'll notify you by email if a spot becomes available for {productDisplayName}."
 msgstr "Ilmoitamme sinulle sähköpostitse, jos tuotteelle {productDisplayName} vapautuu paikka."
 
@@ -22553,14 +22564,6 @@ msgstr "Kun tuote poistetaan"
 msgid "When a product is updated"
 msgstr "Kun tuotetta päivitetään"
 
-#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:58
-msgid "When a product sells out, customers can join a waitlist to be notified when spots become available."
-msgstr "Kun tuote myydään loppuun, asiakkaat voivat liittyä jonotuslistalle saadakseen ilmoituksen paikkojen vapautuessa."
-
-#: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:57
-msgid "When a product sells out, customers can join a waitlist to be notified when spots become available. Customers join the waitlist for a specific date, and offers are made per date."
-msgstr "Kun tuote myydään loppuun, asiakkaat voivat liittyä jonotuslistalle saadakseen ilmoituksen paikkojen vapautuessa. Asiakkaat liittyvät tietyn päivämäärän jonotuslistalle, ja tarjoukset tehdään päivämääräkohtaisesti."
-
 #: src/components/forms/WebhookForm/index.tsx:117
 msgid "When an attendee is cancelled"
 msgstr "Kun osallistuja perutaan"
@@ -22772,7 +22775,7 @@ msgstr "Käsitellään"
 #: src/components/modals/CreatePromoCodeModal/index.tsx:59
 #: src/components/modals/EditProductCategoryModal/index.tsx:73
 #: src/components/modals/EditPromoCodeModal/index.tsx:87
-#: src/components/modals/JoinWaitlistModal/index.tsx:207
+#: src/components/modals/JoinWaitlistModal/index.tsx:211
 #: src/components/routes/auth/Register/index.tsx:188
 msgid "Working..."
 msgstr "Käsitellään..."
@@ -23028,7 +23031,7 @@ msgstr "Sinun on vahvistettava, että tämä sähköposti ei ole markkinointivie
 msgid "You must acknowledge your responsibilities before saving"
 msgstr "Sinun on vahvistettava vastuusi ennen tallentamista"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:58
+#: src/components/modals/JoinWaitlistModal/index.tsx:60
 msgid "You must agree to receive messages"
 msgstr "Sinun on hyväksyttävä viestien vastaanottaminen"
 
@@ -23144,11 +23147,11 @@ msgstr "Olet muuttamassa istuntojen aikoja"
 msgid "You're going to {0}!"
 msgstr "Olet menossa tapahtumaan {0}!"
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:174
+#: src/components/modals/JoinWaitlistModal/index.tsx:178
 msgid "You're joining the waitlist for {occurrenceDate}."
 msgstr "Liityt päivämäärän {occurrenceDate} jonotuslistalle."
 
-#: src/components/modals/JoinWaitlistModal/index.tsx:109
+#: src/components/modals/JoinWaitlistModal/index.tsx:111
 msgid "You're on the waitlist!"
 msgstr "Olet jonotuslistalla!"
 

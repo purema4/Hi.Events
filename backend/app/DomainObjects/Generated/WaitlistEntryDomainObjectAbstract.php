@@ -15,6 +15,7 @@ abstract class WaitlistEntryDomainObjectAbstract extends \HiEvents\DomainObjects
     final public const PRODUCT_PRICE_ID = 'product_price_id';
     final public const ORDER_ID = 'order_id';
     final public const EVENT_OCCURRENCE_ID = 'event_occurrence_id';
+    final public const PROMO_CODE_ID = 'promo_code_id';
     final public const EMAIL = 'email';
     final public const FIRST_NAME = 'first_name';
     final public const LAST_NAME = 'last_name';
@@ -30,12 +31,14 @@ abstract class WaitlistEntryDomainObjectAbstract extends \HiEvents\DomainObjects
     final public const CREATED_AT = 'created_at';
     final public const UPDATED_AT = 'updated_at';
     final public const DELETED_AT = 'deleted_at';
+    final public const AWAITING_SALE_START = 'awaiting_sale_start';
 
     protected int $id;
     protected int $event_id;
     protected int $product_price_id;
     protected ?int $order_id = null;
     protected ?int $event_occurrence_id = null;
+    protected ?int $promo_code_id = null;
     protected string $email;
     protected string $first_name;
     protected ?string $last_name = null;
@@ -51,6 +54,7 @@ abstract class WaitlistEntryDomainObjectAbstract extends \HiEvents\DomainObjects
     protected ?string $created_at = null;
     protected ?string $updated_at = null;
     protected ?string $deleted_at = null;
+    protected bool $awaiting_sale_start = false;
 
     public function toArray(): array
     {
@@ -60,6 +64,7 @@ abstract class WaitlistEntryDomainObjectAbstract extends \HiEvents\DomainObjects
                     'product_price_id' => $this->product_price_id ?? null,
                     'order_id' => $this->order_id ?? null,
                     'event_occurrence_id' => $this->event_occurrence_id ?? null,
+                    'promo_code_id' => $this->promo_code_id ?? null,
                     'email' => $this->email ?? null,
                     'first_name' => $this->first_name ?? null,
                     'last_name' => $this->last_name ?? null,
@@ -75,6 +80,7 @@ abstract class WaitlistEntryDomainObjectAbstract extends \HiEvents\DomainObjects
                     'created_at' => $this->created_at ?? null,
                     'updated_at' => $this->updated_at ?? null,
                     'deleted_at' => $this->deleted_at ?? null,
+                    'awaiting_sale_start' => $this->awaiting_sale_start ?? null,
                 ];
     }
 
@@ -131,6 +137,17 @@ abstract class WaitlistEntryDomainObjectAbstract extends \HiEvents\DomainObjects
     public function getEventOccurrenceId(): ?int
     {
         return $this->event_occurrence_id;
+    }
+
+    public function setPromoCodeId(?int $promo_code_id): self
+    {
+        $this->promo_code_id = $promo_code_id;
+        return $this;
+    }
+
+    public function getPromoCodeId(): ?int
+    {
+        return $this->promo_code_id;
     }
 
     public function setEmail(string $email): self
@@ -296,5 +313,16 @@ abstract class WaitlistEntryDomainObjectAbstract extends \HiEvents\DomainObjects
     public function getDeletedAt(): ?string
     {
         return $this->deleted_at;
+    }
+
+    public function setAwaitingSaleStart(bool $awaiting_sale_start): self
+    {
+        $this->awaiting_sale_start = $awaiting_sale_start;
+        return $this;
+    }
+
+    public function getAwaitingSaleStart(): bool
+    {
+        return $this->awaiting_sale_start;
     }
 }

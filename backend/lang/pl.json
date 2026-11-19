@@ -889,6 +889,7 @@
     "You have been added to the waitlist on **:date** for the event **:event**.": "Zostałeś dodany do listy oczekujących w dniu **:date** na wydarzenie **:event**.",
     "You have been added to the waitlist for **:product** for the event **:event**.": "Zostałeś dodany do listy oczekujących na **:product** na wydarzenie **:event**.",
     "You have been added to the waitlist for the event **:event**.": "Zostałeś dodany do listy oczekujących na wydarzenie **:event**.",
+    "Sales haven't opened yet. We'll email you in waitlist order as soon as they do.": "Sprzedaż jeszcze się nie rozpoczęła. Gdy tylko ruszy, napiszemy do Ciebie zgodnie z kolejnością na liście oczekujących.",
     "We'll notify you as soon as a spot becomes available.": "Powiadomimy Cię, gdy tylko zwolni się miejsce.",
     "Unfortunately, your waitlist offer for **:product** on **:date** for the event **:event** has expired.": "Niestety, Twoja oferta z listy oczekujących na **:product** w dniu **:date** na wydarzenie **:event** wygasła.",
     "Unfortunately, your waitlist offer on **:date** for the event **:event** has expired.": "Niestety, Twoja oferta z listy oczekujących w dniu **:date** na wydarzenie **:event** wygasła.",

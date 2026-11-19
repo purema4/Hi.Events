@@ -23,7 +23,11 @@
 {{ __("You have been added to the waitlist for the event **:event**.", ['event' => $event->getTitle()]) }}
 @endif
 
+@if($entry->getAwaitingSaleStart())
+{{ __("Sales haven't opened yet. We'll email you in waitlist order as soon as they do.") }}
+@else
 {{ __("We'll notify you as soon as a spot becomes available.") }}
+@endif
 
 <x-mail::button :url="$eventUrl">
 {{ __('View Event') }}
