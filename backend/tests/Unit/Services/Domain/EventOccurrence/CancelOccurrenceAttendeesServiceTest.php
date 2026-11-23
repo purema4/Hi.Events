@@ -357,6 +357,7 @@ class CancelOccurrenceAttendeesServiceTest extends TestCase
         $order->shouldReceive('getId')->andReturn($id);
         $order->shouldReceive('getCreatedAt')->andReturn($createdAt);
         $order->shouldReceive('getStatus')->andReturn($status ?? OrderStatus::COMPLETED->name);
+        $order->shouldReceive('getCountsTowardCapacity')->andReturn(true);
 
         return $order;
     }

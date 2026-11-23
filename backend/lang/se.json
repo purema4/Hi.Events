@@ -1359,5 +1359,17 @@
     "The Apple Wallet pass is no longer available.": "Apple Wallet-kortet är inte längre tillgängligt.",
     "Ticket for :event": "Biljett till :event",
     "Ticket number": "Biljettnummer",
-    "This tier is sold out": "Den här prisnivån är slutsåld"
+    "This tier is sold out": "Den här prisnivån är slutsåld",
+    "This link does not exist": "Den här länken finns inte",
+    "This link is no longer available": "Den här länken är inte längre tillgänglig",
+    "This link has expired": "Den här länken har gått ut",
+    "This link has already been used": "Den här länken har redan använts",
+    "This link is being used by someone else. Please try again in a few minutes.": "Någon annan använder den här länken. Försök igen om några minuter.",
+    "These tickets are sold out": "De här biljetterna är slutsålda",
+    "This ticket was not found": "Biljetten hittades inte",
+    "Tickets with reserved seating cannot be sold through a sale link": "Biljetter med reserverade platser kan inte säljas via en försäljningslänk",
+    "This ticket is already in the link": "Den här biljetten finns redan i länken",
+    "This affiliate was not found or is inactive": "Affiliaten hittades inte eller är inaktiv",
+    "Sale link not found": "Försäljningslänken hittades inte",
+    "This link can only be used with :email": "Den här länken kan bara användas med :email"
 }

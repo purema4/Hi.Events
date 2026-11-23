@@ -2238,3 +2238,88 @@ export interface WaitlistStats {
     expired: number;
     products: WaitlistProductStats[];
 }
+
+export type SaleLinkStatus = 'ACTIVE' | 'USED' | 'EXPIRED' | 'REVOKED';
+
+export type SaleLinkPromoMode = 'ATTRIBUTION_ONLY' | 'APPLY_DISCOUNT';
+
+export interface SaleLinkItem {
+    id: number;
+    product_id: number;
+    product_price_id: number;
+    quantity: number;
+    unit_price: number;
+    product_title: string;
+    price_label: string | null;
+}
+
+export interface SaleLink {
+    id: number;
+    event_id: number;
+    event_occurrence_id: number | null;
+    token: string;
+    status: SaleLinkStatus;
+    price_includes_tax: boolean;
+    promo_code_id: number | null;
+    promo_mode: SaleLinkPromoMode;
+    affiliate_id: number | null;
+    bypass_capacity: boolean;
+    count_toward_cap: boolean;
+    max_uses: number;
+    uses_count: number;
+    expires_at: string | null;
+    email: string | null;
+    email_locked: boolean;
+    note: string | null;
+    created_at: string;
+    updated_at: string;
+    items: SaleLinkItem[];
+}
+
+export interface CreateSaleLinkItemRequest {
+    product_id: number;
+    product_price_id: number;
+    quantity: number;
+    unit_price: number;
+}
+
+export interface CreateSaleLinkRequest {
+    event_occurrence_id?: number | null;
+    items: CreateSaleLinkItemRequest[];
+    price_includes_tax: boolean;
+    promo_code_id?: number | null;
+    promo_mode: SaleLinkPromoMode;
+    affiliate_id?: number | null;
+    bypass_capacity: boolean;
+    count_toward_cap: boolean;
+    max_uses: number;
+    expires_at?: string | null;
+    email?: string | null;
+    email_locked: boolean;
+    note?: string | null;
+}
+
+export type SaleLinkUnavailableReason = 'EXPIRED' | 'REVOKED' | 'USED';
+
+export interface SaleLinkPublicItem {
+    product_id: number;
+    product_price_id: number;
+    product_title: string;
+    price_label: string | null;
+    quantity: number;
+    unit_price: number;
+}
+
+export interface SaleLinkPublic {
+    token: string;
+    event_id: number;
+    event_occurrence_id: number | null;
+    currency: string;
+    expires_at: string | null;
+    email: string | null;
+    email_locked: boolean;
+    price_includes_tax: boolean;
+    is_usable: boolean;
+    unavailable_reason: SaleLinkUnavailableReason | null;
+    items: SaleLinkPublicItem[];
+}

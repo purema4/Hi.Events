@@ -13,12 +13,12 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/layouts/Event/index.tsx:260
+#: src/components/layouts/Event/index.tsx:262
 #: src/components/layouts/OrganizerLayout/index.tsx:248
 msgid "- Click to Publish"
 msgstr "- Kliknutím publikujete"
 
-#: src/components/layouts/Event/index.tsx:262
+#: src/components/layouts/Event/index.tsx:264
 #: src/components/layouts/OrganizerLayout/index.tsx:250
 msgid "- Click to Unpublish"
 msgstr "- Kliknutím zrušíte publikování"
@@ -972,6 +972,10 @@ msgstr "Promo kód bez slevy lze použít k odhalení skrytých produktů."
 msgid "A recurring event can become a single event when it has exactly one active date and no orders. The date's own prices, product visibility, capacity and label are removed; its time and location are kept."
 msgstr "Opakovaná událost se může změnit na jednorázovou, pokud má právě jeden aktivní termín a žádné objednávky. Vlastní ceny termínu, viditelnost produktů, kapacita a popisek budou odstraněny; jeho čas a místo zůstanou zachovány."
 
+#: src/components/common/SaleLinkTable/index.tsx:71
+msgid "A sale link is a private checkout link for specific tickets at a price you set. Send it by email or message, and the buyer pays through the normal checkout."
+msgstr "Prodejní odkaz je soukromý odkaz k nákupu vybraných vstupenek za cenu, kterou určíte. Pošlete ho e-mailem nebo zprávou a kupující zaplatí běžnou pokladnou."
+
 #: src/ee/seating/components/routes/event/Seating/AttachSeatMap.tsx:51
 msgid "A seat map is a reusable venue layout of rows, tables and standing areas. Build one for your venue, then attach it to this event to sell seats."
 msgstr "Plánek sálu je znovu použitelné rozvržení prostoru s řadami, stoly a plochami k stání. Vytvořte jej pro své místo konání a poté jej připojte k této události, abyste mohli prodávat místa."
@@ -1227,6 +1231,7 @@ msgstr "Vyžadována akce: Potřebné informace o DPH"
 #: src/components/common/OrdersTable/index.tsx:393
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:548
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:555
+#: src/components/common/SaleLinkTable/index.tsx:169
 #: src/components/common/WaitlistTable/index.tsx:57
 #: src/components/common/WaitlistTable/index.tsx:240
 #: src/components/routes/admin/FailedJobs/index.tsx:167
@@ -1257,6 +1262,7 @@ msgstr "Datum aktivace"
 #: src/components/common/CheckInListList/index.tsx:115
 #: src/components/common/CheckInListTable/index.tsx:177
 #: src/components/common/EmailTemplateSettings/EmailTemplateSettingsBase.tsx:280
+#: src/components/common/SaleLinkTable/index.tsx:35
 #: src/components/forms/AffiliateForm/index.tsx:21
 #: src/components/forms/CapaciyAssigmentForm/index.tsx:19
 #: src/components/modals/ProductPurchasesModal/index.tsx:246
@@ -1379,6 +1385,10 @@ msgstr "Přidejte komponentu „Embed“ na místo, kde se má widget zobrazit, 
 #: src/components/routes/event/Lineup/ImportLineupModal.tsx:106
 msgid "Add an end time or a duration"
 msgstr "Přidejte čas konce nebo délku trvání"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:330
+msgid "Add another ticket"
+msgstr "Přidat další vstupenku"
 
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:1012
 msgid "Add another time"
@@ -1766,6 +1776,7 @@ msgid "Advertising"
 msgstr "Reklama"
 
 #: src/components/common/AffiliateTable/index.tsx:83
+#: src/components/modals/CreateSaleLinkModal/index.tsx:366
 msgid "Affiliate"
 msgstr "Partner"
 
@@ -1797,7 +1808,7 @@ msgstr "Partnerské prodeje nebudou sledovány. Tím se partner deaktivuje."
 msgid "Affiliate updated successfully"
 msgstr "Partner byl úspěšně aktualizován"
 
-#: src/components/layouts/Event/index.tsx:146
+#: src/components/layouts/Event/index.tsx:147
 #: src/components/modals/DuplicateEventModal/index.tsx:126
 #: src/components/routes/event/Affiliates/index.tsx:67
 msgid "Affiliates"
@@ -2463,6 +2474,10 @@ msgstr "Použít změny"
 msgid "Apply Changes"
 msgstr "Použít změny"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:392
+msgid "Apply discount"
+msgstr "Použít slevu"
+
 #: src/components/routes/event/OccurrencesTab/OccurrenceBulkEditModal/index.tsx:340
 msgid "Apply to"
 msgstr "Použít na"
@@ -2622,7 +2637,7 @@ msgstr "Opravdu chcete tento Webhook smazat?"
 msgid "Are you sure you want to leave?"
 msgstr "Opravdu chcete odejít?"
 
-#: src/components/layouts/Event/index.tsx:210
+#: src/components/layouts/Event/index.tsx:212
 msgid "Are you sure you want to make this event draft? This will make the event invisible to the public"
 msgstr "Opravdu chcete tuto událost převést na koncept? Tím se událost skryje před veřejností."
 
@@ -2732,7 +2747,7 @@ msgstr "Umění"
 msgid "As your business is based in Ireland, Irish VAT at 23% applies automatically to all platform fees."
 msgstr "Protože vaše firma sídlí v Irsku, na všechny poplatky platformy se automaticky vztahuje irská DPH ve výši 23 %."
 
-#: src/components/layouts/Event/index.tsx:231
+#: src/components/layouts/Event/index.tsx:233
 #: src/components/layouts/OrganizerLayout/index.tsx:221
 msgid "Ask an account admin to give you access, or open one of your own events."
 msgstr "Požádejte administrátora účtu o přístup, nebo otevřete některou ze svých událostí."
@@ -2798,6 +2813,10 @@ msgstr "Přiřadit plán"
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:245
 msgid "Assigned Tier"
 msgstr "Přiřazená úroveň"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:113
+msgid "At least 1"
+msgstr "Alespoň 1"
 
 #: src/components/routes/settings/Security/ChangePasswordModal.tsx:48
 msgid "At least 8 characters."
@@ -2928,7 +2947,7 @@ msgstr "účastníků"
 #: src/components/common/ProductsTable/index.tsx:96
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:530
 #: src/components/common/StatBoxes/index.tsx:75
-#: src/components/layouts/Event/index.tsx:150
+#: src/components/layouts/Event/index.tsx:152
 #: src/components/modals/ManageOccurrenceModal/index.tsx:179
 #: src/components/modals/ManageOrderModal/index.tsx:336
 #: src/components/routes/admin/Dashboard/index.tsx:367
@@ -3364,7 +3383,7 @@ msgstr "pokladna na místě"
 msgid "Box office"
 msgstr "Prodej na místě"
 
-#: src/components/layouts/Event/index.tsx:152
+#: src/components/layouts/Event/index.tsx:154
 #: src/components/routes/event/orders.tsx:86
 #: src/ee/box-office/components/common/BoxOfficeTable/index.tsx:74
 #: src/ee/box-office/components/routes/event/BoxOffices/index.tsx:50
@@ -3504,6 +3523,10 @@ msgstr "Tlačítka"
 #: src/ee/box-office/components/layouts/BoxOffice/BuyerSheet.tsx:75
 msgid "Buyer details"
 msgstr "Údaje kupujícího"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:416
+msgid "Buyer email"
+msgstr "E-mail kupujícího"
 
 #: src/components/common/PlatformFeesSettings/index.tsx:65
 msgid "Buyer pays"
@@ -3654,6 +3677,7 @@ msgstr "Nemůžete použít ověřovací aplikaci ani záložní kódy?"
 #: src/components/modals/CreateOrganizerWebhookModal/index.tsx:89
 #: src/components/modals/CreateProductCategoryModal/index.tsx:56
 #: src/components/modals/CreatePromoCodeModal/index.tsx:57
+#: src/components/modals/CreateSaleLinkModal/index.tsx:441
 #: src/components/modals/CreateTaxOrFeeModal/index.tsx:52
 #: src/components/modals/CreateWebhookModal/index.tsx:89
 #: src/components/modals/DuplicateEventModal/index.tsx:309
@@ -3837,7 +3861,7 @@ msgstr "Přiřazení kapacity"
 msgid "Capacity management"
 msgstr "Správa kapacity"
 
-#: src/components/layouts/Event/index.tsx:157
+#: src/components/layouts/Event/index.tsx:159
 msgid "Capacity Management"
 msgstr "Správa kapacity"
 
@@ -4102,6 +4126,10 @@ msgstr "Podívejte se na tuto událost: {0}"
 msgid "Check out this event!"
 msgstr "Podívejte se na tuto událost!"
 
+#: src/components/routes/sale-link/index.tsx:172
+msgid "Check that you copied the whole link, or ask the event organizer to send it again."
+msgstr "Zkontrolujte, zda jste zkopírovali celý odkaz, nebo požádejte organizátora akce o jeho opětovné zaslání."
+
 #: src/components/common/ReportTable/index.tsx:245
 #: src/components/routes/settings/TaxesAndFees/index.tsx:85
 #: src/ee/box-office/components/layouts/BoxOffice/index.tsx:84
@@ -4196,7 +4224,7 @@ msgstr "Seznamy odbavení"
 msgid "Check-in Lists"
 msgstr "Seznamy odbavení"
 
-#: src/components/layouts/Event/index.tsx:151
+#: src/components/layouts/Event/index.tsx:153
 #: src/components/routes/event/CheckInLists/index.tsx:38
 msgid "Check-In Lists"
 msgstr "Seznamy odbavení"
@@ -4335,6 +4363,7 @@ msgstr "Vyberte 1 místo"
 msgid "Choose a configuration"
 msgstr "Vyberte konfiguraci"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:109
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:644
 #: src/ee/box-office/components/layouts/BoxOffice/OccurrenceSwitchSheet.tsx:48
 #: src/ee/box-office/components/layouts/BoxOffice/StartSession.tsx:170
@@ -4377,6 +4406,16 @@ msgstr "Vyberte místo na plánku a přidejte ho do objednávky"
 #: src/components/routes/event/Lineup/ImportLineupModal.tsx:421
 msgid "Choose a spreadsheet to import"
 msgstr "Vyberte tabulku k importu"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:111
+#: src/components/modals/CreateSaleLinkModal/index.tsx:266
+msgid "Choose a ticket"
+msgstr "Vyberte vstupenku"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:112
+#: src/components/modals/CreateSaleLinkModal/index.tsx:278
+msgid "Choose a tier"
+msgstr "Vyberte úroveň"
 
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:644
 msgid "Choose a time"
@@ -4956,7 +4995,7 @@ msgstr "Potvrďte svůj e-mail"
 msgid "Confirm your email address"
 msgstr "Potvrďte svou e-mailovou adresu"
 
-#: src/components/layouts/Event/index.tsx:337
+#: src/components/layouts/Event/index.tsx:339
 msgid "Confirm your email to access all features."
 msgstr "Potvrďte svůj e-mail pro přístup ke všem funkcím."
 
@@ -5103,6 +5142,10 @@ msgstr "Kontaktní e-mail"
 msgid "Contact Email"
 msgstr "Kontaktní e-mail"
 
+#: src/components/routes/sale-link/index.tsx:26
+msgid "Contact the event organizer if you'd still like to buy these tickets."
+msgstr "Pokud chcete tyto vstupenky stále koupit, kontaktujte organizátora akce."
+
 #: src/components/routes/auth/Login/TwoFactorChallenge.tsx:160
 msgid "Contact your account administrator or our support team. Once they've confirmed it's you, they can reset two-factor authentication so you can sign in with your password and set it up again."
 msgstr "Kontaktujte správce účtu nebo náš tým podpory. Jakmile ověří vaši totožnost, mohou dvoufázové ověření resetovat, abyste se mohli přihlásit heslem a znovu ho nastavit."
@@ -5142,6 +5185,7 @@ msgstr "Text tlačítka Pokračovat"
 msgid "Continue Setup"
 msgstr "Pokračovat v nastavení"
 
+#: src/components/routes/sale-link/index.tsx:150
 #: src/ee/seating/components/SeatPicker/index.tsx:76
 msgid "Continue to checkout"
 msgstr "Pokračovat k pokladně"
@@ -5335,7 +5379,10 @@ msgstr "Kopírovat pro AI agenta"
 msgid "Copy key"
 msgstr "Kopírovat klíč"
 
+#: src/components/common/SaleLinkTable/index.tsx:160
+#: src/components/common/SaleLinkTable/index.tsx:172
 #: src/components/common/SsoButtons/index.tsx:54
+#: src/components/modals/CreateSaleLinkModal/index.tsx:223
 #: src/components/modals/EventLiveCelebrationModal/index.tsx:67
 #: src/components/routes/product-widget/Payment/PaymentLink/index.tsx:70
 msgid "Copy link"
@@ -5550,6 +5597,10 @@ msgstr "Dostupnost míst se nepodařilo obnovit. Zkouším znovu…"
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:78
 msgid "Couldn't send verification email. Please try again."
 msgstr "Ověřovací e-mail se nepodařilo odeslat. Zkuste to prosím znovu."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:348
+msgid "Count toward public cap"
+msgstr "Započítat do veřejného limitu"
 
 #: src/components/common/CheckoutQuestion/index.tsx:217
 #: src/components/common/LocationPicker/index.tsx:268
@@ -5814,6 +5865,13 @@ msgstr "Vytvořit promo kód"
 #: src/components/modals/CreateQuestionModal/index.tsx:45
 msgid "Create Question"
 msgstr "Vytvořit otázku"
+
+#: src/components/common/SaleLinkTable/index.tsx:79
+#: src/components/modals/CreateSaleLinkModal/index.tsx:236
+#: src/components/modals/CreateSaleLinkModal/index.tsx:447
+#: src/components/routes/event/SaleLinks/index.tsx:40
+msgid "Create Sale Link"
+msgstr "Vytvořit prodejní odkaz"
 
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:1181
 msgid "Create schedule"
@@ -6112,7 +6170,7 @@ msgid "Dark"
 msgstr "Tmavý"
 
 #: src/components/layouts/Admin/index.tsx:17
-#: src/components/layouts/Event/index.tsx:117
+#: src/components/layouts/Event/index.tsx:118
 #: src/components/routes/admin/Dashboard/index.tsx:179
 #: src/components/routes/event/OccurrencesTab/OccurrenceMenu.tsx:60
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:158
@@ -6126,6 +6184,7 @@ msgstr "Nástěnka"
 #: src/components/common/WidgetEditor/ContentFields.tsx:77
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:117
 #: src/components/forms/QuestionForm/questionTypes.ts:29
+#: src/components/modals/CreateSaleLinkModal/index.tsx:245
 #: src/components/routes/event/Lineup/ScheduleBuilder/ScheduleItemModal.tsx:175
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:39
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:56
@@ -6606,6 +6665,7 @@ msgstr "Počítač"
 
 #: src/components/common/ProgressStepper/index.tsx:18
 #: src/components/common/ProgressStepper/index.tsx:23
+#: src/components/common/SaleLinkTable/index.tsx:96
 #: src/components/modals/EditUserModal/index.tsx:85
 #: src/components/modals/InviteUserModal/index.tsx:52
 #: src/components/modals/ManageAttendeeModal/index.tsx:266
@@ -6821,6 +6881,7 @@ msgstr "Dar"
 #: src/components/common/TwoFactor/TwoFactorSetupFlow.tsx:264
 #: src/components/modals/CheckInListSuccessModal/index.tsx:59
 #: src/components/modals/CreateOrganizerWebhookModal/index.tsx:73
+#: src/components/modals/CreateSaleLinkModal/index.tsx:227
 #: src/components/modals/CreateWebhookModal/index.tsx:73
 #: src/components/modals/EventLiveCelebrationModal/index.tsx:123
 #: src/components/routes/product-widget/Payment/PaymentLink/index.tsx:122
@@ -6889,7 +6950,7 @@ msgid "Downloading Invoice"
 msgstr "Stahování faktury"
 
 #: src/components/common/EventCard/index.tsx:99
-#: src/components/layouts/Event/index.tsx:259
+#: src/components/layouts/Event/index.tsx:261
 #: src/components/layouts/OrganizerLayout/index.tsx:247
 #: src/components/routes/admin/Announcements/index.tsx:183
 #: src/components/routes/admin/Announcements/index.tsx:472
@@ -7428,7 +7489,7 @@ msgstr "Změna e-mailu byla úspěšně zrušena"
 msgid "Email change pending"
 msgstr "Změna e-mailu čeká na potvrzení"
 
-#: src/components/layouts/Event/index.tsx:98
+#: src/components/layouts/Event/index.tsx:99
 #: src/components/layouts/OrganizerLayout/index.tsx:142
 #: src/components/routes/settings/Profile/index.tsx:136
 msgid "Email confirmation resent successfully"
@@ -7687,6 +7748,10 @@ msgstr "Zadejte popisek nebo zvolte jeho odebrání."
 #: src/components/forms/QuestionForm/questionFormValues.ts:114
 msgid "Enter a message for people who aren't eligible"
 msgstr "Zadejte zprávu pro osoby, které nesplňují podmínky"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:114
+msgid "Enter a price"
+msgstr "Zadejte cenu"
 
 #: src/components/forms/QuestionForm/questionFormValues.ts:86
 msgid "Enter a question"
@@ -8035,7 +8100,7 @@ msgstr "Událost není dostupná"
 msgid "Event not live"
 msgstr "Událost není zveřejněna"
 
-#: src/components/layouts/Event/index.tsx:326
+#: src/components/layouts/Event/index.tsx:328
 msgid "Event Page"
 msgstr "Stránka události"
 
@@ -8047,7 +8112,7 @@ msgstr "Náhled události"
 msgid "Event restored successfully"
 msgstr "Událost byla úspěšně obnovena"
 
-#: src/components/layouts/Event/index.tsx:134
+#: src/components/layouts/Event/index.tsx:135
 #: src/components/routes/event/Settings/index.tsx:196
 msgid "Event Settings"
 msgstr "Nastavení události"
@@ -8058,14 +8123,14 @@ msgstr "Nastavení události"
 
 #: src/components/common/EventCard/index.tsx:82
 #: src/components/common/StatusToggle/index.tsx:62
-#: src/components/layouts/Event/index.tsx:221
+#: src/components/layouts/Event/index.tsx:223
 #: src/components/modals/PublishEventModal/index.tsx:129
 msgid "Event status update failed. Please try again later"
 msgstr "Aktualizace stavu události selhala. Zkuste to prosím později"
 
 #: src/components/common/EventCard/index.tsx:79
 #: src/components/common/StatusToggle/index.tsx:54
-#: src/components/layouts/Event/index.tsx:218
+#: src/components/layouts/Event/index.tsx:220
 msgid "Event status updated"
 msgstr "Stav události byl aktualizován"
 
@@ -8186,6 +8251,10 @@ msgstr "Každá událost má pokladnu na místě"
 msgid "Every event has a check-in list"
 msgstr "Každá událost má seznam odbavení"
 
+#: src/components/routes/sale-link/index.tsx:31
+msgid "Every order allowed by this link has been placed. Contact the event organizer if you need more tickets."
+msgstr "Všechny objednávky povolené tímto odkazem již byly zadány. Pokud potřebujete více vstupenek, kontaktujte organizátora akce."
+
 #: src/components/common/TeamAccessFields/index.tsx:113
 msgid "Every organizer and event, including new ones."
 msgstr "Všichni organizátoři a události, včetně nových."
@@ -8292,6 +8361,7 @@ msgstr "Platnost"
 msgid "Expiration date"
 msgstr "Datum vypršení platnosti"
 
+#: src/components/common/SaleLinkTable/index.tsx:39
 #: src/components/common/WaitlistTable/index.tsx:30
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:119
 #: src/components/routes/settings/ApiKeys/index.tsx:211
@@ -8312,9 +8382,14 @@ msgstr "Platnost vypršela {0}"
 msgid "Expires"
 msgstr "Vyprší"
 
+#: src/components/common/SaleLinkTable/index.tsx:132
 #: src/components/routes/settings/ApiKeys/ApiKeyRow.tsx:30
 msgid "Expires {0}"
 msgstr "Platnost vyprší {0}"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:409
+msgid "Expires at"
+msgstr "Platnost do"
 
 #: src/components/forms/PromoCodeForm/index.tsx:169
 msgid "Expiry Date"
@@ -8622,6 +8697,10 @@ msgstr "Úlohu se nepodařilo zopakovat"
 #: src/components/routes/admin/FailedJobs/index.tsx:79
 msgid "Failed to retry jobs"
 msgstr "Úlohy se nepodařilo zopakovat"
+
+#: src/components/common/SaleLinkTable/index.tsx:59
+msgid "Failed to revoke sale link"
+msgstr "Prodejní odkaz se nepodařilo zneplatnit"
 
 #: src/components/routes/admin/Accounts/AccountDetail/OrganizerAdminModal.tsx:69
 msgid "Failed to save override"
@@ -9090,6 +9169,14 @@ msgstr "Text zápatí"
 msgid "for"
 msgstr "celkem"
 
+#: src/components/common/SaleLinkTable/index.tsx:139
+msgid "For {0}"
+msgstr "Pro {0}"
+
+#: src/components/common/SaleLinkTable/index.tsx:138
+msgid "For {0} (locked)"
+msgstr "Pro {0} (uzamčeno)"
+
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:1080
 msgid "For a number of dates"
 msgstr "Počet termínů"
@@ -9410,7 +9497,7 @@ msgstr "Přejít na harmonogram"
 msgid "Go to seating settings"
 msgstr "Přejít do nastavení míst k sezení"
 
-#: src/components/layouts/Event/index.tsx:232
+#: src/components/layouts/Event/index.tsx:234
 #: src/components/layouts/OrganizerLayout/index.tsx:222
 msgid "Go to your events"
 msgstr "Přejít na vaše události"
@@ -9491,7 +9578,7 @@ msgstr "Skupiny"
 msgid "Guest"
 msgstr "Host"
 
-#: src/components/layouts/Event/index.tsx:149
+#: src/components/layouts/Event/index.tsx:151
 msgid "Guest Management"
 msgstr "Správa hostů"
 
@@ -9822,7 +9909,7 @@ msgstr "Držet místa po dobu"
 msgid "Homepage Design"
 msgstr "Design domovské stránky"
 
-#: src/components/layouts/Event/index.tsx:136
+#: src/components/layouts/Event/index.tsx:137
 #: src/components/layouts/OrganizerLayout/index.tsx:122
 msgid "Homepage Designer"
 msgstr "Návrhář domovské stránky"
@@ -9894,6 +9981,10 @@ msgstr "Kolik minut má zákazník na dokončení objednávky. Doporučujeme ale
 msgid "How many of each ticket you sell on a date. Next to the quantity, choose \"per date\" to allocate it to every date, or \"all dates\" to share one pool across the whole run."
 msgstr "Kolik vstupenek každého typu prodáte na jeden termín. Vedle množství zvolte „na termín“, chcete-li je přidělit každému termínu zvlášť, nebo „všechny termíny“, chcete-li sdílet jeden společný fond pro celou sérii."
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:402
+msgid "How many orders can be placed with this link."
+msgstr "Kolik objednávek lze přes tento odkaz zadat."
+
 #: src/components/forms/PromoCodeForm/index.tsx:175
 msgid "How many times can this code be used?"
 msgstr "Kolikrát lze tento kód použít?"
@@ -9906,6 +9997,10 @@ msgstr "Kolik?"
 #: src/components/routes/product-widget/Payment/PaymentMethods/Offline/index.tsx:7
 msgid "How paying later works"
 msgstr "Jak funguje platba později"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:380
+msgid "How should the promo code be used?"
+msgstr "Jak se má promo kód použít?"
 
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:461
 msgid "How to pay"
@@ -10018,6 +10113,10 @@ msgstr "Pokud ztratíte telefon, každý z těchto kódů vás jednou pustí dov
 #: src/components/routes/auth/Login/RecoveryCodeNotice.tsx:33
 msgid "If you've lost your phone, turn two-factor authentication off and on again from your profile to connect a new authenticator app."
 msgstr "Pokud jste ztratili telefon, vypněte ve svém profilu dvoufázové ověření a znovu ho zapněte, abyste mohli připojit novou ověřovací aplikaci."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:342
+msgid "Ignore ticket cap"
+msgstr "Ignorovat limit vstupenek"
 
 #: src/components/common/ImageUploadDropzone/index.tsx:124
 msgid "Image deleted successfully"
@@ -10251,11 +10350,15 @@ msgstr "Okamžité výplaty přes Stripe"
 msgid "Instructions"
 msgstr "Pokyny"
 
-#: src/components/layouts/Event/index.tsx:163
+#: src/components/layouts/Event/index.tsx:165
 #: src/components/layouts/OrganizerLayout/index.tsx:130
 #: src/components/modals/DuplicateEventModal/index.tsx:165
 msgid "Integrations"
 msgstr "Integrace"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:432
+msgid "Internal note"
+msgstr "Interní poznámka"
 
 #: src/components/forms/CheckInListForm/index.tsx:190
 msgid "Internal notes on the attendee's ticket"
@@ -10268,6 +10371,7 @@ msgid "Invalid email"
 msgstr "Neplatný e-mail"
 
 #: src/components/modals/CreateAffiliateModal/index.tsx:38
+#: src/components/modals/CreateSaleLinkModal/index.tsx:117
 #: src/components/modals/EditAffiliateModal/index.tsx:36
 msgid "Invalid email format"
 msgstr "Neplatný formát e-mailu"
@@ -10933,7 +11037,7 @@ msgstr "Line-up"
 msgid "Lineup & schedule"
 msgstr "Line-up a program"
 
-#: src/components/layouts/Event/index.tsx:135
+#: src/components/layouts/Event/index.tsx:136
 #: src/components/routes/event/Lineup/index.tsx:58
 msgid "Lineup & Schedule"
 msgstr "Line-up a program"
@@ -10954,7 +11058,9 @@ msgstr "Line-up je na stránce události skrytý, takže ho widget nemůže zobr
 msgid "Link {linkNumber}"
 msgstr "Odkaz {linkNumber}"
 
+#: src/components/common/SaleLinkTable/index.tsx:53
 #: src/components/common/SsoButtons/index.tsx:54
+#: src/components/modals/CreateSaleLinkModal/index.tsx:202
 msgid "Link copied"
 msgstr "Odkaz zkopírován"
 
@@ -11010,7 +11116,7 @@ msgid "List your upcoming events on your own website. Visitors can buy tickets w
 msgstr "Zobrazte své nadcházející události na vlastním webu. Návštěvníci si mohou koupit vstupenky, aniž by opustili vaši stránku."
 
 #: src/components/common/EventCard/index.tsx:102
-#: src/components/layouts/Event/index.tsx:261
+#: src/components/layouts/Event/index.tsx:263
 #: src/components/layouts/OrganizerLayout/index.tsx:249
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:115
 #: src/components/routes/event/Lineup/EventStatusBadge.tsx:8
@@ -11132,6 +11238,10 @@ msgstr "místa"
 #: src/components/routes/organizer/Locations/index.tsx:31
 msgid "Locations"
 msgstr "Místa"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:425
+msgid "Lock email"
+msgstr "Uzamknout e-mail"
 
 #: src/components/routes/event/TicketDesigner/index.tsx:134
 #: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:172
@@ -11371,6 +11481,10 @@ msgstr "Max. zpráv / 24 h"
 msgid "Max Recipients / Message"
 msgstr "Max. příjemců / zpráva"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:401
+msgid "Max uses"
+msgstr "Max. použití"
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:72
 msgid "Maximum {cap} per order"
 msgstr "Maximálně {cap} na objednávku"
@@ -11484,7 +11598,7 @@ msgid "Message Sent"
 msgstr "Zpráva odeslána"
 
 #: src/components/layouts/Admin/index.tsx:22
-#: src/components/layouts/Event/index.tsx:153
+#: src/components/layouts/Event/index.tsx:155
 #: src/components/routes/event/messages.tsx:228
 msgid "Messages"
 msgstr "Zprávy"
@@ -11732,6 +11846,10 @@ msgstr "Více typů vstupenek"
 #: src/constants/eventCategories.ts:8
 msgid "Music"
 msgstr "Hudba"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:116
+msgid "Must be at least 1"
+msgstr "Musí být alespoň 1"
 
 #: src/components/routes/event/Settings/Sections/SeoSettings/index.tsx:71
 #: src/components/routes/organizer/Settings/Sections/SeoSettings/index.tsx:71
@@ -12268,6 +12386,10 @@ msgstr "Zatím žádné akce"
 msgid "No expiration"
 msgstr "Bez omezení platnosti"
 
+#: src/components/common/SaleLinkTable/index.tsx:133
+msgid "No expiry"
+msgstr "Bez vypršení"
+
 #: src/components/routes/admin/FailedJobs/index.tsx:155
 msgid "No failed jobs"
 msgstr "Žádné neúspěšné úlohy"
@@ -12510,6 +12632,10 @@ msgstr "Žádné výsledky"
 msgid "No results found"
 msgstr "Nebyly nalezeny žádné výsledky"
 
+#: src/components/common/SaleLinkTable/index.tsx:66
+msgid "No sale links yet"
+msgstr "Zatím žádné prodejní odkazy"
+
 #: src/ee/licensing/components/routes/admin/Licence/index.tsx:93
 msgid "No sales"
 msgstr "Žádné prodeje"
@@ -12660,6 +12786,8 @@ msgstr "neupravené"
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:108
 #: src/components/forms/ProductForm/ledgerSummaries.ts:92
 #: src/components/forms/ProductForm/ledgerSummaries.ts:142
+#: src/components/modals/CreateSaleLinkModal/index.tsx:359
+#: src/components/modals/CreateSaleLinkModal/index.tsx:368
 #: src/components/routes/event/Questions/questionTemplates.ts:17
 #: src/components/routes/product-widget/CollectInformation/index.tsx:597
 #: src/ee/seating/components/SeatMapDesigner/Inspector.tsx:50
@@ -12806,9 +12934,17 @@ msgstr "Zatím není v prodeji"
 msgid "Not you?"
 msgstr "Nejste to vy?"
 
+#: src/components/common/SaleLinkTable/index.tsx:97
+msgid "Note"
+msgstr "Poznámka"
+
 #: src/components/routes/product-widget/OrderSummaryAndProducts/ReportOfflinePayment/index.tsx:57
 msgid "Note for the organizer (optional)"
 msgstr "Poznámka pro organizátora (nepovinné)"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:118
+msgid "Note must be 1000 characters or fewer"
+msgstr "Poznámka může mít nejvýše 1000 znaků"
 
 #: src/ee/seating/components/SeatMapDesigner/Inspector.tsx:299
 msgid "Note shown to buyers"
@@ -12909,7 +13045,7 @@ msgstr "Termín"
 msgid "Occurrence Cancelled"
 msgstr "Termín zrušen"
 
-#: src/components/layouts/Event/index.tsx:130
+#: src/components/layouts/Event/index.tsx:131
 #: src/components/routes/event/OccurrencesTab/index.tsx:499
 msgid "Occurrence Schedule"
 msgstr "Harmonogram termínů"
@@ -13288,6 +13424,10 @@ msgstr "Do kapacity se počítají pouze vstupenky. Tričko je produkt, takže j
 msgid "Only visible to buyers with an applicable promo code."
 msgstr "Viditelné pouze pro kupující s platným promo kódem."
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:433
+msgid "Only visible to your team."
+msgstr "Viditelné pouze pro váš tým."
+
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:478
 msgid "Only visible with promo code"
 msgstr "Viditelné pouze s promo kódem"
@@ -13427,6 +13567,22 @@ msgstr "Volitelné, uloží se do záznamu o smazání"
 #: src/components/routes/admin/Accounts/AccountDetail/SuspendAccountModal.tsx:48
 msgid "Optional, shown to admins on this page."
 msgstr "Volitelné, zobrazí se administrátorům na této stránce."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:358
+msgid "Optional. Attach a promo code to this sale."
+msgstr "Volitelné. Připojte k tomuto prodeji promo kód."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:367
+msgid "Optional. Credit this sale to an active affiliate."
+msgstr "Volitelné. Připište tento prodej aktivnímu partnerovi."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:410
+msgid "Optional. Leave empty for no expiry."
+msgstr "Volitelné. Ponechte prázdné, pokud nemá vypršet."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:417
+msgid "Optional. Pre-fills the email at checkout."
+msgstr "Volitelné. Předvyplní e-mail v pokladně."
 
 #: src/components/routes/event/Lineup/index.tsx:344
 msgid "Optional. Useful when things happen in more than one place at the same time."
@@ -13653,7 +13809,7 @@ msgstr "objednávek"
 #: src/components/common/OccurrenceAttendeesAndOrders/index.tsx:65
 #: src/components/common/WidgetEditor/WidgetStats.tsx:16
 #: src/components/layouts/Admin/index.tsx:21
-#: src/components/layouts/Event/index.tsx:144
+#: src/components/layouts/Event/index.tsx:145
 #: src/components/modals/ManageOccurrenceModal/index.tsx:183
 #: src/components/routes/admin/Attribution/index.tsx:200
 #: src/components/routes/admin/Dashboard/index.tsx:236
@@ -13723,7 +13879,7 @@ msgstr "Organizátor"
 msgid "Organizer archived successfully"
 msgstr "Organizátor byl úspěšně archivován"
 
-#: src/components/layouts/Event/index.tsx:110
+#: src/components/layouts/Event/index.tsx:111
 #: src/components/layouts/OrganizerLayout/index.tsx:106
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:158
 msgid "Organizer Dashboard"
@@ -13852,7 +14008,7 @@ msgstr "Přepište vzhled karet Peněženky Google a Apple Wallet pro tuto akci.
 msgid "Override the global default for this account."
 msgstr "Přepsat globální výchozí hodnotu pro tento účet."
 
-#: src/components/layouts/Event/index.tsx:116
+#: src/components/layouts/Event/index.tsx:117
 msgid "Overview"
 msgstr "Přehled"
 
@@ -14285,7 +14441,7 @@ msgid "Pending review"
 msgstr "Čeká na kontrolu"
 
 #: src/components/common/EventCard/index.tsx:96
-#: src/components/layouts/Event/index.tsx:257
+#: src/components/layouts/Event/index.tsx:259
 #: src/components/routes/admin/Messages/index.tsx:124
 msgid "Pending Review"
 msgstr "Čeká na kontrolu"
@@ -14798,8 +14954,8 @@ msgstr "Náhled"
 msgid "Preview a checkout for"
 msgstr "Zobrazit náhled objednávky pro"
 
-#: src/components/layouts/Event/index.tsx:319
-#: src/components/layouts/Event/index.tsx:323
+#: src/components/layouts/Event/index.tsx:321
+#: src/components/layouts/Event/index.tsx:325
 msgid "Preview Event page"
 msgstr "Náhled stránky události"
 
@@ -14842,6 +14998,14 @@ msgstr "Cena změněna"
 msgid "Price display mode"
 msgstr "Režim zobrazení ceny"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:298
+msgid "Price each"
+msgstr "Cena za kus"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:334
+msgid "Price includes tax"
+msgstr "Cena zahrnuje daň"
+
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:155
 msgid "Price not set"
 msgstr "Cena není nastavena"
@@ -14861,6 +15025,10 @@ msgstr "Cenová úroveň"
 #: src/components/forms/ProductForm/index.tsx:352
 msgid "Price Tiers"
 msgstr "Cenové úrovně"
+
+#: src/components/routes/sale-link/index.tsx:127
+msgid "Prices include tax. Any booking fees are shown at checkout."
+msgstr "Ceny zahrnují daň. Případné rezervační poplatky se zobrazí v pokladně."
 
 #: src/components/forms/ProductForm/index.tsx:287
 msgid "Pricing"
@@ -15058,6 +15226,7 @@ msgstr "Promo kód {promo_code} byl použit"
 #: src/components/common/OrderDetails/index.tsx:112
 #: src/components/common/WidgetEditor/ContentFields.tsx:139
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:107
+#: src/components/modals/CreateSaleLinkModal/index.tsx:357
 #: src/components/modals/ManageOrderModal/index.tsx:202
 #: src/components/routes/product-widget/SelectProducts/index.tsx:1233
 msgid "Promo code"
@@ -15092,7 +15261,7 @@ msgstr "promo kódy"
 msgid "Promo codes"
 msgstr "Promo kódy"
 
-#: src/components/layouts/Event/index.tsx:145
+#: src/components/layouts/Event/index.tsx:146
 #: src/components/routes/event/promo-codes.tsx:34
 msgid "Promo Codes"
 msgstr "Promo kódy"
@@ -15196,6 +15365,7 @@ msgid "Qty"
 msgstr "Množ."
 
 #: src/components/common/NumberSelector/index.tsx:123
+#: src/components/modals/CreateSaleLinkModal/index.tsx:291
 msgid "Quantity"
 msgstr "Množství"
 
@@ -15596,7 +15766,7 @@ msgstr "Vrácené platby"
 msgid "Register"
 msgstr "Registrovat se"
 
-#: src/components/layouts/Event/index.tsx:139
+#: src/components/layouts/Event/index.tsx:140
 #: src/components/routes/event/Questions/QuestionsBuilder.tsx:180
 msgid "Registration Questions"
 msgstr "Registrační otázky"
@@ -15803,6 +15973,10 @@ msgstr "Odebrat tuto fotku? Bude okamžitě smazána."
 msgid "Remove this time slot from the schedule?"
 msgstr "Odebrat tento časový blok z programu?"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:312
+msgid "Remove ticket"
+msgstr "Odebrat vstupenku"
+
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:1051
 msgid "Remove time"
 msgstr "Odebrat čas"
@@ -15879,7 +16053,7 @@ msgstr "Opakuje se"
 msgid "Report not found"
 msgstr "Report nebyl nalezen"
 
-#: src/components/layouts/Event/index.tsx:120
+#: src/components/layouts/Event/index.tsx:121
 #: src/components/layouts/OrganizerLayout/index.tsx:112
 #: src/components/routes/event/Reports/index.tsx:54
 #: src/components/routes/organizer/Reports/index.tsx:55
@@ -15961,7 +16135,7 @@ msgstr "Odeslat potvrzení znovu"
 msgid "Resend Confirmation Email"
 msgstr "Odeslat potvrzovací e-mail znovu"
 
-#: src/components/layouts/Event/index.tsx:339
+#: src/components/layouts/Event/index.tsx:341
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:162
 msgid "Resend email"
 msgstr "Odeslat e-mail znovu"
@@ -16192,6 +16366,8 @@ msgstr "Zkontrolovat nastavení zabezpečení"
 msgid "Review the order, then choose how to pay"
 msgstr "Zkontrolujte objednávku a poté zvolte způsob platby"
 
+#: src/components/common/SaleLinkTable/index.tsx:177
+#: src/components/common/SaleLinkTable/index.tsx:188
 #: src/components/routes/settings/ApiKeys/ApiKeyRow.tsx:82
 msgid "Revoke"
 msgstr "Zneplatnit"
@@ -16219,6 +16395,14 @@ msgstr "Zneplatnit klíč"
 #: src/components/common/WaitlistTable/index.tsx:81
 msgid "Revoke Offer"
 msgstr "Zrušit nabídku"
+
+#: src/components/common/SaleLinkTable/index.tsx:184
+msgid "Revoke this sale link?"
+msgstr "Zneplatnit tento prodejní odkaz?"
+
+#: src/components/common/SaleLinkTable/index.tsx:41
+msgid "Revoked"
+msgstr "Zneplatněno"
 
 #: src/ee/seating/components/lib/templates.ts:100
 #: src/ee/seating/components/lib/templates.ts:188
@@ -16337,6 +16521,24 @@ msgstr "Prodej končí {0}"
 #: src/ee/box-office/components/layouts/BoxOffice/CardTender.tsx:191
 msgid "Sale expired"
 msgstr "Prodej vypršel"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:213
+msgid "Sale link"
+msgstr "Prodejní odkaz"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:190
+#: src/components/modals/CreateSaleLinkModal/index.tsx:207
+msgid "Sale link created"
+msgstr "Prodejní odkaz vytvořen"
+
+#: src/components/common/SaleLinkTable/index.tsx:58
+msgid "Sale link revoked"
+msgstr "Prodejní odkaz zneplatněn"
+
+#: src/components/layouts/Event/index.tsx:148
+#: src/components/routes/event/SaleLinks/index.tsx:30
+msgid "Sale Links"
+msgstr "Prodejní odkazy"
 
 #: src/components/common/ProductsTable/index.tsx:99
 msgid "Sale Period"
@@ -16985,7 +17187,7 @@ msgstr "Rozestup míst"
 msgid "Seated"
 msgstr "Místa k sezení"
 
-#: src/components/layouts/Event/index.tsx:138
+#: src/components/layouts/Event/index.tsx:139
 #: src/ee/seating/components/routes/event/Seating/AttachSeatMap.tsx:40
 #: src/ee/seating/components/routes/event/Seating/index.tsx:62
 #: src/ee/seating/components/routes/event/Seating/index.tsx:67
@@ -17104,6 +17306,7 @@ msgid "Select a category"
 msgstr "Vyberte kategorii"
 
 #: src/components/common/DateField/index.tsx:19
+#: src/components/modals/CreateSaleLinkModal/index.tsx:247
 msgid "Select a date"
 msgstr "Vyberte datum"
 
@@ -17286,6 +17489,10 @@ msgstr "Prodávat pouze za hotovost"
 msgid "Sell out your event."
 msgstr "Vyprodejte svou událost."
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:343
+msgid "Sell these tickets even if the ticket is sold out or its limit has been reached."
+msgstr "Prodávat tyto vstupenky, i když jsou vyprodané nebo byl dosažen jejich limit."
+
 #: src/ee/box-office/components/routes/event/BoxOffices/index.tsx:48
 msgid "Sell tickets at the door with cash, comps, or a card reader."
 msgstr "Prodávejte vstupenky na místě za hotovost, zdarma nebo přes čtečku karet."
@@ -17389,6 +17596,10 @@ msgstr "Odeslat e-mail s oznámením o vrácení platby"
 msgid "Send reset link"
 msgstr "Odeslat odkaz pro obnovení"
 
+#: src/components/routes/event/SaleLinks/index.tsx:28
+msgid "Send someone a private link to buy specific tickets at a price you choose."
+msgstr "Pošlete někomu soukromý odkaz k nákupu vybraných vstupenek za cenu, kterou zvolíte."
+
 #: src/components/modals/SendMessageModal/index.tsx:552
 msgid "Send Test"
 msgstr "Odeslat test"
@@ -17396,6 +17607,10 @@ msgstr "Odeslat test"
 #: src/components/routes/admin/LifecycleEmails/LifecycleEmailEditor.tsx:205
 msgid "Send test to me"
 msgstr "Poslat test mně"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:209
+msgid "Send this link to the buyer. They will see the tickets and price you set, then pay through the normal checkout."
+msgstr "Pošlete tento odkaz kupujícímu. Uvidí vstupenky a cenu, které jste nastavili, a zaplatí běžnou pokladnou."
 
 #: src/components/routes/product-widget/Payment/PaymentLink/index.tsx:110
 msgid "Send this link to whoever is paying, such as your finance team. They'll see the amount due, the payment reference and how to pay, and can tell the organizer once they've paid. Your tickets aren't shown to them."
@@ -17632,7 +17847,7 @@ msgstr "Nastavení aktualizováno"
 msgid "Settings"
 msgstr "Nastavení"
 
-#: src/components/layouts/Event/index.tsx:127
+#: src/components/layouts/Event/index.tsx:128
 msgid "Setup & Design"
 msgstr "Nastavení a design"
 
@@ -17679,8 +17894,8 @@ msgstr "Sdílet"
 msgid "Share Affiliate Link"
 msgstr "Sdílet partnerský odkaz"
 
-#: src/components/layouts/Event/index.tsx:277
-#: src/components/layouts/Event/index.tsx:283
+#: src/components/layouts/Event/index.tsx:279
+#: src/components/layouts/Event/index.tsx:285
 #: src/components/modals/EventLiveCelebrationModal/index.tsx:102
 #: src/components/modals/EventLiveCelebrationModal/index.tsx:131
 msgid "Share Event"
@@ -18311,6 +18526,7 @@ msgstr "Něco, podle čeho poznáte, kde se používá, například „Zapier“
 #: src/components/routes/auth/AcceptInvitation/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:461
 #: src/components/routes/product-widget/Payment/PaymentMethods/Stripe/index.tsx:64
+#: src/components/routes/sale-link/index.tsx:173
 msgid "Something went wrong"
 msgstr "Něco se pokazilo"
 
@@ -18336,7 +18552,7 @@ msgid "Something went wrong. Please try again later."
 msgstr "Něco se pokazilo. Zkuste to prosím znovu později."
 
 #: src/components/common/TwoFactor/TwoFactorSetupFlow.tsx:30
-#: src/components/layouts/Event/index.tsx:102
+#: src/components/layouts/Event/index.tsx:103
 #: src/components/layouts/OrganizerLayout/index.tsx:146
 #: src/components/routes/admin/DeletionRequests/index.tsx:64
 #: src/components/routes/admin/Users/index.tsx:33
@@ -18348,6 +18564,7 @@ msgstr "Něco se pokazilo. Zkuste to prosím znovu později."
 #: src/components/routes/oauth/Connect/index.tsx:65
 #: src/components/routes/oauth/Connect/index.tsx:72
 #: src/components/routes/product-widget/SelectProducts/index.tsx:383
+#: src/components/routes/sale-link/index.tsx:49
 #: src/components/routes/settings/Account/DeleteAccountSection.tsx:79
 #: src/components/routes/settings/ApiKeys/ConnectedApps.tsx:30
 #: src/components/routes/settings/ApiKeys/CreateApiKeyModal.tsx:123
@@ -18706,6 +18923,7 @@ msgstr "Statistiky"
 #: src/components/common/OrdersTable/index.tsx:342
 #: src/components/common/OrganizerWebhookTable/index.tsx:244
 #: src/components/common/ProductsTable/index.tsx:100
+#: src/components/common/SaleLinkTable/index.tsx:94
 #: src/components/common/WaitlistTable/index.tsx:211
 #: src/components/common/WebhookTable/index.tsx:244
 #: src/components/forms/AffiliateForm/index.tsx:98
@@ -19232,6 +19450,10 @@ msgstr "Detaily daně"
 msgid "Tax information to appear at the bottom of all invoices (e.g., VAT number, tax registration)"
 msgstr "Daňové údaje, které se zobrazí v zápatí všech faktur (např. DIČ, daňová registrace)"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:337
+msgid "Tax is added on top of the price you entered at checkout."
+msgstr "Daň se v pokladně připočte k zadané ceně."
+
 #: src/components/routes/organizer/Reports/TaxSummaryReport/index.tsx:38
 msgid "Tax Name"
 msgstr "Název daně"
@@ -19269,7 +19491,11 @@ msgstr "Daně a poplatky"
 msgid "Taxes and Fees"
 msgstr "Daně a poplatky"
 
-#: src/components/layouts/Event/index.tsx:166
+#: src/components/routes/sale-link/index.tsx:128
+msgid "Taxes and fees, if any, are added at checkout."
+msgstr "Případné daně a poplatky se připočtou v pokladně."
+
+#: src/components/layouts/Event/index.tsx:168
 #: src/components/layouts/OrganizerLayout/index.tsx:133
 #: src/components/layouts/SettingsLayout/index.tsx:67
 #: src/components/routes/event/Team/index.tsx:13
@@ -19278,7 +19504,7 @@ msgstr "Daně a poplatky"
 msgid "Team"
 msgstr "Tým"
 
-#: src/components/layouts/Event/index.tsx:167
+#: src/components/layouts/Event/index.tsx:169
 #: src/components/layouts/OrganizerLayout/index.tsx:134
 msgid "Team Access"
 msgstr "Přístup týmu"
@@ -19451,6 +19677,10 @@ msgstr "Částka k úhradě je {amount}. Zaplaťte prosím do {0}, poté budou m
 msgid "The attendee could not be moved"
 msgstr "Účastníka se nepodařilo přesunout"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:426
+msgid "The buyer can't change the email at checkout."
+msgstr "Kupující nemůže v pokladně změnit e-mail."
+
 #: src/ee/box-office/components/layouts/BoxOffice/CardTender.tsx:52
 msgid "The card payment was cancelled"
 msgstr "Platba kartou byla zrušena"
@@ -19483,6 +19713,10 @@ msgstr "Měna používaná pro ceny vstupenek této události."
 #: src/ee/box-office/components/layouts/BoxOffice/CardTender.tsx:45
 msgid "The customer cancelled on the reader"
 msgstr "Zákazník platbu zrušil na čtečce"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:246
+msgid "The date the tickets are for."
+msgstr "Datum, na které jsou vstupenky."
 
 #: src/components/routes/event/Settings/Sections/EventTypeSettings/index.tsx:55
 msgid "The date's own prices, product visibility, capacity and label will be removed. This can't be undone."
@@ -19520,6 +19754,10 @@ msgstr "E-mailová adresa byla změněna. Účastník obdrží novou vstupenku n
 msgid "The event gets its own copy, so changes here never affect your other events."
 msgstr "Událost dostane vlastní kopii, takže změny zde nikdy neovlivní vaše ostatní události."
 
+#: src/components/routes/sale-link/index.tsx:36
+msgid "The event organizer has turned this link off. Contact them if you think this is a mistake."
+msgstr "Organizátor akce tento odkaz vypnul. Pokud si myslíte, že jde o chybu, kontaktujte ho."
+
 #: src/components/layouts/EventHomepage/EventNotAvailable/index.tsx:10
 #: src/components/layouts/EventHomepage/EventNotAvailable/index.tsx:12
 msgid "The event you're looking for is not available at the moment. It may have been removed, expired, or the URL might be incorrect."
@@ -19553,6 +19791,10 @@ msgstr "Licenční klíč byl odmítnut"
 #: src/components/routes/event/Lineup/index.tsx:356
 msgid "The lineup and schedule follow your event's colours and fonts automatically."
 msgstr "Line-up a program automaticky přebírají barvy a písma vaší události."
+
+#: src/components/common/SaleLinkTable/index.tsx:189
+msgid "The link stops working straight away. Orders already placed with it are not affected."
+msgstr "Odkaz okamžitě přestane fungovat. Objednávky, které již byly přes něj zadány, nejsou dotčeny."
 
 #: src/components/routes/product-widget/OrderSummaryAndProducts/LinkExpiredMessage/index.tsx:30
 msgid "The link you are trying to access has expired or is no longer valid. Please check your email for an updated link to manage your order."
@@ -19635,6 +19877,14 @@ msgstr "Cena zobrazená zákazníkovi bude zahrnovat daně a poplatky."
 msgid "The price displayed to the customer will not include taxes and fees. They will be shown separately"
 msgstr "Cena zobrazená zákazníkovi nebude zahrnovat daně a poplatky. Ty budou uvedeny samostatně"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:336
+msgid "The price you entered is the final price. Tax is taken out of it, not added on top."
+msgstr "Zadaná cena je konečná. Daň je v ní zahrnuta, nepřipočítává se."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:382
+msgid "The promo code's discount is taken off the price you set."
+msgstr "Sleva z promo kódu se odečte od vámi nastavené ceny."
+
 #: src/components/routes/event/Questions/AttendeeDetailsSetting.tsx:55
 msgid "The questions below are still asked once for every ticket."
 msgstr "Na otázky níže se i nadále ptá jednou u každé vstupenky."
@@ -19646,6 +19896,10 @@ msgstr "Sál pojme 20 lidí. Vstupenka Early bird je omezena na 5 na termín, St
 #: src/ee/seating/components/routes/event/Seating/SeatingRulesCard.tsx:33
 msgid "The rules could not be saved"
 msgstr "Pravidla se nepodařilo uložit"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:383
+msgid "The sale is recorded against the promo code, but the price you set is not discounted."
+msgstr "Prodej se zaznamená k promo kódu, ale vámi nastavená cena se nezlevní."
 
 #: src/ee/box-office/components/modals/BoxOfficeStatsModal/index.tsx:85
 msgid "The sales summary could not be loaded"
@@ -20067,7 +20321,7 @@ msgstr "Tato událost není zveřejněna. Prodeje se přesto zaznamenávají."
 msgid "This event is open to healthcare professionals only."
 msgstr "Tato událost je určena pouze zdravotnickým pracovníkům."
 
-#: src/components/layouts/Event/index.tsx:201
+#: src/components/layouts/Event/index.tsx:203
 msgid "This event is pending manual review and cannot be published until the review is complete."
 msgstr "Tato událost čeká na ruční kontrolu a nelze ji zveřejnit, dokud kontrola nebude dokončena."
 
@@ -20173,9 +20427,25 @@ msgstr "Obvykle jde o dočasný problém. Zkuste to znovu za chvíli."
 msgid "This licence expires on {0}. Renew before then to avoid interruption."
 msgstr "Platnost této licence vyprší {0}. Obnovte ji do té doby, abyste předešli přerušení."
 
+#: src/components/routes/sale-link/index.tsx:172
+msgid "This link doesn't exist"
+msgstr "Tento odkaz neexistuje"
+
+#: src/components/routes/sale-link/index.tsx:30
+msgid "This link has already been used"
+msgstr "Tento odkaz již byl použit"
+
+#: src/components/routes/sale-link/index.tsx:25
+msgid "This link has expired"
+msgstr "Platnost tohoto odkazu vypršela"
+
 #: src/components/routes/my-tickets/index.tsx:179
 msgid "This link is invalid or has expired."
 msgstr "Tento odkaz je neplatný nebo jeho platnost vypršela."
+
+#: src/components/routes/sale-link/index.tsx:35
+msgid "This link is no longer available"
+msgstr "Tento odkaz již není k dispozici"
 
 #: src/components/routes/product-widget/OrderSummaryAndProducts/LinkExpiredMessage/index.tsx:27
 msgid "This link is no longer valid"
@@ -20200,6 +20470,14 @@ msgstr "Tento název je viditelný pro koncové uživatele"
 #: src/components/modals/CreateAttendeeModal/index.tsx:282
 msgid "This occurrence is at capacity"
 msgstr "Tento termín má naplněnou kapacitu"
+
+#: src/components/routes/sale-link/index.tsx:132
+msgid "This offer expires {0}."
+msgstr "Tato nabídka vyprší {0}."
+
+#: src/components/routes/sale-link/index.tsx:137
+msgid "This offer is reserved for {0}."
+msgstr "Tato nabídka je vyhrazena pro {0}."
 
 #: src/components/forms/StripeCheckoutForm/index.tsx:136
 msgid "This order has already been paid."
@@ -20398,6 +20676,7 @@ msgstr "vstupenka"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:580
 #: src/components/forms/ProductForm/index.tsx:227
 #: src/components/modals/CreateAttendeeModal/index.tsx:247
+#: src/components/modals/CreateSaleLinkModal/index.tsx:265
 #: src/components/modals/ManageAttendeeModal/index.tsx:147
 #: src/components/modals/ManageAttendeeModal/index.tsx:277
 msgid "Ticket"
@@ -20416,7 +20695,7 @@ msgstr "Design vstupenky"
 msgid "Ticket design saved successfully"
 msgstr "Design vstupenky byl úspěšně uložen"
 
-#: src/components/layouts/Event/index.tsx:137
+#: src/components/layouts/Event/index.tsx:138
 msgid "Ticket Designer"
 msgstr "Návrhář vstupenek"
 
@@ -20490,7 +20769,7 @@ msgstr "Typ vstupenky"
 msgid "Ticket Type"
 msgstr "Typ vstupenky"
 
-#: src/components/layouts/Event/index.tsx:142
+#: src/components/layouts/Event/index.tsx:143
 msgid "Ticketing & Sales"
 msgstr "Prodej vstupenek"
 
@@ -20498,11 +20777,13 @@ msgstr "Prodej vstupenek"
 msgid "tickets"
 msgstr "vstupenky"
 
+#: src/components/common/SaleLinkTable/index.tsx:93
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:96
 #: src/components/common/WidgetEditor/SectionsPicker.tsx:28
 #: src/components/common/WidgetEditor/TypePicker.tsx:7
 #: src/components/forms/ProductForm/buildPreviewEvent.ts:139
 #: src/components/layouts/EventHomepage/index.tsx:174
+#: src/components/modals/CreateSaleLinkModal/index.tsx:253
 #: src/components/routes/admin/Dashboard/index.tsx:263
 #: src/components/routes/my-tickets/index.tsx:101
 #: src/ee/box-office/components/layouts/BoxOffice/SaleComplete.tsx:111
@@ -20510,7 +20791,7 @@ msgstr "vstupenky"
 msgid "Tickets"
 msgstr "Vstupenky"
 
-#: src/components/layouts/Event/index.tsx:143
+#: src/components/layouts/Event/index.tsx:144
 #: src/components/routes/event/products.tsx:68
 msgid "Tickets & Products"
 msgstr "Vstupenky a produkty"
@@ -20568,12 +20849,25 @@ msgstr "Prodané vstupenky"
 msgid "tickets sold all time"
 msgstr "prodaných vstupenek celkem"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:351
+msgid "Tickets sold through this link don't reduce the number left for everyone else."
+msgstr "Vstupenky prodané přes tento odkaz nesnižují počet dostupný pro ostatní."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:350
+msgid "Tickets sold through this link reduce the number left for everyone else."
+msgstr "Vstupenky prodané přes tento odkaz snižují počet dostupný pro ostatní."
+
 #: src/components/modals/DuplicateEventModal/index.tsx:123
 msgid "Tickets, prices, taxes & fees, add-ons and seat map"
 msgstr "Vstupenky, ceny, daně a poplatky, doplňky a plánek sálu"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:277
+msgid "Tier"
+msgstr "Úroveň"
+
 #: src/components/forms/ProductForm/buildPreviewEvent.ts:64
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:166
+#: src/components/modals/CreateSaleLinkModal/index.tsx:259
 msgid "Tier {0}"
 msgstr "Úroveň {0}"
 
@@ -20764,6 +21058,7 @@ msgstr "celkem"
 #: src/components/modals/ManageOrderModal/index.tsx:117
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:359
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:99
+#: src/components/routes/sale-link/index.tsx:120
 #: src/ee/box-office/components/layouts/BoxOffice/tabs/OrdersTab.tsx:114
 msgid "Total"
 msgstr "Celkem"
@@ -20843,6 +21138,10 @@ msgstr "Prohlídky"
 #: src/components/routes/admin/Attribution/index.tsx:101
 msgid "Track account growth and performance by attribution source"
 msgstr "Sledujte růst a výkon účtů podle zdroje atribuce"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:391
+msgid "Track only"
+msgstr "Pouze sledovat"
 
 #: src/components/common/WidgetEditor/InstallPanel.tsx:92
 msgid "Track sales in your own analytics"
@@ -21631,6 +21930,10 @@ msgstr "Použít cenu vstupenky"
 msgid "Use your authenticator app instead"
 msgstr "Použít místo toho ověřovací aplikaci"
 
+#: src/components/common/SaleLinkTable/index.tsx:37
+msgid "Used"
+msgstr "Použito"
+
 #: src/components/routes/event/TicketDesigner/index.tsx:156
 msgid "Used for borders, highlights, and QR code styling"
 msgstr "Používá se pro okraje, zvýraznění a styl QR kódu"
@@ -21675,6 +21978,10 @@ msgstr "Uživatelé"
 #: src/components/routes/admin/Announcements/index.tsx:74
 msgid "Users ({0})"
 msgstr "Uživatelé ({0})"
+
+#: src/components/common/SaleLinkTable/index.tsx:95
+msgid "Uses"
+msgstr "Použití"
 
 #: src/components/common/WidgetEditor/AppearancePanel.tsx:69
 msgid "Uses the colours and font from your homepage design, and updates when you change them."
@@ -21869,7 +22176,7 @@ msgstr "Ověřit e-mail"
 msgid "Verify recovery code"
 msgstr "Ověřit záložní kód"
 
-#: src/components/layouts/Event/index.tsx:336
+#: src/components/layouts/Event/index.tsx:338
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:156
 msgid "Verify your email"
 msgstr "Ověřte svůj e-mail"
@@ -22011,7 +22318,7 @@ msgstr "Zobrazit zprávu"
 msgid "View on event page"
 msgstr "Zobrazit na stránce události"
 
-#: src/components/layouts/Event/index.tsx:247
+#: src/components/layouts/Event/index.tsx:249
 #: src/components/layouts/OrganizerLayout/index.tsx:237
 msgid "View only"
 msgstr "Pouze pro čtení"
@@ -22146,7 +22453,7 @@ msgstr "Čeká se na potvrzení platby od Stripe…"
 
 #: src/components/forms/ProductForm/index.tsx:475
 #: src/components/layouts/AuthLayout/AuthShell.tsx:16
-#: src/components/layouts/Event/index.tsx:154
+#: src/components/layouts/Event/index.tsx:156
 #: src/components/routes/event/Settings/index.tsx:104
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:55
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:73
@@ -22263,6 +22570,10 @@ msgstr "Plánek sálu se nepodařilo načíst. Zkuste to prosím znovu."
 #: src/ee/box-office/components/layouts/BoxOffice/index.tsx:82
 msgid "We couldn't load this box office"
 msgstr "Tuto pokladnu na místě se nepodařilo načíst"
+
+#: src/components/routes/sale-link/index.tsx:173
+msgid "We couldn't load this link. Please refresh the page to try again."
+msgstr "Tento odkaz se nepodařilo načíst. Obnovte stránku a zkuste to znovu."
 
 #: src/components/routes/event/Lineup/RunSheetPrint.tsx:29
 msgid "We couldn't load this run sheet. Check you have access to this event and try again."
@@ -22430,7 +22741,7 @@ msgstr "Webhook nebude odesílat oznámení"
 msgid "Webhook will send notifications"
 msgstr "Webhook bude odesílat oznámení"
 
-#: src/components/layouts/Event/index.tsx:165
+#: src/components/layouts/Event/index.tsx:167
 #: src/components/layouts/OrganizerLayout/index.tsx:131
 #: src/components/modals/DuplicateEventModal/index.tsx:167
 #: src/components/routes/event/Webhooks/index.tsx:67
@@ -22762,7 +23073,7 @@ msgstr "Widget vytvořen"
 msgid "Widget deleted"
 msgstr "Widget smazán"
 
-#: src/components/layouts/Event/index.tsx:164
+#: src/components/layouts/Event/index.tsx:166
 #: src/components/layouts/OrganizerLayout/index.tsx:123
 msgid "Widget Embed"
 msgstr "Vložení widgetu"
@@ -23009,7 +23320,7 @@ msgstr "Změnili jste údaje poskytovatele, proto zadejte client secret znovu."
 msgid "You confirmed it's you. Continue within a few minutes."
 msgstr "Potvrdili jste svou totožnost. Pokračujte během několika minut."
 
-#: src/components/layouts/Event/index.tsx:230
+#: src/components/layouts/Event/index.tsx:232
 msgid "You don't have access to this event"
 msgstr "K této události nemáte přístup"
 

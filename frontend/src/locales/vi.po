@@ -13,12 +13,12 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/layouts/Event/index.tsx:260
+#: src/components/layouts/Event/index.tsx:262
 #: src/components/layouts/OrganizerLayout/index.tsx:248
 msgid "- Click to Publish"
 msgstr "- Nhấp để xuất bản"
 
-#: src/components/layouts/Event/index.tsx:262
+#: src/components/layouts/Event/index.tsx:264
 #: src/components/layouts/OrganizerLayout/index.tsx:250
 msgid "- Click to Unpublish"
 msgstr "- Nhấp để gỡ bỏ"
@@ -972,6 +972,10 @@ msgstr "Mã khuyến mãi không có giảm giá có thể được sử dụng 
 msgid "A recurring event can become a single event when it has exactly one active date and no orders. The date's own prices, product visibility, capacity and label are removed; its time and location are kept."
 msgstr "Sự kiện định kỳ có thể chuyển thành sự kiện đơn lẻ khi có đúng một ngày đang hoạt động và không có đơn hàng nào. Giá, khả năng hiển thị sản phẩm, sức chứa và nhãn riêng của ngày đó sẽ bị xóa; thời gian và địa điểm được giữ nguyên."
 
+#: src/components/common/SaleLinkTable/index.tsx:71
+msgid "A sale link is a private checkout link for specific tickets at a price you set. Send it by email or message, and the buyer pays through the normal checkout."
+msgstr "Liên kết bán hàng là liên kết thanh toán riêng cho các vé cụ thể với mức giá bạn đặt. Gửi qua email hoặc tin nhắn, người mua sẽ thanh toán qua quy trình thanh toán thông thường."
+
 #: src/ee/seating/components/routes/event/Seating/AttachSeatMap.tsx:51
 msgid "A seat map is a reusable venue layout of rows, tables and standing areas. Build one for your venue, then attach it to this event to sell seats."
 msgstr "Sơ đồ chỗ ngồi là bố cục địa điểm có thể dùng lại gồm hàng ghế, bàn và khu vực đứng. Hãy tạo một sơ đồ cho địa điểm của bạn, rồi gắn vào sự kiện này để bán chỗ ngồi."
@@ -1227,6 +1231,7 @@ msgstr "Cần hành động: Cần thông tin VAT"
 #: src/components/common/OrdersTable/index.tsx:393
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:548
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:555
+#: src/components/common/SaleLinkTable/index.tsx:169
 #: src/components/common/WaitlistTable/index.tsx:57
 #: src/components/common/WaitlistTable/index.tsx:240
 #: src/components/routes/admin/FailedJobs/index.tsx:167
@@ -1257,6 +1262,7 @@ msgstr "Ngày kích hoạt"
 #: src/components/common/CheckInListList/index.tsx:115
 #: src/components/common/CheckInListTable/index.tsx:177
 #: src/components/common/EmailTemplateSettings/EmailTemplateSettingsBase.tsx:280
+#: src/components/common/SaleLinkTable/index.tsx:35
 #: src/components/forms/AffiliateForm/index.tsx:21
 #: src/components/forms/CapaciyAssigmentForm/index.tsx:19
 #: src/components/modals/ProductPurchasesModal/index.tsx:246
@@ -1379,6 +1385,10 @@ msgstr "Thêm một thành phần \"Embed\" ở vị trí bạn muốn widget hi
 #: src/components/routes/event/Lineup/ImportLineupModal.tsx:106
 msgid "Add an end time or a duration"
 msgstr "Thêm giờ kết thúc hoặc thời lượng"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:330
+msgid "Add another ticket"
+msgstr "Thêm vé khác"
 
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:1012
 msgid "Add another time"
@@ -1766,6 +1776,7 @@ msgid "Advertising"
 msgstr "Quảng cáo"
 
 #: src/components/common/AffiliateTable/index.tsx:83
+#: src/components/modals/CreateSaleLinkModal/index.tsx:366
 msgid "Affiliate"
 msgstr "Đối tác liên kết"
 
@@ -1797,7 +1808,7 @@ msgstr "Doanh số đối tác liên kết sẽ không được theo dõi. Đi�
 msgid "Affiliate updated successfully"
 msgstr "Cập nhật đối tác liên kết thành công"
 
-#: src/components/layouts/Event/index.tsx:146
+#: src/components/layouts/Event/index.tsx:147
 #: src/components/modals/DuplicateEventModal/index.tsx:126
 #: src/components/routes/event/Affiliates/index.tsx:67
 msgid "Affiliates"
@@ -2463,6 +2474,10 @@ msgstr "Áp dụng thay đổi"
 msgid "Apply Changes"
 msgstr "Áp dụng thay đổi"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:392
+msgid "Apply discount"
+msgstr "Áp dụng giảm giá"
+
 #: src/components/routes/event/OccurrencesTab/OccurrenceBulkEditModal/index.tsx:340
 msgid "Apply to"
 msgstr "Áp dụng cho"
@@ -2622,7 +2637,7 @@ msgstr "Bạn có chắc là bạn muốn xóa webhook này không?"
 msgid "Are you sure you want to leave?"
 msgstr "Bạn có chắc chắn muốn rời đi?"
 
-#: src/components/layouts/Event/index.tsx:210
+#: src/components/layouts/Event/index.tsx:212
 msgid "Are you sure you want to make this event draft? This will make the event invisible to the public"
 msgstr "Bạn có chắc chắn muốn chuyển sự kiện này thành bản nháp không? Điều này sẽ làm cho sự kiện không hiển thị với công chúng."
 
@@ -2732,7 +2747,7 @@ msgstr "Nghệ thuật"
 msgid "As your business is based in Ireland, Irish VAT at 23% applies automatically to all platform fees."
 msgstr "Vì doanh nghiệp của bạn có trụ sở tại Ireland, VAT Ireland 23% sẽ được áp dụng tự động cho tất cả phí nền tảng."
 
-#: src/components/layouts/Event/index.tsx:231
+#: src/components/layouts/Event/index.tsx:233
 #: src/components/layouts/OrganizerLayout/index.tsx:221
 msgid "Ask an account admin to give you access, or open one of your own events."
 msgstr "Hãy nhờ quản trị viên tài khoản cấp quyền truy cập cho bạn, hoặc mở một sự kiện của riêng bạn."
@@ -2798,6 +2813,10 @@ msgstr "Gán gói"
 #: src/components/routes/admin/Accounts/AccountDetail/index.tsx:245
 msgid "Assigned Tier"
 msgstr "Cấp độ được gán"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:113
+msgid "At least 1"
+msgstr "Ít nhất 1"
 
 #: src/components/routes/settings/Security/ChangePasswordModal.tsx:48
 msgid "At least 8 characters."
@@ -2928,7 +2947,7 @@ msgstr "người tham dự"
 #: src/components/common/ProductsTable/index.tsx:96
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:530
 #: src/components/common/StatBoxes/index.tsx:75
-#: src/components/layouts/Event/index.tsx:150
+#: src/components/layouts/Event/index.tsx:152
 #: src/components/modals/ManageOccurrenceModal/index.tsx:179
 #: src/components/modals/ManageOrderModal/index.tsx:336
 #: src/components/routes/admin/Dashboard/index.tsx:367
@@ -3364,7 +3383,7 @@ msgstr "quầy bán vé"
 msgid "Box office"
 msgstr "Quầy vé"
 
-#: src/components/layouts/Event/index.tsx:152
+#: src/components/layouts/Event/index.tsx:154
 #: src/components/routes/event/orders.tsx:86
 #: src/ee/box-office/components/common/BoxOfficeTable/index.tsx:74
 #: src/ee/box-office/components/routes/event/BoxOffices/index.tsx:50
@@ -3504,6 +3523,10 @@ msgstr "Nút bấm"
 #: src/ee/box-office/components/layouts/BoxOffice/BuyerSheet.tsx:75
 msgid "Buyer details"
 msgstr "Thông tin người mua"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:416
+msgid "Buyer email"
+msgstr "Email người mua"
 
 #: src/components/common/PlatformFeesSettings/index.tsx:65
 msgid "Buyer pays"
@@ -3654,6 +3677,7 @@ msgstr "Không dùng được ứng dụng xác thực hoặc mã khôi phục?"
 #: src/components/modals/CreateOrganizerWebhookModal/index.tsx:89
 #: src/components/modals/CreateProductCategoryModal/index.tsx:56
 #: src/components/modals/CreatePromoCodeModal/index.tsx:57
+#: src/components/modals/CreateSaleLinkModal/index.tsx:441
 #: src/components/modals/CreateTaxOrFeeModal/index.tsx:52
 #: src/components/modals/CreateWebhookModal/index.tsx:89
 #: src/components/modals/DuplicateEventModal/index.tsx:309
@@ -3837,7 +3861,7 @@ msgstr "Phân bổ sức chứa"
 msgid "Capacity management"
 msgstr "Quản lý sức chứa"
 
-#: src/components/layouts/Event/index.tsx:157
+#: src/components/layouts/Event/index.tsx:159
 msgid "Capacity Management"
 msgstr "Quản lý sức chứa"
 
@@ -4102,6 +4126,10 @@ msgstr "Xem sự kiện này: {0}"
 msgid "Check out this event!"
 msgstr "Xác nhận rời khỏi sự kiện này!"
 
+#: src/components/routes/sale-link/index.tsx:172
+msgid "Check that you copied the whole link, or ask the event organizer to send it again."
+msgstr "Hãy kiểm tra bạn đã sao chép toàn bộ liên kết, hoặc nhờ ban tổ chức gửi lại."
+
 #: src/components/common/ReportTable/index.tsx:245
 #: src/components/routes/settings/TaxesAndFees/index.tsx:85
 #: src/ee/box-office/components/layouts/BoxOffice/index.tsx:84
@@ -4196,7 +4224,7 @@ msgstr "Danh sách check-in"
 msgid "Check-in Lists"
 msgstr "Danh sách check-in"
 
-#: src/components/layouts/Event/index.tsx:151
+#: src/components/layouts/Event/index.tsx:153
 #: src/components/routes/event/CheckInLists/index.tsx:38
 msgid "Check-In Lists"
 msgstr "Danh sách Check-In"
@@ -4335,6 +4363,7 @@ msgstr "Chọn 1 ghế"
 msgid "Choose a configuration"
 msgstr "Chọn một cấu hình"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:109
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:644
 #: src/ee/box-office/components/layouts/BoxOffice/OccurrenceSwitchSheet.tsx:48
 #: src/ee/box-office/components/layouts/BoxOffice/StartSession.tsx:170
@@ -4377,6 +4406,16 @@ msgstr "Chọn một ghế trên sơ đồ để thêm vào đơn hàng"
 #: src/components/routes/event/Lineup/ImportLineupModal.tsx:421
 msgid "Choose a spreadsheet to import"
 msgstr "Chọn bảng tính để nhập"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:111
+#: src/components/modals/CreateSaleLinkModal/index.tsx:266
+msgid "Choose a ticket"
+msgstr "Chọn vé"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:112
+#: src/components/modals/CreateSaleLinkModal/index.tsx:278
+msgid "Choose a tier"
+msgstr "Chọn hạng giá"
 
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:644
 msgid "Choose a time"
@@ -4956,7 +4995,7 @@ msgstr "Xác nhận email của bạn"
 msgid "Confirm your email address"
 msgstr "Xác nhận địa chỉ email của bạn"
 
-#: src/components/layouts/Event/index.tsx:337
+#: src/components/layouts/Event/index.tsx:339
 msgid "Confirm your email to access all features."
 msgstr "Xác nhận email của bạn để sử dụng đầy đủ tính năng."
 
@@ -5103,6 +5142,10 @@ msgstr "Email liên hệ"
 msgid "Contact Email"
 msgstr "Email liên hệ"
 
+#: src/components/routes/sale-link/index.tsx:26
+msgid "Contact the event organizer if you'd still like to buy these tickets."
+msgstr "Liên hệ ban tổ chức nếu bạn vẫn muốn mua những vé này."
+
 #: src/components/routes/auth/Login/TwoFactorChallenge.tsx:160
 msgid "Contact your account administrator or our support team. Once they've confirmed it's you, they can reset two-factor authentication so you can sign in with your password and set it up again."
 msgstr "Hãy liên hệ quản trị viên tài khoản hoặc đội ngũ hỗ trợ của chúng tôi. Sau khi xác nhận đó là bạn, họ có thể đặt lại xác thực hai yếu tố để bạn đăng nhập bằng mật khẩu và thiết lập lại."
@@ -5142,6 +5185,7 @@ msgstr "Văn bản nút Tiếp tục"
 msgid "Continue Setup"
 msgstr "Tiếp tục thiết lập"
 
+#: src/components/routes/sale-link/index.tsx:150
 #: src/ee/seating/components/SeatPicker/index.tsx:76
 msgid "Continue to checkout"
 msgstr "Tiếp tục thanh toán"
@@ -5335,7 +5379,10 @@ msgstr "Sao chép cho trợ lý AI"
 msgid "Copy key"
 msgstr "Sao chép khóa"
 
+#: src/components/common/SaleLinkTable/index.tsx:160
+#: src/components/common/SaleLinkTable/index.tsx:172
 #: src/components/common/SsoButtons/index.tsx:54
+#: src/components/modals/CreateSaleLinkModal/index.tsx:223
 #: src/components/modals/EventLiveCelebrationModal/index.tsx:67
 #: src/components/routes/product-widget/Payment/PaymentLink/index.tsx:70
 msgid "Copy link"
@@ -5550,6 +5597,10 @@ msgstr "Không thể làm mới tình trạng ghế. Đang thử lại…"
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:78
 msgid "Couldn't send verification email. Please try again."
 msgstr "Không gửi được email xác minh. Vui lòng thử lại."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:348
+msgid "Count toward public cap"
+msgstr "Tính vào giới hạn công khai"
 
 #: src/components/common/CheckoutQuestion/index.tsx:217
 #: src/components/common/LocationPicker/index.tsx:268
@@ -5814,6 +5865,13 @@ msgstr "Tạo mã khuyến mãi"
 #: src/components/modals/CreateQuestionModal/index.tsx:45
 msgid "Create Question"
 msgstr "Tạo câu hỏi"
+
+#: src/components/common/SaleLinkTable/index.tsx:79
+#: src/components/modals/CreateSaleLinkModal/index.tsx:236
+#: src/components/modals/CreateSaleLinkModal/index.tsx:447
+#: src/components/routes/event/SaleLinks/index.tsx:40
+msgid "Create Sale Link"
+msgstr "Tạo liên kết bán hàng"
 
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:1181
 msgid "Create schedule"
@@ -6112,7 +6170,7 @@ msgid "Dark"
 msgstr "Tối"
 
 #: src/components/layouts/Admin/index.tsx:17
-#: src/components/layouts/Event/index.tsx:117
+#: src/components/layouts/Event/index.tsx:118
 #: src/components/routes/admin/Dashboard/index.tsx:179
 #: src/components/routes/event/OccurrencesTab/OccurrenceMenu.tsx:60
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:158
@@ -6126,6 +6184,7 @@ msgstr "Dashboard"
 #: src/components/common/WidgetEditor/ContentFields.tsx:77
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:117
 #: src/components/forms/QuestionForm/questionTypes.ts:29
+#: src/components/modals/CreateSaleLinkModal/index.tsx:245
 #: src/components/routes/event/Lineup/ScheduleBuilder/ScheduleItemModal.tsx:175
 #: src/components/routes/event/Reports/OccurrenceSummaryReport/index.tsx:39
 #: src/components/routes/organizer/Reports/EventsPerformanceReport/index.tsx:56
@@ -6606,6 +6665,7 @@ msgstr "Máy tính"
 
 #: src/components/common/ProgressStepper/index.tsx:18
 #: src/components/common/ProgressStepper/index.tsx:23
+#: src/components/common/SaleLinkTable/index.tsx:96
 #: src/components/modals/EditUserModal/index.tsx:85
 #: src/components/modals/InviteUserModal/index.tsx:52
 #: src/components/modals/ManageAttendeeModal/index.tsx:266
@@ -6821,6 +6881,7 @@ msgstr "Quyên góp"
 #: src/components/common/TwoFactor/TwoFactorSetupFlow.tsx:264
 #: src/components/modals/CheckInListSuccessModal/index.tsx:59
 #: src/components/modals/CreateOrganizerWebhookModal/index.tsx:73
+#: src/components/modals/CreateSaleLinkModal/index.tsx:227
 #: src/components/modals/CreateWebhookModal/index.tsx:73
 #: src/components/modals/EventLiveCelebrationModal/index.tsx:123
 #: src/components/routes/product-widget/Payment/PaymentLink/index.tsx:122
@@ -6889,7 +6950,7 @@ msgid "Downloading Invoice"
 msgstr "Tải xuống hóa đơn"
 
 #: src/components/common/EventCard/index.tsx:99
-#: src/components/layouts/Event/index.tsx:259
+#: src/components/layouts/Event/index.tsx:261
 #: src/components/layouts/OrganizerLayout/index.tsx:247
 #: src/components/routes/admin/Announcements/index.tsx:183
 #: src/components/routes/admin/Announcements/index.tsx:472
@@ -7428,7 +7489,7 @@ msgstr "Hủy thay đổi email thành công"
 msgid "Email change pending"
 msgstr "Thay đổi email đang chờ xử lý"
 
-#: src/components/layouts/Event/index.tsx:98
+#: src/components/layouts/Event/index.tsx:99
 #: src/components/layouts/OrganizerLayout/index.tsx:142
 #: src/components/routes/settings/Profile/index.tsx:136
 msgid "Email confirmation resent successfully"
@@ -7687,6 +7748,10 @@ msgstr "Nhập nhãn hoặc chọn xóa nhãn."
 #: src/components/forms/QuestionForm/questionFormValues.ts:114
 msgid "Enter a message for people who aren't eligible"
 msgstr "Nhập thông báo cho người không đủ điều kiện"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:114
+msgid "Enter a price"
+msgstr "Nhập giá"
 
 #: src/components/forms/QuestionForm/questionFormValues.ts:86
 msgid "Enter a question"
@@ -8035,7 +8100,7 @@ msgstr "Sự kiện không có sẵn"
 msgid "Event not live"
 msgstr "Sự kiện chưa công khai"
 
-#: src/components/layouts/Event/index.tsx:326
+#: src/components/layouts/Event/index.tsx:328
 msgid "Event Page"
 msgstr "Trang sự kiện"
 
@@ -8047,7 +8112,7 @@ msgstr "Xem trước sự kiện"
 msgid "Event restored successfully"
 msgstr "Sự kiện đã được khôi phục thành công"
 
-#: src/components/layouts/Event/index.tsx:134
+#: src/components/layouts/Event/index.tsx:135
 #: src/components/routes/event/Settings/index.tsx:196
 msgid "Event Settings"
 msgstr "Cài đặt sự kiện"
@@ -8058,14 +8123,14 @@ msgstr "Thiết lập sự kiện"
 
 #: src/components/common/EventCard/index.tsx:82
 #: src/components/common/StatusToggle/index.tsx:62
-#: src/components/layouts/Event/index.tsx:221
+#: src/components/layouts/Event/index.tsx:223
 #: src/components/modals/PublishEventModal/index.tsx:129
 msgid "Event status update failed. Please try again later"
 msgstr "Cập nhật trạng thái sự kiện thất bại. Vui lòng thử lại sau"
 
 #: src/components/common/EventCard/index.tsx:79
 #: src/components/common/StatusToggle/index.tsx:54
-#: src/components/layouts/Event/index.tsx:218
+#: src/components/layouts/Event/index.tsx:220
 msgid "Event status updated"
 msgstr "Trạng thái sự kiện đã được cập nhật"
 
@@ -8186,6 +8251,10 @@ msgstr "Mỗi sự kiện đều có quầy vé"
 msgid "Every event has a check-in list"
 msgstr "Mỗi sự kiện đều có danh sách check-in"
 
+#: src/components/routes/sale-link/index.tsx:31
+msgid "Every order allowed by this link has been placed. Contact the event organizer if you need more tickets."
+msgstr "Tất cả đơn hàng được phép qua liên kết này đã được đặt. Liên hệ ban tổ chức nếu bạn cần thêm vé."
+
 #: src/components/common/TeamAccessFields/index.tsx:113
 msgid "Every organizer and event, including new ones."
 msgstr "Mọi nhà tổ chức và sự kiện, kể cả mục mới."
@@ -8292,6 +8361,7 @@ msgstr "Thời hạn"
 msgid "Expiration date"
 msgstr "Ngày hết hạn"
 
+#: src/components/common/SaleLinkTable/index.tsx:39
 #: src/components/common/WaitlistTable/index.tsx:30
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:119
 #: src/components/routes/settings/ApiKeys/index.tsx:211
@@ -8312,9 +8382,14 @@ msgstr "Đã hết hạn {0}"
 msgid "Expires"
 msgstr "Hết hạn"
 
+#: src/components/common/SaleLinkTable/index.tsx:132
 #: src/components/routes/settings/ApiKeys/ApiKeyRow.tsx:30
 msgid "Expires {0}"
 msgstr "Hết hạn {0}"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:409
+msgid "Expires at"
+msgstr "Hết hạn lúc"
 
 #: src/components/forms/PromoCodeForm/index.tsx:169
 msgid "Expiry Date"
@@ -8622,6 +8697,10 @@ msgstr "Không thể thử lại công việc"
 #: src/components/routes/admin/FailedJobs/index.tsx:79
 msgid "Failed to retry jobs"
 msgstr "Không thể thử lại các công việc"
+
+#: src/components/common/SaleLinkTable/index.tsx:59
+msgid "Failed to revoke sale link"
+msgstr "Không thể thu hồi liên kết bán hàng"
 
 #: src/components/routes/admin/Accounts/AccountDetail/OrganizerAdminModal.tsx:69
 msgid "Failed to save override"
@@ -9090,6 +9169,14 @@ msgstr "Văn bản chân trang"
 msgid "for"
 msgstr "trong"
 
+#: src/components/common/SaleLinkTable/index.tsx:139
+msgid "For {0}"
+msgstr "Dành cho {0}"
+
+#: src/components/common/SaleLinkTable/index.tsx:138
+msgid "For {0} (locked)"
+msgstr "Dành cho {0} (đã khóa)"
+
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:1080
 msgid "For a number of dates"
 msgstr "Theo số lượng ngày"
@@ -9410,7 +9497,7 @@ msgstr "Đến lịch"
 msgid "Go to seating settings"
 msgstr "Đến cài đặt chỗ ngồi"
 
-#: src/components/layouts/Event/index.tsx:232
+#: src/components/layouts/Event/index.tsx:234
 #: src/components/layouts/OrganizerLayout/index.tsx:222
 msgid "Go to your events"
 msgstr "Đến các sự kiện của bạn"
@@ -9491,7 +9578,7 @@ msgstr "Nhóm"
 msgid "Guest"
 msgstr "Khách"
 
-#: src/components/layouts/Event/index.tsx:149
+#: src/components/layouts/Event/index.tsx:151
 msgid "Guest Management"
 msgstr "Quản lý khách"
 
@@ -9822,7 +9909,7 @@ msgstr "Giữ chỗ trong"
 msgid "Homepage Design"
 msgstr "Thiết kế trang sự kiện"
 
-#: src/components/layouts/Event/index.tsx:136
+#: src/components/layouts/Event/index.tsx:137
 #: src/components/layouts/OrganizerLayout/index.tsx:122
 msgid "Homepage Designer"
 msgstr "Thiết kế trang chủ"
@@ -9894,6 +9981,10 @@ msgstr "Khách hàng phải hoàn thành đơn đơn hàng bao nhiêu phút. "
 msgid "How many of each ticket you sell on a date. Next to the quantity, choose \"per date\" to allocate it to every date, or \"all dates\" to share one pool across the whole run."
 msgstr "Số lượng mỗi loại vé bạn bán trong một ngày. Bên cạnh số lượng, chọn “mỗi ngày” để phân bổ cho từng ngày, hoặc “tất cả các ngày” để dùng chung một nguồn cho cả đợt."
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:402
+msgid "How many orders can be placed with this link."
+msgstr "Số đơn hàng có thể đặt qua liên kết này."
+
 #: src/components/forms/PromoCodeForm/index.tsx:175
 msgid "How many times can this code be used?"
 msgstr "Mã này có thể được sử dụng bao nhiêu lần?"
@@ -9906,6 +9997,10 @@ msgstr "Bao nhiêu?"
 #: src/components/routes/product-widget/Payment/PaymentMethods/Offline/index.tsx:7
 msgid "How paying later works"
 msgstr "Cách thanh toán sau hoạt động"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:380
+msgid "How should the promo code be used?"
+msgstr "Mã khuyến mãi nên được sử dụng như thế nào?"
 
 #: src/components/routes/product-widget/OrderSummaryAndProducts/index.tsx:461
 msgid "How to pay"
@@ -10018,6 +10113,10 @@ msgstr "Nếu bạn mất điện thoại, mỗi mã này cho phép bạn đăng
 #: src/components/routes/auth/Login/RecoveryCodeNotice.tsx:33
 msgid "If you've lost your phone, turn two-factor authentication off and on again from your profile to connect a new authenticator app."
 msgstr "Nếu bạn đã mất điện thoại, hãy tắt rồi bật lại xác thực hai yếu tố trong hồ sơ để kết nối ứng dụng xác thực mới."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:342
+msgid "Ignore ticket cap"
+msgstr "Bỏ qua giới hạn vé"
 
 #: src/components/common/ImageUploadDropzone/index.tsx:124
 msgid "Image deleted successfully"
@@ -10251,11 +10350,15 @@ msgstr "Chi trả Stripe tức thì"
 msgid "Instructions"
 msgstr "Hướng dẫn"
 
-#: src/components/layouts/Event/index.tsx:163
+#: src/components/layouts/Event/index.tsx:165
 #: src/components/layouts/OrganizerLayout/index.tsx:130
 #: src/components/modals/DuplicateEventModal/index.tsx:165
 msgid "Integrations"
 msgstr "Tích hợp"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:432
+msgid "Internal note"
+msgstr "Ghi chú nội bộ"
 
 #: src/components/forms/CheckInListForm/index.tsx:190
 msgid "Internal notes on the attendee's ticket"
@@ -10268,6 +10371,7 @@ msgid "Invalid email"
 msgstr "Email không hợp lệ"
 
 #: src/components/modals/CreateAffiliateModal/index.tsx:38
+#: src/components/modals/CreateSaleLinkModal/index.tsx:117
 #: src/components/modals/EditAffiliateModal/index.tsx:36
 msgid "Invalid email format"
 msgstr "Định dạng email không hợp lệ"
@@ -10933,7 +11037,7 @@ msgstr "Đội hình"
 msgid "Lineup & schedule"
 msgstr "Dàn nghệ sĩ & lịch trình"
 
-#: src/components/layouts/Event/index.tsx:135
+#: src/components/layouts/Event/index.tsx:136
 #: src/components/routes/event/Lineup/index.tsx:58
 msgid "Lineup & Schedule"
 msgstr "Đội hình & Lịch trình"
@@ -10954,7 +11058,9 @@ msgstr "Đội hình đang bị ẩn trên trang sự kiện, nên widget không
 msgid "Link {linkNumber}"
 msgstr "Liên kết {linkNumber}"
 
+#: src/components/common/SaleLinkTable/index.tsx:53
 #: src/components/common/SsoButtons/index.tsx:54
+#: src/components/modals/CreateSaleLinkModal/index.tsx:202
 msgid "Link copied"
 msgstr "Đã sao chép liên kết"
 
@@ -11010,7 +11116,7 @@ msgid "List your upcoming events on your own website. Visitors can buy tickets w
 msgstr "Hiển thị các sự kiện sắp tới trên trang web của bạn. Khách truy cập có thể mua vé mà không cần rời khỏi trang."
 
 #: src/components/common/EventCard/index.tsx:102
-#: src/components/layouts/Event/index.tsx:261
+#: src/components/layouts/Event/index.tsx:263
 #: src/components/layouts/OrganizerLayout/index.tsx:249
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:115
 #: src/components/routes/event/Lineup/EventStatusBadge.tsx:8
@@ -11132,6 +11238,10 @@ msgstr "địa điểm"
 #: src/components/routes/organizer/Locations/index.tsx:31
 msgid "Locations"
 msgstr "Địa điểm"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:425
+msgid "Lock email"
+msgstr "Khóa email"
 
 #: src/components/routes/event/TicketDesigner/index.tsx:134
 #: src/components/routes/organizer/OrganizerHomepageDesigner/index.tsx:172
@@ -11371,6 +11481,10 @@ msgstr "Tin nhắn tối đa / 24h"
 msgid "Max Recipients / Message"
 msgstr "Người nhận tối đa / tin nhắn"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:401
+msgid "Max uses"
+msgstr "Số lần dùng tối đa"
+
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:72
 msgid "Maximum {cap} per order"
 msgstr "Tối đa {cap} mỗi đơn hàng"
@@ -11484,7 +11598,7 @@ msgid "Message Sent"
 msgstr "Tin nhắn được gửi"
 
 #: src/components/layouts/Admin/index.tsx:22
-#: src/components/layouts/Event/index.tsx:153
+#: src/components/layouts/Event/index.tsx:155
 #: src/components/routes/event/messages.tsx:228
 msgid "Messages"
 msgstr "Tin nhắn"
@@ -11732,6 +11846,10 @@ msgstr "Nhiều loại vé"
 #: src/constants/eventCategories.ts:8
 msgid "Music"
 msgstr "Âm nhạc"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:116
+msgid "Must be at least 1"
+msgstr "Phải ít nhất là 1"
 
 #: src/components/routes/event/Settings/Sections/SeoSettings/index.tsx:71
 #: src/components/routes/organizer/Settings/Sections/SeoSettings/index.tsx:71
@@ -12268,6 +12386,10 @@ msgstr "Chưa có sự kiện nào"
 msgid "No expiration"
 msgstr "Không hết hạn"
 
+#: src/components/common/SaleLinkTable/index.tsx:133
+msgid "No expiry"
+msgstr "Không hết hạn"
+
 #: src/components/routes/admin/FailedJobs/index.tsx:155
 msgid "No failed jobs"
 msgstr "Không có công việc thất bại"
@@ -12510,6 +12632,10 @@ msgstr "Không có kết quả"
 msgid "No results found"
 msgstr "Không tìm thấy kết quả"
 
+#: src/components/common/SaleLinkTable/index.tsx:66
+msgid "No sale links yet"
+msgstr "Chưa có liên kết bán hàng"
+
 #: src/ee/licensing/components/routes/admin/Licence/index.tsx:93
 msgid "No sales"
 msgstr "Chưa có doanh thu"
@@ -12660,6 +12786,8 @@ msgstr "chưa sửa"
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:108
 #: src/components/forms/ProductForm/ledgerSummaries.ts:92
 #: src/components/forms/ProductForm/ledgerSummaries.ts:142
+#: src/components/modals/CreateSaleLinkModal/index.tsx:359
+#: src/components/modals/CreateSaleLinkModal/index.tsx:368
 #: src/components/routes/event/Questions/questionTemplates.ts:17
 #: src/components/routes/product-widget/CollectInformation/index.tsx:597
 #: src/ee/seating/components/SeatMapDesigner/Inspector.tsx:50
@@ -12806,9 +12934,17 @@ msgstr "Chưa mở bán"
 msgid "Not you?"
 msgstr "Không phải bạn?"
 
+#: src/components/common/SaleLinkTable/index.tsx:97
+msgid "Note"
+msgstr "Ghi chú"
+
 #: src/components/routes/product-widget/OrderSummaryAndProducts/ReportOfflinePayment/index.tsx:57
 msgid "Note for the organizer (optional)"
 msgstr "Ghi chú cho ban tổ chức (không bắt buộc)"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:118
+msgid "Note must be 1000 characters or fewer"
+msgstr "Ghi chú không được vượt quá 1000 ký tự"
 
 #: src/ee/seating/components/SeatMapDesigner/Inspector.tsx:299
 msgid "Note shown to buyers"
@@ -12909,7 +13045,7 @@ msgstr "Ngày"
 msgid "Occurrence Cancelled"
 msgstr "Đã hủy ngày"
 
-#: src/components/layouts/Event/index.tsx:130
+#: src/components/layouts/Event/index.tsx:131
 #: src/components/routes/event/OccurrencesTab/index.tsx:499
 msgid "Occurrence Schedule"
 msgstr "Lịch các ngày"
@@ -13288,6 +13424,10 @@ msgstr "Chỉ vé mới tính vào sức chứa. Áo thun là sản phẩm nên 
 msgid "Only visible to buyers with an applicable promo code."
 msgstr "Chỉ hiển thị với người mua có mã khuyến mãi phù hợp."
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:433
+msgid "Only visible to your team."
+msgstr "Chỉ nhóm của bạn nhìn thấy."
+
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:478
 msgid "Only visible with promo code"
 msgstr "Chỉ hiển thị với mã khuyến mãi"
@@ -13427,6 +13567,22 @@ msgstr "Tùy chọn, được lưu trong bản ghi xóa"
 #: src/components/routes/admin/Accounts/AccountDetail/SuspendAccountModal.tsx:48
 msgid "Optional, shown to admins on this page."
 msgstr "Không bắt buộc, hiển thị cho quản trị viên trên trang này."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:358
+msgid "Optional. Attach a promo code to this sale."
+msgstr "Không bắt buộc. Gắn mã khuyến mãi cho giao dịch này."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:367
+msgid "Optional. Credit this sale to an active affiliate."
+msgstr "Không bắt buộc. Ghi nhận giao dịch này cho một đối tác liên kết đang hoạt động."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:410
+msgid "Optional. Leave empty for no expiry."
+msgstr "Không bắt buộc. Để trống nếu không hết hạn."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:417
+msgid "Optional. Pre-fills the email at checkout."
+msgstr "Không bắt buộc. Điền sẵn email khi thanh toán."
 
 #: src/components/routes/event/Lineup/index.tsx:344
 msgid "Optional. Useful when things happen in more than one place at the same time."
@@ -13653,7 +13809,7 @@ msgstr "đơn hàng"
 #: src/components/common/OccurrenceAttendeesAndOrders/index.tsx:65
 #: src/components/common/WidgetEditor/WidgetStats.tsx:16
 #: src/components/layouts/Admin/index.tsx:21
-#: src/components/layouts/Event/index.tsx:144
+#: src/components/layouts/Event/index.tsx:145
 #: src/components/modals/ManageOccurrenceModal/index.tsx:183
 #: src/components/routes/admin/Attribution/index.tsx:200
 #: src/components/routes/admin/Dashboard/index.tsx:236
@@ -13723,7 +13879,7 @@ msgstr "Người tổ chức"
 msgid "Organizer archived successfully"
 msgstr "Ban tổ chức đã được lưu trữ thành công"
 
-#: src/components/layouts/Event/index.tsx:110
+#: src/components/layouts/Event/index.tsx:111
 #: src/components/layouts/OrganizerLayout/index.tsx:106
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:158
 msgid "Organizer Dashboard"
@@ -13852,7 +14008,7 @@ msgstr "Ghi đè nhận diện thương hiệu dùng trên thẻ Google Wallet v
 msgid "Override the global default for this account."
 msgstr "Ghi đè mặc định chung cho tài khoản này."
 
-#: src/components/layouts/Event/index.tsx:116
+#: src/components/layouts/Event/index.tsx:117
 msgid "Overview"
 msgstr "Tổng quan"
 
@@ -14285,7 +14441,7 @@ msgid "Pending review"
 msgstr "Đang chờ xem xét"
 
 #: src/components/common/EventCard/index.tsx:96
-#: src/components/layouts/Event/index.tsx:257
+#: src/components/layouts/Event/index.tsx:259
 #: src/components/routes/admin/Messages/index.tsx:124
 msgid "Pending Review"
 msgstr "Đang chờ xem xét"
@@ -14798,8 +14954,8 @@ msgstr "Xem trước"
 msgid "Preview a checkout for"
 msgstr "Xem trước thanh toán cho"
 
-#: src/components/layouts/Event/index.tsx:319
-#: src/components/layouts/Event/index.tsx:323
+#: src/components/layouts/Event/index.tsx:321
+#: src/components/layouts/Event/index.tsx:325
 msgid "Preview Event page"
 msgstr "Xem trước trang sự kiện"
 
@@ -14842,6 +14998,14 @@ msgstr "Đã đổi giá"
 msgid "Price display mode"
 msgstr "Chế độ hiển thị giá"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:298
+msgid "Price each"
+msgstr "Giá mỗi vé"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:334
+msgid "Price includes tax"
+msgstr "Giá đã bao gồm thuế"
+
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:155
 msgid "Price not set"
 msgstr "Giá không được đặt"
@@ -14861,6 +15025,10 @@ msgstr "Bậc giá"
 #: src/components/forms/ProductForm/index.tsx:352
 msgid "Price Tiers"
 msgstr "Cấp giá"
+
+#: src/components/routes/sale-link/index.tsx:127
+msgid "Prices include tax. Any booking fees are shown at checkout."
+msgstr "Giá đã bao gồm thuế. Phí đặt chỗ (nếu có) sẽ hiển thị khi thanh toán."
 
 #: src/components/forms/ProductForm/index.tsx:287
 msgid "Pricing"
@@ -15058,6 +15226,7 @@ msgstr "Mã {promo_code} đã được áp dụng"
 #: src/components/common/OrderDetails/index.tsx:112
 #: src/components/common/WidgetEditor/ContentFields.tsx:139
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:107
+#: src/components/modals/CreateSaleLinkModal/index.tsx:357
 #: src/components/modals/ManageOrderModal/index.tsx:202
 #: src/components/routes/product-widget/SelectProducts/index.tsx:1233
 msgid "Promo code"
@@ -15092,7 +15261,7 @@ msgstr "mã khuyến mãi"
 msgid "Promo codes"
 msgstr "Mã khuyến mãi"
 
-#: src/components/layouts/Event/index.tsx:145
+#: src/components/layouts/Event/index.tsx:146
 #: src/components/routes/event/promo-codes.tsx:34
 msgid "Promo Codes"
 msgstr "Mã khuyến mãi"
@@ -15196,6 +15365,7 @@ msgid "Qty"
 msgstr "SL"
 
 #: src/components/common/NumberSelector/index.tsx:123
+#: src/components/modals/CreateSaleLinkModal/index.tsx:291
 msgid "Quantity"
 msgstr "Số lượng"
 
@@ -15596,7 +15766,7 @@ msgstr "Hoàn tiền"
 msgid "Register"
 msgstr "Đăng ký"
 
-#: src/components/layouts/Event/index.tsx:139
+#: src/components/layouts/Event/index.tsx:140
 #: src/components/routes/event/Questions/QuestionsBuilder.tsx:180
 msgid "Registration Questions"
 msgstr "Câu hỏi đăng ký"
@@ -15803,6 +15973,10 @@ msgstr "Gỡ ảnh này? Ảnh sẽ bị xóa ngay lập tức."
 msgid "Remove this time slot from the schedule?"
 msgstr "Gỡ khung giờ này khỏi lịch trình?"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:312
+msgid "Remove ticket"
+msgstr "Xóa vé"
+
 #: src/components/routes/event/OccurrencesTab/RecurrenceScheduleDrawer/index.tsx:1051
 msgid "Remove time"
 msgstr "Xóa giờ"
@@ -15879,7 +16053,7 @@ msgstr "Lặp lại"
 msgid "Report not found"
 msgstr "Không tìm thấy báo cáo"
 
-#: src/components/layouts/Event/index.tsx:120
+#: src/components/layouts/Event/index.tsx:121
 #: src/components/layouts/OrganizerLayout/index.tsx:112
 #: src/components/routes/event/Reports/index.tsx:54
 #: src/components/routes/organizer/Reports/index.tsx:55
@@ -15961,7 +16135,7 @@ msgstr "Gửi lại xác nhận"
 msgid "Resend Confirmation Email"
 msgstr "Gửi lại email xác nhận"
 
-#: src/components/layouts/Event/index.tsx:339
+#: src/components/layouts/Event/index.tsx:341
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:162
 msgid "Resend email"
 msgstr "Gửi lại email"
@@ -16192,6 +16366,8 @@ msgstr "Xem lại cài đặt bảo mật"
 msgid "Review the order, then choose how to pay"
 msgstr "Xem lại đơn hàng, sau đó chọn cách thanh toán"
 
+#: src/components/common/SaleLinkTable/index.tsx:177
+#: src/components/common/SaleLinkTable/index.tsx:188
 #: src/components/routes/settings/ApiKeys/ApiKeyRow.tsx:82
 msgid "Revoke"
 msgstr "Thu hồi"
@@ -16219,6 +16395,14 @@ msgstr "Thu hồi khóa"
 #: src/components/common/WaitlistTable/index.tsx:81
 msgid "Revoke Offer"
 msgstr "Thu hồi ưu đãi"
+
+#: src/components/common/SaleLinkTable/index.tsx:184
+msgid "Revoke this sale link?"
+msgstr "Thu hồi liên kết bán hàng này?"
+
+#: src/components/common/SaleLinkTable/index.tsx:41
+msgid "Revoked"
+msgstr "Đã thu hồi"
 
 #: src/ee/seating/components/lib/templates.ts:100
 #: src/ee/seating/components/lib/templates.ts:188
@@ -16337,6 +16521,24 @@ msgstr "Đợt giảm giá kết thúc {0}"
 #: src/ee/box-office/components/layouts/BoxOffice/CardTender.tsx:191
 msgid "Sale expired"
 msgstr "Giao dịch đã hết hạn"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:213
+msgid "Sale link"
+msgstr "Liên kết bán hàng"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:190
+#: src/components/modals/CreateSaleLinkModal/index.tsx:207
+msgid "Sale link created"
+msgstr "Đã tạo liên kết bán hàng"
+
+#: src/components/common/SaleLinkTable/index.tsx:58
+msgid "Sale link revoked"
+msgstr "Đã thu hồi liên kết bán hàng"
+
+#: src/components/layouts/Event/index.tsx:148
+#: src/components/routes/event/SaleLinks/index.tsx:30
+msgid "Sale Links"
+msgstr "Liên kết bán hàng"
 
 #: src/components/common/ProductsTable/index.tsx:99
 msgid "Sale Period"
@@ -16985,7 +17187,7 @@ msgstr "Khoảng cách ghế"
 msgid "Seated"
 msgstr "Chỗ ngồi cố định"
 
-#: src/components/layouts/Event/index.tsx:138
+#: src/components/layouts/Event/index.tsx:139
 #: src/ee/seating/components/routes/event/Seating/AttachSeatMap.tsx:40
 #: src/ee/seating/components/routes/event/Seating/index.tsx:62
 #: src/ee/seating/components/routes/event/Seating/index.tsx:67
@@ -17104,6 +17306,7 @@ msgid "Select a category"
 msgstr "Chọn danh mục"
 
 #: src/components/common/DateField/index.tsx:19
+#: src/components/modals/CreateSaleLinkModal/index.tsx:247
 msgid "Select a date"
 msgstr "Chọn ngày"
 
@@ -17286,6 +17489,10 @@ msgstr "Chỉ bán tiền mặt"
 msgid "Sell out your event."
 msgstr "Bán hết vé sự kiện của bạn."
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:343
+msgid "Sell these tickets even if the ticket is sold out or its limit has been reached."
+msgstr "Bán những vé này ngay cả khi vé đã hết hoặc đã đạt giới hạn."
+
 #: src/ee/box-office/components/routes/event/BoxOffices/index.tsx:48
 msgid "Sell tickets at the door with cash, comps, or a card reader."
 msgstr "Bán vé tại cửa bằng tiền mặt, vé mời hoặc máy đọc thẻ."
@@ -17389,6 +17596,10 @@ msgstr "Gửi email thông báo hoàn tiền"
 msgid "Send reset link"
 msgstr "Gửi liên kết đặt lại"
 
+#: src/components/routes/event/SaleLinks/index.tsx:28
+msgid "Send someone a private link to buy specific tickets at a price you choose."
+msgstr "Gửi cho ai đó một liên kết riêng để mua các vé cụ thể với mức giá bạn chọn."
+
 #: src/components/modals/SendMessageModal/index.tsx:552
 msgid "Send Test"
 msgstr "Gửi Test"
@@ -17396,6 +17607,10 @@ msgstr "Gửi Test"
 #: src/components/routes/admin/LifecycleEmails/LifecycleEmailEditor.tsx:205
 msgid "Send test to me"
 msgstr "Gửi thử cho tôi"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:209
+msgid "Send this link to the buyer. They will see the tickets and price you set, then pay through the normal checkout."
+msgstr "Gửi liên kết này cho người mua. Họ sẽ thấy vé và giá bạn đặt, rồi thanh toán qua quy trình thanh toán thông thường."
 
 #: src/components/routes/product-widget/Payment/PaymentLink/index.tsx:110
 msgid "Send this link to whoever is paying, such as your finance team. They'll see the amount due, the payment reference and how to pay, and can tell the organizer once they've paid. Your tickets aren't shown to them."
@@ -17632,7 +17847,7 @@ msgstr "Đã cập nhật cài đặt"
 msgid "Settings"
 msgstr "Cài đặt"
 
-#: src/components/layouts/Event/index.tsx:127
+#: src/components/layouts/Event/index.tsx:128
 msgid "Setup & Design"
 msgstr "Thiết lập & thiết kế"
 
@@ -17679,8 +17894,8 @@ msgstr "Chia sẻ"
 msgid "Share Affiliate Link"
 msgstr "Chia sẻ liên kết đối tác"
 
-#: src/components/layouts/Event/index.tsx:277
-#: src/components/layouts/Event/index.tsx:283
+#: src/components/layouts/Event/index.tsx:279
+#: src/components/layouts/Event/index.tsx:285
 #: src/components/modals/EventLiveCelebrationModal/index.tsx:102
 #: src/components/modals/EventLiveCelebrationModal/index.tsx:131
 msgid "Share Event"
@@ -18311,6 +18526,7 @@ msgstr "Tên giúp bạn biết khóa được dùng ở đâu, như \"Zapier\" 
 #: src/components/routes/auth/AcceptInvitation/index.tsx:61
 #: src/components/routes/product-widget/CollectInformation/index.tsx:461
 #: src/components/routes/product-widget/Payment/PaymentMethods/Stripe/index.tsx:64
+#: src/components/routes/sale-link/index.tsx:173
 msgid "Something went wrong"
 msgstr "Đã xảy ra lỗi"
 
@@ -18336,7 +18552,7 @@ msgid "Something went wrong. Please try again later."
 msgstr "Đã xảy ra lỗi. Vui lòng thử lại sau."
 
 #: src/components/common/TwoFactor/TwoFactorSetupFlow.tsx:30
-#: src/components/layouts/Event/index.tsx:102
+#: src/components/layouts/Event/index.tsx:103
 #: src/components/layouts/OrganizerLayout/index.tsx:146
 #: src/components/routes/admin/DeletionRequests/index.tsx:64
 #: src/components/routes/admin/Users/index.tsx:33
@@ -18348,6 +18564,7 @@ msgstr "Đã xảy ra lỗi. Vui lòng thử lại sau."
 #: src/components/routes/oauth/Connect/index.tsx:65
 #: src/components/routes/oauth/Connect/index.tsx:72
 #: src/components/routes/product-widget/SelectProducts/index.tsx:383
+#: src/components/routes/sale-link/index.tsx:49
 #: src/components/routes/settings/Account/DeleteAccountSection.tsx:79
 #: src/components/routes/settings/ApiKeys/ConnectedApps.tsx:30
 #: src/components/routes/settings/ApiKeys/CreateApiKeyModal.tsx:123
@@ -18706,6 +18923,7 @@ msgstr "Thống kê"
 #: src/components/common/OrdersTable/index.tsx:342
 #: src/components/common/OrganizerWebhookTable/index.tsx:244
 #: src/components/common/ProductsTable/index.tsx:100
+#: src/components/common/SaleLinkTable/index.tsx:94
 #: src/components/common/WaitlistTable/index.tsx:211
 #: src/components/common/WebhookTable/index.tsx:244
 #: src/components/forms/AffiliateForm/index.tsx:98
@@ -19232,6 +19450,10 @@ msgstr "Chi tiết thuế"
 msgid "Tax information to appear at the bottom of all invoices (e.g., VAT number, tax registration)"
 msgstr "Thông tin thuế sẽ xuất hiện ở cuối tất cả các hóa đơn (ví dụ: mã số thuế VAT, đăng ký thuế)"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:337
+msgid "Tax is added on top of the price you entered at checkout."
+msgstr "Thuế được cộng thêm vào giá bạn nhập khi thanh toán."
+
 #: src/components/routes/organizer/Reports/TaxSummaryReport/index.tsx:38
 msgid "Tax Name"
 msgstr "Tên thuế"
@@ -19269,7 +19491,11 @@ msgstr "Thuế và phí"
 msgid "Taxes and Fees"
 msgstr "Thuế và phí"
 
-#: src/components/layouts/Event/index.tsx:166
+#: src/components/routes/sale-link/index.tsx:128
+msgid "Taxes and fees, if any, are added at checkout."
+msgstr "Thuế và phí (nếu có) sẽ được cộng khi thanh toán."
+
+#: src/components/layouts/Event/index.tsx:168
 #: src/components/layouts/OrganizerLayout/index.tsx:133
 #: src/components/layouts/SettingsLayout/index.tsx:67
 #: src/components/routes/event/Team/index.tsx:13
@@ -19278,7 +19504,7 @@ msgstr "Thuế và phí"
 msgid "Team"
 msgstr "Nhóm"
 
-#: src/components/layouts/Event/index.tsx:167
+#: src/components/layouts/Event/index.tsx:169
 #: src/components/layouts/OrganizerLayout/index.tsx:134
 msgid "Team Access"
 msgstr "Quyền truy cập của nhóm"
@@ -19451,6 +19677,10 @@ msgstr "Số tiền cần thanh toán là {amount}. Vui lòng thanh toán trư�
 msgid "The attendee could not be moved"
 msgstr "Không thể chuyển người tham dự"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:426
+msgid "The buyer can't change the email at checkout."
+msgstr "Người mua không thể thay đổi email khi thanh toán."
+
 #: src/ee/box-office/components/layouts/BoxOffice/CardTender.tsx:52
 msgid "The card payment was cancelled"
 msgstr "Thanh toán thẻ đã bị hủy"
@@ -19483,6 +19713,10 @@ msgstr "Tiền tệ dùng cho giá vé của sự kiện này."
 #: src/ee/box-office/components/layouts/BoxOffice/CardTender.tsx:45
 msgid "The customer cancelled on the reader"
 msgstr "Khách hàng đã hủy trên máy đọc"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:246
+msgid "The date the tickets are for."
+msgstr "Ngày áp dụng của vé."
 
 #: src/components/routes/event/Settings/Sections/EventTypeSettings/index.tsx:55
 msgid "The date's own prices, product visibility, capacity and label will be removed. This can't be undone."
@@ -19520,6 +19754,10 @@ msgstr "Địa chỉ email đã được thay đổi. Người tham dự sẽ nh
 msgid "The event gets its own copy, so changes here never affect your other events."
 msgstr "Sự kiện có bản sao riêng, nên thay đổi ở đây không bao giờ ảnh hưởng tới các sự kiện khác của bạn."
 
+#: src/components/routes/sale-link/index.tsx:36
+msgid "The event organizer has turned this link off. Contact them if you think this is a mistake."
+msgstr "Ban tổ chức đã tắt liên kết này. Hãy liên hệ họ nếu bạn nghĩ đây là nhầm lẫn."
+
 #: src/components/layouts/EventHomepage/EventNotAvailable/index.tsx:10
 #: src/components/layouts/EventHomepage/EventNotAvailable/index.tsx:12
 msgid "The event you're looking for is not available at the moment. It may have been removed, expired, or the URL might be incorrect."
@@ -19553,6 +19791,10 @@ msgstr "Khóa giấy phép bị từ chối"
 #: src/components/routes/event/Lineup/index.tsx:356
 msgid "The lineup and schedule follow your event's colours and fonts automatically."
 msgstr "Đội hình và lịch trình tự động theo màu sắc và phông chữ của sự kiện."
+
+#: src/components/common/SaleLinkTable/index.tsx:189
+msgid "The link stops working straight away. Orders already placed with it are not affected."
+msgstr "Liên kết ngừng hoạt động ngay lập tức. Các đơn hàng đã đặt qua liên kết không bị ảnh hưởng."
 
 #: src/components/routes/product-widget/OrderSummaryAndProducts/LinkExpiredMessage/index.tsx:30
 msgid "The link you are trying to access has expired or is no longer valid. Please check your email for an updated link to manage your order."
@@ -19635,6 +19877,14 @@ msgstr "Giá hiển thị cho khách hàng sẽ bao gồm thuế và phí."
 msgid "The price displayed to the customer will not include taxes and fees. They will be shown separately"
 msgstr "Giá hiển thị cho khách hàng sẽ không bao gồm thuế và phí. Chúng sẽ được hiển thị riêng biệt."
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:336
+msgid "The price you entered is the final price. Tax is taken out of it, not added on top."
+msgstr "Giá bạn nhập là giá cuối cùng. Thuế được tính trong giá, không cộng thêm."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:382
+msgid "The promo code's discount is taken off the price you set."
+msgstr "Giảm giá của mã khuyến mãi được trừ vào giá bạn đặt."
+
 #: src/components/routes/event/Questions/AttendeeDetailsSetting.tsx:55
 msgid "The questions below are still asked once for every ticket."
 msgstr "Các câu hỏi bên dưới vẫn được hỏi một lần cho mỗi vé."
@@ -19646,6 +19896,10 @@ msgstr "Phòng chứa 20 người. Vé sớm giới hạn 5 mỗi ngày, Tiêu c
 #: src/ee/seating/components/routes/event/Seating/SeatingRulesCard.tsx:33
 msgid "The rules could not be saved"
 msgstr "Không thể lưu quy tắc"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:383
+msgid "The sale is recorded against the promo code, but the price you set is not discounted."
+msgstr "Giao dịch được ghi nhận cho mã khuyến mãi, nhưng giá bạn đặt không được giảm."
 
 #: src/ee/box-office/components/modals/BoxOfficeStatsModal/index.tsx:85
 msgid "The sales summary could not be loaded"
@@ -20067,7 +20321,7 @@ msgstr "Sự kiện này chưa công khai. Giao dịch vẫn được ghi nhận
 msgid "This event is open to healthcare professionals only."
 msgstr "Sự kiện này chỉ dành cho nhân viên y tế."
 
-#: src/components/layouts/Event/index.tsx:201
+#: src/components/layouts/Event/index.tsx:203
 msgid "This event is pending manual review and cannot be published until the review is complete."
 msgstr "Sự kiện này đang chờ xem xét thủ công và không thể được xuất bản cho đến khi quá trình xem xét hoàn tất."
 
@@ -20173,9 +20427,25 @@ msgstr "Đây thường chỉ là sự cố tạm thời. Hãy thử lại sau g
 msgid "This licence expires on {0}. Renew before then to avoid interruption."
 msgstr "Giấy phép này hết hạn vào {0}. Hãy gia hạn trước ngày đó để tránh gián đoạn."
 
+#: src/components/routes/sale-link/index.tsx:172
+msgid "This link doesn't exist"
+msgstr "Liên kết này không tồn tại"
+
+#: src/components/routes/sale-link/index.tsx:30
+msgid "This link has already been used"
+msgstr "Liên kết này đã được sử dụng"
+
+#: src/components/routes/sale-link/index.tsx:25
+msgid "This link has expired"
+msgstr "Liên kết này đã hết hạn"
+
 #: src/components/routes/my-tickets/index.tsx:179
 msgid "This link is invalid or has expired."
 msgstr "Liên kết này không hợp lệ hoặc đã hết hạn."
+
+#: src/components/routes/sale-link/index.tsx:35
+msgid "This link is no longer available"
+msgstr "Liên kết này không còn khả dụng"
 
 #: src/components/routes/product-widget/OrderSummaryAndProducts/LinkExpiredMessage/index.tsx:27
 msgid "This link is no longer valid"
@@ -20200,6 +20470,14 @@ msgstr "Tên này hiển thị cho người dùng cuối"
 #: src/components/modals/CreateAttendeeModal/index.tsx:282
 msgid "This occurrence is at capacity"
 msgstr "Ngày này đã kín chỗ"
+
+#: src/components/routes/sale-link/index.tsx:132
+msgid "This offer expires {0}."
+msgstr "Ưu đãi này hết hạn {0}."
+
+#: src/components/routes/sale-link/index.tsx:137
+msgid "This offer is reserved for {0}."
+msgstr "Ưu đãi này dành riêng cho {0}."
 
 #: src/components/forms/StripeCheckoutForm/index.tsx:136
 msgid "This order has already been paid."
@@ -20398,6 +20676,7 @@ msgstr "vé"
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:580
 #: src/components/forms/ProductForm/index.tsx:227
 #: src/components/modals/CreateAttendeeModal/index.tsx:247
+#: src/components/modals/CreateSaleLinkModal/index.tsx:265
 #: src/components/modals/ManageAttendeeModal/index.tsx:147
 #: src/components/modals/ManageAttendeeModal/index.tsx:277
 msgid "Ticket"
@@ -20416,7 +20695,7 @@ msgstr "Thiết kế vé"
 msgid "Ticket design saved successfully"
 msgstr "Thiết kế vé đã được lưu thành công"
 
-#: src/components/layouts/Event/index.tsx:137
+#: src/components/layouts/Event/index.tsx:138
 msgid "Ticket Designer"
 msgstr "Thiết kế vé"
 
@@ -20490,7 +20769,7 @@ msgstr "Loại vé"
 msgid "Ticket Type"
 msgstr "Loại vé"
 
-#: src/components/layouts/Event/index.tsx:142
+#: src/components/layouts/Event/index.tsx:143
 msgid "Ticketing & Sales"
 msgstr "Bán vé"
 
@@ -20498,11 +20777,13 @@ msgstr "Bán vé"
 msgid "tickets"
 msgstr "vé"
 
+#: src/components/common/SaleLinkTable/index.tsx:93
 #: src/components/common/WidgetEditor/CustomiseGroups.tsx:96
 #: src/components/common/WidgetEditor/SectionsPicker.tsx:28
 #: src/components/common/WidgetEditor/TypePicker.tsx:7
 #: src/components/forms/ProductForm/buildPreviewEvent.ts:139
 #: src/components/layouts/EventHomepage/index.tsx:174
+#: src/components/modals/CreateSaleLinkModal/index.tsx:253
 #: src/components/routes/admin/Dashboard/index.tsx:263
 #: src/components/routes/my-tickets/index.tsx:101
 #: src/ee/box-office/components/layouts/BoxOffice/SaleComplete.tsx:111
@@ -20510,7 +20791,7 @@ msgstr "vé"
 msgid "Tickets"
 msgstr "Vé"
 
-#: src/components/layouts/Event/index.tsx:143
+#: src/components/layouts/Event/index.tsx:144
 #: src/components/routes/event/products.tsx:68
 msgid "Tickets & Products"
 msgstr "Vé & Sản phẩm"
@@ -20568,12 +20849,25 @@ msgstr "Vé đã bán"
 msgid "tickets sold all time"
 msgstr "vé đã bán từ trước đến nay"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:351
+msgid "Tickets sold through this link don't reduce the number left for everyone else."
+msgstr "Vé bán qua liên kết này không làm giảm số vé còn lại cho người khác."
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:350
+msgid "Tickets sold through this link reduce the number left for everyone else."
+msgstr "Vé bán qua liên kết này làm giảm số vé còn lại cho người khác."
+
 #: src/components/modals/DuplicateEventModal/index.tsx:123
 msgid "Tickets, prices, taxes & fees, add-ons and seat map"
 msgstr "Vé, giá, thuế & phí, tiện ích bổ sung và sơ đồ chỗ ngồi"
 
+#: src/components/modals/CreateSaleLinkModal/index.tsx:277
+msgid "Tier"
+msgstr "Hạng giá"
+
 #: src/components/forms/ProductForm/buildPreviewEvent.ts:64
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:166
+#: src/components/modals/CreateSaleLinkModal/index.tsx:259
 msgid "Tier {0}"
 msgstr "Cấp {0}"
 
@@ -20764,6 +21058,7 @@ msgstr "tổng"
 #: src/components/modals/ManageOrderModal/index.tsx:117
 #: src/components/routes/organizer/OrganizerDashboard/index.tsx:359
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:99
+#: src/components/routes/sale-link/index.tsx:120
 #: src/ee/box-office/components/layouts/BoxOffice/tabs/OrdersTab.tsx:114
 msgid "Total"
 msgstr "Tổng"
@@ -20843,6 +21138,10 @@ msgstr "Tour tham quan"
 #: src/components/routes/admin/Attribution/index.tsx:101
 msgid "Track account growth and performance by attribution source"
 msgstr "Theo dõi sự phát triển và hiệu suất tài khoản theo nguồn phân bổ"
+
+#: src/components/modals/CreateSaleLinkModal/index.tsx:391
+msgid "Track only"
+msgstr "Chỉ theo dõi"
 
 #: src/components/common/WidgetEditor/InstallPanel.tsx:92
 msgid "Track sales in your own analytics"
@@ -21631,6 +21930,10 @@ msgstr "Dùng giá vé"
 msgid "Use your authenticator app instead"
 msgstr "Dùng ứng dụng xác thực thay thế"
 
+#: src/components/common/SaleLinkTable/index.tsx:37
+msgid "Used"
+msgstr "Đã dùng"
+
 #: src/components/routes/event/TicketDesigner/index.tsx:156
 msgid "Used for borders, highlights, and QR code styling"
 msgstr "Được sử dụng cho viền, vùng tô sáng và kiểu mã QR"
@@ -21675,6 +21978,10 @@ msgstr "Người dùng"
 #: src/components/routes/admin/Announcements/index.tsx:74
 msgid "Users ({0})"
 msgstr "Người dùng ({0})"
+
+#: src/components/common/SaleLinkTable/index.tsx:95
+msgid "Uses"
+msgstr "Lượt dùng"
 
 #: src/components/common/WidgetEditor/AppearancePanel.tsx:69
 msgid "Uses the colours and font from your homepage design, and updates when you change them."
@@ -21869,7 +22176,7 @@ msgstr "Xác thực email"
 msgid "Verify recovery code"
 msgstr "Xác minh mã khôi phục"
 
-#: src/components/layouts/Event/index.tsx:336
+#: src/components/layouts/Event/index.tsx:338
 #: src/components/routes/event/EventDashboard/SetupChecklist.tsx:156
 msgid "Verify your email"
 msgstr "Xác minh email của bạn"
@@ -22011,7 +22318,7 @@ msgstr "Xem tin nhắn"
 msgid "View on event page"
 msgstr "Xem trên trang sự kiện"
 
-#: src/components/layouts/Event/index.tsx:247
+#: src/components/layouts/Event/index.tsx:249
 #: src/components/layouts/OrganizerLayout/index.tsx:237
 msgid "View only"
 msgstr "Chỉ xem"
@@ -22146,7 +22453,7 @@ msgstr "Đang chờ Stripe xác nhận thanh toán…"
 
 #: src/components/forms/ProductForm/index.tsx:475
 #: src/components/layouts/AuthLayout/AuthShell.tsx:16
-#: src/components/layouts/Event/index.tsx:154
+#: src/components/layouts/Event/index.tsx:156
 #: src/components/routes/event/Settings/index.tsx:104
 #: src/components/routes/event/Settings/Sections/WaitlistSettings/index.tsx:55
 #: src/components/routes/event/SoldOutWaitlist/index.tsx:73
@@ -22263,6 +22570,10 @@ msgstr "Không thể tải sơ đồ chỗ ngồi. Vui lòng thử lại."
 #: src/ee/box-office/components/layouts/BoxOffice/index.tsx:82
 msgid "We couldn't load this box office"
 msgstr "Không thể tải quầy vé này"
+
+#: src/components/routes/sale-link/index.tsx:173
+msgid "We couldn't load this link. Please refresh the page to try again."
+msgstr "Không thể tải liên kết này. Vui lòng tải lại trang để thử lại."
 
 #: src/components/routes/event/Lineup/RunSheetPrint.tsx:29
 msgid "We couldn't load this run sheet. Check you have access to this event and try again."
@@ -22430,7 +22741,7 @@ msgstr "Webhook sẽ không gửi thông báo"
 msgid "Webhook will send notifications"
 msgstr "Webhook sẽ gửi thông báo"
 
-#: src/components/layouts/Event/index.tsx:165
+#: src/components/layouts/Event/index.tsx:167
 #: src/components/layouts/OrganizerLayout/index.tsx:131
 #: src/components/modals/DuplicateEventModal/index.tsx:167
 #: src/components/routes/event/Webhooks/index.tsx:67
@@ -22762,7 +23073,7 @@ msgstr "Đã tạo widget"
 msgid "Widget deleted"
 msgstr "Đã xóa widget"
 
-#: src/components/layouts/Event/index.tsx:164
+#: src/components/layouts/Event/index.tsx:166
 #: src/components/layouts/OrganizerLayout/index.tsx:123
 msgid "Widget Embed"
 msgstr "Nhúng Widget"
@@ -23009,7 +23320,7 @@ msgstr "Bạn đã thay đổi thông tin nhà cung cấp, vì vậy hãy nhập
 msgid "You confirmed it's you. Continue within a few minutes."
 msgstr "Bạn đã xác nhận danh tính. Hãy tiếp tục trong vòng vài phút."
 
-#: src/components/layouts/Event/index.tsx:230
+#: src/components/layouts/Event/index.tsx:232
 msgid "You don't have access to this event"
 msgstr "Bạn không có quyền truy cập sự kiện này"
 

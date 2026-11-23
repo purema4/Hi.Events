@@ -1359,5 +1359,17 @@
     "The Apple Wallet pass is no longer available.": "Der Apple Wallet-Pass ist nicht mehr verfügbar.",
     "Ticket for :event": "Ticket für :event",
     "Ticket number": "Ticketnummer",
-    "This tier is sold out": "Diese Preisstufe ist ausverkauft"
+    "This tier is sold out": "Diese Preisstufe ist ausverkauft",
+    "This link does not exist": "Dieser Link existiert nicht",
+    "This link is no longer available": "Dieser Link ist nicht mehr verfügbar",
+    "This link has expired": "Dieser Link ist abgelaufen",
+    "This link has already been used": "Dieser Link wurde bereits verwendet",
+    "This link is being used by someone else. Please try again in a few minutes.": "Dieser Link wird gerade von jemand anderem verwendet. Bitte versuche es in ein paar Minuten erneut.",
+    "These tickets are sold out": "Diese Tickets sind ausverkauft",
+    "This ticket was not found": "Dieses Ticket wurde nicht gefunden",
+    "Tickets with reserved seating cannot be sold through a sale link": "Tickets mit Sitzplatzreservierung können nicht über einen Verkaufslink verkauft werden",
+    "This ticket is already in the link": "Dieses Ticket ist bereits im Link enthalten",
+    "This affiliate was not found or is inactive": "Dieser Affiliate wurde nicht gefunden oder ist inaktiv",
+    "Sale link not found": "Verkaufslink nicht gefunden",
+    "This link can only be used with :email": "Dieser Link kann nur mit :email verwendet werden"
 }

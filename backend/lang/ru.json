@@ -1302,5 +1302,17 @@
     "The Apple Wallet pass is no longer available.": "Карта Apple Wallet больше недоступна.",
     "Ticket for :event": "Билет на :event",
     "Ticket number": "Номер билета",
-    "This tier is sold out": "Этот уровень распродан"
+    "This tier is sold out": "Этот уровень распродан",
+    "This link does not exist": "Эта ссылка не существует",
+    "This link is no longer available": "Эта ссылка больше недоступна",
+    "This link has expired": "Срок действия этой ссылки истёк",
+    "This link has already been used": "Эта ссылка уже использована",
+    "This link is being used by someone else. Please try again in a few minutes.": "Этой ссылкой сейчас пользуется кто-то другой. Попробуйте снова через несколько минут.",
+    "These tickets are sold out": "Эти билеты распроданы",
+    "This ticket was not found": "Билет не найден",
+    "Tickets with reserved seating cannot be sold through a sale link": "Билеты с рассадкой нельзя продавать по ссылке продажи",
+    "This ticket is already in the link": "Этот билет уже есть в ссылке",
+    "This affiliate was not found or is inactive": "Партнёр не найден или неактивен",
+    "Sale link not found": "Ссылка продажи не найдена",
+    "This link can only be used with :email": "Эту ссылку можно использовать только с :email"
 }

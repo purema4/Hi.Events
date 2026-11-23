@@ -70,7 +70,7 @@ class CancelOccurrenceAttendeesService
         $inventoryBackedAttendees = $attendees->filter(function (AttendeeDomainObject $attendee) use ($ordersById) {
             $order = $ordersById->get($attendee->getOrderId());
 
-            return $order !== null && in_array($order->getStatus(), [
+            return $order !== null && $order->getCountsTowardCapacity() && in_array($order->getStatus(), [
                 OrderStatus::COMPLETED->name,
                 OrderStatus::AWAITING_OFFLINE_PAYMENT->name,
             ], true);

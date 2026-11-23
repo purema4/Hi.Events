@@ -38,6 +38,7 @@ class OrderItemRepository extends BaseRepository implements OrderItemRepositoryI
     public function getReservedTicketQuantityForOccurrence(int $occurrenceId): int
     {
         return $this->runQuery(fn () => (int) $this->reservedItemsQuery()
+            ->where('orders.counts_toward_capacity', true)
             ->where('order_items.event_occurrence_id', $occurrenceId)
             ->where('order_items.product_type', ProductType::TICKET->name)
             ->sum('order_items.quantity'));
@@ -46,6 +47,7 @@ class OrderItemRepository extends BaseRepository implements OrderItemRepositoryI
     public function getReservedQuantitiesByPrice(array $eventIds, ?int $occurrenceId = null): array
     {
         return $this->runQuery(fn () => $this->reservedItemsQuery()
+            ->where('orders.counts_toward_capacity', true)
             ->whereIn('orders.event_id', $eventIds)
             ->when($occurrenceId !== null, fn (Builder $query) => $query->where('order_items.event_occurrence_id', $occurrenceId))
             ->groupBy('order_items.product_price_id')
@@ -357,6 +359,7 @@ class OrderItemRepository extends BaseRepository implements OrderItemRepositoryI
             ->join('orders', 'orders.id', '=', 'order_items.order_id')
             ->where('order_items.product_type', ProductType::GENERAL->name)
             ->whereIn('orders.status', [OrderStatus::COMPLETED->name, OrderStatus::AWAITING_OFFLINE_PAYMENT->name])
+            ->where('orders.counts_toward_capacity', true)
             ->whereNull('orders.deleted_at');
     }
 }

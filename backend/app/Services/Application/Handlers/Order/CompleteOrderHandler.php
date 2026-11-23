@@ -45,6 +45,7 @@ use HiEvents\Services\Application\Handlers\Order\DTO\OrderQuestionsDTO;
 use HiEvents\Services\Domain\Order\OccurrenceStatusValidator;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
 use HiEvents\Services\Domain\Question\QuestionVisibilityService;
+use HiEvents\Services\Domain\SaleLink\SaleLinkEmailLockService;
 use HiEvents\Services\Domain\Tracking\DTO\AdTrackingContextDTO;
 use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
@@ -80,6 +81,7 @@ class CompleteOrderHandler
         private readonly QuestionRepositoryInterface $questionRepository,
         private readonly QuestionVisibilityService $questionVisibilityService,
         private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
+        private readonly SaleLinkEmailLockService $saleLinkEmailLockService,
     ) {}
 
     /**
@@ -98,6 +100,8 @@ class CompleteOrderHandler
             $this->transactionLockService->lockOrder($orderShortId);
 
             $order = $this->getOrder($orderShortId);
+
+            $this->saleLinkEmailLockService->assertEmailAllowed($order, $orderDTO->email);
 
             $this->occurrenceStatusValidator->assertOrderOccurrencesArePurchasable($order);
 

@@ -370,6 +370,12 @@ use HiEvents\Http\Actions\Questions\SortQuestionsAction;
 use HiEvents\Http\Actions\Reports\ExportOrganizerReportAction;
 use HiEvents\Http\Actions\Reports\GetOrganizerReportAction;
 use HiEvents\Http\Actions\Reports\GetReportAction;
+use HiEvents\Http\Actions\SaleLinks\CreateSaleLinkAction;
+use HiEvents\Http\Actions\SaleLinks\GetSaleLinkAction;
+use HiEvents\Http\Actions\SaleLinks\GetSaleLinksAction;
+use HiEvents\Http\Actions\SaleLinks\Public\CreateSaleLinkOrderActionPublic;
+use HiEvents\Http\Actions\SaleLinks\Public\GetSaleLinkActionPublic;
+use HiEvents\Http\Actions\SaleLinks\RevokeSaleLinkAction;
 use HiEvents\Http\Actions\SelfService\EditAttendeePublicAction;
 use HiEvents\Http\Actions\SelfService\EditOrderPublicAction;
 use HiEvents\Http\Actions\SelfService\ResendAttendeeTicketPublicAction;
@@ -757,6 +763,12 @@ $router->middleware(['auth:api,sanctum'])->group(
         $router->delete('/events/{event_id}/affiliates/{affiliate_id}', DeleteAffiliateAction::class);
         $router->post('/events/{event_id}/affiliates/export', ExportAffiliatesAction::class);
 
+        // Sale links
+        $router->get('/events/{event_id}/sale-links', GetSaleLinksAction::class);
+        $router->post('/events/{event_id}/sale-links', CreateSaleLinkAction::class);
+        $router->get('/events/{event_id}/sale-links/{sale_link_id}', GetSaleLinkAction::class);
+        $router->post('/events/{event_id}/sale-links/{sale_link_id}/revoke', RevokeSaleLinkAction::class);
+
         $router->get('/events/{event_id}/widgets', GetEventWidgetsAction::class);
         $router->post('/events/{event_id}/widgets', CreateEventWidgetAction::class);
         $router->put('/events/{event_id}/widgets/{widget_id}', UpdateEventWidgetAction::class);
@@ -998,6 +1010,12 @@ $router->prefix('/public')->group(
         $router->get('/events/{event_id}/order/{order_short_id}/invoice', DownloadOrderInvoicePublicAction::class);
         $router->get('/events/{event_id}/order/{order_short_id}/wallet-passes', GetOrderWalletPassesPublicAction::class)
             ->middleware('throttle:30,1,public-wallet-passes');
+
+        // Sale links
+        $router->get('/events/{event_id}/sale-links/{sale_link_token}', GetSaleLinkActionPublic::class)
+            ->middleware('throttle:60,1,public-sale-link');
+        $router->post('/events/{event_id}/sale-links/{sale_link_token}/order', CreateSaleLinkOrderActionPublic::class)
+            ->middleware('throttle:10,1,public-sale-link-order');
 
         // Attendees
         $router->get('/events/{event_id}/attendees/{attendee_short_id}', GetAttendeeActionPublic::class);

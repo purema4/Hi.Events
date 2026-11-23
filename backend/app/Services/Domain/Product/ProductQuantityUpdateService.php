@@ -78,6 +78,10 @@ class ProductQuantityUpdateService
                 throw new OrderHasNoItemsException(__('Order has no order items'));
             }
 
+            if (! $order->getCountsTowardCapacity()) {
+                return;
+            }
+
             $this->updateProductQuantities($order);
         });
     }

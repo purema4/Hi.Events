@@ -1508,5 +1508,17 @@
     "This was sent less than :minutes minutes ago. Wait before sending it again.": "Toto bylo odesláno před méně než :minutes minutami. Před dalším odesláním počkejte.",
     "Only completed orders have a confirmation to resend.": "Potvrzení lze znovu odeslat jen u dokončených objednávek.",
     "That email address has already been sent :count emails in the last :minutes minutes. Wait before sending more.": "Na tuto e-mailovou adresu už bylo za posledních :minutes minut odesláno :count e-mailů. Před dalším odesláním počkejte.",
-    "This tier is sold out": "Tato úroveň je vyprodaná"
+    "This tier is sold out": "Tato úroveň je vyprodaná",
+    "This link does not exist": "Tento odkaz neexistuje",
+    "This link is no longer available": "Tento odkaz již není k dispozici",
+    "This link has expired": "Platnost tohoto odkazu vypršela",
+    "This link has already been used": "Tento odkaz již byl použit",
+    "This link is being used by someone else. Please try again in a few minutes.": "Tento odkaz právě používá někdo jiný. Zkuste to znovu za několik minut.",
+    "These tickets are sold out": "Tyto vstupenky jsou vyprodané",
+    "This ticket was not found": "Tato vstupenka nebyla nalezena",
+    "Tickets with reserved seating cannot be sold through a sale link": "Vstupenky s rezervovaným místem nelze prodávat přes prodejní odkaz",
+    "This ticket is already in the link": "Tato vstupenka už v odkazu je",
+    "This affiliate was not found or is inactive": "Tento affiliate nebyl nalezen nebo je neaktivní",
+    "Sale link not found": "Prodejní odkaz nebyl nalezen",
+    "This link can only be used with :email": "Tento odkaz lze použít pouze s :email"
 }

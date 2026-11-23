@@ -41,7 +41,7 @@ class McpServerTest extends TestCase
 
         $tools = $this->mcp($apiKey, 'tools/list')->assertOk()->json('result.tools');
 
-        $this->assertCount(52, $tools);
+        $this->assertCount(53, $tools);
 
         foreach ($tools as $tool) {
             $this->assertLessThanOrEqual(64, strlen($tool['name']));

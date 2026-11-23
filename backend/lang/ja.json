@@ -1507,5 +1507,17 @@
     "This was sent less than :minutes minutes ago. Wait before sending it again.": "これは :minutes 分以内に送信されています。再送信する前にお待ちください。",
     "Only completed orders have a confirmation to resend.": "再送信できる確認メールがあるのは完了した注文のみです。",
     "That email address has already been sent :count emails in the last :minutes minutes. Wait before sending more.": "このメールアドレスには過去 :minutes 分間にすでに :count 件のメールが送信されています。さらに送信する前にお待ちください。",
-    "This tier is sold out": "この価格帯は完売しました"
+    "This tier is sold out": "この価格帯は完売しました",
+    "This link does not exist": "このリンクは存在しません",
+    "This link is no longer available": "このリンクは現在利用できません",
+    "This link has expired": "このリンクの有効期限が切れています",
+    "This link has already been used": "このリンクはすでに使用されています",
+    "This link is being used by someone else. Please try again in a few minutes.": "このリンクは他の人が使用中です。数分後にもう一度お試しください。",
+    "These tickets are sold out": "これらのチケットは売り切れです",
+    "This ticket was not found": "チケットが見つかりません",
+    "Tickets with reserved seating cannot be sold through a sale link": "座席指定のチケットは販売リンクで販売できません",
+    "This ticket is already in the link": "このチケットはすでにリンクに含まれています",
+    "This affiliate was not found or is inactive": "アフィリエイトが見つからないか、無効です",
+    "Sale link not found": "販売リンクが見つかりません",
+    "This link can only be used with :email": "このリンクは :email でのみ使用できます"
 }
