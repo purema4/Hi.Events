@@ -259,6 +259,24 @@ class OpenPreSaleWaitlistsJobTest extends TestCase
         $this->assertSame(['first@example.com' => $tierOne], $this->offeredPriceByEmail());
     }
 
+    public function test_with_earlier_tiers_kept_closed_returned_tickets_are_not_offered(): void
+    {
+        [$tierOne, , $tierThree] = $this->insertTieredProduct(saleStartsAt: now()->subDay(), tiers: [[5, 5], [5, 5], [10, 2]]);
+        DB::table('products')->where('id', $this->productIdOf($tierOne))->update(['keep_earlier_tiers_closed' => true]);
+        $this->joinWaitlist($tierOne, 'first@example.com')->assertCreated();
+
+        DB::table('product_prices')->where('id', $tierOne)->update(['quantity_sold' => 1]);
+        event(new CapacityChangedEvent(
+            eventId: $this->eventId,
+            direction: CapacityChangeDirection::INCREASED,
+            productId: $this->productIdOf($tierOne),
+            productPriceId: $tierOne,
+            eventOccurrenceId: $this->occurrenceId,
+        ));
+
+        $this->assertSame(['first@example.com' => $tierThree], $this->offeredPriceByEmail());
+    }
+
     /**
      * @param  array<int, array{0: int, 1: int, 2?: DateTimeInterface}>  $tiers
      * @return array<int, int>

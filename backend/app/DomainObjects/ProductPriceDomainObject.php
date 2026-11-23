@@ -29,6 +29,8 @@ class ProductPriceDomainObject extends Generated\ProductPriceDomainObjectAbstrac
 
     private bool $isLockedBehindEarlierTier = false;
 
+    private bool $isClosedByLaterTierSales = false;
+
     /**
      * @var array<string, float>|null
      */
@@ -125,6 +127,10 @@ class ProductPriceDomainObject extends Generated\ProductPriceDomainObjectAbstrac
 
     public function isSoldOut(): bool
     {
+        if ($this->isClosedByLaterTierSales) {
+            return true;
+        }
+
         if ($this->getQuantityAvailable() < 0) {
             throw new LogicException('Quantity available cannot be less than 0');
         }
@@ -142,7 +148,7 @@ class ProductPriceDomainObject extends Generated\ProductPriceDomainObjectAbstrac
 
     public function isOnHold(): bool
     {
-        if ($this->quantityReserved <= 0 || ! $this->isSoldOut()) {
+        if ($this->quantityReserved <= 0 || $this->isClosedByLaterTierSales || ! $this->isSoldOut()) {
             return false;
         }
 
@@ -180,6 +186,18 @@ class ProductPriceDomainObject extends Generated\ProductPriceDomainObjectAbstrac
     public function isLockedBehindEarlierTier(): bool
     {
         return $this->isLockedBehindEarlierTier;
+    }
+
+    public function isClosedByLaterTierSales(): bool
+    {
+        return $this->isClosedByLaterTierSales;
+    }
+
+    public function setIsClosedByLaterTierSales(bool $isClosed): self
+    {
+        $this->isClosedByLaterTierSales = $isClosed;
+
+        return $this;
     }
 
     public function setIsLockedBehindEarlierTier(bool $isLocked): self

@@ -1068,7 +1068,7 @@ msgstr "Hitelkártyás fizetések elfogadása a Stripe-pal"
 #: src/components/common/TeamAccessFields/index.tsx:205
 #: src/components/common/TeamAccessFields/index.tsx:207
 #: src/components/common/TeamAccessPanel/index.tsx:137
-#: src/components/forms/ProductForm/index.tsx:610
+#: src/components/forms/ProductForm/index.tsx:619
 #: src/components/routes/oauth/Connect/index.tsx:117
 #: src/components/routes/settings/ApiKeys/CreateApiKeyModal.tsx:237
 #: src/components/routes/settings/Team/index.tsx:218
@@ -1659,11 +1659,11 @@ msgstr "Adja hozzá közösségi média hivatkozásait és weboldalának URL-jé
 msgid "Add-on only"
 msgstr "Csak kiegészítőként"
 
-#: src/components/forms/ProductForm/index.tsx:566
+#: src/components/forms/ProductForm/index.tsx:575
 msgid "Add-on products"
 msgstr "Kiegészítő termékek"
 
-#: src/components/forms/ProductForm/index.tsx:547
+#: src/components/forms/ProductForm/index.tsx:556
 #: src/components/routes/product-widget/SelectProducts/index.tsx:520
 msgid "Add-ons"
 msgstr "Kiegészítők"
@@ -2042,11 +2042,11 @@ msgstr "Engedélyezi a résztvevőknek, hogy frissítsék jegyinformációikat (
 msgid "Allow buyers to copy their details to all attendees"
 msgstr "A vásárlók átmásolhatják adataikat az összes résztvevőhöz"
 
-#: src/components/forms/ProductForm/index.tsx:474
+#: src/components/forms/ProductForm/index.tsx:483
 msgid "Allow customers to join a waitlist when this product is sold out or before its sales open"
 msgstr "A vásárlók feliratkozhatnak a várólistára, ha a termék elfogyott, vagy az értékesítés kezdete előtt"
 
-#: src/components/forms/ProductForm/index.tsx:473
+#: src/components/forms/ProductForm/index.tsx:482
 msgid "Allow customers to join a waitlist when this product is sold out or before its sales open. Customers join the waitlist for a specific date."
 msgstr "A vásárlók feliratkozhatnak a várólistára, ha a termék elfogyott, vagy az értékesítés kezdete előtt. A vásárlók egy adott időpont várólistájára iratkoznak fel."
 
@@ -2209,7 +2209,7 @@ msgstr "A(z) {0} egyik eleméből hiányzik a név"
 msgid "An optional description of this category to display on the event page."
 msgstr "A kategória opcionális leírása, amely az esemény oldalán jelenik meg."
 
-#: src/components/forms/ProductForm/index.tsx:600
+#: src/components/forms/ProductForm/index.tsx:609
 msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
 msgstr "Opcionális üzenet a kiemelt termék megjelenítéséhez, pl. \"Gyorsan fogy 🔥\" vagy \"Legjobb ár\""
 
@@ -3230,8 +3230,8 @@ msgstr "Alapár"
 msgid "Based on {0}. This event keeps its own copy."
 msgstr "A(z) {0} alapján. Ez az esemény saját másolatot őriz meg."
 
-#: src/components/forms/ProductForm/index.tsx:438
-#: src/components/forms/ProductForm/index.tsx:441
+#: src/components/forms/ProductForm/index.tsx:447
+#: src/components/forms/ProductForm/index.tsx:450
 msgid "Based on the global sale period above, not per date"
 msgstr "A fenti általános értékesítési időszak alapján, nem időpontonként"
 
@@ -3509,7 +3509,7 @@ msgstr "Vásárló adatai"
 msgid "Buyer pays"
 msgstr "A vevő fizet"
 
-#: src/components/forms/ProductForm/index.tsx:576
+#: src/components/forms/ProductForm/index.tsx:585
 msgid "Buyers can add these to their order when they select this product at checkout."
 msgstr "A vásárlók a fizetéskor hozzáadhatják ezeket a megrendelésükhöz, ha kiválasztják ezt a terméket."
 
@@ -4693,7 +4693,7 @@ msgstr "Beillesztendő kód"
 msgid "Collaborate with your team to create amazing events together."
 msgstr "Kollaboráljon csapatával, hogy csodálatos eseményeket hozzanak létre együtt."
 
-#: src/components/forms/ProductForm/index.tsx:458
+#: src/components/forms/ProductForm/index.tsx:467
 msgid "Collapse this product when the event page is initially loaded"
 msgstr "Összecsukja ezt a terméket, amikor az eseményoldal kezdetben betöltődik"
 
@@ -5770,7 +5770,7 @@ msgstr "Díj létrehozása"
 msgid "Create key"
 msgstr "Kulcs létrehozása"
 
-#: src/components/forms/ProductForm/index.tsx:573
+#: src/components/forms/ProductForm/index.tsx:582
 msgid "Create more tickets or products to offer them as add-ons"
 msgstr "Hozzon létre további jegyeket vagy termékeket, hogy kiegészítőként kínálhassa őket"
 
@@ -5797,7 +5797,7 @@ msgstr "Szervező létrehozása"
 msgid "Create payment link"
 msgstr "Fizetési link létrehozása"
 
-#: src/components/modals/CreateProductModal/index.tsx:92
+#: src/components/modals/CreateProductModal/index.tsx:93
 msgid "Create Product"
 msgstr "Termék létrehozása"
 
@@ -5828,7 +5828,7 @@ msgstr "Ülésterv létrehozása"
 msgid "Create tax"
 msgstr "Adó létrehozása"
 
-#: src/components/forms/ProductForm/index.tsx:509
+#: src/components/forms/ProductForm/index.tsx:518
 msgid "Create Tax or Fee"
 msgstr "Adó vagy díj létrehozása"
 
@@ -5836,7 +5836,7 @@ msgstr "Adó vagy díj létrehozása"
 msgid "Create the profile first, then add photos here."
 msgstr "Először hozza létre a profilt, majd itt adjon hozzá fotókat."
 
-#: src/components/modals/CreateProductModal/index.tsx:89
+#: src/components/modals/CreateProductModal/index.tsx:90
 msgid "Create Ticket or Product"
 msgstr "Jegy vagy termék létrehozása"
 
@@ -6568,8 +6568,8 @@ msgstr "Mélység"
 
 #: src/components/common/WidgetEditor/SectionsPicker.tsx:32
 #: src/components/forms/ProductCategoryForm/index.tsx:29
-#: src/components/forms/ProductForm/index.tsx:401
-#: src/components/forms/ProductForm/index.tsx:407
+#: src/components/forms/ProductForm/index.tsx:410
+#: src/components/forms/ProductForm/index.tsx:416
 #: src/components/forms/QuestionForm/index.tsx:123
 #: src/components/forms/TaxAndFeeForm/index.tsx:106
 #: src/components/modals/CreateEventModal/index.tsx:351
@@ -6808,6 +6808,10 @@ msgstr "Nincs fiókja? <0>Regisztráljon</0>"
 msgid "Don't let buyers leave a single empty seat"
 msgstr "Ne engedje, hogy a vásárlók egyetlen üres széket hagyjanak"
 
+#: src/components/forms/ProductForm/index.tsx:394
+msgid "Don't reopen earlier tiers"
+msgstr "Korábbi árszintek ne nyíljanak meg újra"
+
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:469
 #: src/components/forms/ProductForm/index.tsx:297
 #: src/utilites/eventListingLabels.ts:22
@@ -6996,8 +7000,8 @@ msgstr "Esemény másolása"
 msgid "Duplicate Event"
 msgstr "Esemény másolása"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:131
-#: src/components/modals/DuplicateProductModal/index.tsx:135
+#: src/components/modals/DuplicateProductModal/index.tsx:133
+#: src/components/modals/DuplicateProductModal/index.tsx:137
 msgid "Duplicate Product"
 msgstr "Termék másolása"
 
@@ -7268,8 +7272,8 @@ msgstr "Tag szerkesztése"
 msgid "Edit Order Details"
 msgstr "Rendelés részleteinek szerkesztése"
 
-#: src/components/modals/EditProductModal/index.tsx:115
-#: src/components/modals/EditProductModal/index.tsx:119
+#: src/components/modals/EditProductModal/index.tsx:117
+#: src/components/modals/EditProductModal/index.tsx:121
 msgid "Edit Product"
 msgstr "Termék szerkesztése"
 
@@ -7573,7 +7577,7 @@ msgstr "Engedélyezze ezt a kapacitást, hogy leállítsa a termékértékesít�
 msgid "Enable this template for sending emails"
 msgstr "Sablon engedélyezése e-mailek küldéséhez"
 
-#: src/components/forms/ProductForm/index.tsx:476
+#: src/components/forms/ProductForm/index.tsx:485
 msgid "Enable Waitlist"
 msgstr "Várólista engedélyezése"
 
@@ -8218,7 +8222,7 @@ msgstr "Mindenki, aki kezelheti ezt a szervezőt és az összes eseményét."
 msgid "Everyone who can see or manage this event."
 msgstr "Mindenki, aki láthatja vagy kezelheti ezt az eseményt."
 
-#: src/components/forms/ProductForm/index.tsx:396
+#: src/components/forms/ProductForm/index.tsx:405
 msgid "Everything else — tap to edit"
 msgstr "Minden más – koppintson a szerkesztéshez"
 
@@ -8812,7 +8816,7 @@ msgstr "Díj frissítve"
 
 #: src/components/common/InlineOrderSummary/index.tsx:164
 #: src/components/common/OrdersTable/index.tsx:292
-#: src/components/forms/ProductForm/index.tsx:497
+#: src/components/forms/ProductForm/index.tsx:506
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
@@ -9728,19 +9732,19 @@ msgstr "Hi.Events arculat elrejtése"
 msgid "Hide Preview"
 msgstr "Előnézet elrejtése"
 
-#: src/components/forms/ProductForm/index.tsx:440
+#: src/components/forms/ProductForm/index.tsx:449
 msgid "Hide product after sale end date"
 msgstr "Termék elrejtése az értékesítés befejezési dátuma után"
 
-#: src/components/forms/ProductForm/index.tsx:437
+#: src/components/forms/ProductForm/index.tsx:446
 msgid "Hide product before sale start date"
 msgstr "Termék elrejtése az értékesítés kezdési dátuma előtt"
 
-#: src/components/forms/ProductForm/index.tsx:622
+#: src/components/forms/ProductForm/index.tsx:631
 msgid "Hide product unless user has applicable promo code"
 msgstr "Termék elrejtése, kivéve, ha a felhasználónak van érvényes promóciós kódja"
 
-#: src/components/forms/ProductForm/index.tsx:456
+#: src/components/forms/ProductForm/index.tsx:465
 msgid "Hide product when sold out"
 msgstr "Termék elrejtése, ha elfogyott"
 
@@ -9760,7 +9764,7 @@ msgstr "Dátum elrejtése"
 msgid "Hide this category?"
 msgstr "Elrejti ezt a kategóriát?"
 
-#: src/components/forms/ProductForm/index.tsx:627
+#: src/components/forms/ProductForm/index.tsx:636
 msgid "Hide this product from customers"
 msgstr "Termék elrejtése az ügyfelek elől"
 
@@ -9776,15 +9780,15 @@ msgstr "Elrejti az elfogyottakat"
 msgid "Hiding a product will prevent users from seeing it on the event page."
 msgstr "Egy termék elrejtése megakadályozza, hogy a felhasználók lássák azt az eseményoldalon."
 
-#: src/components/forms/ProductForm/index.tsx:585
+#: src/components/forms/ProductForm/index.tsx:594
 msgid "Highlight"
 msgstr "Kiemelés"
 
-#: src/components/forms/ProductForm/index.tsx:599
+#: src/components/forms/ProductForm/index.tsx:608
 msgid "Highlight Message"
 msgstr "Kiemelt üzenet"
 
-#: src/components/forms/ProductForm/index.tsx:592
+#: src/components/forms/ProductForm/index.tsx:601
 msgid "Highlight this product"
 msgstr "Termék kiemelése"
 
@@ -9793,7 +9797,7 @@ msgstr "Termék kiemelése"
 msgid "Highlighted"
 msgstr "Kiemelt"
 
-#: src/components/forms/ProductForm/index.tsx:593
+#: src/components/forms/ProductForm/index.tsx:602
 msgid "Highlighted products will have a different background color to make them stand out on the event page."
 msgstr "A kiemelt termékek eltérő háttérszínnel jelennek meg, hogy kiemelkedjenek az esemény oldalán."
 
@@ -10824,7 +10828,7 @@ msgstr "Kifizetetlen rendelések vendégeinek beléptetése"
 msgid "Let someone else pay for an order"
 msgstr "Más is kifizetheti a rendelést"
 
-#: src/components/forms/ProductForm/index.tsx:539
+#: src/components/forms/ProductForm/index.tsx:548
 msgid "Let the last order go over the limit"
 msgstr "Az utolsó rendelés túllépheti a limitet"
 
@@ -11371,7 +11375,7 @@ msgstr "Max címzettek / üzenet"
 msgid "Maximum {cap} per order"
 msgstr "Legfeljebb {cap} rendelésenként"
 
-#: src/components/forms/ProductForm/index.tsx:534
+#: src/components/forms/ProductForm/index.tsx:543
 msgid "Maximum Per Order"
 msgstr "Maximum megrendelésenként"
 
@@ -11514,7 +11518,7 @@ msgstr "Félemeleti állóhely"
 msgid "Min {min} per order"
 msgstr "Min. {min} megrendelésenként"
 
-#: src/components/forms/ProductForm/index.tsx:532
+#: src/components/forms/ProductForm/index.tsx:541
 msgid "Minimum Per Order"
 msgstr "Minimum megrendelésenként"
 
@@ -13067,7 +13071,7 @@ msgstr "Értékesítésben {0}"
 msgid "on the {position} {day}"
 msgstr "a(z) {position} {day} napján"
 
-#: src/components/forms/ProductForm/index.tsx:447
+#: src/components/forms/ProductForm/index.tsx:456
 msgid "On the event page"
 msgstr "Az esemény oldalán"
 
@@ -13094,6 +13098,10 @@ msgstr "Telefonon van? Megnyitás a hitelesítő alkalmazásban"
 #: src/components/forms/QuestionForm/index.tsx:207
 msgid "Once per order"
 msgstr "Megrendelésenként egyszer"
+
+#: src/components/forms/ProductForm/index.tsx:395
+msgid "Once someone buys a later tier, earlier tiers stay sold out, even if tickets are refunded or unpaid holds expire. Buyers never see a cheaper price come back after paying more."
+msgstr "Amint valaki egy későbbi árszintet vásárol, a korábbiak elfogyottak maradnak, akkor is, ha jegyeket visszatérítenek vagy lejárnak a ki nem fizetett foglalások. A vásárlók sosem látják visszatérni az olcsóbb árat, miután többet fizettek."
 
 #: src/components/common/NoEventsBlankSlate/index.tsx:19
 msgid "Once you create an event, you'll see it here."
@@ -13208,7 +13216,7 @@ msgstr "Ezeket a beállításokat csak a fiók adminisztrátorai módosíthatjá
 msgid "Only admins can manage team access."
 msgstr "Csak adminisztrátorok kezelhetik a csapat hozzáférését."
 
-#: src/components/forms/ProductForm/index.tsx:560
+#: src/components/forms/ProductForm/index.tsx:569
 msgid "Only available as an add-on"
 msgstr "Csak kiegészítőként érhető el"
 
@@ -13544,7 +13552,7 @@ msgstr "Rendelés tulajdonosok"
 msgid "Order ID"
 msgstr "Rendelésszám"
 
-#: src/components/forms/ProductForm/index.tsx:526
+#: src/components/forms/ProductForm/index.tsx:535
 msgid "Order limits"
 msgstr "Megrendelési korlátok"
 
@@ -15063,7 +15071,7 @@ msgstr "Promóciós kód"
 msgid "Promo code only"
 msgstr "Csak promóciós kóddal"
 
-#: src/components/forms/ProductForm/index.tsx:620
+#: src/components/forms/ProductForm/index.tsx:629
 msgid "Promo Code page"
 msgstr "Promóciós kód oldal"
 
@@ -16308,7 +16316,7 @@ msgstr "Eladás"
 msgid "Sale complete"
 msgstr "Eladás kész"
 
-#: src/components/forms/ProductForm/index.tsx:433
+#: src/components/forms/ProductForm/index.tsx:442
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:196
 msgid "Sale End Date"
 msgstr "Értékesítés befejezési dátuma"
@@ -16334,11 +16342,11 @@ msgstr "Az eladás lejárt"
 msgid "Sale Period"
 msgstr "Értékesítési időszak"
 
-#: src/components/forms/ProductForm/index.tsx:424
+#: src/components/forms/ProductForm/index.tsx:433
 msgid "Sale period dates apply across all dates in your schedule. To adjust prices, per-date quantities or availability for individual dates, use the overrides on the <0>Occurrence Schedule page</0>."
 msgstr "Az értékesítési időszak dátumai az ütemterv összes dátumára vonatkoznak. Az egyes dátumok árainak, dátumonkénti mennyiségeinek vagy elérhetőségének módosításához használja a felülbírálásokat a <0>Dátumütemterv oldalon</0>."
 
-#: src/components/forms/ProductForm/index.tsx:431
+#: src/components/forms/ProductForm/index.tsx:440
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:192
 msgid "Sale Start Date"
 msgstr "Értékesítés kezdési dátuma"
@@ -16347,7 +16355,7 @@ msgstr "Értékesítés kezdési dátuma"
 msgid "Sale starts {0}"
 msgstr "Értékesítés kezdete {0}"
 
-#: src/components/forms/ProductForm/index.tsx:417
+#: src/components/forms/ProductForm/index.tsx:426
 msgid "Sale window"
 msgstr "Értékesítési időszak"
 
@@ -17189,7 +17197,7 @@ msgstr "Terméksor kiválasztása"
 msgid "Select products"
 msgstr "Termékek kiválasztása"
 
-#: src/components/forms/ProductForm/index.tsx:567
+#: src/components/forms/ProductForm/index.tsx:576
 msgid "Select products..."
 msgstr "Termékek kiválasztása..."
 
@@ -17229,7 +17237,7 @@ msgstr "Válassza ki, mely résztvevők kapják meg ezt az üzenetet"
 msgid "Select which events will trigger this webhook"
 msgstr "Válassza ki, mely események indítják el ezt a webhookot."
 
-#: src/components/forms/ProductForm/index.tsx:492
+#: src/components/forms/ProductForm/index.tsx:501
 msgid "Select..."
 msgstr "Válasszon..."
 
@@ -17306,7 +17314,7 @@ msgstr "Eladóként"
 msgid "Selling as {signedInName}"
 msgstr "Eladás mint {signedInName}"
 
-#: src/components/forms/ProductForm/index.tsx:601
+#: src/components/forms/ProductForm/index.tsx:610
 msgid "Selling fast 🔥"
 msgstr "Gyorsan fogy 🔥"
 
@@ -17740,7 +17748,7 @@ msgstr "Megjelenítés fizetéskor"
 msgid "Show attendee notes to non-logged-in staff"
 msgstr "Résztvevői megjegyzések mutatása a be nem jelentkezett személyzetnek"
 
-#: src/components/forms/ProductForm/index.tsx:454
+#: src/components/forms/ProductForm/index.tsx:463
 msgid "Show available product quantity"
 msgstr "Elérhető termékmennyiség megjelenítése"
 
@@ -18921,7 +18929,7 @@ msgstr "E-mail cím módosítás sikeresen megerősítve"
 msgid "Successfully created attendee"
 msgstr "Résztvevő sikeresen létrehozva"
 
-#: src/components/modals/CreateProductModal/index.tsx:62
+#: src/components/modals/CreateProductModal/index.tsx:63
 msgid "Successfully Created Product"
 msgstr "Termék sikeresen létrehozva"
 
@@ -18929,7 +18937,7 @@ msgstr "Termék sikeresen létrehozva"
 msgid "Successfully Created Promo Code"
 msgstr "Promóciós kód sikeresen létrehozva"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:115
+#: src/components/modals/DuplicateProductModal/index.tsx:117
 msgid "Successfully Duplicated Product"
 msgstr "Termék sikeresen másolva"
 
@@ -19014,7 +19022,7 @@ msgstr "Platformdíj alapértékek sikeresen frissítve"
 msgid "Successfully Updated Platform Fee Settings"
 msgstr "Platformdíj beállítások sikeresen frissítve"
 
-#: src/components/modals/EditProductModal/index.tsx:104
+#: src/components/modals/EditProductModal/index.tsx:106
 msgid "Successfully updated product"
 msgstr "Termék sikeresen frissítve"
 
@@ -19238,13 +19246,13 @@ msgid "Tax updated"
 msgstr "Adó frissítve"
 
 #: src/components/common/InlineOrderSummary/index.tsx:195
-#: src/components/forms/ProductForm/index.tsx:494
+#: src/components/forms/ProductForm/index.tsx:503
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:48
 #: src/components/routes/settings/TaxesAndFees/index.tsx:123
 msgid "Taxes"
 msgstr "Adók"
 
-#: src/components/forms/ProductForm/index.tsx:484
+#: src/components/forms/ProductForm/index.tsx:493
 msgid "Taxes & fees"
 msgstr "Adók és díjak"
 
@@ -19257,7 +19265,7 @@ msgstr "Adók és díjak alkalmazva"
 msgid "Taxes and fees"
 msgstr "Adók és díjak"
 
-#: src/components/forms/ProductForm/index.tsx:491
+#: src/components/forms/ProductForm/index.tsx:500
 msgid "Taxes and Fees"
 msgstr "Adók és díjak"
 
@@ -20241,7 +20249,7 @@ msgstr "Ez a szervező"
 msgid "This organizer profile is not published yet"
 msgstr "Ez a szervezői profil még nem került közzétételre."
 
-#: src/components/forms/ProductForm/index.tsx:625
+#: src/components/forms/ProductForm/index.tsx:634
 msgid "This overrides all visibility settings and will hide the product from all customers."
 msgstr "Ez felülírja az összes láthatósági beállítást, és elrejti a terméket minden ügyfél elől."
 
@@ -20265,7 +20273,7 @@ msgstr "Ez a termék kiemelten szerepel az esemény oldalán"
 msgid "This product is sold out"
 msgstr "Ez a termék elfogyott"
 
-#: src/components/forms/ProductForm/index.tsx:561
+#: src/components/forms/ProductForm/index.tsx:570
 msgid "This product won't appear on the event page on its own — buyers only see it as an add-on to the products it's attached to."
 msgstr "Ez a termék önmagában nem jelenik meg az esemény oldalán – a vásárlók csak azoknak a termékeknek a kiegészítőjeként látják, amelyekhez hozzá van rendelve."
 
@@ -21104,7 +21112,7 @@ msgstr "Nem sikerült kijelentkezni a résztvevőnek."
 msgid "Unable to complete sale"
 msgstr "Nem sikerült befejezni az eladást"
 
-#: src/components/modals/CreateProductModal/index.tsx:71
+#: src/components/modals/CreateProductModal/index.tsx:72
 msgid "Unable to create product. Please check the your details"
 msgstr "Nem sikerült létrehozni a terméket. Kérjük, ellenőrizze adatait."
 
@@ -21116,7 +21124,7 @@ msgstr "Nem sikerült létrehozni a terméket. Kérjük, ellenőrizze adatait."
 msgid "Unable to delete the widget"
 msgstr "Nem sikerült törölni a widgetet"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:123
+#: src/components/modals/DuplicateProductModal/index.tsx:125
 msgid "Unable to duplicate product. Please check the your details"
 msgstr "Nem sikerült másolni a terméket. Kérjük, ellenőrizze adatait."
 
@@ -22136,7 +22144,7 @@ msgstr "Beolvasásra vár…"
 msgid "Waiting for Stripe to confirm your payment…"
 msgstr "Várakozás a Stripe fizetési visszaigazolására…"
 
-#: src/components/forms/ProductForm/index.tsx:466
+#: src/components/forms/ProductForm/index.tsx:475
 #: src/components/layouts/AuthLayout/AuthShell.tsx:16
 #: src/components/layouts/Event/index.tsx:154
 #: src/components/routes/event/Settings/index.tsx:104
@@ -22608,7 +22616,7 @@ msgstr "Amikor egy esemény archiválásra kerül"
 msgid "When an event is updated"
 msgstr "Amikor egy esemény frissül"
 
-#: src/components/forms/ProductForm/index.tsx:540
+#: src/components/forms/ProductForm/index.tsx:549
 msgid "When an order asks for more than remain, it goes through as long as at least one is left. The product, or the current tier, then sells out and the next tier opens. Shared capacity limits still apply."
 msgstr "Ha egy rendelés többet kér, mint amennyi maradt, akkor is teljesül, amíg legalább egy megmaradt. Ezután a termék vagy az aktuális szint elfogy, és megnyílik a következő szint. A közös kapacitáskorlátok továbbra is érvényesek."
 
@@ -22862,7 +22870,7 @@ msgstr "Igen - Van érvényes EU ÁFA regisztrációs számom"
 msgid "Yes, cancel my order"
 msgstr "Igen, rendelés törlése"
 
-#: src/components/forms/ProductForm/index.tsx:518
+#: src/components/forms/ProductForm/index.tsx:527
 msgid "Yes, remove them"
 msgstr "Igen, távolítsa el őket."
 
@@ -22944,7 +22952,7 @@ msgstr "Rendelésenként legfeljebb {max} széket választhat"
 msgid "You can configure additional service fees and taxes in your account settings."
 msgstr "További szolgáltatási díjakat és adókat konfigurálhat a fiókbeállításokban."
 
-#: src/components/forms/ProductForm/index.tsx:617
+#: src/components/forms/ProductForm/index.tsx:626
 msgid "You can create a promo code which targets this product on the"
 msgstr "Létrehozhat egy promóciós kódot, amely ezt a terméket célozza meg a"
 
@@ -23033,7 +23041,7 @@ msgstr "Elérte az üzenetküldési korlátot."
 msgid "You have run out of time to complete your order."
 msgstr "Kifutott az időből a megrendelés befejezéséhez."
 
-#: src/components/forms/ProductForm/index.tsx:516
+#: src/components/forms/ProductForm/index.tsx:525
 msgid "You have taxes and fees added to a Free Product. Would you like to remove them?"
 msgstr "Adók és díjak vannak hozzáadva egy ingyenes termékhez. Szeretné eltávolítani őket?"
 

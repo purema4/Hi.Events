@@ -1068,7 +1068,7 @@ msgstr "Stripe로 신용카드 결제를 받습니다"
 #: src/components/common/TeamAccessFields/index.tsx:205
 #: src/components/common/TeamAccessFields/index.tsx:207
 #: src/components/common/TeamAccessPanel/index.tsx:137
-#: src/components/forms/ProductForm/index.tsx:610
+#: src/components/forms/ProductForm/index.tsx:619
 #: src/components/routes/oauth/Connect/index.tsx:117
 #: src/components/routes/settings/ApiKeys/CreateApiKeyModal.tsx:237
 #: src/components/routes/settings/Team/index.tsx:218
@@ -1659,11 +1659,11 @@ msgstr "소셜 미디어 계정과 웹사이트 URL을 추가하세요. 공개 �
 msgid "Add-on only"
 msgstr "추가 옵션 전용"
 
-#: src/components/forms/ProductForm/index.tsx:566
+#: src/components/forms/ProductForm/index.tsx:575
 msgid "Add-on products"
 msgstr "추가 옵션 상품"
 
-#: src/components/forms/ProductForm/index.tsx:547
+#: src/components/forms/ProductForm/index.tsx:556
 #: src/components/routes/product-widget/SelectProducts/index.tsx:520
 msgid "Add-ons"
 msgstr "추가 옵션"
@@ -2042,11 +2042,11 @@ msgstr "참가자가 주문 확인서와 함께 전송된 보안 링크를 통�
 msgid "Allow buyers to copy their details to all attendees"
 msgstr "구매자가 자신의 정보를 모든 참가자에게 복사할 수 있도록 허용"
 
-#: src/components/forms/ProductForm/index.tsx:474
+#: src/components/forms/ProductForm/index.tsx:483
 msgid "Allow customers to join a waitlist when this product is sold out or before its sales open"
 msgstr "이 상품이 매진되었거나 판매 시작 전에 고객이 대기자 명단에 등록할 수 있도록 허용"
 
-#: src/components/forms/ProductForm/index.tsx:473
+#: src/components/forms/ProductForm/index.tsx:482
 msgid "Allow customers to join a waitlist when this product is sold out or before its sales open. Customers join the waitlist for a specific date."
 msgstr "이 상품이 매진되었거나 판매 시작 전에 고객이 대기자 명단에 등록할 수 있도록 허용합니다. 고객은 특정 날짜의 대기자 명단에 등록합니다."
 
@@ -2209,7 +2209,7 @@ msgstr "{0}의 항목 중 이름이 없는 것이 있습니다"
 msgid "An optional description of this category to display on the event page."
 msgstr "이벤트 페이지에 표시할 이 카테고리의 선택적 설명입니다."
 
-#: src/components/forms/ProductForm/index.tsx:600
+#: src/components/forms/ProductForm/index.tsx:609
 msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
 msgstr "강조 표시된 상품에 표시할 선택적 메시지입니다. 예: \"빠르게 판매 중 🔥\" 또는 \"최고의 가치\""
 
@@ -3230,8 +3230,8 @@ msgstr "기본 가격"
 msgid "Based on {0}. This event keeps its own copy."
 msgstr "{0}을(를) 기반으로 합니다. 이 행사는 자체 사본을 유지합니다."
 
-#: src/components/forms/ProductForm/index.tsx:438
-#: src/components/forms/ProductForm/index.tsx:441
+#: src/components/forms/ProductForm/index.tsx:447
+#: src/components/forms/ProductForm/index.tsx:450
 msgid "Based on the global sale period above, not per date"
 msgstr "날짜별이 아닌 위의 전체 판매 기간 기준"
 
@@ -3509,7 +3509,7 @@ msgstr "구매자 정보"
 msgid "Buyer pays"
 msgstr "구매자 부담"
 
-#: src/components/forms/ProductForm/index.tsx:576
+#: src/components/forms/ProductForm/index.tsx:585
 msgid "Buyers can add these to their order when they select this product at checkout."
 msgstr "구매자가 결제 시 이 상품을 선택하면 이 항목을 주문에 추가할 수 있습니다."
 
@@ -4693,7 +4693,7 @@ msgstr "붙여넣을 코드"
 msgid "Collaborate with your team to create amazing events together."
 msgstr "팀과 협업하여 함께 멋진 이벤트를 만드세요."
 
-#: src/components/forms/ProductForm/index.tsx:458
+#: src/components/forms/ProductForm/index.tsx:467
 msgid "Collapse this product when the event page is initially loaded"
 msgstr "이벤트 페이지가 처음 로드될 때 이 상품을 접기"
 
@@ -5770,7 +5770,7 @@ msgstr "수수료 생성"
 msgid "Create key"
 msgstr "키 만들기"
 
-#: src/components/forms/ProductForm/index.tsx:573
+#: src/components/forms/ProductForm/index.tsx:582
 msgid "Create more tickets or products to offer them as add-ons"
 msgstr "추가 옵션으로 제공하려면 티켓이나 상품을 더 생성하세요"
 
@@ -5797,7 +5797,7 @@ msgstr "주최자 생성"
 msgid "Create payment link"
 msgstr "결제 링크 만들기"
 
-#: src/components/modals/CreateProductModal/index.tsx:92
+#: src/components/modals/CreateProductModal/index.tsx:93
 msgid "Create Product"
 msgstr "상품 생성"
 
@@ -5828,7 +5828,7 @@ msgstr "좌석 배치도 만들기"
 msgid "Create tax"
 msgstr "세금 생성"
 
-#: src/components/forms/ProductForm/index.tsx:509
+#: src/components/forms/ProductForm/index.tsx:518
 msgid "Create Tax or Fee"
 msgstr "세금 또는 수수료 생성"
 
@@ -5836,7 +5836,7 @@ msgstr "세금 또는 수수료 생성"
 msgid "Create the profile first, then add photos here."
 msgstr "먼저 프로필을 만든 후 여기에서 사진을 추가하세요."
 
-#: src/components/modals/CreateProductModal/index.tsx:89
+#: src/components/modals/CreateProductModal/index.tsx:90
 msgid "Create Ticket or Product"
 msgstr "티켓 또는 상품 생성"
 
@@ -6568,8 +6568,8 @@ msgstr "깊이"
 
 #: src/components/common/WidgetEditor/SectionsPicker.tsx:32
 #: src/components/forms/ProductCategoryForm/index.tsx:29
-#: src/components/forms/ProductForm/index.tsx:401
-#: src/components/forms/ProductForm/index.tsx:407
+#: src/components/forms/ProductForm/index.tsx:410
+#: src/components/forms/ProductForm/index.tsx:416
 #: src/components/forms/QuestionForm/index.tsx:123
 #: src/components/forms/TaxAndFeeForm/index.tsx:106
 #: src/components/modals/CreateEventModal/index.tsx:351
@@ -6808,6 +6808,10 @@ msgstr "계정이 없으신가요? <0>회원가입</0>"
 msgid "Don't let buyers leave a single empty seat"
 msgstr "구매자가 좌석 하나만 비워두지 않도록 하세요"
 
+#: src/components/forms/ProductForm/index.tsx:394
+msgid "Don't reopen earlier tiers"
+msgstr "이전 단계 다시 열지 않기"
+
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:469
 #: src/components/forms/ProductForm/index.tsx:297
 #: src/utilites/eventListingLabels.ts:22
@@ -6996,8 +7000,8 @@ msgstr "이벤트 복제"
 msgid "Duplicate Event"
 msgstr "이벤트 복제"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:131
-#: src/components/modals/DuplicateProductModal/index.tsx:135
+#: src/components/modals/DuplicateProductModal/index.tsx:133
+#: src/components/modals/DuplicateProductModal/index.tsx:137
 msgid "Duplicate Product"
 msgstr "상품 복제"
 
@@ -7268,8 +7272,8 @@ msgstr "멤버 편집"
 msgid "Edit Order Details"
 msgstr "주문 정보 수정"
 
-#: src/components/modals/EditProductModal/index.tsx:115
-#: src/components/modals/EditProductModal/index.tsx:119
+#: src/components/modals/EditProductModal/index.tsx:117
+#: src/components/modals/EditProductModal/index.tsx:121
 msgid "Edit Product"
 msgstr "상품 수정"
 
@@ -7573,7 +7577,7 @@ msgstr "이 정원을 활성화하면 한도에 도달했을 때 상품 판매�
 msgid "Enable this template for sending emails"
 msgstr "이메일 발송에 이 템플릿 사용"
 
-#: src/components/forms/ProductForm/index.tsx:476
+#: src/components/forms/ProductForm/index.tsx:485
 msgid "Enable Waitlist"
 msgstr "대기자 명단 활성화"
 
@@ -8218,7 +8222,7 @@ msgstr "이 주최자와 모든 이벤트를 관리할 수 있는 사람."
 msgid "Everyone who can see or manage this event."
 msgstr "이 이벤트를 보거나 관리할 수 있는 사람."
 
-#: src/components/forms/ProductForm/index.tsx:396
+#: src/components/forms/ProductForm/index.tsx:405
 msgid "Everything else — tap to edit"
 msgstr "나머지 항목 — 탭하여 편집"
 
@@ -8812,7 +8816,7 @@ msgstr "수수료가 업데이트되었습니다"
 
 #: src/components/common/InlineOrderSummary/index.tsx:164
 #: src/components/common/OrdersTable/index.tsx:292
-#: src/components/forms/ProductForm/index.tsx:497
+#: src/components/forms/ProductForm/index.tsx:506
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
@@ -9728,19 +9732,19 @@ msgstr "Hi.Events 브랜딩 숨기기"
 msgid "Hide Preview"
 msgstr "미리보기 숨기기"
 
-#: src/components/forms/ProductForm/index.tsx:440
+#: src/components/forms/ProductForm/index.tsx:449
 msgid "Hide product after sale end date"
 msgstr "판매 종료일 이후 상품 숨기기"
 
-#: src/components/forms/ProductForm/index.tsx:437
+#: src/components/forms/ProductForm/index.tsx:446
 msgid "Hide product before sale start date"
 msgstr "판매 시작일 이전 상품 숨기기"
 
-#: src/components/forms/ProductForm/index.tsx:622
+#: src/components/forms/ProductForm/index.tsx:631
 msgid "Hide product unless user has applicable promo code"
 msgstr "해당 프로모션 코드가 없으면 상품 숨기기"
 
-#: src/components/forms/ProductForm/index.tsx:456
+#: src/components/forms/ProductForm/index.tsx:465
 msgid "Hide product when sold out"
 msgstr "매진 시 상품 숨기기"
 
@@ -9760,7 +9764,7 @@ msgstr "날짜 숨기기"
 msgid "Hide this category?"
 msgstr "이 카테고리를 숨기시겠습니까?"
 
-#: src/components/forms/ProductForm/index.tsx:627
+#: src/components/forms/ProductForm/index.tsx:636
 msgid "Hide this product from customers"
 msgstr "고객에게 이 상품 숨기기"
 
@@ -9776,15 +9780,15 @@ msgstr "매진 숨김"
 msgid "Hiding a product will prevent users from seeing it on the event page."
 msgstr "상품을 숨기면 사용자가 이벤트 페이지에서 볼 수 없습니다."
 
-#: src/components/forms/ProductForm/index.tsx:585
+#: src/components/forms/ProductForm/index.tsx:594
 msgid "Highlight"
 msgstr "강조"
 
-#: src/components/forms/ProductForm/index.tsx:599
+#: src/components/forms/ProductForm/index.tsx:608
 msgid "Highlight Message"
 msgstr "강조 메시지"
 
-#: src/components/forms/ProductForm/index.tsx:592
+#: src/components/forms/ProductForm/index.tsx:601
 msgid "Highlight this product"
 msgstr "이 상품 강조하기"
 
@@ -9793,7 +9797,7 @@ msgstr "이 상품 강조하기"
 msgid "Highlighted"
 msgstr "강조됨"
 
-#: src/components/forms/ProductForm/index.tsx:593
+#: src/components/forms/ProductForm/index.tsx:602
 msgid "Highlighted products will have a different background color to make them stand out on the event page."
 msgstr "강조된 상품은 배경색이 달라져 이벤트 페이지에서 눈에 띕니다."
 
@@ -10824,7 +10828,7 @@ msgstr "미결제 주문 게스트의 체크인 허용"
 msgid "Let someone else pay for an order"
 msgstr "다른 사람이 주문을 결제하도록 허용"
 
-#: src/components/forms/ProductForm/index.tsx:539
+#: src/components/forms/ProductForm/index.tsx:548
 msgid "Let the last order go over the limit"
 msgstr "마지막 주문이 한도를 초과하도록 허용"
 
@@ -11371,7 +11375,7 @@ msgstr "최대 수신자 수 / 메시지"
 msgid "Maximum {cap} per order"
 msgstr "주문당 최대 {cap}개"
 
-#: src/components/forms/ProductForm/index.tsx:534
+#: src/components/forms/ProductForm/index.tsx:543
 msgid "Maximum Per Order"
 msgstr "주문당 최대 수량"
 
@@ -11514,7 +11518,7 @@ msgstr "메자닌 스탠딩"
 msgid "Min {min} per order"
 msgstr "주문당 최소 {min}개"
 
-#: src/components/forms/ProductForm/index.tsx:532
+#: src/components/forms/ProductForm/index.tsx:541
 msgid "Minimum Per Order"
 msgstr "주문당 최소 수량"
 
@@ -13067,7 +13071,7 @@ msgstr "{0} 판매 중"
 msgid "on the {position} {day}"
 msgstr "{position} {day}"
 
-#: src/components/forms/ProductForm/index.tsx:447
+#: src/components/forms/ProductForm/index.tsx:456
 msgid "On the event page"
 msgstr "이벤트 페이지에서"
 
@@ -13094,6 +13098,10 @@ msgstr "휴대폰에서 보고 계신가요? 인증 앱에서 열기"
 #: src/components/forms/QuestionForm/index.tsx:207
 msgid "Once per order"
 msgstr "주문당 한 번"
+
+#: src/components/forms/ProductForm/index.tsx:395
+msgid "Once someone buys a later tier, earlier tiers stay sold out, even if tickets are refunded or unpaid holds expire. Buyers never see a cheaper price come back after paying more."
+msgstr "누군가 이후 단계를 구매하면, 티켓이 환불되거나 미결제 보류가 만료되더라도 이전 단계는 매진 상태로 유지됩니다. 더 비싸게 구매한 후에 더 저렴한 가격이 다시 나타나지 않습니다."
 
 #: src/components/common/NoEventsBlankSlate/index.tsx:19
 msgid "Once you create an event, you'll see it here."
@@ -13208,7 +13216,7 @@ msgstr "계정 관리자만 이 설정을 변경할 수 있습니다."
 msgid "Only admins can manage team access."
 msgstr "관리자만 팀 접근 권한을 관리할 수 있습니다."
 
-#: src/components/forms/ProductForm/index.tsx:560
+#: src/components/forms/ProductForm/index.tsx:569
 msgid "Only available as an add-on"
 msgstr "추가 상품으로만 이용 가능"
 
@@ -13544,7 +13552,7 @@ msgstr "주문자"
 msgid "Order ID"
 msgstr "주문 ID"
 
-#: src/components/forms/ProductForm/index.tsx:526
+#: src/components/forms/ProductForm/index.tsx:535
 msgid "Order limits"
 msgstr "주문 제한"
 
@@ -15063,7 +15071,7 @@ msgstr "프로모션 코드"
 msgid "Promo code only"
 msgstr "프로모션 코드 전용"
 
-#: src/components/forms/ProductForm/index.tsx:620
+#: src/components/forms/ProductForm/index.tsx:629
 msgid "Promo Code page"
 msgstr "프로모션 코드 페이지"
 
@@ -16308,7 +16316,7 @@ msgstr "판매"
 msgid "Sale complete"
 msgstr "판매 완료"
 
-#: src/components/forms/ProductForm/index.tsx:433
+#: src/components/forms/ProductForm/index.tsx:442
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:196
 msgid "Sale End Date"
 msgstr "판매 종료일"
@@ -16334,11 +16342,11 @@ msgstr "판매가 만료되었습니다"
 msgid "Sale Period"
 msgstr "판매 기간"
 
-#: src/components/forms/ProductForm/index.tsx:424
+#: src/components/forms/ProductForm/index.tsx:433
 msgid "Sale period dates apply across all dates in your schedule. To adjust prices, per-date quantities or availability for individual dates, use the overrides on the <0>Occurrence Schedule page</0>."
 msgstr "판매 기간은 일정의 모든 날짜에 적용됩니다. 개별 날짜의 가격, 날짜별 수량 또는 판매 여부를 조정하려면 <0>회차 일정 페이지</0>의 재정의 기능을 사용하세요."
 
-#: src/components/forms/ProductForm/index.tsx:431
+#: src/components/forms/ProductForm/index.tsx:440
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:192
 msgid "Sale Start Date"
 msgstr "판매 시작일"
@@ -16347,7 +16355,7 @@ msgstr "판매 시작일"
 msgid "Sale starts {0}"
 msgstr "판매 시작: {0}"
 
-#: src/components/forms/ProductForm/index.tsx:417
+#: src/components/forms/ProductForm/index.tsx:426
 msgid "Sale window"
 msgstr "판매 기간"
 
@@ -17189,7 +17197,7 @@ msgstr "상품 등급 선택"
 msgid "Select products"
 msgstr "상품 선택"
 
-#: src/components/forms/ProductForm/index.tsx:567
+#: src/components/forms/ProductForm/index.tsx:576
 msgid "Select products..."
 msgstr "상품 선택..."
 
@@ -17229,7 +17237,7 @@ msgstr "이 메시지를 받을 참가자를 선택하세요"
 msgid "Select which events will trigger this webhook"
 msgstr "이 웹훅을 트리거할 이벤트를 선택하세요"
 
-#: src/components/forms/ProductForm/index.tsx:492
+#: src/components/forms/ProductForm/index.tsx:501
 msgid "Select..."
 msgstr "선택..."
 
@@ -17306,7 +17314,7 @@ msgstr "판매자"
 msgid "Selling as {signedInName}"
 msgstr "{signedInName}(으)로 판매 중"
 
-#: src/components/forms/ProductForm/index.tsx:601
+#: src/components/forms/ProductForm/index.tsx:610
 msgid "Selling fast 🔥"
 msgstr "빠르게 판매 중 🔥"
 
@@ -17740,7 +17748,7 @@ msgstr "결제 시 표시"
 msgid "Show attendee notes to non-logged-in staff"
 msgstr "로그인하지 않은 스태프에게 참가자 메모 표시"
 
-#: src/components/forms/ProductForm/index.tsx:454
+#: src/components/forms/ProductForm/index.tsx:463
 msgid "Show available product quantity"
 msgstr "이용 가능한 상품 수량 표시"
 
@@ -18921,7 +18929,7 @@ msgstr "이메일 변경이 성공적으로 확인되었습니다"
 msgid "Successfully created attendee"
 msgstr "참가자가 성공적으로 생성되었습니다"
 
-#: src/components/modals/CreateProductModal/index.tsx:62
+#: src/components/modals/CreateProductModal/index.tsx:63
 msgid "Successfully Created Product"
 msgstr "상품이 성공적으로 생성되었습니다"
 
@@ -18929,7 +18937,7 @@ msgstr "상품이 성공적으로 생성되었습니다"
 msgid "Successfully Created Promo Code"
 msgstr "프로모션 코드가 성공적으로 생성되었습니다"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:115
+#: src/components/modals/DuplicateProductModal/index.tsx:117
 msgid "Successfully Duplicated Product"
 msgstr "상품이 성공적으로 복제되었습니다"
 
@@ -19014,7 +19022,7 @@ msgstr "플랫폼 수수료 기본값이 성공적으로 수정되었습니다"
 msgid "Successfully Updated Platform Fee Settings"
 msgstr "플랫폼 수수료 설정이 성공적으로 수정되었습니다"
 
-#: src/components/modals/EditProductModal/index.tsx:104
+#: src/components/modals/EditProductModal/index.tsx:106
 msgid "Successfully updated product"
 msgstr "상품이 성공적으로 수정되었습니다"
 
@@ -19238,13 +19246,13 @@ msgid "Tax updated"
 msgstr "세금이 업데이트되었습니다"
 
 #: src/components/common/InlineOrderSummary/index.tsx:195
-#: src/components/forms/ProductForm/index.tsx:494
+#: src/components/forms/ProductForm/index.tsx:503
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:48
 #: src/components/routes/settings/TaxesAndFees/index.tsx:123
 msgid "Taxes"
 msgstr "세금"
 
-#: src/components/forms/ProductForm/index.tsx:484
+#: src/components/forms/ProductForm/index.tsx:493
 msgid "Taxes & fees"
 msgstr "세금 및 수수료"
 
@@ -19257,7 +19265,7 @@ msgstr "세금 및 수수료 적용됨"
 msgid "Taxes and fees"
 msgstr "세금 및 수수료"
 
-#: src/components/forms/ProductForm/index.tsx:491
+#: src/components/forms/ProductForm/index.tsx:500
 msgid "Taxes and Fees"
 msgstr "세금 및 수수료"
 
@@ -20241,7 +20249,7 @@ msgstr "이 주최자"
 msgid "This organizer profile is not published yet"
 msgstr "이 주최자 프로필은 아직 게시되지 않았습니다"
 
-#: src/components/forms/ProductForm/index.tsx:625
+#: src/components/forms/ProductForm/index.tsx:634
 msgid "This overrides all visibility settings and will hide the product from all customers."
 msgstr "이 설정은 모든 노출 설정을 재정의하며 모든 고객에게 상품을 숨깁니다."
 
@@ -20265,7 +20273,7 @@ msgstr "이 상품은 이벤트 페이지에서 강조 표시됩니다"
 msgid "This product is sold out"
 msgstr "이 상품은 매진되었습니다"
 
-#: src/components/forms/ProductForm/index.tsx:561
+#: src/components/forms/ProductForm/index.tsx:570
 msgid "This product won't appear on the event page on its own — buyers only see it as an add-on to the products it's attached to."
 msgstr "이 상품은 이벤트 페이지에 단독으로 표시되지 않습니다. 구매자는 연결된 상품의 추가 옵션으로만 볼 수 있습니다."
 
@@ -21104,7 +21112,7 @@ msgstr "참가자를 체크아웃할 수 없습니다"
 msgid "Unable to complete sale"
 msgstr "판매를 완료할 수 없습니다"
 
-#: src/components/modals/CreateProductModal/index.tsx:71
+#: src/components/modals/CreateProductModal/index.tsx:72
 msgid "Unable to create product. Please check the your details"
 msgstr "상품을 생성할 수 없습니다. 입력 정보를 확인해 주세요"
 
@@ -21116,7 +21124,7 @@ msgstr "상품을 생성할 수 없습니다. 입력 정보를 확인해 주세�
 msgid "Unable to delete the widget"
 msgstr "위젯을 삭제할 수 없습니다"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:123
+#: src/components/modals/DuplicateProductModal/index.tsx:125
 msgid "Unable to duplicate product. Please check the your details"
 msgstr "상품을 복제할 수 없습니다. 입력 정보를 확인해 주세요"
 
@@ -22136,7 +22144,7 @@ msgstr "스캔 대기 중…"
 msgid "Waiting for Stripe to confirm your payment…"
 msgstr "Stripe의 결제 확인을 기다리는 중…"
 
-#: src/components/forms/ProductForm/index.tsx:466
+#: src/components/forms/ProductForm/index.tsx:475
 #: src/components/layouts/AuthLayout/AuthShell.tsx:16
 #: src/components/layouts/Event/index.tsx:154
 #: src/components/routes/event/Settings/index.tsx:104
@@ -22608,7 +22616,7 @@ msgstr "이벤트가 보관되면"
 msgid "When an event is updated"
 msgstr "이벤트가 수정되면"
 
-#: src/components/forms/ProductForm/index.tsx:540
+#: src/components/forms/ProductForm/index.tsx:549
 msgid "When an order asks for more than remain, it goes through as long as at least one is left. The product, or the current tier, then sells out and the next tier opens. Shared capacity limits still apply."
 msgstr "주문 수량이 남은 수량보다 많더라도 최소 하나가 남아 있으면 주문이 처리됩니다. 이후 해당 상품 또는 현재 티어는 매진되고 다음 티어가 열립니다. 공유 수용 인원 한도는 계속 적용됩니다."
 
@@ -22862,7 +22870,7 @@ msgstr "예 - 유효한 EU 부가가치세 등록 번호가 있습니다"
 msgid "Yes, cancel my order"
 msgstr "예, 주문을 취소합니다"
 
-#: src/components/forms/ProductForm/index.tsx:518
+#: src/components/forms/ProductForm/index.tsx:527
 msgid "Yes, remove them"
 msgstr "예, 제거합니다"
 
@@ -22944,7 +22952,7 @@ msgstr "주문당 최대 {max}개의 좌석을 선택할 수 있습니다"
 msgid "You can configure additional service fees and taxes in your account settings."
 msgstr "계정 설정에서 추가 서비스 수수료와 세금을 설정할 수 있습니다."
 
-#: src/components/forms/ProductForm/index.tsx:617
+#: src/components/forms/ProductForm/index.tsx:626
 msgid "You can create a promo code which targets this product on the"
 msgstr "다음에서 이 상품을 대상으로 하는 프로모션 코드를 생성할 수 있습니다"
 
@@ -23033,7 +23041,7 @@ msgstr "메시지 한도에 도달했습니다."
 msgid "You have run out of time to complete your order."
 msgstr "주문을 완료할 시간이 초과되었습니다."
 
-#: src/components/forms/ProductForm/index.tsx:516
+#: src/components/forms/ProductForm/index.tsx:525
 msgid "You have taxes and fees added to a Free Product. Would you like to remove them?"
 msgstr "무료 상품에 세금과 수수료가 추가되어 있습니다. 제거하시겠습니까?"
 

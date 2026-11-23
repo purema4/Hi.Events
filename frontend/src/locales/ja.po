@@ -1068,7 +1068,7 @@ msgstr "Stripeでクレジットカード決済を受け付ける"
 #: src/components/common/TeamAccessFields/index.tsx:205
 #: src/components/common/TeamAccessFields/index.tsx:207
 #: src/components/common/TeamAccessPanel/index.tsx:137
-#: src/components/forms/ProductForm/index.tsx:610
+#: src/components/forms/ProductForm/index.tsx:619
 #: src/components/routes/oauth/Connect/index.tsx:117
 #: src/components/routes/settings/ApiKeys/CreateApiKeyModal.tsx:237
 #: src/components/routes/settings/Team/index.tsx:218
@@ -1659,11 +1659,11 @@ msgstr "ソーシャルメディアのアカウントとウェブサイトのURL
 msgid "Add-on only"
 msgstr "アドオン専用"
 
-#: src/components/forms/ProductForm/index.tsx:566
+#: src/components/forms/ProductForm/index.tsx:575
 msgid "Add-on products"
 msgstr "アドオン商品"
 
-#: src/components/forms/ProductForm/index.tsx:547
+#: src/components/forms/ProductForm/index.tsx:556
 #: src/components/routes/product-widget/SelectProducts/index.tsx:520
 msgid "Add-ons"
 msgstr "アドオン"
@@ -2042,11 +2042,11 @@ msgstr "注文確認メールで送信される安全なリンクから、参加
 msgid "Allow buyers to copy their details to all attendees"
 msgstr "購入者が自分の情報をすべての参加者にコピーできるようにする"
 
-#: src/components/forms/ProductForm/index.tsx:474
+#: src/components/forms/ProductForm/index.tsx:483
 msgid "Allow customers to join a waitlist when this product is sold out or before its sales open"
 msgstr "この商品が売り切れのとき、または販売開始前に、顧客がキャンセル待ちに登録できるようにする"
 
-#: src/components/forms/ProductForm/index.tsx:473
+#: src/components/forms/ProductForm/index.tsx:482
 msgid "Allow customers to join a waitlist when this product is sold out or before its sales open. Customers join the waitlist for a specific date."
 msgstr "この商品が売り切れのとき、または販売開始前に、顧客がキャンセル待ちに登録できるようにする。顧客は特定の日付のキャンセル待ちに登録します。"
 
@@ -2209,7 +2209,7 @@ msgstr "{0}内の項目に名前がありません"
 msgid "An optional description of this category to display on the event page."
 msgstr "イベントページに表示するこのカテゴリーの任意の説明。"
 
-#: src/components/forms/ProductForm/index.tsx:600
+#: src/components/forms/ProductForm/index.tsx:609
 msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
 msgstr "ハイライトされた商品に表示する任意のメッセージ。例：\"もうすぐ完売 🔥\" や \"一番お得\""
 
@@ -3230,8 +3230,8 @@ msgstr "基本価格"
 msgid "Based on {0}. This event keeps its own copy."
 msgstr "{0}に基づいています。このイベントは独自のコピーを保持します。"
 
-#: src/components/forms/ProductForm/index.tsx:438
-#: src/components/forms/ProductForm/index.tsx:441
+#: src/components/forms/ProductForm/index.tsx:447
+#: src/components/forms/ProductForm/index.tsx:450
 msgid "Based on the global sale period above, not per date"
 msgstr "日付ごとではなく、上記の全体の販売期間に基づきます"
 
@@ -3509,7 +3509,7 @@ msgstr "購入者情報"
 msgid "Buyer pays"
 msgstr "購入者が負担"
 
-#: src/components/forms/ProductForm/index.tsx:576
+#: src/components/forms/ProductForm/index.tsx:585
 msgid "Buyers can add these to their order when they select this product at checkout."
 msgstr "購入者は、チェックアウト時にこの商品を選択する際、これらを注文に追加できます。"
 
@@ -4693,7 +4693,7 @@ msgstr "貼り付けるコード"
 msgid "Collaborate with your team to create amazing events together."
 msgstr "チームと協力して、素晴らしいイベントを一緒に作りましょう。"
 
-#: src/components/forms/ProductForm/index.tsx:458
+#: src/components/forms/ProductForm/index.tsx:467
 msgid "Collapse this product when the event page is initially loaded"
 msgstr "イベントページの初回読み込み時に、この商品を折りたたむ"
 
@@ -5770,7 +5770,7 @@ msgstr "手数料を作成"
 msgid "Create key"
 msgstr "キーを作成"
 
-#: src/components/forms/ProductForm/index.tsx:573
+#: src/components/forms/ProductForm/index.tsx:582
 msgid "Create more tickets or products to offer them as add-ons"
 msgstr "アドオンとして提供するチケットや商品をさらに作成します"
 
@@ -5797,7 +5797,7 @@ msgstr "主催者を作成"
 msgid "Create payment link"
 msgstr "支払いリンクを作成"
 
-#: src/components/modals/CreateProductModal/index.tsx:92
+#: src/components/modals/CreateProductModal/index.tsx:93
 msgid "Create Product"
 msgstr "商品を作成"
 
@@ -5828,7 +5828,7 @@ msgstr "座席マップを作成"
 msgid "Create tax"
 msgstr "税金を作成"
 
-#: src/components/forms/ProductForm/index.tsx:509
+#: src/components/forms/ProductForm/index.tsx:518
 msgid "Create Tax or Fee"
 msgstr "税金または手数料を作成"
 
@@ -5836,7 +5836,7 @@ msgstr "税金または手数料を作成"
 msgid "Create the profile first, then add photos here."
 msgstr "先にプロフィールを作成してから、ここで写真を追加してください。"
 
-#: src/components/modals/CreateProductModal/index.tsx:89
+#: src/components/modals/CreateProductModal/index.tsx:90
 msgid "Create Ticket or Product"
 msgstr "チケットまたは商品を作成"
 
@@ -6568,8 +6568,8 @@ msgstr "奥行き"
 
 #: src/components/common/WidgetEditor/SectionsPicker.tsx:32
 #: src/components/forms/ProductCategoryForm/index.tsx:29
-#: src/components/forms/ProductForm/index.tsx:401
-#: src/components/forms/ProductForm/index.tsx:407
+#: src/components/forms/ProductForm/index.tsx:410
+#: src/components/forms/ProductForm/index.tsx:416
 #: src/components/forms/QuestionForm/index.tsx:123
 #: src/components/forms/TaxAndFeeForm/index.tsx:106
 #: src/components/modals/CreateEventModal/index.tsx:351
@@ -6808,6 +6808,10 @@ msgstr "アカウントをお持ちでない場合は、<0>新規登録</0>"
 msgid "Don't let buyers leave a single empty seat"
 msgstr "購入者が1席だけ空席を残さないようにする"
 
+#: src/components/forms/ProductForm/index.tsx:394
+msgid "Don't reopen earlier tiers"
+msgstr "前の価格帯を再開しない"
+
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:469
 #: src/components/forms/ProductForm/index.tsx:297
 #: src/utilites/eventListingLabels.ts:22
@@ -6996,8 +7000,8 @@ msgstr "イベントを複製"
 msgid "Duplicate Event"
 msgstr "イベントを複製"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:131
-#: src/components/modals/DuplicateProductModal/index.tsx:135
+#: src/components/modals/DuplicateProductModal/index.tsx:133
+#: src/components/modals/DuplicateProductModal/index.tsx:137
 msgid "Duplicate Product"
 msgstr "商品を複製"
 
@@ -7268,8 +7272,8 @@ msgstr "メンバーを編集"
 msgid "Edit Order Details"
 msgstr "注文の詳細を編集"
 
-#: src/components/modals/EditProductModal/index.tsx:115
-#: src/components/modals/EditProductModal/index.tsx:119
+#: src/components/modals/EditProductModal/index.tsx:117
+#: src/components/modals/EditProductModal/index.tsx:121
 msgid "Edit Product"
 msgstr "商品を編集"
 
@@ -7573,7 +7577,7 @@ msgstr "この定員を有効にすると、上限に達した時点で商品の
 msgid "Enable this template for sending emails"
 msgstr "このテンプレートをメール送信に有効にする"
 
-#: src/components/forms/ProductForm/index.tsx:476
+#: src/components/forms/ProductForm/index.tsx:485
 msgid "Enable Waitlist"
 msgstr "キャンセル待ちを有効にする"
 
@@ -8218,7 +8222,7 @@ msgstr "この主催者とそのすべてのイベントを管理できるメン
 msgid "Everyone who can see or manage this event."
 msgstr "このイベントを閲覧または管理できるメンバー。"
 
-#: src/components/forms/ProductForm/index.tsx:396
+#: src/components/forms/ProductForm/index.tsx:405
 msgid "Everything else — tap to edit"
 msgstr "その他すべて — タップして編集"
 
@@ -8812,7 +8816,7 @@ msgstr "手数料を更新しました"
 
 #: src/components/common/InlineOrderSummary/index.tsx:164
 #: src/components/common/OrdersTable/index.tsx:292
-#: src/components/forms/ProductForm/index.tsx:497
+#: src/components/forms/ProductForm/index.tsx:506
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
@@ -9728,19 +9732,19 @@ msgstr "Hi.Eventsのブランド表示を非表示"
 msgid "Hide Preview"
 msgstr "プレビューを非表示"
 
-#: src/components/forms/ProductForm/index.tsx:440
+#: src/components/forms/ProductForm/index.tsx:449
 msgid "Hide product after sale end date"
 msgstr "販売終了日以降は商品を非表示にする"
 
-#: src/components/forms/ProductForm/index.tsx:437
+#: src/components/forms/ProductForm/index.tsx:446
 msgid "Hide product before sale start date"
 msgstr "販売開始日より前は商品を非表示にする"
 
-#: src/components/forms/ProductForm/index.tsx:622
+#: src/components/forms/ProductForm/index.tsx:631
 msgid "Hide product unless user has applicable promo code"
 msgstr "該当するプロモーションコードがない限り商品を非表示にする"
 
-#: src/components/forms/ProductForm/index.tsx:456
+#: src/components/forms/ProductForm/index.tsx:465
 msgid "Hide product when sold out"
 msgstr "完売時は商品を非表示にする"
 
@@ -9760,7 +9764,7 @@ msgstr "日付を非表示にする"
 msgid "Hide this category?"
 msgstr "このカテゴリーを非表示にしますか？"
 
-#: src/components/forms/ProductForm/index.tsx:627
+#: src/components/forms/ProductForm/index.tsx:636
 msgid "Hide this product from customers"
 msgstr "この商品をお客様に非表示にする"
 
@@ -9776,15 +9780,15 @@ msgstr "完売分を非表示"
 msgid "Hiding a product will prevent users from seeing it on the event page."
 msgstr "商品を非表示にすると、イベントページにユーザーに表示されなくなります。"
 
-#: src/components/forms/ProductForm/index.tsx:585
+#: src/components/forms/ProductForm/index.tsx:594
 msgid "Highlight"
 msgstr "ハイライト"
 
-#: src/components/forms/ProductForm/index.tsx:599
+#: src/components/forms/ProductForm/index.tsx:608
 msgid "Highlight Message"
 msgstr "ハイライトメッセージ"
 
-#: src/components/forms/ProductForm/index.tsx:592
+#: src/components/forms/ProductForm/index.tsx:601
 msgid "Highlight this product"
 msgstr "この商品をハイライトする"
 
@@ -9793,7 +9797,7 @@ msgstr "この商品をハイライトする"
 msgid "Highlighted"
 msgstr "ハイライト表示中"
 
-#: src/components/forms/ProductForm/index.tsx:593
+#: src/components/forms/ProductForm/index.tsx:602
 msgid "Highlighted products will have a different background color to make them stand out on the event page."
 msgstr "ハイライトされた商品は、イベントページで目立つように、背景色が変わります。"
 
@@ -10824,7 +10828,7 @@ msgstr "未払い注文のゲストのチェックインを許可"
 msgid "Let someone else pay for an order"
 msgstr "他の人に注文の支払いを任せる"
 
-#: src/components/forms/ProductForm/index.tsx:539
+#: src/components/forms/ProductForm/index.tsx:548
 msgid "Let the last order go over the limit"
 msgstr "最後の注文で上限を超えることを許可"
 
@@ -11371,7 +11375,7 @@ msgstr "メッセージあたりの最大受信者数"
 msgid "Maximum {cap} per order"
 msgstr "1注文あたり最大{cap}"
 
-#: src/components/forms/ProductForm/index.tsx:534
+#: src/components/forms/ProductForm/index.tsx:543
 msgid "Maximum Per Order"
 msgstr "1注文あたりの最大数"
 
@@ -11514,7 +11518,7 @@ msgstr "中二階立ち見"
 msgid "Min {min} per order"
 msgstr "1注文あたり最小{min}"
 
-#: src/components/forms/ProductForm/index.tsx:532
+#: src/components/forms/ProductForm/index.tsx:541
 msgid "Minimum Per Order"
 msgstr "1注文あたりの最小数"
 
@@ -13067,7 +13071,7 @@ msgstr "{0}に販売"
 msgid "on the {position} {day}"
 msgstr "{position}{day}"
 
-#: src/components/forms/ProductForm/index.tsx:447
+#: src/components/forms/ProductForm/index.tsx:456
 msgid "On the event page"
 msgstr "イベントページ上"
 
@@ -13094,6 +13098,10 @@ msgstr "スマートフォンをご利用ですか？認証アプリで開く"
 #: src/components/forms/QuestionForm/index.tsx:207
 msgid "Once per order"
 msgstr "注文ごとに1回"
+
+#: src/components/forms/ProductForm/index.tsx:395
+msgid "Once someone buys a later tier, earlier tiers stay sold out, even if tickets are refunded or unpaid holds expire. Buyers never see a cheaper price come back after paying more."
+msgstr "後の価格帯が購入されると、チケットが払い戻されたり未払いの確保が期限切れになったりしても、前の価格帯は完売のままになります。高い価格で購入した後に安い価格が戻ることはありません。"
 
 #: src/components/common/NoEventsBlankSlate/index.tsx:19
 msgid "Once you create an event, you'll see it here."
@@ -13208,7 +13216,7 @@ msgstr "これらの設定を変更できるのはアカウント管理者のみ
 msgid "Only admins can manage team access."
 msgstr "チームのアクセス権を管理できるのは管理者のみです。"
 
-#: src/components/forms/ProductForm/index.tsx:560
+#: src/components/forms/ProductForm/index.tsx:569
 msgid "Only available as an add-on"
 msgstr "アドオンとしてのみ利用可能"
 
@@ -13544,7 +13552,7 @@ msgstr "注文者"
 msgid "Order ID"
 msgstr "注文ID"
 
-#: src/components/forms/ProductForm/index.tsx:526
+#: src/components/forms/ProductForm/index.tsx:535
 msgid "Order limits"
 msgstr "注文の制限"
 
@@ -15063,7 +15071,7 @@ msgstr "プロモーションコード"
 msgid "Promo code only"
 msgstr "プロモーションコード限定"
 
-#: src/components/forms/ProductForm/index.tsx:620
+#: src/components/forms/ProductForm/index.tsx:629
 msgid "Promo Code page"
 msgstr "プロモーションコードページ"
 
@@ -16308,7 +16316,7 @@ msgstr "販売"
 msgid "Sale complete"
 msgstr "販売が完了しました"
 
-#: src/components/forms/ProductForm/index.tsx:433
+#: src/components/forms/ProductForm/index.tsx:442
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:196
 msgid "Sale End Date"
 msgstr "販売終了日"
@@ -16334,11 +16342,11 @@ msgstr "販売期間が終了しました"
 msgid "Sale Period"
 msgstr "販売期間"
 
-#: src/components/forms/ProductForm/index.tsx:424
+#: src/components/forms/ProductForm/index.tsx:433
 msgid "Sale period dates apply across all dates in your schedule. To adjust prices, per-date quantities or availability for individual dates, use the overrides on the <0>Occurrence Schedule page</0>."
 msgstr "販売期間の日付は、スケジュール内のすべての日付に適用されます。個別の日付の価格、日付ごとの数量、利用可否を調整するには、<0>開催スケジュールページ</0>の上書き設定を使用してください。"
 
-#: src/components/forms/ProductForm/index.tsx:431
+#: src/components/forms/ProductForm/index.tsx:440
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:192
 msgid "Sale Start Date"
 msgstr "販売開始日"
@@ -16347,7 +16355,7 @@ msgstr "販売開始日"
 msgid "Sale starts {0}"
 msgstr "販売開始：{0}"
 
-#: src/components/forms/ProductForm/index.tsx:417
+#: src/components/forms/ProductForm/index.tsx:426
 msgid "Sale window"
 msgstr "販売期間"
 
@@ -17189,7 +17197,7 @@ msgstr "商品ティアを選択"
 msgid "Select products"
 msgstr "商品を選択"
 
-#: src/components/forms/ProductForm/index.tsx:567
+#: src/components/forms/ProductForm/index.tsx:576
 msgid "Select products..."
 msgstr "商品を選択..."
 
@@ -17229,7 +17237,7 @@ msgstr "このメッセージを受信する参加者を選択"
 msgid "Select which events will trigger this webhook"
 msgstr "このWebhookをトリガーするイベントを選択"
 
-#: src/components/forms/ProductForm/index.tsx:492
+#: src/components/forms/ProductForm/index.tsx:501
 msgid "Select..."
 msgstr "選択..."
 
@@ -17306,7 +17314,7 @@ msgstr "販売担当者"
 msgid "Selling as {signedInName}"
 msgstr "{signedInName}として販売中"
 
-#: src/components/forms/ProductForm/index.tsx:601
+#: src/components/forms/ProductForm/index.tsx:610
 msgid "Selling fast 🔥"
 msgstr "もうすぐ完売 🔥"
 
@@ -17740,7 +17748,7 @@ msgstr "チェックアウトで表示"
 msgid "Show attendee notes to non-logged-in staff"
 msgstr "ログインしていないスタッフに参加者メモを表示する"
 
-#: src/components/forms/ProductForm/index.tsx:454
+#: src/components/forms/ProductForm/index.tsx:463
 msgid "Show available product quantity"
 msgstr "購入可能な商品数量を表示する"
 
@@ -18921,7 +18929,7 @@ msgstr "メールアドレスの変更を確認しました"
 msgid "Successfully created attendee"
 msgstr "参加者を作成しました"
 
-#: src/components/modals/CreateProductModal/index.tsx:62
+#: src/components/modals/CreateProductModal/index.tsx:63
 msgid "Successfully Created Product"
 msgstr "商品を作成しました"
 
@@ -18929,7 +18937,7 @@ msgstr "商品を作成しました"
 msgid "Successfully Created Promo Code"
 msgstr "プロモーションコードを作成しました"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:115
+#: src/components/modals/DuplicateProductModal/index.tsx:117
 msgid "Successfully Duplicated Product"
 msgstr "商品を複製しました"
 
@@ -19014,7 +19022,7 @@ msgstr "プラットフォーム手数料のデフォルトを更新しました
 msgid "Successfully Updated Platform Fee Settings"
 msgstr "プラットフォーム手数料の設定を更新しました"
 
-#: src/components/modals/EditProductModal/index.tsx:104
+#: src/components/modals/EditProductModal/index.tsx:106
 msgid "Successfully updated product"
 msgstr "商品を更新しました"
 
@@ -19238,13 +19246,13 @@ msgid "Tax updated"
 msgstr "税金を更新しました"
 
 #: src/components/common/InlineOrderSummary/index.tsx:195
-#: src/components/forms/ProductForm/index.tsx:494
+#: src/components/forms/ProductForm/index.tsx:503
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:48
 #: src/components/routes/settings/TaxesAndFees/index.tsx:123
 msgid "Taxes"
 msgstr "税金"
 
-#: src/components/forms/ProductForm/index.tsx:484
+#: src/components/forms/ProductForm/index.tsx:493
 msgid "Taxes & fees"
 msgstr "税金と手数料"
 
@@ -19257,7 +19265,7 @@ msgstr "適用された税金と手数料"
 msgid "Taxes and fees"
 msgstr "税金と手数料"
 
-#: src/components/forms/ProductForm/index.tsx:491
+#: src/components/forms/ProductForm/index.tsx:500
 msgid "Taxes and Fees"
 msgstr "税金と手数料"
 
@@ -20241,7 +20249,7 @@ msgstr "この主催者"
 msgid "This organizer profile is not published yet"
 msgstr "この主催者プロフィールはまだ公開されていません"
 
-#: src/components/forms/ProductForm/index.tsx:625
+#: src/components/forms/ProductForm/index.tsx:634
 msgid "This overrides all visibility settings and will hide the product from all customers."
 msgstr "すべての表示設定を上書きし、すべてのお客様に対してこの商品を非表示にします。"
 
@@ -20265,7 +20273,7 @@ msgstr "この商品はイベントページでハイライトされています
 msgid "This product is sold out"
 msgstr "この商品は完売しました"
 
-#: src/components/forms/ProductForm/index.tsx:561
+#: src/components/forms/ProductForm/index.tsx:570
 msgid "This product won't appear on the event page on its own — buyers only see it as an add-on to the products it's attached to."
 msgstr "この商品はイベントページに単独では表示されません。購入者には、紐付けられた商品のアドオンとしてのみ表示されます。"
 
@@ -21104,7 +21112,7 @@ msgstr "参加者をチェックアウトできません"
 msgid "Unable to complete sale"
 msgstr "販売を完了できません"
 
-#: src/components/modals/CreateProductModal/index.tsx:71
+#: src/components/modals/CreateProductModal/index.tsx:72
 msgid "Unable to create product. Please check the your details"
 msgstr "商品を作成できません。入力内容を確認してください"
 
@@ -21116,7 +21124,7 @@ msgstr "商品を作成できません。入力内容を確認してください
 msgid "Unable to delete the widget"
 msgstr "ウィジェットを削除できませんでした"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:123
+#: src/components/modals/DuplicateProductModal/index.tsx:125
 msgid "Unable to duplicate product. Please check the your details"
 msgstr "商品を複製できません。入力内容を確認してください"
 
@@ -22136,7 +22144,7 @@ msgstr "スキャン待機中…"
 msgid "Waiting for Stripe to confirm your payment…"
 msgstr "Stripeによる支払い確認を待っています…"
 
-#: src/components/forms/ProductForm/index.tsx:466
+#: src/components/forms/ProductForm/index.tsx:475
 #: src/components/layouts/AuthLayout/AuthShell.tsx:16
 #: src/components/layouts/Event/index.tsx:154
 #: src/components/routes/event/Settings/index.tsx:104
@@ -22608,7 +22616,7 @@ msgstr "イベントがアーカイブされたとき"
 msgid "When an event is updated"
 msgstr "イベントが更新されたとき"
 
-#: src/components/forms/ProductForm/index.tsx:540
+#: src/components/forms/ProductForm/index.tsx:549
 msgid "When an order asks for more than remain, it goes through as long as at least one is left. The product, or the current tier, then sells out and the next tier opens. Shared capacity limits still apply."
 msgstr "注文が残り数を超える場合でも、少なくとも1つ残っていれば注文を受け付けます。その後、商品または現在のティアは売り切れとなり、次のティアが販売開始されます。共有キャパシティの上限は引き続き適用されます。"
 
@@ -22862,7 +22870,7 @@ msgstr "はい - 有効なEU VAT登録番号を持っています"
 msgid "Yes, cancel my order"
 msgstr "はい、注文をキャンセルします"
 
-#: src/components/forms/ProductForm/index.tsx:518
+#: src/components/forms/ProductForm/index.tsx:527
 msgid "Yes, remove them"
 msgstr "はい、削除します"
 
@@ -22944,7 +22952,7 @@ msgstr "1注文につき、最大{max}席まで選択できます"
 msgid "You can configure additional service fees and taxes in your account settings."
 msgstr "追加のサービス手数料や税金は、アカウント設定で設定できます。"
 
-#: src/components/forms/ProductForm/index.tsx:617
+#: src/components/forms/ProductForm/index.tsx:626
 msgid "You can create a promo code which targets this product on the"
 msgstr "この商品を対象とするプロモーションコードを作成できます："
 
@@ -23033,7 +23041,7 @@ msgstr "メッセージの送信上限に達しました。"
 msgid "You have run out of time to complete your order."
 msgstr "注文を完了するための時間が過ぎました。"
 
-#: src/components/forms/ProductForm/index.tsx:516
+#: src/components/forms/ProductForm/index.tsx:525
 msgid "You have taxes and fees added to a Free Product. Would you like to remove them?"
 msgstr "無料商品に税金と手数料が追加されています。削除しますか？"
 

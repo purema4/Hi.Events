@@ -1363,5 +1363,6 @@
     "The Apple Wallet pass could not be encoded: :message": "Az Apple Wallet-kártya nem kódolható: :message",
     "The Apple Wallet pass is no longer available.": "Az Apple Wallet-kártya már nem érhető el.",
     "Ticket for :event": "Jegy: :event",
-    "Ticket number": "Jegyszám"
+    "Ticket number": "Jegyszám",
+    "This tier is sold out": "Ez az árszint elfogyott"
 }

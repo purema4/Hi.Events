@@ -1506,5 +1506,6 @@
     "The attendee could not be checked in.": "Osallistujaa ei voitu kirjata sisään.",
     "This was sent less than :minutes minutes ago. Wait before sending it again.": "Tämä lähetettiin alle :minutes minuuttia sitten. Odota ennen kuin lähetät sen uudelleen.",
     "Only completed orders have a confirmation to resend.": "Vain valmiilla tilauksilla on vahvistus, jonka voi lähettää uudelleen.",
-    "That email address has already been sent :count emails in the last :minutes minutes. Wait before sending more.": "Tähän sähköpostiosoitteeseen on jo lähetetty :count viestiä viimeisen :minutes minuutin aikana. Odota ennen kuin lähetät lisää."
+    "That email address has already been sent :count emails in the last :minutes minutes. Wait before sending more.": "Tähän sähköpostiosoitteeseen on jo lähetetty :count viestiä viimeisen :minutes minuutin aikana. Odota ennen kuin lähetät lisää.",
+    "This tier is sold out": "Tämä hintataso on loppuunmyyty"
 }

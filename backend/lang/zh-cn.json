@@ -1358,5 +1358,6 @@
     "The Apple Wallet pass could not be encoded: :message": "无法编码 Apple Wallet 票卡：:message",
     "The Apple Wallet pass is no longer available.": "Apple Wallet 票卡已不可用。",
     "Ticket for :event": ":event 门票",
-    "Ticket number": "门票编号"
+    "Ticket number": "门票编号",
+    "This tier is sold out": "此档位已售罄"
 }

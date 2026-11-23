@@ -1358,5 +1358,6 @@
     "The Apple Wallet pass could not be encoded: :message": "Preukaz Apple Wallet sa nepodarilo zakódovať: :message",
     "The Apple Wallet pass is no longer available.": "Preukaz Apple Wallet už nie je dostupný.",
     "Ticket for :event": "Vstupenka na :event",
-    "Ticket number": "Číslo vstupenky"
+    "Ticket number": "Číslo vstupenky",
+    "This tier is sold out": "Táto úroveň je vypredaná"
 }

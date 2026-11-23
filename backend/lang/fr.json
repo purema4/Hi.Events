@@ -1359,5 +1359,6 @@
     "The Apple Wallet pass is no longer available.": "La carte Apple Wallet n'est plus disponible.",
     "Ticket for :event": "Billet pour :event",
     "Ticket number": "Numéro de billet",
-    "Sales haven't opened yet. We'll email you in waitlist order as soon as they do.": "Les ventes ne sont pas encore ouvertes. Nous vous écrirons dans l'ordre de la liste d'attente dès leur ouverture."
+    "Sales haven't opened yet. We'll email you in waitlist order as soon as they do.": "Les ventes ne sont pas encore ouvertes. Nous vous écrirons dans l'ordre de la liste d'attente dès leur ouverture.",
+    "This tier is sold out": "Ce palier est épuisé"
 }

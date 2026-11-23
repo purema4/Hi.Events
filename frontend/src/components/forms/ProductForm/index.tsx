@@ -387,6 +387,15 @@ export const ProductForm = ({form, product}: ProductFormProps) => {
                                 description={t`Each tier goes on sale only after the tiers above it sell out or end. Every tier except the last needs a quantity.`}
                                 data-testid="product-sequential-tier-release-switch"
                             />
+                            {form.values.sequential_tier_release_enabled && (
+                                <Switch
+                                    mt={15}
+                                    {...form.getInputProps('keep_earlier_tiers_closed', {type: 'checkbox'})}
+                                    label={t`Don't reopen earlier tiers`}
+                                    description={t`Once someone buys a later tier, earlier tiers stay sold out, even if tickets are refunded or unpaid holds expire. Buyers never see a cheaper price come back after paying more.`}
+                                    data-testid="product-keep-earlier-tiers-closed-switch"
+                                />
+                            )}
                         </Fieldset>
                     </>
                 )}

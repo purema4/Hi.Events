@@ -1373,5 +1373,6 @@
     "The Apple Wallet pass could not be encoded: :message": "Apple Wallet kartı kodlanamadı: :message",
     "The Apple Wallet pass is no longer available.": "Apple Wallet kartı artık kullanılamıyor.",
     "Ticket for :event": ":event bileti",
-    "Ticket number": "Bilet numarası"
+    "Ticket number": "Bilet numarası",
+    "This tier is sold out": "Bu kademe tükendi"
 }

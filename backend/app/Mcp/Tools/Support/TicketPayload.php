@@ -40,6 +40,7 @@ class TicketPayload
         'hide_when_sold_out',
         'sequential_tier_release_enabled',
         'soft_quantity_limit',
+        'keep_earlier_tiers_closed',
         'start_collapsed',
         'show_quantity_remaining',
         'is_hidden_without_promo_code',

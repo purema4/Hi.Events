@@ -35222,6 +35222,9 @@
           "soft_quantity_limit": {
             "type": "boolean"
           },
+          "keep_earlier_tiers_closed": {
+            "type": "boolean"
+          },
           "is_hidden_without_promo_code": {
             "type": "boolean"
           },
@@ -35332,6 +35335,7 @@
           "hide_when_sold_out",
           "sequential_tier_release_enabled",
           "soft_quantity_limit",
+          "keep_earlier_tiers_closed",
           "is_hidden_without_promo_code",
           "is_hidden",
           "is_before_sale_start_date",
@@ -39124,6 +39128,9 @@
             "type": "boolean"
           },
           "soft_quantity_limit": {
+            "type": "boolean"
+          },
+          "keep_earlier_tiers_closed": {
             "type": "boolean"
           },
           "start_collapsed": {

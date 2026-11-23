@@ -1069,7 +1069,7 @@ msgstr "Accepteer creditcardbetalingen met Stripe"
 #: src/components/common/TeamAccessFields/index.tsx:205
 #: src/components/common/TeamAccessFields/index.tsx:207
 #: src/components/common/TeamAccessPanel/index.tsx:137
-#: src/components/forms/ProductForm/index.tsx:610
+#: src/components/forms/ProductForm/index.tsx:619
 #: src/components/routes/oauth/Connect/index.tsx:117
 #: src/components/routes/settings/ApiKeys/CreateApiKeyModal.tsx:237
 #: src/components/routes/settings/Team/index.tsx:218
@@ -1660,11 +1660,11 @@ msgstr "Voeg je sociale media en website-URL toe. Deze worden weergegeven op je 
 msgid "Add-on only"
 msgstr "Alleen als add-on"
 
-#: src/components/forms/ProductForm/index.tsx:566
+#: src/components/forms/ProductForm/index.tsx:575
 msgid "Add-on products"
 msgstr "Add-onproducten"
 
-#: src/components/forms/ProductForm/index.tsx:547
+#: src/components/forms/ProductForm/index.tsx:556
 #: src/components/routes/product-widget/SelectProducts/index.tsx:520
 msgid "Add-ons"
 msgstr "Add-ons"
@@ -2043,11 +2043,11 @@ msgstr "Sta deelnemers toe om hun ticketinformatie (naam, e-mail) bij te werken 
 msgid "Allow buyers to copy their details to all attendees"
 msgstr "Kopers toestaan hun gegevens naar alle deelnemers te kopiëren"
 
-#: src/components/forms/ProductForm/index.tsx:474
+#: src/components/forms/ProductForm/index.tsx:483
 msgid "Allow customers to join a waitlist when this product is sold out or before its sales open"
 msgstr "Klanten toestaan zich op een wachtlijst te zetten als dit product is uitverkocht of voordat de verkoop opent"
 
-#: src/components/forms/ProductForm/index.tsx:473
+#: src/components/forms/ProductForm/index.tsx:482
 msgid "Allow customers to join a waitlist when this product is sold out or before its sales open. Customers join the waitlist for a specific date."
 msgstr "Klanten toestaan zich op een wachtlijst te zetten als dit product is uitverkocht of voordat de verkoop opent. Klanten schrijven zich in voor een specifieke datum."
 
@@ -2210,7 +2210,7 @@ msgstr "Een item in {0} heeft geen naam"
 msgid "An optional description of this category to display on the event page."
 msgstr "Een optionele beschrijving van deze categorie die op de evenementpagina wordt weergegeven."
 
-#: src/components/forms/ProductForm/index.tsx:600
+#: src/components/forms/ProductForm/index.tsx:609
 msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
 msgstr "Een optioneel bericht om weer te geven op het uitgelichte product, bijv. \"Snel uitverkocht 🔥\" of \"Beste waarde\""
 
@@ -3231,8 +3231,8 @@ msgstr "Basisprijs"
 msgid "Based on {0}. This event keeps its own copy."
 msgstr "Gebaseerd op {0}. Dit evenement houdt zijn eigen kopie bij."
 
-#: src/components/forms/ProductForm/index.tsx:438
-#: src/components/forms/ProductForm/index.tsx:441
+#: src/components/forms/ProductForm/index.tsx:447
+#: src/components/forms/ProductForm/index.tsx:450
 msgid "Based on the global sale period above, not per date"
 msgstr "Op basis van de algemene verkoopperiode hierboven, niet per datum"
 
@@ -3510,7 +3510,7 @@ msgstr "Kopergegevens"
 msgid "Buyer pays"
 msgstr "Koper betaalt"
 
-#: src/components/forms/ProductForm/index.tsx:576
+#: src/components/forms/ProductForm/index.tsx:585
 msgid "Buyers can add these to their order when they select this product at checkout."
 msgstr "Kopers kunnen deze aan hun bestelling toevoegen wanneer ze dit product kiezen tijdens het afrekenen."
 
@@ -4694,7 +4694,7 @@ msgstr "Te plakken code"
 msgid "Collaborate with your team to create amazing events together."
 msgstr "Werk samen met je team om geweldige evenementen te organiseren."
 
-#: src/components/forms/ProductForm/index.tsx:458
+#: src/components/forms/ProductForm/index.tsx:467
 msgid "Collapse this product when the event page is initially loaded"
 msgstr "Dit product samenvouwen wanneer de evenementpagina voor het eerst wordt geladen"
 
@@ -5771,7 +5771,7 @@ msgstr "Heffing aanmaken"
 msgid "Create key"
 msgstr "Sleutel maken"
 
-#: src/components/forms/ProductForm/index.tsx:573
+#: src/components/forms/ProductForm/index.tsx:582
 msgid "Create more tickets or products to offer them as add-ons"
 msgstr "Maak meer tickets of producten aan om ze als add-on aan te bieden"
 
@@ -5798,7 +5798,7 @@ msgstr "Organisator maken"
 msgid "Create payment link"
 msgstr "Betaallink maken"
 
-#: src/components/modals/CreateProductModal/index.tsx:92
+#: src/components/modals/CreateProductModal/index.tsx:93
 msgid "Create Product"
 msgstr "Product maken"
 
@@ -5829,7 +5829,7 @@ msgstr "Zaalplan maken"
 msgid "Create tax"
 msgstr "Belasting aanmaken"
 
-#: src/components/forms/ProductForm/index.tsx:509
+#: src/components/forms/ProductForm/index.tsx:518
 msgid "Create Tax or Fee"
 msgstr "Creëer belasting of heffing"
 
@@ -5837,7 +5837,7 @@ msgstr "Creëer belasting of heffing"
 msgid "Create the profile first, then add photos here."
 msgstr "Maak eerst het profiel aan en voeg hier daarna foto's toe."
 
-#: src/components/modals/CreateProductModal/index.tsx:89
+#: src/components/modals/CreateProductModal/index.tsx:90
 msgid "Create Ticket or Product"
 msgstr "Maak ticket of product aan"
 
@@ -6569,8 +6569,8 @@ msgstr "Diepte"
 
 #: src/components/common/WidgetEditor/SectionsPicker.tsx:32
 #: src/components/forms/ProductCategoryForm/index.tsx:29
-#: src/components/forms/ProductForm/index.tsx:401
-#: src/components/forms/ProductForm/index.tsx:407
+#: src/components/forms/ProductForm/index.tsx:410
+#: src/components/forms/ProductForm/index.tsx:416
 #: src/components/forms/QuestionForm/index.tsx:123
 #: src/components/forms/TaxAndFeeForm/index.tsx:106
 #: src/components/modals/CreateEventModal/index.tsx:351
@@ -6809,6 +6809,10 @@ msgstr "Heeft u geen account? <0>Aanmelden</0>"
 msgid "Don't let buyers leave a single empty seat"
 msgstr "Laat kopers geen losse lege stoel achterlaten"
 
+#: src/components/forms/ProductForm/index.tsx:394
+msgid "Don't reopen earlier tiers"
+msgstr "Eerdere prijsniveaus niet heropenen"
+
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:469
 #: src/components/forms/ProductForm/index.tsx:297
 #: src/utilites/eventListingLabels.ts:22
@@ -6997,8 +7001,8 @@ msgstr "Dupliceer evenement"
 msgid "Duplicate Event"
 msgstr "Dupliceer Evenement"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:131
-#: src/components/modals/DuplicateProductModal/index.tsx:135
+#: src/components/modals/DuplicateProductModal/index.tsx:133
+#: src/components/modals/DuplicateProductModal/index.tsx:137
 msgid "Duplicate Product"
 msgstr "Dupliceer product"
 
@@ -7269,8 +7273,8 @@ msgstr "Lid bewerken"
 msgid "Edit Order Details"
 msgstr "Bestelgegevens bewerken"
 
-#: src/components/modals/EditProductModal/index.tsx:115
-#: src/components/modals/EditProductModal/index.tsx:119
+#: src/components/modals/EditProductModal/index.tsx:117
+#: src/components/modals/EditProductModal/index.tsx:121
 msgid "Edit Product"
 msgstr "Bewerk product"
 
@@ -7574,7 +7578,7 @@ msgstr "Schakel deze capaciteit in om de verkoop van producten te stoppen als de
 msgid "Enable this template for sending emails"
 msgstr "Schakel deze sjabloon in voor het verzenden van e-mails"
 
-#: src/components/forms/ProductForm/index.tsx:476
+#: src/components/forms/ProductForm/index.tsx:485
 msgid "Enable Waitlist"
 msgstr "Wachtlijst inschakelen"
 
@@ -8219,7 +8223,7 @@ msgstr "Iedereen die deze organisator en al zijn evenementen kan beheren."
 msgid "Everyone who can see or manage this event."
 msgstr "Iedereen die dit evenement kan bekijken of beheren."
 
-#: src/components/forms/ProductForm/index.tsx:396
+#: src/components/forms/ProductForm/index.tsx:405
 msgid "Everything else — tap to edit"
 msgstr "Al het overige — tik om te bewerken"
 
@@ -8813,7 +8817,7 @@ msgstr "Heffing bijgewerkt"
 
 #: src/components/common/InlineOrderSummary/index.tsx:164
 #: src/components/common/OrdersTable/index.tsx:292
-#: src/components/forms/ProductForm/index.tsx:497
+#: src/components/forms/ProductForm/index.tsx:506
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
@@ -9729,19 +9733,19 @@ msgstr "Hi.Events-branding verbergen"
 msgid "Hide Preview"
 msgstr "Voorbeeld verbergen"
 
-#: src/components/forms/ProductForm/index.tsx:440
+#: src/components/forms/ProductForm/index.tsx:449
 msgid "Hide product after sale end date"
 msgstr "Verberg product na einddatum verkoop"
 
-#: src/components/forms/ProductForm/index.tsx:437
+#: src/components/forms/ProductForm/index.tsx:446
 msgid "Hide product before sale start date"
 msgstr "Verberg product voor start verkoopdatum"
 
-#: src/components/forms/ProductForm/index.tsx:622
+#: src/components/forms/ProductForm/index.tsx:631
 msgid "Hide product unless user has applicable promo code"
 msgstr "Verberg product tenzij gebruiker toepasselijke promotiecode heeft"
 
-#: src/components/forms/ProductForm/index.tsx:456
+#: src/components/forms/ProductForm/index.tsx:465
 msgid "Hide product when sold out"
 msgstr "Verberg product als het uitverkocht is"
 
@@ -9761,7 +9765,7 @@ msgstr "Datum verbergen"
 msgid "Hide this category?"
 msgstr "Deze categorie verbergen?"
 
-#: src/components/forms/ProductForm/index.tsx:627
+#: src/components/forms/ProductForm/index.tsx:636
 msgid "Hide this product from customers"
 msgstr "Verberg dit product voor klanten"
 
@@ -9777,15 +9781,15 @@ msgstr "Verbergt uitverkocht"
 msgid "Hiding a product will prevent users from seeing it on the event page."
 msgstr "Door een product te verbergen, kunnen gebruikers het niet zien op de evenementpagina."
 
-#: src/components/forms/ProductForm/index.tsx:585
+#: src/components/forms/ProductForm/index.tsx:594
 msgid "Highlight"
 msgstr "Markeren"
 
-#: src/components/forms/ProductForm/index.tsx:599
+#: src/components/forms/ProductForm/index.tsx:608
 msgid "Highlight Message"
 msgstr "Markeringsbericht"
 
-#: src/components/forms/ProductForm/index.tsx:592
+#: src/components/forms/ProductForm/index.tsx:601
 msgid "Highlight this product"
 msgstr "Dit product markeren"
 
@@ -9794,7 +9798,7 @@ msgstr "Dit product markeren"
 msgid "Highlighted"
 msgstr "Uitgelicht"
 
-#: src/components/forms/ProductForm/index.tsx:593
+#: src/components/forms/ProductForm/index.tsx:602
 msgid "Highlighted products will have a different background color to make them stand out on the event page."
 msgstr "Gemarkeerde producten krijgen een andere achtergrondkleur om op te vallen op de evenementenpagina."
 
@@ -10825,7 +10829,7 @@ msgstr "Gasten van onbetaalde bestellingen laten inchecken"
 msgid "Let someone else pay for an order"
 msgstr "Laat iemand anders een bestelling betalen"
 
-#: src/components/forms/ProductForm/index.tsx:539
+#: src/components/forms/ProductForm/index.tsx:548
 msgid "Let the last order go over the limit"
 msgstr "Laat de laatste bestelling de limiet overschrijden"
 
@@ -11372,7 +11376,7 @@ msgstr "Max ontvangers / bericht"
 msgid "Maximum {cap} per order"
 msgstr "Maximaal {cap} per bestelling"
 
-#: src/components/forms/ProductForm/index.tsx:534
+#: src/components/forms/ProductForm/index.tsx:543
 msgid "Maximum Per Order"
 msgstr "Maximum per bestelling"
 
@@ -11515,7 +11519,7 @@ msgstr "Staanplaatsen tussenverdieping"
 msgid "Min {min} per order"
 msgstr "Min. {min} per bestelling"
 
-#: src/components/forms/ProductForm/index.tsx:532
+#: src/components/forms/ProductForm/index.tsx:541
 msgid "Minimum Per Order"
 msgstr "Minimum per bestelling"
 
@@ -13068,7 +13072,7 @@ msgstr "In de verkoop {0}"
 msgid "on the {position} {day}"
 msgstr "op de {position} {day}"
 
-#: src/components/forms/ProductForm/index.tsx:447
+#: src/components/forms/ProductForm/index.tsx:456
 msgid "On the event page"
 msgstr "Op de evenementpagina"
 
@@ -13095,6 +13099,10 @@ msgstr "Op je telefoon? Openen in authenticator-app"
 #: src/components/forms/QuestionForm/index.tsx:207
 msgid "Once per order"
 msgstr "Eén keer per bestelling"
+
+#: src/components/forms/ProductForm/index.tsx:395
+msgid "Once someone buys a later tier, earlier tiers stay sold out, even if tickets are refunded or unpaid holds expire. Buyers never see a cheaper price come back after paying more."
+msgstr "Zodra iemand een later niveau koopt, blijven eerdere niveaus uitverkocht, ook als tickets worden terugbetaald of onbetaalde reserveringen verlopen. Kopers zien nooit een goedkopere prijs terugkomen nadat ze meer hebben betaald."
 
 #: src/components/common/NoEventsBlankSlate/index.tsx:19
 msgid "Once you create an event, you'll see it here."
@@ -13209,7 +13217,7 @@ msgstr "Alleen accountbeheerders kunnen deze instellingen wijzigen."
 msgid "Only admins can manage team access."
 msgstr "Alleen beheerders kunnen teamtoegang beheren."
 
-#: src/components/forms/ProductForm/index.tsx:560
+#: src/components/forms/ProductForm/index.tsx:569
 msgid "Only available as an add-on"
 msgstr "Alleen beschikbaar als add-on"
 
@@ -13545,7 +13553,7 @@ msgstr "Bestelhouders"
 msgid "Order ID"
 msgstr "Bestelling-ID"
 
-#: src/components/forms/ProductForm/index.tsx:526
+#: src/components/forms/ProductForm/index.tsx:535
 msgid "Order limits"
 msgstr "Bestellimieten"
 
@@ -15064,7 +15072,7 @@ msgstr "Kortingscode"
 msgid "Promo code only"
 msgstr "Alleen met promotiecode"
 
-#: src/components/forms/ProductForm/index.tsx:620
+#: src/components/forms/ProductForm/index.tsx:629
 msgid "Promo Code page"
 msgstr "Promo Code pagina"
 
@@ -16309,7 +16317,7 @@ msgstr "Verkoop"
 msgid "Sale complete"
 msgstr "Verkoop afgerond"
 
-#: src/components/forms/ProductForm/index.tsx:433
+#: src/components/forms/ProductForm/index.tsx:442
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:196
 msgid "Sale End Date"
 msgstr "Einddatum verkoop"
@@ -16335,11 +16343,11 @@ msgstr "Verkoop verlopen"
 msgid "Sale Period"
 msgstr "Uitverkoopperiode"
 
-#: src/components/forms/ProductForm/index.tsx:424
+#: src/components/forms/ProductForm/index.tsx:433
 msgid "Sale period dates apply across all dates in your schedule. To adjust prices, per-date quantities or availability for individual dates, use the overrides on the <0>Occurrence Schedule page</0>."
 msgstr "De verkoopperiode geldt voor alle datums in je schema. Om prijzen, aantallen per datum of beschikbaarheid van afzonderlijke datums aan te passen, gebruik je de overschrijvingen op de <0>pagina Datumschema</0>."
 
-#: src/components/forms/ProductForm/index.tsx:431
+#: src/components/forms/ProductForm/index.tsx:440
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:192
 msgid "Sale Start Date"
 msgstr "Startdatum verkoop"
@@ -16348,7 +16356,7 @@ msgstr "Startdatum verkoop"
 msgid "Sale starts {0}"
 msgstr "Uitverkoop begint {0}"
 
-#: src/components/forms/ProductForm/index.tsx:417
+#: src/components/forms/ProductForm/index.tsx:426
 msgid "Sale window"
 msgstr "Verkoopperiode"
 
@@ -17190,7 +17198,7 @@ msgstr "Selecteer productcategorie"
 msgid "Select products"
 msgstr "Selecteer producten"
 
-#: src/components/forms/ProductForm/index.tsx:567
+#: src/components/forms/ProductForm/index.tsx:576
 msgid "Select products..."
 msgstr "Producten selecteren..."
 
@@ -17230,7 +17238,7 @@ msgstr "Selecteer welke deelnemers dit bericht moeten ontvangen"
 msgid "Select which events will trigger this webhook"
 msgstr "Selecteer welke evenementen deze webhook activeren"
 
-#: src/components/forms/ProductForm/index.tsx:492
+#: src/components/forms/ProductForm/index.tsx:501
 msgid "Select..."
 msgstr "Selecteer..."
 
@@ -17307,7 +17315,7 @@ msgstr "Verkoopt als"
 msgid "Selling as {signedInName}"
 msgstr "Verkopen als {signedInName}"
 
-#: src/components/forms/ProductForm/index.tsx:601
+#: src/components/forms/ProductForm/index.tsx:610
 msgid "Selling fast 🔥"
 msgstr "Verkoopt snel 🔥"
 
@@ -17741,7 +17749,7 @@ msgstr "Tonen bij het afrekenen"
 msgid "Show attendee notes to non-logged-in staff"
 msgstr "Deelnemersnotities tonen aan niet-ingelogd personeel"
 
-#: src/components/forms/ProductForm/index.tsx:454
+#: src/components/forms/ProductForm/index.tsx:463
 msgid "Show available product quantity"
 msgstr "Beschikbare producthoeveelheid tonen"
 
@@ -18922,7 +18930,7 @@ msgstr "E-mailwijziging succesvol bevestigd"
 msgid "Successfully created attendee"
 msgstr "Succesvol aangemaakte deelnemer"
 
-#: src/components/modals/CreateProductModal/index.tsx:62
+#: src/components/modals/CreateProductModal/index.tsx:63
 msgid "Successfully Created Product"
 msgstr "Succesvol gecreëerd product"
 
@@ -18930,7 +18938,7 @@ msgstr "Succesvol gecreëerd product"
 msgid "Successfully Created Promo Code"
 msgstr "Succesvol aangemaakte promotiecode"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:115
+#: src/components/modals/DuplicateProductModal/index.tsx:117
 msgid "Successfully Duplicated Product"
 msgstr "Succesvol gedupliceerd product"
 
@@ -19015,7 +19023,7 @@ msgstr "Standaard platformkosteninstellingen succesvol bijgewerkt"
 msgid "Successfully Updated Platform Fee Settings"
 msgstr "Platformkosteninstellingen succesvol bijgewerkt"
 
-#: src/components/modals/EditProductModal/index.tsx:104
+#: src/components/modals/EditProductModal/index.tsx:106
 msgid "Successfully updated product"
 msgstr "Product succesvol bijgewerkt"
 
@@ -19239,13 +19247,13 @@ msgid "Tax updated"
 msgstr "Belasting bijgewerkt"
 
 #: src/components/common/InlineOrderSummary/index.tsx:195
-#: src/components/forms/ProductForm/index.tsx:494
+#: src/components/forms/ProductForm/index.tsx:503
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:48
 #: src/components/routes/settings/TaxesAndFees/index.tsx:123
 msgid "Taxes"
 msgstr "Belastingen"
 
-#: src/components/forms/ProductForm/index.tsx:484
+#: src/components/forms/ProductForm/index.tsx:493
 msgid "Taxes & fees"
 msgstr "Belastingen en kosten"
 
@@ -19258,7 +19266,7 @@ msgstr "Belastingen en kosten toegepast"
 msgid "Taxes and fees"
 msgstr "Belastingen en heffingen"
 
-#: src/components/forms/ProductForm/index.tsx:491
+#: src/components/forms/ProductForm/index.tsx:500
 msgid "Taxes and Fees"
 msgstr "Belastingen en heffingen"
 
@@ -20242,7 +20250,7 @@ msgstr "Deze organisator"
 msgid "This organizer profile is not published yet"
 msgstr "Dit organisatorprofiel is nog niet gepubliceerd"
 
-#: src/components/forms/ProductForm/index.tsx:625
+#: src/components/forms/ProductForm/index.tsx:634
 msgid "This overrides all visibility settings and will hide the product from all customers."
 msgstr "Dit overschrijft alle zichtbaarheidsinstellingen en verbergt het product voor alle klanten."
 
@@ -20266,7 +20274,7 @@ msgstr "Dit product is uitgelicht op de evenementpagina"
 msgid "This product is sold out"
 msgstr "Dit product is uitverkocht"
 
-#: src/components/forms/ProductForm/index.tsx:561
+#: src/components/forms/ProductForm/index.tsx:570
 msgid "This product won't appear on the event page on its own — buyers only see it as an add-on to the products it's attached to."
 msgstr "Dit product verschijnt niet zelfstandig op de evenementpagina — kopers zien het alleen als add-on bij de producten waaraan het gekoppeld is."
 
@@ -21105,7 +21113,7 @@ msgstr "Deelnemer kan niet worden uitgecheckt"
 msgid "Unable to complete sale"
 msgstr "Verkoop afronden mislukt"
 
-#: src/components/modals/CreateProductModal/index.tsx:71
+#: src/components/modals/CreateProductModal/index.tsx:72
 msgid "Unable to create product. Please check the your details"
 msgstr "Kan geen product maken. Controleer uw gegevens"
 
@@ -21117,7 +21125,7 @@ msgstr "Kan geen product maken. Controleer uw gegevens"
 msgid "Unable to delete the widget"
 msgstr "Kan de widget niet verwijderen"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:123
+#: src/components/modals/DuplicateProductModal/index.tsx:125
 msgid "Unable to duplicate product. Please check the your details"
 msgstr "Kan product niet dupliceren. Controleer uw gegevens"
 
@@ -22137,7 +22145,7 @@ msgstr "Wachten op scan…"
 msgid "Waiting for Stripe to confirm your payment…"
 msgstr "Wachten tot Stripe je betaling bevestigt…"
 
-#: src/components/forms/ProductForm/index.tsx:466
+#: src/components/forms/ProductForm/index.tsx:475
 #: src/components/layouts/AuthLayout/AuthShell.tsx:16
 #: src/components/layouts/Event/index.tsx:154
 #: src/components/routes/event/Settings/index.tsx:104
@@ -22609,7 +22617,7 @@ msgstr "Wanneer een evenement wordt gearchiveerd"
 msgid "When an event is updated"
 msgstr "Wanneer een evenement wordt bijgewerkt"
 
-#: src/components/forms/ProductForm/index.tsx:540
+#: src/components/forms/ProductForm/index.tsx:549
 msgid "When an order asks for more than remain, it goes through as long as at least one is left. The product, or the current tier, then sells out and the next tier opens. Shared capacity limits still apply."
 msgstr "Als een bestelling meer vraagt dan er over is, gaat ze door zolang er nog minstens één over is. Het product of de huidige prijsklasse is daarna uitverkocht en de volgende prijsklasse opent. Gedeelde capaciteitslimieten blijven gelden."
 
@@ -22863,7 +22871,7 @@ msgstr "Ja - Ik heb een geldig EU BTW-registratienummer"
 msgid "Yes, cancel my order"
 msgstr "Ja, annuleer mijn bestelling"
 
-#: src/components/forms/ProductForm/index.tsx:518
+#: src/components/forms/ProductForm/index.tsx:527
 msgid "Yes, remove them"
 msgstr "Ja, verwijder ze"
 
@@ -22945,7 +22953,7 @@ msgstr "Je kunt maximaal {max} stoelen per bestelling kiezen"
 msgid "You can configure additional service fees and taxes in your account settings."
 msgstr "U kunt extra servicekosten en belastingen configureren in uw accountinstellingen."
 
-#: src/components/forms/ProductForm/index.tsx:617
+#: src/components/forms/ProductForm/index.tsx:626
 msgid "You can create a promo code which targets this product on the"
 msgstr "Je kunt een promotiecode maken die gericht is op dit product op de"
 
@@ -23034,7 +23042,7 @@ msgstr "U heeft uw berichtenlimiet bereikt."
 msgid "You have run out of time to complete your order."
 msgstr "Je hebt geen tijd meer om je bestelling af te ronden."
 
-#: src/components/forms/ProductForm/index.tsx:516
+#: src/components/forms/ProductForm/index.tsx:525
 msgid "You have taxes and fees added to a Free Product. Would you like to remove them?"
 msgstr "Je hebt belastingen en kosten toegevoegd aan een Gratis product. Wilt u deze verwijderen?"
 

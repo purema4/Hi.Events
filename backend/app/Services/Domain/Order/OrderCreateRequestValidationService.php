@@ -634,6 +634,12 @@ class OrderCreateRequestValidationService
                 continue;
             }
 
+            if ((int) $quantity > 0 && $selectedPrice?->isClosedByLaterTierSales()) {
+                $errors["products.$productIndex.quantities.$quantityIndex.price_id"] = __('This tier is sold out');
+
+                continue;
+            }
+
             if ((int) $quantity > 0 && $this->isPriceUnavailable($selectedPrice)) {
                 $errors["products.$productIndex.quantities.$quantityIndex.price_id"] = __('Invalid price ID');
             }

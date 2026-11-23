@@ -1358,5 +1358,6 @@
     "The Apple Wallet pass could not be encoded: :message": "Không thể mã hóa thẻ Apple Wallet: :message",
     "The Apple Wallet pass is no longer available.": "Thẻ Apple Wallet không còn khả dụng.",
     "Ticket for :event": "Vé cho :event",
-    "Ticket number": "Số vé"
+    "Ticket number": "Số vé",
+    "This tier is sold out": "Hạng vé này đã bán hết"
 }

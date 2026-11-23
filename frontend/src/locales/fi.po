@@ -1068,7 +1068,7 @@ msgstr "Hyväksy luottokorttimaksut Stripellä"
 #: src/components/common/TeamAccessFields/index.tsx:205
 #: src/components/common/TeamAccessFields/index.tsx:207
 #: src/components/common/TeamAccessPanel/index.tsx:137
-#: src/components/forms/ProductForm/index.tsx:610
+#: src/components/forms/ProductForm/index.tsx:619
 #: src/components/routes/oauth/Connect/index.tsx:117
 #: src/components/routes/settings/ApiKeys/CreateApiKeyModal.tsx:237
 #: src/components/routes/settings/Team/index.tsx:218
@@ -1659,11 +1659,11 @@ msgstr "Lisää sosiaalisen median tunnuksesi ja verkkosivustosi URL. Nämä nä
 msgid "Add-on only"
 msgstr "Vain lisätuote"
 
-#: src/components/forms/ProductForm/index.tsx:566
+#: src/components/forms/ProductForm/index.tsx:575
 msgid "Add-on products"
 msgstr "Lisätuotteet"
 
-#: src/components/forms/ProductForm/index.tsx:547
+#: src/components/forms/ProductForm/index.tsx:556
 #: src/components/routes/product-widget/SelectProducts/index.tsx:520
 msgid "Add-ons"
 msgstr "Lisätuotteet"
@@ -2042,11 +2042,11 @@ msgstr "Salli osallistujien päivittää lipputietonsa (nimi, sähköposti) tila
 msgid "Allow buyers to copy their details to all attendees"
 msgstr "Salli ostajien kopioida tietonsa kaikille osallistujille"
 
-#: src/components/forms/ProductForm/index.tsx:474
+#: src/components/forms/ProductForm/index.tsx:483
 msgid "Allow customers to join a waitlist when this product is sold out or before its sales open"
 msgstr "Salli asiakkaiden liittyä jonotuslistalle, kun tuote on loppuunmyyty tai ennen myynnin alkua"
 
-#: src/components/forms/ProductForm/index.tsx:473
+#: src/components/forms/ProductForm/index.tsx:482
 msgid "Allow customers to join a waitlist when this product is sold out or before its sales open. Customers join the waitlist for a specific date."
 msgstr "Salli asiakkaiden liittyä jonotuslistalle, kun tuote on loppuunmyyty tai ennen myynnin alkua. Asiakkaat liittyvät tietyn päivämäärän jonotuslistalle."
 
@@ -2209,7 +2209,7 @@ msgstr "Yhdeltä kohteelta puuttuu nimi ({0})"
 msgid "An optional description of this category to display on the event page."
 msgstr "Valinnainen kuvaus tästä kategoriasta tapahtumasivulle."
 
-#: src/components/forms/ProductForm/index.tsx:600
+#: src/components/forms/ProductForm/index.tsx:609
 msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
 msgstr "Valinnainen viesti korostetulle tuotteelle, esim. \"Myy nopeasti 🔥\" tai \"Paras arvo\""
 
@@ -3230,8 +3230,8 @@ msgstr "Perushinta"
 msgid "Based on {0}. This event keeps its own copy."
 msgstr "Perustuu pohjaan {0}. Tällä tapahtumalla on oma kopionsa."
 
-#: src/components/forms/ProductForm/index.tsx:438
-#: src/components/forms/ProductForm/index.tsx:441
+#: src/components/forms/ProductForm/index.tsx:447
+#: src/components/forms/ProductForm/index.tsx:450
 msgid "Based on the global sale period above, not per date"
 msgstr "Perustuu yllä olevaan yleiseen myyntiaikaan, ei päiväkohtaiseen"
 
@@ -3509,7 +3509,7 @@ msgstr "Ostajan tiedot"
 msgid "Buyer pays"
 msgstr "Ostaja maksaa"
 
-#: src/components/forms/ProductForm/index.tsx:576
+#: src/components/forms/ProductForm/index.tsx:585
 msgid "Buyers can add these to their order when they select this product at checkout."
 msgstr "Ostajat voivat lisätä näitä tilaukseensa valitessaan tämän tuotteen kassalla."
 
@@ -4693,7 +4693,7 @@ msgstr "Liitettävä koodi"
 msgid "Collaborate with your team to create amazing events together."
 msgstr "Tee tiimisi kanssa yhteistyötä luodaksesi upeita tapahtumia yhdessä."
 
-#: src/components/forms/ProductForm/index.tsx:458
+#: src/components/forms/ProductForm/index.tsx:467
 msgid "Collapse this product when the event page is initially loaded"
 msgstr "Sulje tämä tuote, kun tapahtumasivu avautuu."
 
@@ -5770,7 +5770,7 @@ msgstr "Luo maksu"
 msgid "Create key"
 msgstr "Luo avain"
 
-#: src/components/forms/ProductForm/index.tsx:573
+#: src/components/forms/ProductForm/index.tsx:582
 msgid "Create more tickets or products to offer them as add-ons"
 msgstr "Luo lisää lippuja tai tuotteita tarjottaviksi lisätuotteina"
 
@@ -5797,7 +5797,7 @@ msgstr "Luo järjestäjä"
 msgid "Create payment link"
 msgstr "Luo maksulinkki"
 
-#: src/components/modals/CreateProductModal/index.tsx:92
+#: src/components/modals/CreateProductModal/index.tsx:93
 msgid "Create Product"
 msgstr "Luo tuote"
 
@@ -5828,7 +5828,7 @@ msgstr "Luo istumakartta"
 msgid "Create tax"
 msgstr "Luo vero"
 
-#: src/components/forms/ProductForm/index.tsx:509
+#: src/components/forms/ProductForm/index.tsx:518
 msgid "Create Tax or Fee"
 msgstr "Luo vero tai maksu"
 
@@ -5836,7 +5836,7 @@ msgstr "Luo vero tai maksu"
 msgid "Create the profile first, then add photos here."
 msgstr "Luo ensin profiili ja lisää sitten kuvat tähän."
 
-#: src/components/modals/CreateProductModal/index.tsx:89
+#: src/components/modals/CreateProductModal/index.tsx:90
 msgid "Create Ticket or Product"
 msgstr "Luo lippu tai tuote"
 
@@ -6568,8 +6568,8 @@ msgstr "Syvyys"
 
 #: src/components/common/WidgetEditor/SectionsPicker.tsx:32
 #: src/components/forms/ProductCategoryForm/index.tsx:29
-#: src/components/forms/ProductForm/index.tsx:401
-#: src/components/forms/ProductForm/index.tsx:407
+#: src/components/forms/ProductForm/index.tsx:410
+#: src/components/forms/ProductForm/index.tsx:416
 #: src/components/forms/QuestionForm/index.tsx:123
 #: src/components/forms/TaxAndFeeForm/index.tsx:106
 #: src/components/modals/CreateEventModal/index.tsx:351
@@ -6808,6 +6808,10 @@ msgstr "Eikö sinulla ole tiliä? <0>Rekisteröidy</0>"
 msgid "Don't let buyers leave a single empty seat"
 msgstr "Älä anna ostajien jättää yksittäistä tyhjää paikkaa"
 
+#: src/components/forms/ProductForm/index.tsx:394
+msgid "Don't reopen earlier tiers"
+msgstr "Älä avaa aiempia hintatasoja uudelleen"
+
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:469
 #: src/components/forms/ProductForm/index.tsx:297
 #: src/utilites/eventListingLabels.ts:22
@@ -6996,8 +7000,8 @@ msgstr "Monista tapahtuma"
 msgid "Duplicate Event"
 msgstr "Monista tapahtuma"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:131
-#: src/components/modals/DuplicateProductModal/index.tsx:135
+#: src/components/modals/DuplicateProductModal/index.tsx:133
+#: src/components/modals/DuplicateProductModal/index.tsx:137
 msgid "Duplicate Product"
 msgstr "Monista tuote"
 
@@ -7268,8 +7272,8 @@ msgstr "Muokkaa jäsentä"
 msgid "Edit Order Details"
 msgstr "Muokkaa tilauksen tietoja"
 
-#: src/components/modals/EditProductModal/index.tsx:115
-#: src/components/modals/EditProductModal/index.tsx:119
+#: src/components/modals/EditProductModal/index.tsx:117
+#: src/components/modals/EditProductModal/index.tsx:121
 msgid "Edit Product"
 msgstr "Muokkaa tuotetta"
 
@@ -7573,7 +7577,7 @@ msgstr "Ota tämä kapasiteetti käyttöön estääksesi tuotteen myynnin rajan 
 msgid "Enable this template for sending emails"
 msgstr "Ota tämä malli käyttöön sähköpostien lähettämistä varten"
 
-#: src/components/forms/ProductForm/index.tsx:476
+#: src/components/forms/ProductForm/index.tsx:485
 msgid "Enable Waitlist"
 msgstr "Ota jonotuslista käyttöön"
 
@@ -8218,7 +8222,7 @@ msgstr "Kaikki, jotka voivat hallita tätä järjestäjää ja kaikkia sen tapah
 msgid "Everyone who can see or manage this event."
 msgstr "Kaikki, jotka voivat nähdä tai hallita tätä tapahtumaa."
 
-#: src/components/forms/ProductForm/index.tsx:396
+#: src/components/forms/ProductForm/index.tsx:405
 msgid "Everything else — tap to edit"
 msgstr "Muut asetukset — napauta muokataksesi"
 
@@ -8812,7 +8816,7 @@ msgstr "Maksu päivitetty"
 
 #: src/components/common/InlineOrderSummary/index.tsx:164
 #: src/components/common/OrdersTable/index.tsx:292
-#: src/components/forms/ProductForm/index.tsx:497
+#: src/components/forms/ProductForm/index.tsx:506
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
@@ -9728,19 +9732,19 @@ msgstr "Piilota Hi.Events-brändäys"
 msgid "Hide Preview"
 msgstr "Piilota esikatselu"
 
-#: src/components/forms/ProductForm/index.tsx:440
+#: src/components/forms/ProductForm/index.tsx:449
 msgid "Hide product after sale end date"
 msgstr "Piilota tuote myynnin päättymispäivän jälkeen"
 
-#: src/components/forms/ProductForm/index.tsx:437
+#: src/components/forms/ProductForm/index.tsx:446
 msgid "Hide product before sale start date"
 msgstr "Piilota tuote ennen myynnin alkamispäivää"
 
-#: src/components/forms/ProductForm/index.tsx:622
+#: src/components/forms/ProductForm/index.tsx:631
 msgid "Hide product unless user has applicable promo code"
 msgstr "Piilota tuote, ellei käyttäjällä ole kelvollista kampanjakoodia"
 
-#: src/components/forms/ProductForm/index.tsx:456
+#: src/components/forms/ProductForm/index.tsx:465
 msgid "Hide product when sold out"
 msgstr "Piilota tuote loppuunmyydyttyä"
 
@@ -9760,7 +9764,7 @@ msgstr "Piilota päivämäärä"
 msgid "Hide this category?"
 msgstr "Piilotetaanko tämä kategoria?"
 
-#: src/components/forms/ProductForm/index.tsx:627
+#: src/components/forms/ProductForm/index.tsx:636
 msgid "Hide this product from customers"
 msgstr "Piilota tämä tuote asiakkailta"
 
@@ -9776,15 +9780,15 @@ msgstr "Piilottaa loppuunmyydyt"
 msgid "Hiding a product will prevent users from seeing it on the event page."
 msgstr "Tuotteen piilottaminen estää käyttäjiä näkemästä sitä tapahtumasivulla."
 
-#: src/components/forms/ProductForm/index.tsx:585
+#: src/components/forms/ProductForm/index.tsx:594
 msgid "Highlight"
 msgstr "Korosta"
 
-#: src/components/forms/ProductForm/index.tsx:599
+#: src/components/forms/ProductForm/index.tsx:608
 msgid "Highlight Message"
 msgstr "Korostusviesti"
 
-#: src/components/forms/ProductForm/index.tsx:592
+#: src/components/forms/ProductForm/index.tsx:601
 msgid "Highlight this product"
 msgstr "Korosta tätä tuotetta"
 
@@ -9793,7 +9797,7 @@ msgstr "Korosta tätä tuotetta"
 msgid "Highlighted"
 msgstr "Korostettu"
 
-#: src/components/forms/ProductForm/index.tsx:593
+#: src/components/forms/ProductForm/index.tsx:602
 msgid "Highlighted products will have a different background color to make them stand out on the event page."
 msgstr "Korostetuilla tuotteilla on eri taustaväri, jotta ne erottuvat tapahtumasivulla."
 
@@ -10824,7 +10828,7 @@ msgstr "Salli maksamattomien tilausten vieraiden sisäänkirjautuminen"
 msgid "Let someone else pay for an order"
 msgstr "Anna jonkun muun maksaa tilaus"
 
-#: src/components/forms/ProductForm/index.tsx:539
+#: src/components/forms/ProductForm/index.tsx:548
 msgid "Let the last order go over the limit"
 msgstr "Salli viimeisen tilauksen ylittää rajan"
 
@@ -11371,7 +11375,7 @@ msgstr "Enimmäisvastaanottajat / viesti"
 msgid "Maximum {cap} per order"
 msgstr "Enintään {cap} tilausta kohden"
 
-#: src/components/forms/ProductForm/index.tsx:534
+#: src/components/forms/ProductForm/index.tsx:543
 msgid "Maximum Per Order"
 msgstr "Enintään tilauksessa"
 
@@ -11514,7 +11518,7 @@ msgstr "Välikerroksen seisomapaikat"
 msgid "Min {min} per order"
 msgstr "Vähintään {min} tilausta kohden"
 
-#: src/components/forms/ProductForm/index.tsx:532
+#: src/components/forms/ProductForm/index.tsx:541
 msgid "Minimum Per Order"
 msgstr "Vähimmäismäärä tilauksessa"
 
@@ -13067,7 +13071,7 @@ msgstr "Myynnissä {0}"
 msgid "on the {position} {day}"
 msgstr "{position} {day}"
 
-#: src/components/forms/ProductForm/index.tsx:447
+#: src/components/forms/ProductForm/index.tsx:456
 msgid "On the event page"
 msgstr "Tapahtumasivulla"
 
@@ -13094,6 +13098,10 @@ msgstr "Puhelimellasi? Avaa todennussovelluksessa"
 #: src/components/forms/QuestionForm/index.tsx:207
 msgid "Once per order"
 msgstr "Kerran tilausta kohden"
+
+#: src/components/forms/ProductForm/index.tsx:395
+msgid "Once someone buys a later tier, earlier tiers stay sold out, even if tickets are refunded or unpaid holds expire. Buyers never see a cheaper price come back after paying more."
+msgstr "Kun joku ostaa myöhemmän hintatason, aiemmat tasot pysyvät loppuunmyytyinä, vaikka lippuja palautettaisiin tai maksamattomat varaukset vanhenisivat. Ostajat eivät koskaan näe halvemman hinnan palaavan maksettuaan enemmän."
 
 #: src/components/common/NoEventsBlankSlate/index.tsx:19
 msgid "Once you create an event, you'll see it here."
@@ -13208,7 +13216,7 @@ msgstr "Vain tilin ylläpitäjät voivat muuttaa näitä asetuksia."
 msgid "Only admins can manage team access."
 msgstr "Vain järjestelmänvalvojat voivat hallita tiimin pääsyä."
 
-#: src/components/forms/ProductForm/index.tsx:560
+#: src/components/forms/ProductForm/index.tsx:569
 msgid "Only available as an add-on"
 msgstr "Saatavilla vain lisäosana"
 
@@ -13544,7 +13552,7 @@ msgstr "Tilausten haltijat"
 msgid "Order ID"
 msgstr "Tilaus-ID"
 
-#: src/components/forms/ProductForm/index.tsx:526
+#: src/components/forms/ProductForm/index.tsx:535
 msgid "Order limits"
 msgstr "Tilausrajat"
 
@@ -15063,7 +15071,7 @@ msgstr "Kampanjakoodi"
 msgid "Promo code only"
 msgstr "Vain kampanjakoodilla"
 
-#: src/components/forms/ProductForm/index.tsx:620
+#: src/components/forms/ProductForm/index.tsx:629
 msgid "Promo Code page"
 msgstr "Kampanjakoodisivu"
 
@@ -16308,7 +16316,7 @@ msgstr "Myynti"
 msgid "Sale complete"
 msgstr "Myynti valmis"
 
-#: src/components/forms/ProductForm/index.tsx:433
+#: src/components/forms/ProductForm/index.tsx:442
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:196
 msgid "Sale End Date"
 msgstr "Myynnin päättymispäivä"
@@ -16334,11 +16342,11 @@ msgstr "Myynti vanhentunut"
 msgid "Sale Period"
 msgstr "Myyntiaika"
 
-#: src/components/forms/ProductForm/index.tsx:424
+#: src/components/forms/ProductForm/index.tsx:433
 msgid "Sale period dates apply across all dates in your schedule. To adjust prices, per-date quantities or availability for individual dates, use the overrides on the <0>Occurrence Schedule page</0>."
 msgstr "Myyntijakson päivämäärät koskevat kaikkia aikataulusi päivämääriä. Jos haluat säätää yksittäisten päivämäärien hintoja, päivämääräkohtaisia määriä tai saatavuutta, käytä ohituksia <0>Tapahtumakertojen aikataulu -sivulla</0>."
 
-#: src/components/forms/ProductForm/index.tsx:431
+#: src/components/forms/ProductForm/index.tsx:440
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:192
 msgid "Sale Start Date"
 msgstr "Myynnin alkamispäivä"
@@ -16347,7 +16355,7 @@ msgstr "Myynnin alkamispäivä"
 msgid "Sale starts {0}"
 msgstr "Myynti alkaa {0}"
 
-#: src/components/forms/ProductForm/index.tsx:417
+#: src/components/forms/ProductForm/index.tsx:426
 msgid "Sale window"
 msgstr "Myyntiaika"
 
@@ -17189,7 +17197,7 @@ msgstr "Valitse tuotteen taso"
 msgid "Select products"
 msgstr "Valitse tuotteet"
 
-#: src/components/forms/ProductForm/index.tsx:567
+#: src/components/forms/ProductForm/index.tsx:576
 msgid "Select products..."
 msgstr "Valitse tuotteet..."
 
@@ -17229,7 +17237,7 @@ msgstr "Valitse, mitkä osallistujat saavat tämän viestin"
 msgid "Select which events will trigger this webhook"
 msgstr "Valitse, mitkä tapahtumat laukaisevat tämän webhookin"
 
-#: src/components/forms/ProductForm/index.tsx:492
+#: src/components/forms/ProductForm/index.tsx:501
 msgid "Select..."
 msgstr "Valitse..."
 
@@ -17306,7 +17314,7 @@ msgstr "Myyjä"
 msgid "Selling as {signedInName}"
 msgstr "Myyt nimellä {signedInName}"
 
-#: src/components/forms/ProductForm/index.tsx:601
+#: src/components/forms/ProductForm/index.tsx:610
 msgid "Selling fast 🔥"
 msgstr "Myydään nopeasti 🔥"
 
@@ -17740,7 +17748,7 @@ msgstr "Näytä kassalla"
 msgid "Show attendee notes to non-logged-in staff"
 msgstr "Näytä osallistujien muistiinpanot ei-kirjautuneelle henkilökunnalle"
 
-#: src/components/forms/ProductForm/index.tsx:454
+#: src/components/forms/ProductForm/index.tsx:463
 msgid "Show available product quantity"
 msgstr "Näytä tuotteen saatavilla oleva määrä"
 
@@ -18921,7 +18929,7 @@ msgstr "Sähköpostimuutos vahvistettu onnistuneesti"
 msgid "Successfully created attendee"
 msgstr "Osallistuja luotu onnistuneesti"
 
-#: src/components/modals/CreateProductModal/index.tsx:62
+#: src/components/modals/CreateProductModal/index.tsx:63
 msgid "Successfully Created Product"
 msgstr "Tuote luotu onnistuneesti"
 
@@ -18929,7 +18937,7 @@ msgstr "Tuote luotu onnistuneesti"
 msgid "Successfully Created Promo Code"
 msgstr "Kampanjakoodi luotu onnistuneesti"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:115
+#: src/components/modals/DuplicateProductModal/index.tsx:117
 msgid "Successfully Duplicated Product"
 msgstr "Tuote monistettu onnistuneesti"
 
@@ -19014,7 +19022,7 @@ msgstr "Palvelumaksun oletusasetukset päivitetty onnistuneesti"
 msgid "Successfully Updated Platform Fee Settings"
 msgstr "Palvelumaksuasetukset päivitetty onnistuneesti"
 
-#: src/components/modals/EditProductModal/index.tsx:104
+#: src/components/modals/EditProductModal/index.tsx:106
 msgid "Successfully updated product"
 msgstr "Tuote päivitetty onnistuneesti"
 
@@ -19238,13 +19246,13 @@ msgid "Tax updated"
 msgstr "Vero päivitetty"
 
 #: src/components/common/InlineOrderSummary/index.tsx:195
-#: src/components/forms/ProductForm/index.tsx:494
+#: src/components/forms/ProductForm/index.tsx:503
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:48
 #: src/components/routes/settings/TaxesAndFees/index.tsx:123
 msgid "Taxes"
 msgstr "Verot"
 
-#: src/components/forms/ProductForm/index.tsx:484
+#: src/components/forms/ProductForm/index.tsx:493
 msgid "Taxes & fees"
 msgstr "Verot ja maksut"
 
@@ -19257,7 +19265,7 @@ msgstr "Verot ja maksut sovellettu"
 msgid "Taxes and fees"
 msgstr "Verot ja maksut"
 
-#: src/components/forms/ProductForm/index.tsx:491
+#: src/components/forms/ProductForm/index.tsx:500
 msgid "Taxes and Fees"
 msgstr "Verot ja maksut"
 
@@ -20241,7 +20249,7 @@ msgstr "Tämä järjestäjä"
 msgid "This organizer profile is not published yet"
 msgstr "Järjestäjäprofiilia ei ole vielä julkaistu"
 
-#: src/components/forms/ProductForm/index.tsx:625
+#: src/components/forms/ProductForm/index.tsx:634
 msgid "This overrides all visibility settings and will hide the product from all customers."
 msgstr "Tämä ohittaa kaikki näkyvyysasetukset ja piilottaa tuotteen kaikilta asiakkailta."
 
@@ -20265,7 +20273,7 @@ msgstr "Tämä tuote on korostettu tapahtumasivulla"
 msgid "This product is sold out"
 msgstr "Tämä tuote on loppuunmyyty"
 
-#: src/components/forms/ProductForm/index.tsx:561
+#: src/components/forms/ProductForm/index.tsx:570
 msgid "This product won't appear on the event page on its own — buyers only see it as an add-on to the products it's attached to."
 msgstr "Tämä tuote ei näy tapahtumasivulla itsenäisesti — ostajat näkevät sen vain siihen liitettyjen tuotteiden lisätuotteena."
 
@@ -21104,7 +21112,7 @@ msgstr "Osallistujan uloskirjaus ei onnistu"
 msgid "Unable to complete sale"
 msgstr "Myynnin viimeistely epäonnistui"
 
-#: src/components/modals/CreateProductModal/index.tsx:71
+#: src/components/modals/CreateProductModal/index.tsx:72
 msgid "Unable to create product. Please check the your details"
 msgstr "Tuotteen luominen ei onnistu. Tarkista tietosi"
 
@@ -21116,7 +21124,7 @@ msgstr "Tuotteen luominen ei onnistu. Tarkista tietosi"
 msgid "Unable to delete the widget"
 msgstr "Widgetin poistaminen epäonnistui"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:123
+#: src/components/modals/DuplicateProductModal/index.tsx:125
 msgid "Unable to duplicate product. Please check the your details"
 msgstr "Tuotteen monistaminen ei onnistu. Tarkista tietosi"
 
@@ -22136,7 +22144,7 @@ msgstr "Odotetaan skannausta…"
 msgid "Waiting for Stripe to confirm your payment…"
 msgstr "Odotetaan Stripen maksuvahvistusta…"
 
-#: src/components/forms/ProductForm/index.tsx:466
+#: src/components/forms/ProductForm/index.tsx:475
 #: src/components/layouts/AuthLayout/AuthShell.tsx:16
 #: src/components/layouts/Event/index.tsx:154
 #: src/components/routes/event/Settings/index.tsx:104
@@ -22608,7 +22616,7 @@ msgstr "Kun tapahtuma arkistoidaan"
 msgid "When an event is updated"
 msgstr "Kun tapahtumaa päivitetään"
 
-#: src/components/forms/ProductForm/index.tsx:540
+#: src/components/forms/ProductForm/index.tsx:549
 msgid "When an order asks for more than remain, it goes through as long as at least one is left. The product, or the current tier, then sells out and the next tier opens. Shared capacity limits still apply."
 msgstr "Jos tilaus pyytää enemmän kuin on jäljellä, se hyväksytään, kunhan jäljellä on vähintään yksi. Tuote tai nykyinen hintaporras myydään sen jälkeen loppuun ja seuraava porras avautuu. Jaetut kapasiteettirajat ovat edelleen voimassa."
 
@@ -22862,7 +22870,7 @@ msgstr "Kyllä – minulla on voimassa oleva EU:n ALV-rekisteritunniste"
 msgid "Yes, cancel my order"
 msgstr "Kyllä, peru tilaukseni"
 
-#: src/components/forms/ProductForm/index.tsx:518
+#: src/components/forms/ProductForm/index.tsx:527
 msgid "Yes, remove them"
 msgstr "Kyllä, poista ne"
 
@@ -22944,7 +22952,7 @@ msgstr "Voit valita enintään {max} paikkaa tilausta kohti"
 msgid "You can configure additional service fees and taxes in your account settings."
 msgstr "Voit määrittää lisäpalvelumaksut ja verot tilisi asetuksissa."
 
-#: src/components/forms/ProductForm/index.tsx:617
+#: src/components/forms/ProductForm/index.tsx:626
 msgid "You can create a promo code which targets this product on the"
 msgstr "Voit luoda tähän tuotteeseen kohdistuvan kampanjakoodin täällä:"
 
@@ -23033,7 +23041,7 @@ msgstr "Olet saavuttanut viestintärajasi."
 msgid "You have run out of time to complete your order."
 msgstr "Tilauksesi viimeistelyyn varattu aika on päättynyt."
 
-#: src/components/forms/ProductForm/index.tsx:516
+#: src/components/forms/ProductForm/index.tsx:525
 msgid "You have taxes and fees added to a Free Product. Would you like to remove them?"
 msgstr "Maksuttomaan tuotteeseen on lisätty veroja ja maksuja. Haluatko poistaa ne?"
 

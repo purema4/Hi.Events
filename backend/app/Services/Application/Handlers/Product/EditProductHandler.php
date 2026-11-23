@@ -157,6 +157,7 @@ class EditProductHandler
                 'hide_when_sold_out' => $productsData->hide_when_sold_out,
                 'sequential_tier_release_enabled' => $productsData->type === ProductPriceType::TIERED && $productsData->sequential_tier_release_enabled,
                 'soft_quantity_limit' => $productsData->soft_quantity_limit ?? false,
+                'keep_earlier_tiers_closed' => $productsData->type === ProductPriceType::TIERED && ($productsData->keep_earlier_tiers_closed ?? false),
                 'show_quantity_remaining' => $productsData->show_quantity_remaining,
                 'is_hidden_without_promo_code' => $productsData->is_hidden_without_promo_code,
                 'product_type' => $productsData->product_type->name,

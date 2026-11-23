@@ -1399,5 +1399,6 @@
     "The Apple Wallet pass could not be encoded: :message": "No se pudo codificar el pase de Apple Wallet: :message",
     "The Apple Wallet pass is no longer available.": "El pase de Apple Wallet ya no está disponible.",
     "Ticket for :event": "Entrada para :event",
-    "Ticket number": "Número de entrada"
+    "Ticket number": "Número de entrada",
+    "This tier is sold out": "Este nivel está agotado"
 }

@@ -1506,5 +1506,6 @@
     "The attendee could not be checked in.": "参加者をチェックインできませんでした。",
     "This was sent less than :minutes minutes ago. Wait before sending it again.": "これは :minutes 分以内に送信されています。再送信する前にお待ちください。",
     "Only completed orders have a confirmation to resend.": "再送信できる確認メールがあるのは完了した注文のみです。",
-    "That email address has already been sent :count emails in the last :minutes minutes. Wait before sending more.": "このメールアドレスには過去 :minutes 分間にすでに :count 件のメールが送信されています。さらに送信する前にお待ちください。"
+    "That email address has already been sent :count emails in the last :minutes minutes. Wait before sending more.": "このメールアドレスには過去 :minutes 分間にすでに :count 件のメールが送信されています。さらに送信する前にお待ちください。",
+    "This tier is sold out": "この価格帯は完売しました"
 }

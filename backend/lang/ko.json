@@ -1507,5 +1507,6 @@
     "The attendee could not be checked in.": "참석자를 체크인할 수 없습니다.",
     "This was sent less than :minutes minutes ago. Wait before sending it again.": ":minutes분 이내에 이미 전송되었습니다. 다시 보내기 전에 기다려 주세요.",
     "Only completed orders have a confirmation to resend.": "완료된 주문만 다시 보낼 확인 메일이 있습니다.",
-    "That email address has already been sent :count emails in the last :minutes minutes. Wait before sending more.": "이 이메일 주소로 지난 :minutes분 동안 이미 :count개의 이메일이 전송되었습니다. 더 보내기 전에 기다려 주세요."
+    "That email address has already been sent :count emails in the last :minutes minutes. Wait before sending more.": "이 이메일 주소로 지난 :minutes분 동안 이미 :count개의 이메일이 전송되었습니다. 더 보내기 전에 기다려 주세요.",
+    "This tier is sold out": "이 단계는 매진되었습니다"
 }

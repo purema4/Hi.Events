@@ -401,6 +401,7 @@ class ProcessWaitlistService
             $quantities = $this->findPriceQuantities($priceQuantities, $entry->getProductPriceId());
 
             return $price !== null && $quantities !== null && $price->isOnSale()
+                && ! $product->isClosedByLaterTierSales($price)
                 && $this->hasRoomForOffer($quantities, $offeredTickets[$price->getId()] ?? 0)
                 ? $price
                 : null;
@@ -409,7 +410,7 @@ class ProcessWaitlistService
         foreach ($product->getWaitlistablePrices() as $tier) {
             $quantities = $this->findPriceQuantities($priceQuantities, $tier->getId());
 
-            if ($quantities === null) {
+            if ($quantities === null || $product->isClosedByLaterTierSales($tier)) {
                 continue;
             }
 

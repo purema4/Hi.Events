@@ -1358,5 +1358,6 @@
     "The Apple Wallet pass could not be encoded: :message": "Δεν ήταν δυνατή η κωδικοποίηση της κάρτας Apple Wallet: :message",
     "The Apple Wallet pass is no longer available.": "Η κάρτα Apple Wallet δεν είναι πλέον διαθέσιμη.",
     "Ticket for :event": "Εισιτήριο για :event",
-    "Ticket number": "Αριθμός εισιτηρίου"
+    "Ticket number": "Αριθμός εισιτηρίου",
+    "This tier is sold out": "Αυτή η κατηγορία έχει εξαντληθεί"
 }

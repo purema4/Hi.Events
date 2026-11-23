@@ -1301,5 +1301,6 @@
     "The Apple Wallet pass could not be encoded: :message": "Не удалось закодировать карту Apple Wallet: :message",
     "The Apple Wallet pass is no longer available.": "Карта Apple Wallet больше недоступна.",
     "Ticket for :event": "Билет на :event",
-    "Ticket number": "Номер билета"
+    "Ticket number": "Номер билета",
+    "This tier is sold out": "Этот уровень распродан"
 }

@@ -1068,7 +1068,7 @@ msgstr "Přijímejte platby kartou přes Stripe"
 #: src/components/common/TeamAccessFields/index.tsx:205
 #: src/components/common/TeamAccessFields/index.tsx:207
 #: src/components/common/TeamAccessPanel/index.tsx:137
-#: src/components/forms/ProductForm/index.tsx:610
+#: src/components/forms/ProductForm/index.tsx:619
 #: src/components/routes/oauth/Connect/index.tsx:117
 #: src/components/routes/settings/ApiKeys/CreateApiKeyModal.tsx:237
 #: src/components/routes/settings/Team/index.tsx:218
@@ -1659,11 +1659,11 @@ msgstr "Přidejte své profily na sociálních sítích a URL webových stránek
 msgid "Add-on only"
 msgstr "Pouze jako doplněk"
 
-#: src/components/forms/ProductForm/index.tsx:566
+#: src/components/forms/ProductForm/index.tsx:575
 msgid "Add-on products"
 msgstr "Doplňkové produkty"
 
-#: src/components/forms/ProductForm/index.tsx:547
+#: src/components/forms/ProductForm/index.tsx:556
 #: src/components/routes/product-widget/SelectProducts/index.tsx:520
 msgid "Add-ons"
 msgstr "Doplňky"
@@ -2042,11 +2042,11 @@ msgstr "Umožnit účastníkům aktualizovat informace o vstupence (jméno, e-ma
 msgid "Allow buyers to copy their details to all attendees"
 msgstr "Umožnit kupujícím zkopírovat své údaje ke všem účastníkům"
 
-#: src/components/forms/ProductForm/index.tsx:474
+#: src/components/forms/ProductForm/index.tsx:483
 msgid "Allow customers to join a waitlist when this product is sold out or before its sales open"
 msgstr "Umožnit zákazníkům zapsat se na čekací listinu, když je produkt vyprodaný nebo před zahájením prodeje"
 
-#: src/components/forms/ProductForm/index.tsx:473
+#: src/components/forms/ProductForm/index.tsx:482
 msgid "Allow customers to join a waitlist when this product is sold out or before its sales open. Customers join the waitlist for a specific date."
 msgstr "Umožnit zákazníkům zapsat se na čekací listinu, když je produkt vyprodaný nebo před zahájením prodeje. Zákazníci se zapisují na konkrétní termín."
 
@@ -2209,7 +2209,7 @@ msgstr "Položce v {0} chybí název"
 msgid "An optional description of this category to display on the event page."
 msgstr "Volitelný popis této kategorie, který se zobrazí na stránce události."
 
-#: src/components/forms/ProductForm/index.tsx:600
+#: src/components/forms/ProductForm/index.tsx:609
 msgid "An optional message to display on the highlighted product, e.g. \"Selling fast 🔥\" or \"Best value\""
 msgstr "Volitelná zpráva zobrazená u zvýrazněného produktu, např. \\\"Rychle mizí 🔥\\\" nebo \\\"Nejlepší hodnota\\\""
 
@@ -3230,8 +3230,8 @@ msgstr "Základní cena"
 msgid "Based on {0}. This event keeps its own copy."
 msgstr "Vychází z {0}. Tato událost si uchovává vlastní kopii."
 
-#: src/components/forms/ProductForm/index.tsx:438
-#: src/components/forms/ProductForm/index.tsx:441
+#: src/components/forms/ProductForm/index.tsx:447
+#: src/components/forms/ProductForm/index.tsx:450
 msgid "Based on the global sale period above, not per date"
 msgstr "Podle celkového období prodeje výše, nikoli podle termínu"
 
@@ -3509,7 +3509,7 @@ msgstr "Údaje kupujícího"
 msgid "Buyer pays"
 msgstr "Platí kupující"
 
-#: src/components/forms/ProductForm/index.tsx:576
+#: src/components/forms/ProductForm/index.tsx:585
 msgid "Buyers can add these to their order when they select this product at checkout."
 msgstr "Kupující si je mohou přidat do objednávky, když při nákupu vyberou tento produkt."
 
@@ -4693,7 +4693,7 @@ msgstr "Kód k vložení"
 msgid "Collaborate with your team to create amazing events together."
 msgstr "Spolupracujte se svým týmem a vytvářejte skvělé události společně."
 
-#: src/components/forms/ProductForm/index.tsx:458
+#: src/components/forms/ProductForm/index.tsx:467
 msgid "Collapse this product when the event page is initially loaded"
 msgstr "Sbalit tento produkt při prvotním načtení stránky události"
 
@@ -5770,7 +5770,7 @@ msgstr "Vytvořit poplatek"
 msgid "Create key"
 msgstr "Vytvořit klíč"
 
-#: src/components/forms/ProductForm/index.tsx:573
+#: src/components/forms/ProductForm/index.tsx:582
 msgid "Create more tickets or products to offer them as add-ons"
 msgstr "Vytvořte další vstupenky nebo produkty, abyste je mohli nabízet jako doplňky"
 
@@ -5797,7 +5797,7 @@ msgstr "Vytvořit organizátora"
 msgid "Create payment link"
 msgstr "Vytvořit platební odkaz"
 
-#: src/components/modals/CreateProductModal/index.tsx:92
+#: src/components/modals/CreateProductModal/index.tsx:93
 msgid "Create Product"
 msgstr "Vytvořit produkt"
 
@@ -5828,7 +5828,7 @@ msgstr "Vytvořit plánek sálu"
 msgid "Create tax"
 msgstr "Vytvořit daň"
 
-#: src/components/forms/ProductForm/index.tsx:509
+#: src/components/forms/ProductForm/index.tsx:518
 msgid "Create Tax or Fee"
 msgstr "Vytvořit daň nebo poplatek"
 
@@ -5836,7 +5836,7 @@ msgstr "Vytvořit daň nebo poplatek"
 msgid "Create the profile first, then add photos here."
 msgstr "Nejprve vytvořte profil a poté sem přidejte fotky."
 
-#: src/components/modals/CreateProductModal/index.tsx:89
+#: src/components/modals/CreateProductModal/index.tsx:90
 msgid "Create Ticket or Product"
 msgstr "Vytvořit vstupenku nebo produkt"
 
@@ -6568,8 +6568,8 @@ msgstr "Hloubka"
 
 #: src/components/common/WidgetEditor/SectionsPicker.tsx:32
 #: src/components/forms/ProductCategoryForm/index.tsx:29
-#: src/components/forms/ProductForm/index.tsx:401
-#: src/components/forms/ProductForm/index.tsx:407
+#: src/components/forms/ProductForm/index.tsx:410
+#: src/components/forms/ProductForm/index.tsx:416
 #: src/components/forms/QuestionForm/index.tsx:123
 #: src/components/forms/TaxAndFeeForm/index.tsx:106
 #: src/components/modals/CreateEventModal/index.tsx:351
@@ -6808,6 +6808,10 @@ msgstr "Nemáte účet? <0>Zaregistrujte se</0>"
 msgid "Don't let buyers leave a single empty seat"
 msgstr "Nedovolit kupujícím nechat jedno osamocené volné místo"
 
+#: src/components/forms/ProductForm/index.tsx:394
+msgid "Don't reopen earlier tiers"
+msgstr "Neotevírat znovu dřívější úrovně"
+
 #: src/components/common/ProductsTable/SortableProduct/index.tsx:469
 #: src/components/forms/ProductForm/index.tsx:297
 #: src/utilites/eventListingLabels.ts:22
@@ -6996,8 +7000,8 @@ msgstr "Duplikovat událost"
 msgid "Duplicate Event"
 msgstr "Duplikovat událost"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:131
-#: src/components/modals/DuplicateProductModal/index.tsx:135
+#: src/components/modals/DuplicateProductModal/index.tsx:133
+#: src/components/modals/DuplicateProductModal/index.tsx:137
 msgid "Duplicate Product"
 msgstr "Duplikovat produkt"
 
@@ -7268,8 +7272,8 @@ msgstr "Upravit člena"
 msgid "Edit Order Details"
 msgstr "Upravit údaje objednávky"
 
-#: src/components/modals/EditProductModal/index.tsx:115
-#: src/components/modals/EditProductModal/index.tsx:119
+#: src/components/modals/EditProductModal/index.tsx:117
+#: src/components/modals/EditProductModal/index.tsx:121
 msgid "Edit Product"
 msgstr "Upravit produkt"
 
@@ -7573,7 +7577,7 @@ msgstr "Povolit tuto kapacitu k zastavení prodeje produktů po dosažení limit
 msgid "Enable this template for sending emails"
 msgstr "Povolit tuto šablonu pro odesílání e-mailů"
 
-#: src/components/forms/ProductForm/index.tsx:476
+#: src/components/forms/ProductForm/index.tsx:485
 msgid "Enable Waitlist"
 msgstr "Povolit seznam čekajících"
 
@@ -8218,7 +8222,7 @@ msgstr "Všichni, kdo mohou spravovat tohoto organizátora a všechny jeho udál
 msgid "Everyone who can see or manage this event."
 msgstr "Všichni, kdo mohou zobrazit nebo spravovat tuto událost."
 
-#: src/components/forms/ProductForm/index.tsx:396
+#: src/components/forms/ProductForm/index.tsx:405
 msgid "Everything else — tap to edit"
 msgstr "Vše ostatní — klepnutím upravíte"
 
@@ -8812,7 +8816,7 @@ msgstr "Poplatek aktualizován"
 
 #: src/components/common/InlineOrderSummary/index.tsx:164
 #: src/components/common/OrdersTable/index.tsx:292
-#: src/components/forms/ProductForm/index.tsx:497
+#: src/components/forms/ProductForm/index.tsx:506
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:54
 #: src/components/routes/product-widget/SelectProducts/Prices/Tiered/index.tsx:94
 #: src/components/routes/settings/TaxesAndFees/index.tsx:126
@@ -9728,19 +9732,19 @@ msgstr "Skrýt branding Hi.Events"
 msgid "Hide Preview"
 msgstr "Skrýt náhled"
 
-#: src/components/forms/ProductForm/index.tsx:440
+#: src/components/forms/ProductForm/index.tsx:449
 msgid "Hide product after sale end date"
 msgstr "Skrýt produkt po datu ukončení prodeje"
 
-#: src/components/forms/ProductForm/index.tsx:437
+#: src/components/forms/ProductForm/index.tsx:446
 msgid "Hide product before sale start date"
 msgstr "Skrýt produkt před datem zahájení prodeje"
 
-#: src/components/forms/ProductForm/index.tsx:622
+#: src/components/forms/ProductForm/index.tsx:631
 msgid "Hide product unless user has applicable promo code"
 msgstr "Skrýt produkt, pokud uživatel nemá odpovídající promo kód"
 
-#: src/components/forms/ProductForm/index.tsx:456
+#: src/components/forms/ProductForm/index.tsx:465
 msgid "Hide product when sold out"
 msgstr "Skrýt produkt při vyprodání"
 
@@ -9760,7 +9764,7 @@ msgstr "Skrýt datum"
 msgid "Hide this category?"
 msgstr "Skrýt tuto kategorii?"
 
-#: src/components/forms/ProductForm/index.tsx:627
+#: src/components/forms/ProductForm/index.tsx:636
 msgid "Hide this product from customers"
 msgstr "Skrýt tento produkt před zákazníky"
 
@@ -9776,15 +9780,15 @@ msgstr "Skrývá vyprodané"
 msgid "Hiding a product will prevent users from seeing it on the event page."
 msgstr "Skrytí produktu zabrání uživatelům, aby jej viděli na stránce události."
 
-#: src/components/forms/ProductForm/index.tsx:585
+#: src/components/forms/ProductForm/index.tsx:594
 msgid "Highlight"
 msgstr "Zvýraznit"
 
-#: src/components/forms/ProductForm/index.tsx:599
+#: src/components/forms/ProductForm/index.tsx:608
 msgid "Highlight Message"
 msgstr "Zvýraznit zprávu"
 
-#: src/components/forms/ProductForm/index.tsx:592
+#: src/components/forms/ProductForm/index.tsx:601
 msgid "Highlight this product"
 msgstr "Zvýraznit tento produkt"
 
@@ -9793,7 +9797,7 @@ msgstr "Zvýraznit tento produkt"
 msgid "Highlighted"
 msgstr "Zvýrazněno"
 
-#: src/components/forms/ProductForm/index.tsx:593
+#: src/components/forms/ProductForm/index.tsx:602
 msgid "Highlighted products will have a different background color to make them stand out on the event page."
 msgstr "Zvýrazněné produkty budou mít jinou barvu pozadí, aby vynikly na stránce události."
 
@@ -10824,7 +10828,7 @@ msgstr "Umožnit odbavení hostů z nezaplacených objednávek"
 msgid "Let someone else pay for an order"
 msgstr "Umožnit, aby objednávku zaplatil někdo jiný"
 
-#: src/components/forms/ProductForm/index.tsx:539
+#: src/components/forms/ProductForm/index.tsx:548
 msgid "Let the last order go over the limit"
 msgstr "Povolit poslední objednávce překročit limit"
 
@@ -11371,7 +11375,7 @@ msgstr "Max. příjemců / zpráva"
 msgid "Maximum {cap} per order"
 msgstr "Maximálně {cap} na objednávku"
 
-#: src/components/forms/ProductForm/index.tsx:534
+#: src/components/forms/ProductForm/index.tsx:543
 msgid "Maximum Per Order"
 msgstr "Maximum na objednávku"
 
@@ -11514,7 +11518,7 @@ msgstr "Stání na mezipatře"
 msgid "Min {min} per order"
 msgstr "Min. {min} na objednávku"
 
-#: src/components/forms/ProductForm/index.tsx:532
+#: src/components/forms/ProductForm/index.tsx:541
 msgid "Minimum Per Order"
 msgstr "Minimum na objednávku"
 
@@ -13067,7 +13071,7 @@ msgstr "V prodeji {0}"
 msgid "on the {position} {day}"
 msgstr "({position} {day} v měsíci)"
 
-#: src/components/forms/ProductForm/index.tsx:447
+#: src/components/forms/ProductForm/index.tsx:456
 msgid "On the event page"
 msgstr "Na stránce události"
 
@@ -13094,6 +13098,10 @@ msgstr "Jste na telefonu? Otevřít v ověřovací aplikaci"
 #: src/components/forms/QuestionForm/index.tsx:207
 msgid "Once per order"
 msgstr "Jednou za objednávku"
+
+#: src/components/forms/ProductForm/index.tsx:395
+msgid "Once someone buys a later tier, earlier tiers stay sold out, even if tickets are refunded or unpaid holds expire. Buyers never see a cheaper price come back after paying more."
+msgstr "Jakmile si někdo koupí pozdější úroveň, dřívější úrovně zůstanou vyprodané, i když se vstupenky vrátí nebo vyprší nezaplacené rezervace. Kupující nikdy neuvidí, že se po zaplacení vyšší ceny vrátí levnější."
 
 #: src/components/common/NoEventsBlankSlate/index.tsx:19
 msgid "Once you create an event, you'll see it here."
@@ -13208,7 +13216,7 @@ msgstr "Tato nastavení mohou měnit pouze administrátoři účtu."
 msgid "Only admins can manage team access."
 msgstr "Přístup týmu mohou spravovat pouze administrátoři."
 
-#: src/components/forms/ProductForm/index.tsx:560
+#: src/components/forms/ProductForm/index.tsx:569
 msgid "Only available as an add-on"
 msgstr "Dostupné pouze jako doplněk"
 
@@ -13544,7 +13552,7 @@ msgstr "Držitelé objednávky"
 msgid "Order ID"
 msgstr "ID objednávky"
 
-#: src/components/forms/ProductForm/index.tsx:526
+#: src/components/forms/ProductForm/index.tsx:535
 msgid "Order limits"
 msgstr "Limity objednávky"
 
@@ -15063,7 +15071,7 @@ msgstr "Promo kód"
 msgid "Promo code only"
 msgstr "Pouze s promo kódem"
 
-#: src/components/forms/ProductForm/index.tsx:620
+#: src/components/forms/ProductForm/index.tsx:629
 msgid "Promo Code page"
 msgstr "Stránka promo kódů"
 
@@ -16308,7 +16316,7 @@ msgstr "Prodej"
 msgid "Sale complete"
 msgstr "Prodej dokončen"
 
-#: src/components/forms/ProductForm/index.tsx:433
+#: src/components/forms/ProductForm/index.tsx:442
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:196
 msgid "Sale End Date"
 msgstr "Datum ukončení prodeje"
@@ -16334,11 +16342,11 @@ msgstr "Prodej vypršel"
 msgid "Sale Period"
 msgstr "Období prodeje"
 
-#: src/components/forms/ProductForm/index.tsx:424
+#: src/components/forms/ProductForm/index.tsx:433
 msgid "Sale period dates apply across all dates in your schedule. To adjust prices, per-date quantities or availability for individual dates, use the overrides on the <0>Occurrence Schedule page</0>."
 msgstr "Data období prodeje platí pro všechny termíny ve vašem harmonogramu. Chcete-li upravit ceny, množství na termín nebo dostupnost jednotlivých termínů, použijte individuální úpravy na <0>stránce Harmonogram termínů</0>."
 
-#: src/components/forms/ProductForm/index.tsx:431
+#: src/components/forms/ProductForm/index.tsx:440
 #: src/components/forms/ProductForm/ProductPriceTierForm.tsx:192
 msgid "Sale Start Date"
 msgstr "Datum zahájení prodeje"
@@ -16347,7 +16355,7 @@ msgstr "Datum zahájení prodeje"
 msgid "Sale starts {0}"
 msgstr "Prodej začíná {0}"
 
-#: src/components/forms/ProductForm/index.tsx:417
+#: src/components/forms/ProductForm/index.tsx:426
 msgid "Sale window"
 msgstr "Období prodeje"
 
@@ -17189,7 +17197,7 @@ msgstr "Vybrat úroveň produktu"
 msgid "Select products"
 msgstr "Vyberte produkty"
 
-#: src/components/forms/ProductForm/index.tsx:567
+#: src/components/forms/ProductForm/index.tsx:576
 msgid "Select products..."
 msgstr "Vybrat produkty..."
 
@@ -17229,7 +17237,7 @@ msgstr "Vyberte, kteří účastníci mají tuto zprávu obdržet"
 msgid "Select which events will trigger this webhook"
 msgstr "Vyberte, které události spustí tento Webhook"
 
-#: src/components/forms/ProductForm/index.tsx:492
+#: src/components/forms/ProductForm/index.tsx:501
 msgid "Select..."
 msgstr "Vyberte..."
 
@@ -17306,7 +17314,7 @@ msgstr "Prodáváte jako"
 msgid "Selling as {signedInName}"
 msgstr "Prodáváte jako {signedInName}"
 
-#: src/components/forms/ProductForm/index.tsx:601
+#: src/components/forms/ProductForm/index.tsx:610
 msgid "Selling fast 🔥"
 msgstr "Rychle se prodává 🔥"
 
@@ -17740,7 +17748,7 @@ msgstr "Zobrazit při nákupu"
 msgid "Show attendee notes to non-logged-in staff"
 msgstr "Zobrazovat poznámky k účastníkům nepřihlášenému personálu"
 
-#: src/components/forms/ProductForm/index.tsx:454
+#: src/components/forms/ProductForm/index.tsx:463
 msgid "Show available product quantity"
 msgstr "Zobrazit dostupné množství produktu"
 
@@ -18921,7 +18929,7 @@ msgstr "Změna e-mailu byla úspěšně potvrzena"
 msgid "Successfully created attendee"
 msgstr "Účastník byl úspěšně vytvořen"
 
-#: src/components/modals/CreateProductModal/index.tsx:62
+#: src/components/modals/CreateProductModal/index.tsx:63
 msgid "Successfully Created Product"
 msgstr "Produkt byl úspěšně vytvořen"
 
@@ -18929,7 +18937,7 @@ msgstr "Produkt byl úspěšně vytvořen"
 msgid "Successfully Created Promo Code"
 msgstr "Promo kód byl úspěšně vytvořen"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:115
+#: src/components/modals/DuplicateProductModal/index.tsx:117
 msgid "Successfully Duplicated Product"
 msgstr "Produkt byl úspěšně duplikován"
 
@@ -19014,7 +19022,7 @@ msgstr "Výchozí nastavení poplatku platformy bylo úspěšně aktualizováno"
 msgid "Successfully Updated Platform Fee Settings"
 msgstr "Nastavení poplatku platformy bylo úspěšně aktualizováno"
 
-#: src/components/modals/EditProductModal/index.tsx:104
+#: src/components/modals/EditProductModal/index.tsx:106
 msgid "Successfully updated product"
 msgstr "Produkt byl úspěšně aktualizován"
 
@@ -19238,13 +19246,13 @@ msgid "Tax updated"
 msgstr "Daň aktualizována"
 
 #: src/components/common/InlineOrderSummary/index.tsx:195
-#: src/components/forms/ProductForm/index.tsx:494
+#: src/components/forms/ProductForm/index.tsx:503
 #: src/components/routes/organizer/Reports/RevenueSummaryReport/index.tsx:48
 #: src/components/routes/settings/TaxesAndFees/index.tsx:123
 msgid "Taxes"
 msgstr "Daně"
 
-#: src/components/forms/ProductForm/index.tsx:484
+#: src/components/forms/ProductForm/index.tsx:493
 msgid "Taxes & fees"
 msgstr "Daně a poplatky"
 
@@ -19257,7 +19265,7 @@ msgstr "Daně a poplatky byly uplatněny"
 msgid "Taxes and fees"
 msgstr "Daně a poplatky"
 
-#: src/components/forms/ProductForm/index.tsx:491
+#: src/components/forms/ProductForm/index.tsx:500
 msgid "Taxes and Fees"
 msgstr "Daně a poplatky"
 
@@ -20241,7 +20249,7 @@ msgstr "Tento organizátor"
 msgid "This organizer profile is not published yet"
 msgstr "Tento profil pořadatele zatím není zveřejněn"
 
-#: src/components/forms/ProductForm/index.tsx:625
+#: src/components/forms/ProductForm/index.tsx:634
 msgid "This overrides all visibility settings and will hide the product from all customers."
 msgstr "Toto přepíše všechna nastavení viditelnosti a skryje produkt před všemi zákazníky."
 
@@ -20265,7 +20273,7 @@ msgstr "Tento produkt je zvýrazněn na stránce události"
 msgid "This product is sold out"
 msgstr "Tento produkt je vyprodán"
 
-#: src/components/forms/ProductForm/index.tsx:561
+#: src/components/forms/ProductForm/index.tsx:570
 msgid "This product won't appear on the event page on its own — buyers only see it as an add-on to the products it's attached to."
 msgstr "Tento produkt se na stránce události samostatně nezobrazí — kupující ho uvidí pouze jako doplněk k produktům, ke kterým je přiřazen."
 
@@ -21104,7 +21112,7 @@ msgstr "Účastníka se nepodařilo odhlásit"
 msgid "Unable to complete sale"
 msgstr "Prodej se nepodařilo dokončit"
 
-#: src/components/modals/CreateProductModal/index.tsx:71
+#: src/components/modals/CreateProductModal/index.tsx:72
 msgid "Unable to create product. Please check the your details"
 msgstr "Produkt se nepodařilo vytvořit. Zkontrolujte prosím své údaje"
 
@@ -21116,7 +21124,7 @@ msgstr "Produkt se nepodařilo vytvořit. Zkontrolujte prosím své údaje"
 msgid "Unable to delete the widget"
 msgstr "Widget se nepodařilo smazat"
 
-#: src/components/modals/DuplicateProductModal/index.tsx:123
+#: src/components/modals/DuplicateProductModal/index.tsx:125
 msgid "Unable to duplicate product. Please check the your details"
 msgstr "Produkt se nepodařilo duplikovat. Zkontrolujte prosím své údaje"
 
@@ -22136,7 +22144,7 @@ msgstr "Čeká se na naskenování…"
 msgid "Waiting for Stripe to confirm your payment…"
 msgstr "Čeká se na potvrzení platby od Stripe…"
 
-#: src/components/forms/ProductForm/index.tsx:466
+#: src/components/forms/ProductForm/index.tsx:475
 #: src/components/layouts/AuthLayout/AuthShell.tsx:16
 #: src/components/layouts/Event/index.tsx:154
 #: src/components/routes/event/Settings/index.tsx:104
@@ -22608,7 +22616,7 @@ msgstr "Když je událost archivována"
 msgid "When an event is updated"
 msgstr "Když je událost aktualizována"
 
-#: src/components/forms/ProductForm/index.tsx:540
+#: src/components/forms/ProductForm/index.tsx:549
 msgid "When an order asks for more than remain, it goes through as long as at least one is left. The product, or the current tier, then sells out and the next tier opens. Shared capacity limits still apply."
 msgstr "Pokud objednávka žádá víc, než zbývá, projde, dokud zbývá alespoň jeden. Produkt nebo aktuální úroveň se pak vyprodá a otevře se další úroveň. Sdílené limity kapacity stále platí."
 
@@ -22862,7 +22870,7 @@ msgstr "Ano – mám platné DIČ registrované v EU"
 msgid "Yes, cancel my order"
 msgstr "Ano, zrušit mou objednávku"
 
-#: src/components/forms/ProductForm/index.tsx:518
+#: src/components/forms/ProductForm/index.tsx:527
 msgid "Yes, remove them"
 msgstr "Ano, odebrat je"
 
@@ -22944,7 +22952,7 @@ msgstr "Míst můžete v jedné objednávce vybrat nejvýše {max}"
 msgid "You can configure additional service fees and taxes in your account settings."
 msgstr "Další servisní poplatky a daně můžete nastavit v nastavení svého účtu."
 
-#: src/components/forms/ProductForm/index.tsx:617
+#: src/components/forms/ProductForm/index.tsx:626
 msgid "You can create a promo code which targets this product on the"
 msgstr "Promo kód zaměřený na tento produkt můžete vytvořit na"
 
@@ -23033,7 +23041,7 @@ msgstr "Dosáhli jste svého limitu zpráv."
 msgid "You have run out of time to complete your order."
 msgstr "Vypršel vám čas na dokončení objednávky."
 
-#: src/components/forms/ProductForm/index.tsx:516
+#: src/components/forms/ProductForm/index.tsx:525
 msgid "You have taxes and fees added to a Free Product. Would you like to remove them?"
 msgstr "K bezplatnému produktu máte přidané daně a poplatky. Chcete je odebrat?"
 

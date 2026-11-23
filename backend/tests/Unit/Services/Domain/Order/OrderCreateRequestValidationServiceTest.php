@@ -1101,6 +1101,7 @@ class OrderCreateRequestValidationServiceTest extends TestCase
         $price->shouldReceive('setQuantityReserved')->andReturnSelf();
         $price->shouldReceive('isQuantityPerOccurrence')->andReturn(false);
         $price->shouldReceive('isLockedBehindEarlierTier')->andReturn(false);
+        $price->shouldReceive('isClosedByLaterTierSales')->andReturn(false);
 
         $product = Mockery::mock(ProductDomainObject::class);
         $product->shouldReceive('markLockedTiers');
@@ -1144,6 +1145,7 @@ class OrderCreateRequestValidationServiceTest extends TestCase
         $price->shouldReceive('setQuantityReserved')->andReturnSelf();
         $price->shouldReceive('isQuantityPerOccurrence')->andReturn(false);
         $price->shouldReceive('isLockedBehindEarlierTier')->andReturn(false);
+        $price->shouldReceive('isClosedByLaterTierSales')->andReturn(false);
 
         $product = Mockery::mock(ProductDomainObject::class);
         $product->shouldReceive('markLockedTiers');

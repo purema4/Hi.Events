@@ -40,6 +40,7 @@ abstract class ProductDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     final public const IS_ADDON_ONLY = 'is_addon_only';
     final public const SEQUENTIAL_TIER_RELEASE_ENABLED = 'sequential_tier_release_enabled';
     final public const SOFT_QUANTITY_LIMIT = 'soft_quantity_limit';
+    final public const KEEP_EARLIER_TIERS_CLOSED = 'keep_earlier_tiers_closed';
 
     protected int $id;
     protected int $event_id;
@@ -71,6 +72,7 @@ abstract class ProductDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     protected bool $is_addon_only = false;
     protected bool $sequential_tier_release_enabled = false;
     protected bool $soft_quantity_limit = false;
+    protected bool $keep_earlier_tiers_closed = false;
 
     public function toArray(): array
     {
@@ -105,6 +107,7 @@ abstract class ProductDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
                     'is_addon_only' => $this->is_addon_only ?? null,
                     'sequential_tier_release_enabled' => $this->sequential_tier_release_enabled ?? null,
                     'soft_quantity_limit' => $this->soft_quantity_limit ?? null,
+                    'keep_earlier_tiers_closed' => $this->keep_earlier_tiers_closed ?? null,
                 ];
     }
 
@@ -436,5 +439,16 @@ abstract class ProductDomainObjectAbstract extends \HiEvents\DomainObjects\Abstr
     public function getSoftQuantityLimit(): bool
     {
         return $this->soft_quantity_limit;
+    }
+
+    public function setKeepEarlierTiersClosed(bool $keep_earlier_tiers_closed): self
+    {
+        $this->keep_earlier_tiers_closed = $keep_earlier_tiers_closed;
+        return $this;
+    }
+
+    public function getKeepEarlierTiersClosed(): bool
+    {
+        return $this->keep_earlier_tiers_closed;
     }
 }

@@ -1507,5 +1507,6 @@
     "The attendee could not be checked in.": "Účastníka se nepodařilo odbavit.",
     "This was sent less than :minutes minutes ago. Wait before sending it again.": "Toto bylo odesláno před méně než :minutes minutami. Před dalším odesláním počkejte.",
     "Only completed orders have a confirmation to resend.": "Potvrzení lze znovu odeslat jen u dokončených objednávek.",
-    "That email address has already been sent :count emails in the last :minutes minutes. Wait before sending more.": "Na tuto e-mailovou adresu už bylo za posledních :minutes minut odesláno :count e-mailů. Před dalším odesláním počkejte."
+    "That email address has already been sent :count emails in the last :minutes minutes. Wait before sending more.": "Na tuto e-mailovou adresu už bylo za posledních :minutes minut odesláno :count e-mailů. Před dalším odesláním počkejte.",
+    "This tier is sold out": "Tato úroveň je vyprodaná"
 }

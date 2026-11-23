@@ -1358,5 +1358,6 @@
     "The Apple Wallet pass could not be encoded: :message": "Apple Wallet-kortet kunde inte kodas: :message",
     "The Apple Wallet pass is no longer available.": "Apple Wallet-kortet är inte längre tillgängligt.",
     "Ticket for :event": "Biljett till :event",
-    "Ticket number": "Biljettnummer"
+    "Ticket number": "Biljettnummer",
+    "This tier is sold out": "Den här prisnivån är slutsåld"
 }

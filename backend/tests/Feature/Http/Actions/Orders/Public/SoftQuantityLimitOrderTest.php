@@ -88,6 +88,34 @@ class SoftQuantityLimitOrderTest extends TestCase
         $this->postOrder('second-session', $productId, $priceId, 3)->assertCreated();
     }
 
+    public function test_an_earlier_tier_stays_closed_once_a_later_tier_has_sold(): void
+    {
+        $productId = $this->insertLimitedProduct(softLimit: false, priceType: 'TIERED');
+        DB::table('products')->where('id', $productId)->update([
+            'sequential_tier_release_enabled' => true,
+            'keep_earlier_tiers_closed' => true,
+        ]);
+        $earlyBird = $this->insertEventWidePrice($productId, initialQuantity: 10, quantitySold: 6, label: 'Early bird', order: 1);
+        $standard = $this->insertEventWidePrice($productId, initialQuantity: 50, quantitySold: 2, label: 'Standard', order: 2);
+
+        $this->postOrder('first-session', $productId, $earlyBird, 1)
+            ->assertUnprocessable()
+            ->assertJsonValidationErrors(['products.0.quantities.0.price_id']);
+
+        $this->postOrder('second-session', $productId, $standard, 1)->assertCreated();
+    }
+
+    public function test_an_earlier_tier_with_returned_tickets_reopens_without_keep_closed(): void
+    {
+        $productId = $this->insertLimitedProduct(softLimit: false, priceType: 'TIERED');
+        DB::table('products')->where('id', $productId)->update(['sequential_tier_release_enabled' => true]);
+        $earlyBird = $this->insertEventWidePrice($productId, initialQuantity: 10, quantitySold: 6, label: 'Early bird', order: 1);
+        $standard = $this->insertEventWidePrice($productId, initialQuantity: 50, quantitySold: 2, label: 'Standard', order: 2);
+
+        $this->postOrder('first-session', $productId, $earlyBird, 1)->assertCreated();
+        $this->postOrder('second-session', $productId, $standard, 1)->assertUnprocessable();
+    }
+
     private function insertLimitedProduct(bool $softLimit, string $priceType = 'FREE'): int
     {
         $productId = $this->insertProduct(priceType: $priceType);

@@ -39,6 +39,7 @@ class UpsertProductRequest extends BaseRequest
             'hide_when_sold_out' => 'boolean',
             'sequential_tier_release_enabled' => 'boolean',
             'soft_quantity_limit' => 'boolean',
+            'keep_earlier_tiers_closed' => 'boolean',
             'start_collapsed' => 'boolean',
             'show_quantity_remaining' => 'boolean',
             'is_hidden_without_promo_code' => 'boolean',

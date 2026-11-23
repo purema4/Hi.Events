@@ -128,18 +128,36 @@ class ProductDomainObject extends Generated\ProductDomainObjectAbstract implemen
                     return;
                 }
 
-                $price->setIsLockedBehindEarlierTier($earlierTierOpen);
+                $isClosed = $this->isClosedByLaterTierSales($price);
+                $price->setIsClosedByLaterTierSales($isClosed);
+                $price->setIsLockedBehindEarlierTier($earlierTierOpen && ! $isClosed);
 
-                if (! $price->isExhausted()) {
+                if (! $isClosed && ! $price->isExhausted()) {
                     $earlierTierOpen = true;
                 }
             });
     }
 
+    public function isClosedByLaterTierSales(ProductPriceDomainObject $price): bool
+    {
+        if (! $this->isTieredType()
+            || ! $this->getSequentialTierReleaseEnabled()
+            || ! $this->getKeepEarlierTiersClosed()
+            || $price->isQuantityPerOccurrence()
+        ) {
+            return false;
+        }
+
+        return (bool) $this->getProductPrices()?->contains(fn (ProductPriceDomainObject $laterPrice) => ! $laterPrice->getIsHidden()
+            && ! $laterPrice->isQuantityPerOccurrence()
+            && $laterPrice->getOrder() > $price->getOrder()
+            && $laterPrice->getQuantitySold() > 0);
+    }
+
     public function getQuantityAvailable(): int
     {
         $availableCount = $this->getProductPrices()
-            ->reject(fn (ProductPriceDomainObject $price) => $price->isLockedBehindEarlierTier())
+            ->reject(fn (ProductPriceDomainObject $price) => $price->isLockedBehindEarlierTier() || $price->isClosedByLaterTierSales())
             ->sum(fn (ProductPriceDomainObject $price) => $price->getQuantityAvailable());
 
         if ($this->quantityAvailable !== null) {

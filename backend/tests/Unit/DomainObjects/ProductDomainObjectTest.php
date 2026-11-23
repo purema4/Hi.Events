@@ -185,6 +185,50 @@ class ProductDomainObjectTest extends TestCase
         $this->assertFalse($product->isOnHold());
     }
 
+    public function test_keeps_earlier_tiers_closed_once_a_later_tier_has_sales(): void
+    {
+        $product = $this->createTieredProduct(sequential: true, prices: [
+            $this->createPrice(id: 1, order: 1, initialQuantity: 20, sold: 16),
+            $this->createPrice(id: 2, order: 2, initialQuantity: 20, sold: 20),
+            $this->createPrice(id: 3, order: 3, initialQuantity: 20, sold: 4),
+        ])->setKeepEarlierTiersClosed(true);
+
+        $product->markLockedTiers();
+
+        $prices = $product->getProductPrices()->values();
+        $this->assertTrue($prices[0]->isClosedByLaterTierSales());
+        $this->assertTrue($prices[0]->isSoldOut());
+        $this->assertFalse($prices[0]->isLockedBehindEarlierTier());
+        $this->assertFalse($prices[2]->isClosedByLaterTierSales());
+        $this->assertFalse($prices[2]->isLockedBehindEarlierTier());
+    }
+
+    public function test_reopens_earlier_tiers_when_keep_closed_is_off(): void
+    {
+        $product = $this->createTieredProduct(sequential: true, prices: [
+            $this->createPrice(id: 1, order: 1, initialQuantity: 20, sold: 16),
+            $this->createPrice(id: 2, order: 2, initialQuantity: 20, sold: 4),
+        ]);
+
+        $product->markLockedTiers();
+
+        $this->assertSame([false, true], $this->lockedFlags($product));
+        $this->assertFalse($product->getProductPrices()->first()->isClosedByLaterTierSales());
+    }
+
+    public function test_keep_closed_ignores_holds_on_later_tiers(): void
+    {
+        $product = $this->createTieredProduct(sequential: true, prices: [
+            $this->createPrice(id: 1, order: 1, initialQuantity: 20, sold: 8),
+            $this->createPrice(id: 2, order: 2, initialQuantity: null, sold: 0)->setQuantityReserved(4),
+        ])->setKeepEarlierTiersClosed(true);
+
+        $product->markLockedTiers();
+
+        $this->assertFalse($product->getProductPrices()->first()->isClosedByLaterTierSales());
+        $this->assertSame([false, true], $this->lockedFlags($product));
+    }
+
     private function createTieredProduct(bool $sequential, array $prices): ProductDomainObject
     {
         return (new ProductDomainObject)
