@@ -12680,8 +12680,8 @@ msgstr "Ninguno todavía"
 msgid "Normally {0}"
 msgstr "Normalmente {0}"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:46
-#: src/components/common/ProductPriceAvailability/index.tsx:76
+#: src/components/common/ProductPriceAvailability/index.tsx:52
+#: src/components/common/ProductPriceAvailability/index.tsx:82
 msgid "Not available"
 msgstr "No disponible"
 
@@ -12792,7 +12792,7 @@ msgstr "Aún sin probar"
 msgid "Not using reserved seating, the box office or enterprise single sign-on? Remove <0>APP_LICENCE_KEY</0> and redeploy."
 msgstr "¿No usas asientos reservados, la taquilla ni el inicio de sesión único empresarial? Elimina <0>APP_LICENCE_KEY</0> y vuelve a desplegar."
 
-#: src/components/common/ProductPriceAvailability/index.tsx:43
+#: src/components/common/ProductPriceAvailability/index.tsx:49
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:31
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:53
 msgid "Not yet on sale"
@@ -13036,6 +13036,10 @@ msgstr "el {day} de {month}"
 #: src/components/forms/TaxAndFeeForm/index.tsx:98
 msgid "On a product priced at 50.00, this adds {exampleAmount}."
 msgstr "En un producto con un precio de 50.00, esto añade {exampleAmount}."
+
+#: src/components/common/ProductPriceAvailability/index.tsx:20
+msgid "On hold"
+msgstr "Reservadas"
 
 #: src/components/routes/event/HomepageDesigner/LayoutPicker/index.tsx:14
 msgid "On large screens tickets stay beside your content as people scroll. Suits conferences and long lineups."
@@ -16366,8 +16370,8 @@ msgstr "Las ventas están pausadas"
 msgid "Sales by licence year"
 msgstr "Ventas por año de licencia"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:31
-#: src/components/common/ProductPriceAvailability/index.tsx:63
+#: src/components/common/ProductPriceAvailability/index.tsx:37
+#: src/components/common/ProductPriceAvailability/index.tsx:69
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:33
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:54
 msgid "Sales ended"
@@ -18207,8 +18211,8 @@ msgstr "agotado"
 
 #: src/components/common/EventCard/index.tsx:136
 #: src/components/common/EventDateRange/index.tsx:65
-#: src/components/common/ProductPriceAvailability/index.tsx:27
-#: src/components/common/ProductPriceAvailability/index.tsx:60
+#: src/components/common/ProductPriceAvailability/index.tsx:33
+#: src/components/common/ProductPriceAvailability/index.tsx:66
 #: src/components/layouts/OrganizerEventsWidget/index.tsx:57
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:92
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:311
@@ -19843,6 +19847,10 @@ msgstr "Estas plantillas se usarán como predeterminadas para todos los eventos 
 #: src/components/common/EmailTemplateSettings/EmailTemplateSettingsBase.tsx:333
 msgid "These templates will override the organizer defaults for this event only. If no custom template is set here, the organizer template will be used instead."
 msgstr "Estas plantillas anularán los predeterminados del organizador solo para este evento. Si no se establece una plantilla personalizada aquí, se usará la plantilla del organizador en su lugar."
+
+#: src/components/common/ProductPriceAvailability/index.tsx:19
+msgid "These tickets are held in other buyers' carts. They go back on sale if they're not paid for in time."
+msgstr "Estas entradas están en el carrito de otros compradores. Volverán a la venta si no se pagan a tiempo."
 
 #: src/components/routes/settings/Account/DeleteAccountSection.tsx:125
 msgid "These upcoming events have completed orders. Cancel and refund them, then come back to delete the account."

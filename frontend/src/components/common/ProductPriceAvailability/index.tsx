@@ -15,6 +15,12 @@ const SalesStartMessage = ({saleStartDate, event}: { saleStartDate?: string | Da
     </span>
 );
 
+const OnHoldMessage = () => (
+    <Tooltip label={t`These tickets are held in other buyers' carts. They go back on sale if they're not paid for in time.`} multiline w={240}>
+        <span>{t`On hold`}{' '}<IconInfoCircle size={12}/></span>
+    </Tooltip>
+);
+
 interface ProductPriceSaleDateMessageProps {
     price: ProductPrice;
     event: Event;
@@ -24,7 +30,7 @@ interface ProductPriceSaleDateMessageProps {
 
 const ProductPriceSaleDateMessage = ({price, event, product, eventOccurrenceId}: ProductPriceSaleDateMessageProps) => {
     if (price.is_sold_out) {
-        return t`Sold out`;
+        return price.is_on_hold ? <OnHoldMessage/> : t`Sold out`;
     }
 
     if (price.is_after_sale_end_date) {
@@ -57,7 +63,7 @@ export const ProductAvailabilityMessage = ({product, event, eventOccurrenceId}: 
         if (canJoinWaitlist(product, product.prices?.[0]) && (event.type !== EventType.RECURRING || eventOccurrenceId) && product.type !== 'TIERED') {
             return <JoinWaitlistButton product={product} event={event} productPriceId={product.prices?.[0]?.id} eventOccurrenceId={eventOccurrenceId}/>;
         }
-        return t`Sold out`;
+        return product.is_on_hold ? <OnHoldMessage/> : t`Sold out`;
     }
     if (product.is_after_sale_end_date) {
         return t`Sales ended`;

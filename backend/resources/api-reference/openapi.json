@@ -34917,6 +34917,9 @@
           "is_sold_out": {
             "type": "boolean"
           },
+          "is_on_hold": {
+            "type": "boolean"
+          },
           "quantity_applies_to": {
             "type": "string",
             "enum": [
@@ -34960,6 +34963,7 @@
           "is_after_sale_end_date",
           "is_available",
           "is_sold_out",
+          "is_on_hold",
           "quantity_applies_to",
           "is_locked_behind_earlier_tier",
           "band_prices"
@@ -35444,6 +35448,9 @@
             "type": "boolean"
           },
           "is_sold_out": {
+            "type": "boolean"
+          },
+          "is_on_hold": {
             "type": "boolean"
           },
           "product_category_id": {

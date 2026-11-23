@@ -1265,6 +1265,7 @@ export interface ProductPrice {
     is_before_sale_start_date?: boolean;
     is_after_sale_end_date?: boolean;
     is_sold_out?: boolean;
+    is_on_hold?: boolean;
     is_locked_behind_earlier_tier?: boolean;
     initial_quantity_available?: number;
     quantity_sold?: number;
@@ -1303,6 +1304,7 @@ export interface Product {
     quantity_available?: number;
     status?: ProductStatus;
     is_sold_out?: boolean;
+    is_on_hold?: boolean;
     is_available?: boolean;
     is_hidden_without_promo_code?: boolean;
     is_before_sale_start_date?: boolean;

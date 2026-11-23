@@ -140,6 +140,17 @@ class ProductPriceDomainObject extends Generated\ProductPriceDomainObjectAbstrac
         return $this->getQuantitySold() >= $this->getInitialQuantityAvailable();
     }
 
+    public function isOnHold(): bool
+    {
+        if ($this->quantityReserved <= 0 || ! $this->isSoldOut()) {
+            return false;
+        }
+
+        return $this->getInitialQuantityAvailable() === null
+            || $this->isQuantityPerOccurrence()
+            || $this->getQuantitySold() < $this->getInitialQuantityAvailable();
+    }
+
     public function isQuantityPerOccurrence(): bool
     {
         return $this->getQuantityAppliesTo() === ProductQuantityAppliesTo::OCCURRENCE->name;

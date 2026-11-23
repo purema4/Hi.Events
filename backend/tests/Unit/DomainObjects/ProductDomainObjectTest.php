@@ -165,6 +165,26 @@ class ProductDomainObjectTest extends TestCase
         $this->assertSame(7, $product->getQuantityAvailable());
     }
 
+    public function test_product_is_on_hold_when_sold_out_with_unpaid_holds(): void
+    {
+        $product = $this->createTieredProduct(sequential: true, prices: [
+            $this->createPrice(id: 1, order: 1, initialQuantity: 20, sold: 8)->setQuantityAvailable(0)->setQuantityReserved(12),
+            $this->createPrice(id: 2, order: 2, initialQuantity: 20, sold: 20)->setQuantityAvailable(0),
+        ]);
+
+        $this->assertTrue($product->isOnHold());
+    }
+
+    public function test_product_is_not_on_hold_while_a_tier_is_available(): void
+    {
+        $product = $this->createTieredProduct(sequential: true, prices: [
+            $this->createPrice(id: 1, order: 1, initialQuantity: 20, sold: 8)->setQuantityAvailable(0)->setQuantityReserved(12),
+            $this->createPrice(id: 2, order: 2, initialQuantity: null, sold: 0),
+        ]);
+
+        $this->assertFalse($product->isOnHold());
+    }
+
     private function createTieredProduct(bool $sequential, array $prices): ProductDomainObject
     {
         return (new ProductDomainObject)

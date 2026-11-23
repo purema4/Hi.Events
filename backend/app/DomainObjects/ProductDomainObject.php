@@ -107,6 +107,12 @@ class ProductDomainObject extends Generated\ProductDomainObjectAbstract implemen
         return $this->getProductPrices()->every(fn (ProductPriceDomainObject $price) => $price->isSoldOut());
     }
 
+    public function isOnHold(): bool
+    {
+        return $this->isSoldOut()
+            && (bool) $this->getProductPrices()?->contains(fn (ProductPriceDomainObject $price) => $price->isOnHold());
+    }
+
     public function markLockedTiers(): void
     {
         if (! $this->isTieredType() || ! $this->getSequentialTierReleaseEnabled() || ! $this->getProductPrices()) {

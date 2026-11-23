@@ -34,6 +34,7 @@ class ProductPriceResourcePublic extends BaseResource
             'is_after_sale_end_date' => $this->isAfterSaleEndDate(),
             'is_available' => $this->isAvailable(),
             'is_sold_out' => $this->isSoldOut(),
+            'is_on_hold' => $this->isOnHold(),
             /** @var 'OCCURRENCE'|'EVENT' */
             'quantity_applies_to' => $this->getQuantityAppliesTo(),
             'is_locked_behind_earlier_tier' => $this->isLockedBehindEarlierTier(),

@@ -130,7 +130,7 @@ const EventHomepage = ({...loaderData}: EventHomepageProps) => {
     const products = event.products || event.product_categories?.flatMap(category => category.products || []) || [];
     const status: IntroStatus | null = eventHasEnded
         ? {label: t`This event has ended`, tone: 'muted'}
-        : products.length > 0 && products.every(product => product.is_sold_out)
+        : products.length > 0 && products.every(product => product.is_sold_out) && !products.some(product => product.is_on_hold)
             ? {label: t`Sold Out`, tone: 'muted'}
             : event.lifecycle_status === EventLifecycleStatus.ONGOING ? {label: t`Happening now`, tone: 'live'} : null;
     const ticketRail = layout.ticketRail && !eventHasEnded;

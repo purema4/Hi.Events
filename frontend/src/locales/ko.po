@@ -12680,8 +12680,8 @@ msgstr "아직 없음"
 msgid "Normally {0}"
 msgstr "일반 가격 {0}"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:46
-#: src/components/common/ProductPriceAvailability/index.tsx:76
+#: src/components/common/ProductPriceAvailability/index.tsx:52
+#: src/components/common/ProductPriceAvailability/index.tsx:82
 msgid "Not available"
 msgstr "이용 불가"
 
@@ -12792,7 +12792,7 @@ msgstr "아직 테스트하지 않음"
 msgid "Not using reserved seating, the box office or enterprise single sign-on? Remove <0>APP_LICENCE_KEY</0> and redeploy."
 msgstr "지정 좌석, 현장 매표소 또는 엔터프라이즈 싱글 사인온을 사용하지 않나요? <0>APP_LICENCE_KEY</0>를 제거하고 다시 배포하세요."
 
-#: src/components/common/ProductPriceAvailability/index.tsx:43
+#: src/components/common/ProductPriceAvailability/index.tsx:49
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:31
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:53
 msgid "Not yet on sale"
@@ -13036,6 +13036,10 @@ msgstr "{month} {day}일"
 #: src/components/forms/TaxAndFeeForm/index.tsx:98
 msgid "On a product priced at 50.00, this adds {exampleAmount}."
 msgstr "50.00 가격의 상품에 {exampleAmount}이(가) 추가됩니다."
+
+#: src/components/common/ProductPriceAvailability/index.tsx:20
+msgid "On hold"
+msgstr "보류 중"
 
 #: src/components/routes/event/HomepageDesigner/LayoutPicker/index.tsx:14
 msgid "On large screens tickets stay beside your content as people scroll. Suits conferences and long lineups."
@@ -16366,8 +16370,8 @@ msgstr "판매가 일시중지되었습니다"
 msgid "Sales by licence year"
 msgstr "라이선스 연도별 매출"
 
-#: src/components/common/ProductPriceAvailability/index.tsx:31
-#: src/components/common/ProductPriceAvailability/index.tsx:63
+#: src/components/common/ProductPriceAvailability/index.tsx:37
+#: src/components/common/ProductPriceAvailability/index.tsx:69
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:33
 #: src/ee/seating/components/SeatPicker/SeatPrices.tsx:54
 msgid "Sales ended"
@@ -18207,8 +18211,8 @@ msgstr "매진"
 
 #: src/components/common/EventCard/index.tsx:136
 #: src/components/common/EventDateRange/index.tsx:65
-#: src/components/common/ProductPriceAvailability/index.tsx:27
-#: src/components/common/ProductPriceAvailability/index.tsx:60
+#: src/components/common/ProductPriceAvailability/index.tsx:33
+#: src/components/common/ProductPriceAvailability/index.tsx:66
 #: src/components/layouts/OrganizerEventsWidget/index.tsx:57
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:92
 #: src/components/routes/product-widget/OccurrenceSelector/index.tsx:311
@@ -19843,6 +19847,10 @@ msgstr "이 템플릿은 조직 내 모든 이벤트의 기본값으로 사용�
 #: src/components/common/EmailTemplateSettings/EmailTemplateSettingsBase.tsx:333
 msgid "These templates will override the organizer defaults for this event only. If no custom template is set here, the organizer template will be used instead."
 msgstr "이 템플릿은 이 이벤트에 한해 주최자 기본값을 재정의합니다. 여기서 맞춤 템플릿을 설정하지 않으면 주최자 템플릿이 대신 사용됩니다."
+
+#: src/components/common/ProductPriceAvailability/index.tsx:19
+msgid "These tickets are held in other buyers' carts. They go back on sale if they're not paid for in time."
+msgstr "이 티켓은 다른 구매자의 장바구니에 있습니다. 제때 결제되지 않으면 다시 판매됩니다."
 
 #: src/components/routes/settings/Account/DeleteAccountSection.tsx:125
 msgid "These upcoming events have completed orders. Cancel and refund them, then come back to delete the account."

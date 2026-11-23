@@ -52,6 +52,7 @@ class ProductResourcePublic extends JsonResource
             $this->mergeWhen((bool) $this->getProductPrices(), fn () => [
                 'is_available' => $this->isAvailable(),
                 'is_sold_out' => $this->isSoldOut(),
+                'is_on_hold' => $this->isOnHold(),
             ]),
             'product_category_id' => $this->getProductCategoryId(),
             'is_highlighted' => $this->getIsHighlighted(),
