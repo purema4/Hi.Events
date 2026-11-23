@@ -29,6 +29,10 @@ export const eventHomepageUrl = (event: Event) => {
     return getConfig('VITE_FRONTEND_URL') + eventHomepagePath(event);
 }
 
+export const saleLinkUrl = (eventId: IdParam, token: string) => {
+    return getConfig('VITE_FRONTEND_URL') + `/pay/${eventId}/${token}`;
+}
+
 export const eventCoverImageUrl = (event: Event) => {
     return event?.images?.find((image) => image.type === 'EVENT_COVER')?.url;
 }

@@ -569,6 +569,13 @@ export const router: RouteObject[] = [
                 }
             },
             {
+                path: "sale-links",
+                async lazy() {
+                    const SaleLinks = await import("./components/routes/event/SaleLinks");
+                    return { Component: SaleLinks.default };
+                }
+            },
+            {
                 path: "lineup",
                 async lazy() {
                     const Lineup = await import("./components/routes/event/Lineup");
@@ -901,6 +908,15 @@ export const router: RouteObject[] = [
         async lazy() {
             const Unsubscribe = await import("./components/routes/emails/Unsubscribe");
             return { Component: Unsubscribe.default };
+        },
+        errorElement: <ErrorPage />,
+    },
+    {
+        path: "/pay/:eventId/:token",
+        handle: {styles: "src/components/routes/sale-link/index.tsx"},
+        async lazy() {
+            const SaleLinkPage = await import("./components/routes/sale-link");
+            return { Component: SaleLinkPage.default };
         },
         errorElement: <ErrorPage />,
     },

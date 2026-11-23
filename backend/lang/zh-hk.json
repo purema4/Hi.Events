@@ -1359,5 +1359,17 @@
     "The Apple Wallet pass is no longer available.": "Apple Wallet 票卡已無法使用。",
     "Ticket for :event": ":event 門票",
     "Ticket number": "門票編號",
-    "This tier is sold out": "此價格級別已售罄"
+    "This tier is sold out": "此價格級別已售罄",
+    "This link does not exist": "此連結不存在",
+    "This link is no longer available": "此連結已無法使用",
+    "This link has expired": "此連結已過期",
+    "This link has already been used": "此連結已被使用",
+    "This link is being used by someone else. Please try again in a few minutes.": "其他人正在使用此連結，請幾分鐘後再試。",
+    "These tickets are sold out": "這些門票已售罄",
+    "This ticket was not found": "找不到該門票",
+    "Tickets with reserved seating cannot be sold through a sale link": "劃位門票不能透過銷售連結出售",
+    "This ticket is already in the link": "該門票已在連結中",
+    "This affiliate was not found or is inactive": "找不到該推廣員或其處於停用狀態",
+    "Sale link not found": "找不到銷售連結",
+    "This link can only be used with :email": "此連結只能使用 :email"
 }

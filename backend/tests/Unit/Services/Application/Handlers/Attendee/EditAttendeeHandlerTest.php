@@ -10,6 +10,7 @@ use HiEvents\DomainObjects\ProductPriceDomainObject;
 use HiEvents\Enterprise\Seating\Services\Domain\SeatClaimService;
 use HiEvents\Exceptions\NoTicketsAvailableException;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
+use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Repository\Interfaces\ProductRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Attendee\DTO\EditAttendeeDTO;
 use HiEvents\Services\Application\Handlers\Attendee\EditAttendeeHandler;
@@ -74,6 +75,7 @@ class EditAttendeeHandlerTest extends TestCase
 
         $this->handler = new EditAttendeeHandler(
             $this->attendeeRepository,
+            Mockery::mock(OrderRepositoryInterface::class, ['findFirstWhere' => null]),
             $this->productRepository,
             $this->productQuantityService,
             $databaseManager,
@@ -136,6 +138,7 @@ class EditAttendeeHandlerTest extends TestCase
         $attendee->shouldReceive('getProductPriceId')->andReturn(self::OLD_PRICE_ID);
         $attendee->shouldReceive('getProductId')->andReturn(self::PRODUCT_ID);
         $attendee->shouldReceive('getEventOccurrenceId')->andReturn(self::OCCURRENCE_ID);
+        $attendee->shouldReceive('getOrderId')->andReturn(1);
         $this->attendeeRepository->shouldReceive('findFirstWhere')->once()->andReturn($attendee);
 
         $prices = collect([self::OLD_PRICE_ID, self::NEW_PRICE_ID])->map(function (int $id) {

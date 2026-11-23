@@ -1364,5 +1364,17 @@
     "The Apple Wallet pass is no longer available.": "Az Apple Wallet-kártya már nem érhető el.",
     "Ticket for :event": "Jegy: :event",
     "Ticket number": "Jegyszám",
-    "This tier is sold out": "Ez az árszint elfogyott"
+    "This tier is sold out": "Ez az árszint elfogyott",
+    "This link does not exist": "Ez a link nem létezik",
+    "This link is no longer available": "Ez a link már nem érhető el",
+    "This link has expired": "Ez a link lejárt",
+    "This link has already been used": "Ezt a linket már felhasználták",
+    "This link is being used by someone else. Please try again in a few minutes.": "Ezt a linket éppen más használja. Próbáld újra néhány perc múlva.",
+    "These tickets are sold out": "Ezek a jegyek elfogytak",
+    "This ticket was not found": "Ez a jegy nem található",
+    "Tickets with reserved seating cannot be sold through a sale link": "Helyfoglalásos jegyek nem adhatók el értékesítési linken keresztül",
+    "This ticket is already in the link": "Ez a jegy már szerepel a linkben",
+    "This affiliate was not found or is inactive": "Ez a partner nem található vagy inaktív",
+    "Sale link not found": "Az értékesítési link nem található",
+    "This link can only be used with :email": "Ez a link csak a következővel használható: :email"
 }

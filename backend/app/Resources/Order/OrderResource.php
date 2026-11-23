@@ -59,6 +59,7 @@ class OrderResource extends BaseResource
             'notes' => $this->getNotes(),
             'payment_provider' => $this->getPaymentProvider(),
             'payment_link_created_at' => $this->getPaymentLinkCreatedAt(),
+            'sale_link_id' => $this->getSaleLinkId(),
             'offline_payment_reported_at' => $this->getOfflinePaymentReportedAt(),
             'offline_payment_note' => $this->getOfflinePaymentNote(),
             'promo_code' => $this->getPromoCode(),

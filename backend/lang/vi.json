@@ -1359,5 +1359,17 @@
     "The Apple Wallet pass is no longer available.": "Thẻ Apple Wallet không còn khả dụng.",
     "Ticket for :event": "Vé cho :event",
     "Ticket number": "Số vé",
-    "This tier is sold out": "Hạng vé này đã bán hết"
+    "This tier is sold out": "Hạng vé này đã bán hết",
+    "This link does not exist": "Liên kết này không tồn tại",
+    "This link is no longer available": "Liên kết này không còn khả dụng",
+    "This link has expired": "Liên kết này đã hết hạn",
+    "This link has already been used": "Liên kết này đã được sử dụng",
+    "This link is being used by someone else. Please try again in a few minutes.": "Người khác đang sử dụng liên kết này. Vui lòng thử lại sau vài phút.",
+    "These tickets are sold out": "Những vé này đã bán hết",
+    "This ticket was not found": "Không tìm thấy vé này",
+    "Tickets with reserved seating cannot be sold through a sale link": "Không thể bán vé có chỗ ngồi chỉ định qua liên kết bán hàng",
+    "This ticket is already in the link": "Vé này đã có trong liên kết",
+    "This affiliate was not found or is inactive": "Không tìm thấy đối tác hoặc đối tác không hoạt động",
+    "Sale link not found": "Không tìm thấy liên kết bán hàng",
+    "This link can only be used with :email": "Liên kết này chỉ có thể dùng với :email"
 }

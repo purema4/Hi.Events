@@ -68,6 +68,7 @@ return [
         'stripe_connect_refresh_url' => '/manage/organizer/%d/settings#payouts',
         'event_homepage' => '/event/%d/%s',
         'event_preview' => '/event/%d/preview',
+        'sale_link' => '/pay/%d/%s',
         'attendee_product' => '/product/%d/%s',
         'order_summary' => '/checkout/%d/%s/summary',
         'order_details' => '/checkout/%d/%s/details',

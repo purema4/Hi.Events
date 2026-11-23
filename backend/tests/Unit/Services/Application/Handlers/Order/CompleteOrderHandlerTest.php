@@ -36,6 +36,7 @@ use HiEvents\Services\Application\Handlers\Order\DTO\OrderQuestionsDTO;
 use HiEvents\Services\Domain\Order\OccurrenceStatusValidator;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
 use HiEvents\Services\Domain\Question\QuestionVisibilityService;
+use HiEvents\Services\Domain\SaleLink\SaleLinkEmailLockService;
 use HiEvents\Services\Domain\Tracking\DTO\AdTrackingContextDTO;
 use HiEvents\Services\Domain\Wallet\WalletPassSyncDispatcher;
 use HiEvents\Services\Infrastructure\DomainEvents\DomainEventDispatcherService;
@@ -155,6 +156,7 @@ class CompleteOrderHandlerTest extends TestCase
             $this->questionRepository,
             new QuestionVisibilityService,
             Mockery::mock(WalletPassSyncDispatcher::class, ['queueOrderSync' => null]),
+            Mockery::mock(SaleLinkEmailLockService::class, ['assertEmailAllowed' => null]),
         );
     }
 

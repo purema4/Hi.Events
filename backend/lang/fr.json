@@ -1360,5 +1360,17 @@
     "Ticket for :event": "Billet pour :event",
     "Ticket number": "Numéro de billet",
     "Sales haven't opened yet. We'll email you in waitlist order as soon as they do.": "Les ventes ne sont pas encore ouvertes. Nous vous écrirons dans l'ordre de la liste d'attente dès leur ouverture.",
-    "This tier is sold out": "Ce palier est épuisé"
+    "This tier is sold out": "Ce palier est épuisé",
+    "This link does not exist": "Ce lien n'existe pas",
+    "This link is no longer available": "Ce lien n'est plus disponible",
+    "This link has expired": "Ce lien a expiré",
+    "This link has already been used": "Ce lien a déjà été utilisé",
+    "This link is being used by someone else. Please try again in a few minutes.": "Ce lien est en cours d'utilisation par quelqu'un d'autre. Réessayez dans quelques minutes.",
+    "These tickets are sold out": "Ces billets sont épuisés",
+    "This ticket was not found": "Ce billet est introuvable",
+    "Tickets with reserved seating cannot be sold through a sale link": "Les billets avec places attribuées ne peuvent pas être vendus par un lien de vente",
+    "This ticket is already in the link": "Ce billet est déjà dans le lien",
+    "This affiliate was not found or is inactive": "Cet affilié est introuvable ou inactif",
+    "Sale link not found": "Lien de vente introuvable",
+    "This link can only be used with :email": "Ce lien ne peut être utilisé qu'avec :email"
 }

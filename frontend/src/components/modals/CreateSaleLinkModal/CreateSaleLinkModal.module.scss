@@ -1,0 +1,66 @@
+@use "../../../styles/mixins.scss";
+
+.itemsHeading {
+    font-weight: 500;
+    font-size: var(--mantine-font-size-sm);
+    margin-bottom: 4px;
+}
+
+.itemRow {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr) 90px 130px auto;
+    gap: 8px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--mantine-color-gray-2);
+
+    :global(.mantine-InputWrapper-root) {
+        margin-bottom: 0;
+    }
+
+    @include mixins.respond-below(sm) {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+}
+
+.productField {
+    @include mixins.respond-below(sm) {
+        grid-column: 1 / -1;
+    }
+}
+
+.tierField {
+    @include mixins.respond-below(sm) {
+        grid-column: 1 / -1;
+    }
+}
+
+.removeButton {
+    margin-top: 26px;
+
+    @include mixins.respond-below(sm) {
+        grid-column: 1 / -1;
+        margin-top: 0;
+        justify-self: end;
+    }
+}
+
+.addItem {
+    margin: 10px 0 20px;
+}
+
+.section {
+    margin-top: 12px;
+}
+
+.linkRow {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+
+    :global(.mantine-InputWrapper-root) {
+        margin-bottom: 0;
+        flex: 1;
+        min-width: 0;
+    }
+}

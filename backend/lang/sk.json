@@ -1359,5 +1359,17 @@
     "The Apple Wallet pass is no longer available.": "Preukaz Apple Wallet už nie je dostupný.",
     "Ticket for :event": "Vstupenka na :event",
     "Ticket number": "Číslo vstupenky",
-    "This tier is sold out": "Táto úroveň je vypredaná"
+    "This tier is sold out": "Táto úroveň je vypredaná",
+    "This link does not exist": "Tento odkaz neexistuje",
+    "This link is no longer available": "Tento odkaz už nie je k dispozícii",
+    "This link has expired": "Platnosť tohto odkazu vypršala",
+    "This link has already been used": "Tento odkaz už bol použitý",
+    "This link is being used by someone else. Please try again in a few minutes.": "Tento odkaz práve používa niekto iný. Skúste to znova o niekoľko minút.",
+    "These tickets are sold out": "Tieto vstupenky sú vypredané",
+    "This ticket was not found": "Táto vstupenka sa nenašla",
+    "Tickets with reserved seating cannot be sold through a sale link": "Vstupenky s rezervovaným miestom nemožno predávať cez predajný odkaz",
+    "This ticket is already in the link": "Táto vstupenka už v odkaze je",
+    "This affiliate was not found or is inactive": "Tento affiliate sa nenašiel alebo je neaktívny",
+    "Sale link not found": "Predajný odkaz sa nenašiel",
+    "This link can only be used with :email": "Tento odkaz možno použiť iba s :email"
 }

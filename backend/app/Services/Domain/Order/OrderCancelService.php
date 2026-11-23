@@ -17,6 +17,7 @@ use HiEvents\Repository\Eloquent\Value\Relationship;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
+use HiEvents\Repository\Interfaces\SaleLinkRepositoryInterface;
 use HiEvents\Services\Domain\EventStatistics\EventStatisticsCancellationService;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
 use HiEvents\Services\Domain\Waitlist\RevertWaitlistOffersForCancelledOrderService;
@@ -41,6 +42,7 @@ class OrderCancelService
         private readonly EventStatisticsCancellationService $eventStatisticsCancellationService,
         private readonly RevertWaitlistOffersForCancelledOrderService $revertWaitlistOffersService,
         private readonly WalletPassSyncDispatcher $walletPassSyncDispatcher,
+        private readonly SaleLinkRepositoryInterface $saleLinkRepository,
     ) {}
 
     /**
@@ -54,6 +56,9 @@ class OrderCancelService
             $this->adjustProductQuantities($order);
             $this->cancelAttendees($order);
             $this->updateOrderStatus($order);
+            if ($order->getSaleLinkId() !== null) {
+                $this->saleLinkRepository->refreshUsesCount($order->getSaleLinkId());
+            }
             $capacityEvents = $this->revertWaitlistOffersService->revertOffersForOrder($order->getId());
 
             $this->sendOrderCancelledEmail($order);
@@ -113,6 +118,10 @@ class OrderCancelService
 
     private function adjustProductQuantities(OrderDomainObject $order): void
     {
+        if (! $order->getCountsTowardCapacity()) {
+            return;
+        }
+
         $attendees = $this->attendeeRepository->findWhere([
             'order_id' => $order->getId(),
         ])->filter(function (AttendeeDomainObject $attendee) use ($order) {

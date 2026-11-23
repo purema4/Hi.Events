@@ -14,6 +14,7 @@ use HiEvents\Mcp\Tools\CreateEventTool;
 use HiEvents\Mcp\Tools\CreateOrganizerTool;
 use HiEvents\Mcp\Tools\CreatePromoCodeTool;
 use HiEvents\Mcp\Tools\CreateQuestionTool;
+use HiEvents\Mcp\Tools\CreateSaleLinkTool;
 use HiEvents\Mcp\Tools\CreateSharedCapacityTool;
 use HiEvents\Mcp\Tools\CreateTicketCategoryTool;
 use HiEvents\Mcp\Tools\CreateTicketTool;
@@ -93,6 +94,7 @@ class HiEventsServer extends Server
         CreateSharedCapacityTool::class,
         ListPromoCodesTool::class,
         CreatePromoCodeTool::class,
+        CreateSaleLinkTool::class,
         UpdatePromoCodeTool::class,
         ListQuestionsTool::class,
         CreateQuestionTool::class,

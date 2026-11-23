@@ -1508,5 +1508,17 @@
     "This was sent less than :minutes minutes ago. Wait before sending it again.": ":minutes분 이내에 이미 전송되었습니다. 다시 보내기 전에 기다려 주세요.",
     "Only completed orders have a confirmation to resend.": "완료된 주문만 다시 보낼 확인 메일이 있습니다.",
     "That email address has already been sent :count emails in the last :minutes minutes. Wait before sending more.": "이 이메일 주소로 지난 :minutes분 동안 이미 :count개의 이메일이 전송되었습니다. 더 보내기 전에 기다려 주세요.",
-    "This tier is sold out": "이 단계는 매진되었습니다"
+    "This tier is sold out": "이 단계는 매진되었습니다",
+    "This link does not exist": "이 링크는 존재하지 않습니다",
+    "This link is no longer available": "이 링크는 더 이상 사용할 수 없습니다",
+    "This link has expired": "이 링크는 만료되었습니다",
+    "This link has already been used": "이 링크는 이미 사용되었습니다",
+    "This link is being used by someone else. Please try again in a few minutes.": "다른 사람이 이 링크를 사용 중입니다. 몇 분 후 다시 시도해 주세요.",
+    "These tickets are sold out": "이 티켓은 매진되었습니다",
+    "This ticket was not found": "티켓을 찾을 수 없습니다",
+    "Tickets with reserved seating cannot be sold through a sale link": "좌석 지정 티켓은 판매 링크로 판매할 수 없습니다",
+    "This ticket is already in the link": "이 티켓은 이미 링크에 있습니다",
+    "This affiliate was not found or is inactive": "제휴사를 찾을 수 없거나 비활성 상태입니다",
+    "Sale link not found": "판매 링크를 찾을 수 없습니다",
+    "This link can only be used with :email": "이 링크는 :email 으로만 사용할 수 있습니다"
 }

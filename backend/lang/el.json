@@ -1359,5 +1359,17 @@
     "The Apple Wallet pass is no longer available.": "Η κάρτα Apple Wallet δεν είναι πλέον διαθέσιμη.",
     "Ticket for :event": "Εισιτήριο για :event",
     "Ticket number": "Αριθμός εισιτηρίου",
-    "This tier is sold out": "Αυτή η κατηγορία έχει εξαντληθεί"
+    "This tier is sold out": "Αυτή η κατηγορία έχει εξαντληθεί",
+    "This link does not exist": "Αυτός ο σύνδεσμος δεν υπάρχει",
+    "This link is no longer available": "Αυτός ο σύνδεσμος δεν είναι πλέον διαθέσιμος",
+    "This link has expired": "Αυτός ο σύνδεσμος έχει λήξει",
+    "This link has already been used": "Αυτός ο σύνδεσμος έχει ήδη χρησιμοποιηθεί",
+    "This link is being used by someone else. Please try again in a few minutes.": "Κάποιος άλλος χρησιμοποιεί αυτόν τον σύνδεσμο. Δοκιμάστε ξανά σε λίγα λεπτά.",
+    "These tickets are sold out": "Αυτά τα εισιτήρια έχουν εξαντληθεί",
+    "This ticket was not found": "Το εισιτήριο δεν βρέθηκε",
+    "Tickets with reserved seating cannot be sold through a sale link": "Εισιτήρια με αριθμημένες θέσεις δεν μπορούν να πωληθούν μέσω συνδέσμου πώλησης",
+    "This ticket is already in the link": "Αυτό το εισιτήριο υπάρχει ήδη στον σύνδεσμο",
+    "This affiliate was not found or is inactive": "Ο συνεργάτης δεν βρέθηκε ή είναι ανενεργός",
+    "Sale link not found": "Ο σύνδεσμος πώλησης δεν βρέθηκε",
+    "This link can only be used with :email": "Αυτός ο σύνδεσμος μπορεί να χρησιμοποιηθεί μόνο με :email"
 }

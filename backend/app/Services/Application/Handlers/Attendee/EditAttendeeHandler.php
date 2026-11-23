@@ -14,6 +14,7 @@ use HiEvents\Enterprise\Seating\Services\Domain\SeatClaimService;
 use HiEvents\Events\CapacityChangedEvent;
 use HiEvents\Exceptions\NoTicketsAvailableException;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
+use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Repository\Interfaces\ProductRepositoryInterface;
 use HiEvents\Services\Application\Handlers\Attendee\DTO\EditAttendeeDTO;
 use HiEvents\Services\Domain\Product\AvailableProductQuantitiesFetchService;
@@ -30,6 +31,7 @@ class EditAttendeeHandler
 {
     public function __construct(
         private readonly AttendeeRepositoryInterface $attendeeRepository,
+        private readonly OrderRepositoryInterface $orderRepository,
         private readonly ProductRepositoryInterface $productRepository,
         private readonly ProductQuantityUpdateService $productQuantityService,
         private readonly DatabaseManager $databaseManager,
@@ -72,8 +74,10 @@ class EditAttendeeHandler
     private function adjustProductQuantities(AttendeeDomainObject $attendee, EditAttendeeDTO $editAttendeeDTO): void
     {
         if ($attendee->getProductPriceId() !== $editAttendeeDTO->product_price_id) {
-            $this->productQuantityService->decreaseQuantitySold($attendee->getProductPriceId(), 1, $attendee->getEventOccurrenceId());
-            $this->productQuantityService->increaseQuantitySold($editAttendeeDTO->product_price_id, 1, $attendee->getEventOccurrenceId());
+            if ($this->orderRepository->findFirstWhere(['id' => $attendee->getOrderId()])?->getCountsTowardCapacity() ?? true) {
+                $this->productQuantityService->decreaseQuantitySold($attendee->getProductPriceId(), 1, $attendee->getEventOccurrenceId());
+                $this->productQuantityService->increaseQuantitySold($editAttendeeDTO->product_price_id, 1, $attendee->getEventOccurrenceId());
+            }
 
             event(new CapacityChangedEvent(
                 eventId: $editAttendeeDTO->event_id,

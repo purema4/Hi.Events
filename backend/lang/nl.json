@@ -1359,5 +1359,17 @@
     "The Apple Wallet pass is no longer available.": "De Apple Wallet-pass is niet meer beschikbaar.",
     "Ticket for :event": "Ticket voor :event",
     "Ticket number": "Ticketnummer",
-    "This tier is sold out": "Dit prijsniveau is uitverkocht"
+    "This tier is sold out": "Dit prijsniveau is uitverkocht",
+    "This link does not exist": "Deze link bestaat niet",
+    "This link is no longer available": "Deze link is niet meer beschikbaar",
+    "This link has expired": "Deze link is verlopen",
+    "This link has already been used": "Deze link is al gebruikt",
+    "This link is being used by someone else. Please try again in a few minutes.": "Iemand anders gebruikt deze link. Probeer het over een paar minuten opnieuw.",
+    "These tickets are sold out": "Deze tickets zijn uitverkocht",
+    "This ticket was not found": "Dit ticket is niet gevonden",
+    "Tickets with reserved seating cannot be sold through a sale link": "Tickets met een gereserveerde plaats kunnen niet via een verkooplink worden verkocht",
+    "This ticket is already in the link": "Dit ticket staat al in de link",
+    "This affiliate was not found or is inactive": "Deze affiliate is niet gevonden of is inactief",
+    "Sale link not found": "Verkooplink niet gevonden",
+    "This link can only be used with :email": "Deze link kan alleen worden gebruikt met :email"
 }

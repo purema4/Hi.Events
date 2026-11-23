@@ -1507,5 +1507,17 @@
     "This was sent less than :minutes minutes ago. Wait before sending it again.": "Tämä lähetettiin alle :minutes minuuttia sitten. Odota ennen kuin lähetät sen uudelleen.",
     "Only completed orders have a confirmation to resend.": "Vain valmiilla tilauksilla on vahvistus, jonka voi lähettää uudelleen.",
     "That email address has already been sent :count emails in the last :minutes minutes. Wait before sending more.": "Tähän sähköpostiosoitteeseen on jo lähetetty :count viestiä viimeisen :minutes minuutin aikana. Odota ennen kuin lähetät lisää.",
-    "This tier is sold out": "Tämä hintataso on loppuunmyyty"
+    "This tier is sold out": "Tämä hintataso on loppuunmyyty",
+    "This link does not exist": "Tätä linkkiä ei ole olemassa",
+    "This link is no longer available": "Tämä linkki ei ole enää käytettävissä",
+    "This link has expired": "Tämä linkki on vanhentunut",
+    "This link has already been used": "Tämä linkki on jo käytetty",
+    "This link is being used by someone else. Please try again in a few minutes.": "Joku muu käyttää tätä linkkiä. Yritä uudelleen muutaman minuutin kuluttua.",
+    "These tickets are sold out": "Nämä liput on myyty loppuun",
+    "This ticket was not found": "Lippua ei löytynyt",
+    "Tickets with reserved seating cannot be sold through a sale link": "Varattuja istumapaikkoja sisältäviä lippuja ei voi myydä myyntilinkin kautta",
+    "This ticket is already in the link": "Tämä lippu on jo linkissä",
+    "This affiliate was not found or is inactive": "Kumppania ei löytynyt tai se ei ole aktiivinen",
+    "Sale link not found": "Myyntilinkkiä ei löytynyt",
+    "This link can only be used with :email": "Tätä linkkiä voi käyttää vain osoitteella :email"
 }

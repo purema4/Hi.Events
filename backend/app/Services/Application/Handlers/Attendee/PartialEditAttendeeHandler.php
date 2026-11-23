@@ -118,7 +118,11 @@ class PartialEditAttendeeHandler
             $this->reclaimSeat($attendee, $seatedOrder);
         }
 
-        $this->productQuantityService->increaseQuantitySold($attendee->getProductPriceId(), 1, $attendee->getEventOccurrenceId());
+        $order = $this->findOrderForStatistics($attendee);
+
+        if ($order?->getCountsTowardCapacity() ?? true) {
+            $this->productQuantityService->increaseQuantitySold($attendee->getProductPriceId(), 1, $attendee->getEventOccurrenceId());
+        }
 
         event(new CapacityChangedEvent(
             eventId: $attendee->getEventId(),
@@ -128,7 +132,6 @@ class PartialEditAttendeeHandler
             eventOccurrenceId: $attendee->getEventOccurrenceId(),
         ));
 
-        $order = $this->findOrderForStatistics($attendee);
         if ($order !== null) {
             $this->eventStatisticsReactivationService->incrementForReactivatedAttendee(
                 eventId: $attendee->getEventId(),
@@ -145,7 +148,11 @@ class PartialEditAttendeeHandler
     {
         $this->seatClaimService->releaseForAttendee($attendee->getId());
 
-        $this->productQuantityService->decreaseQuantitySold($attendee->getProductPriceId(), 1, $attendee->getEventOccurrenceId());
+        $order = $this->findOrderForStatistics($attendee);
+
+        if ($order?->getCountsTowardCapacity() ?? true) {
+            $this->productQuantityService->decreaseQuantitySold($attendee->getProductPriceId(), 1, $attendee->getEventOccurrenceId());
+        }
 
         event(new CapacityChangedEvent(
             eventId: $attendee->getEventId(),
@@ -155,7 +162,6 @@ class PartialEditAttendeeHandler
             eventOccurrenceId: $attendee->getEventOccurrenceId(),
         ));
 
-        $order = $this->findOrderForStatistics($attendee);
         if ($order !== null) {
             $this->eventStatisticsCancellationService->decrementForCancelledAttendee(
                 eventId: $attendee->getEventId(),

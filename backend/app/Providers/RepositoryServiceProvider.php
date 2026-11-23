@@ -88,6 +88,8 @@ use HiEvents\Repository\Eloquent\PromoCodeRepository;
 use HiEvents\Repository\Eloquent\QuestionAndAnswerViewRepository;
 use HiEvents\Repository\Eloquent\QuestionAnswerRepository;
 use HiEvents\Repository\Eloquent\QuestionRepository;
+use HiEvents\Repository\Eloquent\SaleLinkItemRepository;
+use HiEvents\Repository\Eloquent\SaleLinkRepository;
 use HiEvents\Repository\Eloquent\StripeCustomerRepository;
 use HiEvents\Repository\Eloquent\StripePaymentsRepository;
 use HiEvents\Repository\Eloquent\StripePayoutsRepository;
@@ -169,6 +171,8 @@ use HiEvents\Repository\Interfaces\PromoCodeRepositoryInterface;
 use HiEvents\Repository\Interfaces\QuestionAndAnswerViewRepositoryInterface;
 use HiEvents\Repository\Interfaces\QuestionAnswerRepositoryInterface;
 use HiEvents\Repository\Interfaces\QuestionRepositoryInterface;
+use HiEvents\Repository\Interfaces\SaleLinkItemRepositoryInterface;
+use HiEvents\Repository\Interfaces\SaleLinkRepositoryInterface;
 use HiEvents\Repository\Interfaces\StripeCustomerRepositoryInterface;
 use HiEvents\Repository\Interfaces\StripePaymentsRepositoryInterface;
 use HiEvents\Repository\Interfaces\StripePayoutsRepositoryInterface;
@@ -204,6 +208,8 @@ class RepositoryServiceProvider extends ServiceProvider
         OrderRepositoryInterface::class => OrderRepository::class,
         AttendeeRepositoryInterface::class => AttendeeRepository::class,
         AffiliateRepositoryInterface::class => AffiliateRepository::class,
+        SaleLinkRepositoryInterface::class => SaleLinkRepository::class,
+        SaleLinkItemRepositoryInterface::class => SaleLinkItemRepository::class,
         ProfileRepositoryInterface::class => ProfileRepository::class,
         EventLineupEntryRepositoryInterface::class => EventLineupEntryRepository::class,
         EventSpaceRepositoryInterface::class => EventSpaceRepository::class,

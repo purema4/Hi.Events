@@ -204,6 +204,7 @@ class AttendeeRepository extends BaseRepository implements AttendeeRepositoryInt
             ->join('orders', 'orders.id', '=', 'attendees.order_id')
             ->whereNull('attendees.deleted_at')
             ->whereNull('orders.deleted_at')
+            ->where('orders.counts_toward_capacity', true)
             ->where(function (Builder $query) {
                 $query
                     ->where('attendees.status', AttendeeStatus::ACTIVE->name)

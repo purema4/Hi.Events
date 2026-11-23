@@ -16,6 +16,7 @@ use HiEvents\Mail\Order\OrderCancelled;
 use HiEvents\Repository\Interfaces\AttendeeRepositoryInterface;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
+use HiEvents\Repository\Interfaces\SaleLinkRepositoryInterface;
 use HiEvents\Services\Domain\EventStatistics\EventStatisticsCancellationService;
 use HiEvents\Services\Domain\Order\OrderCancelService;
 use HiEvents\Services\Domain\Product\ProductQuantityUpdateService;
@@ -87,6 +88,7 @@ class OrderCancelServiceTest extends TestCase
             eventStatisticsCancellationService: $this->eventStatisticsCancellationService,
             revertWaitlistOffersService: $this->revertWaitlistOffersService,
             walletPassSyncDispatcher: m::mock(WalletPassSyncDispatcher::class)->shouldIgnoreMissing(),
+            saleLinkRepository: m::mock(SaleLinkRepositoryInterface::class),
         );
     }
 
@@ -375,6 +377,8 @@ class OrderCancelServiceTest extends TestCase
         $order->shouldReceive('getLocale')->andReturn('en');
         $order->shouldReceive('isOrderCompleted')->andReturn($completed);
         $order->shouldReceive('isOrderAwaitingOfflinePayment')->andReturn($awaitingOfflinePayment);
+        $order->shouldReceive('getCountsTowardCapacity')->andReturn(true);
+        $order->shouldReceive('getSaleLinkId')->andReturn(null);
 
         return $order;
     }

@@ -20954,6 +20954,663 @@
         }
       }
     },
+    "/events/{eventId}/sale-links": {
+      "get": {
+        "operationId": "saleLinks.getSaleLinksAction",
+        "summary": "List Sale Links",
+        "tags": [
+          "Sale Links"
+        ],
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 25
+            }
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "description": "Sortable fields are listed in the response `meta.allowed_sorts`.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort_direction",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Search term used to filter the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "filter_fields",
+            "in": "query",
+            "description": "Filters in the form `filter_fields[field][operator]=value`. Filterable fields are listed in the response `meta.allowed_filter_fields`.",
+            "style": "deepObject",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            },
+            "explode": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Paginated set of `SaleLinkResource`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/SaleLinkResource"
+                      }
+                    },
+                    "links": {
+                      "type": "object",
+                      "properties": {
+                        "first": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "last": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "prev": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "next": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "first",
+                        "last",
+                        "prev",
+                        "next"
+                      ]
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "current_page": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "from": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ],
+                          "minimum": 1
+                        },
+                        "last_page": {
+                          "type": "integer",
+                          "minimum": 1
+                        },
+                        "links": {
+                          "type": "array",
+                          "description": "Generated paginator links.",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "url": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "label": {
+                                "type": "string"
+                              },
+                              "active": {
+                                "type": "boolean"
+                              }
+                            },
+                            "required": [
+                              "url",
+                              "label",
+                              "active"
+                            ]
+                          }
+                        },
+                        "path": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Base path for paginator generated URLs."
+                        },
+                        "per_page": {
+                          "type": "integer",
+                          "description": "Number of items shown per page.",
+                          "minimum": 0
+                        },
+                        "to": {
+                          "type": [
+                            "integer",
+                            "null"
+                          ],
+                          "description": "Number of the last item in the slice.",
+                          "minimum": 1
+                        },
+                        "total": {
+                          "type": "integer",
+                          "description": "Total number of items being paginated.",
+                          "minimum": 0
+                        }
+                      },
+                      "required": [
+                        "current_page",
+                        "from",
+                        "last_page",
+                        "links",
+                        "path",
+                        "per_page",
+                        "to",
+                        "total"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "links",
+                    "meta"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationException"
+          },
+          "403": {
+            "description": "The authenticated user is not allowed to perform this action.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "saleLinks.createSaleLinkAction",
+        "description": "Creates a private link that sells the given tickets at custom prices. The order is\ncreated when the buyer opens the link and continues to checkout.",
+        "summary": "Create Sale Link",
+        "tags": [
+          "Sale Links"
+        ],
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSaleLinkRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "`SaleLinkResource`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/SaleLinkResource"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationException"
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationException"
+          },
+          "403": {
+            "description": "The authenticated user is not allowed to perform this action.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The requested resource was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/{eventId}/sale-links/{saleLinkId}": {
+      "get": {
+        "operationId": "saleLinks.getSaleLinkAction",
+        "summary": "Get Sale Link",
+        "tags": [
+          "Sale Links"
+        ],
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "saleLinkId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "`SaleLinkResource`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/SaleLinkResource"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationException"
+          },
+          "403": {
+            "description": "The authenticated user is not allowed to perform this action.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/{eventId}/sale-links/{saleLinkId}/revoke": {
+      "post": {
+        "operationId": "saleLinks.revokeSaleLinkAction",
+        "description": "Stops the link from creating new orders. Orders already placed through it are not affected.",
+        "summary": "Revoke Sale Link",
+        "tags": [
+          "Sale Links"
+        ],
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "saleLinkId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "`SaleLinkResource`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/SaleLinkResource"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationException"
+          },
+          "403": {
+            "description": "The authenticated user is not allowed to perform this action.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/events/{eventId}/sale-links/{token}": {
+      "get": {
+        "operationId": "public.getSaleLinkActionPublic",
+        "description": "Returns the tickets, quantities and prices a sale link offers.",
+        "summary": "Get Sale Link (public)",
+        "tags": [
+          "Sale Links / Public"
+        ],
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "`SaleLinkResourcePublic`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/SaleLinkResourcePublic"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
+          },
+          "429": {
+            "description": "Too many requests. Retry once the rate limit window resets.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/public/events/{eventId}/sale-links/{token}/order": {
+      "post": {
+        "operationId": "public.createSaleLinkOrderActionPublic",
+        "description": "Reserves the link's tickets at the link's prices in a new order for the current checkout\nsession. Opening the same link again in the same session returns the open order.",
+        "summary": "Create Order From Sale Link (public)",
+        "tags": [
+          "Sale Links / Public"
+        ],
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "`OrderResourcePublic`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/OrderResourcePublic"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "array",
+                      "items": {}
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "errors"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": ""
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationException"
+          },
+          "429": {
+            "description": "Too many requests. Retry once the rate limit window resets.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
     "/organizers/{organizerId}/seat-maps": {
       "get": {
         "operationId": "actions.getSeatMapsAction",
@@ -28790,6 +29447,111 @@
         ],
         "title": "CreateOrderRequest"
       },
+      "CreateSaleLinkRequest": {
+        "type": "object",
+        "properties": {
+          "event_occurrence_id": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "product_id": {
+                  "type": "integer"
+                },
+                "product_price_id": {
+                  "type": "integer"
+                },
+                "quantity": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 1000
+                },
+                "unit_price": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1000000
+                }
+              },
+              "required": [
+                "product_id",
+                "product_price_id",
+                "quantity",
+                "unit_price"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 20
+          },
+          "price_includes_tax": {
+            "type": "boolean"
+          },
+          "promo_code_id": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "promo_mode": {
+            "type": "string",
+            "enum": [
+              "ATTRIBUTION_ONLY",
+              "APPLY_DISCOUNT"
+            ]
+          },
+          "affiliate_id": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "bypass_capacity": {
+            "type": "boolean"
+          },
+          "count_toward_cap": {
+            "type": "boolean"
+          },
+          "max_uses": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10000
+          },
+          "expires_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "email": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "email",
+            "maxLength": 255
+          },
+          "email_locked": {
+            "type": "boolean"
+          },
+          "note": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 1000
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "CreateSaleLinkRequest"
+      },
       "CreateTaxOrFeeRequest": {
         "type": "object",
         "properties": {
@@ -32642,6 +33404,12 @@
               "null"
             ]
           },
+          "sale_link_id": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
           "offline_payment_reported_at": {
             "type": [
               "string",
@@ -32734,6 +33502,7 @@
           "notes",
           "payment_provider",
           "payment_link_created_at",
+          "sale_link_id",
           "offline_payment_reported_at",
           "offline_payment_note",
           "promo_code",
@@ -36106,6 +36875,282 @@
           }
         },
         "title": "ReportOfflinePaymentRequest"
+      },
+      "SaleLinkItemResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "product_id": {
+            "type": "integer"
+          },
+          "product_price_id": {
+            "type": "integer"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "unit_price": {
+            "type": "number"
+          },
+          "product_title": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "price_label": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "product_id",
+          "product_price_id",
+          "quantity",
+          "product_title",
+          "price_label"
+        ],
+        "title": "SaleLinkItemResource"
+      },
+      "SaleLinkResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "event_id": {
+            "type": "integer"
+          },
+          "event_occurrence_id": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "token": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "USED",
+              "EXPIRED",
+              "REVOKED"
+            ]
+          },
+          "price_includes_tax": {
+            "type": "boolean"
+          },
+          "promo_code_id": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "promo_mode": {
+            "type": "string",
+            "enum": [
+              "ATTRIBUTION_ONLY",
+              "APPLY_DISCOUNT"
+            ]
+          },
+          "affiliate_id": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "bypass_capacity": {
+            "type": "boolean"
+          },
+          "count_toward_cap": {
+            "type": "boolean"
+          },
+          "max_uses": {
+            "type": "integer"
+          },
+          "uses_count": {
+            "type": "integer"
+          },
+          "expires_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "email": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "email_locked": {
+            "type": "boolean"
+          },
+          "note": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SaleLinkItemResource"
+            }
+          },
+          "created_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "updated_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "event_id",
+          "event_occurrence_id",
+          "token",
+          "status",
+          "price_includes_tax",
+          "promo_code_id",
+          "promo_mode",
+          "affiliate_id",
+          "bypass_capacity",
+          "count_toward_cap",
+          "max_uses",
+          "uses_count",
+          "expires_at",
+          "email",
+          "email_locked",
+          "note",
+          "items",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "SaleLinkResource"
+      },
+      "SaleLinkResourcePublic": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          },
+          "event_id": {
+            "type": "integer"
+          },
+          "event_occurrence_id": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "currency": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "expires_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "email": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "email_locked": {
+            "type": "boolean"
+          },
+          "price_includes_tax": {
+            "type": "boolean"
+          },
+          "is_usable": {
+            "type": "boolean"
+          },
+          "unavailable_reason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "EXPIRED",
+              "REVOKED",
+              "USED",
+              null
+            ]
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "product_id": {
+                  "type": "integer"
+                },
+                "product_price_id": {
+                  "type": "integer"
+                },
+                "product_title": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "price_label": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "quantity": {
+                  "type": "integer"
+                },
+                "unit_price": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "product_id",
+                "product_price_id",
+                "product_title",
+                "price_label",
+                "quantity",
+                "unit_price"
+              ]
+            }
+          }
+        },
+        "required": [
+          "token",
+          "event_id",
+          "event_occurrence_id",
+          "currency",
+          "expires_at",
+          "email",
+          "email_locked",
+          "price_includes_tax",
+          "is_usable",
+          "unavailable_reason",
+          "items"
+        ],
+        "title": "SaleLinkResourcePublic"
       },
       "ScheduleItemResource": {
         "type": "object",

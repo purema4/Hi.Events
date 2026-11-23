@@ -1374,5 +1374,17 @@
     "The Apple Wallet pass is no longer available.": "Apple Wallet kartı artık kullanılamıyor.",
     "Ticket for :event": ":event bileti",
     "Ticket number": "Bilet numarası",
-    "This tier is sold out": "Bu kademe tükendi"
+    "This tier is sold out": "Bu kademe tükendi",
+    "This link does not exist": "Bu bağlantı mevcut değil",
+    "This link is no longer available": "Bu bağlantı artık kullanılamıyor",
+    "This link has expired": "Bu bağlantının süresi doldu",
+    "This link has already been used": "Bu bağlantı zaten kullanıldı",
+    "This link is being used by someone else. Please try again in a few minutes.": "Bu bağlantıyı şu anda başka biri kullanıyor. Lütfen birkaç dakika sonra tekrar deneyin.",
+    "These tickets are sold out": "Bu biletler tükendi",
+    "This ticket was not found": "Bilet bulunamadı",
+    "Tickets with reserved seating cannot be sold through a sale link": "Rezerve koltuklu biletler satış bağlantısıyla satılamaz",
+    "This ticket is already in the link": "Bu bilet zaten bağlantıda",
+    "This affiliate was not found or is inactive": "Bu ortak bulunamadı veya etkin değil",
+    "Sale link not found": "Satış bağlantısı bulunamadı",
+    "This link can only be used with :email": "Bu bağlantı yalnızca :email ile kullanılabilir"
 }

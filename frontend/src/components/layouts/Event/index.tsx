@@ -27,6 +27,7 @@ import {
     IconUsersGroup,
     IconWebhook,
     IconListCheck,
+    IconLink,
 } from "@tabler/icons-react";
 import {useAccess} from "../../../hooks/useAccess.ts";
 import {t} from "@lingui/macro";
@@ -144,6 +145,7 @@ const EventLayout = () => {
         {link: 'orders', label: t`Orders`, icon: IconReceipt, badge: eventCounts?.total_orders},
         {link: 'promo-codes', label: t`Promo Codes`, icon: IconDiscount2},
         {link: 'affiliates', label: t`Affiliates`, icon: IconTrendingUp},
+        {link: 'sale-links', label: t`Sale Links`, icon: IconLink, showWhen: () => !isReadOnly && can('VIEW_FINANCIALS')},
 
         // 4. GUESTS
         {label: t`Guest Management`},

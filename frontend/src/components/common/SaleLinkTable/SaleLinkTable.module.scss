@@ -1,0 +1,19 @@
+.items {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 180px;
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 160px;
+}
+
+.note {
+    max-width: 240px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
