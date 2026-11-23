@@ -3,6 +3,8 @@ name: CI & Docker Image
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
@@ -106,6 +108,7 @@ jobs:
     name: Build & push all-in-one image
     runs-on: ubuntu-latest
     needs: [backend-tests, frontend-build]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     permissions:
       contents: read
       packages: write
