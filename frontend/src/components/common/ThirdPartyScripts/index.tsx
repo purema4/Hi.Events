@@ -1,9 +1,10 @@
 import ChatwootWidget from "../ChatwootWidget";
+import {getConfig} from "../../../utilites/config.ts";
 
 export const ThirdPartyScripts = () => {
     return (
         <>
-            <ChatwootWidget/>
+            {getConfig('VITE_CHATWOOT_WEBSITE_TOKEN') && <ChatwootWidget/>}
         </>
     );
 }

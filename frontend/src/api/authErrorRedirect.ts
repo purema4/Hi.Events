@@ -22,6 +22,7 @@ const ALLOWED_UNAUTHENTICATED_PATHS = [
     'my-tickets',
     'emails/unsubscribe',
     'sso/callback',
+    '/pay/',
 ];
 
 export type AuthErrorAction =
