@@ -16,6 +16,7 @@ use Illuminate\Encryption\Encrypter;
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery\MockInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Psr\Log\NullLogger;
 use Tests\TestCase;
 
@@ -112,6 +113,99 @@ class MetaPurchaseConversionServiceTest extends TestCase
         $this->assertSame('Mozilla/5.0', $userData['client_user_agent']);
         $this->assertSame('fb.1.1700000000000.123456', $userData['fbp']);
         $this->assertArrayNotHasKey('fbc', $userData);
+    }
+
+    public function test_normalizes_names_and_us_addresses_the_way_meta_requires(): void
+    {
+        $this->givenOrder($this->makeOrder()
+            ->setFirstName('Mary-Jo')
+            ->setLastName("O'Brien Smith")
+            ->setAddress([
+                'city' => 'New York',
+                'state_or_region' => 'New York',
+                'zip_or_postal_code' => '10001-1234',
+                'country' => 'US',
+            ]));
+        $this->givenEvent();
+        $this->givenSettings($this->makeSettings());
+
+        $sentEvents = null;
+        $this->client
+            ->shouldReceive('sendEvents')
+            ->once()
+            ->with(self::PIXEL_ID, 'EAAtoken', Mockery::on(function (array $events) use (&$sentEvents) {
+                $sentEvents = $events;
+
+                return true;
+            }));
+
+        $this->service->sendPurchase(1);
+
+        $userData = $sentEvents[0]['user_data'];
+        $this->assertSame([hash('sha256', 'maryjo')], $userData['fn']);
+        $this->assertSame([hash('sha256', 'obriensmith')], $userData['ln']);
+        $this->assertSame([hash('sha256', 'newyork')], $userData['ct']);
+        $this->assertSame([hash('sha256', 'ny')], $userData['st']);
+        $this->assertSame([hash('sha256', '10001')], $userData['zp']);
+        $this->assertSame([hash('sha256', 'us')], $userData['country']);
+    }
+
+    /**
+     * @return array<string, array{0: string, 1: string}>
+     */
+    public static function canadianProvinceProvider(): array
+    {
+        return [
+            'french name with accent' => ['Québec', 'qc'],
+            'english name without accent' => ['Quebec', 'qc'],
+            'code' => ['QC', 'qc'],
+            'multi-word name' => ['British Columbia', 'bc'],
+            'hyphenated french name' => ['Nouvelle-Écosse', 'ns'],
+        ];
+    }
+
+    #[DataProvider('canadianProvinceProvider')]
+    public function test_sends_canadian_provinces_as_their_two_letter_code(string $typed, string $expected): void
+    {
+        $this->givenOrder($this->makeOrder()->setAddress([
+            'city' => 'Montréal',
+            'state_or_region' => $typed,
+            'zip_or_postal_code' => 'H2X 1Y4',
+            'country' => 'CA',
+        ]));
+        $this->givenEvent();
+        $this->givenSettings($this->makeSettings());
+
+        $this->client
+            ->shouldReceive('sendEvents')
+            ->once()
+            ->with(self::PIXEL_ID, 'EAAtoken', Mockery::on(
+                fn (array $events) => $events[0]['user_data']['st'] === [hash('sha256', $expected)]
+                    && $events[0]['user_data']['zp'] === [hash('sha256', 'h2x1y4')]
+            ));
+
+        $this->service->sendPurchase(1);
+    }
+
+    public function test_keeps_other_countries_regions_as_lowercase_text_without_punctuation(): void
+    {
+        $this->givenOrder($this->makeOrder()->setAddress([
+            'city' => 'Paris',
+            'state_or_region' => 'Île-de-France',
+            'zip_or_postal_code' => '75018',
+            'country' => 'FR',
+        ]));
+        $this->givenEvent();
+        $this->givenSettings($this->makeSettings());
+
+        $this->client
+            ->shouldReceive('sendEvents')
+            ->once()
+            ->with(self::PIXEL_ID, 'EAAtoken', Mockery::on(
+                fn (array $events) => $events[0]['user_data']['st'] === [hash('sha256', 'îledefrance')]
+            ));
+
+        $this->service->sendPurchase(1);
     }
 
     public function test_sends_complete_registration_for_free_orders(): void

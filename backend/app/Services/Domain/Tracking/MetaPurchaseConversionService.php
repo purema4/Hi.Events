@@ -20,6 +20,89 @@ use Psr\Log\LoggerInterface;
 
 class MetaPurchaseConversionService
 {
+    private const STATE_CODES_BY_COUNTRY = [
+        'us' => [
+            'alabama' => 'al',
+            'alaska' => 'ak',
+            'arizona' => 'az',
+            'arkansas' => 'ar',
+            'california' => 'ca',
+            'colorado' => 'co',
+            'connecticut' => 'ct',
+            'delaware' => 'de',
+            'districtofcolumbia' => 'dc',
+            'florida' => 'fl',
+            'georgia' => 'ga',
+            'hawaii' => 'hi',
+            'idaho' => 'id',
+            'illinois' => 'il',
+            'indiana' => 'in',
+            'iowa' => 'ia',
+            'kansas' => 'ks',
+            'kentucky' => 'ky',
+            'louisiana' => 'la',
+            'maine' => 'me',
+            'maryland' => 'md',
+            'massachusetts' => 'ma',
+            'michigan' => 'mi',
+            'minnesota' => 'mn',
+            'mississippi' => 'ms',
+            'missouri' => 'mo',
+            'montana' => 'mt',
+            'nebraska' => 'ne',
+            'nevada' => 'nv',
+            'newhampshire' => 'nh',
+            'newjersey' => 'nj',
+            'newmexico' => 'nm',
+            'newyork' => 'ny',
+            'northcarolina' => 'nc',
+            'northdakota' => 'nd',
+            'ohio' => 'oh',
+            'oklahoma' => 'ok',
+            'oregon' => 'or',
+            'pennsylvania' => 'pa',
+            'rhodeisland' => 'ri',
+            'southcarolina' => 'sc',
+            'southdakota' => 'sd',
+            'tennessee' => 'tn',
+            'texas' => 'tx',
+            'utah' => 'ut',
+            'vermont' => 'vt',
+            'virginia' => 'va',
+            'washington' => 'wa',
+            'westvirginia' => 'wv',
+            'wisconsin' => 'wi',
+            'wyoming' => 'wy',
+            'puertorico' => 'pr',
+        ],
+        'ca' => [
+            'alberta' => 'ab',
+            'britishcolumbia' => 'bc',
+            'colombiebritannique' => 'bc',
+            'manitoba' => 'mb',
+            'newbrunswick' => 'nb',
+            'nouveaubrunswick' => 'nb',
+            'newfoundlandandlabrador' => 'nl',
+            'newfoundland' => 'nl',
+            'terreneuveetlabrador' => 'nl',
+            'terreneuve' => 'nl',
+            'novascotia' => 'ns',
+            'nouvelleécosse' => 'ns',
+            'nouvelleecosse' => 'ns',
+            'northwestterritories' => 'nt',
+            'territoiresdunordouest' => 'nt',
+            'nunavut' => 'nu',
+            'ontario' => 'on',
+            'princeedwardisland' => 'pe',
+            'îleduprinceédouard' => 'pe',
+            'ileduprinceedouard' => 'pe',
+            'québec' => 'qc',
+            'quebec' => 'qc',
+            'saskatchewan' => 'sk',
+            'yukon' => 'yt',
+        ],
+    ];
+
     public function __construct(
         private readonly OrderRepositoryInterface $orderRepository,
         private readonly EventRepositoryInterface $eventRepository,
@@ -135,14 +218,15 @@ class MetaPurchaseConversionService
     private function buildUserData(OrderDomainObject $order, array $trackingContext): array
     {
         $address = is_array($order->getAddress()) ? $order->getAddress() : [];
+        $country = mb_strtolower(trim((string) ($address['country'] ?? '')));
 
         return array_filter([
             'em' => $this->hash($order->getEmail()),
-            'fn' => $this->hash($order->getFirstName()),
-            'ln' => $this->hash($order->getLastName()),
+            'fn' => $this->hash($this->stripNonAlphanumeric($order->getFirstName())),
+            'ln' => $this->hash($this->stripNonAlphanumeric($order->getLastName())),
             'ct' => $this->hash($this->stripNonAlphanumeric($address['city'] ?? null)),
-            'st' => $this->hash($this->stripNonAlphanumeric($address['state_or_region'] ?? null)),
-            'zp' => $this->hash($this->stripNonAlphanumeric($address['zip_or_postal_code'] ?? null)),
+            'st' => $this->hash($this->normalizeState($address['state_or_region'] ?? null, $country)),
+            'zp' => $this->hash($this->normalizeZip($address['zip_or_postal_code'] ?? null, $country)),
             'country' => $this->hash($address['country'] ?? null),
             'client_ip_address' => $trackingContext['client_ip_address'] ?? null,
             'client_user_agent' => $trackingContext['client_user_agent'] ?? null,
@@ -163,6 +247,20 @@ class MetaPurchaseConversionService
         }
 
         return [hash('sha256', $normalized)];
+    }
+
+    private function normalizeState(?string $state, string $country): string
+    {
+        $normalized = mb_strtolower((string) $this->stripNonAlphanumeric($state));
+
+        return self::STATE_CODES_BY_COUNTRY[$country][$normalized] ?? $normalized;
+    }
+
+    private function normalizeZip(?string $zip, string $country): string
+    {
+        $normalized = (string) $this->stripNonAlphanumeric($zip);
+
+        return $country === 'us' ? substr($normalized, 0, 5) : $normalized;
     }
 
     private function stripNonAlphanumeric(?string $value): ?string
