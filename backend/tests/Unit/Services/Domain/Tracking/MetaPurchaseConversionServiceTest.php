@@ -6,10 +6,14 @@ use Carbon\Carbon;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\OrderDomainObject;
 use HiEvents\DomainObjects\OrganizerSettingDomainObject;
+use HiEvents\DomainObjects\QuestionAnswerDomainObject;
+use HiEvents\DomainObjects\QuestionDomainObject;
 use HiEvents\DomainObjects\Status\OrderStatus;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrganizerSettingsRepositoryInterface;
+use HiEvents\Repository\Interfaces\QuestionAnswerRepositoryInterface;
+use HiEvents\Repository\Interfaces\QuestionRepositoryInterface;
 use HiEvents\Services\Domain\Tracking\MetaPurchaseConversionService;
 use HiEvents\Services\Infrastructure\Meta\MetaConversionsApiClient;
 use Illuminate\Encryption\Encrypter;
@@ -32,6 +36,10 @@ class MetaPurchaseConversionServiceTest extends TestCase
 
     private OrganizerSettingsRepositoryInterface|MockInterface $organizerSettingsRepository;
 
+    private QuestionRepositoryInterface|MockInterface $questionRepository;
+
+    private QuestionAnswerRepositoryInterface|MockInterface $questionAnswerRepository;
+
     private MetaConversionsApiClient|MockInterface $client;
 
     private Encrypter $encrypter;
@@ -47,6 +55,9 @@ class MetaPurchaseConversionServiceTest extends TestCase
         $this->orderRepository = Mockery::mock(OrderRepositoryInterface::class);
         $this->eventRepository = Mockery::mock(EventRepositoryInterface::class);
         $this->organizerSettingsRepository = Mockery::mock(OrganizerSettingsRepositoryInterface::class);
+        $this->questionRepository = Mockery::mock(QuestionRepositoryInterface::class);
+        $this->questionAnswerRepository = Mockery::mock(QuestionAnswerRepositoryInterface::class);
+        $this->questionRepository->shouldReceive('findWhere')->andReturn(collect())->byDefault();
         $this->client = Mockery::mock(MetaConversionsApiClient::class);
         $this->encrypter = new Encrypter(Encrypter::generateKey('aes-256-cbc'), 'aes-256-cbc');
 
@@ -54,6 +65,8 @@ class MetaPurchaseConversionServiceTest extends TestCase
             orderRepository: $this->orderRepository,
             eventRepository: $this->eventRepository,
             organizerSettingsRepository: $this->organizerSettingsRepository,
+            questionRepository: $this->questionRepository,
+            questionAnswerRepository: $this->questionAnswerRepository,
             client: $this->client,
             encrypter: $this->encrypter,
             logger: new NullLogger,
@@ -208,6 +221,56 @@ class MetaPurchaseConversionServiceTest extends TestCase
         $this->service->sendPurchase(1);
     }
 
+    /**
+     * @return array<string, array{0: string, 1: string, 2: string, 3: string|null}>
+     */
+    public static function phoneProvider(): array
+    {
+        return [
+            'international format' => ['+1 (514) 555-1234', 'CA', 'cad', '15145551234'],
+            'local canadian number' => ['514-555-1234', 'CA', 'cad', '15145551234'],
+            'local number with leading 1' => ['1 514 555 1234', 'US', 'usd', '15145551234'],
+            'no address, canadian dollars' => ['(514) 555-1234', '', 'cad', '15145551234'],
+            'international 00 prefix' => ['0033 6 12 34 56 78', 'FR', 'eur', '33612345678'],
+            'local number outside north america' => ['06 12 34 56 78', 'FR', 'eur', null],
+            'no address, other currency' => ['514-555-1234', '', 'eur', null],
+        ];
+    }
+
+    #[DataProvider('phoneProvider')]
+    public function test_sends_the_buyers_phone_number_with_its_country_code(
+        string $typed,
+        string $country,
+        string $currency,
+        ?string $expected,
+    ): void {
+        $this->givenOrder($this->makeOrder()->setCurrency($currency)->setAddress(
+            $country === '' ? null : ['city' => 'Montréal', 'country' => $country],
+        ));
+        $this->givenEvent();
+        $this->givenSettings($this->makeSettings());
+        $this->givenPhoneAnswer($typed);
+
+        $sentEvents = null;
+        $this->client
+            ->shouldReceive('sendEvents')
+            ->once()
+            ->with(self::PIXEL_ID, 'EAAtoken', Mockery::on(function (array $events) use (&$sentEvents) {
+                $sentEvents = $events;
+
+                return true;
+            }));
+
+        $this->service->sendPurchase(1);
+
+        $userData = $sentEvents[0]['user_data'];
+        if ($expected === null) {
+            $this->assertArrayNotHasKey('ph', $userData);
+        } else {
+            $this->assertSame([hash('sha256', $expected)], $userData['ph']);
+        }
+    }
+
     public function test_sends_complete_registration_for_free_orders(): void
     {
         $this->givenOrder($this->makeOrder()->setTotalGross(0));
@@ -315,6 +378,23 @@ class MetaPurchaseConversionServiceTest extends TestCase
                 ['provider' => 'facebook_pixel', 'pixel_id' => self::PIXEL_ID, 'enabled' => true],
             ])
             ->setMetaConversionsApiAccessToken($this->encrypter->encryptString('EAAtoken'));
+    }
+
+    private function givenPhoneAnswer(string $answer): void
+    {
+        $this->questionRepository
+            ->shouldReceive('findWhere')
+            ->with([
+                'event_id' => 6,
+                'type' => 'PHONE',
+                'belongs_to' => 'ORDER',
+            ])
+            ->andReturn(collect([(new QuestionDomainObject)->setId(40)]));
+
+        $this->questionAnswerRepository
+            ->shouldReceive('findWhereIn')
+            ->with('question_id', [40], ['order_id' => 1])
+            ->andReturn(collect([(new QuestionAnswerDomainObject)->setQuestionId(40)->setAnswer($answer)]));
     }
 
     private function givenOrder(OrderDomainObject $order): void

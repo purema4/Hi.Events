@@ -5,14 +5,19 @@ declare(strict_types=1);
 namespace HiEvents\Services\Domain\Tracking;
 
 use Carbon\Carbon;
+use HiEvents\DomainObjects\Enums\QuestionBelongsTo;
+use HiEvents\DomainObjects\Enums\QuestionTypeEnum;
 use HiEvents\DomainObjects\Enums\TrackingPixelProvider;
 use HiEvents\DomainObjects\EventDomainObject;
 use HiEvents\DomainObjects\OrderDomainObject;
 use HiEvents\DomainObjects\OrganizerSettingDomainObject;
+use HiEvents\DomainObjects\QuestionAnswerDomainObject;
 use HiEvents\Exceptions\Meta\MetaConversionsApiException;
 use HiEvents\Repository\Interfaces\EventRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrderRepositoryInterface;
 use HiEvents\Repository\Interfaces\OrganizerSettingsRepositoryInterface;
+use HiEvents\Repository\Interfaces\QuestionAnswerRepositoryInterface;
+use HiEvents\Repository\Interfaces\QuestionRepositoryInterface;
 use HiEvents\Services\Infrastructure\Meta\MetaConversionsApiClient;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Contracts\Encryption\Encrypter;
@@ -20,6 +25,10 @@ use Psr\Log\LoggerInterface;
 
 class MetaPurchaseConversionService
 {
+    private const NORTH_AMERICAN_COUNTRIES = ['us', 'ca'];
+
+    private const NORTH_AMERICAN_CURRENCIES = ['usd', 'cad'];
+
     private const STATE_CODES_BY_COUNTRY = [
         'us' => [
             'alabama' => 'al',
@@ -107,6 +116,8 @@ class MetaPurchaseConversionService
         private readonly OrderRepositoryInterface $orderRepository,
         private readonly EventRepositoryInterface $eventRepository,
         private readonly OrganizerSettingsRepositoryInterface $organizerSettingsRepository,
+        private readonly QuestionRepositoryInterface $questionRepository,
+        private readonly QuestionAnswerRepositoryInterface $questionAnswerRepository,
         private readonly MetaConversionsApiClient $client,
         private readonly Encrypter $encrypter,
         private readonly LoggerInterface $logger,
@@ -222,6 +233,7 @@ class MetaPurchaseConversionService
 
         return array_filter([
             'em' => $this->hash($order->getEmail()),
+            'ph' => $this->hash($this->normalizePhone($this->findBuyerPhone($order), $country, (string) $order->getCurrency())),
             'fn' => $this->hash($this->stripNonAlphanumeric($order->getFirstName())),
             'ln' => $this->hash($this->stripNonAlphanumeric($order->getLastName())),
             'ct' => $this->hash($this->stripNonAlphanumeric($address['city'] ?? null)),
@@ -247,6 +259,58 @@ class MetaPurchaseConversionService
         }
 
         return [hash('sha256', $normalized)];
+    }
+
+    private function findBuyerPhone(OrderDomainObject $order): ?string
+    {
+        $phoneQuestionIds = $this->questionRepository->findWhere([
+            'event_id' => $order->getEventId(),
+            'type' => QuestionTypeEnum::PHONE->name,
+            'belongs_to' => QuestionBelongsTo::ORDER->name,
+        ])->map(fn ($question) => $question->getId())->all();
+
+        if ($phoneQuestionIds === []) {
+            return null;
+        }
+
+        /** @var QuestionAnswerDomainObject|null $answer */
+        $answer = $this->questionAnswerRepository
+            ->findWhereIn('question_id', $phoneQuestionIds, ['order_id' => $order->getId()])
+            ->first(fn (QuestionAnswerDomainObject $answer) => is_string($answer->getAnswer()) && trim($answer->getAnswer()) !== '');
+
+        return $answer?->getAnswer();
+    }
+
+    private function normalizePhone(?string $phone, string $country, string $currency): ?string
+    {
+        $trimmed = trim((string) $phone);
+        $digits = (string) preg_replace('/\D+/', '', $trimmed);
+
+        if ($digits === '') {
+            return null;
+        }
+
+        if (str_starts_with($trimmed, '+')) {
+            return $digits;
+        }
+
+        if (str_starts_with($digits, '00')) {
+            return substr($digits, 2);
+        }
+
+        $isNorthAmerican = $country === ''
+            ? in_array(mb_strtolower($currency), self::NORTH_AMERICAN_CURRENCIES, true)
+            : in_array($country, self::NORTH_AMERICAN_COUNTRIES, true);
+
+        if (! $isNorthAmerican) {
+            return null;
+        }
+
+        if (strlen($digits) === 10) {
+            return '1'.$digits;
+        }
+
+        return strlen($digits) === 11 && str_starts_with($digits, '1') ? $digits : null;
     }
 
     private function normalizeState(?string $state, string $country): string
